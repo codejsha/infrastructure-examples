@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bea-installer>
+    <input-fields>
+        <data-value name="BEAHOME" value="/usr/local/weblogic" />
+        <data-value name="WLS_INSTALL_DIR" value="/usr/local/weblogic/wlserver_10.3" />
+        <data-value name="COMPONENT_PATHS" value="WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support" />
+        <!-- Deselected components
+            |WebLogic Server/Server Examples
+            |Oracle Coherence/Coherence Product Files
+            |Oracle Coherence/Coherence Examples
+        -->
+    </input-fields>
+</bea-installer>

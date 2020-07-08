@@ -1,0 +1,6 @@
+Get-VMSnapshot -VMName "KubeControlPlaneMachine1"
+Get-VMSnapshot -VMName "KubeControlPlaneMachine2"
+Get-VMSnapshot -VMName "KubeControlPlaneMachine3"
+Get-VMSnapshot -VMName "KubeNodeMachine1"
+Get-VMSnapshot -VMName "KubeNodeMachine2"
+Get-VMSnapshot -VMName "KubeNodeMachine3"

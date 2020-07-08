@@ -1,0 +1,6 @@
+Remove-VMSnapshot -VMName "KubeControlPlaneMachine1" -Name "checkpoint01"
+Remove-VMSnapshot -VMName "KubeControlPlaneMachine2" -Name "checkpoint01"
+Remove-VMSnapshot -VMName "KubeControlPlaneMachine3" -Name "checkpoint01"
+Remove-VMSnapshot -VMName "KubeNodeMachine1" -Name "checkpoint01"
+Remove-VMSnapshot -VMName "KubeNodeMachine2" -Name "checkpoint01"
+Remove-VMSnapshot -VMName "KubeNodeMachine3" -Name "checkpoint01"

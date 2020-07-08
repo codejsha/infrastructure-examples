@@ -1,0 +1,54 @@
+# rook-ceph
+
+## cluster
+
+`rook/cluster/examples/kubernetes/ceph/cluster.yaml`
+
+### prefix for loadbalancer or ingress
+
+```yaml
+spec:
+  dashboard:
+    urlPrefix: /ceph-dashboard
+```
+
+### specific devices
+
+```yaml
+spec:
+  nodes:
+  - name: "10.10.10.21"
+    devices:
+    - name: "sdb"
+  - name: "10.10.10.22"
+    devices:
+    - name: "sdb"
+  - name: "10.10.10.23"
+    devices:
+    - name: "sdb"
+```
+
+## dashboard
+
+### ingress
+
+`rook/cluster/examples/kubernetes/ceph/dashboard-ingress-https.yaml`
+
+```yaml
+spec:
+  tls:
+   - hosts:
+     - rook-ceph.kube.example.com
+     secretName: rook-ceph.kube.example.com
+  rules:
+  - host: rook-ceph.kube.example.com
+```
+
+### loadbalancer
+
+`rook/cluster/examples/kubernetes/ceph/dashboard-loadbalancer.yaml`
+
+```yaml
+spec:
+  loadBalancerIP: 10.10.10.50
+```

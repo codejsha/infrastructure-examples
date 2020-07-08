@@ -1,0 +1,10 @@
+[ENGINE]
+
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+ORACLE_HOME=/usr/local/weblogic
+INSTALL_TYPE=WebLogic Server
+DECLINE_AUTO_UPDATES=true
+DECLINE_SECURITY_UPDATES=true

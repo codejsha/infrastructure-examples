@@ -1,0 +1,6 @@
+Checkpoint-VM -Name "KubeControlPlaneMachine1" -SnapshotName "checkpoint01"
+Checkpoint-VM -Name "KubeControlPlaneMachine2" -SnapshotName "checkpoint01"
+Checkpoint-VM -Name "KubeControlPlaneMachine3" -SnapshotName "checkpoint01"
+Checkpoint-VM -Name "KubeNodeMachine1" -SnapshotName "checkpoint01"
+Checkpoint-VM -Name "KubeNodeMachine2" -SnapshotName "checkpoint01"
+Checkpoint-VM -Name "KubeNodeMachine3" -SnapshotName "checkpoint01"
