@@ -13,10 +13,3 @@ git pull origin master
 git fetch --all
 git reset --hard origin/master
 ```
-
-## References
-
-- [Apache HTTP Server Documentation](https://httpd.apache.org/docs/current/)
-- [Istio Documentation](https://istio.io/latest/docs/)
-- [MetalLB Website](https://metallb.universe.tf/)
-- [Redission Documentation](https://github.com/redisson/redisson/wiki/Table-of-Content)
