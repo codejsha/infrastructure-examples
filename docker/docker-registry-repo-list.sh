@@ -1,4 +1,4 @@
-#!/usr/bin/bashfd
+#!/usr/bin/bash
 
 USERNAME="admin"
 PASSWORD="changeit"
