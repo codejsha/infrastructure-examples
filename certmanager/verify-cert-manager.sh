@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# https://cert-manager.io/docs/installation/kubernetes/#verifying-the-installation
 
 cat <<EOF > test-resources.yaml
 apiVersion: v1

@@ -1,4 +1,8 @@
 #!/usr/bin/bash
+# https://rook.github.io/docs/rook/v1.3/ceph-quickstart.html
+# https://rook.github.io/docs/rook/v1.3/ceph-block.html
+# https://rook.github.io/docs/rook/v1.3/ceph-csi-drivers.html
+# https://rook.github.io/docs/rook/v1.3/ceph-dashboard.html
 
 kubectl create -f rook/cluster/examples/kubernetes/ceph/cluster.yaml
 kubectl create -f rook/cluster/examples/kubernetes/ceph/toolbox.yaml

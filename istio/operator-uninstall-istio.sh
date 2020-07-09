@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# https://istio.io/latest/docs/setup/install/standalone-operator/
 
 ### depete the istio deployment
 kubectl delete istiooperators.install.istio.io -n istio-system example-istiocontrolplane
