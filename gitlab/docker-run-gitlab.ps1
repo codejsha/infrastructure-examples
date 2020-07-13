@@ -1,5 +1,7 @@
 $GitlabHome="$env:USERPROFILE\volume\gitlab"
-New-Item -Path $GitlabHome -ItemType Directory -Force
+New-Item -Path $GitlabHome\config -ItemType Directory -Force
+New-Item -Path $GitlabHome\logs -ItemType Directory -Force
+New-Item -Path $GitlabHome\data -ItemType Directory -Force
 
 docker run `
     --detach `
@@ -10,7 +12,7 @@ docker run `
     --publish 9480:80 `
     --publish 9422:22 `
     --env GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.example.com/'; gitlab_rails['lfs_enabled'] = true; gitlab_rails['gitlab_shell_ssh_port'] = 9422;" `
-    --mount type=volume,src=$GitlabHome/config,dst=/etc/gitlab `
-    --mount type=volume,src=$GitlabHome/logs,dst=/var/log/gitlab `
-    --mount type=volume,src=$GitlabHome/data,dst=/var/opt/gitlab `
+    --mount type=bind,src=$GitlabHome/config,dst=/etc/gitlab `
+    --mount type=bind,src=$GitlabHome/logs,dst=/var/log/gitlab `
+    --mount type=bind,src=$GitlabHome/data,dst=/var/opt/gitlab `
     gitlab/gitlab-ce:latest

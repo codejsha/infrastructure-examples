@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
 GITLAB_HOME="/mnt/volume/gitlab"
-mkdir -p ${GITLAB_HOME}
+mkdir -p ${GITLAB_HOME}/config
+mkdir -p ${GITLAB_HOME}/logs
+mkdir -p ${GITLAB_HOME}/data
 
 docker run \
     --detach \
@@ -12,7 +14,7 @@ docker run \
     --publish 9480:80 \
     --publish 9422:22 \
     --env GITLAB_OMNIBUS_CONFIG="external_url 'http://gitlab.example.com/'; gitlab_rails['lfs_enabled'] = true; gitlab_rails['gitlab_shell_ssh_port'] = 9422;" \
-    --mount type=volume,src=${GITLAB_HOME}/config,dst=/etc/gitlab \
-    --mount type=volume,src=${GITLAB_HOME}/logs,dst=/var/log/gitlab \
-    --mount type=volume,src=${GITLAB_HOME}/data,dst=/var/opt/gitlab \
+    --mount type=bind,src=${GITLAB_HOME}/config,dst=/etc/gitlab \
+    --mount type=bind,src=${GITLAB_HOME}/logs,dst=/var/log/gitlab \
+    --mount type=bind,src=${GITLAB_HOME}/data,dst=/var/opt/gitlab \
     gitlab/gitlab-ce:latest
