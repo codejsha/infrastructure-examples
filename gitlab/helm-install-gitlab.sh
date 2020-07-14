@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+# https://docs.gitlab.com/charts
+# https://gitlab.com/gitlab-org/charts/gitlab
 
 helm repo add gitlab https://charts.gitlab.io
 helm repo update
