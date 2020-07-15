@@ -1,0 +1,9 @@
+# https://github.com/kubernetes-sigs/descheduler
+---
+apiVersion: "descheduler/v1alpha1"
+kind: "DeschedulerPolicy"
+strategies:
+  "PodLifeTime":
+     enabled: true
+     params:
+        maxPodLifeTimeSeconds: 86400
