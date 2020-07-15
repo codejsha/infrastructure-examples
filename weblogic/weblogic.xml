@@ -1,0 +1,46 @@
+<!-- https://docs.oracle.com/middleware/12213/wls/WBAPP/weblogic_xml.htm -->
+<?xml version='1.0' encoding='UTF-8'?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app">
+
+    <context-root>/</context-root>
+
+    <session-descriptor>
+        <cookie-name>JSESSIONID</cookie-name>
+        <persistent-store-type>replicated_if_clustered</persistent-store-type>
+        <sharing-enabled>true</sharing-enabled>
+        <timeout-secs>3600</timeout-secs>
+    </session-descriptor>
+
+    <jsp-descriptor>
+        <page-check-seconds>-1</page-check-seconds>
+        <encoding>UTF-8</encoding>
+        <keepgenerated>false</keepgenerated>
+        <precompile>false</precompile>
+        <working-dir>./precompiled</working-dir>
+    </jsp-descriptor>
+
+    <container-descriptor>
+        <servlet-reload-check-secs>-1</servlet-reload-check-secs>
+        <resource-reload-check-secs>-1</resource-reload-check-secs>
+
+        <!-- <prefer-web-inf-classes>true</prefer-web-inf-classes> -->
+
+        <!--
+        <prefer-web-inf-classes>false</prefer-web-inf-classes>
+        <prefer-application-packages>
+            <package-name>com.oracle.foo.*</package-name>
+        </prefer-application-packages>
+        <prefer-application-resources>
+            <resource-name>com.oracle.foo.*</resource-name>
+        </prefer-application-resources>
+        -->
+    </container-descriptor>
+
+    <charset-params>
+        <input-charset>
+            <resource-path>/*</resource-path>
+            <java-charset-name>UTF-8</java-charset-name>
+        </input-charset>
+    </charset-params>
+
+</weblogic-web-app>
