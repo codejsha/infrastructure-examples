@@ -9,6 +9,7 @@
 
 # --mount type=bind,src=/mnt/share,dst=/mnt/share \
 # --mount type=bind,src=/mnt/storage,dst=/mnt/storage \
+# --mount type=bind,src=/mnt/volume/log,dst=/var/log \
 
 ######################################################################
 
