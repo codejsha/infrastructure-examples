@@ -9,6 +9,9 @@
         <persistent-store-type>replicated_if_clustered</persistent-store-type>
         <sharing-enabled>true</sharing-enabled>
         <timeout-secs>3600</timeout-secs>
+        <cookie-max-age-secs>-1</cookie-max-age-secs>
+        <cookie-http-only>true</cookie-http-only>
+        <cookie-secure>false</cookie-secure>
     </session-descriptor>
 
     <jsp-descriptor>
@@ -22,6 +25,7 @@
     <container-descriptor>
         <servlet-reload-check-secs>-1</servlet-reload-check-secs>
         <resource-reload-check-secs>-1</resource-reload-check-secs>
+        <index-directory-enabled>false</index-directory-enabled>
 
         <!-- <prefer-web-inf-classes>true</prefer-web-inf-classes> -->
 
