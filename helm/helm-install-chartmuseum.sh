@@ -17,4 +17,5 @@ helm install my-chartmuseum \
     -f custom.yaml \
     stable/chartmuseum
 
-curl --insecure --verbose http://chartmuseum.kube.example.com/health
+### health check
+# curl --insecure --verbose http://chartmuseum.kube.example.com/health
