@@ -21,7 +21,7 @@ helm install my-jenkins \
     --set agent.resources.limits.memory="512Mi" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 2.1.0 \
+    --version 2.3.0 \
     stable/jenkins
 
     ### agent (jdk8)
