@@ -22,7 +22,7 @@ helm install my-docker-registry \
     --set secrets.s3.accessKey="admin" \
     --set secrets.s3.secretKey="changeit" \
     --set s3.region="us-east-1" \
-    --set s3.regionEndpoint="http://10.10.10.52:9000/" \
+    --set s3.regionEndpoint="http://10.10.10.52:9000" \
     --set s3.bucket="myimage" \
     --set s3.encrypt="false" \
     --set s3.secure="false" \
