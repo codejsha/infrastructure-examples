@@ -15,7 +15,7 @@ helm install my-jenkins \
     --set master.ingress.path="/" \
     --set agent.image="jenkins/inbound-agent" \
     --set agent.tag="4.3-7-jdk11" \
-    --set agent.resources.requests.cpu="256m" \
+    --set agent.resources.requests.cpu="128m" \
     --set agent.resources.requests.memory="512Mi" \
     --set agent.resources.limits.cpu="256m" \
     --set agent.resources.limits.memory="512Mi" \
