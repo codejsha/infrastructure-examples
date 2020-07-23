@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 source jc-env.sh
-source jc-job-env.sh
+source jc-env-job.sh
 
 JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 JENKINS_JOB_RANGE="${2:-${JENKINS_JOB_RANGE}}"
