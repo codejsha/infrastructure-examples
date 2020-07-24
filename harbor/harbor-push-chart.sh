@@ -11,7 +11,7 @@ PROJECT="myproject"
 REPOSITORY="myrepo"
 
 if [ -z "${CHART_PATH}" ]; then
-    echo "ERROR: The CHART_PATH argument is required!"
+    echo "usage:  bash harbor-push-helm.sh <CHART_PATH> [TAG]"
     exit
 fi
 

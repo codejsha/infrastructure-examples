@@ -12,7 +12,7 @@ TOP_THREAD_COUNT=5
 INTERVAL_SECONDS=5
 
 if [ -z "${PID}" ]; then
-    echo "ERROR: The PID argument is required!"
+    echo "usage:  bash java-thread-high-cpu.sh PID"
     exit
 fi
 

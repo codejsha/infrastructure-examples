@@ -11,7 +11,7 @@ LOOP_COUNT=1
 INTERVAL_SECONDS=5
 
 if [ -z "${PID}" ]; then
-    echo "ERROR: The PID argument is required!"
+    echo "usage:  bash print-thread-dump.sh PID"
     exit
 fi
 

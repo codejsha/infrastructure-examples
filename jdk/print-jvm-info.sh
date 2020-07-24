@@ -8,7 +8,7 @@ PID="${1}"
 JAVA_HOME="/usr/lib/jvm/java-11"
 
 if [ -z "${PID}" ]; then
-    echo "ERROR: The PID argument is required!"
+    echo "usage:  bash print-jvm-info.sh PID"
     exit
 fi
 

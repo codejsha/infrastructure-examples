@@ -11,7 +11,7 @@ PROJECT="myproject"
 REPOSITORY="myrepo"
 
 if [ -z "${SOURCE_IMAGE}" ]; then
-    echo "ERROR: The SOURCE_IMAGE argument is required!"
+    echo "usage:  bash harbor-push-image.sh <SOURCE_IMAGE> [TAG]"
     exit
 fi
 
