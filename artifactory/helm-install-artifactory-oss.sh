@@ -13,8 +13,8 @@ helm install my-artifactory-oss \
     --namespace ${NAMESPACE} \
     --set artifactory.nginx.enabled="false" \
     --set artifactory.ingress.enabled="true" \
-    --set artifactory.ingress.hosts={"artifactory.kube.example.com"} \
     --set artifactory.ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
+    --set artifactory.ingress.hosts={"artifactory.kube.example.com"} \
     --set artifactory.postgresql.postgresqlUsername="${USERNAME}" \
     --set artifactory.postgresql.postgresqlPassword="${PASSWORD}" \
     --version 2.3.1 \

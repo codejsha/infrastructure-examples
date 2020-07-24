@@ -11,8 +11,8 @@ helm install my-kibana \
     --set resources.limits.memory="1Gi" \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
-    --set ingress.path="/" \
     --set ingress.hosts={"kibana.kube.example.com"} \
+    --set ingress.path="/" \
     --version 7.8.0 \
     elastic/kibana
 

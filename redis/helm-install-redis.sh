@@ -11,11 +11,13 @@ kubectl create namespace ${NAMESPACE}
 helm install my-redis \
     --namespace ${NAMESPACE} \
     --set password="${PASSWORD}" \
-    --set master.persistence.storageClass="rook-ceph-block" \
-    --set slave.persistence.storageClass="rook-ceph-block" \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
     --set ingress.name={"redis.kube.example.com"} \
     --set ingress.path="/" \
+    --set master.persistence.enabled="true" \
+    --set master.persistence.storageClass="rook-ceph-block" \
+    --set slave.persistence.enabled="true" \
+    --set slave.persistence.storageClass="rook-ceph-block" \
     --version 10.7.1 \
     bitnami/redis

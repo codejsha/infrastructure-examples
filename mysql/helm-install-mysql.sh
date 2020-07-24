@@ -7,10 +7,11 @@ helm install my-mysql \
     --namespace ${NAMESPACE} \
     --set imageTag="8.0.21" \
     --set mysqlRootPassword="changeit" \
-    --set persistence.storageClass="rook-ceph-block" \
+    --set timezone="Asia/Seoul" \
     --set service.type="LoadBalancer" \
     --set service.loadBalancerIP="10.10.10.97" \
-    --set timezone="Asia/Seoul" \
+    --set persistence.enabled="true" \
+    --set persistence.storageClass="rook-ceph-block" \
     --version 1.6.6 \
     stable/mysql
 

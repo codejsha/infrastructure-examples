@@ -10,13 +10,6 @@ docker run --entrypoint htpasswd registry:2.7.0 -Bbn ${USERNAME} ${PASSWORD} > .
 
 helm install my-docker-registry \
     --namespace ${NAMESPACE} \
-    --set ingress.enabled="true" \
-    --set ingress.path="/" \
-    --set ingress.hosts={"registry.kube.example.com"} \
-    --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
-    --set ingress.annotations."nginx\.ingress\.kubernetes\.io/proxy-body-size"="0" \
-    --set persistence.enabled="true" \
-    --set persistence.storageClass="rook-ceph-block" \
     --set storage="s3" \
     --set secrets.htpasswd="$(cat ./htpasswd)" \
     --set secrets.s3.accessKey="admin" \
@@ -26,5 +19,12 @@ helm install my-docker-registry \
     --set s3.bucket="myimage" \
     --set s3.encrypt="false" \
     --set s3.secure="false" \
+    --set ingress.enabled="true" \
+    --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
+    --set ingress.annotations."nginx\.ingress\.kubernetes\.io/proxy-body-size"="0" \
+    --set ingress.hosts={"registry.kube.example.com"} \
+    --set ingress.path="/" \
+    --set persistence.enabled="true" \
+    --set persistence.storageClass="rook-ceph-block" \
     --version 1.9.3 \
     stable/docker-registry

@@ -6,8 +6,6 @@ kubectl create namespace ${NAMESPACE}
 helm install my-logstash \
     --namespace ${NAMESPACE} \
     --set logstashJavaOpts="-Xms512m -Xmx512m" \
-    --set persistence.enabled="true" \
-    --set volumeClaimTemplate.storageClassName="rook-ceph-block" \
     --set service.type="ClusterIP" \
     --set service.ports[0].name="beats" \
     --set service.ports[0].port="5044" \
@@ -17,5 +15,7 @@ helm install my-logstash \
     --set service.ports[1].port="8080" \
     --set service.ports[1].protocol="TCP" \
     --set service.ports[1].targetPort="8080" \
+    --set persistence.enabled="true" \
+    --set volumeClaimTemplate.storageClassName="rook-ceph-block" \
     --version 7.8.0 \
     elastic/logstash

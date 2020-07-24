@@ -5,6 +5,7 @@ kubectl create namespace ${NAMESPACE}
 
 helm install my-kafka \
     --namespace ${NAMESPACE} \
+    --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --set zookeeper.persistence.enabled="true" \
     --set zookeeper.persistence.storageClass="rook-ceph-block" \

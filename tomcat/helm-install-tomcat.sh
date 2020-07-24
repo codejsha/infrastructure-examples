@@ -10,6 +10,7 @@ helm install my-tomcat \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
     --set ingress.hosts[0].name="tomcat.kube.example.com" \
     --set ingress.hosts[0].path="/" \
+    --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --version 6.3.10 \
     bitnami/tomcat

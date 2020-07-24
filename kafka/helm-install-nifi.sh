@@ -8,6 +8,8 @@ kubectl create namespace ${NAMESPACE}
 
 helm install my-nifi \
     --namespace ${NAMESPACE} \
+    --set zookeeper.enabled="false" \
+    --set zookeeper.url="my-kafka-zookeeper-headless.kafka-system" \
     --set service.type="ClusterIP" \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
@@ -15,8 +17,6 @@ helm install my-nifi \
     --set ingress.path="/" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --set zookeeper.enabled="false" \
-    --set zookeeper.url="my-kafka-zookeeper-headless.kafka-system" \
     --version 0.4.1 \
     cetic/nifi
 

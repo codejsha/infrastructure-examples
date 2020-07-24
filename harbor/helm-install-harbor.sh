@@ -16,16 +16,6 @@ kubectl create namespace ${NAMESPACE}
 
 helm install my-harbor \
     --namespace ${NAMESPACE} \
-    --set expose.ingress.hosts.core="core.harbor.kube.example.com" \
-    --set expose.ingress.hosts.notary="notary.harbor.kube.example.com" \
-    --set expose.ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
-    --set externalURL="https://core.harbor.kube.example.com" \
-    --set persistence.persistentVolumeClaim.registry.storageClass="rook-ceph-block" \
-    --set persistence.persistentVolumeClaim.chartmuseum.storageClass="rook-ceph-block" \
-    --set persistence.persistentVolumeClaim.jobservice.storageClass="rook-ceph-block" \
-    --set persistence.persistentVolumeClaim.database.storageClass="rook-ceph-block" \
-    --set persistence.persistentVolumeClaim.redis.storageClass="rook-ceph-block" \
-    --set persistence.persistentVolumeClaim.trivy.storageClass="rook-ceph-block" \
     --set harborAdminPassword="${ADMIN_PASSWORD}" \
     --set secretKey="${SECRET_KEY}" \
     --set registry.credential.username="${REGISTRY_USERNAME}" \
@@ -34,6 +24,16 @@ helm install my-harbor \
     --set database.internal.password="${INTERNAL_DATABASE_PASSWORD}" \
     --set database.external.username="admin" \
     --set database.external.password="${EXTERNAL_DATABASE_PASSWORD}" \
+    --set expose.ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
+    --set expose.ingress.hosts.core="core.harbor.kube.example.com" \
+    --set expose.ingress.hosts.notary="notary.harbor.kube.example.com" \
+    --set externalURL="https://core.harbor.kube.example.com" \
+    --set persistence.persistentVolumeClaim.registry.storageClass="rook-ceph-block" \
+    --set persistence.persistentVolumeClaim.chartmuseum.storageClass="rook-ceph-block" \
+    --set persistence.persistentVolumeClaim.jobservice.storageClass="rook-ceph-block" \
+    --set persistence.persistentVolumeClaim.database.storageClass="rook-ceph-block" \
+    --set persistence.persistentVolumeClaim.redis.storageClass="rook-ceph-block" \
+    --set persistence.persistentVolumeClaim.trivy.storageClass="rook-ceph-block" \
     --version 1.4.0 \
     harbor/harbor
 

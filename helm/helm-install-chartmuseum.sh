@@ -8,11 +8,11 @@ helm install my-chartmuseum \
     --set env.open.DISABLE_API="false" \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
-    --set persistence.enabled="true" \
-    --set persistence.storageClass="rook-ceph-block" \
     --set ingress.hosts[0].name="chartmuseum.kube.example.com" \
     --set ingress.hosts[0].path="/" \
     --set ingress.hosts[0].tls="false" \
+    --set persistence.enabled="true" \
+    --set persistence.storageClass="rook-ceph-block" \
     --version 2.13.0 \
     -f custom.yaml \
     stable/chartmuseum
