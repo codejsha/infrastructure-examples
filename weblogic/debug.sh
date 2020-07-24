@@ -23,6 +23,18 @@ JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.StdoutDebugEnabled=true"
 
 ######################################################################
 
+### jta debug
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugJTA2PC=true"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugJTAXA=true"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugJTAJDBC=true"
+### JDBCXADebugLevel=20  # connection pool properties
+
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugJTANonXA=true"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugJTAJDBC=true"
+### JDBCXADebugLevel=20  # connection pool properties
+
+######################################################################
+
 ### jdbc debug
 EXT_PRE_CLASSPATH="${EXT_PRE_CLASSPATH}:jdbc_g.jar"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Doracle.jdbc.Trace=true"
