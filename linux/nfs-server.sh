@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-yum install -y nfs-utils
+sudo yum install -y nfs-utils
 
 cat /etc/nfs.conf
 

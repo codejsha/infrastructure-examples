@@ -5,5 +5,5 @@ if [ ! -f hosts.txt ]; then
     exit
 fi
 
-yum install -y epel-release sshpass
+sudo yum install -y epel-release sshpass
 cat hosts.txt >> /etc/hosts

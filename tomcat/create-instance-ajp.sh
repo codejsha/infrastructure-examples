@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 ### requirements
-# tidy package: yum install -y tidy
+# tidy package: sudo yum install -y tidy
 
 ### usage
 # ./create-instance-ajp.sh ${INSTANCE_NAME} ${HTTP_PORT} ${HTTPS_PORT} ${SHUTDOWN_PORT} ${AJP_PORT}

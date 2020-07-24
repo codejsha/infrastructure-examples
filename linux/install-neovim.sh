@@ -2,7 +2,7 @@
 
 USERNAME="prouser"
 
-yum install -y fuse fuse-sshfs
+sudo yum install -y fuse fuse-sshfs
 
 if [ ! -e "/usr/local/bin/nvim" ]; then
     curl -o /usr/local/bin/nvim -JLO https://github.com/neovim/neovim/releases/download/v0.4.3/nvim.appimage

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-### links package: yum install -y links
+### links package: sudo yum install -y links
 
 SERVER_ROOT="/usr/local/httpd"
 
