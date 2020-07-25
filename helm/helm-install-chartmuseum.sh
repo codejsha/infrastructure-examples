@@ -13,7 +13,7 @@ helm install my-chartmuseum \
     --set ingress.hosts[0].tls="false" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 2.13.0 \
+    --version 2.13.1 \
     -f custom.yaml \
     stable/chartmuseum
 
