@@ -13,18 +13,18 @@ helm install my-jenkins \
     --set master.ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
     --set master.ingress.hostName="jenkins.kube.example.com" \
     --set master.ingress.path="/" \
-    --set agent.image="jenkins/inbound-agent" \
-    --set agent.tag="4.3-7-jdk11" \
     --set agent.resources.requests.cpu="128m" \
     --set agent.resources.requests.memory="512Mi" \
     --set agent.resources.limits.cpu="256m" \
     --set agent.resources.limits.memory="512Mi" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 2.3.0 \
+    --version 2.4.1 \
     stable/jenkins
 
-    ### agent (jdk8)
+  
+    ### agent
+    # --set agent.tag="4.3-7-jdk11" \
     # --set agent.tag="4.3-7" \
 
     ### prefix

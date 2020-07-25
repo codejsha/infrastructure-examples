@@ -26,5 +26,5 @@ helm install my-docker-registry \
     --set ingress.path="/" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 1.9.3 \
+    --version 1.9.4 \
     stable/docker-registry

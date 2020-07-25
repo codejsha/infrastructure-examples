@@ -15,5 +15,5 @@ helm install my-minio \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --set persistence.accessMode="ReadWriteOnce" \
-    --version 5.0.30 \
+    --version 5.0.32 \
     stable/minio

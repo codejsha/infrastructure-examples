@@ -17,5 +17,5 @@ helm install my-postgres \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 8.10.13 \
+    --version 9.1.1 \
     bitnami/postgresql

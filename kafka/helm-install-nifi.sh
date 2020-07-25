@@ -17,7 +17,7 @@ helm install my-nifi \
     --set ingress.path="/" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
-    --version 0.4.1 \
+    --version 0.4.3 \
     cetic/nifi
 
     ### for loadbalancer
