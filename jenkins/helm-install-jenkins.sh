@@ -22,7 +22,6 @@ helm install my-jenkins \
     --version 2.4.1 \
     stable/jenkins
 
-  
     ### agent
     # --set agent.tag="4.3-7-jdk11" \
     # --set agent.tag="4.3-7" \
