@@ -9,6 +9,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: tekton-dashboard
+  namespace: tekton-pipelines
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
