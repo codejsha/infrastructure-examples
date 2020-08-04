@@ -12,9 +12,9 @@ sudo usermod -a -G docker ${USERNAME}
 sudo systemctl enable docker
 sudo systemctl start docker
 
-# dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-# dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
-# dnf install docker-ce -y
+# sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+# sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
+# sudo dnf install docker-ce -y
 #
 # sudo usermod -a -G docker ${USERNAME}
 # sudo systemctl enable --now docker
