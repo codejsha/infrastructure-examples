@@ -2,7 +2,7 @@
 # https://github.com/tektoncd/pipeline/
 
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
-# TEKTON_PIPELINE_VERSION=""
+# TEKTON_PIPELINE_VERSION="0.14.2"
 # kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v${TEKTON_PIPELINE_VERSION}/release.yaml
 
 cat > s3-bucket.yaml <<EOF
