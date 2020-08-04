@@ -1,8 +1,14 @@
 #!/usr/bin/bash
 
-curl -JLO https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
-tar -xvzf helm-v3.2.4-linux-amd64.tar.gz
+HELM_VERSION="3.2.4"
+curl -JLO https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz
+tar -xvzf helm-v${HELM_VERSION}-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
+
+# HELM_VERSION="2.16.9"
+# curl -JLO https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz
+# tar -xvzf helm-v${HELM_VERSION}-linux-amd64.tar.gz
+# sudo mv linux-amd64/helm /usr/local/bin/helm
 
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
 helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com
