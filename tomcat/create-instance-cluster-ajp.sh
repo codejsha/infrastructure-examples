@@ -106,6 +106,7 @@ cat > ${CATALINA_BASE}/conf/server.xml <<EOF
         <Engine name="Catalina"
                 defaultHost="localhost"
                 jvmRoute="${JVM_ROUTE}">
+            <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster" />
             <Realm className="org.apache.catalina.realm.LockOutRealm">
                 <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
                        resourceName="UserDatabase" />
