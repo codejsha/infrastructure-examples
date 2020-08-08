@@ -9,7 +9,7 @@ BLOBSTORE_NAME=""
 ### proxy repository only
 REMOTE_URL="https://registry-1.docker.io"
 ### group repository only
-MEMBER_NAMES=""
+MEMBER_NAMES="\"REPOSITORY1\",\"REPOSITORY2\""
 
 function create_docker_proxy_repository {
     curl --insecure \
@@ -88,7 +88,7 @@ function create_docker_hosted_repository {
 
 function create_docker_group_repository {
     curl --insecure \
-        -X POST "${NEXUS_URL}/service/rest/beta/repositories/docker/hosted" \
+        -X POST "${NEXUS_URL}/service/rest/beta/repositories/docker/group" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
@@ -100,13 +100,13 @@ function create_docker_group_repository {
             \"blobStoreName\": \"${BLOBSTORE_NAME}\", \
             \"strictContentTypeValidation\": true \
           }, \
-          \"group\": {
-            \"memberNames\": \"${MEMBER_NAMES}\"
-          },
+          \"group\": { \
+            \"memberNames\": [${MEMBER_NAMES}] \
+          }, \
           \"docker\": { \
             \"v1Enabled\": false, \
             \"forceBasicAuth\": false, \
-            \"httpPort\": , \
+            \"httpPort\": null, \
             \"httpsPort\": null \
           } \
         }"
