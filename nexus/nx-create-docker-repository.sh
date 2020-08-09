@@ -9,7 +9,7 @@ BLOBSTORE_NAME=""
 ### proxy repository only
 REMOTE_URL="https://registry-1.docker.io"
 ### group repository only
-MEMBER_NAMES="\"REPOSITORY1\",\"REPOSITORY2\""
+REPOSITORY_MEMBER_NAMES="\"docker-hub\",\"docker-registry\""
 
 function create_docker_proxy_repository {
     curl --insecure \
@@ -101,7 +101,7 @@ function create_docker_group_repository {
             \"strictContentTypeValidation\": true \
           }, \
           \"group\": { \
-            \"memberNames\": [${MEMBER_NAMES}] \
+            \"memberNames\": [${REPOSITORY_MEMBER_NAMES}] \
           }, \
           \"docker\": { \
             \"v1Enabled\": false, \
