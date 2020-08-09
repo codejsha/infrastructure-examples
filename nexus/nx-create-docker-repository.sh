@@ -76,7 +76,7 @@ function create_docker_hosted_repository {
             \"strictContentTypeValidation\": true, \
             \"writePolicy\": \"ALLOW\" \
           }, \
-          \"cleanup\": null \
+          \"cleanup\": null, \
           \"docker\": { \
             \"v1Enabled\": false, \
             \"forceBasicAuth\": false, \
