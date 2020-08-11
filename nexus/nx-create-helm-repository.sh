@@ -7,7 +7,7 @@ REPOSITORY_NAME=""
 BLOBSTORE_NAME=""
 
 ### proxy repository only
-REMOTE_URL="http://chartmuseum.kube.example.com"
+REMOTE_URL="http://chartmuseum-service.chart-system:8080"
 
 function create_helm_proxy_repository {
     curl --insecure \
