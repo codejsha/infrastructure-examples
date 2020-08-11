@@ -28,6 +28,9 @@ helm install my-nexus \
     --set service.ports[0].name="nexus" \
     --set service.ports[0].port="8081" \
     --set service.ports[0].targetPort="8081" \
+    --set service.ports[1].name="nexus-docker-public" \
+    --set service.ports[1].port="5003" \
+    --set service.ports[1].targetPort="5003" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --set persistence.storageSize="100Gi" \
