@@ -80,7 +80,7 @@ function create_docker_hosted_repository {
           \"docker\": { \
             \"v1Enabled\": false, \
             \"forceBasicAuth\": false, \
-            \"httpPort\": 5003, \
+            \"httpPort\": null, \
             \"httpsPort\": null \
           } \
         }"
@@ -106,7 +106,7 @@ function create_docker_group_repository {
           \"docker\": { \
             \"v1Enabled\": false, \
             \"forceBasicAuth\": false, \
-            \"httpPort\": null, \
+            \"httpPort\": 5003, \
             \"httpsPort\": null \
           } \
         }"
