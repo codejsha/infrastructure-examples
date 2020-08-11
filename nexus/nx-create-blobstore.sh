@@ -8,7 +8,7 @@ BLOBSTORE_NAME=""
 AWS_ACCESS_KEY_ID="admin"
 AWS_SECRET_ACCESS_KEY="changeit"
 AWS_ENDPOINT_URL="http://10.10.10.50:9000"
-BUCKET_NAME=""
+BUCKET_NAME="${BLOBSTORE_NAME}"
 
 ### create s3 blobstore
 curl --insecure \
