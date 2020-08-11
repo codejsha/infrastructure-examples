@@ -24,8 +24,8 @@ helm install my-nexus \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \
     --set ingress.path="/" \
     --set service.enabled="true" \
-    --set service.type="LoadBalancer" \
-    --set service.loadBalancerIP="10.10.10.89" \
+    --set service.type="ClusterIP" \
+    --set service.ports[0].name="nexus" \
     --set service.ports[0].port="8081" \
     --set service.ports[0].targetPort="8081" \
     --set persistence.enabled="true" \
