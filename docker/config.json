@@ -1,0 +1,7 @@
+{
+  "auths": {
+    "registry.kube.example.com": {
+      "auth": "AUTH"
+    }
+  }
+}
