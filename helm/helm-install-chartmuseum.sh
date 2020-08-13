@@ -17,5 +17,7 @@ helm install my-chartmuseum \
     -f custom.yaml \
     stable/chartmuseum
 
+### repo add
+# helm repo add chartmuseum http://chartmuseum.kube.example.com
 ### health check
 # curl --insecure --verbose http://chartmuseum.kube.example.com/health
