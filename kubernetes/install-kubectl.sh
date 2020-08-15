@@ -7,7 +7,7 @@
 # sudo mv ./kubectl /usr/local/bin/kubectl
 
 ### Install using native package management
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64

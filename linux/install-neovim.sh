@@ -9,15 +9,8 @@ if [ ! -e "/usr/local/bin/nvim" ]; then
     chmod 755 /usr/local/bin/nvim
 fi
 
-HOME_DIRECTORY=""
-if [ ${USERNAME} == "root" ]; then
-    HOME_DIRECTORY="/root"
-else
-    HOME_DIRECTORY="/home/${USERNAME}"
-fi
-
-su - ${USERNAME} -c "mkdir -p ${HOME_DIRECTORY}/.config/nvim"
-su - ${USERNAME} -c "cat > ${HOME_DIRECTORY}/.config/nvim/init.vim <<EOF
+su - ${USERNAME} -c "mkdir -p ${HOME}/.config/nvim"
+su - ${USERNAME} -c "cat <<EOF > ${HOME}/.config/nvim/init.vim
 syntax on
 set termguicolors
 set background=dark
@@ -29,9 +22,9 @@ set expandtab
 set pastetoggle=<F11>
 EOF"
 
-GREP_VAR="$(grep -q nvim ${HOME_DIRECTORY}/.bashrc)"
+GREP_VAR="$(grep -q nvim ${HOME}/.bashrc)"
 if [ -n "${GREP_VAR}" ]; then
-su - ${USERNAME} -c "cat >> ${HOME_DIRECTORY}/.bashrc <<EOF
+su - ${USERNAME} -c "cat <<EOF > ${HOME}/.bashrc
 
 # neovim
 alias vi=\"nvim\"

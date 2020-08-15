@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cat > /etc/systemd/system/docker.service.d/override.conf <<EOF
+cat <<EOF | sudo tee /etc/systemd/system/docker.service.d/override.conf
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd --host tcp://0.0.0.0:2375 --host unix:///var/run/docker.sock

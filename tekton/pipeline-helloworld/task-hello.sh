@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # https://tekton.dev/docs/getting-started/
 
-cat > task-hello.yaml <<EOF
+cat <<EOF > ./task-hello.yaml
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:

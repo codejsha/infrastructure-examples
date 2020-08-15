@@ -10,7 +10,7 @@ IPLANET_SERVER="server1"
 HTTP_LISTENER_NAME="http-listener-2"
 IPLANET_VSERVER="vserver1"
 
-cat > ${IPLANET_HOME}/pswd-file <<EOF
+cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
 EOF
 

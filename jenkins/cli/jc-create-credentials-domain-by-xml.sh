@@ -4,7 +4,7 @@ source jc-env.sh
 
 CREDENTIAL_DOMAIN="cicd"
 
-cat > credentials-domain.xml <<EOF
+cat <<EOF > ./credentials-domain.xml
 <com.cloudbees.plugins.credentials.domains.Domain plugin="credentials@2.3.12">
     <name>${CREDENTIAL_DOMAIN}</name>
     <specifications/>

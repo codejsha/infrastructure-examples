@@ -3,7 +3,7 @@
 
 INGRESS_DOMAIN="${INGRESS_DOMAIN:-kube.example.com}"
 
-cat <<EOF | kubectl apply -f -
+cat | kubectl apply -f -
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:

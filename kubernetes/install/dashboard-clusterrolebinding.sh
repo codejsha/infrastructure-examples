@@ -4,7 +4,7 @@ kubectl create clusterrolebinding kubernetes-dashboard-admin \
     --clusterrole=cluster-admin \
     --serviceaccount=kube-system:kubernetes-dashboard
 
-# cat > dashboard-clusterrolebinding.yaml <<EOF
+# cat <<EOF > ./dashboard-clusterrolebinding.yaml
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRoleBinding
 # metadata:

@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # https://cert-manager.io/docs/installation/kubernetes/#verifying-the-installation
 
-cat <<EOF > test-resources.yaml
+cat <<EOF > ./test-resources.yaml
 apiVersion: v1
 kind: Namespace
 metadata:

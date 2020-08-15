@@ -11,7 +11,7 @@ HTTP_LISTENER_NAME="http-listener-1"
 IPLANET_VSERVER="vserver1"
 IPLANET_VSERVER_DOCROOT="${IPLANET_HOME}/https-${IPLANET_SERVER}/docs"
 
-cat > ${IPLANET_HOME}/pswd-file <<EOF
+cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
 EOF
 

@@ -4,7 +4,7 @@ JAVA_OPTIONS="${JAVA_OPTIONS} -Doracle.jdbc.Trace=true"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.util.logging.config.file=${DOMAIN_HOME}/OracleLog.properties"
 # JAVA_OPTIONS="${JAVA_OPTIONS} -Doracle.jdbc.LogFile=${LOG_HOME}/jdbc.log"
 
-cat > ${DOMAIN_HOME}/OracleLog.properties <<EOF
+cat <<EOF > ${DOMAIN_HOME}/OracleLog.properties
 # handlers=java.util.logging.ConsoleHandler
 # java.util.logging.ConsoleHandler.level=ALL
 # java.util.logging.ConsoleHandler.formatter=java.util.logging.SimpleFormatter

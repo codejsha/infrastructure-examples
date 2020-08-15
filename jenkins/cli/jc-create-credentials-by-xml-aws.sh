@@ -10,7 +10,7 @@ CREDENTIAL_DESCRIPTION="${CREDENTIAL_DESCRIPTION}"
 CREDENTIAL_UUID=$(uuidgen)
 echo "UUID: ${CREDENTIAL_UUID}"
 
-cat > credentials-aws.xml <<EOF
+cat <<EOF > ./credentials-aws.xml
 <com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl plugin="aws-credentials@1.28">
     <scope>GLOBAL</scope>
     <id>${CREDENTIAL_UUID}</id>

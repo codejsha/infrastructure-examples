@@ -9,7 +9,7 @@ COMPONENT_NAME="ohs1"
 
 ######################################################################
 
-cat > ${INSTANCE_HOME}/start-opmn.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/start-opmn.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -17,7 +17,7 @@ INSTANCE_HOME="${INSTANCE_HOME}"
 \${INSTANCE_HOME}/bin/opmnctl start
 EOF
 
-cat > ${INSTANCE_HOME}/stop-opmn.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/stop-opmn.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -27,7 +27,7 @@ EOF
 
 ######################################################################
 
-cat > ${INSTANCE_HOME}/status.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/status.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -37,7 +37,7 @@ EOF
 
 ######################################################################
 
-cat > ${INSTANCE_HOME}/start-all.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/start-all.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -45,7 +45,7 @@ INSTANCE_HOME="${INSTANCE_HOME}"
 \${INSTANCE_HOME}/bin/opmnctl startall
 EOF
 
-cat > ${INSTANCE_HOME}/stop-all.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/stop-all.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -55,7 +55,7 @@ EOF
 
 ######################################################################
 
-cat > ${INSTANCE_HOME}/start-${COMPONENT_NAME}.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/start-${COMPONENT_NAME}.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"
@@ -64,7 +64,7 @@ COMPONENT_NAME="${COMPONENT_NAME}"
 \${INSTANCE_HOME}/bin/opmnctl startproc ias-component=\${COMPONENT_NAME} process-type=OHS
 EOF
 
-cat > ${INSTANCE_HOME}/stop-${COMPONENT_NAME}.sh <<EOF
+cat <<EOF > ${INSTANCE_HOME}/stop-${COMPONENT_NAME}.sh
 #!/usr/bin/bash
 
 INSTANCE_HOME="${INSTANCE_HOME}"

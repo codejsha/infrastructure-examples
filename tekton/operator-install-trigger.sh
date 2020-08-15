@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cat > operator-tekton-triggers.yaml <<EOF
+cat <<EOF > ./operator-tekton-triggers.yaml
 apiVersion: operator.tekton.dev/v1alpha1
 kind: TektonAddon
 metadata:

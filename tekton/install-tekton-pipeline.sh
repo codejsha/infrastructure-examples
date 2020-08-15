@@ -5,7 +5,7 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline
 # TEKTON_PIPELINE_VERSION="0.14.2"
 # kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v${TEKTON_PIPELINE_VERSION}/release.yaml
 
-cat > s3-bucket.yaml <<EOF
+cat <<EOF > ./s3-bucket.yaml
 apiVersion: v1
 kind: Secret
 metadata:

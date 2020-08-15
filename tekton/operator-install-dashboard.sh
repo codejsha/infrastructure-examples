@@ -3,7 +3,7 @@
 
 kubectl create clusterrolebinding tekton-operator-cluster-admin --clusterrole cluster-admin --serviceaccount tekton-operator:tekton-operator
 
-cat > operator-tekton-dashboard.yaml <<EOF
+cat <<EOF > ./operator-tekton-dashboard.yaml
 apiVersion: operator.tekton.dev/v1alpha1
 kind: TektonAddon
 metadata:

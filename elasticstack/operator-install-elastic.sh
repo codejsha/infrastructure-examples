@@ -7,7 +7,7 @@ kubectl apply -f https://download.elastic.co/downloads/eck/1.1.2/all-in-one.yaml
 kubectl logs -f statefulset.apps/elastic-operator -n elastic-system
 
 ### quickstart with volume claim templates
-# cat <<EOF | kubectl apply -f -
+# cat | kubectl apply -f -
 # apiVersion: elasticsearch.k8s.elastic.co/v1
 # kind: Elasticsearch
 # metadata:
@@ -35,7 +35,7 @@ kubectl logs -f statefulset.apps/elastic-operator -n elastic-system
 # EOF
 
 ### kibana
-# cat <<EOF | kubectl apply -f -
+# cat | kubectl apply -f -
 # apiVersion: kibana.k8s.elastic.co/v1
 # kind: Kibana
 # metadata:

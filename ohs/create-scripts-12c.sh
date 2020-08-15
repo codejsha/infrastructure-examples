@@ -8,7 +8,7 @@ COMPONENT_NAME="ohs1"
 
 ######################################################################
 
-cat > "${DOMAIN_HOME}/start-nodemanager.sh" <<EOF
+cat <<EOF > "${DOMAIN_HOME}/start-nodemanager.sh"
 #!/usr/bin/bash
 
 DOMAIN_HOME="${DOMAIN_HOME}"
@@ -30,7 +30,7 @@ nohup \${DOMAIN_HOME}/bin/startNodeManager.sh > ${LOG_HOME}/nohup_NodeManager.ou
 tail -f ${LOG_HOME}/nohup_NodeManager.out
 EOF
 
-cat > "${DOMAIN_HOME}/stop-nodemanager.sh" <<EOF
+cat <<EOF > "${DOMAIN_HOME}/stop-nodemanager.sh"
 #!/usr/bin/bash
 
 DOMAIN_HOME="${DOMAIN_HOME}"
@@ -42,7 +42,7 @@ EOF
 
 ######################################################################
 
-cat > "${DOMAIN_HOME}/start-${COMPONENT_NAME}.sh" <<EOF
+cat <<EOF > "${DOMAIN_HOME}/start-${COMPONENT_NAME}.sh"
 #!/usr/bin/bash
 
 DOMAIN_HOME="${DOMAIN_HOME}"
@@ -51,7 +51,7 @@ COMPONENT_NAME="${COMPONENT_NAME}"
 \${DOMAIN_HOME}/bin/startComponent.sh \${COMPONENT_NAME} storeUserConfig
 EOF
 
-cat > "${DOMAIN_HOME}/stop-${COMPONENT_NAME}.sh" <<EOF
+cat <<EOF > "${DOMAIN_HOME}/stop-${COMPONENT_NAME}.sh"
 #!/usr/bin/bash
 
 DOMAIN_HOME="${DOMAIN_HOME}"

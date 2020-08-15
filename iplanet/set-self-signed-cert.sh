@@ -14,7 +14,7 @@ HTTP_LISTENER2_SSL_PORT="443"
 CERT_NAME="cert1"
 IPLANET_VSERVER="vserver1"
 
-cat > ${IPLANET_HOME}/pswd-file <<EOF
+cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
 EOF
 

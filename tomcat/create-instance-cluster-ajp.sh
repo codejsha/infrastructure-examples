@@ -76,7 +76,7 @@ mv ${CATALINA_BASE}/conf/context.xml ${CATALINA_BASE}/conf/context.xml_default
 ######################################################################
 
 ### create server.xml
-cat > ${CATALINA_BASE}/conf/server.xml <<EOF
+cat <<EOF > ${CATALINA_BASE}/conf/server.xml
 <?xml version="1.0" encoding="utf-8"?>
 <Server port="${TOMCAT_PORT_SHUTDOWN}"
         shutdown="SHUTDOWN">
@@ -129,7 +129,7 @@ EOF
 ######################################################################
 
 ### create context.xml
-cat > ${CATALINA_BASE}/conf/context.xml <<EOF
+cat <<EOF > ${CATALINA_BASE}/conf/context.xml
 <?xml version="1.0" encoding="utf-8"?>
 <Context>
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
@@ -141,7 +141,7 @@ EOF
 ######################################################################
 
 ### create start script
-cat > ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh <<EOF
+cat <<EOF > ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 #!/usr/bin/bash
 
 INSTANCE_NAME="${INSTANCE_NAME}"
@@ -156,7 +156,7 @@ export CATALINA_OUT
 EOF
 
 if [[ ${JAVA_VERSION} =~ ^1.8 ]]; then
-cat >> ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh <<EOF
+cat <<EOF > ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 CATALINA_OPTS="\${CATALINA_OPTS} -Xms1024m -Xmx1024m"
 CATALINA_OPTS="\${CATALINA_OPTS} -Xloggc:${GC_LOG_OUT}"
 CATALINA_OPTS="\${CATALINA_OPTS} -XX:+PrintGCDetails"
@@ -172,7 +172,7 @@ CATALINA_OPTS="\${CATALINA_OPTS} -XX:HeapDumpPath=${DUMP_LOG_DIR}"
 export CATALINA_OPTS
 EOF
 elif [[ ${JAVA_VERSION} =~ ^11 ]]; then
-cat >> ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh <<EOF
+cat <<EOF > ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 CATALINA_OPTS="\${CATALINA_OPTS} -Xms1024m -Xmx1024m"
 CATALINA_OPTS="\${CATALINA_OPTS} -Xlog:gc*=info:file=${GC_LOG_OUT}"
 CATALINA_OPTS="\${CATALINA_OPTS} -XX:+HeapDumpOnOutOfMemoryError"
@@ -185,7 +185,7 @@ export CATALINA_OPTS
 EOF
 fi
 
-cat >> ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh <<EOF
+cat <<EOF > ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 
 touch \${CATALINA_OUT}
 \${CATALINA_HOME}/bin/catalina.sh start
@@ -197,7 +197,7 @@ EOF
 ######################################################################
 
 ### create stop script
-cat > ${CATALINA_BASE}/stop-${INSTANCE_NAME}.sh <<EOF
+cat <<EOF > ${CATALINA_BASE}/stop-${INSTANCE_NAME}.sh
 #!/usr/bin/bash
 
 INSTANCE_NAME="${INSTANCE_NAME}"

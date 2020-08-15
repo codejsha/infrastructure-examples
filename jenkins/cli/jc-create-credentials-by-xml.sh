@@ -10,7 +10,7 @@ CREDENTIAL_DESCRIPTION=""
 CREDENTIAL_UUID=$(uuidgen)
 echo "UUID: ${CREDENTIAL_UUID}"
 
-cat > credentials.xml <<EOF
+cat <<EOF > ./credentials.xml
 <com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl plugin="credentials@2.3.12">
     <scope>GLOBAL</scope>
     <id>${CREDENTIAL_UUID}</id>

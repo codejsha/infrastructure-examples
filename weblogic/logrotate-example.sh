@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cat > /etc/logrotate.d/weblogic_base_domain.conf <<EOF
+cat <<EOF | sudo tee /etc/logrotate.d/weblogic_base_domain.conf
 daily
 rotate 4
 create

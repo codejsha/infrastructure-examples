@@ -4,7 +4,7 @@ kubectl apply --filename https://github.com/tektoncd/dashboard/releases/latest/d
 # TEKTON_DASHBOARD_VERSION="0.8.0"
 # kubectl apply --filename https://github.com/tektoncd/dashboard/releases/download/v${TEKTON_DASHBOARD_VERSION}/tekton-dashboard-release.yaml
 
-cat > tekton-dashboard-ingress.yaml <<EOF
+cat <<EOF > ./tekton-dashboard-ingress.yaml
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:

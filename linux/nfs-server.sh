@@ -4,7 +4,7 @@ sudo yum install -y nfs-utils
 
 cat /etc/nfs.conf
 
-cat > /etc/exports <<EOF
+cat <<EOF | sudo tee /etc/exports
 /mnt/nfsshare *(rw,no_root_squash)
 EOF
 

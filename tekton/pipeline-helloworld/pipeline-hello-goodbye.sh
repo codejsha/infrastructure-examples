@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # https://tekton.dev/docs/getting-started/
 
-cat > pipeline-hello-goodbye.yaml <<EOF
+cat <<EOF > ./pipeline-hello-goodbye.yaml
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:

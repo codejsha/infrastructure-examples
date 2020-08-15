@@ -12,7 +12,7 @@ HTTP_LISTENER_IP_ADDRESS="*"
 HTTP_LISTENER_PORT="80"
 IPLANET_VSERVER="vserver1"
 
-cat > ${IPLANET_HOME}/pswd-file <<EOF
+cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
 EOF
 

@@ -8,7 +8,7 @@ IPLANET_PASSWORD="welcome1"
 
 IPLANET_SERVER="server1"
 
-cat > ${IPLANET_HOME}/pswd-file <<EOF
+cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
 EOF
 
