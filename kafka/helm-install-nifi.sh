@@ -6,7 +6,8 @@ helm repo update
 NAMESPACE="kafka-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-nifi \
+# helm install my-nifi \
+helm upgrade --install my-nifi \
     --namespace ${NAMESPACE} \
     --set zookeeper.enabled="false" \
     --set zookeeper.url="my-kafka-zookeeper-headless.kafka-system" \

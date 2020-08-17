@@ -4,7 +4,8 @@ NAMESPACE="tomcat-system"
 kubectl create namespace ${NAMESPACE}
 kubectl label namespace ${NAMESPACE} istio-injection=enabled
 
-helm install my-tomcat \
+# helm install my-tomcat \
+helm upgrade --install my-tomcat \
     --namespace ${NAMESPACE} \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \

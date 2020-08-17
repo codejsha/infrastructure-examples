@@ -8,7 +8,8 @@ kubectl create namespace ${NAMESPACE}
 
 docker run --entrypoint htpasswd registry:2.7.0 -Bbn ${USERNAME} ${PASSWORD} > ./htpasswd
 
-helm install my-docker-registry \
+# helm install my-docker-registry \
+helm upgrade --install my-docker-registry \
     --namespace ${NAMESPACE} \
     --set storage="s3" \
     --set secrets.htpasswd="$(cat ./htpasswd)" \

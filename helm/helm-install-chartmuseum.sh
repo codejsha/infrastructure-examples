@@ -3,7 +3,8 @@
 NAMESPACE="chart-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-chartmuseum \
+# helm install my-chartmuseum \
+helm upgrade --install my-chartmuseum \
     --namespace ${NAMESPACE} \
     --set env.open.DISABLE_API="false" \
     --set ingress.enabled="true" \
@@ -14,7 +15,7 @@ helm install my-chartmuseum \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --version 2.13.1 \
-    -f custom.yaml \
+    --values override.yaml \
     stable/chartmuseum
 
 ### repo add

@@ -8,7 +8,8 @@ PASSWORD="changeit"
 NAMESPACE="redis-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-redis \
+# helm install my-redis \
+helm upgrade --install my-redis \
     --namespace ${NAMESPACE} \
     --set password="${PASSWORD}" \
     --set ingress.enabled="true" \

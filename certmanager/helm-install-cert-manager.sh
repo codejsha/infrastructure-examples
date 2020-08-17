@@ -6,7 +6,8 @@ helm repo update
 NAMESPACE="cert-manager"
 kubectl create namespace ${NAMESPACE}
 
-helm install cert-manager \
+# helm install cert-manager \
+helm upgrade --install cert-manager \
     --namespace ${NAMESPACE} \
     --namespace cert-manager \
     --set installCRDs=true \

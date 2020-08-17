@@ -6,7 +6,8 @@ helm repo update
 NAMESPACE="kubeapps-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-kubeapps \
+# helm install my-kubeapps \
+helm upgrade --install my-kubeapps \
     --namespace ${NAMESPACE} \
     --set useHelm3="true" \
     --set ingress.enabled="true" \

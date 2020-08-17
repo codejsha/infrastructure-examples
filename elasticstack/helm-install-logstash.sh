@@ -3,7 +3,8 @@
 NAMESPACE="elastic-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-logstash \
+# helm install my-logstash \
+helm upgrade --install my-logstash \
     --namespace ${NAMESPACE} \
     --set logstashJavaOpts="-Xms512m -Xmx512m" \
     --set service.type="ClusterIP" \

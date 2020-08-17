@@ -3,7 +3,8 @@
 NAMESPACE="minio-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-minio \
+# helm install my-minio \
+helm upgrade --install my-minio \
     --namespace ${NAMESPACE} \
     --set accessKey="admin" \
     --set secretKey="changeit" \

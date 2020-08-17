@@ -3,7 +3,8 @@
 NAMESPACE="elastic-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-kibana \
+# helm install my-kibana \
+helm upgrade --install my-kibana \
     --namespace ${NAMESPACE} \
     --set resources.requests.cpu="100m" \
     --set resources.requests.memory="500m" \
