@@ -9,7 +9,8 @@ PASSWORD="changeit"
 NAMESPACE="artifactory-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-artifactory-oss \
+# helm install my-artifactory-oss \
+helm upgrade --install my-artifactory-oss \
     --namespace ${NAMESPACE} \
     --set artifactory.nginx.enabled="false" \
     --set artifactory.ingress.enabled="true" \

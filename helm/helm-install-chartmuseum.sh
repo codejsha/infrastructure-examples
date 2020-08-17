@@ -3,7 +3,8 @@
 NAMESPACE="chart-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-chartmuseum \
+# helm install my-chartmuseum \
+helm upgrade --install my-chartmuseum \
     --namespace ${NAMESPACE} \
     --set env.open.DISABLE_API="false" \
     --set ingress.enabled="true" \

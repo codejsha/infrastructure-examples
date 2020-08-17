@@ -8,7 +8,8 @@ PASSWORD="changeit"
 NAMESPACE="postgres-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-postgres \
+# helm install my-postgres \
+helm upgrade --install my-postgres \
     --namespace ${NAMESPACE} \
     --set postgresqlUsername="postgres" \
     --set postgresqlPassword="${PASSWORD}" \

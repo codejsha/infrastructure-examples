@@ -5,7 +5,8 @@ PASSWORD="changeit"
 NAMESPACE="jenkins-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-jenkins \
+# helm install my-jenkins \
+helm upgrade --install my-jenkins \
     --namespace ${NAMESPACE} \
     --set master.adminUser="admin" \
     --set master.adminPassword="${PASSWORD}" \

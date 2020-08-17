@@ -6,7 +6,8 @@ PASSWORD="changeit"
 NAMESPACE="mssql-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-mssql \
+# helm install my-mssql \
+helm upgrade --install my-mssql \
     --namespace ${NAMESPACE} \
     --set acceptEula.value="Y" \
     --set edition.value="Developer" \

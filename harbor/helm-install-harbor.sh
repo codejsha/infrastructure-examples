@@ -14,7 +14,8 @@ EXTERNAL_DATABASE_PASSWORD="changeit"
 NAMESPACE="harbor-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-harbor \
+# helm install my-harbor \
+helm upgrade --install my-harbor \
     --namespace ${NAMESPACE} \
     --set harborAdminPassword="${ADMIN_PASSWORD}" \
     --set secretKey="${SECRET_KEY}" \

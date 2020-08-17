@@ -6,7 +6,8 @@ helm repo update
 NAMESPACE="nexus-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-nexus \
+# helm install my-nexus \
+helm upgrade --install my-nexus \
     --namespace ${NAMESPACE} \
     --set nexus.requests.cpu="250m" \
     --set nexus.requests.memory="4800Mi" \

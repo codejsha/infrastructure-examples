@@ -8,7 +8,8 @@ helm repo update
 NAMESPACE="git-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-gitlab \
+# helm install my-gitlab \
+helm upgrade --install my-gitlab \
     --namespace ${NAMESPACE} \
     --set global.edition="ce" \
     --set global.hosts.domain="gitlab.example.com" \

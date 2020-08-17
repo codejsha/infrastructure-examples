@@ -12,7 +12,8 @@ SHARED_SECRET="$(cat SHARED_SECRET.txt)"
 NAMESPACE="drone-system"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-drone \
+# helm install my-drone \
+helm upgrade --install my-drone \
     --namespace ${NAMESPACE} \
     --set ingress.enabled="true" \
     --set ingress.annotations."kubernetes\.io/ingress\.class"="nginx" \

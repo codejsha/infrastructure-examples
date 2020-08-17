@@ -3,7 +3,8 @@
 NAMESPACE="ingress-nginx"
 kubectl create namespace ${NAMESPACE}
 
-helm install my-ingress \
+# helm install my-ingress \
+helm upgrade --install my-ingress \
     --namespace ${NAMESPACE} \
     --version 1.41.2 \
     stable/nginx-ingress
