@@ -15,7 +15,7 @@ helm upgrade --install my-chartmuseum \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     --version 2.13.1 \
-    -f custom.yaml \
+    --values override.yaml \
     stable/chartmuseum
 
 ### repo add
