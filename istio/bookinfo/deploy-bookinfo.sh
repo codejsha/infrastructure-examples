@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 # https://istio.io/latest/docs/examples/bookinfo/
 
-NAMESPACE="bookinfo-system"
+NAMESPACE="bookinfo"
 kubectl create namespace ${NAMESPACE}
-kubectl label namespace bookinfo-system istio-injection=enabled
+kubectl label namespace bookinfo istio-injection=enabled
 kubectl config set-context "$(kubectl config current-context)" --namespace="${NAMESPACE}"
 
 git clone https://github.com/istio/istio.git
