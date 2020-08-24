@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 # https://istio.io/latest/docs/setup/install/istioctl/
-# https://istio.io/latest/docs/setup/install/standalone-operator/
+# https://istio.io/latest/docs/setup/install/operator/
 # https://istio.io/latest/docs/setup/additional-setup/config-profiles/
 
 curl -sL https://istio.io/downloadIstioctl | sh -
@@ -21,6 +21,11 @@ istioctl profile list
 
 istioctl install --set profile=default
 # istioctl install --set profile=demo
+
+kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/addons/grafana.yaml
+kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/addons/jaeger.yaml
+kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/addons/kiali.yaml
+kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/addons/prometheus.yaml
 
 # kubectl get services -n istio-system
 # kubectl get pods -n istio-system
