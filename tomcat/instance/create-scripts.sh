@@ -77,7 +77,6 @@ EOF
 ######################################################################
 
 ### change permission
-chmod 600 ${CATALINA_BASE}/conf/server.xml
 chmod 750 ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 chmod 750 ${CATALINA_BASE}/stop-${INSTANCE_NAME}.sh
 

@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-### tidy function
 function tidy_indent {
     XML_FILE="${1}"
     tidy -modify \
