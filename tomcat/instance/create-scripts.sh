@@ -50,10 +50,8 @@ fi
 cat <<EOF >> ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 
 touch \${CATALINA_OUT}
-\${CATALINA_HOME}/bin/catalina.sh start
-if [ "\${1}" != "notail" ]; then
-    tail -f ${CATALINA_OUT}
-fi
+\${CATALINA_HOME}/bin/startup.sh
+tail -f ${CATALINA_OUT}
 EOF
 
 ######################################################################
@@ -67,7 +65,7 @@ export JAVA_HOME="${JAVA_HOME}"
 export CATALINA_HOME="${CATALINA_HOME}"
 export CATALINA_BASE="${CATALINA_BASE}"
 
-\${CATALINA_HOME}/bin/catalina.sh stop
+\${CATALINA_HOME}/bin/shutdown.sh
 EOF
 
 ######################################################################
