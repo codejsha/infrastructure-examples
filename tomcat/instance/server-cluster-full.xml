@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Server port="${TOMCAT_PORT_SHUTDOWN}"
+<Server port="${TOMCAT_SHUTDOWN_PORT}"
         shutdown="SHUTDOWN">
     <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
     <Listener className="org.apache.catalina.core.AprLifecycleListener"
@@ -16,14 +16,29 @@
                   pathname="conf/tomcat-users.xml" />
     </GlobalNamingResources>
     <Service name="Catalina">
-        <Connector port="${TOMCAT_PORT_HTTP}"
+        <Connector port="${TOMCAT_HTTP_PORT}"
                    protocol="HTTP/1.1"
-                   connectionTimeout="20000"
-                   redirectPort="${TOMCAT_PORT_HTTPS}" />
-        <Connector port="${TOMCAT_PORT_AJP}"
+                   address="${TOMCAT_ADDRESS}"
+                   minSpareThreads="10"
+                   maxThreads="200"
+                   acceptCount="100"
+                   maxConnections="8192"
+                   connectionTimeout="60000"
+                   keepAliveTimeout="60000"
+                   maxPostSize="-1"
+                   redirectPort="${TOMCAT_HTTPS_PORT}" />
+        <Connector port="${TOMCAT_AJP_PORT}"
                    protocol="AJP/1.3"
-                   address="::1"
-                   redirectPort="${TOMCAT_PORT_HTTPS}" />
+                   address="${TOMCAT_ADDRESS}"
+                   secretRequired="false"
+                   minSpareThreads="10"
+                   maxThreads="200"
+                   acceptCount="100"
+                   maxConnections="8192"
+                   connectionTimeout="60000"
+                   keepAliveTimeout="60000"
+                   maxPostSize="-1"
+                   redirectPort="${TOMCAT_HTTPS_PORT}" />
         <Engine name="Catalina"
                 defaultHost="localhost"
                 jvmRoute="${JVM_ROUTE}">
@@ -39,7 +54,7 @@
                                 frequency="500"
                                 dropTime="3000" />
                     <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
-                              address="auto"
+                              address="${TOMCAT_ADDRESS}"
                               port="4000"
                               autoBind="100"
                               selectorTimeout="5000"
@@ -67,11 +82,11 @@
             <Host name="localhost"
                   appBase="${APP_BASE}"
                   unpackWARs="true"
-                  autoDeploy="true">
+                  autoDeploy="false">
                 <Valve className="org.apache.catalina.valves.AccessLogValve"
                        directory="logs"
                        prefix="localhost_access_log"
-                       suffix=".log"
+                       suffix=".txt"
                        pattern="%h %l %u %t &quot;%r&quot; %s %b" />
             </Host>
         </Engine>
