@@ -33,12 +33,15 @@ envsubst < ./context.xml > ${CATALINA_BASE}/conf/context.xml
 ### format xml
 # tidy_indent ${CATALINA_BASE}/conf/server.xml
 # tidy_indent ${CATALINA_BASE}/conf/context.xml
+# tidy_indent ${CATALINA_BASE}/conf/tomcat-users.xml
 # tidy_nowrap ${CATALINA_BASE}/conf/server.xml
 # tidy_nowrap ${CATALINA_BASE}/conf/context.xml
+# tidy_nowrap ${CATALINA_BASE}/conf/tomcat-users.xml
 
 ### change permission
 chmod 600 ${CATALINA_BASE}/conf/server.xml
 chmod 600 ${CATALINA_BASE}/conf/context.xml
+# chmod 600 ${CATALINA_BASE}/conf/tomcat-users.xml
 
 ######################################################################
 

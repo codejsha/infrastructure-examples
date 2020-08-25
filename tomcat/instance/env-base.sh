@@ -23,27 +23,6 @@ export GC_LOG_OUT="\${LOG_DIR}/gc_\${INSTANCE_NAME}.log"
 
 ######################################################################
 
-### tidy function
-function tidy_indent {
-    XML_FILE="${1}"
-    tidy -modify \
-        --indent auto --indent-spaces 4 --indent-attributes true \
-        --input-xml true --output-xml true \
-        --hide-comments true --quote-nbsp false \
-        --quiet true --wrap 80 \
-        ${XML_FILE}
-}
-
-function tidy_nowrap {
-    XML_FILE="${1}"
-    tidy -modify \
-        --indent auto --indent-spaces 4 --indent-attributes false \
-        --input-xml true --output-xml true \
-        --hide-comments true --quote-nbsp false \
-        --quiet true --wrap 0 \
-        ${XML_FILE}
-}
-
 ### set variables
 export JAVA_VERSION="$(${JAVA_HOME}/bin/java -version 2>&1 /dev/null \
     | grep version | awk '{print $3}' | tr -d '"')"
