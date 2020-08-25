@@ -49,10 +49,10 @@ fi
 
 cat <<EOF >> ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 
-# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote
-# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.port=${TOMCAT_JMX_PORT}
-# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.ssl=false
-# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false
+# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote"
+# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.port=${TOMCAT_JMX_PORT}"
+# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+# CATALINA_OPTS="\${CATALINA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 export CATALINA_OPTS
 
 touch \${CATALINA_OUT}
