@@ -22,8 +22,9 @@
                    minSpareThreads="10"
                    maxThreads="200"
                    acceptCount="100"
-                   maxConnections="8192"
+                   maxConnections="10000"
                    connectionTimeout="60000"
+                   maxKeepAliveRequests="100"
                    keepAliveTimeout="60000"
                    maxPostSize="-1"
                    redirectPort="${TOMCAT_HTTPS_PORT}" />
