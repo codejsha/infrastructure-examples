@@ -36,9 +36,9 @@ envsubst < ./context.xml > ${CATALINA_BASE}/conf/context.xml
 if [ "${REDISSON_MODE}" == "CLUSTER_MODE" ]; then
     /usr/bin/cp -pf ./redisson-cluster.yaml ${CATALINA_BASE}/conf/redisson.yaml
 elif [ "${REDISSON_MODE}" == "MASTER_SLAVE_MODE" ]; then
-    /usr/bin/cp -pf ./redisson-sentinel.yaml ${CATALINA_BASE}/conf/redisson.yaml
+    /usr/bin/cp -pf ./redisson-master-slave.yaml ${CATALINA_BASE}/conf/redisson.yaml
 elif [ "${REDISSON_MODE}" == "SINGLE_MODE" ]; then
-    /usr/bin/cp -pf ./redisson-proxy.yaml ${CATALINA_BASE}/conf/redisson.yaml
+    /usr/bin/cp -pf ./redisson-single.yaml ${CATALINA_BASE}/conf/redisson.yaml
 fi
 
 ######################################################################
