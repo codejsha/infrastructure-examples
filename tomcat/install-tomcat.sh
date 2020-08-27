@@ -10,6 +10,6 @@ TOMCAT_VERSION="9.0.37"
 APPSVR_DIR="/svc/appsvr"
 
 curl -o ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz -JLO http://mirror.apache-kr.org/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-tar -C ${APPSVR_DIR} -xzf apache-tomcat-${TOMCAT_VERSION}.tar.gz
-mv apache-tomcat-${TOMCAT_VERSION} tomcat${TOMCAT_MAJOR_VERSION}
+tar -C ${APPSVR_DIR} -xzf ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+mv ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION} ${APPSVR_DIR}/tomcat${TOMCAT_MAJOR_VERSION}
 rm -f ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
