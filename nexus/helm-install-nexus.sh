@@ -9,6 +9,8 @@ kubectl create namespace ${NAMESPACE}
 # helm install my-nexus \
 helm upgrade --install my-nexus \
     --namespace ${NAMESPACE} \
+    --set statefulset.enabled="false" \
+    --set replicaCount="1" \
     --set nexus.requests.cpu="250m" \
     --set nexus.requests.memory="4800Mi" \
     --set nexusBackup.enabled="true" \
