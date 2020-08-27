@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import os
-
 oracle_home = '/usr/local/weblogic'
 domain_home = oracle_home + '/user_projects/domains/base_domain'
 admin_server_name = 'AdminServer'
