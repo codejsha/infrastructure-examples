@@ -9,4 +9,4 @@ gpgcheck=0
 enabled=1
 EOF
 
-yum install -y nginx
+sudo yum install -y nginx
