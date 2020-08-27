@@ -3,7 +3,7 @@
 NEXUS_URL="https://nexus.kube.example.com"
 NEXUS_USER="admin"
 NEXUS_PASSWORD="admin123"
-BLOBSTORE_NAME=""
+BLOBSTORE_NAME="${1}"
 
 AWS_ACCESS_KEY_ID="admin"
 AWS_SECRET_ACCESS_KEY="changeit"
