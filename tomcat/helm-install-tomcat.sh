@@ -16,5 +16,10 @@ helm upgrade --install my-tomcat \
     --version 6.3.10 \
     bitnami/tomcat
 
+    ### custom image
+    # --set image.registry="nexus.kube.example.com/repository/docker-public"
+    # --set image.repository="tomcat"
+    # --set image.tag="latest"
+
     ### for loadbalancer
     # --set service.loadBalancerIP="10.10.10.50" \
