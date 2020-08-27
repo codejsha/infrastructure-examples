@@ -3,6 +3,8 @@
 helm repo add influxdata https://helm.influxdata.com
 helm repo update
 
+PASSWORD="changeit"
+
 NAMESPACE="influx-system"
 kubectl create namespace ${NAMESPACE}
 
@@ -10,7 +12,7 @@ kubectl create namespace ${NAMESPACE}
 helm upgrade --install my-influxdb \
     --namespace ${NAMESPACE} \
     --set adminUser.user="admin" \
-    --set adminUser.password="changeit" \
+    --set adminUser.password="${PASSWORD}" \
     --set persistence.enabled="true" \
     --set persistence.storageClass="rook-ceph-block" \
     influxdata/influxdb2

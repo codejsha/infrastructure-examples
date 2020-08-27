@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+PASSWORD="changeit"
+
 NAMESPACE="mysql-system"
 kubectl create namespace ${NAMESPACE}
 
@@ -7,7 +9,7 @@ kubectl create namespace ${NAMESPACE}
 helm upgrade --install my-mysql \
     --namespace ${NAMESPACE} \
     --set imageTag="8.0.21" \
-    --set mysqlRootPassword="changeit" \
+    --set mysqlRootPassword="${PASSWORD}" \
     --set timezone="Asia/Seoul" \
     --set service.type="LoadBalancer" \
     --set service.loadBalancerIP="10.10.10.97" \
