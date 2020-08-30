@@ -133,6 +133,9 @@ def get_server_threadpool_status(_servers):
     print_status_value(_threadpool_items, _threadpool_values)
 
 
+######################################################################
+
+
 admin_server_url = 't3://test.example.com:7001'
 username = 'weblogic'
 password = 'welcome1'
