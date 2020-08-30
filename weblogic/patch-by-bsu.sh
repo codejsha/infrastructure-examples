@@ -3,8 +3,10 @@
 MW_HOME="/usr/local/weblogic"
 PATCH_FILE_DIR="/mnt/share/oracle-weblogic-server/wls10.3.6"
 
+######################################################################
+
 function check_requirement {
-    if [ ! -d ${MW_HOME} ]; then
+    if [ ! -d "${MW_HOME}" ]; then
         echo "ERROR: The MW_HOME (${MW_HOME}) does not exists!"
         exit
     fi
@@ -15,7 +17,7 @@ function check_requirement {
 function check_patch_file {
     PATCH_FILE_PATH="${1}"
 
-    if [ ! -f ${PATCH_FILE_PATH} ]; then
+    if [ ! -f "${PATCH_FILE_PATH}" ]; then
         echo "ERROR: The PATCH_FILE (${PATCH_FILE_PATH}) does not exists!"
         exit
     fi
@@ -62,6 +64,8 @@ function bsu_view_applied {
     echo "View applied patches..."
     ${MW_HOME}/utils/bsu/bsu.sh -view -status=applied -prod_dir=${MW_HOME}/wlserver_10.3
 }
+
+######################################################################
 
 check_requirement
 change_bsu_mem_arg "-Xms4096m -Xmx4096m"
