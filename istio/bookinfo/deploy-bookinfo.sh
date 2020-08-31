@@ -6,10 +6,11 @@ kubectl create namespace ${NAMESPACE}
 kubectl label namespace bookinfo istio-injection=enabled
 kubectl config set-context "$(kubectl config current-context)" --namespace="${NAMESPACE}"
 
-git clone https://github.com/istio/istio.git
+# git clone https://github.com/istio/istio.git
 
 ### deploy bookinfo
-kubectl apply -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
+# kubectl apply -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/platform/kube/bookinfo.yaml
 
 ### check bookinfo
 # kubectl get services
@@ -18,7 +19,8 @@ kubectl apply -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
 #     -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
 
 ### deploy bookinfo gateway
-kubectl apply -f istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+# kubectl apply -f istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml
 
 ### check bookinfo gateway
 # kubectl get gateways
