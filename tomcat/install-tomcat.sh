@@ -7,9 +7,9 @@ TOMCAT_VERSION="9.0.37"
 # TOMCAT_MAJOR_VERSION="10"
 # TOMCAT_VERSION="10.0.0-M7"
 
-APPSVR_DIR="/svc/appsvr"
+PARENT_TOMCAT_HOME="/svc/appsvr"
 
-curl -o ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz -JLO http://mirror.apache-kr.org/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-tar -C ${APPSVR_DIR} -xzf ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-mv ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION} ${APPSVR_DIR}/tomcat${TOMCAT_MAJOR_VERSION}
-rm -f ${APPSVR_DIR}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+curl -o ${PARENT_TOMCAT_HOME}/apache-tomcat-${TOMCAT_VERSION}.tar.gz -JLO http://mirror.apache-kr.org/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+tar -C ${PARENT_TOMCAT_HOME} -xzf ${PARENT_TOMCAT_HOME}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+mv ${PARENT_TOMCAT_HOME}/apache-tomcat-${TOMCAT_VERSION} ${PARENT_TOMCAT_HOME}/tomcat${TOMCAT_MAJOR_VERSION}
+rm -f ${PARENT_TOMCAT_HOME}/apache-tomcat-${TOMCAT_VERSION}.tar.gz
