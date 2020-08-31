@@ -1,6 +1,24 @@
 #!/usr/bin/bash
 
-### container 
+### build
+# https://docs.docker.com/engine/reference/commandline/build/
+
+docker build .
+docker build -f Dockerfile.dev .
+docker build -t example/apache:2.0 .
+docker build -f Dockerfile.dev -t example/apache:2.0 .
+
+######################################################################
+
+### tag and push
+
+docker login registry.kube.example.com
+docker tag centos:latest registry.kube.example.com/example/centos:latest
+docker push registry.kube.example.com/example/centos:latest
+
+######################################################################
+
+### container
 
 ### remove all containers
 docker container rm $(docker container ls --all --quiet)
