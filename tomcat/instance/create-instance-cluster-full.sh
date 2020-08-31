@@ -22,7 +22,7 @@ mv ${CATALINA_BASE}/conf/tomcat-users.xml ${CATALINA_BASE}/conf/tomcat-users.xml
 
 envsubst < ./server-cluster-full.xml > ${CATALINA_BASE}/conf/server.xml
 envsubst < ./context.xml > ${CATALINA_BASE}/conf/context.xml
-# envsubst < ./tomcat-users.xml > ${CATALINA_BASE}/conf/tomcat-users.xml
+envsubst < ./tomcat-users.xml > ${CATALINA_BASE}/conf/tomcat-users.xml
 
 # /usr/bin/cp -pf ./server-cluster-full.xml ${CATALINA_BASE}/conf/server.xml
 # /usr/bin/cp -pf ./context.xml ${CATALINA_BASE}/conf/context.xml
