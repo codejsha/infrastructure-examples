@@ -1,10 +1,10 @@
 ### jdbc debug
 EXT_PRE_CLASSPATH="${EXT_PRE_CLASSPATH}:jdbc_g.jar"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Doracle.jdbc.Trace=true"
-JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.util.logging.config.file=${DOMAIN_HOME}/OracleLog.properties"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Djava.util.logging.config.file=${DOMAIN_HOME}/oracledb-logging.properties"
 # JAVA_OPTIONS="${JAVA_OPTIONS} -Doracle.jdbc.LogFile=${LOG_HOME}/jdbc.log"
 
-cat <<EOF > ${DOMAIN_HOME}/OracleLog.properties
+cat <<EOF > ${DOMAIN_HOME}/oracledb-logging.properties
 # handlers=java.util.logging.ConsoleHandler
 # java.util.logging.ConsoleHandler.level=ALL
 # java.util.logging.ConsoleHandler.formatter=java.util.logging.SimpleFormatter
