@@ -81,7 +81,7 @@ chmod 750 ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh
 chmod 750 ${CATALINA_BASE}/stop-${INSTANCE_NAME}.sh
 
 ### create symbolic link
-ln -snf ${CATALINA_HOME}/start-${INSTANCE_NAME}.sh \
-    ${CATALINA_HOME}/instances/start-${INSTANCE_NAME}.sh
-ln -snf ${CATALINA_HOME}/stop-${INSTANCE_NAME}.sh \
-    ${CATALINA_HOME}/instances/stop-${INSTANCE_NAME}.sh
+ln -snf ${CATALINA_BASE}/start-${INSTANCE_NAME}.sh \
+    ${CATALINA_HOME}/start-${INSTANCE_NAME}.sh
+ln -snf ${CATALINA_BASE}/stop-${INSTANCE_NAME}.sh \
+    ${CATALINA_HOME}/stop-${INSTANCE_NAME}.sh
