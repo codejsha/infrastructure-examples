@@ -11,18 +11,22 @@ USER_LASTNAME="${USER_ID}"
 USER_EMAIL="${USER_ID}@example.org"
 USER_ROLES="nx-admin"
 
-curl --insecure \
-    -X POST "${NEXUS_URL}/service/rest/beta/security/users" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
-    -d \
-    "{ \
-      \"userId\": \"${USER_ID}\", \
-      \"firstName\": \"${USER_FIRSTNAME}\", \
-      \"lastName\": \"${USER_LASTNAME}\", \
-      \"emailAddress\": \"${USER_EMAIL}\", \
-      \"password\": \"${USER_PASSWORD}\", \
-      \"status\": \"active\", \
-      \"roles\": [\"${USER_ROLES}\"] \
-    }"
+function create_user {
+    curl --insecure \
+        -X POST "${NEXUS_URL}/service/rest/beta/security/users" \
+        -H "accept: application/json" \
+        -H "Content-Type: application/json" \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
+        -d \
+        "{ \
+          \"userId\": \"${USER_ID}\", \
+          \"firstName\": \"${USER_FIRSTNAME}\", \
+          \"lastName\": \"${USER_LASTNAME}\", \
+          \"emailAddress\": \"${USER_EMAIL}\", \
+          \"password\": \"${USER_PASSWORD}\", \
+          \"status\": \"active\", \
+          \"roles\": [\"${USER_ROLES}\"] \
+        }"
+}
+
+create_user
