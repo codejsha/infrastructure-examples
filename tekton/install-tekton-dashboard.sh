@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-kubectl apply --filename https://github.com/tektoncd/dashboard/releases/latest/download/tekton-dashboard-release.yaml
-# TEKTON_DASHBOARD_VERSION="0.8.0"
+kubectl apply --filename https://github.com/tektoncd/dashboard/releases/latest/tekton-dashboard-release.yaml
+# TEKTON_DASHBOARD_VERSION="0.9.0"
 # kubectl apply --filename https://github.com/tektoncd/dashboard/releases/download/v${TEKTON_DASHBOARD_VERSION}/tekton-dashboard-release.yaml
 
 cat <<EOF > ./tekton-dashboard-ingress.yaml
