@@ -20,5 +20,5 @@ helm upgrade --install my-redis \
     --set master.persistence.storageClass="rook-ceph-block" \
     --set slave.persistence.enabled="true" \
     --set slave.persistence.storageClass="rook-ceph-block" \
-    --version 10.7.1 \
+    --version 10.8.1 \
     bitnami/redis
