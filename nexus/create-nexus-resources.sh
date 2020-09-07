@@ -11,8 +11,8 @@ bash nx-delete-repository.sh "maven-central"
 bash nx-create-maven-proxy-repo.sh "maven-central" "nexus-maven-central" "https://repo1.maven.org/maven2/"
 basj nx-update-maven-group-repo.sh "docker-group" "default" "\"maven-central\",\"maven-releases\",\"maven-snapshots\""
 
-bash nx-create-docker-proxy-repo.sh "docker-hub" "nexus-docker-hub" "https://registry-1.docker.io"
-bash nx-create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.registry-system:5000"
+bash nx-create-docker-proxy-repo.sh "docker-hub" "nexus-docker-hub" "https://registry-1.docker.io" "HUB"
+bash nx-create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.registry-system:5000" "REGISTRY"
 bash nx-create-docker-group-repo.sh "docker-group" "default" "\"docker-hub\",\"docker-registry\""
 
 bash nx-create-helm-proxy-repo.sh "helm-chartmuseum" "nexus-helm-chartmuseum" "http://chartmuseum-service.chart-system:8080"

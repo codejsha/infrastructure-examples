@@ -6,6 +6,7 @@ NEXUS_PASSWORD="admin123"
 REPOSITORY_NAME="${1}"
 BLOBSTORE_NAME="${2}"
 REMOTE_URL="${3}"
+DOCKER_INDEX_TYPE="${4}"
 
 function create_docker_proxy_repository {
     curl --insecure \
@@ -51,7 +52,7 @@ function create_docker_proxy_repository {
             \"httpsPort\": null \
           }, \
           \"dockerProxy\": { \
-            \"indexType\": \"HUB\", \
+            \"indexType\": \"${DOCKER_INDEX_TYPE}\", \
             \"indexUrl\": null \
           } \
         }"
