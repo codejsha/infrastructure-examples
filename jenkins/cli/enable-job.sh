@@ -1,10 +1,13 @@
 #!/usr/bin/bash
 
-source jc-env.sh
+source ./env.sh
+source ./env-job.sh
 
-CREDENTIAL_DOMAIN="${${CREDENTIAL_DOMAIN}:-cicd}"
+JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 
 ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar -s ${JENKINS_URL} -webSocket -auth ${JENKINS_USER}:${JENKINS_API_TOKEN} \
-    delete-credentials-domain "SystemCredentialsProvider::SystemContextResolver::jenkins" "${CREDENTIAL_DOMAIN}"
+    enable-job ${JENKINS_JOB_NAME}
+
+### get-job
 # ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar -s ${JENKINS_URL} -webSocket -auth ${JENKINS_USER}:${JENKINS_API_TOKEN} \
-#     delete-credentials-domain "system::system::jenkins" "${CREDENTIAL_DOMAIN}"
+#     get-job ${JENKINS_JOB_NAME}

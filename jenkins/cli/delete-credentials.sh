@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-source jc-env.sh
+source ./env.sh
 
 CREDENTIAL_DOMAIN="${${CREDENTIAL_DOMAIN}:-cicd}"
 CREDENTIAL_UUID="${1:-${CREDENTIAL_UUID}}"

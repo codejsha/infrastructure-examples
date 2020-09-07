@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-source jc-env.sh
+source ./env.sh
 
 CREDENTIAL_DOMAIN="cicd"
 
