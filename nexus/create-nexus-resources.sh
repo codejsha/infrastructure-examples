@@ -17,6 +17,8 @@ bash create-docker-group-repo.sh "docker-group" "default" "\"docker-hub\",\"dock
 
 bash create-helm-proxy-repo.sh "helm-chartmuseum" "nexus-helm-chartmuseum" "http://chartmuseum-service.chart-system:8080"
 
+set-active-realms-list.sh "\"NexusAuthenticatingRealm\", \"NexusAuthorizingRealm\", \"DockerToken\""
+
 ### delete
 # bash delete-repository.sh "maven-central"
 # bash delete-repository.sh "docker-hub"
