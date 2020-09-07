@@ -34,7 +34,7 @@ spec:
       type: string
   tasks:
     - name: clone-repo
-      taskref:
+      taskRef:
         name: git-clone
       params:
         - name: url
@@ -45,7 +45,7 @@ spec:
         - name: output
           workspace: shared-workspace
     - name: build-source
-      taskref:
+      taskRef:
         name: maven
       runAfter:
         - clone-repo
