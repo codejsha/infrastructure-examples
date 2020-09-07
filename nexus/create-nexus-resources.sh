@@ -9,7 +9,7 @@ bash create-blobstore.sh "nexus-helm-chartmuseum"
 
 bash delete-repository.sh "maven-central"
 bash create-maven-proxy-repo.sh "maven-central" "nexus-maven-central" "https://repo1.maven.org/maven2/"
-bash update-maven-group-repo.sh "maven-group" "default" "\"maven-central\",\"maven-releases\",\"maven-snapshots\""
+bash update-maven-group-repo.sh "maven-public" "default" "\"maven-central\",\"maven-releases\",\"maven-snapshots\""
 
 bash create-docker-proxy-repo.sh "docker-hub" "nexus-docker-hub" "https://registry-1.docker.io" "HUB"
 bash create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.registry-system:5000" "REGISTRY"
