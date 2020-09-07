@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: git-basic-auth
+  annotations:
+    tekton.dev/git-0: https://github.com
+type: kubernetes.io/basic-auth
+stringData:
+  username: USERNAME
+  password: PASSWORD
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: git-build-bot
+secrets:
+  - name: git-basic-auth

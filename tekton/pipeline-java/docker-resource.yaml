@@ -1,0 +1,21 @@
+# admin:admin123
+#   "auth": "YWRtaW46YWRtaW4xMjM="
+# developer:developer
+#   "auth": "ZGV2ZWxvcGVyOmRldmVsb3Blcg=="
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-config-store
+data:
+  config.json: |
+    {
+      "auths": {
+        "my-docker-registry.registry-system:5000": {
+          "auth": "ZGV2ZWxvcGVyOmRldmVsb3Blcg=="
+        },
+        "sonatype-nexus-service.nexus-system:5003": {
+          "auth": "ZGV2ZWxvcGVyOmRldmVsb3Blcg=="
+        }
+      }
+    }

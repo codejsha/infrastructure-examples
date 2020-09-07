@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maven-settings-store
+data:
+  settings.xml: |
+    <?xml version="1.0" encoding="utf-8"?>
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+        <servers>
+            <server>
+                <id>nexus</id>
+                <username>developer</username>
+                <password>developer</password>
+            </server>
+            <server>
+                <id>nexus-release</id>
+                <username>developer</username>
+                <password>developer</password>
+            </server>
+            <server>
+                <id>nexus-snapshot</id>
+                <username>developer</username>
+                <password>developer</password>
+            </server>
+        </servers>
+        <mirrors>
+            <mirror>
+                <id>nexus</id>
+                <mirrorOf>*</mirrorOf>
+                <url>http://sonatype-nexus-service.nexus-system:8081/repository/maven-public/</url>
+            </mirror>
+        </mirrors>
+    </settings>
