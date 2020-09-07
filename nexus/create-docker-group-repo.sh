@@ -9,10 +9,10 @@ REPOSITORY_MEMBER_NAMES="${3}"
 
 function create_docker_group_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/repositories/docker/group" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${REPOSITORY_NAME}\", \

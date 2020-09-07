@@ -10,10 +10,10 @@ DOCKER_INDEX_TYPE="${4}"
 
 function create_docker_proxy_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/repositories/docker/proxy" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${REPOSITORY_NAME}\", \

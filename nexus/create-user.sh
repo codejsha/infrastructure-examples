@@ -13,10 +13,10 @@ USER_ROLES="nx-admin"
 
 function create_user {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/security/users" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"userId\": \"${USER_ID}\", \

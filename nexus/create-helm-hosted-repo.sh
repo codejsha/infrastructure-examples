@@ -8,10 +8,10 @@ BLOBSTORE_NAME="${2}"
 
 function create_helm_hosted_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/repositories/helm/hosted" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${REPOSITORY_NAME}\", \

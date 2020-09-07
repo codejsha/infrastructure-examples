@@ -7,9 +7,9 @@ BLOBSTORE_NAME="${1}"
 
 function get_s3_blob_store {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X GET "${NEXUS_URL}/service/rest/beta/blobstores/s3/${BLOBSTORE_NAME}" \
-        -H "accept: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD}
+        -H "accept: application/json"
 }
 
 get_s3_blob_store

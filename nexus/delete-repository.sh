@@ -7,9 +7,9 @@ REPOSITORY_NAME="${1}"
 
 function delete_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X DELETE "${NEXUS_URL}/service/rest/beta/repositories/${REPOSITORY_NAME}" \
-        -H "accept: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD}
+        -H "accept: application/json"
 }
 
 delete_repository

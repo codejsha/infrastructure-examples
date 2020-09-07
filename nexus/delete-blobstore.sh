@@ -7,9 +7,9 @@ BLOBSTORE_NAME="${1}"
 
 function delete_blob_store {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X DELETE "${NEXUS_URL}/service/rest/beta/blobstores/${BLOBSTORE_NAME}" \
-        -H "accept: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD}
+        -H "accept: application/json"
 }
 
 delete_blob_store

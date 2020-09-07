@@ -12,10 +12,10 @@ BUCKET_NAME="${BLOBSTORE_NAME}"
 
 function create_s3_blob_store {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/blobstores/s3" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${BLOBSTORE_NAME}\", \

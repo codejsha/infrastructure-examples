@@ -9,10 +9,10 @@ REMOTE_URL="${3}"
 
 function create_helm_proxy_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X POST "${NEXUS_URL}/service/rest/beta/repositories/helm/proxy" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${REPOSITORY_NAME}\", \

@@ -9,10 +9,10 @@ REPOSITORY_MEMBER_NAMES="${3}"
 
 function update_docker_group_repository {
     curl --insecure \
+        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -X PUT "${NEXUS_URL}/service/rest/beta/repositories/docker/group/${REPOSITORY_NAME}" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
-        --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         -d \
         "{ \
           \"name\": \"${REPOSITORY_NAME}\", \
