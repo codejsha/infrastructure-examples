@@ -24,7 +24,7 @@ function create_docker_proxy_repository {
           \"cleanup\": null, \
           \"proxy\": { \
             \"remoteUrl\": \"${REMOTE_URL}\", \
-            \"contentMaxAge\": -1, \
+            \"contentMaxAge\": 1440, \
             \"metadataMaxAge\": 1440 \
           }, \
           \"negativeCache\": { \
