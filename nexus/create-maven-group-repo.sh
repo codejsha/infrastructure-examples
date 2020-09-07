@@ -14,16 +14,16 @@ function create_maven_group_repository {
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
         -d \
-        "{
-          \"name\": \"${REPOSITORY_NAME}\",
-          \"online\": true,
-          \"storage\": {
-            \"blobStoreName\": \"${BLOBSTORE_NAME}\",
-            \"strictContentTypeValidation\": true
-          },
-          \"group\": {
-            \"memberNames\": [${REPOSITORY_MEMBER_NAMES}]
-          }
+        "{ \
+          \"name\": \"${REPOSITORY_NAME}\", \
+          \"online\": true, \
+          \"storage\": { \
+            \"blobStoreName\": \"${BLOBSTORE_NAME}\", \
+            \"strictContentTypeValidation\": true \
+          }, \
+          \"group\": { \
+            \"memberNames\": [${REPOSITORY_MEMBER_NAMES}] \
+          } \
         }"
 }
 
