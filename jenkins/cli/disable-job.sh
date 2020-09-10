@@ -7,7 +7,3 @@ JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 
 ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar -s ${JENKINS_URL} -webSocket -auth ${JENKINS_USER}:${JENKINS_API_TOKEN} \
     disable-job ${JENKINS_JOB_NAME}
-
-### get-job
-# ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar -s ${JENKINS_URL} -webSocket -auth ${JENKINS_USER}:${JENKINS_API_TOKEN} \
-#     get-job ${JENKINS_JOB_NAME}
