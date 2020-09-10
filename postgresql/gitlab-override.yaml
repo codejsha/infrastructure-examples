@@ -1,0 +1,17 @@
+initdbScripts:
+  create-gitlab-db.sh: |
+    #!/bin/sh
+
+    PGPASSWORD="${POSTGRES_PASSWORD}" \
+        psql \
+        -U postgres \
+        -c "CREATE DATABASE gitlabhq_production;"
+
+  enable-extensions.sh: |
+    #!/bin/sh
+
+    PGPASSWORD="${POSTGRES_PASSWORD}" \
+        psql \
+        -d gitlabhq_production \
+        -U postgres \
+        -c "CREATE EXTENSION IF NOT EXISTS pg_trgm; CREATE EXTENSION IF NOT EXISTS btree_gist;"
