@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: starter
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: starter.kube.example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: starter
+              servicePort: 8080

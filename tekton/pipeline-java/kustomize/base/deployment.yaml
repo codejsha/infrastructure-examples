@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starter
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: starter
+  template:
+    metadata:
+      labels:
+        app: starter
+    spec:
+      containers:
+        - name: starter
+          image: my-docker-registry.registry-system:5000/starter:RELEASE_VERION
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
