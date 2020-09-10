@@ -6,7 +6,7 @@ metadata:
 spec:
   pipelineRef:
     name: java-pipeline
-  serviceAccountName: git-build-bot
+  serviceAccountName: tekton-github-sa
   workspaces:
     - name: shared-workspace
       persistentvolumeclaim:
@@ -17,11 +17,41 @@ spec:
     - name: docker-config
       configMap:
         name: docker-config-store
+    - name: input-asset
+      emptyDir: {}
+      # configMap:
+      #   name: input-asset-store
   params:
-    - name: git-repo-url
-      value: https://github.com/USERNAME/REPOSITORY.git
-    - name: git-branch-name
+    - name: git-code-repo-url
+      value: https://github.com/USER_NAME/CODE_REPOSITORY.git
+    - name: git-code-branch-name
       value: master
+    - name: git-code-subdir
+      value: ""
+    - name: git-cd-repo-url
+      value: https://github.com/USER_NAME/CD_REPOSITORY.git
+    - name: git-cd-branch-name
+      value: master
+    - name: git-cd-subdir
+      value: ""
+    - name: git-cd-user-name
+      value: USER_NAME
+    - name: git-cd-user-email
+      value: USER_EMAIL
+    - name: git-cd-script
+      value: |
+        RELEASE_VERION="0.0.1"
+
+        git branch release-${RELEASE_VERION}
+        git checkout release-${RELEASE_VERION}
+
+        # cp $(workspaces.input.path)/* $(workspaces.source.path)
+        sed -i "s/RELEASE_VERION/${RELEASE_VERION}/g" ./base/*.yaml
+        git add .
+
+        git commit -m "release-${RELEASE_VERION}" --allow-empty
+        git push origin release-${RELEASE_VERION}
+
     - name: maven-goals
       value:
         # - -DskipTests

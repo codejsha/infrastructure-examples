@@ -5,18 +5,35 @@ metadata:
 spec:
   description: |
     tasks:
-      - clone-repo (git-clone)
+      - clone-code-repo (git-clone)
       - build-source (maven)
       - build-image (kaniko)
       - verify-digest (verify-image-digest)
+      - clone-cd-repo (git-clone)
+      - git-commit (git-cli)
   workspaces:
     - name: shared-workspace
     - name: maven-settings
     - name: docker-config
+    - name: input-asset
   params:
-    - name: git-repo-url
+    - name: git-code-repo-url
       type: string
-    - name: git-branch-name
+    - name: git-code-branch-name
+      type: string
+    - name: git-code-subdir
+      type: string
+    - name: git-cd-repo-url
+      type: string
+    - name: git-cd-branch-name
+      type: string
+    - name: git-cd-subdir
+      type: string
+    - name: git-cd-user-name
+      type: string
+    - name: git-cd-user-email
+      type: string
+    - name: git-cd-script
       type: string
     - name: maven-goals
       type: array
@@ -33,14 +50,16 @@ spec:
     - name: kaniko-builder-image
       type: string
   tasks:
-    - name: clone-repo
+    - name: clone-code-repo
       taskRef:
         name: git-clone
       params:
         - name: url
-          value: $(params.git-repo-url)
+          value: $(params.git-code-repo-url)
         - name: revision
-          value: $(params.git-branch-name)
+          value: $(params.git-code-branch-name)
+        - name: subdirectory
+          value: $(params.git-code-subdir)
       workspaces:
         - name: output
           workspace: shared-workspace
@@ -48,7 +67,7 @@ spec:
       taskRef:
         name: maven
       runAfter:
-        - clone-repo
+        - clone-code-repo
       params:
         - name: GOALS
           value:
@@ -90,3 +109,35 @@ spec:
       params:
         - name: digest
           value: $(tasks.build-image.results.IMAGE-DIGEST)
+    - name: clone-cd-repo
+      taskRef:
+        name: git-clone
+      runAfter:
+        - verify-digest
+      params:
+        - name: url
+          value: $(params.git-cd-repo-url)
+        - name: revision
+          value: $(params.git-cd-branch-name)
+        - name: subdirectory
+          value: $(params.git-cd-subdir)
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+    - name: git-commit
+      taskRef:
+        name: git-cli
+      runAfter:
+        - clone-cd-repo
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: input
+          workspace: input-asset
+      params:
+        - name: GIT_USER_NAME
+          value: $(params.git-cd-user-name)
+        - name: GIT_USER_EMAIL
+          value: $(params.git-cd-user-email)
+        - name: GIT_SCRIPT
+          value: $(params.git-cd-script)
