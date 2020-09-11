@@ -4,7 +4,7 @@
 NAMESPACE="bookinfo"
 kubectl create namespace ${NAMESPACE}
 kubectl label namespace bookinfo istio-injection=enabled
-kubectl config set-context "$(kubectl config current-context)" --namespace="${NAMESPACE}"
+kubectl config set-context --current --namespace="${NAMESPACE}"
 
 # git clone https://github.com/istio/istio.git
 
@@ -29,4 +29,6 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/bo
 
 ### delete
 # kubectl delete -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
+# kubectl delete -f https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/platform/kube/bookinfo.yaml
 # kubectl delete -f istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+# kubectl delete -f https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml
