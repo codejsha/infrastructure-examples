@@ -9,6 +9,6 @@ tar -xf apache-maven-${MAVEN_VERSION}-bin.tar.gz
 mv apache-maven-${MAVEN_VERSION} maven
 sudo mv maven /usr/local
 
-### add env
+### add path
 # PATH="${PATH}:/usr/local/maven/bin"
 # export PATH
