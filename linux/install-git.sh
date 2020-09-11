@@ -13,3 +13,11 @@ make configure
 ./configure --prefix=/usr
 make all doc info
 sudo make install install-doc install-html install-info
+
+### init config
+### global
+# git config --global user.name ""
+# git config --global user.email ""
+### repository
+# git config user.name ""
+# git config user.email ""
