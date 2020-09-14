@@ -1,0 +1,59 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: productpage
+spec:
+  hosts:
+    - productpage
+  http:
+    - route:
+        - destination:
+            host: productpage
+            port:
+              number: 9080
+            subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+    - reviews
+  http:
+    - route:
+        - destination:
+            host: reviews
+            port:
+              number: 9080
+            subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+    - ratings
+  http:
+    - route:
+        - destination:
+            host: ratings
+            port:
+              number: 9080
+            subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: details
+spec:
+  hosts:
+    - details
+  http:
+    - route:
+        - destination:
+            host: details
+            port:
+              number: 9080
+            subset: v1

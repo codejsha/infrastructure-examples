@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+    - reviews
+  http:
+    - match:
+        - headers:
+            end-user:
+              exact: jason
+          method:
+            exact: GET
+      route:
+        - destination:
+            host: reviews
+            subset: v3
+    - route:
+        - destination:
+            host: reviews
+            subset: v1

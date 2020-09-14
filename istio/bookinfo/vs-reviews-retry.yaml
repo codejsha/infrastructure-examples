@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+    - reviews
+  http:
+    - route:
+        - destination:
+            host: reviews
+            port:
+              number: 9080
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream

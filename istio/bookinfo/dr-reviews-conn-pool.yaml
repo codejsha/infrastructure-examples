@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: reviews
+spec:
+  host: reviews
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 1
+        connectTimeout: 30ms
+        tcpKeepalive:
+          time: 7200s
+          interval: 75s
+      http:
+        http1MaxPendingRequests: 1
+        maxRequestsPerConnection: 1
