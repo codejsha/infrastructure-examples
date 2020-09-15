@@ -17,8 +17,8 @@ export SERVER_START_CLASSPATH="${SERVER_START_CLASSPATH}"
 mkdir -p ${LOG_HOME}/${MANAGED_SERVER_NAME}
 
 export CONFIG_JVM_ARGS="${CONFIG_JVM_ARGS} -Djava.security.egd=file:///dev/urandom"
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
     ${MW_HOME}/wlserver_10.3/common/bin/wlst.sh create_server.py
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
     ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh create_server.py
 fi

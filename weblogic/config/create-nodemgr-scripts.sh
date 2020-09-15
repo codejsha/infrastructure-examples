@@ -14,7 +14,7 @@ FILE_NAME_SUFFIX=${FILE_NAME_SUFFIX/machine/nodemanager}
 
 ### start script
 
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
 cat << EOF > ${DOMAIN_HOME}/start-${FILE_NAME_SUFFIX}.sh
 #!/usr/bin/bash
 
@@ -28,7 +28,7 @@ if [ ! -z "\${PID}" ]; then
   exit
 fi
 EOF
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
 cat << EOF > ${DOMAIN_HOME}/start-${FILE_NAME_SUFFIX}.sh
 #!/usr/bin/bash
 
@@ -59,11 +59,11 @@ fi
 touch \${LOG_HOME}/nohup_NodeManager.out
 EOF
 
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
 cat << EOF > ${DOMAIN_HOME}/start-${FILE_NAME_SUFFIX}.sh
 \${WL_HOME}/server/bin/startNodeManager.sh >> \${LOG_HOME}/nohup_NodeManager.out 2>&1 &
 EOF
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
 cat << EOF > ${DOMAIN_HOME}/start-${FILE_NAME_SUFFIX}.sh
 \${DOMAIN_HOME}/bin/startNodeManager.sh >> \${LOG_HOME}/nohup_NodeManager.out 2>&1 &
 EOF
@@ -77,7 +77,7 @@ EOF
 
 ### stop script
 
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
 cat << EOF > ${DOMAIN_HOME}/stop-${FILE_NAME_SUFFIX}.sh
 #!/usr/bin/bash
 WL_HOME="${WL_HOME}"
@@ -87,7 +87,7 @@ if [ ! -z "\${PID}" ]; then
   kill -9 \${PID}
 fi
 EOF
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
 cat << EOF > ${DOMAIN_HOME}/stop-${FILE_NAME_SUFFIX}.sh
 #!/usr/bin/bash
 DOMAIN_HOME="${DOMAIN_HOME}"

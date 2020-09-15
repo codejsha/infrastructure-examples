@@ -26,12 +26,12 @@ EOF
 
 ######################################################################
 
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
 cat << EOF > ${DOMAIN_HOME}/scripts/change-store-user-config.sh
 #!/usr/bin/bash
 MW_HOME="${MW_HOME}"
 EOF
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
 cat << EOF > ${DOMAIN_HOME}/scripts/change-store-user-config.sh
 #!/usr/bin/bash
 ORACLE_HOME="${ORACLE_HOME}"
@@ -45,12 +45,12 @@ export ADMIN_USERNAME="\${1:-weblogic}"
 export ADMIN_PASSWORD="\${2:-welcome1}"
 EOF
 
-if [ "${MAJOR_RELEASE}" == "11g" ]; then
+if [ "${MAJOR_VERSION}" == "11g" ]; then
 cat << EOF >> ${DOMAIN_HOME}/scripts/change-store-user-config.sh
 
 ${MW_HOME}/wlserver_10.3/common/bin/wlst.sh ${DOMAIN_HOME}/scripts/change_store_user_config.py
 EOF
-elif [ "${MAJOR_RELEASE}" == "12c" ] && [ "${MAJOR_RELEASE}" == "14c" ]; then
+elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
 cat << EOF >> ${DOMAIN_HOME}/scripts/change-store-user-config.sh
 
 ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh ${DOMAIN_HOME}/scripts/change_store_user_config.py
