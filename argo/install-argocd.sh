@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
+ARGOCD_VERSION="v1.7.5"
+
 kubectl create namespace argocd
 ### Non HA
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v1.7.4/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/${ARGOCD_VERSION}/manifests/install.yaml
 ### HA
-# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v1.7.4/manifests/ha/install.yaml
-
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/${ARGOCD_VERSION}/manifests/ha/install.yaml
