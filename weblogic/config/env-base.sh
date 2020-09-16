@@ -15,7 +15,7 @@ export ADMIN_USERNAME="weblogic"
 export ADMIN_PASSWORD="welcome1"
 
 if [ "${MAJOR_VERSION}" == "11g" ]; then
-    export MW_HOME=${ORACLE_HOME}
+    export MW_HOME="${ORACLE_HOME}"
     export WEBLOGIC_HOME="${MW_HOME}/wlserver_10.3"
 elif [ "${MAJOR_VERSION}" == "12c" ] && [ "${MAJOR_VERSION}" == "14c" ]; then
     export WEBLOGIC_HOME="${ORACLE_HOME}/wlserver"
