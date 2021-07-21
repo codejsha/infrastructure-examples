@@ -24,7 +24,7 @@ sudo chown -R ${USER}:${GROUP} ${DATA_DIR} ${LOG_DIR}
 
 ### default
 
-cat <<EOF | sudo tee confluent-control-center.service
+cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-control-center.service
 [Unit]
 Description=Confluent Control Center
 Documentation=http://docs.confluent.io/
