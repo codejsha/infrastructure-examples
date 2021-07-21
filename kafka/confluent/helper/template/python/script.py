@@ -27,6 +27,7 @@ def create_start_script_file(base, server, start_script):
 def create_stop_script_file(base, server, stop_script):
     edited_stop = stop_script
     edited_stop = replace_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_stop)
+    edited_stop = replace_commented_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_stop)
     write_file(f'output/scripts/{server.file.stop}', edited_stop)
 
 
@@ -40,4 +41,5 @@ def create_log_script_file(server, log_script):
 def create_common_stop_script_file(base, server, stop_script):
     edited_stop = stop_script
     edited_stop = replace_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_stop)
+    edited_stop = replace_commented_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_stop)
     write_file(f'output/scripts/{server.stop_script}', edited_stop)

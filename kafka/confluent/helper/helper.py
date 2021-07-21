@@ -32,7 +32,7 @@ def create_server_file(base, server_dict, prop_dict, log4j_dict, start_dict, sto
                 create_prop_file(server, prop_dict.get(server_type))
 
             create_start_script_file(base, server, start_dict.get(server_type))
-            create_stop_script_file(base, server, stop_dict.get(server_type))
+            # create_stop_script_file(base, server, stop_dict.get(server_type))
             create_log_script_file(server, log_dict.get(ServerType.ANY))
 
     for server in [servers[0] for servers in server_dict.values() if servers]:

@@ -11,9 +11,10 @@ from template.python.function import *
 def create_topic_command_file(base, server_dict, command_type, command_script):
     edited_command = command_script
     edited_command = replace_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_command)
-    first_server = server_dict.get(ServerType.KAFKA)[0]
-    edited_command = substitute_variable('VAR_BOOTSTRAP_SERVER',
-                                         f'{first_server.metrics_reporter_bootstrap_servers}', edited_command)
+    if server_dict.get(ServerType.KAFKA):
+        first_server = server_dict.get(ServerType.KAFKA)[0]
+        edited_command = replace_variable('BOOTSTRAP_SERVER',
+                                          f'{first_server.metrics_reporter_bootstrap_servers}', edited_command)
 
     if command_type == TopicCommandType.CREATE:
         write_file(f'output/scripts/create-topic.sh', edited_command)
