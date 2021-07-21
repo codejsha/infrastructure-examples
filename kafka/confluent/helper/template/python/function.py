@@ -84,6 +84,11 @@ def replace_variable(variable, variable_value, script):
     return edited_script
 
 
+def replace_commented_variable(variable, variable_value, script):
+    edited_script = re.sub(f'\n# {variable}=.*', f'\n# {variable}="{variable_value}"', script, count=1)
+    return edited_script
+
+
 def substitute_variable(variable, variable_value, script):
     edited_script = re.sub(f'\${{{variable}}}', f'{variable_value}', script)
     return edited_script
