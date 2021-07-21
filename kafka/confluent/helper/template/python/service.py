@@ -22,13 +22,6 @@ def create_service_script_file(base, server, service_script):
     if server.server_type == ServerType.ZOOKEEPER:
         edited_service = replace_variable('MYID', f'{server.server_id}', edited_service)
 
-    edited_service = substitute_variable('USER', f'{base.user}', edited_service)
-    edited_service = substitute_variable('GROUP', f'{base.group}', edited_service)
-    edited_service = substitute_variable('SERVER_NAME', f'{server.server_name}', edited_service)
-    edited_service = substitute_variable('PROPERTIES_FILE',
-                                         f'{base.properties_dir}/{server.file.properties}', edited_service)
-    edited_service = substitute_variable('CONFLUENT_HOME', f'{base.confluent_home}', edited_service)
-
     write_file(f'output/services/{server.file.service}', edited_service)
 
 
