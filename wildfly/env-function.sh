@@ -18,7 +18,7 @@ function set_arguments {
         ARGS="${1}"
         shift
         case "${ARGS}" in
-            "--help")           print_help;                     ;;
+            "--help")           print_help;                     exit;;
             "--instance")       INSTANCE_NAME="${1}";           shift;;
             "--instance="*)     INSTANCE_NAME="${ARGS#*=}";     ;;
             "--port-offset")    PORT_OFFSET="${1}";             shift;;

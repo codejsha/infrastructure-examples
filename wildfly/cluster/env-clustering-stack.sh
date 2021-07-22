@@ -11,7 +11,7 @@ function print_help {
     echo ""
     echo "Usage:"
     echo "  --stack-name|--stack-name=     : set the clustering type"
-
+}
 
 function set_arguments {
     while [[ $# -gt 0 ]]
@@ -19,7 +19,7 @@ function set_arguments {
         ARGS="${1}"
         shift
         case "${ARGS}" in
-            "--help")           print_help;                     ;;
+            "--help")           print_help;                     exit;;
             "--stack-name")     STACK_NAME="${1}";              shift;;
             "--stack-name="*)   STACK_NAME="${ARGS#*=}";        ;;
         esac
