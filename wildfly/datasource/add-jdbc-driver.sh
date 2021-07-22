@@ -8,7 +8,7 @@ source ./env-jdbc-driver.sh
 
 ######################################################################
 
-function add_jdbc_driver_with_module {
+function add_jdbc_driver_as_module {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -28,4 +28,4 @@ EOF
 
 ######################################################################
 
-add_jdbc_driver_with_module
+add_jdbc_driver_as_module

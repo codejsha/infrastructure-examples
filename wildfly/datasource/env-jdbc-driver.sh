@@ -7,20 +7,14 @@ set -o errtrace
 ### postgresql
 ######################################################################
 
-### postgresql (as module)
+### postgresql
 
 DRIVER_NAME="postgres"
 MODULE_NAME="org.postgres"
 DRIVER_CLASS_NAME="org.postgresql.xa.PGXADataSource"
 
-######################################################################
-
-### postgresql (as deployment)
-
-# DRIVER_NAME="postgres"
-# DRIVER_FILE_DIR="/mnt/share/postgresql"
-# DRIVER_FILE="postgresql-42.2.19.jar"
-# DRIVER_RUNTIME_NAME="${DRIVER_FILE}"
+DRIVER_FILE_DIR="/mnt/share/postgresql"
+DRIVER_FILE="postgresql-42.2.19.jar"
 
 
 
@@ -29,17 +23,11 @@ DRIVER_CLASS_NAME="org.postgresql.xa.PGXADataSource"
 ### oracle database
 ######################################################################
 
-### oracle database (as module)
+### oracle database
 
 # DRIVER_NAME="oracle"
 # MODULE_NAME="com.oracle"
 # DRIVER_CLASS_NAME="oracle.jdbc.xa.client.OracleXADataSource"
-
-######################################################################
-
-### oracle database (as deployment)
-
-# DRIVER_NAME="oracle"
 
 # DRIVER_FILE_DIR="/mnt/share/oracle-database/19c/ojdbc10-full"
 # DRIVER_FILE_DIR="/mnt/share/oracle-database/19c/ojdbc8-full"
@@ -52,8 +40,6 @@ DRIVER_CLASS_NAME="org.postgresql.xa.PGXADataSource"
 # DRIVER_FILE="ojdbc8.jar"
 # DRIVER_FILE="ojdbc7.jar"
 # DRIVER_FILE="ojdbc6.jar"
-
-# DRIVER_RUNTIME_NAME="${DRIVER_FILE}"
 
 
 
