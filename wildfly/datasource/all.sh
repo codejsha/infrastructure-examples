@@ -18,19 +18,11 @@ bash ./add-jdbc-module.sh
 ### JDBC DRIVER
 ######################################################################
 
-### JDBC DRIVER (AS MODULE)
+### JDBC DRIVER
 
-# bash ./add-jdbc-driver-as-module.sh
-bash ./add-jdbc-driver-as-module.sh --port-offset=0
-bash ./add-jdbc-driver-as-module.sh --port-offset=1
-
-######################################################################
-
-### JDBC DRIVER (AS DEPLOYMENT)
-
-# bash ./add-jdbc-driver-as-deployment.sh
-# bash ./add-jdbc-driver-as-deployment.sh --port-offset=0
-# bash ./add-jdbc-driver-as-deployment.sh --port-offset=1
+# bash ./add-jdbc-driver.sh
+bash ./add-jdbc-driver.sh --port-offset=0
+bash ./add-jdbc-driver.sh --port-offset=1
 
 
 
