@@ -22,7 +22,7 @@ function set_arguments {
         ARGS="${1}"
         shift
         case "${ARGS}" in
-            "--help")           print_help;                     ;;
+            "--help")           print_help;                     exit;;
             "--worker-name")    WORKER_NAME="${1}";             shift;;
             "--worker-name="*)  WORKER_NAME="${ARGS#*=}";       ;;
         esac
