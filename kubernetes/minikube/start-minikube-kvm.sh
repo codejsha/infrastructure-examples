@@ -5,7 +5,6 @@ set -o errtrace
 
 minikube start \
     --driver=kvm2 \
-    --nodes 4 \
     --addons metallb \
     --addons ingress \
     --addons ingress-dns \
