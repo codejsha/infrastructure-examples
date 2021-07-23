@@ -81,3 +81,17 @@ curl --insecure --request GET --user ${USER}:${PASSWORD} https://registry.exampl
 
 ### image list
 curl --request GET --user ${USER}:${PASSWORD} http://registry.example.com/v2/${IMAGE_NAME}/tags/list
+
+######################################################################
+
+### context
+
+docker context create testmachine --docker "host=ssh://prouser@testmachine"
+
+######################################################################
+
+### connect to remote docker
+
+### settings.json
+"docker.host": "tcp://testmachine:2375"
+"docker.explorerRefreshInterval": 3000
