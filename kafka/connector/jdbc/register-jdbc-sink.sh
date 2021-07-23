@@ -4,8 +4,9 @@ KAFKA_CONNECT_URL="http://localhost:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect1:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect.example.com"
 
-CONNECTOR_NAME="spool-dir-csv-source"
-CONNECTOR_CONFIG_FILE="spool-dir-csv-source.json"
+CONNECTOR_NAME="jdbc-sink"
+CONNECTOR_CONFIG_FILE="jdbc-sink.json"
+# CONNECTOR_CONFIG_FILE="jdbc-sink-pk.json"
 
 ### delete connector
 curl \

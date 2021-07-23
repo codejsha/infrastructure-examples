@@ -99,6 +99,16 @@ hdfs configurations:
     "logs.dir": "",
 ```
 
+### JDBC Sink Connector
+
+mapping configurations:
+
+```json
+    "pk.mode": "",
+    "pk.fields": "",
+    "fields.whitelist": "",
+```
+
 ### MySQL Source Connector
 
 sample database: Sakila (cf. [MySQL README](/mysql/README.md))

@@ -4,32 +4,21 @@ KAFKA_CONNECT_URL="http://localhost:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect1:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect.example.com"
 
-CONNECTOR_CONFIG_FILE="sftp-json-source.json"
-# CONNECTOR_CONFIG_FILE="sftp-json-source-kubernetes.json"
-
 CONNECTOR_NAME="sftp-json-source"
+CONNECTOR_CONFIG_FILE="sftp-json-source.json"
 
-######################################################################
+### delete connector
+curl \
+    --request DELETE \
+    --header "Accept:application/json" \
+    ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}
 
-function register_connector {
-    curl \
-        --request POST \
-        --header "Accept:application/json" \
-        --header "Content-Type:application/json" \
-        --data @${CONNECTOR_CONFIG_FILE} \
-        ${KAFKA_CONNECT_URL}/connectors
+### register connector
+curl \
+    --request POST \
+    --header "Accept:application/json" \
+    --header "Content-Type:application/json" \
+    --data @${CONNECTOR_CONFIG_FILE} \
+    ${KAFKA_CONNECT_URL}/connectors
 
-    echo
-}
-
-function delete_connector {
-    curl \
-        --request DELETE \
-        --header "Accept:application/json" \
-        ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}
-}
-
-######################################################################
-
-delete_connector
-register_connector
+echo
