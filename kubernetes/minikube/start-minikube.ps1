@@ -1,5 +1,4 @@
 minikube start `
-    --nodes 4 `
     --addons metallb `
     --addons ingress `
     --addons ingress-dns `

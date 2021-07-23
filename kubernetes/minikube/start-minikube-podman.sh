@@ -7,7 +7,6 @@ minikube start \
     --driver podman \
     --container-runtime cri-o \
     --cri-socket /var/run/crio/crio.sock \
-    --nodes 4 \
     --addons metallb \
     --addons ingress \
     --addons ingress-dns \
