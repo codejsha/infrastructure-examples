@@ -14,3 +14,6 @@ helm upgrade --install my-elasticsearch \
     --values values.yaml \
     --version 7.13.2 \
     elastic/elasticsearch
+
+    ### single node
+    # --values values-standalone.yaml \
