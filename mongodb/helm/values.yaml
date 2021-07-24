@@ -507,7 +507,7 @@ metrics:
   ##
   serviceMonitor:
     ## If the operator is installed in your cluster, set to true to create a Service Monitor Entry
-    enabled: false
+    enabled: true
 
     ## Specify the namespace where Prometheus Operator is running
     ##

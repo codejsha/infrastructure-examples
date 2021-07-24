@@ -100,7 +100,7 @@ metrics:
       prometheus.io/port: "24231"
       prometheus.io/path: "/metrics"
   serviceMonitor:
-    enabled: false
+    enabled: true
     # namespace: monitoring
     # interval: 10s
     # scrapeTimeout: 10s
