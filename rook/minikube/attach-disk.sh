@@ -7,13 +7,3 @@ UUID="$(uuidgen)"
 IMAGE="/var/lib/libvirt/images/minikube-${UUID}"
 sudo qemu-img create -f raw ${IMAGE} 100G
 sudo virsh attach-disk minikube ${IMAGE} vdb --cache none --persistent
-
-UUID="$(uuidgen)"
-IMAGE="/var/lib/libvirt/images/minikube-${UUID}"
-sudo qemu-img create -f raw ${IMAGE} 100G
-sudo virsh attach-disk minikube ${IMAGE} vdc --cache none --persistent
-
-UUID="$(uuidgen)"
-IMAGE="/var/lib/libvirt/images/minikube-${UUID}"
-sudo qemu-img create -f raw ${IMAGE} 100G
-sudo virsh attach-disk minikube ${IMAGE} vdd --cache none --persistent
