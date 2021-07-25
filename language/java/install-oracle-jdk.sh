@@ -10,7 +10,7 @@ sudo chown -R $(id -un):$(id -gn) /usr/java
 
 function install_oracle_jdk11 {
     local INSTALL_FILE_DIR="/mnt/share/oracle-jdk/11"
-    local INSTALL_FILE="jdk-11.0.7_linux-x64_bin.tar.gz"
+    local INSTALL_FILE="jdk-11.0.12_linux-x64_bin.tar.gz"
 
     tar -C /usr/java -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 
@@ -19,7 +19,7 @@ function install_oracle_jdk11 {
 
 function install_oracle_jdk8 {
     local INSTALL_FILE_DIR="/mnt/share/oracle-jdk/8"
-    local INSTALL_FILE="jdk-8u271-linux-x64.tar.gz"
+    local INSTALL_FILE="jdk-8u301-linux-x64.tar.gz"
 
     tar -C /usr/java -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 
@@ -28,7 +28,7 @@ function install_oracle_jdk8 {
 
 function install_oracle_jdk7 {
     local INSTALL_FILE_DIR="/mnt/share/oracle-jdk/7"
-    local INSTALL_FILE="jdk-7u281-linux-x64.tar.gz"
+    local INSTALL_FILE="jdk-7u311-linux-x64.tar.gz"
 
     tar -C /usr/java -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 
