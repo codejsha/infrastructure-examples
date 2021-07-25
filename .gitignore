@@ -19,18 +19,25 @@ nohup.*
 *-temp.*
 *.zip
 
+/cassandra/operator/cassandra-operator/
 /istio/addon/certs/
+/istio/addon/istio/
 /kafka/cmak/cmak-*/
+/kafka/burrow/docker-compose/Burrow/
 /kafka/confluent/helper/env/
 /kafka/confluent/helper/packages/
 /kafka/confluent/helper/output/
 /kafka/confluent/helper/rendered-values.yaml
 /kafka/confluent/kubernetes/confluent-operator/
 /kafka/strimzi/strimzi-*/
+/kubernetes/descheduler/descheduler/
 /kubernetes/kubespray/kubespray/
+/language/java/pinpoint/docker-compose/pinpoint-docker/
 /minio/operator/operator/
-/oracledb/docker-images/
+/oracledb/docker/docker-images/
+/others/backstage/backstage/
 /others/kraken/kraken/
-/rook/rook/
+/prometheus/operator/kube-prometheus/
+/rook/operator/rook/
 /temp/
 /tomcat/log4j/apache-log4j-*-bin/
