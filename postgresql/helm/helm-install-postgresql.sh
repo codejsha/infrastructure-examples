@@ -20,7 +20,7 @@ function helm_install_postgresql {
         --create-namespace \
         --namespace ${NAMESPACE} \
         --values values-temp.yaml \
-        --version 10.3.18 \
+        --version 10.7.0 \
         bitnami/postgresql
 }
 
@@ -33,7 +33,7 @@ function helm_install_postgresql_harbor {
         --namespace ${NAMESPACE} \
         --values values-temp.yaml \
         --values values-harbor.yaml \
-        --version 10.3.18 \
+        --version 10.7.0 \
         bitnami/postgresql
 }
 

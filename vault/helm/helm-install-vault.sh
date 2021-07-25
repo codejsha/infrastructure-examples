@@ -14,7 +14,7 @@ helm upgrade --install my-vault \
     --namespace ${NAMESPACE} \
     --values values.yaml \
     --values values-standalone.yaml \
-    --version 0.11.0 \
+    --version 0.13.0 \
     hashicorp/vault
 
     ### dev mode
