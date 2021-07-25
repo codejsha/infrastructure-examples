@@ -8,7 +8,7 @@ helm repo update
 
 NAMESPACE="kube-system"
 
-# helm install my-vault \
+# helm install my-kubed \
 helm upgrade --install my-kubed \
     --create-namespace \
     --namespace ${NAMESPACE} \
