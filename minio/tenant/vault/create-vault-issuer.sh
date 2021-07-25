@@ -3,16 +3,16 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl create serviceaccount --namespace minio-tenant tenant-issuer
-kubectl create serviceaccount --namespace minio-tenant tenant-console-issuer
+kubectl create serviceaccount --namespace minio-tenant minio-tenant-issuer
+kubectl create serviceaccount --namespace minio-tenant minio-tenant-console-issuer
 
-ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace minio-tenant tenant-issuer -o json | jq -r ".secrets[].name")"
+ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace minio-tenant minio-tenant-issuer -o json | jq -r ".secrets[].name")"
 
 cat <<EOF | kubectl apply --filename -
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: vault-tenant-issuer
+  name: minio-tenant-issuer
   namespace: minio-tenant
 spec:
   vault:
@@ -27,13 +27,13 @@ spec:
           key: token
 EOF
 
-ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace minio-tenant tenant-console-issuer -o json | jq -r ".secrets[].name")"
+ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace minio-tenant minio-tenant-console-issuer -o json | jq -r ".secrets[].name")"
 
 cat <<EOF | kubectl apply --filename -
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: vault-tenant-console-issuer
+  name: minio-tenant-console-issuer
   namespace: minio-tenant
 spec:
   vault:

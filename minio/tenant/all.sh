@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 ### requirements:
-### create-tenant-role.sh
+### create-pki-role.sh
 ### create-kubernetes-role.sh
 
 ### certificate
