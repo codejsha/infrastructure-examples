@@ -25,7 +25,7 @@ command('set-element-value name sessionCluster1')
 # command('set-element-value restartDelay 600')
 
 # command('create-empty-element fileDb')
-# command('cd /sessionClusterConfig/sessionClusters/sessionCluster/[0]/clusterConfig')
+# command('cd /sessionClusterConfig/sessionClusters/sessionCluster/[0]/clusterConfig/fileDb')
 # command('set-element-value passivationTimeout -1')
 # command('set-element-value minHole 100')
 # command('set-element-value packingRate 0.5')
