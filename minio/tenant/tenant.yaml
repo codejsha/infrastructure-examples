@@ -43,6 +43,12 @@ spec:
                     values:
                       - minio-tenant-1
               topologyKey: kubernetes.io/hostname
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        # fsGroup: 0
 
   mountPath: /export
   podManagementPolicy: Parallel

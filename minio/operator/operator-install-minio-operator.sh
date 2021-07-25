@@ -3,15 +3,10 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+### krew
+kubectl minio init
 # kubectl minio init --namespace minio-operator
 
-kubectl minio init --output > minio-operator.yaml
-kubectl apply --namespace minio-operator --filename minio-operator.yaml
-
-######################################################################
-
-### delete
-
-# kubectl minio delete --namespace minio-operator
-
-# kubectl delete --namespace minio-operator --filename minio-operator.yaml
+### yaml
+# kubectl minio init --output > minio-operator.yaml
+# kubectl apply --filename minio-operator.yaml

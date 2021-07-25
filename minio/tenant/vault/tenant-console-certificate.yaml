@@ -14,4 +14,4 @@ spec:
     - "minio-tenant-1-console.minio-tenant"
     - "minio-tenant-1-console.minio-tenant.svc.cluster.local"
   issuerRef:
-    name: vault-issuer
+    name: vault-tenant-console-issuer
