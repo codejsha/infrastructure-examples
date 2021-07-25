@@ -35,4 +35,4 @@ mc mb my-minio/harbor-storage
 
 ######################################################################
 
- kubectl minio proxy
+kubectl minio proxy
