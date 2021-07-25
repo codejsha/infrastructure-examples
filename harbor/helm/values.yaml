@@ -218,3 +218,5 @@ metrics:
   exporter:
     path: /metrics
     port: 8001
+  serviceMonitor:
+    enabled: true

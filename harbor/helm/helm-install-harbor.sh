@@ -41,5 +41,5 @@ helm upgrade --install my-harbor \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-temp.yaml \
-    --version 1.6.1 \
+    --version 1.7.0 \
     harbor/harbor
