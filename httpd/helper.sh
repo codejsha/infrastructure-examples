@@ -13,4 +13,4 @@ HTTPD_HOME="${HTTPD_HOME//\//\\/}"
 ######################################################################
 
 perl -pi -e "s/HTTPD_HOME=.*/HTTPD_HOME=\"${HTTPD_HOME}\"/" install-httpd.sh
-perl -pi -e "s/HTTPD_HOME=.*/HTTPD_HOME=\"${HTTPD_HOME}\"/" env-base.sh
+perl -pi -e "s/^HTTPD_HOME=.*/HTTPD_HOME=\"${HTTPD_HOME}\"/" env-base.sh

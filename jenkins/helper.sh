@@ -21,8 +21,8 @@ JAVA_HOME="${JAVA_HOME//\//\\/}"
 
 ######################################################################
 
-perl -pi -e "s/JENKINS_USER=.*/JENKINS_USER=\"${JENKINS_USER}\"/" env-base.sh
-perl -pi -e "s/JENKINS_API_TOKEN=.*/JENKINS_API_TOKEN=\"${JENKINS_API_TOKEN}\"/" env-base.sh
-perl -pi -e "s/JENKINS_URL=.*/JENKINS_URL=\"${JENKINS_URL}\"/" env-base.sh
-# perl -pi -e "s/JENKINS_FILE_DIR=.*/JENKINS_FILE_DIR=\"${JENKINS_FILE_DIR}\"/" env-base.sh
-perl -pi -e "s/JAVA_HOME=.*/JAVA_HOME=\"${JAVA_HOME}\"/" env-base.sh
+perl -pi -e "s/^JENKINS_USER=.*/JENKINS_USER=\"${JENKINS_USER}\"/" env-base.sh
+perl -pi -e "s/^JENKINS_API_TOKEN=.*/JENKINS_API_TOKEN=\"${JENKINS_API_TOKEN}\"/" env-base.sh
+perl -pi -e "s/^JENKINS_URL=.*/JENKINS_URL=\"${JENKINS_URL}\"/" env-base.sh
+# perl -pi -e "s/^JENKINS_FILE_DIR=.*/JENKINS_FILE_DIR=\"${JENKINS_FILE_DIR}\"/" env-base.sh
+perl -pi -e "s/^JAVA_HOME=.*/JAVA_HOME=\"${JAVA_HOME}\"/" env-base.sh
