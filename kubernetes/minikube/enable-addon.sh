@@ -5,7 +5,7 @@ set -o errtrace
 
 # minikube addons enable ambassador
 # minikube addons enable csi-hostpath-driver
-minikube addons enable metrics-server
+# minikube addons enable metrics-server
 minikube addons enable dashboard
 minikube addons enable default-storageclass
 minikube addons enable efk

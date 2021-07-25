@@ -4,34 +4,10 @@ set -o errexit
 set -o errtrace
 
 minikube start \
-    --driver podman \
-    --container-runtime cri-o \
-    --cri-socket /var/run/crio/crio.sock \
-    --addons metallb \
-    --addons ingress \
-    --addons ingress-dns \
-    --addons istio-provisioner \
-    --addons istio \
-    --addons dashboard \
-    --addons metrics-server \
-    --addons efk \
-    --addons default-storageclass \
-    --addons storage-provisioner \
-    --addons logviewer \
-    --addons registry \
-    --addons registry-aliases
-
-    # --addons ambassador \
-    # --addons csi-hostpath-driver \
-    # --addons freshpod \
-    # --addons gcp-auth \
-    # --addons gvisor \
-    # --addons helm-tiller \
-    # --addons kubevirt \
-    # --addons nvidia-driver-installer \
-    # --addons nvidia-gpu-device-plugin \
-    # --addons olm \
-    # --addons pod-security-policy \
-    # --addons registry-creds \
-    # --addons storage-provisioner-gluster \
-    # --addons volumesnapshots \
+    --driver=podman \
+    --container-runtime=cri-o \
+    --cri-socket=/var/run/crio/crio.sock \
+    --extra-config=kubelet.authentication-token-webhook=true \
+    --extra-config=kubelet.authorization-mode=Webhook \
+    --extra-config=scheduler.address=0.0.0.0 \
+    --extra-config=controller-manager.address=0.0.0.0
