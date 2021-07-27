@@ -1,7 +1,7 @@
 {
-  "name": "spool-dir-json-source",
+  "name": "spooldir-json-source",
   "config": {
-    "name": "spool-dir-json-source",
+    "name": "spooldir-json-source",
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirJsonSourceConnector",
     "tasks.max": "2",
     "key.converter": "io.confluent.connect.avro.AvroConverter",
@@ -9,7 +9,7 @@
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081",
     "schema.generation.enabled": "true",
-    "topic": "spool_dir_json_topic",
+    "topic": "spooldir.json.topic",
     "input.file.pattern": ".*\\.json",
     "input.path": "/path/to/data",
     "error.path": "/path/to/error",

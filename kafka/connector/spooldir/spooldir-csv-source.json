@@ -1,7 +1,7 @@
 {
-  "name": "csv-spool-dir-source",
+  "name": "csv-spooldir-source",
   "config": {
-    "name": "csv-spool-dir-source",
+    "name": "csv-spooldir-source",
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
     "tasks.max": "1",
     "key.converter": "io.confluent.connect.avro.AvroConverter",
@@ -9,7 +9,7 @@
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081",
     "schema.generation.enabled": "true",
-    "topic": "spool_dir_csv_topic",
+    "topic": "spooldir.csv.topic",
     "input.file.pattern": ".*\\.csv",
     "input.path": "/path/to/data",
     "error.path": "/path/to/error",

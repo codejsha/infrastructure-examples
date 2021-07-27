@@ -4,7 +4,7 @@
     "name": "filestream-source",
     "connector.class": "FileStreamSource",
     "tasks.max": "1",
-    "topic": "filestream_source",
+    "topic": "filestream.source",
     "file": "/path/to/example.json"
   }
 }

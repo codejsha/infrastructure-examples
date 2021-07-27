@@ -9,7 +9,7 @@
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081",
     "schema.generation.enabled": "true",
-    "kafka.topic": "sftp_json_topic",
+    "kafka.topic": "sftp.json.topic",
     "input.file.pattern": ".*\\.json",
     "input.path": "/pub/data",
     "error.path": "/pub/error",
