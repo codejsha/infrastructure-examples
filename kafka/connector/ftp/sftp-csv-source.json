@@ -9,7 +9,7 @@
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081",
     "schema.generation.enabled": "true",
-    "kafka.topic": "sftp_csv_topic",
+    "kafka.topic": "sftp.csv.topic",
     "input.file.pattern": ".*\\.csv",
     "input.path": "/var/ftp/pub/data",
     "error.path": "/var/ftp/pub/error",

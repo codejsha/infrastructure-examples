@@ -4,8 +4,8 @@ KAFKA_CONNECT_URL="http://localhost:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect1:8083"
 # KAFKA_CONNECT_URL="http://kafka-connect.example.com"
 
-CONNECTOR_NAME="spool-dir-json-source"
-CONNECTOR_CONFIG_FILE="spool-dir-json-source.json"
+CONNECTOR_NAME="spooldir-csv-source"
+CONNECTOR_CONFIG_FILE="spooldir-csv-source.json"
 
 ### delete connector
 curl \
