@@ -10,6 +10,8 @@ GRAFANA_VOLUME_DIR="${KAFKA_VOLUME_DIR}/grafana"
 JMX_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/jmx_exporter"
 KAFKA_LAG_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/kafka-lag-exporter"
 
+INSTALL_SCRIPT_DIR="/svc/infrastructure/kafka/docker-compose"
+
 sudo rm -rf ${KAFKA_VOLUME_DIR}
 
 ### zookeeper
@@ -40,4 +42,4 @@ sudo /bin/cp -f application.conf logback.xml ${KAFKA_LAG_EXPORTER_VOLUME_DIR}
 KAFKA_DOCKER_NETWORK="stream-network"
 docker network create ${KAFKA_DOCKER_NETWORK}
 
-docker-compose up --detach
+docker-compose --file ${INSTALL_SCRIPT_DIR}/docker-compose.yaml up --detach

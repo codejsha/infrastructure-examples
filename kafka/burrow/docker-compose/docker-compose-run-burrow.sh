@@ -13,4 +13,5 @@ docker network create ${BURROW_DOCKER_NETWORK}
 git clone https://github.com/linkedin/Burrow
 # gh repo clone linkedin/Burrow
 
+cd Burrow
 docker-compose up --detach
