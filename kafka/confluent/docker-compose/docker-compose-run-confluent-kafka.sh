@@ -3,12 +3,16 @@
 # set -o errexit
 # set -o errtrace
 
+KAFKA_DOCKER_NETWORK="stream-network"
+
 KAFKA_VOLUME_DIR="/mnt/volume/confluent"
 ZOOKEEPER_VOLUME_DIR="${KAFKA_VOLUME_DIR}"
 PROMETHEUS_VOLUME_DIR="${KAFKA_VOLUME_DIR}/prometheus"
 GRAFANA_VOLUME_DIR="${KAFKA_VOLUME_DIR}/grafana"
 JMX_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/jmx_exporter"
 KAFKA_LAG_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/kafka-lag-exporter"
+
+INSTALL_SCRIPT_DIR="/svc/infrastructure/kafka/confluent/docker-compose"
 
 sudo rm -rf ${KAFKA_VOLUME_DIR}
 
@@ -30,7 +34,6 @@ sudo mkdir -p ${KAFKA_LAG_EXPORTER_VOLUME_DIR}
 sudo /bin/cp -f application.conf logback.xml ${KAFKA_LAG_EXPORTER_VOLUME_DIR}
 
 ### network
-KAFKA_DOCKER_NETWORK="stream-network"
 docker network create ${KAFKA_DOCKER_NETWORK}
 
-docker-compose up --detach
+docker-compose --file ${INSTALL_SCRIPT_DIR}/docker-compose.yaml up --detach
