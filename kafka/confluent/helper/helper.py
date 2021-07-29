@@ -47,11 +47,13 @@ def create_server_file(base, server_dict, prop_dict, log4j_dict, start_dict, sto
 # region server_service_file
 
 
-def create_server_service_file(base, server_dict, service_dict, service_env_dict):
+def create_server_service_file(base, server_dict, service_unit_dict, service_env_dict, override_service_dict):
+    for server_type, service_unit in service_unit_dict.items():
+        create_service_unit_file(server_type, service_unit)
     for server_type, servers in server_dict.items():
         for server in servers:
-            create_service_script_file(base, server, service_dict.get(server_type))
             create_service_env_file(base, server, service_env_dict.get(server_type))
+            create_override_service_script_file(base, server, override_service_dict.get(server_type))
 
 
 # endregion
@@ -121,8 +123,9 @@ def main():
     start_data = read_start_template_data(current_dir)
     stop_data = read_stop_template_data(current_dir)
     log_data = read_log_template_data(current_dir)
-    service_data = read_service_template_data(current_dir)
+    service_unit_data = read_service_unit_template_data(current_dir)
     service_env_data = read_service_env_template_data(current_dir)
+    override_service_data = read_override_service_template_data(current_dir)
     pssh_start_data = read_pssh_start_template_data(current_dir)
     pssh_stop_data = read_pssh_stop_template_data(current_dir)
     pssh_kill_data = read_pssh_kill_template_data(current_dir)
@@ -132,7 +135,7 @@ def main():
     create_server_file(base_data, server_data, prop_data, log4j_data,
                        start_data, stop_data, log_data)
     # create overriding service files
-    create_server_service_file(base_data, server_data, service_data, service_env_data)
+    create_server_service_file(base_data, server_data, service_unit_data, service_env_data, override_service_data)
     # create other files
     create_other_file(base_data, server_data)
     # create pssh files
