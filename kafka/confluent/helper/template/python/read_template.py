@@ -90,19 +90,19 @@ def read_log_template_data(current_dir):
 # region services
 
 
-def read_service_template_data(current_dir):
+def read_service_unit_template_data(current_dir):
     service_template_dir = current_dir.joinpath('template/services')
-    service_dict = {
-        ServerType.ZOOKEEPER: read_file(f'{service_template_dir}/zookeeper-service-template.sh'),
-        ServerType.KAFKA: read_file(f'{service_template_dir}/kafka-service-template.sh'),
-        ServerType.SCHEMA_REGISTRY: read_file(f'{service_template_dir}/schema-registry-service-template.sh'),
-        ServerType.KAFKA_CONNECT: read_file(f'{service_template_dir}/kafka-connect-service-template.sh'),
-        ServerType.REPLICATOR: read_file(f'{service_template_dir}/replicator-service-template.sh'),
-        ServerType.KAFKA_REST: read_file(f'{service_template_dir}/kafka-rest-service-template.sh'),
-        ServerType.KSQLDB: read_file(f'{service_template_dir}/ksqldb-service-template.sh'),
-        ServerType.CONTROL_CENTER: read_file(f'{service_template_dir}/control-center-service-template.sh'),
+    service_unit_dict = {
+        ServerType.ZOOKEEPER: read_file(f'{service_template_dir}/confluent-zookeeper.service'),
+        ServerType.KAFKA: read_file(f'{service_template_dir}/confluent-server.service'),
+        ServerType.SCHEMA_REGISTRY: read_file(f'{service_template_dir}/confluent-schema-registry.service'),
+        ServerType.KAFKA_CONNECT: read_file(f'{service_template_dir}/confluent-kafka-connect.service'),
+        ServerType.REPLICATOR: read_file(f'{service_template_dir}/confluent-replicator.service'),
+        ServerType.KAFKA_REST: read_file(f'{service_template_dir}/confluent-kafka-rest.service'),
+        ServerType.KSQLDB: read_file(f'{service_template_dir}/confluent-ksqldb.service'),
+        ServerType.CONTROL_CENTER: read_file(f'{service_template_dir}/confluent-control-center.service'),
     }
-    return service_dict
+    return service_unit_dict
 
 
 def read_service_env_template_data(current_dir):
@@ -118,6 +118,21 @@ def read_service_env_template_data(current_dir):
         ServerType.CONTROL_CENTER: read_file(f'{service_template_dir}/control-center-service-template.env'),
     }
     return service_env_dict
+
+
+def read_override_service_template_data(current_dir):
+    service_template_dir = current_dir.joinpath('template/services')
+    override_service_dict = {
+        ServerType.ZOOKEEPER: read_file(f'{service_template_dir}/override-zookeeper-service-template.sh'),
+        ServerType.KAFKA: read_file(f'{service_template_dir}/override-kafka-service-template.sh'),
+        ServerType.SCHEMA_REGISTRY: read_file(f'{service_template_dir}/override-schema-registry-service-template.sh'),
+        ServerType.KAFKA_CONNECT: read_file(f'{service_template_dir}/override-kafka-connect-service-template.sh'),
+        ServerType.REPLICATOR: read_file(f'{service_template_dir}/override-replicator-service-template.sh'),
+        ServerType.KAFKA_REST: read_file(f'{service_template_dir}/override-kafka-rest-service-template.sh'),
+        ServerType.KSQLDB: read_file(f'{service_template_dir}/override-ksqldb-service-template.sh'),
+        ServerType.CONTROL_CENTER: read_file(f'{service_template_dir}/override-control-center-service-template.sh'),
+    }
+    return override_service_dict
 
 
 # endregion

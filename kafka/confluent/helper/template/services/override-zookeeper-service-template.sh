@@ -17,33 +17,11 @@ LOG_DIR=""
 
 ######################################################################
 
+sudo /bin/cp -f confluent-zookeeper.service /usr/lib/systemd/system
 sudo mkdir -p /usr/lib/systemd/system/confluent-zookeeper.service.d
 sudo mkdir -p {${DATA_DIR},${LOG_DIR}}
 echo ${MYID} | sudo tee ${DATA_DIR}/myid
 sudo chown -R ${USER}:${GROUP} ${DATA_DIR} ${LOG_DIR}
-
-######################################################################
-
-### default
-
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-zookeeper.service
-[Unit]
-Description=Apache Kafka - ZooKeeper
-Documentation=http://docs.confluent.io/
-After=network.target
-
-[Service]
-Type=simple
-User=cp-kafka
-Group=confluent
-ExecStart=/usr/bin/zookeeper-server-start /etc/kafka/zookeeper.properties
-LimitNOFILE=100000
-TimeoutStopSec=180
-Restart=no
-
-[Install]
-WantedBy=multi-user.target
-EOF
 
 ######################################################################
 
