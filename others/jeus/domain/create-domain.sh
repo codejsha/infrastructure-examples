@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JEUS_HOME="/home/tmax/jeus7"
+JEUS_HOME="/usr/loca/jeus"
 DOMAIN_NAME="jeus_domain"
 
 ${JEUS_HOME}/bin/jeusadmin \
