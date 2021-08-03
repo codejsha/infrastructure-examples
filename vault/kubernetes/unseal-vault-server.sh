@@ -4,6 +4,7 @@ set -o errexit
 set -o errtrace
 
 NAMESPACE="vault-system"
+# VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 UNSEAL_KEY_LINE1="$(grep -E "Unseal Key 1: " ~/.vault/unseal_keys_and_root_token.txt)"
 UNSEAL_KEY_LINE2="$(grep -E "Unseal Key 2: " ~/.vault/unseal_keys_and_root_token.txt)"
