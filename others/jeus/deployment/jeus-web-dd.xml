@@ -9,5 +9,5 @@
     <max-instance-pool-size>-1</max-instance-pool-size>
     <webinf-first>false</webinf-first>
     <attach-stacktrace-on-error>false</attach-stacktrace-on-error>
-    <target-session-cluster>sessionCluster1</target-session-cluster>
+    <!-- <target-session-cluster>sessionCluster1</target-session-cluster> -->
 </jeus-web-dd>
