@@ -14,6 +14,8 @@ curl \
     --header "Accept:application/json" \
     ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}
 
+echo
+
 ### register connector
 curl \
     --request POST \
