@@ -1,17 +1,8 @@
 $password = "$password"
 
-git clone https://github.com/oracle/docker-images.git
-# gh repo clone oracle/docker-images
-
-cd docker-images/OracleDatabase/SingleInstance/dockerfiles
-
 ######################################################################
 
 function New-DockerRunOracleDB19 {
-    # /bin/cp -f /mnt/share/oracle-database/19c/LINUX.X64_193000_db_home.zip 19.3.0
-    # bash ./buildDockerImage.sh -v 19.3.0 -e -i
-    # rm -f 19.3.0/*.zip
-
     # $OracleDBVolumeDir="C:\volume\oracledb19"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb19"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -30,10 +21,6 @@ function New-DockerRunOracleDB19 {
 }
 
 function New-DockerRunOracleDB18 {
-    # /bin/cp -f /mnt/share/oracle-database/18c/LINUX.X64_180000_db_home.zip 18.3.0
-    # bash ./buildDockerImage.sh -v 18.3.0 -e -i
-    # rm -f 18.3.0/*.zip
-
     # $OracleDBVolumeDir="C:\volume\oracledb18"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb18"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -52,10 +39,6 @@ function New-DockerRunOracleDB18 {
 }
 
 function New-DockerRunOracleDB12R2 {
-    # /bin/cp -f /mnt/share/oracle-database/12cr2/linuxx64_12201_database.zip 12.2.0.1
-    # bash ./buildDockerImage.sh -v 12.2.0.1 -e -i
-    # rm -f 12.2.0.1/*.zip
-
     # $OracleDBVolumeDir="C:\volume\oracledb12"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb12"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -102,11 +85,6 @@ function New-DockerRunOracleDB12R2Official {
 }
 
 function New-DockerRunOracleDB12R1 {
-    # /bin/cp -f /mnt/share/oracle-database/12cr1/linuxamd64_12102_database_1of2.zip 12.1.0.2
-    # /bin/cp -f /mnt/share/oracle-database/12cr1/linuxamd64_12102_database_2of2.zip 12.1.0.2
-    # bash ./buildDockerImage.sh -v 12.1.0.2 -e -i
-    # rm -f 12.1.0.2/*.zip
-
     # $OracleDBVolumeDir="C:\volume\oracledb12"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb12"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -125,10 +103,6 @@ function New-DockerRunOracleDB12R1 {
 }
 
 function New-DockerRunOracleDB11 {
-    # /bin/cp -f /mnt/share/oracle-database/11gr2/oracle-xe-11.2.0-1.0.x86_64.rpm.zip 11.2.0.2
-    # bash ./buildDockerImage.sh -v 11.2.0.2 -x -i
-    # rm -f 11.2.0.2/*.zip
-
     # $OracleDBVolumeDir="C:\volume\oracledb11"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb11"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
