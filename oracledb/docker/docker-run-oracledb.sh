@@ -5,18 +5,9 @@ set -o errtrace
 
 PASSWORD="${PASSWORD}"
 
-git clone https://github.com/oracle/docker-images.git
-# gh repo clone oracle/docker-images
-
-cd docker-images/OracleDatabase/SingleInstance/dockerfiles
-
 ######################################################################
 
 function docker_run_oracledb19 {
-    /bin/cp -f /mnt/share/oracle-database/19c/LINUX.X64_193000_db_home.zip 19.3.0
-    bash ./buildDockerImage.sh -v 19.3.0 -e -i
-    rm -f 19.3.0/*.zip
-
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb19"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
 
@@ -36,10 +27,6 @@ function docker_run_oracledb19 {
 }
 
 function docker_run_oracledb18 {
-    /bin/cp -f /mnt/share/oracle-database/18c/LINUX.X64_180000_db_home.zip 18.3.0
-    bash ./buildDockerImage.sh -v 18.3.0 -e -i
-    rm -f 18.3.0/*.zip
-
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb18"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
 
@@ -59,10 +46,6 @@ function docker_run_oracledb18 {
 }
 
 function docker_run_oracledb12_r2 {
-    /bin/cp -f /mnt/share/oracle-database/12cr2/linuxx64_12201_database.zip 12.2.0.1
-    bash ./buildDockerImage.sh -v 12.2.0.1 -e -i
-    rm -f 12.2.0.1/*.zip
-
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb12"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
 
@@ -109,11 +92,6 @@ function docker_run_oracledb12_r2_official {
 }
 
 function docker_run_oracledb12_r1 {
-    /bin/cp -f /mnt/share/oracle-database/12cr1/linuxamd64_12102_database_1of2.zip 12.1.0.2
-    /bin/cp -f /mnt/share/oracle-database/12cr1/linuxamd64_12102_database_2of2.zip 12.1.0.2
-    bash ./buildDockerImage.sh -v 12.1.0.2 -e -i
-    rm -f 12.1.0.2/*.zip
-
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb12"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
 
@@ -133,10 +111,6 @@ function docker_run_oracledb12_r1 {
 }
 
 function docker_run_oracledb11 {
-    /bin/cp -f /mnt/share/oracle-database/11gr2/oracle-xe-11.2.0-1.0.x86_64.rpm.zip 11.2.0.2
-    bash ./buildDockerImage.sh -v 11.2.0.2 -x -i
-    rm -f 11.2.0.2/*.zip
-
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb11"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
 
