@@ -2,7 +2,8 @@
 
 -- create user
 CREATE USER 'debezium'@'localhost' IDENTIFIED BY 'dbz';
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium';
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium'@'%';
+-- GRANT ALL PRIVILEGES ON sakila.* TO 'debezium'@'%';
 FLUSH PRIVILEGES;
 
 
@@ -11,8 +12,17 @@ FLUSH PRIVILEGES;
 
 
 -- gtid mode
-SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
-SET @@GLOBAL.GTID_MODE = ON_PERMISSIVE;
-SET @@GLOBAL.GTID_MODE = ON;
 SET @@GLOBAL.ENFORCE_GTID_CONSISTENCY = ON;
+SET @@GLOBAL.GTID_MODE = ON;
 SHOW GLOBAL variables LIKE '%gtid%';
+
+
+-- configure session timeouts
+--
+-- interactive_timeout
+-- wait_timeout
+
+
+-- enable query log events
+--
+-- binlog_rows_query_log_events
