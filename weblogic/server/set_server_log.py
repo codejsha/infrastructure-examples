@@ -26,6 +26,7 @@ def set_server_log_config(_domain_version, _log_dir, _server_name):
     cmo.setRotateLogOnStartup(False)
     cmo.setDateFormatPattern('MMM d, yyyy h:mm:ss,SSS a z')
     cmo.setLoggerSeverity('Info')
+    # cmo.setLoggerSeverity('Trace')
     cmo.setRedirectStdoutToServerLogEnabled(True)
     cmo.setRedirectStderrToServerLogEnabled(True)
     if ('14.' in _domain_version) or ('12.2' in _domain_version):
