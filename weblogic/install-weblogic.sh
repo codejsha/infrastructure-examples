@@ -120,9 +120,12 @@ function install_weblogic_11g {
 
 function install_weblogic {
     local OS_VERSION="$(grep "^VERSION=" /etc/os-release | grep -o -E "[0-9]{1,2}\.{0,1}[0-9]{0,2}")"
+    echo "[INFO] OS version: ${OS_VERSION}"
+    echo "[INFO] Install file: ${INSTALL_FILE}"
 
     ### 14c
     if [[ "${INSTALL_FILE}" =~ ^fmw_14. ]]; then
+        echo "[INFO] Installing WebLogic 14c"
         if [[ ${OS_VERSION} =~ ^8|^8. ]]; then
             install_required_package_14c_rhel8
         elif [[ ${OS_VERSION} =~ ^7|^7. ]]; then
@@ -131,6 +134,7 @@ function install_weblogic {
         install_weblogic_14c
     ### 12cr2
     elif [[ "${INSTALL_FILE}" =~ ^fmw_12.2 ]]; then
+        echo "[INFO] Installing WebLogic 12cR2"
         if [[ ${OS_VERSION} =~ ^8|^8. ]]; then
             install_required_package_12c_rhel8
         elif [[ ${OS_VERSION} =~ ^7|^7. ]]; then
@@ -139,6 +143,7 @@ function install_weblogic {
         install_weblogic_12c
     ### 12cr1
     elif [[ "${INSTALL_FILE}" =~ ^fmw_12.1|^wls_121 ]]; then
+        echo "[INFO] Installing WebLogic 12cR1"
         if [[ ${OS_VERSION} =~ ^8|^8. ]]; then
             install_required_package_12c_rhel8
         elif [[ ${OS_VERSION} =~ ^7|^7. ]]; then
@@ -147,6 +152,7 @@ function install_weblogic {
         install_weblogic_12c
     ### 11g
     elif [[ "${INSTALL_FILE}" =~ ^wls103 ]]; then
+        echo "[INFO] Installing WebLogic 11g"
         install_required_package_11g
         install_weblogic_11g
     fi

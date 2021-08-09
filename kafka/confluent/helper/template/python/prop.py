@@ -112,7 +112,7 @@ def create_control_center_prop_file(server, prop, connect_servers, replicator_se
         edited_prop = replace_param('confluent.controlcenter.streams.cprest.url',
                                     f'{server.kafka_rest_url}', edited_prop)
 
-        # ksqldb clusters
+        # ksqldb cluster
         ksqldb_group_list = get_unique_cluster_list(ksqldb_servers)
         ksqldb_domain_dict = get_sub_cluster_domain_url_dict(ksqldb_servers)
         ksqldb_address_dict = get_sub_cluster_address_url_dict(ksqldb_servers)

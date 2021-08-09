@@ -20,6 +20,7 @@ from template.python.symlink import *
 def create_server_file(base, server_dict, prop_dict, log4j_dict, start_dict, stop_dict, log_dict):
     for server_type, servers in server_dict.items():
         for server in servers:
+            # create property files
             if server_type == ServerType.ZOOKEEPER:
                 create_prop_file(server, prop_dict.get(ServerType.ZOOKEEPER),
                                  server_dict.get(ServerType.ZOOKEEPER))
@@ -31,13 +32,16 @@ def create_server_file(base, server_dict, prop_dict, log4j_dict, start_dict, sto
             else:
                 create_prop_file(server, prop_dict.get(server_type))
 
+            # create script files
             create_start_script_file(base, server, start_dict.get(server_type))
             # create_stop_script_file(base, server, stop_dict.get(server_type))
             create_log_script_file(server, log_dict.get(ServerType.ANY))
 
+    # create common stop script files
     for server in [servers[0] for servers in server_dict.values() if servers]:
         create_common_stop_script_file(base, server, stop_dict.get(server.server_type))
 
+    # create log4j property files
     for server_type, log4j_prop in log4j_dict.items():
         create_log4j_prop_file(server_type, log4j_prop)
 

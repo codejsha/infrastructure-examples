@@ -8,6 +8,8 @@ alias kafkacat="docker container run -it --network host edenhill/kafkacat:1.6.0"
 
 ######################################################################
 
+# by helper
+
 CONFLUENT_HOME="/usr/local/confluent"
 export CONFLUENT_HOME
 PATH="${PATH}:${CONFLUENT_HOME}/bin"
