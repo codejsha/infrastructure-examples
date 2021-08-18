@@ -7,6 +7,9 @@ set -o errtrace
 ### create-pki-role.sh
 ### create-kubernetes-role.sh
 
+### namespace
+kubectl create namespace minio-tenant
+
 ### certificate
 cd vault
 bash ./create-vault-issuer.sh
@@ -14,15 +17,12 @@ kubectl apply --filename tenant-certificate.yaml
 kubectl apply --filename tenant-console-certificate.yaml
 cd ..
 
-### namespace
-kubectl create namespace minio-tenant
-
 ### secret
 kubectl apply --filename tenant-creds-secret.yaml
 kubectl apply --filename tenant-console-secret.yaml
 
 ### tenant
-# bash ./operator-create-tenant.sh
+# bash ./create-tenant.sh
 kubectl apply --filename tenant.yaml
 
 ### ingress

@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 ### krew
-# bash ./operator-install-minio.sh
+# bash ./install-minio-operator.sh
 # kubectl apply --namespace minio-operator --filename operator-console-ingress.yaml
 
 ######################################################################
