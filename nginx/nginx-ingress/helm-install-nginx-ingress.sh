@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
+# helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+# helm repo update
 
 NAMESPACE="ingress-nginx"
 

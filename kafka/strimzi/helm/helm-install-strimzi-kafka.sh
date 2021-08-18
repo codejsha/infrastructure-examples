@@ -5,8 +5,8 @@ set -o errtrace
 
 NAMESPACE="kafka-system"
 
-helm repo add strimzi https://strimzi.io/charts
-helm repo update
+# helm repo add strimzi https://strimzi.io/charts
+# helm repo update
 
 # helm install my-kafka-operator \
 helm upgrade --install my-kafka-operator \

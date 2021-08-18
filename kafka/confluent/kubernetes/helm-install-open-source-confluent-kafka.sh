@@ -1,7 +1,7 @@
 #!/bin/bash
 
-helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts
-helm repo update
+# helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts
+# helm repo update
 
 NAMESPACE="kafka-system"
 

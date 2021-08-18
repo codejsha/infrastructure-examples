@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add drone https://charts.drone.io
-helm repo update
+# helm repo add drone https://charts.drone.io
+# helm repo update
 
 if [ ! -f "SHARED_SECRET.txt" ]; then
     echo "$(openssl rand -hex 16)" > SHARED_SECRET.txt

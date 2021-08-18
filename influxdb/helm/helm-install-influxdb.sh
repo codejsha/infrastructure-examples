@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add influxdata https://helm.influxdata.com
-helm repo update
+# helm repo add influxdata https://helm.influxdata.com
+# helm repo update
 
 PASSWORD="${PASSWORD}"
 

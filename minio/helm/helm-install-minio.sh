@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add minio https://helm.min.io
-helm repo update
+# helm repo add minio https://helm.min.io
+# helm repo update
 
 export USERNAME="minio"
 export PASSWORD="minio123"

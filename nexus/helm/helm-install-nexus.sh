@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add oteemocharts https://oteemo.github.io/charts
-helm repo update
+# helm repo add sonatype https://sonatype.github.io/helm3-charts
+# helm repo update
 
 NAMESPACE="nexus-system"
 

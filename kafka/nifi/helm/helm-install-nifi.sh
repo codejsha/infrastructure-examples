@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add cetic https://cetic.github.io/helm-charts
-helm repo update
+# helm repo add cetic https://cetic.github.io/helm-charts
+# helm repo update
 
 NAMESPACE="kafka-system"
 

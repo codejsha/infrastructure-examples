@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add elastic https://helm.elastic.co
-helm repo update
+# helm repo add elastic https://helm.elastic.co
+# helm repo update
 
 NAMESPACE="elastic-system"
 
