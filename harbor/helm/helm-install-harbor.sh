@@ -7,23 +7,24 @@ set -o errtrace
 ###
 ### htpasswd:
 ### sudo yum install -y httpd-tools
+### sudo apt-get install -y apache2 apache2-utils
 ###
 ### bucket:
 ### mc mb --insecure minio-tenant-1/harbor-storage
 ### mc mb my-minio/harbor-storage
 
-helm repo add harbor https://helm.goharbor.io
-helm repo update
+# helm repo add harbor https://helm.goharbor.io
+# helm repo update
 
 PASSWORD="${PASSWORD}"
 HARBOR_SECRET_KEY="${HARBOR_SECRET_KEY}"
-AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-AWS_SECRET_KEY="${AWS_SECRET_KEY}"
 
+### image and chart storage
+### s3
 export AWS_S3_REGION_ENDPOINT="https://minio-tenant-1.example.com"
 # export AWS_S3_REGION_ENDPOINT="http://minio.example.com"
-export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+export AWS_ACCESS_KEY="minio"
+export AWS_SECRET_KEY="minio123"
 
 export HARBOR_ADMIN_PASSWORD="${PASSWORD}"
 export HARBOR_SECRET_KEY="${HARBOR_SECRET_KEY}" # Must be a string of 16 chars
@@ -36,10 +37,11 @@ envsubst < ./values.yaml > ./values-temp.yaml
 
 NAMESPACE="harbor-system"
 
+### official harbor
 # helm install my-harbor \
 helm upgrade --install my-harbor \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-temp.yaml \
-    --version 1.7.0 \
+    --version 1.7.1 \
     harbor/harbor
