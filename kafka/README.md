@@ -29,7 +29,7 @@ bash ./helm-install-kafka.sh
 bash ./helm-install-strimzi-kafka.sh
 
 ### operator
-bash ./operator-install-strimzi-kafka.sh
+bash ./install-strimzi-kafka-operator.sh
 ```
 
 ## CMAK (Cluster Manager for Apache Kafka)
