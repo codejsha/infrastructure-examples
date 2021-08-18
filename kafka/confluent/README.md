@@ -40,7 +40,7 @@ kubectl apply --filename kafka-connect0-ingress.yaml
 using util:
 
 ```bash
-bash ./operator-install-confluent-kafka.sh
+bash ./install-confluent-kafka-operator.sh
 
 ### install / upgrade / upgrade --install
 bash ./helm-install-confluent-util-operator.sh
