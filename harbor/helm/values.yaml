@@ -1,8 +1,9 @@
 expose:
-  type: ingress
+  type: clusterIP
+  # type: ingress
   # type: loadBalancer
   tls:
-    enabled: true
+    enabled: false
     certSource: auto
     auto:
       commonName: ""
@@ -26,30 +27,34 @@ expose:
   #     httpsPort: 443
   #     notaryPort: 4443
 
-externalURL: https://core.harbor.example.com
+externalURL: http://core.harbor.example.com
+# externalURL: https://core.harbor.example.com
 
 persistence:
   enabled: true
   resourcePolicy: "keep"
   persistentVolumeClaim:
     registry:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-device
       # storageClass: openebs-hostpath
       # storageClass: local-path
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 100Gi
     chartmuseum:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-device
       # storageClass: openebs-hostpath
       # storageClass: local-path
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 100Gi
     jobservice:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-device
       # storageClass: openebs-hostpath
@@ -57,21 +62,24 @@ persistence:
       accessMode: ReadWriteOnce
       size: 1Gi
     database:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-jiva-default
       # storageClass: local-path
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 100Gi
     redis:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-jiva-default
       # storageClass: local-path
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 100Gi
     trivy:
-      storageClass: standard
+      # storageClass: standard
+      # storageClass: hostpath
       # storageClass: rook-ceph-block
       # storageClass: openebs-jiva-default
       # storageClass: local-path
@@ -81,25 +89,24 @@ persistence:
     disableredirect: true
     caBundleSecretName: minio-tenant-1-cert
     type: s3
-    # filesystem:
-    #   rootdirectory: /storage
-    #   maxthreads: 100
+    filesystem:
+      rootdirectory: /storage
+      maxthreads: 100
     # azure:
     #   accountname: accountname
     #   accountkey: base64encodedaccountkey
     #   container: containername
     #   realm: core.windows.net
     s3:
-      region: anyregion
-      # region: us-west-1
+      region: us-west-1
       bucket: harbor-storage
       accesskey: ${AWS_ACCESS_KEY}
       secretkey: ${AWS_SECRET_KEY}
       regionendpoint: ${AWS_S3_REGION_ENDPOINT}
       # encrypt: false
-      # keyid: mykeyid
+      # keyid: none
       # secure: true
-      # skipverify: true
+      # skipverify: false
       # v4auth: true
       # chunksize: "5242880"
       # rootdirectory: /s3/object/name/prefix
@@ -107,6 +114,8 @@ persistence:
       # multipartcopychunksize: "33554432"
       # multipartcopymaxconcurrency: 100
       # multipartcopythresholdsize: "33554432"
+
+logLevel: info
 
 harborAdminPassword: "${HARBOR_ADMIN_PASSWORD}"
 
