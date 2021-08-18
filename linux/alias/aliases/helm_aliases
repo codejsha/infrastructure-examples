@@ -1,5 +1,7 @@
 # helm
 
+export HELM_EXPERIMENTAL_OCI="1"
+
 function helm() { echo "+ helm ${@}">&2; command helm ${@}; }
 
 alias helm-dependency-update="helm dependency update"
