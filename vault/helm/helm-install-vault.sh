@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add hashicorp https://helm.releases.hashicorp.com
-helm repo update
+# helm repo add hashicorp https://helm.releases.hashicorp.com
+# helm repo update
 
 NAMESPACE="vault-system"
 
@@ -14,7 +14,7 @@ helm upgrade --install my-vault \
     --namespace ${NAMESPACE} \
     --values values.yaml \
     --values values-standalone.yaml \
-    --version 0.13.0 \
+    --version 0.14.0 \
     hashicorp/vault
 
     ### dev mode
