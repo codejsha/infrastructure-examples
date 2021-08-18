@@ -5,8 +5,8 @@ set -o errtrace
 
 USERNAME="admin"
 PASSWORD="${PASSWORD}"
-AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+AWS_ACCESS_KEY="minio"
+AWS_SECRET_KEY="minio123"
 
 NAMESPACE="registry-system"
 

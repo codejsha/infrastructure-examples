@@ -8,7 +8,6 @@ set -o errtrace
 
 export USERNAME="minio"
 export PASSWORD="minio123"
-# export PASSWORD="${PASSWORD}"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 

@@ -14,17 +14,17 @@ INSTALL_FILE="mysql80-community-release-el7-3.noarch.rpm"
 
 function install_mysql_shell_with_dnf {
     sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
-    sudo dnf install mysql-shell
+    sudo dnf install -y mysql-shell
 }
 
 function install_mysql_shell_with_yum {
     sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
-    sudo yum install mysql-shell
+    sudo yum install -y mysql-shell
 }
 
 function install_mysql_shell_with_apt {
     sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
-    sudo apt-get install mysql-shell
+    sudo apt-get install -y mysql-shell
 }
 
 ######################################################################

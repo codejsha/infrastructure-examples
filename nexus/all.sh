@@ -16,8 +16,8 @@ cd ..
 ### BLOBSTORE
 cd blobstore
 
-export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+export AWS_ACCESS_KEY="minio"
+export AWS_SECRET_KEY="minio123"
 
 ### create-blobstore.sh ${BLOBSTORE_NAME}
 bash ./create-blobstore.sh "nexus-maven-central"
