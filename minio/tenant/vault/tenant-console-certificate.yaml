@@ -4,8 +4,8 @@ metadata:
   name: minio-tenant-1-console-cert
   namespace: minio-tenant
 spec:
-  commonName: minio-tenant-1-console.example.com
   secretName: minio-tenant-1-console-cert
+  commonName: minio-tenant-1-console.example.com
   dnsNames:
     ### ingress domain
     - "minio-tenant-1-console.example.com"
@@ -14,4 +14,4 @@ spec:
     - "minio-tenant-1-console.minio-tenant"
     - "minio-tenant-1-console.minio-tenant.svc.cluster.local"
   issuerRef:
-    name: vault-tenant-console-issuer
+    name: minio-tenant-console-issuer

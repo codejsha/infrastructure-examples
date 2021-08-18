@@ -1,0 +1,34 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: minio-tenant-issuer
+  namespace: minio-tenant
+spec:
+  vault:
+    server: http://my-vault.vault-system.svc.cluster.local:8200
+    path: pki/sign/minio-tenant
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: minio-issuer
+        secretRef:
+          name: ${MINIO_TENANT_ISSUER_SECRET_REF}
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: minio-tenant-console-issuer
+  namespace: minio-tenant
+spec:
+  vault:
+    server: http://my-vault.vault-system.svc.cluster.local:8200
+    path: pki/sign/minio-tenant-console
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: minio-issuer
+        secretRef:
+          name: ${MINIO_TENANT_CONSONE_ISSUER_SECRET_REF}
+          key: token
