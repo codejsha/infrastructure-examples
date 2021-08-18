@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add gitlab https://charts.gitlab.io
-helm repo update
+# helm repo add gitlab https://charts.gitlab.io
+# helm repo update
 
 NAMESPACE="gitlab-system"
 
@@ -12,6 +12,6 @@ NAMESPACE="gitlab-system"
 helm upgrade --install my-gitlab \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --set global.edition="ce" \
-    --version 4.2.1 \
+    --values values.yaml \
+    --version 5.1.2 \
     gitlab/gitlab
