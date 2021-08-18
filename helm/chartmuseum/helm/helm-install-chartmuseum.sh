@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+export AWS_ACCESS_KEY="minio"
+export AWS_SECRET_KEY="minio123"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 

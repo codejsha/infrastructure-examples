@@ -11,8 +11,8 @@ MINIO_URL="http://minio.example.com"
 MINIO_ALIAS="test-minio"
 MINIO_URL="http://test.example.com:9000"
 
-AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+AWS_ACCESS_KEY="minio"
+AWS_SECRET_KEY="minio123"
 
 mc config host add ${MINIO_ALIAS} ${MINIO_URL} ${AWS_ACCESS_KEY} ${AWS_SECRET_KEY} --api s3v4
 mc config host ls
