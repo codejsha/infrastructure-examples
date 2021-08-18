@@ -37,7 +37,21 @@ function helm_install_postgresql_harbor {
         bitnami/postgresql
 }
 
+function helm_install_postgresql_gitlab {
+    local NAMESPACE="gitlab-system"
+
+    # helm install my-gitlab-postgres \
+    helm upgrade --install my-gitlab-postgres \
+        --create-namespace \
+        --namespace ${NAMESPACE} \
+        --values values-temp.yaml \
+        --values values-gitlab.yaml \
+        --version 10.7.0 \
+        bitnami/postgresql
+}
+
 ######################################################################
 
 helm_install_postgresql
 # helm_install_postgresql_harbor
+# helm_install_postgresql_gitlab
