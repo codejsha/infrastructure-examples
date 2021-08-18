@@ -77,10 +77,10 @@ docker image push core.harbor.example.com/library/centos:latest
 ### registry
 
 ### repo list
-curl --insecure --request GET --user ${USER}:${PASSWORD} https://registry.example.com/v2/_catalog
+curl --insecure --request GET --user ${USERNAME}:${PASSWORD} https://registry.example.com/v2/_catalog
 
 ### image list
-curl --request GET --user ${USER}:${PASSWORD} http://registry.example.com/v2/${IMAGE_NAME}/tags/list
+curl --request GET --user ${USERNAME}:${PASSWORD} http://registry.example.com/v2/${IMAGE_NAME}/tags/list
 
 ######################################################################
 
