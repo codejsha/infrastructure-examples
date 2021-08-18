@@ -3,23 +3,21 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-istioctl operator init
-
 ### profile list
 istioctl profile list
 ### Istio configuration profiles:
 ###     default
 ###     demo
 ###     empty
+###     external
 ###     minimal
 ###     openshift
 ###     preview
 ###     remote
 
 ### install
-# istioctl install --set profile=default
-istioctl install --skip-confirmation --set profile=default
-# istioctl install --skip-confirmation --set profile=default \
+istioctl install -y --set profile=default
+# istioctl install -y --set profile=default \
 #    --set meshConfig.accessLogFile=/dev/stdout
 
 ### verify
