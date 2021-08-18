@@ -18,8 +18,10 @@ kubectl apply --filename tekton-dashboard-ingress.yaml
 for operator:
 
 ```bash
-bash ./operator-install-dashboard.sh
-bash ./operator-install-tekton.sh
-bash ./operator-install-trigger.sh
+cd operator
+bash ./install-tekton-operator.sh
+bash ./install-tekton-addon-dashboard.sh
+bash ./install-tekton-addon-trigger.sh
+cd ..
 kubectl apply --filename tekton-dashboard-ingress.yaml
 ```

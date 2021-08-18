@@ -7,9 +7,9 @@
 ## Kubernetes (Operator)
 
 ```bash
-bash ./operator-install-elastic-operator.sh
-bash ./operator-install-elasticsearch.sh
-bash ./operator-install-kibana.sh
+bash ./install-elastic-operator.sh
+bash ./install-elasticsearch.sh
+bash ./install-kibana.sh
 kubectl apply --namespace elastic-system --filename kibana-ingress.yaml
 ```
 
