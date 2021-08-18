@@ -4,7 +4,6 @@ set -o errexit
 set -o errtrace
 
 # helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-# helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 # helm repo update
 
 NAMESPACE="prometheus-system"
@@ -13,6 +12,6 @@ NAMESPACE="prometheus-system"
 helm upgrade --install my-prometheus \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --values values.yaml \
-    --version 14.6.0 \
-    prometheus-community/prometheus
+    --values values-stack.yaml \
+    --version 17.2.1 \
+    prometheus-community/kube-prometheus-stack
