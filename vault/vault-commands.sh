@@ -53,7 +53,6 @@ vault write auth/kubernetes/config \
 
 ### kv
 
-vault secrets enable -path=infra kv-v2
 vault secrets enable -path=internal kv-v2
 
 ######################################################################
