@@ -3,8 +3,14 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-curl -sL https://istio.io/downloadIstioctl | sh -
-# curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.9.3 TARGET_ARCH=x86_64 sh -
+ISTIO_VERSION="1.11.0"
+PARENT_ISTIO_DIR="${HOME}"
+ISTIO_DIR="${PARENT_ISTIO_DIR}/istio-${ISTIO_VERSION}"
 
-### add path
-# export PATH=${PATH}:${HOME}/.istioctl/bin
+# curl -L https://istio.io/downloadIstio | sh -
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION="${ISTIO_VERSION}" TARGET_ARCH="x86_64" sh -
+
+cd ${ISTIO_DIR}
+cd bin
+chmod +x istioctl
+sudo mv istioctl /usr/local/bin
