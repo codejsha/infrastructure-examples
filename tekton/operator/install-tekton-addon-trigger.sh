@@ -7,7 +7,7 @@ NAMESPACE="tekton-pipelines"
 kubectl create namespace ${NAMESPACE}
 kubectl config set-context --current --namespace "${NAMESPACE}"
 
-cat <<EOF > ./operator-tekton-triggers.yaml
+cat <<EOF > ./tekton-addon-trigger.yaml
 apiVersion: operator.tekton.dev/v1alpha1
 kind: TektonAddon
 metadata:
@@ -16,7 +16,7 @@ spec:
   version: v0.7.0
 EOF
 
-kubectl apply --filename operator-tekton-triggers.yaml
+kubectl apply --filename tekton-addon-trigger.yaml
 
 ### check
 # tkn version

@@ -9,7 +9,7 @@ kubectl config set-context --current --namespace "${NAMESPACE}"
 
 kubectl create clusterrolebinding tekton-operator-cluster-admin --clusterrole cluster-admin --serviceaccount tekton-operator:tekton-operator
 
-cat <<EOF > ./operator-tekton-dashboard.yaml
+cat <<EOF > ./tekton-addon-dashboard.yaml
 apiVersion: operator.tekton.dev/v1alpha1
 kind: TektonAddon
 metadata:
@@ -18,7 +18,7 @@ spec:
   version: v0.8.2
 EOF
 
-kubectl apply --filename operator-tekton-dashboard.yaml
+kubectl apply --filename tekton-addon-dashboard.yaml
 
 ### check
 # kubectl get tektonaddon dashboard --output jsonpath='{.status.conditions[0]}'
