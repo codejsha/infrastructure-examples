@@ -13,7 +13,7 @@
 ### Operator
 
 ```bash
-bash ./operator-install-istio.sh
+bash ./install-istio-operator.sh
 ```
 
 ### Addons

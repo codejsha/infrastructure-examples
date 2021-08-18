@@ -11,22 +11,22 @@
 ### Kubernetes
 
 ```bash
-bash ./operator-install-rook-ceph.sh
-bash ./operator-install-rook-ceph-cluster.sh
+bash ./install-rook-ceph-operator.sh
+bash ./install-rook-ceph-cluster-operator.sh
 ```
 
 ### minikube
 
 ```bash
-bash ./operator-install-rook-ceph.sh
-bash ./operator-install-rook-ceph-cluster-minikube.sh
+bash ./install-rook-ceph-operator.sh
+bash ./install-rook-ceph-cluster-minikube-operator.sh
 ```
 
 ### OpenShift
 
 ```bash
-bash ./operator-install-rook-ceph-openshift.sh
-bash ./operator-install-rook-ceph-cluster-openshift.sh
+bash ./install-rook-ceph-openshift-operator.sh
+bash ./install-rook-ceph-cluster-openshift-operator.sh
 ```
 
 ## Cluster

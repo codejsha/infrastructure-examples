@@ -12,5 +12,5 @@ bash ./helm-install-cassandra.sh
 - https://github.com/instaclustr/cassandra-operator
 
 ```bash
-bash ./operator-install-cassandra.sh
+bash ./install-cassandra-operator.sh
 ```
