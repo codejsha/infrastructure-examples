@@ -23,7 +23,8 @@ service:
 
 persistence:
   enabled: true
-  storageClass: "standard"
+  # storageClass: "standard"
+  # storageClass: "hostpath"
   # storageClass: "rook-ceph-block"
   # storageClass: "openebs-jiva-default"
   # storageClass: "local-path"
