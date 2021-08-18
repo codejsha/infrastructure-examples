@@ -3,8 +3,9 @@
 ### repo
 
 ### add
-helm repo add stable https://charts.helm.sh/stable
-helm repo add incubator https://charts.helm.sh/incubator
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add --username ${USERNAME} --password ${PASSWORD} --insecure-skip-tls-verify local-harbor https://core.harbor.example.com/chartrepo/library
+helm repo add --username ${USERNAME} --password ${PASSWORD} --ca-file /mnt/c/Users/user/.docker/certs.d/local-harbor-ca.crt --insecure-skip-tls-verify local-harbor https://core.harbor.example.com/chartrepo/library
 
 ### list
 helm repo list
@@ -18,12 +19,28 @@ helm search repo --versions ingress-nginx/ingress-nginx
 
 ######################################################################
 
+### plugin
+
+### install plugin
+helm plugin install https://github.com/chartmuseum/helm-push.git
+
+### list
+helm plugin list
+
+######################################################################
+
 ### chart
 
 ### show
 helm show chart ingress-nginx/ingress-nginx
 helm show readme ingress-nginx/ingress-nginx
 helm show values ingress-nginx/ingress-nginx
+
+### push (plugin)
+helm push --insecure tomcat-9.0.0.tgz local-harbor
+### push
+export HELM_EXPERIMENTAL_OCI=1
+helm chart push core.harbor.example.com/chartrepo/library/tomcat:9.0.0
 
 ### install / upgrade
 helm install my-release
@@ -33,6 +50,9 @@ helm upgrade --install my-release
 ### uninstall
 helm uninstall my-release
 
+### rollback
+helm rollback my-release
+
 ### pull
 helm pull --untar --untardir charts ingress-nginx/ingress-nginx
 
@@ -41,16 +61,10 @@ helm dependency update
 
 ######################################################################
 
-### plugin
+### registry
 
-### install push plugin
-helm plugin install https://github.com/chartmuseum/helm-push.git
-
-### list
-helm plugin list
-
-### push
-helm push --insecure my-chart https://core.harbor.example.com/library
+### login
+helm registry login --insecure core.harbor.example.com
 
 ######################################################################
 

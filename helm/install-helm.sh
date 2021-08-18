@@ -22,6 +22,8 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scr
 chmod 700 get_helm.sh
 sudo ./get_helm.sh
 rm -f get_helm.sh
+helm completion bash | sudo tee /etc/bash_completion.d/helm
+source <(helm completion bash)
 
 ### helm repo
 # helm repo add stable https://charts.helm.sh/stable
