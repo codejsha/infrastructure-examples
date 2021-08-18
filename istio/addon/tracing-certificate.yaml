@@ -1,15 +1,16 @@
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: jaeger-cert
+  name: tracing-cert
   namespace: istio-system
 spec:
-  commonName: jaeger.example.com
-  secretName: jaeger-cert
+  secretName: tracing-cert
+  commonName: tracing.example.com
   dnsNames:
     ### ingress domain
-    - "jaeger.example.com"
+    - "tracing.example.com"
   issuerRef:
-    name: selfsigned-cluster-issuer
-    kind: ClusterIssuer
     group: cert-manager.io
+    kind: ClusterIssuer
+    name: selfsigned-cluster-issuer

@@ -12,8 +12,7 @@ bash ./create-ingress-domain-certificate.sh
 
 ######################################################################
 
-# bash ./create-ingress-domain-cert.sh
-# bash ./remote-access-grafana.sh
-# bash ./remote-access-kiali.sh
-# bash ./remote-access-prometheus.sh
-# bash ./remote-access-tracing.sh
+kubectl apply --namespace istio-system --filename grafana-traffic-management.yaml
+kubectl apply --namespace istio-system --filename kiali-traffic-management.yaml
+kubectl apply --namespace istio-system --filename prometheus-traffic-management.yaml
+kubectl apply --namespace istio-system --filename tracing-traffic-management.yaml
