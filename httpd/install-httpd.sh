@@ -24,7 +24,6 @@ function install_httpd_with_yum {
 function install_httpd {
     local HTTPD_HOME="/usr/local/httpd"
     local INSTALL_FILE_DIR="/mnt/share/apache-http-server"
-    # local INSTALL_FILE_DIR="/svc/install"
     local PARENT_BUILD_DIR="/svc/install"
 
     local INSTALL_FILE="httpd-2.4.46.tar.gz"
@@ -34,6 +33,7 @@ function install_httpd {
     local HTTPD_DIR_NAME="${INSTALL_FILE/\.tar\.gz/}"
     local APR_DIR_NAME="${APR_FILE/\.tar\.gz/}"
     local APRUTIL_DIR_NAME="${APRUTIL_FILE/\.tar\.gz/}"
+    local BUILD_DIR="${PARENT_BUILD_DIR}/${HTTPD_DIR_NAME}"
 
     function check_install_home {
         if [ -d "${HTTPD_HOME}" ]; then
@@ -49,8 +49,10 @@ function install_httpd {
             expat expat-devel \
             openssl openssl-devel
 
-        ### http2 requirements
-        sudo yum install -y nghttp2 libnghttp2 libnghttp2-devel
+        ### http2 required package
+        sudo yum install -y libnghttp2
+        ### http2 debug
+        # sudo yum install -y nghttp2
     }
 
     function download_install_file {
@@ -94,7 +96,7 @@ function install_httpd {
 
     function configure_and_install {
         ### configure
-        cd ${PARENT_BUILD_DIR}/${HTTPD_DIR_NAME}
+        cd ${BUILD_DIR}
         ./configure --prefix=${HTTPD_HOME} \
             --with-included-apr \
             --enable-mpms-shared=all \
