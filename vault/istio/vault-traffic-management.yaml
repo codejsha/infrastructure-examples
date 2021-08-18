@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: vault-gw
+  namespace: vault-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-vault
+        protocol: HTTP
+      hosts:
+        - vault.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vault-vs
+  namespace: vault-system
+spec:
+  hosts:
+    - vault.example.com
+  gateways:
+    - vault-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: my-vault.vault-system.svc.cluster.local
+            port:
+              number: 8200
