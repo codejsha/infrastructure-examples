@@ -1,0 +1,23 @@
+route:
+  enabled: false
+  labels: {}
+  annotations: {}
+
+  host: ""
+  path: ""
+  port:
+    targetPort: http
+
+  to:
+    weight: 100
+
+  tls:
+    enabled: false
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+    # key: |
+    # certificate: |
+    # caCertificate: |
+    # destinationCACertificate: |
+
+  wildcardPolicy: None
