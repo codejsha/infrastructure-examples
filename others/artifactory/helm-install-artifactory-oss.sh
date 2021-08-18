@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add jfrog https://charts.jfrog.io
-helm repo update
+# helm repo add jfrog https://charts.jfrog.io
+# helm repo update
 
 NAMESPACE="artifactory-system"
 

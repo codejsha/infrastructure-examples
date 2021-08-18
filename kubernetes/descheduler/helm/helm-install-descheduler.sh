@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add descheduler https://kubernetes-sigs.github.io/descheduler
-helm repo update
+# helm repo add descheduler https://kubernetes-sigs.github.io/descheduler
+# helm repo update
 
 # helm install my-descheduler \
 helm upgrade --install my-descheduler \

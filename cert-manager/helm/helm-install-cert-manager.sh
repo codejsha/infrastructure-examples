@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
+# helm repo add jetstack https://charts.jetstack.io
+# helm repo update
 
 NAMESPACE="cert-manager"
 
