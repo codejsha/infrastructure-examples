@@ -1,3 +1,4 @@
+---
 alertmanager:
   enabled: true
   name: alertmanager
@@ -10,7 +11,8 @@ alertmanager:
   persistentVolume:
     enabled: true
     size: 2Gi
-    storageClass: "standard"
+    # storageClass: "standard"
+    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
     # storageClass: "local-path"
   replicaCount: 1
@@ -29,6 +31,7 @@ kubeStateMetrics:
   enabled: true
 
 nodeExporter:
+  hostRootfs: false
   enabled: true
   hostNetwork: true
   hostPID: true
@@ -51,7 +54,8 @@ server:
   persistentVolume:
     enabled: true
     size: 8Gi
-    storageClass: "standard"
+    # storageClass: "standard"
+    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
     # storageClass: "local-path"
   replicaCount: 1
@@ -75,6 +79,7 @@ pushgateway:
   persistentVolume:
     enabled: true
     size: 2Gi
-    storageClass: "standard"
+    # storageClass: "standard"
+    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
     # storageClass: "local-path"
