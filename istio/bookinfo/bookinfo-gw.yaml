@@ -6,9 +6,9 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-    - hosts:
-        - bookinfo.example.com
-      port:
+    - port:
         name: http
         number: 80
         protocol: HTTP
+      hosts:
+        - bookinfo.example.com
