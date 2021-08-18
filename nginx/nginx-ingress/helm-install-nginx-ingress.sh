@@ -12,5 +12,5 @@ NAMESPACE="ingress-nginx"
 helm upgrade --install my-ingress \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --version 3.25.0 \
+    --version 3.35.0 \
     ingress-nginx/ingress-nginx
