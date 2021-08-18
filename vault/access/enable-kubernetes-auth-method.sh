@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KUBERNETES_HOST_URL="https://192.168.39.172:8443"
+KUBERNETES_HOST_URL="https://kubernetes.docker.internal:6443"
 
 vault auth enable kubernetes
 
