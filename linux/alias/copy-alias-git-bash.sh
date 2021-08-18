@@ -5,7 +5,7 @@ set -o errtrace
 
 rm -rf ~/.aliases
 
-/bin/cp -f .bashrc_windows ~/.bashrc
+/bin/cp -f .bashrc_git_bash ~/.bashrc
 /bin/cp -rf aliases ~/.aliases
 
 curl -o ~/.aliases/kubectl_aliases -LJO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
