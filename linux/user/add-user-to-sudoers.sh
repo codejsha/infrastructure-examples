@@ -5,6 +5,6 @@ set -o errtrace
 
 USER="prouser"
 
-cat <<EOF > /etc/sudoers.d/${USER}
+cat <<EOF | sudo tee /etc/sudoers.d/${USER}
 ${USER} ALL=(ALL) NOPASSWD:ALL
 EOF
