@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-VELERO_VERSION="1.5.3"
+VELERO_VERSION="1.6.3"
 
 curl -LJO https://github.com/vmware-tanzu/velero/releases/download/v${VELERO_VERSION}/velero-v${VELERO_VERSION}-linux-amd64.tar.gz
 tar -xzf velero-v${VELERO_VERSION}-linux-amd64.tar.gz
