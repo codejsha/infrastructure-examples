@@ -20,11 +20,11 @@ expose:
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
   # loadBalancer:
-  #   name: harbor
+  #   name: my-harbor-lb
   #   IP: ""
   #   ports:
-  #     httpPort: 80
-  #     httpsPort: 443
+  #     httpPort: 8080
+  #     httpsPort: 8443
   #     notaryPort: 4443
 
 externalURL: http://core.harbor.example.com
@@ -87,7 +87,7 @@ persistence:
       size: 5Gi
   imageChartStorage:
     disableredirect: true
-    caBundleSecretName: minio-tenant-1-cert
+    # caBundleSecretName: minio-tenant-1-cert
     type: s3
     filesystem:
       rootdirectory: /storage
