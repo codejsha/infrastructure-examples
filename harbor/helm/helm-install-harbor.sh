@@ -21,8 +21,8 @@ HARBOR_SECRET_KEY="${HARBOR_SECRET_KEY}"
 
 ### image and chart storage
 ### s3
-export AWS_S3_REGION_ENDPOINT="https://minio-tenant-1.example.com"
-# export AWS_S3_REGION_ENDPOINT="http://minio.example.com"
+# export AWS_S3_REGION_ENDPOINT="https://minio-tenant-1.example.com"
+export AWS_S3_REGION_ENDPOINT="http://minio.example.com"
 export AWS_ACCESS_KEY="minio"
 export AWS_SECRET_KEY="minio123"
 
