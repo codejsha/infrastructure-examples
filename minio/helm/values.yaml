@@ -1,9 +1,18 @@
+clusterDomain: cluster.local
+
+mode: standalone
+
 accessKey: "${USERNAME}"
 secretKey: "${PASSWORD}"
 
+drivesPerNode: 1
+replicas: 4
+zones: 1
+
 persistence:
   enabled: true
-  storageClass: "standard"
+  # storageClass: "standard"
+  # storageClass: "hostpath"
   # storageClass: "rook-ceph-block"
   # storageClass: "openebs-jiva-default"
   # storageClass: "openebs-device"
@@ -60,3 +69,7 @@ buckets:
   # - name: bucket2
   #   policy: none
   #   purge: false
+
+metrics:
+  serviceMonitor:
+    enabled: true
