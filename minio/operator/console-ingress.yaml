@@ -1,18 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cmak-ingress
+  name: minio-operator-console
+  namespace: minio-operator
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - host: cmak.example.com
+    - host: minio-operator.example.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: cmak
+                name: console
                 port:
-                  number: 9000
+                  number: 9090
