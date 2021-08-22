@@ -35,3 +35,6 @@ helm repo add renovate https://docs.renovatebot.com/helm-charts
 helm repo add stable https://charts.helm.sh/stable
 helm repo add strimzi https://strimzi.io/charts
 helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
+
+### local
+# helm repo add --username ${USERNAME} --password ${PASSWORD} local-harbor http://harbor.example.com/chartrepo/library

@@ -14,7 +14,7 @@ function kube_run_cmak {
         --restart=Never \
         --labels=app=cmak \
         --env="ZK_HOSTS=${ZK_HOSTS}" \
-        --image=core.harbor.example.com/library/cmak:latest
+        --image=harbor.example.com/library/cmak:latest
 }
 
 function kube_run_cmak_attach {
@@ -25,7 +25,7 @@ function kube_run_cmak_attach {
         --restart=Never \
         --labels=app=cmak \
         --env="ZK_HOSTS=${ZK_HOSTS}" \
-        --image=core.harbor.example.com/library/cmak:latest
+        --image=harbor.example.com/library/cmak:latest
 }
 
 ######################################################################

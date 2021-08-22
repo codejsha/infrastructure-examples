@@ -8,11 +8,11 @@ expose:
     auto:
       commonName: ""
       ### for loadbalancer
-      # commonName: "core.harbor.example.com"
+      # commonName: "harbor.example.com"
   ingress:
     hosts:
-      core: core.harbor.example.com
-      notary: notary.harbor.example.com
+      core: harbor.example.com
+      notary: notary.example.com
     annotations:
       kubernetes.io/ingress.class: "nginx"
       ingress.kubernetes.io/ssl-redirect: "true"
@@ -27,8 +27,8 @@ expose:
   #     httpsPort: 8443
   #     notaryPort: 4443
 
-externalURL: http://core.harbor.example.com
-# externalURL: https://core.harbor.example.com
+externalURL: http://harbor.example.com
+# externalURL: https://harbor.example.com
 
 persistence:
   enabled: true

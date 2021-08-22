@@ -1,7 +1,7 @@
 {
   "insecure-registries": [
     "registry.example.com",
-    "core.harbor.example.com",
+    "harbor.example.com",
     "kraken.example.com",
     "nexus.example.com"
   ],

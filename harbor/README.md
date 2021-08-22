@@ -33,4 +33,4 @@ my-harbor-harbor-trivy-0                          1/1     Running   0          9
 
 ## Certificate
 
-download registry's certificate, and copy it to `/etc/docker/certs.d/core.harbor.example.com/ca.crt`
+download registry's certificate, and copy it to `/etc/docker/certs.d/harbor.example.com/ca.crt`

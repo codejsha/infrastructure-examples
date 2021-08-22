@@ -4,8 +4,9 @@
 
 ### add
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo add --username ${USERNAME} --password ${PASSWORD} --insecure-skip-tls-verify local-harbor https://core.harbor.example.com/chartrepo/library
-helm repo add --username ${USERNAME} --password ${PASSWORD} --ca-file /mnt/c/Users/user/.docker/certs.d/local-harbor-ca.crt --insecure-skip-tls-verify local-harbor https://core.harbor.example.com/chartrepo/library
+helm repo add --username ${USERNAME} --password ${PASSWORD} local-harbor http://harbor.example.com/chartrepo/library
+helm repo add --username ${USERNAME} --password ${PASSWORD} --insecure-skip-tls-verify local-harbor https://harbor.example.com/chartrepo/library
+helm repo add --username ${USERNAME} --password ${PASSWORD} --ca-file /mnt/c/Users/user/.docker/certs.d/local-harbor-ca.crt --insecure-skip-tls-verify local-harbor https://harbor.example.com/chartrepo/library
 
 ### list
 helm repo list
@@ -40,7 +41,7 @@ helm show values ingress-nginx/ingress-nginx
 helm push --insecure tomcat-9.0.0.tgz local-harbor
 ### push
 export HELM_EXPERIMENTAL_OCI=1
-helm chart push core.harbor.example.com/chartrepo/library/tomcat:9.0.0
+helm chart push harbor.example.com/chartrepo/library/tomcat:9.0.0
 
 ### install / upgrade
 helm install my-release
@@ -64,7 +65,7 @@ helm dependency update
 ### registry
 
 ### login
-helm registry login --insecure core.harbor.example.com
+helm registry login --insecure harbor.example.com
 
 ######################################################################
 

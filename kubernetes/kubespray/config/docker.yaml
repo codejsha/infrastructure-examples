@@ -39,7 +39,7 @@ docker_rpm_keepcache: 0
 ## example define 172.19.16.11 or mirror.registry.io
 docker_insecure_registries:
   - registry.example.com
-  - core.harbor.example.com
+  - harbor.example.com
   - kraken.example.com
   - nexus.example.com
 
