@@ -6,5 +6,5 @@ set -o errtrace
 # docker image build --tag registry.example.com/example-repo:latest .
 # docker image push registry.example.com/example-repo:latest
 
-docker image build --tag core.harbor.example.com/library/example-repo:latest .
-docker image push core.harbor.example.com/library/example-repo:latest
+docker image build --tag harbor.example.com/library/example-repo:latest .
+docker image push harbor.example.com/library/example-repo:latest

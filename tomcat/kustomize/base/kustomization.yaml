@@ -10,7 +10,7 @@ resources:
   - service.yaml
 
 images:
-  - name: core.harbor.example.com/library/tomcat-starter
+  - name: harbor.example.com/library/tomcat-starter
     newTag: "latest"
 configMapGenerator:
   - name: server-config

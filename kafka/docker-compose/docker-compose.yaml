@@ -214,7 +214,7 @@ services:
       - /mnt/volume/kafka/kafka-lag-exporter:/opt/docker/conf
 
   cmak:
-    image: core.harbor.example.com/library/cmak:latest
+    image: harbor.example.com/library/cmak:latest
     container_name: cmak
     hostname: cmak
     restart: unless-stopped

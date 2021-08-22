@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tomcat-starter
-          image: core.harbor.example.com/library/tomcat-starter:latest
+          image: harbor.example.com/library/tomcat-starter:latest
           resources:
             limits:
               cpu: "100m"

@@ -56,7 +56,9 @@ bash ./create-docker-proxy-repo.sh "docker-hub" "nexus-docker-hub" "https://regi
 # bash ./create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.registry-system:5000" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://registry.example.com" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-kube-registry" "nexus-docker-kube-registry" "http://registry.kube-system:5000" "REGISTRY"
-bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://core.harbor.example.com" "REGISTRY"
+bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "http://harbor.example.com" "REGISTRY"
+# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://harbor.example.com" "REGISTRY"
+# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "http://my-harbor-harbor-registry.harbor-system:5000" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://my-harbor-harbor-registry.harbor-system:5000" "REGISTRY"
 
 ### create-docker-group-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REPOSITORY_MEMBER_NAMES}
@@ -80,7 +82,8 @@ cd repository/helm
 
 ### create-helm-proxy-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REMOTE_URL}
 # bash ./create-helm-proxy-repo.sh "helm-chartmuseum" "nexus-helm-chartmuseum" "http://chartmuseum-service.chart-system:8080"
-bash ./create-helm-proxy-repo.sh "helm-harbor" "nexus-helm-harbor" "https://core.harbor.example.com"
+bash ./create-helm-proxy-repo.sh "helm-harbor" "nexus-helm-harbor" "http://harbor.example.com"
+# bash ./create-helm-proxy-repo.sh "helm-harbor" "nexus-helm-harbor" "https://harbor.example.com"
 
 cd ..
 
