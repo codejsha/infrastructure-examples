@@ -1,49 +1,114 @@
-statefulset:
-  enabled: false
-replicaCount: 1
+deploymentStrategy: RollingUpdate
 
 nexus:
+  docker:
+    enabled: false
+    registries: []
+    #  - host: chart.local
+    #    port: 5000
+    #    secretName: registrySecret
   env:
-    - name: INSTALL4J_ADD_VM_PARAMS
-      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:ActiveProcessorCount=4"
-  dockerPort: 5003
+    - name: install4jAddVmParams
+      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+    - name: NEXUS_SECURITY_RANDOMPASSWORD
+      value: "true"
+  properties:
+    override: false
+    data:
+      nexus.scripts.allowCreation: true
+      # nexus.ldap.env.java.naming.security.authentication: simple
+  # nodeSelector:
+  resources: {}
+    # requests:
+    #   cpu: 250m
+    #   memory: 4800Mi
   nexusPort: 8081
-  service:
-    type: NodePort
 
-nexusProxy:
+  securityContext:
+    fsGroup: 2000
+  podAnnotations: {}
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    failureThreshold: 6
+    timeoutSeconds: 10
+    path: /
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    failureThreshold: 6
+    timeoutSeconds: 10
+    path: /
+  hostAliases: []
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+deployment:
+  annotations: {}
+  initContainers:
+  postStart:
+    command:    # '["/bin/sh", "-c", "ls"]'
+  preStart:
+    command:    # '["/bin/rm", "-f", "/path/to/lockfile"]'
+  terminationGracePeriodSeconds: 120
+  additionalContainers:
+  additionalVolumes:
+  additionalVolumeMounts:
+
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hostPath: /
+  hostRepo: repo.demo
+  tls: []
+
+service:
+  name: nexus3
   enabled: true
-  port: 8080
-  targetPort: 8080
-  env:
-    nexusDockerHost: container.example.com
-    nexusHttpHost: nexus.example.com
+  labels: {}
+  annotations: {}
+  serviceType: ClusterIP
+
+route:
+  enabled: false
+  name: docker
+  portName: docker
+  labels:
+  annotations:
+  # path: /docker
+
+nexusProxyRoute:
+  enabled: false
+  labels:
+  annotations:
+  # path: /nexus
 
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
-  storageClass: standard
-  # storageClass: rook-ceph-block
-  # storageClass: local-path
+  # storageClass: "standard"
+  # storageClass: "hostpath"
+  # storageClass: "rook-ceph-block"
   storageSize: 100Gi
 
-ingress:
-  enabled: true
-  path: /
-  annotations:
-    kubernetes.io/ingress.allow-http: "true"
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
-  tls:
-    enabled: false
+tolerations: []
 
-service:
-  type: ClusterIP
-  enabled: true
-  ports:
-    - name: nexus
-      targetPort: 8081
-      port: 8081
-    - name: nexus-docker-public
-      targetPort: 5003
-      port: 5003
+config:
+  enabled: false
+  mountPath: /sonatype-nexus-conf
+  data: []
+
+secret:
+  enabled: false
+  mountPath: /etc/secret-volume
+  readOnly: true
+  data: []
+
+serviceAccount:
+  create: true
+
+psp:
+  create: false

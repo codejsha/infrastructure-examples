@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-# helm repo add sonatype https://sonatype.github.io/helm3-charts
+# helm repo add oteemocharts https://oteemo.github.io/charts
 # helm repo update
 
 NAMESPACE="nexus-system"
@@ -12,6 +12,6 @@ NAMESPACE="nexus-system"
 helm upgrade --install my-nexus \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --values values.yaml \
-    --version 33.0.0 \
-    sonatype/nexus-repository-manager
+    --values values-oteemo.yaml \
+    --version 5.2.0 \
+    oteemocharts/sonatype-nexus
