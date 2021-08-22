@@ -20,7 +20,8 @@ nohup.*
 *.zip
 
 /cassandra/operator/cassandra-operator/
-/git/gitlab/helm/gitlab
+/git/gitlab/helm/gitlab/
+/helm/chartmuseum/chartmuseum/
 /istio/addon/certs/
 /istio/addon/istio/
 /kafka/cmak/cmak-*/
