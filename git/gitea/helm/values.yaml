@@ -1,0 +1,242 @@
+---
+replicaCount: 1
+
+clusterDomain: cluster.local
+
+image:
+  pullPolicy: IfNotPresent
+  rootless: false
+
+imagePullSecrets: []
+
+securityContext: {}
+
+service:
+  http:
+    type: ClusterIP
+    port: 3000
+    clusterIP: None
+    #loadBalancerIP:
+    #nodePort:
+    #externalTrafficPolicy:
+    #externalIPs:
+    loadBalancerSourceRanges: []
+    annotations:
+  ssh:
+    type: ClusterIP
+    port: 22
+    clusterIP: None
+    #loadBalancerIP:
+    #nodePort:
+    #externalTrafficPolicy:
+    #externalIPs:
+    loadBalancerSourceRanges: []
+    annotations:
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: git.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# schedulerName:
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+statefulset:
+  env: []
+  terminationGracePeriodSeconds: 60
+  labels: {}
+
+persistence:
+  enabled: true
+  # existingClaim:
+  size: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  labels: {}
+  annotations: {}
+  # storageClassName: standard
+  # storageClassName: hostpath
+  # storageClassName: rook-ceph-block
+  # storageClassName: local-path
+
+extraVolumes:
+extraVolumeMounts:
+
+initPreScript: ""
+
+signing:
+  enabled: false
+  gpgHome: /data/git/.gnupg
+
+gitea:
+  admin:
+    #existingSecret: gitea-admin-secret
+    username: gitea_admin
+    password: r8sA8CPHD9!bt6d
+    email: "gitea@local.domain"
+
+  metrics:
+    enabled: false
+    serviceMonitor:
+      enabled: false
+      #  additionalLabels:
+      #    prometheus-release: prom1
+
+  ldap:
+    enabled: false
+    #existingSecret: gitea-ldap-secret
+    #name:
+    #securityProtocol:
+    #host:
+    #port:
+    #userSearchBase:
+    #userFilter:
+    #adminFilter:
+    #emailAttribute:
+    #bindDn:
+    #bindPassword:
+    #usernameAttribute:
+    #sshPublicKeyAttribute:
+
+  oauth:
+    enabled: false
+    #name:
+    #provider:
+    #key:
+    #secret:
+    #autoDiscoverUrl:
+    #useCustomUrls:
+    #customAuthUrl:
+    #customTokenUrl:
+    #customProfileUrl:
+    #customEmailUrl:
+
+  config: {}
+  #  APP_NAME: "Gitea: Git with a cup of tea"
+  #  RUN_MODE: dev
+  #
+  #  server:
+  #    SSH_PORT: 22
+  #
+  #  security:
+  #    PASSWORD_COMPLEXITY: spec
+
+  podAnnotations: {}
+
+  database:
+    builtIn:
+      postgresql:
+        enabled: true
+      mysql:
+        enabled: false
+      mariadb:
+        enabled: false
+
+  cache:
+    builtIn:
+      enabled: true
+
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 200
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 10
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 5
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 3
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 60
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 10
+
+  # customLivenessProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 60
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 10
+  # customReadinessProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 5
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 3
+  # customStartupProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 60
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 10
+
+memcached:
+  service:
+    port: 11211
+
+postgresql:
+  global:
+    postgresql:
+      postgresqlDatabase: gitea
+      postgresqlUsername: gitea
+      postgresqlPassword: gitea
+      servicePort: 5432
+  persistence:
+    size: 10Gi
+
+mysql:
+  root:
+    password: gitea
+  db:
+    user: gitea
+    password: gitea
+    name: gitea
+  service:
+    port: 3306
+  persistence:
+    size: 10Gi
+
+mariadb:
+  auth:
+    database: gitea
+    username: gitea
+    password: gitea
+    rootPassword: gitea
+  primary:
+    service:
+      port: 3306
+    persistence:
+      size: 10Gi

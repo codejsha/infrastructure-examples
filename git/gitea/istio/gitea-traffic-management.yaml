@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gitea-gw
+  namespace: gitea-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 2022
+        name: ssh-gitea
+        protocol: TCP
+      hosts:
+        - git.example.com
+    - port:
+        number: 80
+        name: http-gitea
+        protocol: HTTP
+      hosts:
+        - git.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gitea-vs
+spec:
+  hosts:
+    - git.example.com
+  gateways:
+    - gitea-gw
+  http:
+    - match:
+        - port: 80
+      route:
+        - destination:
+            port:
+              number: 3000
+            host: my-gitea-http.gitea-system.svc.cluster.local
+  tcp:
+    - match:
+        - port: 2022
+      route:
+        - destination:
+            host: my-gitea-ssh.gitea-system.svc.cluster.local
+            port:
+              number: 2022
