@@ -12,11 +12,11 @@ spec:
         number: 443
         name: https-kiali
         protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: kiali-cert
       hosts:
         - kiali.example.com
+      tls:
+        credentialName: kiali-cert
+        mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

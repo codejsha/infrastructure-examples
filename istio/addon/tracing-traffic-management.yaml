@@ -12,11 +12,11 @@ spec:
         number: 443
         name: https-tracing
         protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: tracing-cert
       hosts:
         - tracing.example.com
+      tls:
+        credentialName: tracing-cert
+        mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
