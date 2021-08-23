@@ -12,11 +12,11 @@ spec:
         number: 443
         name: https-grafana
         protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: grafana-cert
       hosts:
         - grafana.example.com
+      tls:
+        credentialName: grafana-cert
+        mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService

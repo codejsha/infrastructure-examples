@@ -12,11 +12,11 @@ spec:
         number: 443
         name: https-prometheus
         protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: prometheus-cert
       hosts:
         - prometheus.example.com
+      tls:
+        credentialName: prometheus-cert
+        mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
