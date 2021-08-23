@@ -3,18 +3,22 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export NEXUS_URL="https://nexus.example.com"
-export NEXUS_USER="admin"
-export NEXUS_PASSWORD="admin123"
-export BLOBSTORE_NAME="${1}"
-export BUCKET_NAME="${BLOBSTORE_NAME}"
+NEXUS_URL="http://nexus.example.com"
+# NEXUS_URL="https://nexus.example.com""
+NEXUS_USER="admin"
+NEXUS_PASSWORD="admin123"
+BLOBSTORE_NAME="${1}"
+BUCKET_NAME="${BLOBSTORE_NAME}"
 
-export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
-export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
-# export AWS_ENDPOINT_URL="http://10.10.10.52:9000"
-export AWS_ENDPOINT_URL="http://minio.example.com"
-# export AWS_ENDPOINT_URL="https://minio-tenant-1.example.com"
+AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
+AWS_SECRET_KEY="${AWS_SECRET_KEY}"
+# AWS_ENDPOINT_URL="http://10.10.10.52:9000"
+AWS_ENDPOINT_URL="http://minio.example.com"
+# AWS_ENDPOINT_URL="https://minio-tenant-1.example.com"
 
+export NEXUS_URL NEXUS_USER NEXUS_PASSWORD
+export BLOBSTORE_NAME BUCKET_NAME
+export AWS_ACCESS_KEY AWS_SECRET_KEY AWS_ENDPOINT_URL
 envsubst < ./data-blobstore.json > ./data-blobstore-temp.json
 
 ######################################################################
