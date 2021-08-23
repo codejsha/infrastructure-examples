@@ -3,13 +3,16 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export NEXUS_URL="https://nexus.example.com"
-export NEXUS_USER="admin"
-export NEXUS_PASSWORD="admin123"
-export REPOSITORY_NAME="${1}"
-export BLOBSTORE_NAME="${2}"
-export REMOTE_URL="${3}"
+NEXUS_URL="http://nexus.example.com"
+# NEXUS_URL="https://nexus.example.com""
+NEXUS_USER="admin"
+NEXUS_PASSWORD="admin123"
+REPOSITORY_NAME="${1}"
+BLOBSTORE_NAME="${2}"
+REMOTE_URL="${3}"
 
+export NEXUS_URL NEXUS_USER NEXUS_PASSWORD
+export REPOSITORY_NAME BLOBSTORE_NAME REMOTE_URL
 envsubst < ./data-maven-proxy-repo.json > ./data-maven-proxy-repo-temp.json
 
 ######################################################################

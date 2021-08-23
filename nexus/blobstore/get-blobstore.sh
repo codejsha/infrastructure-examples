@@ -3,7 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NEXUS_URL="https://nexus.example.com"
+NEXUS_URL="http://nexus.example.com"
+# NEXUS_URL="https://nexus.example.com""
 NEXUS_USER="admin"
 NEXUS_PASSWORD="admin123"
 BLOBSTORE_NAME="${1}"
