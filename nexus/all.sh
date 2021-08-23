@@ -33,10 +33,13 @@ cd ..
 ######################################################################
 
 ### MAVEN
-cd repository/maven
+cd repository
 
 ### delete-repository.sh ${REPOSITORY_NAME}
 bash ./delete-repository.sh "maven-central"
+
+cd ../
+cd repository/maven
 
 ### create-maven-proxy-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REMOTE_URL}
 bash ./create-maven-proxy-repo.sh "maven-central" "nexus-maven-central" "https://repo1.maven.org/maven2/"
@@ -44,7 +47,7 @@ bash ./create-maven-proxy-repo.sh "maven-central" "nexus-maven-central" "https:/
 ### update-maven-group-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REPOSITORY_MEMBER_NAMES}
 bash ./update-maven-group-repo.sh "maven-public" "default" "maven-central\", \"maven-releases\", \"maven-snapshots"
 
-cd ..
+cd ../../
 
 ######################################################################
 
@@ -70,6 +73,9 @@ bash ./create-docker-group-repo.sh "docker-group" "default" "docker-hub\", \"doc
 # bash ./update-docker-group-repo.sh "docker-group" "default" "docker-hub\", \"docker-registry\", \"docker-kube-registry"
 # bash ./update-docker-group-repo.sh "docker-group" "default" "docker-hub\", \"docker-harbor"
 
+cd ../../
+cd security
+
 ### set-active-realms-list.sh ${REALM_IDS}
 bash ./set-active-realms-list.sh "\"NexusAuthenticatingRealm\", \"NexusAuthorizingRealm\", \"DockerToken\""
 
@@ -90,8 +96,8 @@ cd ..
 ######################################################################
 
 ### DELETE
-# cd repository
 
+# cd repository
 # bash ./delete-repository.sh "maven-central"
 # bash ./delete-repository.sh "docker-hub"
 # bash ./delete-repository.sh "docker-registry"
@@ -99,7 +105,9 @@ cd ..
 # bash ./delete-repository.sh "docker-group"
 # bash ./delete-repository.sh "helm-chartmuseum"
 # bash ./delete-repository.sh "helm-harbor"
+# cd ..
 
+# cd blobstore
 # bash ./delete-blobstore.sh "nexus-maven-central"
 # bash ./delete-blobstore.sh "nexus-docker-hub"
 # bash ./delete-blobstore.sh "nexus-docker-registry"
@@ -107,3 +115,4 @@ cd ..
 # bash ./delete-blobstore.sh "nexus-docker-harbor"
 # bash ./delete-blobstore.sh "nexus-helm-chartmuseum"
 # bash ./delete-blobstore.sh "nexus-helm-harbor"
+# cd ..
