@@ -1,6 +1,4 @@
-# apiVersion: extensions/v1beta1
-apiVersion: networking.k8s.io/v1beta1
-# apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tekton-dashboard
@@ -13,6 +11,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: tekton-dashboard
-              servicePort: 9097
+              service:
+                name: tekton-dashboard
+                port:
+                  number: 9097
