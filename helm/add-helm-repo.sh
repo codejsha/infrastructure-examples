@@ -17,6 +17,7 @@ helm repo add descheduler https://kubernetes-sigs.github.io/descheduler
 helm repo add drone https://charts.drone.io
 helm repo add elastic https://helm.elastic.co
 helm repo add enix https://charts.enix.io
+helm repo add gitea-charts https://dl.gitea.io/charts
 helm repo add gitlab https://charts.gitlab.io
 helm repo add harbor https://helm.goharbor.io
 helm repo add hashicorp https://helm.releases.hashicorp.com
