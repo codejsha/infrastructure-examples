@@ -1,24 +1,25 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myproject
-  namespace: argocd
+  name: my-project
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: myproject
+  project: my-project
   source:
-    repoURL: http://gitlab.example.com:9480/root/myproject-cd.git
+    repoURL: http://git.example.com/developer/my-project-cd.git
     targetRevision: HEAD
     path: base
     # kustomize:
     #   namePrefix: dev-
     #   images:
     #     - registry.example.com/tomcat-starter:latest
-    #     - core.harbor.example.com/library/tomcat-starter:latest
+    #     - harbor.example.com/library/tomcat-starter:latest
   destination:
-    server: https://10.10.10.11:6443
-    namespace: myproject
+    # server: https://10.10.10.11:6443
+    server: https://kubernetes.docker.internal:6443
+    namespace: my-project
   syncPolicy:
     automated:
       prune: true

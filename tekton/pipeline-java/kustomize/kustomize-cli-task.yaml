@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/version: "0.1"
   annotations:
-    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/pipelines.minVersion: "0.27.0"
     tekton.dev/tags: cli, kubectl, kustomize
     tekton.dev/displayName: "kustomize cli"
 spec:
@@ -15,6 +15,9 @@ spec:
     - name: source
     - name: kubeconfig-dir
   params:
+    - name: image
+      description: Kustomize docker image
+      default: k8s.gcr.io/kustomize/kustomize:v3.8.7
     - name: base-dir
       description: The base directory
       type: string
@@ -28,10 +31,6 @@ spec:
       type: array
       default:
         - "help"
-    - name: image
-      description: Kustomize wrapper image
-      # default: registry.example.com/kustomize-cli:latest
-      default: core.harbor.example.com/kustomize-cli:latest
   steps:
     - name: kustomize
       image: $(params.image)

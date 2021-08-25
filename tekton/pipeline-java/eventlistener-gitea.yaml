@@ -1,0 +1,27 @@
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: my-project-eventlistener
+spec:
+  serviceAccountName: git-ci-sa
+  triggers:
+    - name: git-push-event-trigger
+      interceptors:
+        - ref:
+            name: "cel"
+          params:
+            - name: "filter"
+              value: "header.match('X-Gitea-Event', 'push')"
+            - name: "overlays"
+              value:
+                - key: "body.repo.url"
+                  expression: "body.repository.clone_url"
+                - key: "body.ref"
+                  expression: "body.ref"
+                - key: "body.after"
+                  expression: "body.after"
+      bindings:
+        - ref: git-triggerbinding
+      template:
+        ref: java-triggertemplate

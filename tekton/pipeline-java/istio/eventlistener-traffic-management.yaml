@@ -1,0 +1,34 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: my-project-eventlistener-gw
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-my-project-eventlistener
+        protocol: HTTP
+      hosts:
+        - my-project.tekton-el.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: my-project-eventlistener-vs
+spec:
+  hosts:
+    - my-project.tekton-el.example.com
+  gateways:
+    - my-project-eventlistener-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: el-my-project-eventlistener.tekton-pipelines.svc.cluster.local
+            port:
+              number: 8080

@@ -1,40 +1,8 @@
-apiVersion: triggers.tekton.dev/v1alpha1
-kind: EventListener
-metadata:
-  name: gitlab-ci-listener
-spec:
-  serviceAccountName: tekton-triggers-gitlab-ci-sa
-  triggers:
-    - name: gitlab-push-events-trigger
-      interceptors:
-        - gitlab:
-            secretRef:
-              secretName: gitlab-ci-secret
-              secretKey: secretToken
-            eventTypes:
-              - Push Hook
-      bindings:
-        - ref: gitlab-push-binding
-      template:
-        name: gitlab-java-template
----
-apiVersion: triggers.tekton.dev/v1alpha1
-kind: TriggerBinding
-metadata:
-  name: gitlab-push-binding
-spec:
-  params:
-    - name: git-repo-url
-      value: $(body.repository.git_http_url)
-    - name: git-ref
-      value: $(body.ref)
-    - name: git-revision
-      value: $(body.checkout_sha)
 ---
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: gitlab-java-template
+  name: java-triggertemplate
 spec:
   params:
     - name: git-repo-url
@@ -51,33 +19,33 @@ spec:
         podTemplate:
           dnsConfig:
             nameservers:
-              - 10.10.10.10
+              # - 10.10.10.10
               - 8.8.8.8
               - 168.126.63.1
         taskRunSpecs:
           - pipelineTaskName: clone-ci-repo
-            taskServiceAccountName: tekton-triggers-gitlab-ci-sa
+            taskServiceAccountName: git-ci-sa
           - pipelineTaskName: clone-cd-repo
-            taskServiceAccountName: tekton-gitlab-cd-sa
+            taskServiceAccountName: git-cd-sa
           - pipelineTaskName: commit-cd-repo
-            taskServiceAccountName: tekton-gitlab-cd-sa
+            taskServiceAccountName: git-cd-sa
         workspaces:
           - name: shared-workspace
             persistentvolumeclaim:
-              claimName: tkn-shared-workspace-pvc
+              claimName: takton-shared-workspace-pvc
           - name: maven-settings
             configMap:
               name: maven-settings-configmap
           - name: docker-config
             configMap:
               name: docker-config-configmap
-          - name: kube-config
+          - name: kubeconfig
             configMap:
-              name: kube-config-configmap
+              name: kubeconfig-configmap
           - name: input-asset
             emptyDir: {}
             # configMap:
-            #   name: input-asset-configmap
+            #   name: git-cd-input-asset-configmap
 
         params:
           ### git (code repo) params
@@ -100,7 +68,7 @@ spec:
           ### kaniko params
           - name: kaniko-image
             # value: registry.example.com/tomcat-starter:$(tt.params.git-revision)
-            value: core.harbor.example.com/library/tomcat-starter:$(tt.params.git-revision)
+            value: harbor.example.com/library/tomcat-starter:$(tt.params.git-revision)
           - name: kaniko-dockerfile
             value: ./Dockerfile
           - name: kaniko-context
@@ -109,23 +77,26 @@ spec:
             value:
               # - --destination=registry.example.com/tomcat-starter:latest
               # - --insecure-registry=registry.example.com
-              - --destination=core.harbor.example.com/library/tomcat-starter:latest
-              - --insecure-registry=core.harbor.example.com
-              - --insecure-registry=sonatype-nexus-service.nexus-system:5003
-              - --registry-mirror=sonatype-nexus-service.nexus-system:5003
+              - --destination=harbor.example.com/library/tomcat-starter:latest
+              - --insecure-registry=harbor.example.com
+              - --insecure-registry=nexus.example.com
+              - --registry-mirror=nexus.example.com
               - --verbosity=info
           - name: kaniko-builder-image
             value: gcr.io/kaniko-project/executor:latest
 
           ### git (cd repo) params
           - name: git-cd-repo-url
-            value: http://gitlab.example.com:9480/root/myproject-cd.git
+            value: http://git.example.com/developer/my-project-cd.git
           - name: git-cd-revision
-            value: master
+            value: main
           - name: git-cd-subdir
             value: ""
 
           ### kustomize params
+          - name: kustomize-image
+            # value: registry.example.com/kustomize-cli:latest
+            value: harbor.example.com/library/kustomize-cli:latest
           - name: kustomize-base-dir
             value: ./
           - name: kustomize-script
@@ -135,7 +106,7 @@ spec:
               kustomize cfg tree base
               cd base
               # kustomize edit set image registry.example.com/tomcat-starter:$(tt.params.git-revision)
-              kustomize edit set image core.harbor.example.com/library/tomcat-starter:$(tt.params.git-revision)
+              kustomize edit set image harbor.example.com/library/tomcat-starter:$(tt.params.git-revision)
           - name: kustomize-args
             value:
               - ""
@@ -161,8 +132,8 @@ spec:
 
           ### argocd params
           - name: argocd-app-name
-            value: myproject
+            value: my-project
           - name: argocd-flags
             value: --insecure
           - name: argocd-version
-            value: v1.7.7
+            value: v2.1.0

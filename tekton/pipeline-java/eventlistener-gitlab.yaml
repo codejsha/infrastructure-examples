@@ -1,0 +1,20 @@
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: my-project-eventlistener
+spec:
+  serviceAccountName: git-ci-sa
+  triggers:
+    - name: git-push-event-trigger
+      interceptors:
+        - gitlab:
+            secretRef:
+              secretName: git-ci-secret
+              secretKey: secretToken
+            eventTypes:
+              - Push Hook
+      bindings:
+        - ref: git-triggerbinding
+      template:
+        ref: java-triggertemplate
