@@ -6,8 +6,8 @@
     "nexus.example.com"
   ],
   "registry-mirrors": [
-    "https://nexus.example.com",
-    "http://nexus.example.com"
+    "http://nexus.example.com",
+    "https://nexus.example.com"
   ],
   "debug": false,
   "experimental": false
