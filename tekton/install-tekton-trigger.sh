@@ -7,5 +7,7 @@ NAMESPACE="tekton-pipelines"
 kubectl create namespace ${NAMESPACE}
 
 # kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+# kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+
 TEKTON_TRIGGER_VERSION="0.15.0"
 kubectl apply --namespace ${NAMESPACE} --filename https://github.com/tektoncd/triggers/releases/download/v${TEKTON_TRIGGER_VERSION}/release.yaml

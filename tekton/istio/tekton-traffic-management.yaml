@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: tekton-gw
+  namespace: tekton-pipelines
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-tekton
+        protocol: HTTP
+      hosts:
+        - tekton.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tekton-vs
+  namespace: tekton-pipelines
+spec:
+  hosts:
+    - tekton.example.com
+  gateways:
+    - tekton-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: tekton-dashboard.tekton-pipelines.svc.cluster.local
+            port:
+              number: 9097
