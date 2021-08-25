@@ -16,7 +16,7 @@ spec:
     - name: shared-workspace
     - name: maven-settings
     - name: docker-config
-    - name: kube-config
+    - name: kubeconfig
     - name: input-asset
 
   params:
@@ -51,6 +51,8 @@ spec:
     - name: git-cd-subdir
       type: string
     ### kustomize params
+    - name: kustomize-image
+      type: string
     - name: kustomize-base-dir
       type: string
     - name: kustomize-script
@@ -154,6 +156,8 @@ spec:
       runAfter:
         - clone-cd-repo
       params:
+        - name: image
+          value: $(params.kustomize-image)
         - name: base-dir
           value: $(params.kustomize-base-dir)
         - name: script
@@ -165,7 +169,7 @@ spec:
         - name: source
           workspace: shared-workspace
         - name: kubeconfig-dir
-          workspace: kube-config
+          workspace: kubeconfig
 
     ### commit-cd-repo
     - name: commit-cd-repo

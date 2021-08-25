@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-config-configmap
+data:
+  config.json: |
+    {
+      "auths": {
+        "registry.example.com": {
+          "auth": "${REGISTRY_AUTH}"
+        },
+        "harbor.example.com": {
+          "auth": "${REGISTRY_AUTH}"
+        },
+        "nexus.example.com": {
+          "auth": "${REGISTRY_AUTH}"
+        }
+      }
+    }

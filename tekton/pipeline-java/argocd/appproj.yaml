@@ -1,8 +1,8 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: myproject
-  namespace: argocd
+  name: my-project
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -18,11 +18,10 @@ spec:
   roles:
     - name: my-role
       policies:
-        - p, proj:myproject:get, applications, get, myproject/*, allow
-        - p, proj:myproject:sync, applications, sync, myproject/*, allow
+        - p, proj:my-project:get, applications, get, my-project/*, allow
+        - p, proj:my-project:sync, applications, sync, my-project/*, allow
       groups:
         - my-oidc-group
       jwtTokens:
-        - name: cd-token
-          id: ${UUID}
-          iat: ${ISSUED_AT}
+        - id: ${UUID}
+          iat: ${SECONDS_SINCE}

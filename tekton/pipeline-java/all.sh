@@ -3,42 +3,78 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export ARGOCD_USERNAME="${ARGOCD_USERNAME}"
-export ARGOCD_PASSWORD="${ARGOCD_PASSWORD}"
+kubectl create namespace tekton-pipelines
+
+### task
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.4/git-clone.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/maven/0.2/maven.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.4/kaniko.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/kubernetes-actions/0.1/kubernetes-actions.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/istio-canary-release/0.1/istio-canary-release.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-cli/0.2/git-cli.yaml
+kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/argocd-task-sync-and-wait/0.1/argocd-task-sync-and-wait.yaml
+kubectl apply --namespace tekton-pipelines --filename kustomize/kustomize-cli-task.yaml
+
+### git ci
+cd git
+export GIT_CI_SECRET_TOKEN="${GIT_CI_SECRET_TOKEN}"
+envsubst < ./git-ci-secret.yaml > ./git-ci-secret-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename git-ci-secret-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename git-ci-serviceaccount.yaml
+kubectl apply --namespace tekton-pipelines --filename git-ci-role.yaml
+kubectl apply --namespace tekton-pipelines --filename git-ci-rolebinding.yaml
+cd ..
+
+### git cd
+cd git
+kubectl apply --namespace tekton-pipelines --filename git-cd-secret.yaml
+kubectl apply --namespace tekton-pipelines --filename git-cd-serviceaccount.yaml
+kubectl apply --namespace tekton-pipelines --filename git-cd-rolebinding.yaml
+kubectl apply --namespace tekton-pipelines --filename git-cd-input-asset-configmap.yaml
+cd ..
+
+### docker
+cd docker
+export REGISTRY_AUTH="$(echo -n admin:${PASSWORD} | base64)"
+envsubst < ./docker-configmap.yaml > ./docker-configmap-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename docker-configmap-temp.yaml
+cd ..
+
+### kubernetes
+cd kubernetes
+# kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap.yaml
+kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap-docker-desktop.yaml
+cd ..
+
+### argocd
+cd argocd
 export ARGOCD_AUTH_TOKEN="${ARGOCD_AUTH_TOKEN}"
-
-export GITLAB_CD_USERNAME="${GITLAB_CD_USERNAME}"
-export GITLAB_CD_PASSWORD="${GITLAB_CD_PASSWORD}"
-export GITLAB_CI_SECRET_TOKEN="${GITLAB_CI_SECRET_TOKEN}"
-
+export UUID="$(uuidgen)"
+export SECONDS_SINCE="$(date +%s)"
 envsubst < ./argocd-secret.yaml > ./argocd-secret-temp.yaml
-envsubst < ./gitlab-cd-secret.yaml > ./gitlab-cd-secret-temp.yaml
-envsubst < ./gitlab-ci-secret.yaml > ./gitlab-ci-secret-temp.yaml
+envsubst < ./appproj.yaml > ./appproj-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename argocd-secret-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename argocd-configmap.yaml
+kubectl apply --namespace argocd --filename appproj-temp.yaml
+kubectl apply --namespace argocd --filename app.yaml
+cd ..
 
-kubectl config set-context --current --namespace myproject
+### maven
+cd maven
+kubectl apply --namespace tekton-pipelines --filename maven-configmap.yaml
+cd ..
 
-kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.2/git-clone.yaml
-kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/maven/0.2/maven.yaml
-# kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/kaniko/0.1/kaniko.yaml
-kubectl apply --filename kaniko-0.1-custom-task.yaml
-# kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/kubernetes-actions/0.1/kubernetes-actions.yaml
-kubectl apply --filename kustomize-cli-task.yaml
-kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-cli/0.1/git-cli.yaml
-kubectl apply --filename https://raw.githubusercontent.com/tektoncd/catalog/master/task/argocd-task-sync-and-wait/0.1/argocd-task-sync-and-wait.yaml
+### tekton
+kubectl apply --namespace tekton-pipelines --filename pvc.yaml
+kubectl apply --namespace tekton-pipelines --filename pipeline.yaml
+kubectl apply --namespace tekton-pipelines --filename triggerbinding-cel.yaml
+# kubectl apply --namespace tekton-pipelines --filename triggerbinding-gitlab.yaml
+kubectl apply --namespace tekton-pipelines --filename triggertemplate.yaml
+kubectl apply --namespace tekton-pipelines --filename eventlistener-gitea.yaml
+# kubectl apply --namespace tekton-pipelines --filename eventlistener-gitlab.yaml
+# kubectl apply --namespace tekton-pipelines --filename eventlistener-ingress.yaml
 
-kubectl apply --filename docker-configmap.yaml
-kubectl apply --filename maven-configmap.yaml
-kubectl apply --filename input-asset-configmap.yaml
-kubectl apply --filename kube-configmap.yaml
-kubectl apply --filename argocd-configmap.yaml
-kubectl apply --filename argocd-secret-temp.yaml
-kubectl apply --filename gitlab-cd-secret-temp.yaml
-kubectl apply --filename gitlab-cd-serviceaccount.yaml
-kubectl apply --filename gitlab-ci-secret-temp.yaml
-kubectl apply --filename gitlab-ci-serviceaccount.yaml
-kubectl apply --filename gitlab-ci-role.yaml
-kubectl apply --filename gitlab-ci-rolebinding.yaml
-kubectl apply --filename gitlab-trigger.yaml
-kubectl apply --filename gitlab-eventlistener-ingress.yaml
-kubectl apply --filename pvc.yaml
-kubectl apply --filename pipeline.yaml
+### istio
+cd istio
+kubectl apply --namespace tekton-pipelines --filename eventlistener-traffic-management.yaml
+cd ..

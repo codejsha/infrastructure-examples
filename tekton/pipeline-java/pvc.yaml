@@ -1,13 +1,15 @@
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tkn-shared-workspace-pvc
+  name: takton-shared-workspace-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: standard
+      storage: 5Gi
+  # storageClassName: standard
+  # storageClassName: hostpath
   # storageClassName: rook-ceph-block
   # storageClassName: local-path
