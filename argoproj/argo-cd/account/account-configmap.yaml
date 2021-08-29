@@ -8,5 +8,5 @@ metadata:
     app.kubernetes.io/part-of: argocd
 data:
   accounts.developer: apiKey, login
-  accounts.devopsengineer: apiKey, login
-  accounts.devopsengineer.enabled: "false"
+  accounts.devopsuser: apiKey, login
+  # accounts.devopsuser.enabled: "false"
