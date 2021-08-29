@@ -2,20 +2,36 @@
 
 ### login/logout
 
+### secure
 argocd login argocd.example.com
+argocd logout argocd.example.com
+argocd login --username admin --password ${PASSWORD} --insecure argocd.example.com
+argocd login --username developer --password developer --insecure argocd.example.com
+
+### insecure
 argocd login --insecure argocd.example.com
+argocd logout --insecure argocd.example.com
+
+### plaintext
 argocd login --username admin --password ${PASSWORD} --grpc-web --insecure --plaintext argocd.example.com:80
 argocd login --username developer --password developer --grpc-web --insecure --plaintext argocd.example.com:80
-
-argocd logout argocd.example.com
-argocd logout --insecure argocd.example.com
+argocd logout --grpc-web --insecure --plaintext argocd.example.com:80
 
 ######################################################################
 
-### account
+### account password
 
+### secure
+argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
+argocd account update-password --account developer --current-password ${PASSWORD} --new-password developer
+
+### insecure
 argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD} --grpc-web --insecure --plaintext --server argocd.example.com:80
 argocd account update-password --account developer --current-password ${PASSWORD} --new-password developer --grpc-web --insecure --plaintext --server argocd.example.com:80
+
+######################################################################
+
+### account token
 
 argocd account generate-token --account developer
 
@@ -48,7 +64,7 @@ argocd proj allow-cluster-resource ${PROJECT} ${GROUP} ${KIND}
 ### role
 
 PROJECT="my-project"
-APP="my-project"
+APP="my-app"
 ROLE_NAME="my-role"
 
 argocd proj role create ${PROJECT} ${ROLE_NAME}
@@ -63,6 +79,13 @@ echo ${JWT_TOKEN}
 argocd proj role add-policy ${PROJECT} ${ROLE_NAME} --action get --permission allow --object ${APP}
 argocd proj role add-policy ${PROJECT} ${ROLE_NAME} --action sync --permission allow --object ${APP}
 argocd app get ${PROJECT} ${ROLE_NAME} --auth-token ${JWT_TOKEN}
+
+######################################################################
+
+### repository
+
+argocd login --username developer --password developer --grpc-web --insecure --plaintext argocd.example.com:80
+argocd repo add https://git.example.com/developer/my-project-cd.git --type git --username developer --password developer --grpc-web --insecure --server argocd.example.com:80
 
 ######################################################################
 
