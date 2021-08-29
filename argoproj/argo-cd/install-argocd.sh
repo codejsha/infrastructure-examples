@@ -3,7 +3,7 @@
 # set -o errexit
 # set -o errtrace
 
-ARGOCD_VERSION="v2.1.0"
+ARGOCD_VERSION="v2.1.1"
 
 kubectl create namespace argocd
 
