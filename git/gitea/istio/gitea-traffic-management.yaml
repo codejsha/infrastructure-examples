@@ -19,24 +19,26 @@ spec:
         protocol: HTTP
       hosts:
         - git.example.com
+    - port:
+        number: 443
+        name: https-gitea
+        protocol: HTTPS
+      hosts:
+        - git.example.com
+      tls:
+        credentialName: gitea-cert
+        mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: gitea-vs
+  namespace: gitea-system
 spec:
   hosts:
     - git.example.com
   gateways:
     - gitea-gw
-  http:
-    - match:
-        - port: 80
-      route:
-        - destination:
-            port:
-              number: 3000
-            host: my-gitea-http.gitea-system.svc.cluster.local
   tcp:
     - match:
         - port: 2022
@@ -45,3 +47,12 @@ spec:
             host: my-gitea-ssh.gitea-system.svc.cluster.local
             port:
               number: 2022
+  http:
+    - match:
+        - port: 80
+        - port: 443
+      route:
+        - destination:
+            port:
+              number: 3000
+            host: my-gitea-http.gitea-system.svc.cluster.local
