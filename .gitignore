@@ -42,4 +42,6 @@ nohup.*
 /prometheus/operator/kube-prometheus/
 /rook/operator/rook/
 /temp/
+/tomcat/kustomize/.git/
+/tomcat/kustomize/.gitattributes
 /tomcat/log4j/apache-log4j-*-bin/
