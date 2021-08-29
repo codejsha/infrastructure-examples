@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-helm repo add airflow-stable https://airflow-helm.github.io/charts
+helm repo add apache-airflow https://airflow.apache.org
 helm repo add apache-solr https://solr.apache.org/charts
 helm repo add appscode https://charts.appscode.com/stable
 helm repo add artifact-hub https://artifacthub.github.io/hub/chart
@@ -30,6 +30,7 @@ helm repo add jfrog https://charts.jfrog.io
 helm repo add klustair https://klustair.github.io/klustair-helm
 helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 helm repo add minio https://helm.min.io
+helm repo add nats https://nats-io.github.io/k8s/helm/charts
 helm repo add oteemocharts https://oteemo.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add renovate https://docs.renovatebot.com/helm-charts
