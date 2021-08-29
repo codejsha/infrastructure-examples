@@ -27,7 +27,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: harbor-http-vs
+  name: harbor-vs
   namespace: harbor-system
 spec:
   hosts:
@@ -42,17 +42,6 @@ spec:
             host: harbor.harbor-system.svc.cluster.local
             port:
               number: 80
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: harbor-https-vs
-  namespace: harbor-system
-spec:
-  hosts:
-    - harbor.example.com
-  gateways:
-    - harbor-gw
   tls:
     - match:
         - port: 443
@@ -84,14 +73,3 @@ spec:
             host: harbor.harbor-system.svc.cluster.local
             port:
               number: 4443
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: harbor-dr
-  namespace: harbor-system
-spec:
-  host: harbor.harbor-system.svc.cluster.local
-  trafficPolicy:
-    tls:
-      mode: DISABLE

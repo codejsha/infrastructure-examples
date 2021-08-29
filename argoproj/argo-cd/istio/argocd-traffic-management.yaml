@@ -2,52 +2,52 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: nexus-gw
-  namespace: nexus-system
+  name: argocd-gw
+  namespace: argocd
 spec:
   selector:
     istio: ingressgateway
   servers:
     - port:
         number: 80
-        name: http-nexus
+        name: http-argocd
         protocol: HTTP
       hosts:
-        - nexus.example.com
+        - argocd.example.com
     - port:
         number: 443
-        name: https-nexus
+        name: https-argocd
         protocol: HTTPS
       hosts:
-        - nexus.example.com
+        - argocd.example.com
       tls:
         mode: PASSTHROUGH
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: nexus-vs
-  namespace: nexus-system
+  name: argocd-vs
+  namespace: argocd
 spec:
   hosts:
-    - nexus.example.com
+    - argocd.example.com
   gateways:
-    - nexus-gw
+    - argocd-gw
   http:
     - match:
         - port: 80
       route:
         - destination:
-            host: my-nexus-nexus-repository-manager.nexus-system.svc.cluster.local
+            host: argocd-server.argocd.svc.cluster.local
             port:
-              number: 8081
+              number: 80
   tls:
     - match:
         - port: 443
           sniHosts:
-            - nexus.example.com
+            - argocd.example.com
       route:
         - destination:
-            host: my-nexus-nexus-repository-manager.nexus-system.svc.cluster.local
+            host: argocd-server.argocd.svc.cluster.local
             port:
-              number: 8081
+              number: 443
