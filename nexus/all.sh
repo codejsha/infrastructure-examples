@@ -21,6 +21,7 @@ export AWS_SECRET_KEY="minio123"
 
 ### create-blobstore.sh ${BLOBSTORE_NAME}
 bash ./create-blobstore.sh "nexus-maven-central"
+bash ./create-blobstore.sh "nexus-maven-confluent"
 bash ./create-blobstore.sh "nexus-docker-hub"
 # bash ./create-blobstore.sh "nexus-docker-registry"
 # bash ./create-blobstore.sh "nexus-docker-kube-registry"
@@ -43,9 +44,10 @@ cd repository/maven
 
 ### create-maven-proxy-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REMOTE_URL}
 bash ./create-maven-proxy-repo.sh "maven-central" "nexus-maven-central" "https://repo1.maven.org/maven2/"
+bash ./create-maven-proxy-repo.sh "maven-confluent" "nexus-maven-confluent" "https://packages.confluent.io/maven/"
 
 ### update-maven-group-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REPOSITORY_MEMBER_NAMES}
-bash ./update-maven-group-repo.sh "maven-public" "default" "maven-central\", \"maven-releases\", \"maven-snapshots"
+bash ./update-maven-group-repo.sh "maven-public" "default" "maven-central\", \"maven-confluent\", \"maven-releases\", \"maven-snapshots"
 
 cd ../../
 
@@ -99,6 +101,7 @@ cd ..
 
 # cd repository
 # bash ./delete-repository.sh "maven-central"
+# bash ./delete-repository.sh "maven-confluent"
 # bash ./delete-repository.sh "docker-hub"
 # bash ./delete-repository.sh "docker-registry"
 # bash ./delete-repository.sh "docker-harbor"
@@ -109,6 +112,7 @@ cd ..
 
 # cd blobstore
 # bash ./delete-blobstore.sh "nexus-maven-central"
+# bash ./delete-blobstore.sh "nexus-maven-confluent"
 # bash ./delete-blobstore.sh "nexus-docker-hub"
 # bash ./delete-blobstore.sh "nexus-docker-registry"
 # bash ./delete-blobstore.sh "nexus-docker-kube-registry"
