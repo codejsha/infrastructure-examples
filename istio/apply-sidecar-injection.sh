@@ -13,3 +13,6 @@ kubectl get namespace -L istio-injection
 # kubectl apply --filename <(istioctl kube-inject -f httpbin.yaml)
 
 istioctl proxy-status
+
+### disable sidecar injection
+# kubectl label namespace ${NAMESPACE} istio-injection-
