@@ -11,7 +11,7 @@ data:
               xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
         <servers>
             <server>
-                <id>nexus</id>
+                <id>nexus-public</id>
                 <username>developer</username>
                 <password>developer</password>
             </server>
@@ -28,7 +28,8 @@ data:
         </servers>
         <mirrors>
             <mirror>
-                <id>nexus</id>
+                <name>nexus-public</name>
+                <id>nexus-public</id>
                 <mirrorOf>*</mirrorOf>
                 <url>http://nexus.example.com/repository/maven-public/</url>
             </mirror>

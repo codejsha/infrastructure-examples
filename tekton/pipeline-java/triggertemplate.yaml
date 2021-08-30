@@ -16,12 +16,12 @@ spec:
       spec:
         pipelineRef:
           name: java-pipeline
-        podTemplate:
-          dnsConfig:
-            nameservers:
-              # - 10.10.10.10
-              - 8.8.8.8
-              - 168.126.63.1
+        # podTemplate:
+        #   dnsConfig:
+        #     nameservers:
+        #       - 10.10.10.10
+        #       - 8.8.8.8
+        #       - 168.126.63.1
         taskRunSpecs:
           - pipelineTaskName: clone-ci-repo
             taskServiceAccountName: git-ci-sa
@@ -36,13 +36,19 @@ spec:
           - name: maven-settings
             configMap:
               name: maven-settings-configmap
-          - name: docker-config
+          - name: dockerconfig
             configMap:
-              name: docker-config-configmap
+              name: dockerconfig-configmap
           - name: kubeconfig
             configMap:
               name: kubeconfig-configmap
-          - name: input-asset
+          - name: git-ci-basic-auth
+            secret:
+              secretName: git-ci-secret
+          - name: git-cd-basic-auth
+            secret:
+              secretName: git-cd-secret
+          - name: git-cd-input-asset
             emptyDir: {}
             # configMap:
             #   name: git-cd-input-asset-configmap
@@ -61,7 +67,7 @@ spec:
             value:
               # - -DskipTests
               - clean
-              - deploy
+              - package
           - name: maven-context-dir
             value: ./
 
@@ -75,19 +81,18 @@ spec:
             value: ./
           - name: kaniko-extra-args
             value:
-              # - --destination=registry.example.com/tomcat-starter:latest
-              # - --insecure-registry=registry.example.com
-              - --destination=harbor.example.com/library/tomcat-starter:latest
-              - --insecure-registry=harbor.example.com
               - --insecure-registry=nexus.example.com
+              # - --insecure-registry=registry.example.com
+              - --insecure-registry=harbor.example.com
               - --registry-mirror=nexus.example.com
+              - --registry-mirror=harbor.example.com
               - --verbosity=info
           - name: kaniko-builder-image
             value: gcr.io/kaniko-project/executor:latest
 
-          ### git (cd repo) params
+          ### git (deploy repo) params
           - name: git-cd-repo-url
-            value: http://git.example.com/developer/my-project-cd.git
+            value: http://git.example.com/developer/my-app-cd.git
           - name: git-cd-revision
             value: main
           - name: git-cd-subdir
@@ -97,25 +102,21 @@ spec:
           - name: kustomize-image
             # value: registry.example.com/kustomize-cli:latest
             value: harbor.example.com/library/kustomize-cli:latest
-          - name: kustomize-base-dir
+          - name: kustomize-context-dir
             value: ./
+          - name: kustomize-overlay-dir
+            value: ./base
           - name: kustomize-script
             value: |
 
-              tree base
-              kustomize cfg tree base
-              cd base
               # kustomize edit set image registry.example.com/tomcat-starter:$(tt.params.git-revision)
               kustomize edit set image harbor.example.com/library/tomcat-starter:$(tt.params.git-revision)
-          - name: kustomize-args
-            value:
-              - ""
 
-          ### git (cd repo) commit params
+          ### git (deploy repo) commit params
           - name: git-cd-user-name
-            value: root
+            value: developer
           - name: git-cd-user-email
-            value: admin@example.com
+            value: developer@example.com
           - name: git-cd-script
             value: |
 
@@ -124,16 +125,23 @@ spec:
 
               git branch ${RELEASE_VERSION}
               git checkout ${RELEASE_VERSION}
+
               # cp $(workspaces.input.path)/* $(workspaces.source.path)
               git add .
               git status
               git commit -m "${RELEASE_VERSION}" --allow-empty
+
+              git remote set-url origin $(cat ${PARAM_USER_HOME}/.git-credentials)
+              git remote -v
               git push origin ${RELEASE_VERSION}
 
-          ### argocd params
+          ### argocd (set and sync) params
           - name: argocd-app-name
-            value: my-project
-          - name: argocd-flags
+            value: my-app
+          - name: argocd-set-flags
+            value:
+              - --insecure
+          - name: argocd-sync-flags
             value: --insecure
           - name: argocd-version
-            value: v2.1.0
+            value: latest

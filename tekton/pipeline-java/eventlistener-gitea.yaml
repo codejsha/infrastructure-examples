@@ -2,7 +2,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: my-project-eventlistener
+  name: my-app-eventlistener
 spec:
   serviceAccountName: git-ci-sa
   triggers:
@@ -15,11 +15,11 @@ spec:
               value: "header.match('X-Gitea-Event', 'push')"
             - name: "overlays"
               value:
-                - key: "body.repo.url"
+                - key: "repo.url"
                   expression: "body.repository.clone_url"
-                - key: "body.ref"
+                - key: "ref"
                   expression: "body.ref"
-                - key: "body.after"
+                - key: "after"
                   expression: "body.after"
       bindings:
         - ref: git-triggerbinding

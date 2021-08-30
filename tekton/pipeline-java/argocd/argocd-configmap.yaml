@@ -7,4 +7,5 @@ metadata:
     app.kubernetes.io/name: argocd-env-configmap
     app.kubernetes.io/part-of: argocd
 data:
-  ARGOCD_SERVER: argocd.example.com
+  # ARGOCD_SERVER: argocd.example.com:443
+  ARGOCD_SERVER: argocd-server.argocd.svc:443

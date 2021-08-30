@@ -1,3 +1,4 @@
+---
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
@@ -5,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/version: "0.1"
   annotations:
-    tekton.dev/pipelines.minVersion: "0.27.0"
+    tekton.dev/pipelines.minVersion: "0.27.2"
     tekton.dev/tags: cli, kubectl, kustomize
     tekton.dev/displayName: "kustomize cli"
 spec:
@@ -15,31 +16,34 @@ spec:
     - name: source
     - name: kubeconfig-dir
   params:
-    - name: image
+    - name: IMAGE
       description: Kustomize docker image
-      default: k8s.gcr.io/kustomize/kustomize:v3.8.7
-    - name: base-dir
-      description: The base directory
+      default: harbor.example.com/library/kustomize-cli:latest
+    - name: CONTEXT_DIR
+      description: The context directory
       type: string
       default: ./
-    - name: script
+    - name: OVERLAY_DIR
+      description: The overlay directory
+      type: string
+      default: ./base
+    - name: SCRIPT
       description: The Kustomize CLI script to run
       type: string
       default: "kustomize $@"
-    - name: args
-      description: The Kustomize CLI arguments to run
-      type: array
-      default:
-        - "help"
   steps:
     - name: kustomize
-      image: $(params.image)
-      workingDir: $(workspaces.source.path)/$(params.base-dir)
+      image: $(params.IMAGE)
+      workingDir: $(workspaces.source.path)/$(params.CONTEXT_DIR)
       script: |
         #!/bin/bash -x
         if [[ -f $(workspaces.kubeconfig-dir.path)/kubeconfig ]]; then
           export KUBECONFIG=$(workspaces.kubeconfig-dir.path)/kubeconfig
         fi
-        $(params.script)
-      args:
-        - "$(params.args)"
+        kustomize version
+
+        kustomize cfg tree $(params.OVERLAY_DIR)
+        kustomize cfg count $(params.OVERLAY_DIR)
+
+        cd $(params.OVERLAY_DIR)
+        $(params.SCRIPT)
