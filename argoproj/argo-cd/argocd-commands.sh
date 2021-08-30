@@ -25,7 +25,7 @@ argocd logout --grpc-web --insecure --plaintext argocd.example.com:80
 argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
 argocd account update-password --account developer --current-password ${PASSWORD} --new-password developer
 
-### insecure
+### plaintext
 argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD} --grpc-web --insecure --plaintext --server argocd.example.com:80
 argocd account update-password --account developer --current-password ${PASSWORD} --new-password developer --grpc-web --insecure --plaintext --server argocd.example.com:80
 
@@ -84,8 +84,7 @@ argocd app get ${PROJECT} ${ROLE_NAME} --auth-token ${JWT_TOKEN}
 
 ### repository
 
-argocd login --username developer --password developer --grpc-web --insecure --plaintext argocd.example.com:80
-argocd repo add https://git.example.com/developer/my-project-cd.git --type git --username developer --password developer --grpc-web --insecure --server argocd.example.com:80
+argocd repo add https://git.example.com/developer/my-app-cd.git --type git --username developer --password developer --insecure --server argocd.example.com
 
 ######################################################################
 
