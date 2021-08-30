@@ -1,3 +1,4 @@
+---
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
@@ -11,13 +12,16 @@ spec:
       - clone-cd-repo (git-clone)
       - kustomize-cd-repo (kustomize-cli)
       - commit-cd-repo (git-cli)
+      - set-app (argocd-set-app)
       - sync-app (argocd-task-sync-and-wait)
   workspaces:
     - name: shared-workspace
     - name: maven-settings
-    - name: docker-config
+    - name: dockerconfig
     - name: kubeconfig
-    - name: input-asset
+    - name: git-ci-basic-auth
+    - name: git-cd-basic-auth
+    - name: git-cd-input-asset
 
   params:
     ### git (code repo) params
@@ -43,7 +47,7 @@ spec:
       type: array
     - name: kaniko-builder-image
       type: string
-    ### git (cd repo) params
+    ### git (deploy repo) params
     - name: git-cd-repo-url
       type: string
     - name: git-cd-revision
@@ -53,23 +57,25 @@ spec:
     ### kustomize params
     - name: kustomize-image
       type: string
-    - name: kustomize-base-dir
+    - name: kustomize-context-dir
+      type: string
+    - name: kustomize-overlay-dir
       type: string
     - name: kustomize-script
       type: string
-    - name: kustomize-args
-      type: array
-    ### git (cd repo) commit params
+    ### git (deploy repo) commit params
     - name: git-cd-user-name
       type: string
     - name: git-cd-user-email
       type: string
     - name: git-cd-script
       type: string
-    ### argocd params
+    ### argocd (set and sync) params
     - name: argocd-app-name
       type: string
-    - name: argocd-flags
+    - name: argocd-set-flags
+      type: array
+    - name: argocd-sync-flags
       type: string
     - name: argocd-version
       type: string
@@ -89,6 +95,8 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
+        - name: basic-auth
+          workspace: git-ci-basic-auth
 
     ### build-source
     - name: build-source
@@ -114,11 +122,6 @@ spec:
         name: kaniko
       runAfter:
         - build-source
-      workspaces:
-        - name: source
-          workspace: shared-workspace
-        - name: docker-config
-          workspace: docker-config
       params:
         - name: IMAGE
           value: $(params.kaniko-image)
@@ -131,6 +134,11 @@ spec:
             - $(params.kaniko-extra-args)
         - name: BUILDER_IMAGE
           value: $(params.kaniko-builder-image)
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: dockerconfig
+          workspace: dockerconfig
 
     ### clone-cd-repo
     - name: clone-cd-repo
@@ -148,6 +156,8 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
+        - name: basic-auth
+          workspace: git-cd-basic-auth
 
     ### kustomize-cd-repo
     - name: kustomize-cd-repo
@@ -156,15 +166,14 @@ spec:
       runAfter:
         - clone-cd-repo
       params:
-        - name: image
+        - name: IMAGE
           value: $(params.kustomize-image)
-        - name: base-dir
-          value: $(params.kustomize-base-dir)
-        - name: script
+        - name: CONTEXT_DIR
+          value: $(params.kustomize-context-dir)
+        - name: OVERLAY_DIR
+          value: $(params.kustomize-overlay-dir)
+        - name: SCRIPT
           value: $(params.kustomize-script)
-        - name: args
-          value:
-            - $(params.kustomize-args)
       workspaces:
         - name: source
           workspace: shared-workspace
@@ -177,11 +186,6 @@ spec:
         name: git-cli
       runAfter:
         - kustomize-cd-repo
-      workspaces:
-        - name: source
-          workspace: shared-workspace
-        - name: input
-          workspace: input-asset
       params:
         - name: GIT_USER_NAME
           value: $(params.git-cd-user-name)
@@ -189,19 +193,43 @@ spec:
           value: $(params.git-cd-user-email)
         - name: GIT_SCRIPT
           value: $(params.git-cd-script)
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+        - name: basic-auth
+          workspace: git-cd-basic-auth
+        - name: input
+          workspace: git-cd-input-asset
+
+    ### set-app
+    - name: set-app
+      taskRef:
+        name: argocd-set-app
+      runAfter:
+        - commit-cd-repo
+      params:
+        - name: APPLICATION_NAME
+          value: $(params.argocd-app-name)
+        - name: FLAGS
+          value:
+            - --revision
+            - $(tasks.commit-cd-repo.results.commit)
+            - $(params.argocd-set-flags)
+        - name: ARGOCD_VERSION
+          value: $(params.argocd-version)
 
     ### sync-app
     - name: sync-app
       taskRef:
         name: argocd-task-sync-and-wait
       runAfter:
-        - commit-cd-repo
+        - set-app
       params:
         - name: application-name
           value: $(params.argocd-app-name)
         - name: revision
           value: $(tasks.commit-cd-repo.results.commit)
         - name: flags
-          value: $(params.argocd-flags)
+          value: $(params.argocd-sync-flags)
         - name: argocd-version
           value: $(params.argocd-version)

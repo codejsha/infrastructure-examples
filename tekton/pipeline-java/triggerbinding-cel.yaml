@@ -6,8 +6,8 @@ metadata:
 spec:
   params:
     - name: git-repo-url
-      value: $(body.repo.url)
+      value: $(extensions.repo.url)
     - name: git-ref
-      value: $(body.ref)
+      value: $(extensions.ref)
     - name: git-revision
-      value: $(body.after)
+      value: $(extensions.after)

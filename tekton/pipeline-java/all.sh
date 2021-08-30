@@ -14,12 +14,11 @@ kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercont
 kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-cli/0.2/git-cli.yaml
 kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/argocd-task-sync-and-wait/0.1/argocd-task-sync-and-wait.yaml
 kubectl apply --namespace tekton-pipelines --filename kustomize/kustomize-cli-task.yaml
+kubectl apply --namespace tekton-pipelines --filename argocd/argocd-set-task.yaml
 
 ### git ci
 cd git
-export GIT_CI_SECRET_TOKEN="${GIT_CI_SECRET_TOKEN}"
-envsubst < ./git-ci-secret.yaml > ./git-ci-secret-temp.yaml
-kubectl apply --namespace tekton-pipelines --filename git-ci-secret-temp.yaml
+kubectl apply --namespace tekton-pipelines --filename git-ci-secret.yaml
 kubectl apply --namespace tekton-pipelines --filename git-ci-serviceaccount.yaml
 kubectl apply --namespace tekton-pipelines --filename git-ci-role.yaml
 kubectl apply --namespace tekton-pipelines --filename git-ci-rolebinding.yaml
@@ -43,20 +42,19 @@ cd ..
 ### kubernetes
 cd kubernetes
 # kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap.yaml
-kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap-docker-desktop.yaml
+# kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap-temp.yaml
+# kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap-docker-desktop.yaml
+kubectl apply --namespace tekton-pipelines --filename kubeconfig-configmap-docker-desktop-temp.yaml
 cd ..
 
 ### argocd
 cd argocd
 export ARGOCD_AUTH_TOKEN="${ARGOCD_AUTH_TOKEN}"
-export UUID="$(uuidgen)"
-export SECONDS_SINCE="$(date +%s)"
 envsubst < ./argocd-secret.yaml > ./argocd-secret-temp.yaml
-envsubst < ./appproj.yaml > ./appproj-temp.yaml
 kubectl apply --namespace tekton-pipelines --filename argocd-secret-temp.yaml
 kubectl apply --namespace tekton-pipelines --filename argocd-configmap.yaml
-kubectl apply --namespace argocd --filename appproj-temp.yaml
-kubectl apply --namespace argocd --filename app.yaml
+kubectl apply --namespace argocd --filename application-project.yaml
+kubectl apply --namespace argocd --filename application.yaml
 cd ..
 
 ### maven
