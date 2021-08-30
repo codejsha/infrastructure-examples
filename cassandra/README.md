@@ -2,15 +2,9 @@
 
 ## Kubernetes (Helm chart)
 
-```bash
-bash ./helm-install-cassandra.sh
-```
+- https://artifacthub.io/packages/helm/bitnami/cassandra
 
 ## Kubernetes (Operator)
 
 - https://operatorhub.io/operator/cassandra-operator
 - https://github.com/instaclustr/cassandra-operator
-
-```bash
-bash ./install-cassandra-operator.sh
-```

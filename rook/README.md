@@ -6,29 +6,6 @@
 - https://rook.github.io/docs/rook/v1.6/ceph-dashboard.html
 - https://rook.io/docs/rook/v1.6/ceph-upgrade.html
 
-## Install
-
-### Kubernetes
-
-```bash
-bash ./install-rook-ceph-operator.sh
-bash ./install-rook-ceph-cluster-operator.sh
-```
-
-### minikube
-
-```bash
-bash ./install-rook-ceph-operator.sh
-bash ./install-rook-ceph-cluster-minikube-operator.sh
-```
-
-### OpenShift
-
-```bash
-bash ./install-rook-ceph-openshift-operator.sh
-bash ./install-rook-ceph-cluster-openshift-operator.sh
-```
-
 ## Cluster
 
 `rook/cluster/examples/kubernetes/ceph/cluster.yaml`
