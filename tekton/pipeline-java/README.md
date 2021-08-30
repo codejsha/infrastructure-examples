@@ -69,21 +69,22 @@ kustomize
 ## Application details
 
 ```txt
-Name:               my-project
+Name:               my-app
 Project:            my-project
 Server:             https://kubernetes.docker.internal:6443
 Namespace:          my-project
-URL:                https://argocd.example.com/applications/my-project
-Repo:               http://gitlab.example.com:9480/root/my-project-cd.git
+URL:                https://argocd.example.com/applications/my-app
+Repo:               https://git.example.com/developer/my-app-cd.git
 Target:             HEAD
 Path:               base
 SyncWindow:         Sync Allowed
 Sync Policy:        Automated (Prune)
-Sync Status:        Synced to HEAD (3ec1d74)
-Health Status:      Healthy
+Sync Status:        Synced to HEAD (4576b16)
+Health Status:      Progressing
 
-GROUP              KIND        NAMESPACE   NAME            STATUS  HEALTH   HOOK  MESSAGE
-                   Service     my-project  tomcat-starter  Synced  Healthy        service/tomcat-starter created
-apps               Deployment  my-project  tomcat-starter  Synced  Healthy        deployment.apps/tomcat-starter created
-networking.k8s.io  Ingress     my-project  tomcat-starter  Synced  Healthy        ingress.networking.k8s.io/tomcat-starter created
+GROUP              KIND        NAMESPACE   NAME            STATUS  HEALTH       HOOK  MESSAGE
+                   ConfigMap   my-project  server-config   Synced                     configmap/server-config unchanged
+                   Service     my-project  tomcat-starter  Synced  Healthy            service/tomcat-starter unchanged
+apps               Deployment  my-project  tomcat-starter  Synced  Healthy            deployment.apps/tomcat-starter configured
+networking.k8s.io  Ingress     my-project  tomcat-starter  Synced  Healthy            ingress.networking.k8s.io/tomcat-starter configured
 ```
