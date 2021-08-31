@@ -6,8 +6,8 @@ commonLabels:
   owner: developer
 resources:
 - deployment.yaml
-- ingress.yaml
 - service.yaml
+# - ingress.yaml
 
 images:
 - name: harbor.example.com/library/tomcat-starter
