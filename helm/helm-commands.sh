@@ -18,6 +18,9 @@ helm repo update
 helm search repo ingress-nginx/ingress-nginx
 helm search repo --versions ingress-nginx/ingress-nginx
 
+### health check
+curl --insecure --verbose http://chartmuseum.example.com/health
+
 ######################################################################
 
 ### plugin
