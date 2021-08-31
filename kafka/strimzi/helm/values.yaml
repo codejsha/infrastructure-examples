@@ -1,3 +1,4 @@
+---
 watchNamespaces: []
 watchAnyNamespace: false
 
@@ -12,10 +13,16 @@ logLevel: ${env:STRIMZI_LOG_LEVEL:-INFO}
 fullReconciliationIntervalMs: 120000
 operationTimeoutMs: 300000
 kubernetesServiceDnsDomain: cluster.local
+featureGates: ""
 
 tolerations: []
 affinity: {}
+annotations: {}
+labels: {}
 nodeSelector: {}
+
+podSecurityContext: {}
+securityContext: {}
 
 zookeeper:
   image:
@@ -30,12 +37,6 @@ kafka:
     name: kafka
     tagPrefix: latest
 kafkaConnect:
-  image:
-    registry: quay.io
-    repository: strimzi
-    name: kafka
-    tagPrefix: latest
-kafkaConnects2i:
   image:
     registry: quay.io
     repository: strimzi
@@ -76,7 +77,7 @@ kafkaBridge:
     registry: quay.io
     repository: strimzi
     name: kafka-bridge
-    tag: 0.19.0
+    tag: latest
 kafkaExporter:
   image:
     registry: quay.io
@@ -107,6 +108,12 @@ tlsSidecarCruiseControl:
     repository: strimzi
     name: kafka
     tagPrefix: latest
+kanikoExecutor:
+  image:
+    registry: quay.io
+    repository: strimzi
+    name: kaniko-executor
+    tag: latest
 resources:
   limits:
     memory: 384Mi
@@ -125,3 +132,6 @@ imageRegistryOverride: ""
 imageRepositoryOverride: ""
 imageTagOverride: ""
 createGlobalResources: true
+labelsExclusionPattern: ""
+generateNetworkPolicy: true
+connectBuildTimeoutMs: 300000

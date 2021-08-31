@@ -12,7 +12,7 @@ NAMESPACE="kafka-system"
 helm upgrade --install my-kafka-operator \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --version 0.20.1 \
+    --version 0.25.0 \
     strimzi/strimzi-kafka-operator
 
     # --values values.yaml \
