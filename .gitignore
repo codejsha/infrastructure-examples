@@ -44,4 +44,5 @@ nohup.*
 /temp/
 /tomcat/kustomize/.git/
 /tomcat/kustomize/.gitattributes
+/tomcat/kustomize/.gitignore
 /tomcat/log4j/apache-log4j-*-bin/
