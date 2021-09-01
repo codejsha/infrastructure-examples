@@ -18,7 +18,7 @@ function install_ntp_with_yum {
 }
 
 function install_ntp_with_apt {
-    sudo apt-get install ntp
+    sudo apt-get install -y ntp
 }
 
 ######################################################################
