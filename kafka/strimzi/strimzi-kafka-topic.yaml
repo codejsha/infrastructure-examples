@@ -7,3 +7,4 @@ metadata:
 spec:
   partitions: 3
   replicas: 1
+  # config:
