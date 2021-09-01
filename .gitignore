@@ -24,6 +24,7 @@ nohup.*
 /helm/chartmuseum/chartmuseum/
 /istio/addon/certs/
 /istio/addon/istio/
+kafka/apicurio/helm/apicurio-registry
 /kafka/cmak/cmak-*/
 /kafka/burrow/docker-compose/Burrow/
 /kafka/confluent/helper/env/
