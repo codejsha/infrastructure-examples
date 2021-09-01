@@ -1,0 +1,7 @@
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 30004
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
