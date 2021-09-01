@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: apicurio-gw
+  namespace: apicurio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-apicurio
+        protocol: HTTP
+      hosts:
+        - apicurio.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: apicurio-vs
+  namespace: apicurio-system
+spec:
+  hosts:
+    - apicurio.example.com
+  gateways:
+    - apicurio-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: my-registry-service.apicurio-system.svc.cluster.local
+            port:
+              number: 8080
