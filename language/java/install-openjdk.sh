@@ -17,9 +17,9 @@ function install_openjdk_with_yum {
 }
 
 function install_openjdk_with_apt {
-    sudo apt-get install openjdk-11-jdk
-    sudo apt-get install openjdk-8-jdk
-    sudo apt-get install openjdk-7-jdk
+    sudo apt-get install -y openjdk-11-jdk
+    sudo apt-get install -y openjdk-8-jdk
+    sudo apt-get install -y openjdk-7-jdk
 }
 
 ######################################################################

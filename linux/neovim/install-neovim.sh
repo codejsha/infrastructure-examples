@@ -12,8 +12,8 @@ function install_neovim_with_yum {
 }
 
 function install_neovim_with_apt {
-    sudo apt-get install neovim
-    # sudo apt-get install python3-neovim
+    sudo apt-get install -y neovim
+    # sudo apt-get install -y python3-neovim
 }
 
 function install_neovim_with_download {
