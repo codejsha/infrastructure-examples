@@ -1,6 +1,6 @@
 # kafka aliases
 
-source <(confluent completion bash)
+# source <(confluent completion bash)
 
 function kafkacat() { echo "+ kafkacat ${@}">&2; command kafkacat ${@}; }
 
@@ -10,10 +10,10 @@ alias kafkacat="docker container run -it --network host edenhill/kafkacat:1.6.0"
 
 # by helper
 
-CONFLUENT_HOME="/usr/local/confluent"
-export CONFLUENT_HOME
-PATH="${PATH}:${CONFLUENT_HOME}/bin"
-export PATH
+# CONFLUENT_HOME="/usr/local/confluent"
+# export CONFLUENT_HOME
+# PATH="${PATH}:${CONFLUENT_HOME}/bin"
+# export PATH
 
 # JAVA_HOME=/usr/lib/jvm/java-1.8.0
 # export JAVA_HOME
