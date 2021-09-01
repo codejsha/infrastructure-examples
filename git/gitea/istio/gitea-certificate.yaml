@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitea-cert
+  namespace: istio-system
+spec:
+  secretName: gitea-cert
+  commonName: git.example.com
+  dnsNames:
+    ### ingress domain
+    - "git.example.com"
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: selfsigned-cluster-issuer
