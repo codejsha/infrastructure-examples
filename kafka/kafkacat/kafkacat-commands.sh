@@ -28,5 +28,8 @@ kafkacat -b localhost:9092 -t pageviews -s avro -r http://localhost:8081 -c10
 kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081
 kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081 -c10
 
-kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G mygroup pageviews users
-kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -c10 -G mygroup pageviews users
+kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews
+kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users
+kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users -c10
+
+kafkacat -b kubernetes.docker.internal:30000 -s avro -r http://kubernetes.docker.internal:30004 -G my-group my-avro-topic
