@@ -12,6 +12,6 @@ NAMESPACE="kafka-system"
 helm upgrade --install my-nifi \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --values values-nifi.yaml \
+    --values values.yaml \
     --version 0.6.1 \
     cetic/nifi
