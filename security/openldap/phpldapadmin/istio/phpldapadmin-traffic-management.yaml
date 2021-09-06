@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ldapadmin-gw
+  namespace: ldap-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-ldapadmin
+        protocol: HTTP
+      hosts:
+        - ldapadmin.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ldapadmin-vs
+  namespace: ldap-system
+spec:
+  hosts:
+    - ldapadmin.example.com
+  gateways:
+    - ldapadmin-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: my-ldapadmin-phpldapadmin.ldap-system.svc.cluster.local
+            port:
+              number: 80

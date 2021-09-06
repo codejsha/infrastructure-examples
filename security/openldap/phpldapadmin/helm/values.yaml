@@ -1,0 +1,32 @@
+---
+env:
+  PHPLDAPADMIN_LDAP_HOSTS: "my-ldap-service.ldap-system.svc.cluster.local"
+  PHPLDAPADMIN_HTTPS: "false"
+  PHPLDAPADMIN_TRUST_PROXY_SSL: "true"
+
+replicaCount: 1
+
+image:
+  repository: osixia/phpldapadmin
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  annotations: {}
+
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  # hosts:
+  # - phpldapadmin.example.org
+  #
+  tls: []
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
