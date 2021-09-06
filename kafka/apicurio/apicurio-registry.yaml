@@ -3,8 +3,14 @@ apiVersion: registry.apicur.io/v1
 kind: ApicurioRegistry
 metadata:
   name: my-registry
+  namespace: apicurio-system
 spec:
   configuration:
     persistence: "kafkasql"
     kafkasql:
-      bootstrapServers: "my-cluster-kafka-bootstrap.kafka-system.svc:9092"
+      bootstrapServers: "my-cluster-kafka-bootstrap.kafka-system.svc.cluster.local:9092"
+      # security:
+      #   scram:
+    logLevel: INFO
+  deployment:
+    replicas: 1
