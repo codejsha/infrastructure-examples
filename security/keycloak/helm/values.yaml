@@ -1,0 +1,85 @@
+---
+auth:
+  createAdminUser: true
+  adminUser: admin
+  adminPassword: "${PASSWORD}"
+  managementUser: manager
+  managementPassword: "${PASSWORD}"
+  tls:
+    enabled: false
+
+serviceDiscovery:
+  enabled: false
+
+cache:
+  ownersCount: 1
+  authOwnersCount: 1
+
+configuration: ""
+existingConfigmap: ""
+extraStartupArgs: ""
+
+keycloakConfigCli:
+  enabled: false
+
+replicaCount: 1
+
+containerPorts:
+  http: 8080
+  https: 8443
+
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+
+resources:
+  limits: {}
+  requests: {}
+
+podAffinityPreset: ""
+podAntiAffinityPreset: soft
+nodeAffinityPreset:
+  type: ""
+  key: ""
+  values: []
+affinity: {}
+nodeSelector: {}
+tolerations: []
+podLabels: {}
+podAnnotations: {}
+priorityClassName: ""
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
+networkPolicy:
+  enabled: false
+
+serviceAccount:
+  create: true
+
+rbac:
+  create: false
+
+pdb:
+  create: false
+
+autoscaling:
+  enabled: false
+
+metrics:
+  enabled: false
+
+postgresql:
+  enabled: true
+  postgresqlUsername: bn_keycloak
+  postgresqlPassword: ""
+  postgresqlDatabase: bitnami_keycloak
+  persistence:
+    enabled: true
