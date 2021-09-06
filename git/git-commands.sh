@@ -23,6 +23,12 @@ git remote set-url origin http://git.example.com/developer/my-app-cd.git
 
 ######################################################################
 
+### branch
+
+git checkout -b main
+
+######################################################################
+
 ### status
 
 git status
