@@ -42,6 +42,7 @@ kafka/apicurio/helm/apicurio-registry
 /others/kraken/kraken/
 /prometheus/operator/kube-prometheus/
 /rook/operator/rook/
+/security/openldap/kustomize/base/
 /temp/
 /tomcat/kustomize/.git/
 /tomcat/kustomize/.gitattributes
