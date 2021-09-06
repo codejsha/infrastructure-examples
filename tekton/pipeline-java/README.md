@@ -9,8 +9,8 @@ Push event ---> Event trigger ---> CI/CD
 ## Event trigger
 
 ```txt
-gitlab-ci-listener ---> gitlab-push-binding ---> gitlab-java-template
- (EventListener)         (TriggerBinding)         (TriggerTemplate)
+my-app-eventlistener ---> git-triggerbinding ---> java-triggertemplate
+ (EventListener)           (TriggerBinding)        (TriggerTemplate)
 ```
 
 ## CI/CD
@@ -33,7 +33,7 @@ clone-cd-repo ---> kustomize-cd-repo ---> commit-cd-repo
     ----------------------------------------------
     |
     V
-sync-app
+set-app ---> sync-app
 ```
 
 ## Kustomize
@@ -44,7 +44,6 @@ Tomcat directory structure:
 kustomize
 ├── base
 │   ├── deployment.yaml
-│   ├── ingress.yaml
 │   ├── kustomization.yaml
 │   └── server.env
 │   └── service.yaml
@@ -61,7 +60,6 @@ Resource structure:
 kustomize
 └── base
     ├── [deployment.yaml]  Deployment tomcat-starter
-    ├── [ingress.yaml]  Ingress tomcat-starter
     ├── [kustomization.yaml]  Kustomization
     └── [service.yaml]  Service tomcat-starter
 ```
@@ -73,18 +71,18 @@ Name:               my-app
 Project:            my-project
 Server:             https://kubernetes.docker.internal:6443
 Namespace:          my-project
-URL:                https://argocd.example.com/applications/my-app
+URL:                https://argocd-server.argocd.svc/applications/my-app
 Repo:               https://git.example.com/developer/my-app-cd.git
-Target:             HEAD
+Target:             84645a283ee3a7bfa7b2b0012d1b974a203e591a
 Path:               base
 SyncWindow:         Sync Allowed
-Sync Policy:        Automated (Prune)
-Sync Status:        Synced to HEAD (4576b16)
-Health Status:      Progressing
+Sync Policy:        Automated
+Sync Status:        Synced to 84645a283ee3a7bfa7b2b0012d1b974a203e591a
+Health Status:      Healthy
 
-GROUP              KIND        NAMESPACE   NAME            STATUS  HEALTH       HOOK  MESSAGE
-                   ConfigMap   my-project  server-config   Synced                     configmap/server-config unchanged
-                   Service     my-project  tomcat-starter  Synced  Healthy            service/tomcat-starter unchanged
-apps               Deployment  my-project  tomcat-starter  Synced  Healthy            deployment.apps/tomcat-starter configured
-networking.k8s.io  Ingress     my-project  tomcat-starter  Synced  Healthy            ingress.networking.k8s.io/tomcat-starter configured
+
+GROUP  KIND        NAMESPACE   NAME            STATUS  HEALTH   HOOK  MESSAGE
+       ConfigMap   my-project  server-config   Synced                 configmap/server-config unchanged
+       Service     my-project  tomcat-starter  Synced  Healthy        service/tomcat-starter unchanged
+apps   Deployment  my-project  tomcat-starter  Synced  Healthy        deployment.apps/tomcat-starter configured
 ```
