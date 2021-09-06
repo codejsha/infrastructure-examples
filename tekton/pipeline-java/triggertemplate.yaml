@@ -81,11 +81,10 @@ spec:
             value: ./
           - name: kaniko-extra-args
             value:
-              - --insecure-registry=nexus.example.com
+              - --insecure-registry=docker-group.nexus.example.com
               # - --insecure-registry=registry.example.com
               - --insecure-registry=harbor.example.com
-              - --registry-mirror=nexus.example.com
-              - --registry-mirror=harbor.example.com
+              - --registry-mirror=docker-group.nexus.example.com
               - --verbosity=info
           - name: kaniko-builder-image
             value: gcr.io/kaniko-project/executor:latest
