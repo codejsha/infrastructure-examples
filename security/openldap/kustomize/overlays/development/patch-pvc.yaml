@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldap
+  labels:
+    app: ldap
+spec:
+  template:
+    spec:
+      volumes:
+        - name: ldap-data
+          emptyDir: null
+          persistentVolumeClaim:
+            claimName: ldap-data-pvc
+        - name: ldap-config
+          emptyDir: null
+          persistentVolumeClaim:
+            claimName: ldap-config-pvc
+        - name: ldap-certs
+          emptyDir: null
+          persistentVolumeClaim:
+            claimName: ldap-certs-pvc
+        - name: configmap-volume
+          configMap:
+            name: default-startup-configmap
+        - name: container-run
+          emptyDir: null
+          persistentVolumeClaim:
+            claimName: container-run-pvc

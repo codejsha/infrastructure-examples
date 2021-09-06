@@ -1,0 +1,57 @@
+---
+replicaCount: 1
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+
+image:
+  repository: osixia/openldap
+  tag: latest
+  pullPolicy: IfNotPresent
+
+tls:
+  enabled: false
+  CA:
+    enabled: false
+
+extraLabels: {}
+podAnnotations: {}
+service:
+  annotations: {}
+  type: ClusterIP
+
+env:
+  LDAP_ORGANISATION: "Example Inc."
+  LDAP_DOMAIN: "example.com"
+  LDAP_BACKEND: "hdb"
+  LDAP_TLS: "true"
+  LDAP_TLS_ENFORCE: "false"
+  LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+
+adminPassword: admin
+configPassword: config
+
+# customLdifFiles:
+#   01-default-users.ldif: |-
+
+persistence:
+  enabled: true
+  # storageClass: "standard"
+  # storageClass: "hostpath"
+  # storageClass: "rook-ceph-block"
+  accessMode: ReadWriteOnce
+  size: 8Gi
+
+resources: {}
+initResources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+test:
+  enabled: false
+
+logLevel: info

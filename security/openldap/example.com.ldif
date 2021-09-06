@@ -1,0 +1,38 @@
+version: 1
+
+dn: dc=example,dc=com
+dc: example
+o: Example Inc.
+objectclass: top
+objectclass: dcObject
+objectclass: organization
+
+dn: ou=DeveloperGroup,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: DeveloperGroup
+
+dn: cn=developer,ou=DeveloperGroup,dc=example,dc=com
+cn: developer
+givenname: developer
+mail: developer@example.com
+objectclass: inetOrgPerson
+objectclass: top
+sn: developer
+uid: developer
+userpassword: developer
+
+dn: ou=ManagerGroup,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: ManagerGroup
+
+dn: cn=devopsuser,ou=ManagerGroup,dc=example,dc=com
+cn: devopsuser
+givenname: devopsuser
+mail: devopsuser@example.com
+objectclass: inetOrgPerson
+objectclass: top
+sn: devopsuser
+uid: devopsuser
+userpassword: devopsuser
