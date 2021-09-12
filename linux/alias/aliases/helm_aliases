@@ -1,5 +1,7 @@
 # helm
 
+source <(helm completion bash)
+
 export HELM_EXPERIMENTAL_OCI="1"
 
 function helm() { echo "+ helm ${@}">&2; command helm ${@}; }
