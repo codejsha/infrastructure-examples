@@ -7,10 +7,17 @@ bash ./install-addon.sh
 
 ######################################################################
 
+### CERTIFICATES
+cd vault
+
 bash ./create-ingress-domain-certificate.sh
 # bash ./create-ingress-domain-certificate-with-openssl.sh
 
+cd ../
+
 ######################################################################
+
+### TRAFFIC MANAGEMENT
 
 kubectl apply --namespace istio-system --filename grafana-traffic-management.yaml
 kubectl apply --namespace istio-system --filename kiali-traffic-management.yaml
