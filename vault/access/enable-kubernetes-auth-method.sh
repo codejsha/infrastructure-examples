@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+export VAULT_ADDR="http://vault.example.com"
+
 KUBERNETES_HOST_URL="https://kubernetes.docker.internal:6443"
 
 vault auth enable kubernetes
