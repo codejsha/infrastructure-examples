@@ -67,7 +67,3 @@ https://github.com/helm/charts#%EF%B8%8F-deprecation-and-archive-notice
 ```bash
 bash ./helm-install-docker-registry.sh
 ```
-
-## Portainer
-
-- [Portainer README](/docker/portainer/portainer.md)
