@@ -35,4 +35,11 @@ mc mb my-minio/harbor-storage
 
 ######################################################################
 
+### bucket policy
+
+mc policy set download my-minio/kafka-connector
+mc policy links my-minio/kafka-connector
+
+######################################################################
+
 kubectl minio proxy
