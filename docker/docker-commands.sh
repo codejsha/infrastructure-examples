@@ -95,3 +95,9 @@ docker context create testmachine --docker "host=ssh://prouser@testmachine"
 ### settings.json
 "docker.host": "tcp://testmachine:2375"
 "docker.explorerRefreshInterval": 3000
+
+######################################################################
+
+### for windows
+# cd \\wsl$\docker-desktop-data
+cd /mnt/wsl/docker-desktop-data
