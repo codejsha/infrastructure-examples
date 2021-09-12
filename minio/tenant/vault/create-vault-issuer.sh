@@ -7,7 +7,6 @@ NAMESPACE="minio-tenant"
 
 kubectl create serviceaccount --namespace ${NAMESPACE} minio-tenant-issuer
 kubectl create serviceaccount --namespace ${NAMESPACE} minio-tenant-console-issuer
-
 export MINIO_TENANT_ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace ${NAMESPACE} minio-tenant-issuer -o json | jq -r ".secrets[].name")"
 export MINIO_TENANT_CONSONE_ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace ${NAMESPACE} minio-tenant-console-issuer -o json | jq -r ".secrets[].name")"
 
