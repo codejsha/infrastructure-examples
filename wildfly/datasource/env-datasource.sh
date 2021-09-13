@@ -25,13 +25,13 @@ CHECK_VALID_CONNECTION_SQL="SELECT 1"
 ### oracle database
 ######################################################################
 
-### oracle database
 # DATASOURCE_NAME="baseds1"
 # JNDI_NAME="java:jboss/datasources/baseds1"
-# CONNECTION_URL="jdbc:oracle:thin:@192.168.137.1:1521:orclcdb"
+# CONNECTION_URL="jdbc:oracle:thin:@test.example.com:1521:orclcdb"
 # DS_USERNAME="system"
-# DS_PASSWORD="${PASSWORD}"
+# DS_PASSWORD="password"
 # DS_PASSWORD="\${VAULT::datasource::password::1}"
+# CHECK_VALID_CONNECTION_SQL="SELECT 1 FROM DUAL"
 # CHECK_VALID_CONNECTION_SQL="SQL ISVALID"
 
 

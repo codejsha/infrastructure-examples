@@ -5,3 +5,6 @@ set -o errtrace
 
 bash ./disable-directory-index.sh --port-offset=0
 bash ./disable-directory-index.sh --port-offset=1
+
+# bash ./delete-mgmt-realm-auth-local.sh --port-offset=0
+# bash ./delete-mgmt-realm-auth-local.sh --port-offset=1

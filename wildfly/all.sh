@@ -3,6 +3,20 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+# cd instance
+# bash ./all.sh
+# cd ..
+
+# cd user
+# bash ./all.sh
+# cd ..
+
+######################################################################
+
+cd undertow
+bash ./all.sh
+cd ..
+
 cd cluster
 bash ./all.sh
 cd ..
