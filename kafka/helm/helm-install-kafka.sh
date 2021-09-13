@@ -9,6 +9,6 @@ NAMESPACE="kafka-system"
 helm upgrade --install my-kafka \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --values values-kafka.yaml \
+    --values values.yaml \
     --version 12.4.3 \
     bitnami/kafka
