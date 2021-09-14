@@ -10,7 +10,7 @@ JAVA_HOME="/usr/lib/jvm/java-11"
 
 # BIND_ADDRESS="0.0.0.0"
 # BIND_ADDRESS_MGMT="127.0.0.1"
-# BIND_ADDRESS_PRIVATE="127.0.0.1"
+# INSTALL_SCRIPT_DIR="127.0.0.1"
 BIND_ADDRESS="test.example.com"
 BIND_ADDRESS_MGMT="test.example.com"
 BIND_ADDRESS_PRIVATE="test.example.com"
@@ -30,3 +30,5 @@ perl -pi -e "s/^JAVA_HOME=.*/JAVA_HOME=\"${JAVA_HOME}\"/" env-base.sh
 perl -pi -e "s/^JBOSS_HOME=.*/JBOSS_HOME=\"${JBOSS_HOME}\"/" env-base.sh
 perl -pi -e "s/^BIND_ADDRESS=.*/BIND_ADDRESS=\"${BIND_ADDRESS}\"/" env-base.sh
 perl -pi -e "s/^BIND_ADDRESS_MGMT=.*/BIND_ADDRESS_MGMT=\"${BIND_ADDRESS_MGMT}\"/" env-base.sh
+perl -pi -e "s/^BIND_ADDRESS_PRIVATE=.*/BIND_ADDRESS_PRIVATE=\"${BIND_ADDRESS_PRIVATE}\"/" env-base.sh
+perl -pi -e "s/^INSTALL_SCRIPT_DIR=.*/INSTALL_SCRIPT_DIR=\"${INSTALL_SCRIPT_DIR}\"/" env-base.sh
