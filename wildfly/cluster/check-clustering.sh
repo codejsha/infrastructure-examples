@@ -15,6 +15,13 @@ function check_clustering {
         --password="${PASSWORD}" \
         --echo-command \
         --command="/subsystem=jgroups/channel=ee:read-attribute(name=view)"
+    # ${JBOSS_HOME}/bin/jboss-cli.sh \
+    #     --connect \
+    #     --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
+    #     --user="${USERNAME}" \
+    #     --password="${PASSWORD}" \
+    #     --echo-command \
+    #     --command="/subsystem=jgroups/channel=ee:read-resource(include-runtime=true)"
 }
 
 ######################################################################
