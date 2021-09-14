@@ -3,6 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-CREDENTIAL_STORE_NAME="my_store"
-CREDENTIAL_STORE_LOCATION="credential-store/my_store.jceks"
-CREDENTIAL_STORE_CLEAR_TEXT="1234qwer"
+KEYSTORE_PASSWORD="changeit"
