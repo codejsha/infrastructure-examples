@@ -3,6 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+### HSTS (HTTP Strict-Transport-Security)
+###
+### max-age=0 : disable
+### max-age=31536000 : 1 year
+
 source ../env-base.sh
 
 ######################################################################
@@ -15,13 +20,8 @@ function add_filter {
         --password="${PASSWORD}" \
 <<EOF
 batch
-# /subsystem=undertow/server=default-server/host=default-host/filter-ref=server-header:remove()
-/subsystem=undertow/configuration=filter/response-header=server-header:write-attribute(name=header-value,value=server)
-
-# /subsystem=undertow/server=default-server/host=default-host/filter-ref=x-powered-by-header:remove()
-/subsystem=undertow/configuration=filter/response-header=x-powered-by-header:write-attribute(name=header-value,value=server)
-
-/subsystem=undertow/servlet-container=default/setting=jsp:write-attribute(name=x-powered-by,value=false)
+/subsystem=undertow/configuration=filter/response-header=hsts-header:add(header-name="Strict-Transport-Security",header-value="max-age=31536000;")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=hsts-header:add()
 run-batch
 quit
 EOF
