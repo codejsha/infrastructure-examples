@@ -19,6 +19,11 @@ keytool -list -v -alias example -keystore keystore.jks
 
 ######################################################################
 
+### print cert
+keytool -printcert -v -file tls.crt
+
+######################################################################
+
 ### create empty keystore
 keytool -genkey -keyalg RSA -alias example -storepass changeit -keypass changeit -keystore keystore.jks -dname "CN=Developer, OU=Department, O=Company, L=City, ST=State, C=CA"
 keytool -delete -alias example -keystore keystore.jks
@@ -28,17 +33,24 @@ keytool -genkey -keyalg RSA -alias example -keystore keystore.jks -storepass cha
 
 ######################################################################
 
+### convert and import
+
+### convert x.509 cert and key to pkcs12 file
+openssl pkcs12 -export -name test \
+    -in tls.crt -inkey tls.key -out tls.p12 \
+    -CAfile ca.crt -caname rootca
+
+### convert pkcs12 file to java keystore
+keytool -importkeystore -alias test \
+        -srckeystore tls.p12 -srcstoretype pkcs12 -srcstorepass changeit \
+        -destkeystore tls.jks -deststoretype pkcs12 -deststorepass changeit -destkeypass changeit
+
+keytool -importkeystore -srckeystore tls.jks -destkeystore keystore.jks -deststoretype pkcs12
+
+######################################################################
+
 ### import cert
-keytool -import -trustcacerts -alias example -file example.com.crt -keystore keystore.jks
-keytool -import -trustcacerts -alias rootca -file rootca.crt -keystore keystore.jks
-keytool -import -trustcacerts -alias test -file test.example.com.crt -keystore keystore.jks
-
-######################################################################
-
-### print cert
-keytool -printcert -v -file example.com.crt
-
-######################################################################
+keytool -import -trustcacerts -alias rootca -file ca.crt -keystore keystore.jks
 
 ### delete alias
 keytool -delete -alias example -keystore keystore.jks
