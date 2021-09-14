@@ -17,7 +17,14 @@ set -o errtrace
 
 ######################################################################
 
-### STUCK THREAD DETECTOR
+### HSTS (HTTP Strict-Transport-Security) FILTER
+
+# bash ./add-hsts-filter.sh --port-offset=0
+# bash ./add-hsts-filter.sh --port-offset=1
+
+######################################################################
+
+### STUCK THREAD DETECTOR FILTER
 
 bash ./add-stuck-thread-detector.sh --port-offset=0
 bash ./add-stuck-thread-detector.sh --port-offset=1

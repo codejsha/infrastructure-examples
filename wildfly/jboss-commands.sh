@@ -142,15 +142,10 @@ deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest
 
 ######################################################################
 
-### X-Powered-By
-/subsystem=undertow/configuration=filter/response-header=x-powered-by-header:add(header-name=X-Powered-By,header-value=Undertow1)
-/subsystem=undertow/server=default-server/host=default-host/filter-ref=x-powered-by-header:add()
-
-######################################################################
-
-### hide server header
-/subsystem=undertow/configuration=filter/response-header=server-header:add(header-name=Server,header-value=Server)
-/subsystem=undertow/server=default-server/host=default-host/filter-ref=server-header:add()
+### hide server header info (server, x-powered-by)
+/subsystem=undertow/configuration=filter/response-header=server-header:write-attribute(name=header-value,value=server)
+/subsystem=undertow/configuration=filter/response-header=x-powered-by-header:write-attribute(name=header-value,value=server)
+/subsystem=undertow/servlet-container=default/setting=jsp:write-attribute(name=x-powered-by,value=false)
 
 ######################################################################
 
