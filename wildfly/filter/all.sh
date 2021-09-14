@@ -12,8 +12,8 @@ set -o errtrace
 
 ### SAMESITE FILTER
 
-bash ./add-samesite-filter.sh --port-offset=0
-bash ./add-samesite-filter.sh --port-offset=1
+# bash ./add-samesite-filter.sh --port-offset=0
+# bash ./add-samesite-filter.sh --port-offset=1
 
 ######################################################################
 
