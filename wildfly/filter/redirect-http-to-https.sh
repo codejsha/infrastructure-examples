@@ -15,8 +15,8 @@ function add_filter {
         --password="${PASSWORD}" \
 <<EOF
 batch
-/subsystem=undertow/configuration=filter/custom-filter=example-handler:add(class-name=com.example.ExampleHandler,module=com.example.undertow.handler)
-/subsystem=undertow/server=default-server/host=default-host/filter-ref=example-handler:add()
+/subsystem=undertow/configuration=filter/rewrite=http-to-https:add(redirect="true",target="https://test.example.com:8443%U")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=http-to-https:add(predicate="equals(%p,8080)")
 run-batch
 quit
 EOF
