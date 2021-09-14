@@ -3,11 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-bash ./disable-directory-index.sh --port-offset=0
-bash ./disable-directory-index.sh --port-offset=1
+source ../../env-base.sh
+mkdir -p ${JBOSS_HOME}/vault-store
+
+bash ./initialize-password-vault.sh
 
 ######################################################################
 
-# cd realm
-# bash ./all.sh
-# cd ..
+bash ./encrypt-password-with-password-vault.sh --block=datasource --attribute=password --password=${PASSWORD}

@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 source ../../env-base.sh
-source ./env-password-vault.sh
+source ./env-password-vault-keystore.sh
 
 if [ ! -f "${JBOSS_HOME}/vault/vault.keystore" ]; then
     echo "[INFO] The keystore is created."
@@ -12,6 +12,7 @@ if [ ! -f "${JBOSS_HOME}/vault/vault.keystore" ]; then
         -genseckey \
         -alias vault \
         -storetype jceks \
+        -deststoretype pkcs12 \
         -keyalg AES \
         -keysize 128 \
         -storepass ${KEYSTORE_PASSWORD} \

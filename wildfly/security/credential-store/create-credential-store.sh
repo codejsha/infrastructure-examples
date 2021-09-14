@@ -18,7 +18,7 @@ function create_credential_store {
 batch
 /subsystem=elytron/credential-store=${CREDENTIAL_STORE_NAME}\
     :add(location=${CREDENTIAL_STORE_LOCATION},\
-        credential-reference={clear-text=${CREDENTIAL_STORE_CLEAR_TEXT}},\
+        credential-reference={clear-text=${CREDENTIAL_STORE_CLEAR_TEXT},\
         create=true)
 run-batch
 quit
