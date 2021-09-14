@@ -118,22 +118,72 @@ module add --name=com.oracle --resources=/mnt/share/oracle-database/19c/ojdbc8-f
 
 /subsystem=datasources/data-source=baseds1:write-attribute(name=statistics-enabled,value=true)
 
+### credential store
+# <datasource jndi-name="java:jboss/datasources/baseds1" pool-name="baseds1" enabled="true" use-ccm="true" statistics-enabled="true">
+#     <connection-url>jdbc:oracle:thin:@test.example.com:1521:XE</connection-url>
+#     <driver>oracle</driver>
+#     <pool>
+#         <min-pool-size>30</min-pool-size>
+#         <initial-pool-size>30</initial-pool-size>
+#         <max-pool-size>30</max-pool-size>
+#         <prefill>true</prefill>
+#         <use-strict-min>true</use-strict-min>
+#     </pool>
+#     <security>
+#         <user-name>system</user-name>
+#         <credential-reference store="my_store" alias="baseds1-password"/>
+#     </security>
+#     <validation>
+#         <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+#         <background-validation>true</background-validation>
+#         <background-validation-millis>120000</background-validation-millis>
+#     </validation>
+#     <timeout>
+#         <blocking-timeout-millis>2000</blocking-timeout-millis>
+#         <query-timeout>3600</query-timeout>
+#     </timeout>
+#     <statement>
+#         <track-statements>true</track-statements>
+#         <prepared-statement-cache-size>10</prepared-statement-cache-size>
+#         <share-prepared-statements>true</share-prepared-statements>
+#     </statement>
+# </datasource>
+
+### password vault
+# <datasource jndi-name="java:jboss/datasources/baseds1" pool-name="baseds1" enabled="true" use-ccm="true" statistics-enabled="true">
+#     <connection-url>jdbc:oracle:thin:@test.example.com:1521:XE</connection-url>
+#     <driver>oracle</driver>
+#     <pool>
+#         <min-pool-size>30</min-pool-size>
+#         <initial-pool-size>30</initial-pool-size>
+#         <max-pool-size>30</max-pool-size>
+#         <prefill>true</prefill>
+#         <use-strict-min>true</use-strict-min>
+#     </pool>
+#     <security>
+#         <user-name>system</user-name>
+#         <password>${VAULT::datasource::password::1}</password>
+#     </security>
+#     <validation>
+#         <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+#         <background-validation>true</background-validation>
+#         <background-validation-millis>120000</background-validation-millis>
+#     </validation>
+#     <timeout>
+#         <blocking-timeout-millis>2000</blocking-timeout-millis>
+#         <query-timeout>3600</query-timeout>
+#     </timeout>
+#     <statement>
+#         <track-statements>true</track-statements>
+#         <prepared-statement-cache-size>10</prepared-statement-cache-size>
+#         <share-prepared-statements>true</share-prepared-statements>
+#     </statement>
+# </datasource>
+
 ######################################################################
 
 ### deploy
 deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest.war --unmanaged
-
-######################################################################
-
-### samesite cookie
-/subsystem=undertow/configuration=filter/expression-filter=samesite-cookie:add(expression="samesite-cookie(mode=none)")
-/subsystem=undertow/server=default-server/host=default-host/filter-ref=samesite-cookie:add()
-
-######################################################################
-
-### stuck thread detector
-/subsystem=undertow/configuration=filter/expression-filter=stuck:add(expression="blocking; stuck-thread-detector(600)")
-/subsystem=undertow/server=default-server/host=default-host/filter-ref=stuck:add()
 
 ######################################################################
 
@@ -143,9 +193,46 @@ deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest
 ######################################################################
 
 ### hide server header info (server, x-powered-by)
+# /subsystem=undertow/server=default-server/host=default-host/filter-ref=server-header:remove()
+# /subsystem=undertow/server=default-server/host=default-host/filter-ref=x-powered-by-header:remove()
 /subsystem=undertow/configuration=filter/response-header=server-header:write-attribute(name=header-value,value=server)
 /subsystem=undertow/configuration=filter/response-header=x-powered-by-header:write-attribute(name=header-value,value=server)
 /subsystem=undertow/servlet-container=default/setting=jsp:write-attribute(name=x-powered-by,value=false)
+
+### hsts (http strict-transport-security)
+/subsystem=undertow/configuration=filter/response-header=hsts-header:add(header-name="Strict-Transport-Security",header-value="max-age=31536000;")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=hsts-header:add()
+
+### stuck thread detector
+/subsystem=undertow/configuration=filter/expression-filter=stuck:add(expression="blocking; stuck-thread-detector(600)")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=stuck:add()
+
+### samesite cookie
+/subsystem=undertow/configuration=filter/expression-filter=samesite-cookie:add(expression="samesite-cookie(mode=none)")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=samesite-cookie:add()
+
+### redirect http to https
+/subsystem=undertow/configuration=filter/rewrite=http-to-https:add(redirect="true",target="https://test.example.com:8443%U")
+/subsystem=undertow/server=default-server/host=default-host/filter-ref=http-to-https:add(predicate="equals(%p,8080)")
+
+# <host name="default-host" alias="localhost">
+#     <location name="/" handler="welcome-content"/>
+#     <access-log pattern="%h %l %u %t &amp;quot;%r&amp;quot; %s %b &amp;quot;%{i,Referer}&amp;quot; &amp;quot;%{i,User-Agent}&amp;quot; Cookie: &amp;quot;%{i,COOKIE}&amp;quot; Set-Cookie: &amp;quot;%{o,SET-COOKIE}&amp;quot; SessionID: %S Thread: &amp;quot;%I&amp;quot; TimeTaken: %T" directory="." relative-to="jboss.server.log.dir" prefix="access."/>
+#     <filter-ref name="stuck"/>
+#     <filter-ref name="hsts-header"/>
+#     <filter-ref name="samesite-cookie"/>
+#     <filter-ref name="http-to-https" predicate="equals(%p,8080)"/>
+#     <http-invoker security-realm="ApplicationRealm"/>
+# </host>
+
+# <filters>
+#     <response-header name="x-powered-by-header" header-name="X-Powered-By" header-value="server"/>
+#     <response-header name="server-header" header-name="Server" header-value="server"/>
+#     <response-header name="hsts-header" header-name="Strict-Transport-Security" header-value="max-age=31536000;"/>
+#     <expression-filter name="samesite-cookie" expression="samesite-cookie(mode=none)"/>
+#     <expression-filter name="stuck" expression="blocking; stuck-thread-detector(600)"/>
+#     <rewrite name="http-to-https" target="https://test.example.com:8443%U" redirect="true"/>
+# </filters>
 
 ######################################################################
 
@@ -173,6 +260,17 @@ deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest
 /subsystem=io/worker=ajp-worker:write-attribute(name=task-core-threads,value=150)
 # /subsystem=io/worker=ajp-worker:write-attribute(name=task-keepalive,value=)
 /subsystem=io/worker=ajp-worker:write-attribute(name=task-max-threads,value=150)
+
+# <subsystem xmlns="urn:jboss:domain:io:3.0">
+#     <worker name="default" task-core-threads="150" task-max-threads="150"/>
+#     <worker name="ajp-worker" task-core-threads="150" task-max-threads="150"/>
+#     <buffer-pool name="default"/>
+# </subsystem>
+
+# <server name="default-server">
+#     <ajp-listener name="ajp" socket-binding="ajp" worker="ajp-worker" record-request-start-time="true" no-request-timeout="60000" disallowed-methods="PUT DELETE TRACE OPTIONS"/>
+#     <http-listener name="default" socket-binding="http" worker="default" record-request-start-time="true" no-request-timeout="60000" disallowed-methods="PUT DELETE TRACE OPTIONS" redirect-socket="https" enable-http2="true"/>
+#     <https-listener name="https" socket-binding="https" worker="default" record-request-start-time="true" no-request-timeout="60000" disallowed-methods="PUT DELETE TRACE OPTIONS" security-realm="CertificateRealm" enable-http2="true"/>
 
 ######################################################################
 
