@@ -37,9 +37,10 @@ ${JBOSS_HOME}/bin/jdr.sh --host test.example.com --port 9990 --config standalone
 /subsystem=jgroups/stack=udp/protocol=UFC:add()
 /subsystem=jgroups/stack=udp/protocol=MFC:add()
 /subsystem=jgroups/stack=udp/protocol=FRAG3:add()
-
 /subsystem=jgroups/channel=ee:write-attribute(name=stack,value=udp)
+
 /subsystem=jgroups/channel=ee:read-attribute(name=view)
+/subsystem=jgroups/channel=ee:read-resource(include-runtime=true)
 
 # <stack name="udp">
 #     <transport type="UDP" socket-binding="jgroups-udp"/>
@@ -78,9 +79,10 @@ ${JBOSS_HOME}/bin/jdr.sh --host test.example.com --port 9990 --config standalone
 /subsystem=jgroups/stack=tcp/protocol=pbcast.GMS:add()
 /subsystem=jgroups/stack=tcp/protocol=MFC:add()
 /subsystem=jgroups/stack=tcp/protocol=FRAG2:add()
-
 /subsystem=jgroups/channel=ee:write-attribute(name=stack,value=tcp)
+
 /subsystem=jgroups/channel=ee:read-attribute(name=view)
+/subsystem=jgroups/channel=ee:read-resource(include-runtime=true)
 
 # <server name="inst1" xmlns="urn:jboss:domain:13.0">
 
