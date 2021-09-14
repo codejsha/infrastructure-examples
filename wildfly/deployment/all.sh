@@ -27,3 +27,10 @@ bash ./deploy-app.sh --port-offset=1 --path=/svc/app/failovertest --name=failove
 # bash ./redeploy-app.sh --port-offset=1 --path=/svc/app/helloworld --name=helloworld.war --runtime-name=helloworld.war
 # bash ./redeploy-app.sh --port-offset=0 --path=/svc/app/failovertest --name=failovertest.war --runtime-name=failovertest.war
 # bash ./redeploy-app.sh --port-offset=1 --path=/svc/app/failovertest --name=failovertest.war --runtime-name=failovertest.war
+
+######################################################################
+
+### DISABLE WELCOME CONTENT
+
+# bash ./disable-welcome-content.sh --port-offset=0
+# bash ./disable-welcome-content.sh --port-offset=1
