@@ -47,6 +47,19 @@ bash ./set-ajp-listener-timeout.sh --port-offset=1
 
 ######################################################################
 
+### MAX POST SIZE
+
+bash ./set-http-listener-max-post-size.sh --port-offset=0
+bash ./set-http-listener-max-post-size.sh --port-offset=1
+
+bash ./set-https-listener-max-post-size.sh --port-offset=0
+bash ./set-https-listener-max-post-size.sh --port-offset=1
+
+bash ./set-ajp-listener-max-post-size.sh --port-offset=0
+bash ./set-ajp-listener-max-post-size.sh --port-offset=1
+
+######################################################################
+
 ### HTTP METHOD
 
 bash ./disable-http-listener-http-method.sh --port-offset=0
