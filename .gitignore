@@ -33,7 +33,7 @@ nohup.*
 /kubernetes/kubespray/kubespray/
 /minio/operator/operator/
 /openldap/kustomize/base/
-/oracledb/docker/docker-images/
+/oracledb/docker/build/docker-images/
 /others/backstage/backstage/
 /others/kraken/kraken/
 /prometheus/operator/kube-prometheus/
