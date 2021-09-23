@@ -21,4 +21,4 @@ istioctl install -y --set profile=default
 #    --set meshConfig.accessLogFile=/dev/stdout
 
 ### verify
-istioctl manifest generate --set profile=default | istioctl verify-install -f -
+# istioctl manifest generate --set profile=default | istioctl verify-install -f -
