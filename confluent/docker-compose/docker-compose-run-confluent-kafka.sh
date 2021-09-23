@@ -13,7 +13,7 @@ JMX_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/jmx_exporter"
 KAFKA_LAG_EXPORTER_VOLUME_DIR="${KAFKA_VOLUME_DIR}/kafka-lag-exporter"
 
 SHARE_DIR="/mnt/share"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/kafka/confluent/docker-compose"
+INSTALL_SCRIPT_DIR="/svc/infrastructure/confluent/docker-compose"
 
 sudo rm -rf ${KAFKA_VOLUME_DIR}
 

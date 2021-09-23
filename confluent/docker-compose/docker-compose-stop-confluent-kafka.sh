@@ -5,6 +5,8 @@
 
 # KAFKA_DOCKER_NETWORK="stream-network"
 
+INSTALL_SCRIPT_DIR="/svc/infrastructure/confluent/docker-compose"
+
 docker-compose --file ${INSTALL_SCRIPT_DIR}/docker-compose.yaml stop
 # docker-compose --file ${INSTALL_SCRIPT_DIR}/docker-compose.yaml down
 
