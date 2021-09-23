@@ -8,5 +8,5 @@ kubectl create namespace ${NAMESPACE}
 
 # kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 
-TEKTON_PIPELINE_VERSION="0.27.0"
+TEKTON_PIPELINE_VERSION="0.28.0"
 kubectl apply --namespace ${NAMESPACE} --filename https://github.com/tektoncd/pipeline/releases/download/v${TEKTON_PIPELINE_VERSION}/release.yaml
