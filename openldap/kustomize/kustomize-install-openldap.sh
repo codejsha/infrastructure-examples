@@ -3,11 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-BASE="./base"
-mkdir -p ${BASE}
+BASE_DIR="./base"
+mkdir -p ${BASE_DIR}
 
 CONTENT="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/examples/ldap"
-curl -s -o "${BASE}/#1" "${CONTENT}/base/{deployment.yaml,kustomization.yaml,service.yaml,env.startup.txt}"
+curl -s -o "${BASE_DIR}/#1" "${CONTENT}/base/{deployment.yaml,kustomization.yaml,service.yaml,env.startup.txt}"
 
 kustomize build ./overlays/development | kubectl apply --filename -
 # kustomize build ./overlays/development | kubectl delete --filename -
