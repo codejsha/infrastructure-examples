@@ -53,6 +53,17 @@ spec:
         - port: 443
       route:
         - destination:
+            host: my-gitea-http.gitea-system.svc.cluster.local
             port:
               number: 3000
-            host: my-gitea-http.gitea-system.svc.cluster.local
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: gitea-dr
+  namespace: gitea-system
+spec:
+  host: my-gitea-http.gitea-system.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
