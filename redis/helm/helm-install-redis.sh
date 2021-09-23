@@ -17,5 +17,5 @@ helm upgrade --install my-redis \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-temp.yaml \
-    --version 12.2.4 \
+    --version 15.3.2 \
     bitnami/redis
