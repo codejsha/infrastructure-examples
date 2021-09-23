@@ -30,7 +30,7 @@ service:
     prometheus.io/port: "9000"
 
 ingress:
-  enabled: true
+  enabled: false
   labels:
     node-role.kubernetes.io/ingress: platform
   annotations:

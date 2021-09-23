@@ -26,5 +26,5 @@ kubectl apply --filename tenant-console-secret.yaml
 kubectl apply --filename tenant.yaml
 
 ### ingress
-kubectl apply --filename tenant-console-ingress.yaml
-kubectl apply --filename tenant-ingress.yaml
+# kubectl apply --filename tenant-console-ingress.yaml
+# kubectl apply --filename tenant-ingress.yaml
