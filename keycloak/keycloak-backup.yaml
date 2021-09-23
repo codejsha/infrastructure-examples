@@ -1,0 +1,11 @@
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakBackup
+metadata:
+  name: my-keycloak-backup
+  labels:
+    app: keycloak
+spec:
+  instanceSelector:
+    matchLabels:
+      app: keycloak

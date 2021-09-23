@@ -1,0 +1,47 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: keycloak-gw
+  namespace: keycloak-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-keycloak
+        protocol: HTTP
+      hosts:
+        - keycloak.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https-keycloak
+        protocol: HTTPS
+      hosts:
+        - keycloak.example.com
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: keycloak-vs
+  namespace: keycloak-system
+spec:
+  hosts:
+    - keycloak.example.com
+  gateways:
+    - keycloak-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - keycloak.example.com
+      route:
+        - destination:
+            host: keycloak.keycloak-system.svc.cluster.local
+            port:
+              number: 8443

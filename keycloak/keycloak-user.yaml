@@ -1,0 +1,20 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: keycloak-user-security-admin
+  labels:
+    app: keycloak
+spec:
+  user:
+    enabled: true
+    username: "security-admin"
+    firstName: "security-admin"
+    lastName: "security-admin"
+    email: "security-admin@example.com"
+    emailVerified: false
+    credentials:
+      - type: "password"
+        value: "admin"
+  realmSelector:
+    matchLabels:
+      app: keycloak
