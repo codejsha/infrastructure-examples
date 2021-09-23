@@ -13,13 +13,16 @@ cd vault
 bash ./create-ingress-domain-certificate.sh
 # bash ./create-ingress-domain-certificate-with-openssl.sh
 
-cd ../
+cd ..
 
 ######################################################################
 
 ### TRAFFIC MANAGEMENT
+cd istio
 
 kubectl apply --namespace istio-system --filename grafana-traffic-management.yaml
 kubectl apply --namespace istio-system --filename kiali-traffic-management.yaml
 kubectl apply --namespace istio-system --filename prometheus-traffic-management.yaml
 kubectl apply --namespace istio-system --filename tracing-traffic-management.yaml
+
+cd ..
