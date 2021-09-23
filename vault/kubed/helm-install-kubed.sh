@@ -12,5 +12,4 @@ NAMESPACE="kube-system"
 helm upgrade --install my-kubed \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --version v0.12.0 \
     appscode/kubed

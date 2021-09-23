@@ -13,5 +13,5 @@ helm upgrade --install my-prometheus \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-stack.yaml \
-    --version 17.2.1 \
+    --version 18.0.10 \
     prometheus-community/kube-prometheus-stack

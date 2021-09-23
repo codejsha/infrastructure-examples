@@ -13,5 +13,4 @@ helm upgrade --install my-cert-manager \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --set installCRDs="true" \
-    --version v1.3.1 \
     jetstack/cert-manager
