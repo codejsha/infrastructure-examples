@@ -1,0 +1,16 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: keycloak-issuer
+spec:
+  vault:
+    server: http://my-vault.vault-system.svc.cluster.local:8200
+    path: pki/sign/keycloak
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: keycloak-issuer
+        secretRef:
+          name: ${KEYCLOAK_ISSUER_SECRET_REF}
+          key: token
