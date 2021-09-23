@@ -26,10 +26,12 @@ nohup.*
 /descheduler/descheduler/
 /gitlab/helm/gitlab/
 /helm/chartmuseum/chartmuseum/
-/istio/addon/certs/
-/istio/addon/istio/
+istio/addon/vault/certs/
+/istio/istio-*/
 /java/pinpoint/docker-compose/pinpoint-docker/
 /kafka/burrow/docker-compose/Burrow/
+/keycloak/kustomize/base/
+/keycloak/kustomize/keyclaok-operator/
 /kubernetes/kubespray/kubespray/
 /minio/operator/operator/
 /openldap/kustomize/base/
