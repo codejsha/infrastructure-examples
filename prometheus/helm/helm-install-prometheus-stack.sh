@@ -8,8 +8,8 @@ set -o errtrace
 
 NAMESPACE="prometheus-system"
 
-# helm install my-prometheus \
-helm upgrade --install my-prometheus \
+# helm install my-prometheus-stack \
+helm upgrade --install my-prometheus-stack \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-stack.yaml \

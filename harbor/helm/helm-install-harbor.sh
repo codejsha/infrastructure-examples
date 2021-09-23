@@ -17,7 +17,7 @@ set -o errtrace
 # helm repo update
 
 PASSWORD="${PASSWORD}"
-HARBOR_SECRET_KEY="${HARBOR_SECRET_KEY}"
+HARBOR_SECRET_KEY="not-a-secure-key"
 
 ### image and chart storage
 ### s3
