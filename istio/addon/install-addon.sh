@@ -3,13 +3,18 @@
 # set -o errexit
 # set -o errtrace
 
-ISTIO_VERSION="1.11.0"
-PARENT_ISTIO_DIR="${HOME}"
-ISTIO_DIR="${PARENT_ISTIO_DIR}/istio-${ISTIO_VERSION}"
+if [ ! -d ../istio-* ]; then
+    cd ..
 
-cd ${ISTIO_DIR}
+    curl -L https://istio.io/downloadIstio | sh -
+
+    # ISTIO_VERSION="1.11.0"
+    # curl -L https://istio.io/downloadIstio | ISTIO_VERSION="${ISTIO_VERSION}" TARGET_ARCH="x86_64" sh -
+fi
+
+cd ../istio-*
 kubectl apply --namespace istio-system --filename samples/addons
 
 ### delete
-# cd ${ISTIO_DIR}
+# cd ../istio-*
 # kubectl delete --filename samples/addons
