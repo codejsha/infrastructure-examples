@@ -26,7 +26,7 @@ nohup.*
 /descheduler/descheduler/
 /gitlab/helm/gitlab/
 /helm/chartmuseum/chartmuseum/
-istio/addon/vault/certs/
+/istio/addon/vault/certs/
 /istio/istio-*/
 /java/pinpoint/docker-compose/pinpoint-docker/
 /kafka/burrow/docker-compose/Burrow/
@@ -46,3 +46,7 @@ istio/addon/vault/certs/
 /tomcat/kustomize/.gitattributes
 /tomcat/kustomize/.gitignore
 /tomcat/log4j/apache-log4j-*-bin/
+/vault/pki/*.crt
+/vault/pki/*.csr
+/vault/pki/*.json
+/vault/pki/*.pem
