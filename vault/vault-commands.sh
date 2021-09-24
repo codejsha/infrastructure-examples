@@ -1,8 +1,8 @@
 ######################################################################
 
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 export VAULT_ADDR="http://vault.example.com"
 export VAULT_ADDR="http://localhost:8200"
+export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 ######################################################################
 

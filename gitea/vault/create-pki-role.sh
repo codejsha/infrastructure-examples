@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 export VAULT_ADDR="http://vault.example.com"
+export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write pki/roles/gitea \
     allowed_domains=git.example.com,my-gitea-http,my-gitea-http.gitea-system,my-gitea-http.gitea-system.svc.cluster.local,*.my-gitea-http.gitea-system.svc.cluster.local \
