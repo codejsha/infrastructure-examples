@@ -42,6 +42,13 @@ git commit -m "update" --allow-empty
 
 ######################################################################
 
+### push
+
+git push origin main
+git push --force origin main
+
+######################################################################
+
 ### stash
 
 git stash
