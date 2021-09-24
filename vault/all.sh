@@ -12,7 +12,7 @@ kubectl apply -f vault-traffic-management.yaml
 cd ..
 
 cd pki
-bash ./configure-pki-secret-engine.sh
+bash ./generate-root-ca.sh
 cd ..
 
 cd kubernetes
