@@ -13,5 +13,5 @@ helm upgrade --install my-gitea \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values.yaml \
-    --version 4.0.3 \
+    --version 4.1.0 \
     gitea-charts/gitea
