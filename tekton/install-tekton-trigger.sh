@@ -11,3 +11,4 @@ kubectl create namespace ${NAMESPACE}
 
 TEKTON_TRIGGER_VERSION="0.15.2"
 kubectl apply --namespace ${NAMESPACE} --filename https://github.com/tektoncd/triggers/releases/download/v${TEKTON_TRIGGER_VERSION}/release.yaml
+kubectl apply --namespace ${NAMESPACE} --filename https://github.com/tektoncd/triggers/releases/download/v${TEKTON_TRIGGER_VERSION}/interceptors.yaml
