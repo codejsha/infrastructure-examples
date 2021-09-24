@@ -18,6 +18,7 @@ echo ${UNSEAL_KEY2}
 echo ${UNSEAL_KEY3}
 echo ${UNSEAL_KEY4}
 echo ${UNSEAL_KEY5}
+echo
 
 kubectl exec -it --namespace ${NAMESPACE} my-vault-0 -- vault operator unseal ${UNSEAL_KEY1}
 echo

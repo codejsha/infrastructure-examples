@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 export VAULT_ADDR="http://vault.example.com"
+export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write pki/roles/minio-tenant \
     allowed_domains=minio-tenant-1.example.com,minio,minio.minio-tenant,minio.minio-tenant.svc.cluster.local,*.minio.minio-tenant.svc.cluster.local,minio-tenant-1-hl,minio-tenant-1-hl.minio-tenant,minio-tenant-1-hl.minio-tenant.svc.cluster.local,*.minio-tenant-1-hl.minio-tenant.svc.cluster.local \
