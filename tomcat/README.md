@@ -16,24 +16,27 @@ bash ./install-tomcat.sh
 
 ## Logging
 
-- [debug.sh](/tomcat/debug.sh)
 - https://tomcat.apache.org/tomcat-9.0-doc/logging.html
 - https://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html
 
 ### Log4j
 
-- [Log4j README](/tomcat/log4j/README.md)
-- [debug.xml](/tomcat/log4j/debug.xml)
+- https://logging.apache.org/log4j/2.x/log4j-appserver/index.html
+- https://logging.apache.org/log4j/2.x/manual/appenders.html#KafkaAppender
 
 ## Datasource
 
-- [Datasource README](/tomcat/datasource/README.md)
+### DBCP
 
-## Deployment descriptor (web.xml)
+- https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html
+- https://commons.apache.org/proper/commons-dbcp/configuration.html
 
-[web.xml](/tomcat/instance/web.xml)
+### HikariCP
+
+- https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc.)
+
+
+## Deployment descriptor
 
 - https://cloud.google.com/appengine/docs/standard/java/config/webxml
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
-
-cf. [weblogic/web.xml](/weblogic/deployment/web.xml)
