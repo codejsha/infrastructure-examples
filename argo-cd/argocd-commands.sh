@@ -41,6 +41,7 @@ argocd account generate-token --account developer
 
 argocd cluster list
 
+argocd cluster add docker-desktop --insecure --server argocd.example.com
 argocd cluster add docker-desktop --insecure --plaintext --server argocd.example.com:80
 
 ######################################################################
