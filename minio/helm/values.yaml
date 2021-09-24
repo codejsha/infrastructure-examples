@@ -72,4 +72,4 @@ buckets:
 
 metrics:
   serviceMonitor:
-    enabled: true
+    enabled: false
