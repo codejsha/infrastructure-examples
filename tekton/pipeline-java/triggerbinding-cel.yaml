@@ -9,5 +9,7 @@ spec:
       value: $(extensions.repo.url)
     - name: git-ref
       value: $(extensions.ref)
+    - name: git-branch
+      value: $(extensions.branch)
     - name: git-revision
       value: $(extensions.after)

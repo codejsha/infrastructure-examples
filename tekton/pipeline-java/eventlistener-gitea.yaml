@@ -19,6 +19,8 @@ spec:
                   expression: "body.repository.clone_url"
                 - key: "ref"
                   expression: "body.ref"
+                - key: "branch"
+                  expression: "body.ref.split('/')[2]"
                 - key: "after"
                   expression: "body.after"
       bindings:

@@ -7,6 +7,7 @@ spec:
   params:
     - name: git-repo-url
     - name: git-ref
+    - name: git-branch
     - name: git-revision
   resourcetemplates:
     - apiVersion: tekton.dev/v1beta1
