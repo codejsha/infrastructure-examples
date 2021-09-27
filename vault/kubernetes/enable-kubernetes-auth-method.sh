@@ -17,4 +17,5 @@ vault auth enable kubernetes
 kubectl exec -it --namespace ${NAMESPACE} my-vault-0 -- vault write auth/kubernetes/config \
     token_reviewer_jwt="${SERVICE_ACCOUNT_TOKEN}" \
     kubernetes_host="${KUBERNETES_HOST_URL}" \
-    kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+    issuer="https://kubernetes.default.svc.cluster.local"
