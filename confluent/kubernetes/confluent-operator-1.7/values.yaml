@@ -30,6 +30,7 @@ global:
         # password:
   storageClassName: standard
   # storageClassName: rook-ceph-block
+  # storageClassName: openebs-jiva-default
   sasl:
     plain:
       username: test
@@ -60,13 +61,6 @@ operator:
       memory: 256Mi
   affinity: {}
   tolerations: []
-  metrics:
-    dataDog:
-      enabled: true
-      port: 8125
-    prometheus:
-      enabled: true
-      port: 7777
 
 ######################################################################
 
@@ -105,6 +99,7 @@ zookeeper:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -128,9 +123,12 @@ kafka:
     heapSize: 1G
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   tls:
     enabled: false
+    authentication:
+      type: ""
     fullchain: |-
     privkey: |-
     cacerts: |-
@@ -185,6 +183,7 @@ kafka:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -215,11 +214,14 @@ connect:
     cacerts: |-
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   dependencies:
     kafka:
       bootstrapEndpoint: kafka:9071
       brokerCount: 3
+    interceptor:
+      enabled: true
     schemaRegistry:
       enabled: true
       url: http://schemaregistry:8081
@@ -230,6 +232,7 @@ connect:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -257,6 +260,7 @@ replicator:
     cacerts: |-
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   dependencies:
     kafka:
@@ -269,6 +273,7 @@ replicator:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -295,6 +300,7 @@ schemaregistry:
     cacerts: |-
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   dependencies:
     kafka:
@@ -305,6 +311,7 @@ schemaregistry:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -335,12 +342,15 @@ ksql:
     cacerts: |-
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   dependencies:
     kafka:
       brokerCount: 3
       bootstrapEndpoint: kafka:9071
       brokerEndpoints: kafka-0.kafka:9071,kafka-1.kafka:9071,kafka-2.kafka:9071
+    interceptor:
+      enabled: true
     schemaRegistry:
       enabled: true
       tls:
@@ -353,6 +363,7 @@ ksql:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
 
 ######################################################################
 
@@ -379,17 +390,19 @@ controlcenter:
       bootstrapEndpoint: kafka:9071
       zookeeper:
         endpoint: zookeeper:2181
-    connectCluster:
-      enabled: true
-      url: http://connectors:8083
+    monitoringKafkaClusters: []
     ksql:
       enabled: true
       url: http://ksql:9088
     schemaRegistry:
       enabled: true
       url: http://schemaregistry:8081
+    connectCluster:
+      enabled: true
+      url: http://connectors:8083
   loadBalancer:
     enabled: false
+    annotations: {}
     domain: ""
   tls:
     enabled: false
@@ -409,3 +422,4 @@ controlcenter:
     nodeAffinity: {}
     podAffinity: {}
     podAntiAffinity: {}
+  serviceAccountName: ""
