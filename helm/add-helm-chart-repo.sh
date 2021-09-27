@@ -11,7 +11,7 @@ helm repo add atlassian-data-center https://atlassian-labs.github.io/data-center
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add cetic https://cetic.github.io/helm-charts
 helm repo add chartmuseum https://chartmuseum.github.io/charts
-helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts
+helm repo add confluentinc https://packages.confluent.io/helm
 helm repo add datadog https://helm.datadoghq.com
 helm repo add descheduler https://kubernetes-sigs.github.io/descheduler
 helm repo add drone https://charts.drone.io
