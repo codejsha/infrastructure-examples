@@ -8,12 +8,13 @@ export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 ### enable pki
 vault secrets enable pki
-vault secrets tune -max-lease-ttl=87600h pki
+vault secrets tune -max-lease-ttl="87600h" pki
 
 ### generate root ca
 vault write pki/root/generate/internal \
-    common_name=example.com \
-    ttl=87600h
+    common_name="example.com" \
+    ttl="87600h" \
+    > ca.crt
 
 ### configure issuing certificate and crl endpoints
 vault write pki/config/urls \

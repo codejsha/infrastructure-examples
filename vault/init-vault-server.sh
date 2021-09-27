@@ -7,5 +7,5 @@ NAMESPACE="vault-system"
 
 mkdir -p ~/.vault
 
-kubectl exec -it --namespace ${NAMESPACE} my-vault-0 -- vault operator init -format=json > ~/.vault/init-keys.json
+kubectl exec -it --namespace ${NAMESPACE} my-vault-0 -- vault operator init -format="json" > ~/.vault/init-keys.json
 cat ~/.vault/init-keys.json | jq -r ".root_token" > ~/.vault/root_token.txt

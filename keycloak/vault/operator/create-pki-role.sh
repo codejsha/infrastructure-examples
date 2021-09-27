@@ -7,8 +7,8 @@ export VAULT_ADDR="http://vault.example.com"
 export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write pki/roles/keycloak \
-    allowed_domains=keycloak.example.com,keycloak,keycloak.my-keycloak-operator,keycloak.my-keycloak-operator.svc.cluster.local,*.keycloak.my-keycloak-operator.svc.cluster.local \
-    allow_subdomains=true \
-    allow_bare_domains=true \
-    allow_glob_domains=true \
-    max_ttl=4380h
+    allowed_domains="keycloak.example.com,keycloak,keycloak.my-keycloak-operator,keycloak.my-keycloak-operator.svc.cluster.local,*.keycloak.my-keycloak-operator.svc.cluster.local" \
+    allow_subdomains="true" \
+    allow_bare_domains="true" \
+    allow_glob_domains="true" \
+    max_ttl="4380h"
