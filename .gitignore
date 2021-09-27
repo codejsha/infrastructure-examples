@@ -23,6 +23,8 @@ nohup.*
 /cassandra/operator/cassandra-operator/
 /cmak/cmak-*/
 /confluent/kubernetes/confluent-operator/
+/confluent/kubernetes/vault/certs/
+/confluent/kubernetes/vault/jks/
 /descheduler/descheduler/
 /gitlab/helm/gitlab/
 /helm/chartmuseum/chartmuseum/
@@ -49,4 +51,5 @@ nohup.*
 /vault/pki/*.crt
 /vault/pki/*.csr
 /vault/pki/*.json
+/vault/pki/*.key
 /vault/pki/*.pem
