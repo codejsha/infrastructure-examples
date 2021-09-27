@@ -65,11 +65,11 @@ vault secrets enable -path=internal kv-v2
 ### pki
 
 vault secrets enable pki
-vault secrets tune -max-lease-ttl=87600h pki
+vault secrets tune -max-lease-ttl="87600h" pki
 
 ### read ca certificate
-vault read pki/cert/ca -format=json | jq -r '.data.certificate' |  openssl x509 -text -noout
-vault read pki/cert/ca -format=json | jq -r '.data.certificate' > ca.crt
+vault read pki/cert/ca -format="json" | jq -r '.data.certificate' |  openssl x509 -text -noout
+vault read pki/cert/ca -format="json" | jq -r '.data.certificate' > ca.crt
 curl -s http://vault.example.com/v1/pki/ca/pem | openssl x509 -text -noout
 
 ### certificate list
@@ -80,4 +80,4 @@ curl \
     http://vault.example.com/v1/pki/certs
 
 ### get certificate
-vault read pki/cert/${SERIAL} -format=json | jq -r '.data.certificate' |  openssl x509 -text -noout
+vault read pki/cert/${SERIAL} -format="json" | jq -r '.data.certificate' |  openssl x509 -text -noout
