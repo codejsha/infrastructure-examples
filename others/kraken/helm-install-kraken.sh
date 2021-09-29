@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="kraken-system"
+NAMESPACE="kraken"
 
 if [ ! -d "kraken" ]; then
     git clone https://github.com/uber/kraken

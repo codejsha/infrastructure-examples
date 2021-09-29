@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add jfrog https://charts.jfrog.io
 # helm repo update
 
-NAMESPACE="artifactory-system"
+NAMESPACE="artifactory"
 
 # helm install my-artifactory-oss \
 helm upgrade --install my-artifactory-oss \

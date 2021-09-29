@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="elastic-system"
+NAMESPACE="elastic"
 
 # helm install my-logstash \
 helm upgrade --install my-logstash \

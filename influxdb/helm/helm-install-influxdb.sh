@@ -8,7 +8,7 @@ set -o errtrace
 
 PASSWORD="${PASSWORD}"
 
-NAMESPACE="influx-system"
+NAMESPACE="influxdb"
 
 # helm install my-influxdb \
 helm upgrade --install my-influxdb \

@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add elastic https://helm.elastic.co
 # helm repo update
 
-NAMESPACE="elastic-system"
+NAMESPACE="elastic"
 
 helm upgrade --install my-elasticsearch \
     --create-namespace \

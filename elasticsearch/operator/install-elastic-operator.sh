@@ -3,10 +3,10 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl apply --namespace elastic-system --filename https://download.elastic.co/downloads/eck/1.4.0/all-in-one.yaml
+kubectl apply --namespace elastic --filename https://download.elastic.co/downloads/eck/1.4.0/all-in-one.yaml
 
-# kubectl logs --namespace elastic-system --follow statefulset.apps/elastic-operator
-# kubectl logs -n elastic-system -f statefulset.apps/elastic-operator
+# kubectl logs --namespace elastic --follow statefulset.apps/elastic-operator
+# kubectl logs -n elastic -f statefulset.apps/elastic-operator
 
 ### delete
 # kubectl delete --filename https://download.elastic.co/downloads/eck/1.4.0/all-in-one.yaml

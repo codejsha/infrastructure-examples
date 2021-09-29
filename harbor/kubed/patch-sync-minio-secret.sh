@@ -3,4 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl patch namespace harbor-system --patch-file patch-sync-minio-secret.yaml
+kubectl patch namespace harbor --patch-file patch-sync-minio-secret.yaml

@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add sonatype https://sonatype.github.io/helm3-charts
 # helm repo update
 
-NAMESPACE="nexus-system"
+NAMESPACE="nexus"
 
 # helm install my-nexus \
 helm upgrade --install my-nexus \

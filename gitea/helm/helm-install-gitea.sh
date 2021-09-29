@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add gitea-charts https://dl.gitea.io/charts
 # helm repo update
 
-NAMESPACE="gitea-system"
+NAMESPACE="gitea"
 
 # helm install my-gitea \
 helm upgrade --install my-gitea \

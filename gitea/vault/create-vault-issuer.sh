@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="gitea-system"
+NAMESPACE="gitea"
 
 kubectl create serviceaccount --namespace ${NAMESPACE} gitea-issuer
 export GITEA_ISSUER_SECRET_REF="$(kubectl get serviceaccount --namespace ${NAMESPACE} gitea-issuer -o json | jq -r ".secrets[].name")"

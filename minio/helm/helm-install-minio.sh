@@ -11,7 +11,7 @@ export PASSWORD="minio123"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="minio-system"
+NAMESPACE="minio"
 
 # helm install my-minio \
 helm upgrade --install my-minio \

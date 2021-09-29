@@ -3,7 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: nexus-gw
-  namespace: nexus-system
+  namespace: nexus
 spec:
   selector:
     istio: ingressgateway
@@ -27,7 +27,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: nexus-vs
-  namespace: nexus-system
+  namespace: nexus
 spec:
   hosts:
     - nexus.example.com
@@ -38,7 +38,7 @@ spec:
         - port: 80
       route:
         - destination:
-            host: my-nexus-nexus-repository-manager.nexus-system.svc.cluster.local
+            host: my-nexus-nexus-repository-manager.nexus.svc.cluster.local
             port:
               number: 8081
   tls:
@@ -48,6 +48,6 @@ spec:
             - nexus.example.com
       route:
         - destination:
-            host: my-nexus-nexus-repository-manager.nexus-system.svc.cluster.local
+            host: my-nexus-nexus-repository-manager.nexus.svc.cluster.local
             port:
               number: 8081

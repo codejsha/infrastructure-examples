@@ -13,7 +13,7 @@ envsubst < ./values.yaml > ./values-temp.yaml
 ######################################################################
 
 function helm_install_postgresql_harbor {
-    local NAMESPACE="harbor-system"
+    local NAMESPACE="harbor"
 
     # helm install my-harbor-postgres \
     helm upgrade --install my-harbor-postgres \

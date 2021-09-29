@@ -9,7 +9,7 @@ git clone https://github.com/backstage/backstage.git
 cd backstage/contrib/chart/backstage
 helm dependency update
 
-NAMESPACE="backstage-system"
+NAMESPACE="backstage"
 
 # helm install my-backstage \
 helm upgrade --install my-backstage \

@@ -3,7 +3,7 @@ apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
 metadata:
   name: kafkasql-journal
-  namespace: kafka-system
+  namespace: kafka
   labels:
     strimzi.io/cluster: my-cluster
 spec:

@@ -10,7 +10,7 @@ export PASSWORD="${PASSWORD}"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="jenkins-system"
+NAMESPACE="jenkins"
 
 # helm install my-jenkins \
 helm upgrade --install my-jenkins \

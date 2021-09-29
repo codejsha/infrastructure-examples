@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm repo update
 
-NAMESPACE="cassandra-system"
+NAMESPACE="cassandra"
 
 # helm install my-cassandra \
 helm upgrade --install my-cassandra \

@@ -8,6 +8,6 @@ export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write auth/kubernetes/role/gitea-issuer \
     bound_service_account_names="issuer,gitea-issuer" \
-    bound_service_account_namespaces="gitea-system" \
+    bound_service_account_namespaces="gitea" \
     policies="pki" \
     ttl="4380h"

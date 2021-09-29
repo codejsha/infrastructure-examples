@@ -12,7 +12,7 @@ fi
 
 SHARED_SECRET="$(cat SHARED_SECRET.txt)"
 
-NAMESPACE="drone-system"
+NAMESPACE="drone"
 
 # helm install my-drone \
 helm upgrade --install my-drone \

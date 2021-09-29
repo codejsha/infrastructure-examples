@@ -8,7 +8,7 @@ PASSWORD="${PASSWORD}"
 AWS_ACCESS_KEY="minio"
 AWS_SECRET_KEY="minio123"
 
-NAMESPACE="registry-system"
+NAMESPACE="docker-registry"
 
 docker container run --entrypoint htpasswd registry:2.7.0 -Bbn ${USERNAME} ${PASSWORD} > ./htpasswd
 

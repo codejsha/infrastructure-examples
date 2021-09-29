@@ -4,7 +4,7 @@ velero backup-location get
 velero backup get
 
 velero backup create mybackup --include-namespaces test
-velero backup create minio-backup --include-namespaces minio-system
+velero backup create minio-backup --include-namespaces minio
 --include-resources
 --exclude-resources
 

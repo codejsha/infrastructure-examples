@@ -3,4 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl patch secret --namespace gitea-system gitea-cert --patch-file patch-gitea-secret.yaml
+kubectl patch secret --namespace gitea gitea-cert --patch-file patch-gitea-secret.yaml

@@ -7,7 +7,7 @@ export VAULT_ADDR="http://vault.example.com"
 export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write pki/roles/gitea \
-    allowed_domains="git.example.com,my-gitea-http,my-gitea-http.gitea-system,my-gitea-http.gitea-system.svc.cluster.local,*.my-gitea-http.gitea-system.svc.cluster.local" \
+    allowed_domains="git.example.com,my-gitea-http,my-gitea-http.gitea,my-gitea-http.gitea.svc.cluster.local,*.my-gitea-http.gitea.svc.cluster.local" \
     allow_subdomains="true" \
     allow_bare_domains="true" \
     allow_glob_domains="true" \

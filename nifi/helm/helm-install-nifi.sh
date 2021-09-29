@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add cetic https://cetic.github.io/helm-charts
 # helm repo update
 
-NAMESPACE="kafka-system"
+NAMESPACE="kafka"
 
 # helm install my-nifi \
 helm upgrade --install my-nifi \

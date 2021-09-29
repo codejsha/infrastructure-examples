@@ -8,7 +8,7 @@ export AWS_SECRET_KEY="minio123"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="chart-system"
+NAMESPACE="chartmuseum"
 
 # helm install my-chartmuseum \
 helm upgrade --install my-chartmuseum \
