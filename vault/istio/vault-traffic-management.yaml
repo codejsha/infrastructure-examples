@@ -3,7 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: vault-gw
-  namespace: vault-system
+  namespace: vault
 spec:
   selector:
     istio: ingressgateway
@@ -19,7 +19,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: vault-vs
-  namespace: vault-system
+  namespace: vault
 spec:
   hosts:
     - vault.example.com
@@ -31,6 +31,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: my-vault.vault-system.svc.cluster.local
+            host: my-vault.vault.svc.cluster.local
             port:
               number: 8200

@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add hashicorp https://helm.releases.hashicorp.com
 # helm repo update
 
-NAMESPACE="vault-system"
+NAMESPACE="vault"
 
 # helm install my-vault \
 helm upgrade --install my-vault \

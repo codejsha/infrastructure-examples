@@ -6,7 +6,7 @@ set -o errtrace
 export VAULT_ADDR="http://vault.example.com"
 export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
-NAMESPACE="vault-system"
+NAMESPACE="vault"
 KUBERNETES_HOST_URL="https://kubernetes.docker.internal:6443"
 
 kubectl exec --namespace ${NAMESPACE} my-vault-0 -- vault login ${VAULT_TOKEN}

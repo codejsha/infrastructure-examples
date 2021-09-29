@@ -5,7 +5,7 @@ metadata:
   name: gitea-issuer
 spec:
   vault:
-    server: http://my-vault.vault-system.svc.cluster.local:8200
+    server: http://my-vault.vault.svc.cluster.local:8200
     path: pki/sign/gitea
     auth:
       kubernetes:

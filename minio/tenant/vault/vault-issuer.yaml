@@ -6,7 +6,7 @@ metadata:
   namespace: minio-tenant
 spec:
   vault:
-    server: http://my-vault.vault-system.svc.cluster.local:8200
+    server: http://my-vault.vault.svc.cluster.local:8200
     path: pki/sign/minio-tenant
     auth:
       kubernetes:
@@ -23,7 +23,7 @@ metadata:
   namespace: minio-tenant
 spec:
   vault:
-    server: http://my-vault.vault-system.svc.cluster.local:8200
+    server: http://my-vault.vault.svc.cluster.local:8200
     path: pki/sign/minio-tenant-console
     auth:
       kubernetes:

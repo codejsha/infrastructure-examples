@@ -25,7 +25,7 @@ kubectl exec -it my-vault-0 -- vault operator unseal <UNSEAL_KEY_3>
 NAMESPACE="default"
 
 ### vault namespace
-NAMESPACE="vault-system"
+NAMESPACE="vault"
 
 VAULT_PODNAME="$(kubectl get pods --namespace ${NAMESPACE} --selector app.kubernetes.io/name=vault --output custom-columns=:metadata.name)"
 kubectl exec -it --namespace ${NAMESPACE} ${VAULT_PODNAME} --container vault -- /bin/sh
