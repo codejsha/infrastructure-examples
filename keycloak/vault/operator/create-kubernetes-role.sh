@@ -8,6 +8,6 @@ export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 vault write auth/kubernetes/role/keycloak-issuer \
     bound_service_account_names="issuer,keycloak-issuer" \
-    bound_service_account_namespaces="my-keycloak-operator,kafka-system" \
+    bound_service_account_namespaces="my-keycloak-operator,kafka" \
     policies="pki" \
     ttl="4380h"

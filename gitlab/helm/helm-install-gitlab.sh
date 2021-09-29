@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add gitlab https://charts.gitlab.io
 # helm repo update
 
-NAMESPACE="gitlab-system"
+NAMESPACE="gitlab"
 
 # helm install my-gitlab \
 helm upgrade --install my-gitlab \

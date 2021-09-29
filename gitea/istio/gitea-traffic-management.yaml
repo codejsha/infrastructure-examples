@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: gitea-gw
-  namespace: gitea-system
+  namespace: gitea
 spec:
   selector:
     istio: ingressgateway
@@ -33,7 +33,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: gitea-vs
-  namespace: gitea-system
+  namespace: gitea
 spec:
   hosts:
     - git.example.com
@@ -44,7 +44,7 @@ spec:
         - port: 2022
       route:
         - destination:
-            host: my-gitea-ssh.gitea-system.svc.cluster.local
+            host: my-gitea-ssh.gitea.svc.cluster.local
             port:
               number: 2022
   http:
@@ -53,7 +53,7 @@ spec:
         - port: 443
       route:
         - destination:
-            host: my-gitea-http.gitea-system.svc.cluster.local
+            host: my-gitea-http.gitea.svc.cluster.local
             port:
               number: 3000
 ---
@@ -61,9 +61,9 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: gitea-dr
-  namespace: gitea-system
+  namespace: gitea
 spec:
-  host: my-gitea-http.gitea-system.svc.cluster.local
+  host: my-gitea-http.gitea.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE

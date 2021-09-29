@@ -3,7 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: kafka-bootstrap-gw
-  namespace: kafka-system
+  namespace: kafka
 spec:
   selector:
     istio: ingressgateway
@@ -19,7 +19,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: kafka-bootstrap-vs
-  namespace: kafka-system
+  namespace: kafka
 spec:
   hosts:
     - kafka-bootstrap.example.com
@@ -31,6 +31,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: my-cluster-kafka-external1-bootstrap.kafka-system.svc.cluster.local
+            host: my-cluster-kafka-external1-bootstrap.kafka.svc.cluster.local
             port:
               number: 9094

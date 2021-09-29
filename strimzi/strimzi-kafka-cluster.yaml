@@ -3,7 +3,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
   name: my-cluster
-  namespace: kafka-system
+  namespace: kafka
 spec:
   kafka:
     replicas: 3

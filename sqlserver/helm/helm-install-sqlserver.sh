@@ -5,7 +5,7 @@ set -o errtrace
 
 PASSWORD="${PASSWORD}"
 
-NAMESPACE="mssql-system"
+NAMESPACE="sql-server"
 
 # helm install my-mssql \
 helm upgrade --install my-mssql \

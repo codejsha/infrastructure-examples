@@ -17,7 +17,7 @@ export DATABASE_PASSWORD="${PASSWORD}"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="mysql-system"
+NAMESPACE="mysql"
 
 # helm install my-mysql \
 helm upgrade --install my-mysql \

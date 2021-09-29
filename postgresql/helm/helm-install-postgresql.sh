@@ -13,7 +13,7 @@ envsubst < ./values.yaml > ./values-temp.yaml
 ######################################################################
 
 function helm_install_postgresql {
-    local NAMESPACE="postgres-system"
+    local NAMESPACE="postgres"
 
     # helm install my-postgres \
     helm upgrade --install my-postgres \
@@ -25,7 +25,7 @@ function helm_install_postgresql {
 }
 
 function helm_install_postgresql_gitlab {
-    local NAMESPACE="gitlab-system"
+    local NAMESPACE="gitlab"
 
     # helm install my-gitlab-postgres \
     helm upgrade --install my-gitlab-postgres \

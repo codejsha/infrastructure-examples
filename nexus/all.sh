@@ -58,13 +58,13 @@ cd repository/docker
 
 ### create-docker-proxy-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REMOTE_URL} ${DOCKER_INDEX_TYPE}
 bash ./create-docker-proxy-repo.sh "docker-hub" "nexus-docker-hub" "https://registry-1.docker.io" "HUB"
-# bash ./create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.registry-system.svc.cluster.local:5000" "REGISTRY"
+# bash ./create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://my-docker-registry.docker-registry.svc.cluster.local:5000" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-registry" "nexus-docker-registry" "http://registry.example.com" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-kube-registry" "nexus-docker-kube-registry" "http://registry.kube-system.svc.cluster.local:5000" "REGISTRY"
 bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "http://harbor.example.com" "REGISTRY"
 # bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://harbor.example.com" "REGISTRY"
-# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "http://my-harbor-harbor-registry.harbor-system.svc.cluster.local:5000" "REGISTRY"
-# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://my-harbor-harbor-registry.harbor-system.svc.cluster.local:5000" "REGISTRY"
+# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "http://my-harbor-harbor-registry.harbor.svc.cluster.local:5000" "REGISTRY"
+# bash ./create-docker-proxy-repo.sh "docker-harbor" "nexus-docker-harbor" "https://my-harbor-harbor-registry.harbor.svc.cluster.local:5000" "REGISTRY"
 
 ### create-docker-group-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REPOSITORY_MEMBER_NAMES}
 # bash ./create-docker-group-repo.sh "docker-group" "default" "docker-hub\", \"docker-registry"
@@ -89,7 +89,7 @@ cd ..
 cd repository/helm
 
 ### create-helm-proxy-repo.sh ${REPOSITORY_NAME} ${BLOBSTORE_NAME} ${REMOTE_URL}
-# bash ./create-helm-proxy-repo.sh "helm-chartmuseum" "nexus-helm-chartmuseum" "http://chartmuseum-service.chart-system.svc.cluster.local:8080"
+# bash ./create-helm-proxy-repo.sh "helm-chartmuseum" "nexus-helm-chartmuseum" "http://chartmuseum-service.chartmuseum.svc.cluster.local:8080"
 bash ./create-helm-proxy-repo.sh "helm-harbor" "nexus-helm-harbor" "http://harbor.example.com"
 # bash ./create-helm-proxy-repo.sh "helm-harbor" "nexus-helm-harbor" "https://harbor.example.com"
 

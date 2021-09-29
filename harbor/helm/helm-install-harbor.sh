@@ -35,7 +35,7 @@ export DATABASE_PASSWORD="${PASSWORD}"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="harbor-system"
+NAMESPACE="harbor"
 
 ### official harbor
 # helm install my-harbor \

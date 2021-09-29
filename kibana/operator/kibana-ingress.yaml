@@ -4,7 +4,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: elasticstack-kibana-ingress
-  namespace: elastic-system
+  namespace: elastic
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"

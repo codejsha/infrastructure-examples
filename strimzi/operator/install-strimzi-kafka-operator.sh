@@ -5,7 +5,7 @@
 
 STRIMZI_VERSION="0.20.1"
 STRIMZI_OPERATOR_NAMESPACE="kafka-operator"
-STRIMZI_NAMESPACE="kafka-system"
+STRIMZI_NAMESPACE="kafka"
 
 ######################################################################
 

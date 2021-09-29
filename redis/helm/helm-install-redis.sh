@@ -10,7 +10,7 @@ export PASSWORD="${PASSWORD}"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
-NAMESPACE="redis-system"
+NAMESPACE="redis"
 
 # helm install my-redis \
 helm upgrade --install my-redis \

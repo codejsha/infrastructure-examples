@@ -3,6 +3,6 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl apply --namespace elastic-system --filename elasticsearch.yaml
+kubectl apply --namespace elastic --filename elasticsearch.yaml
 
-# kubectl get secret elasticstack-es-elastic-user --output jsonpath='{.data.elastic}' --namespace elastic-system | base64 --decode; echo
+# kubectl get secret elasticstack-es-elastic-user --output jsonpath='{.data.elastic}' --namespace elastic | base64 --decode; echo

@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 # helm repo update
 
-NAMESPACE="prometheus-system"
+NAMESPACE="prometheus"
 
 # helm install my-prometheus-stack \
 helm upgrade --install my-prometheus-stack \

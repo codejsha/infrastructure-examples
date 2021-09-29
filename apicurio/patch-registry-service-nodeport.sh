@@ -3,4 +3,4 @@
 # set -o errexit
 # set -o errtrace
 
-kubectl patch service --namespace apicurio-system my-registry-service --patch-file patch-registry-service-nodeport.yaml
+kubectl patch service --namespace apicurio my-registry-service --patch-file patch-registry-service-nodeport.yaml

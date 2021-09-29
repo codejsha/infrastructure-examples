@@ -31,4 +31,4 @@ kubectl apply --filename configmap.yaml
 # kubectl apply --filename configmap-minikube.yaml
 
 ### On first install only
-kubectl create secret generic --namespace metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+kubectl create secret generic --namespace metallb memberlist --from-literal=secretkey="$(openssl rand -base64 128)"

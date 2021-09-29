@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="tomcat-system"
+NAMESPACE="tomcat"
 kubectl create namespace ${NAMESPACE}
 kubectl label namespace ${NAMESPACE} istio-injection=enabled
 

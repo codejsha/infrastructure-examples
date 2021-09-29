@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: gitea-cert
-  namespace: gitea-system
+  namespace: gitea
 spec:
   secretName: gitea-cert
   commonName: git.example.com
@@ -12,8 +12,8 @@ spec:
     - "git.example.com"
     ### internal domain
     - "my-gitea-http"
-    - "my-gitea-http.gitea-system"
-    - "my-gitea-http.gitea-system.svc.cluster.local"
-    - "*.my-gitea-http.gitea-system.svc.cluster.local"
+    - "my-gitea-http.gitea"
+    - "my-gitea-http.gitea.svc.cluster.local"
+    - "*.my-gitea-http.gitea.svc.cluster.local"
   issuerRef:
     name: gitea-issuer

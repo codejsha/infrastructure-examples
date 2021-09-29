@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="cassandra-system"
+NAMESPACE="cassandra"
 RELEASE_NAME="my-cassandra"
 
 kubectl exec --namespace ${NAMESPACE} \

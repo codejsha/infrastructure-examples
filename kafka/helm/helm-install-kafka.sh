@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="kafka-system"
+NAMESPACE="kafka"
 
 # helm install my-kafka \
 helm upgrade --install my-kafka \

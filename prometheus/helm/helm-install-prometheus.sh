@@ -7,7 +7,7 @@ set -o errtrace
 # helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 # helm repo update
 
-NAMESPACE="prometheus-system"
+NAMESPACE="prometheus"
 
 # helm install my-prometheus \
 helm upgrade --install my-prometheus \

@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add oteemocharts https://oteemo.github.io/charts
 # helm repo update
 
-NAMESPACE="nexus-system"
+NAMESPACE="nexus"
 
 # helm install my-nexus \
 helm upgrade --install my-nexus \
