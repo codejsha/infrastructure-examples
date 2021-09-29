@@ -56,7 +56,7 @@ alias kns-registry="kubens registry-system"
 alias kns-rook-ceph="kubens rook-ceph"
 alias kns-tomcat="kubens tomcat-system"
 alias kns-tekton="kubens tekton-pipelines"
-alias kns-vault="kubens vault-system"
+alias kns-vault="kubens vault"
 alias kns-velero="kubens velero"
 
 alias krew="kubectl krew"

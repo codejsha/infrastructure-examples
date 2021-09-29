@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-NAMESPACE="vault-system"
+NAMESPACE="vault"
 # VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 UNSEAL_KEY1="$(cat ~/.vault/init-keys.json | jq -r ".unseal_keys_b64[0]")"
