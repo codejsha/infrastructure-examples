@@ -3,8 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-git clone https://github.com/spotify/backstage.git
-# gh repo clone spotify/backstage
+git clone https://github.com/backstage/backstage.git
+# gh repo clone backstage/backstage
+
+cd backstage/contrib/chart/backstage
+helm dependency update
 
 NAMESPACE="backstage-system"
 
@@ -12,5 +15,4 @@ NAMESPACE="backstage-system"
 helm upgrade --install my-backstage \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --values values.yaml \
-    ./backstage/contrib/chart/backstage
+    .
