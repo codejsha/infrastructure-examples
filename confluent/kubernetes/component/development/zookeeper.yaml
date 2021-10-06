@@ -1,0 +1,27 @@
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: Zookeeper
+metadata:
+  name: zookeeper
+  namespace: confluent
+spec:
+  replicas: 3
+  image:
+    application: confluentinc/cp-zookeeper:6.2.1
+    init: confluentinc/confluent-init-container:2.0.3
+  dataVolumeCapacity: 10Gi
+  logVolumeCapacity: 10Gi
+  configOverrides:
+    server: []
+    jvm: []
+    log4j: []
+  podTemplate:
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:

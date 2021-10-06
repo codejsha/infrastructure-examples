@@ -1,0 +1,28 @@
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: Connect
+metadata:
+  name: connect
+  namespace: confluent
+spec:
+  replicas: 1
+  image:
+    application: confluentinc/cp-server-connect:6.2.1
+    init: confluentinc/confluent-init-container:2.0.3
+  configOverrides:
+    server: []
+    jvm: []
+    log4j: []
+  podTemplate:
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka:9071
