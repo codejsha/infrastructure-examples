@@ -1,0 +1,15 @@
+---
+version: create-weblogic-sample-domain-pv-pvc-inputs-v1
+
+baseName: weblogic-sample
+domainUID: sample-domain1
+
+namespace: sample-domain1-ns
+
+weblogicDomainStorageType: NFS
+weblogicDomainStorageNFSServer: nfs.example.com
+weblogicDomainStoragePath: /storage
+
+# weblogicDomainStorageReclaimPolicy: Retain
+weblogicDomainStorageReclaimPolicy: Delete
+weblogicDomainStorageSize: 10Gi
