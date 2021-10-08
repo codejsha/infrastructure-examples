@@ -1,0 +1,47 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: kibana-gw
+  namespace: elastic
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-kibana
+        protocol: HTTP
+      hosts:
+        - kibana.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https-kibana
+        protocol: HTTPS
+      hosts:
+        - kibana.example.com
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: kibana-vs
+  namespace: elastic
+spec:
+  hosts:
+    - kibana.example.com
+  gateways:
+    - kibana-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - kibana.example.com
+      route:
+        - destination:
+            host: elasticstack-kb-http.elastic.svc.cluster.local
+            port:
+              number: 5601
