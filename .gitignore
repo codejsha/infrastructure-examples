@@ -30,6 +30,7 @@ nohup.*
 /helm/chartmuseum/chartmuseum/
 /istio/addon/vault/certs/
 /istio/istio-*/
+/java/docker/build/docker-images/
 /java/pinpoint/docker-compose/pinpoint-docker/
 /kafka/burrow/docker-compose/Burrow/
 /keycloak/kustomize/base/
@@ -53,3 +54,6 @@ nohup.*
 /vault/pki/*.json
 /vault/pki/*.key
 /vault/pki/*.pem
+/weblogic/kubernetes/docker/weblogic-image-tool/imagetool/
+/weblogic/kubernetes/docker/build/docker-images/
+/weblogic/kubernetes/weblogic-kubernetes-operator/
