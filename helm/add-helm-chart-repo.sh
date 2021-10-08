@@ -36,6 +36,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add renovate https://docs.renovatebot.com/helm-charts
 helm repo add stable https://charts.helm.sh/stable
 helm repo add strimzi https://strimzi.io/charts
+helm repo add traefik https://containous.github.io/traefik-helm-chart
 helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
 
 ### local
