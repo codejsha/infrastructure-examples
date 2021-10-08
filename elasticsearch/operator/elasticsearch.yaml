@@ -1,9 +1,11 @@
+---
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
   name: elasticstack
+  namespace: elastic
 spec:
-  version: 7.11.1
+  version: 7.15.0
   http:
     ### disable tls
     tls:
@@ -22,16 +24,15 @@ spec:
         node.roles: ["master"]
       volumeClaimTemplates:
         - metadata:
-            name: elasticsearch-master
+            name: elasticsearch-data
           spec:
             accessModes:
               - ReadWriteOnce
             resources:
               requests:
                 storage: 10Gi
-            storageClassName: standard
+            # storageClassName: standard
             # storageClassName: rook-ceph-block
-            # storageClassName: local-path
     - name: data
       count: 1
       config:
@@ -45,6 +46,5 @@ spec:
             resources:
               requests:
                 storage: 100Gi
-            storageClassName: standard
+            # storageClassName: standard
             # storageClassName: rook-ceph-block
-            # storageClassName: local-path
