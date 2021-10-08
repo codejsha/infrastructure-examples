@@ -1,0 +1,16 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sample-domain1-weblogic-sample-pvc
+  namespace: sample-domain1-ns
+  labels:
+    weblogic.domainUID: sample-domain1
+spec:
+  # storageClassName: standard
+  # storageClassName: rook-ceph-block
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
