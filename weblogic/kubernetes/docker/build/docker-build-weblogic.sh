@@ -3,8 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-# SHARE_DIR="/mnt/share"
-SHARE_DIR="/mnt/f/share"
+SHARE_DIR="/mnt/share"
 
 ### clone repository
 if [ ! -d "./docker-images" ]; then
@@ -30,5 +29,5 @@ function docker_image_build_wls1411 {
 
 ######################################################################
 
-docker_image_build_wls12214
+# docker_image_build_wls12214
 docker_image_build_wls1411
