@@ -12,11 +12,11 @@ if [ -z ${JAVA_HOME} ] || [ ! -e ${JAVA_HOME}/bin/jar ]; then
 fi
 
 rm -rf wlsdeploy
-mkdir -p wlsdeploy/applications
+mkdir -p wlsdeploy/domainLibraries
 
-/bin/cp -f ${SHARE_DIR}/app/failovertest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/jdbcdrivertest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/cachetest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/session-persistence-failover-app wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/oracle-mysql/connector/mysql-connector-java-8.0.26/mysql-connector-java-8.0.26.jar \
+    wlsdeploy/domainLibraries/
+/bin/cp -rf ${SHARE_DIR}/tmax-tibero/tibero6-jdbc-driver/*.jar \
+    wlsdeploy/domainLibraries/
 
 ${JAVA_HOME}/bin/jar -cf archive.zip wlsdeploy
