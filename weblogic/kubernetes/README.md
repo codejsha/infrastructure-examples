@@ -12,11 +12,17 @@
 
 - https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/choosing-a-model/
 
+Domain home source type:
+
+- Domain in Image
+- Domain in PV
+- Model in Image
+
 ### Domain in Image
 
 - https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-in-image/
 
-### build image
+#### Build image
 
 1. build oracle jdk image (docker/build-jdk)
 2. build weblogic image by imagetool (weblogic-image-tool/create)
