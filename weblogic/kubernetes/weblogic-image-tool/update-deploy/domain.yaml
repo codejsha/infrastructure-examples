@@ -1,0 +1,75 @@
+---
+apiVersion: "weblogic.oracle/v8"
+kind: Domain
+metadata:
+  name: sample-domain1
+  namespace: sample-domain1-ns
+  labels:
+    weblogic.domainUID: sample-domain1
+spec:
+  domainHome: /u01/oracle/user_projects/domains/sample-domain1
+  domainHomeSourceType: Image
+
+  image: "domain-home-in-image:14.1.1-deploy"
+  imagePullPolicy: "IfNotPresent"
+  # imagePullSecrets:
+  # - name:
+
+  webLogicCredentialsSecret:
+    name: sample-domain1-weblogic-credentials
+
+  includeServerOutInPodLog: true
+  logHomeEnabled: true
+  httpAccessLogInLogHome: true
+  logHome: /shared/logs/sample-domain1
+  dataHome: ""
+
+  serverStartPolicy: "IF_NEEDED"
+
+  serverPod:
+    env:
+      - name: JAVA_OPTIONS
+        value: "-Dweblogic.StdoutDebugEnabled=false"
+      - name: USER_MEM_ARGS
+        value: "-Djava.security.egd=file:/dev/./urandom -Xms1024m -Xmx1024m "
+    resources:
+      requests:
+        memory: "768Mi"
+        cpu: "250m"
+    volumes:
+      - name: weblogic-domain-storage-volume
+        persistentVolumeClaim:
+          claimName: sample-domain1-weblogic-sample-pvc
+    volumeMounts:
+      - mountPath: /shared
+        name: weblogic-domain-storage-volume
+
+  adminServer:
+    serverStartState: "RUNNING"
+    adminService:
+      channels:
+        - channelName: default
+          nodePort: 30701
+
+  clusters:
+    - clusterName: cluster-1
+      serverStartState: "RUNNING"
+      replicas: 2
+      serverPod:
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: "weblogic.clusterName"
+                        operator: In
+                        values:
+                          - $(CLUSTER_NAME)
+                  topologyKey: "kubernetes.io/hostname"
+
+  # configuration:
+  #   istio:
+  #     enabled: false
+  #     readinessPort: 8888

@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-JAVA_HOME="/usr/lib/jvm/java-11"
-# JAVA_HOME="/usr/lib/jvm/java-1.8.0"
+JAVA_HOME="/usr/java/java-11"
+# JAVA_HOME="/usr/java/java-1.8.0"
 export JAVA_HOME
 
 ### domain in image
