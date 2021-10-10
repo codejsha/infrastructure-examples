@@ -22,7 +22,7 @@ bash ../imagetool/bin/imagetool.sh update \
     --tag "domain-home-in-image:14.1.1-deploy" \
     --wdtModel "wdt_model_deploy.yaml" \
     --wdtVariables "domain.properties" \
---wdtArchive "archive.zip" \
+    --wdtArchive "archive.zip" \
     --wdtOperation CREATE \
     --wdtVersion LATEST \
     --wdtDomainHome "/u01/oracle/user_projects/domains/sample-domain1" \
