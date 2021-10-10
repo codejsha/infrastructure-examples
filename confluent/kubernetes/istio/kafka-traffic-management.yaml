@@ -1,0 +1,113 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: confluent-kafka-gw
+  namespace: confluent
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - kafka.example.com
+        - broker-0.example.com
+        - broker-1.example.com
+        - broker-2.example.com
+      port:
+        name: tls-kafka
+        number: 443
+        protocol: TLS
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-kafka-bootstrap-vs
+  namespace: confluent
+spec:
+  hosts:
+    - kafka.example.com
+  gateways:
+    - confluent-kafka-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - kafka.example.com
+          gateways:
+            - confluent-kafka-gw
+      route:
+        - destination:
+            host: kafka.confluent.svc.cluster.local
+            port:
+              number: 9092
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-kafka-broker-0-vs
+  namespace: confluent
+spec:
+  hosts:
+    - broker-0.example.com
+  gateways:
+    - confluent-kafka-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - broker-0.example.com
+          gateways:
+            - confluent-kafka-gw
+      route:
+        - destination:
+            host: kafka-0-internal.confluent.svc.cluster.local
+            port:
+              number: 9092
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-kafka-broker-1-vs
+  namespace: confluent
+spec:
+  hosts:
+    - broker-1.example.com
+  gateways:
+    - confluent-kafka-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - broker-1.example.com
+          gateways:
+            - confluent-kafka-gw
+      route:
+        - destination:
+            host: kafka-1-internal.confluent.svc.cluster.local
+            port:
+              number: 9092
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-kafka-broker-2-vs
+  namespace: confluent
+spec:
+  hosts:
+    - broker-2.example.com
+  gateways:
+    - confluent-kafka-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - broker-2.example.com
+          gateways:
+            - confluent-kafka-gw
+      route:
+        - destination:
+            host: kafka-2-internal.confluent.svc.cluster.local
+            port:
+              number: 9092

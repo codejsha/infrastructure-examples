@@ -1,0 +1,49 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: confluent-kafka-swagger-gw
+  namespace: confluent
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - kafka-swagger.example.com
+      port:
+        number: 80
+        name: http-kafka-swagger
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+    - hosts:
+        - kafka-swagger.example.com
+      port:
+        name: tls-kafka-swagger
+        number: 443
+        protocol: tls
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-kafka-swagger-vs
+  namespace: confluent
+spec:
+  hosts:
+    - kafka-swagger.example.com
+  gateways:
+    - confluent-kafka-swagger-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - kafka-swagger.example.com
+          gateways:
+            - confluent-kafka-swagger-gw
+      route:
+        - destination:
+            host: kafka.confluent.svc.cluster.local
+            port:
+              number: 8090

@@ -1,0 +1,35 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: confluent-schema-registry-gw
+  namespace: confluent
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - schema-registry.example.com
+      port:
+        name: http-schema-registry
+        number: 80
+        protocol: HTTP
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-schema-registry-bootstrap-vs
+  namespace: confluent
+spec:
+  hosts:
+    - schema-registry.example.com
+  gateways:
+    - confluent-schema-registry-gw
+  http:
+    - match:
+        - port: 80
+      route:
+        - destination:
+            host: schemaregistry.confluent.svc.cluster.local
+            port:
+              number: 8081
