@@ -6,8 +6,8 @@ set -o errtrace
 # helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm repo update
 
-USERNAME="${USERNAME}"
-PASSWORD="${PASSWORD}"
+USERNAME="admin"
+PASSWORD="admin"
 
 export ROOT_PASSWORD="${PASSWORD}"
 export DATABASE_USERNAME="${USERNAME}"
@@ -24,5 +24,5 @@ helm upgrade --install my-mysql \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-temp.yaml \
-    --version 8.4.2 \
+    --version 8.8.8 \
     bitnami/mysql
