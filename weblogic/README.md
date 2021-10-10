@@ -264,6 +264,23 @@ WaitSecondsHighCount             |                         0                    
 
 ## Sample application
 
+### 14c and 12c
+
+set `INSTALL_TYPE=Complete with Examples` in the weblogic response file.
+
+```rsp
+[ENGINE]
+
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+ORACLE_HOME=/usr/local/weblogic
+INSTALL_TYPE=Complete with Examples
+DECLINE_AUTO_UPDATES=true
+DECLINE_SECURITY_UPDATES=true
+```
+
 ### 11g
 
 Add `WebLogic Server/Server Examples` component to COMPONENT_PATHS in `silent.xml`.
