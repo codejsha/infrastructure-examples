@@ -36,7 +36,7 @@ t3ChannelPort: 30012
 # t3PublicAddress:
 exposeAdminT3Channel: false
 adminNodePort: 30701
-exposeAdminNodePort: true
+exposeAdminNodePort: false
 
 namespace: sample-domain1-ns
 

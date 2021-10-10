@@ -4,9 +4,7 @@ set -o errexit
 set -o errtrace
 
 bash ./create-domain-namespace.sh
+bash ./create-domain-credentials.sh
 
 # bash ./helm-upgrade-trafik.sh
 # bash ./helm-install-domain-ingress.sh
-
-bash ./create-domain-credentials.sh
-bash ./create-weblogic-domain.sh
