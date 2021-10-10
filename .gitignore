@@ -58,5 +58,6 @@ nohup.*
 /weblogic/kubernetes/docker/build-jdk/docker-images/
 /weblogic/kubernetes/docker/build-weblogic/docker-images/
 /weblogic/kubernetes/weblogic-image-tool/imagetool/
-/weblogic/kubernetes/weblogic-image-tool/update-deploy/archive/
+/weblogic/kubernetes/weblogic-image-tool/update-jdbc/wlsdeploy/
+/weblogic/kubernetes/weblogic-image-tool/update-deploy/wlsdeploy/
 /weblogic/kubernetes/weblogic-kubernetes-operator/
