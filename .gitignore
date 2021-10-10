@@ -54,6 +54,9 @@ nohup.*
 /vault/pki/*.json
 /vault/pki/*.key
 /vault/pki/*.pem
-/weblogic/kubernetes/docker/weblogic-image-tool/imagetool/
-/weblogic/kubernetes/docker/build/docker-images/
+/weblogic/kubernetes/docker/build-jdbcdriver/lib/
+/weblogic/kubernetes/docker/build-jdk/docker-images/
+/weblogic/kubernetes/docker/build-weblogic/docker-images/
+/weblogic/kubernetes/weblogic-image-tool/imagetool/
+/weblogic/kubernetes/weblogic-image-tool/update-deploy/archive/
 /weblogic/kubernetes/weblogic-kubernetes-operator/
