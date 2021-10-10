@@ -1,0 +1,11 @@
+{
+  "keys": {
+    "kafka": {
+      "sasl_mechanism": "PLAIN",
+      "user_id": "kafka",
+      "hashed_secret": "kafka-secret",
+      "hash_function": "none",
+      "logical_cluster_id": "operator"
+    }
+  }
+}

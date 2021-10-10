@@ -1,0 +1,49 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: confluent-control-center-gw
+  namespace: confluent
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - control-center.example.com
+      port:
+        name: http-control-center
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+    - hosts:
+        - control-center.example.com
+      port:
+        name: tls-control-center
+        number: 443
+        protocol: tls
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: confluent-control-center-bootstrap-vs
+  namespace: confluent
+spec:
+  hosts:
+    - control-center.example.com
+  gateways:
+    - confluent-control-center-gw
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - control-center.example.com
+          gateways:
+            - confluent-control-center-gw
+      route:
+        - destination:
+            host: controlcenter.confluent.svc.cluster.local
+            port:
+              number: 9021
