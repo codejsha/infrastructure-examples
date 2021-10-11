@@ -14,9 +14,9 @@ fi
 rm -rf wlsdeploy
 mkdir -p wlsdeploy/applications
 
-/bin/cp -f ${SHARE_DIR}/app/failovertest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/jdbcdrivertest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/cachetest wlsdeploy/applications/
-/bin/cp -f ${SHARE_DIR}/app/session-persistence-failover-app wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/failovertest wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/jdbcdrivertest wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/cachetest wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/session-persistence-failover-app wlsdeploy/applications/
 
 ${JAVA_HOME}/bin/jar -cf archive.zip wlsdeploy
