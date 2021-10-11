@@ -36,7 +36,7 @@ topology:
 resources:
   JDBCSystemResource:
     OracleDatasource:
-      Target: "@@PROP:CLUSTER_NAME@@"
+      # Target: "@@PROP:CLUSTER_NAME@@"
       JdbcResource:
         JDBCDataSourceParams:
           JNDIName: jdbc/generic1
@@ -73,7 +73,7 @@ resources:
           MaxCapacity: 30
           TestConnectionsOnReserve: true
     TiberoDatasource:
-      Target: "@@PROP:CLUSTER_NAME@@"
+      # Target: "@@PROP:CLUSTER_NAME@@"
       JdbcResource:
         JDBCDataSourceParams:
           JNDIName: jdbc/generic3

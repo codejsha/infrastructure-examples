@@ -15,6 +15,9 @@ spec:
   # imagePullSecrets:
   # - name:
 
+  restartVersion: "1"
+  introspectVersion: "1"
+
   webLogicCredentialsSecret:
     name: sample-domain1-weblogic-credentials
 
@@ -43,6 +46,9 @@ spec:
     volumeMounts:
       - mountPath: /shared
         name: weblogic-domain-storage-volume
+    # initContainers:
+    # nodeSelector:
+    # shutdown:
 
   adminServer:
     serverStartState: "RUNNING"
@@ -50,6 +56,13 @@ spec:
       channels:
         - channelName: default
           nodePort: 30701
+
+  # replicas: 1
+  # managedServers:
+  #   - serverName: server1
+  #     serverStartState: "RUNNING"
+  #     serverPod:
+  #     restartVersion: "1"
 
   clusters:
     - clusterName: cluster-1
