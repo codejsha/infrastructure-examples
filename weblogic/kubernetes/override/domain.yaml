@@ -52,10 +52,10 @@ spec:
 
   adminServer:
     serverStartState: "RUNNING"
-    adminService:
-      channels:
-        - channelName: default
-          nodePort: 30701
+    # adminService:
+    #   channels:
+    #     - channelName: default
+    #       nodePort: 30701
 
   # replicas: 1
   # managedServers:
