@@ -7,6 +7,12 @@
 ## Install the WebLogic Operator
 
 - https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/installation/
+- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/using-helm/
+
+configurations:
+
+- `enableClusterRoleBinding=true`: the operator will have privilege in all Kubernetes namespaces (cluster level)
+- `domainNamespaceSelectionStrategy=LabelSelector` and `domainNamespaceLabelSelector=weblogic-operator\=enabled`: manage domains with the label "`weblogic-operator=enabled`"
 
 ## Create a WebLogic Domain
 
@@ -36,3 +42,7 @@ Domain home source type:
 ### Model in Image
 
 - https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/model-in-image/
+
+## Configuration Overrides
+
+- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/configoverrides/

@@ -6,13 +6,6 @@
 JAVA_HOME="/usr/java/java-1.8.0"
 export JAVA_HOME
 
-### copy install files
-SHARE_DIR="/mnt/share"
-/bin/cp -f ${SHARE_DIR}/oracle-java/8/jdk-8u301-linux-x64.tar.gz .
-/bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/wls12.2.1.4/fmw_12.2.1.4.0_wls_lite_Disk1_1of1.zip .
-/bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/opatch/p28186730_139426_Generic.zip .
-/bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/wls12.2.1.4/p33059296_122140_Generic.zip .
-
 ### delete cache
 rm -rf ~/cache
 

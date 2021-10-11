@@ -1,0 +1,48 @@
+---
+kubernetesPlatform: OpenShift
+
+serviceAccount: "sample-weblogic-operator-sa"
+
+domainNamespaceSelectionStrategy: LabelSelector
+domainNamespaceLabelSelector: "weblogic-operator=enabled"
+enableClusterRoleBinding: true
+
+image: "ghcr.io/oracle/weblogic-kubernetes-operator:3.3.2"
+imagePullPolicy: IfNotPresent
+# imagePullSecrets:
+# - name: "my-operator-secret"
+
+externalRestEnabled: false
+externalRestHttpsPort: 31001
+# externalRestIdentitySecret:
+
+elkIntegrationEnabled: false
+logStashImage: "logstash:6.6.0"
+elasticSearchHost: "elasticsearch.default.svc.cluster.local"
+elasticSearchPort: 9200
+
+# featureGates: "...,AuxiliaryImage=true"
+
+javaLoggingLevel: "FINE"
+javaLoggingFileSizeLimit: 20000000
+javaLoggingFileCount: 10
+
+# labels:
+# annotations:
+# nodeSelector:
+# affinity:
+
+remoteDebugNodePortEnabled: false
+#suspendOnDebugStartup specifies whether the operator will suspend on startup when a Java remote debugging is enabled.
+suspendOnDebugStartup: false
+internalDebugHttpPort: 30999
+externalDebugHttpPort: 30999
+# dns1123Fields: ""
+
+introspectorJobNameSuffix: "-introspector"
+
+externalServiceNameSuffix: "-ext"
+
+clusterSizePaddingValidationEnabled: true
+
+# tokenReviewAuthentication: false
