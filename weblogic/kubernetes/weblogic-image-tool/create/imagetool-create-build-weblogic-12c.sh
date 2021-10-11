@@ -36,7 +36,7 @@ bash ../imagetool/bin/imagetool.sh cache addPatch \
     --patchId=33059296_12.2.1.4.0 \
     --path=p33059296_122140_Generic.zip
 
-### build
+### build (docker)
 bash ../imagetool/bin/imagetool.sh create \
     --type=wls \
     --fromImage=oracle/jdk:11-oraclelinux8 \
@@ -46,3 +46,15 @@ bash ../imagetool/bin/imagetool.sh create \
     --chown=oracle:root
     --opatchBugNumber=28186730 \
     --patches=33059296
+
+### build (podman)
+# bash ../imagetool/bin/imagetool.sh create \
+#     --type=wls \
+#     --builder=podman \
+#     --fromImage=oracle/jdk:11-oraclelinux8 \
+#     --tag=weblogic:12.2.1.4 \
+#     --version=12.2.1.4.0 \
+#     --jdkVersion=8u301 \
+#     --chown=oracle:root
+#     --opatchBugNumber=28186730 \
+#     --patches=33059296

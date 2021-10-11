@@ -10,6 +10,7 @@ fi
 kubectl create namespace sample-weblogic-operator-ns
 kubectl create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
 
+### kubernetes
 helm install sample-weblogic-operator \
     --namespace sample-weblogic-operator-ns \
     --set image=ghcr.io/oracle/weblogic-kubernetes-operator:3.3.2 \
@@ -18,3 +19,14 @@ helm install sample-weblogic-operator \
     --set "domainNamespaceSelectionStrategy=LabelSelector" \
     --set "domainNamespaceLabelSelector=weblogic-operator\=enabled" \
     weblogic-kubernetes-operator/kubernetes/charts/weblogic-operator
+
+### openshift
+# helm install sample-weblogic-operator \
+#     --namespace sample-weblogic-operator-ns \
+#     --set image=ghcr.io/oracle/weblogic-kubernetes-operator:3.3.2 \
+#     --set serviceAccount=sample-weblogic-operator-sa \
+#     --set "enableClusterRoleBinding=true" \
+#     --set "domainNamespaceSelectionStrategy=LabelSelector" \
+#     --set "domainNamespaceLabelSelector=weblogic-operator\=enabled" \
+#     --set "kubernetesPlatform=OpenShift" \
+#     weblogic-kubernetes-operator/kubernetes/charts/weblogic-operator

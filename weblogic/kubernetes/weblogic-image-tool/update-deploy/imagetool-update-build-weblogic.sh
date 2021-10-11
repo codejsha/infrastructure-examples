@@ -16,10 +16,10 @@ bash ../imagetool/bin/imagetool.sh cache addInstaller \
     --version latest \
     --path ../weblogic-deploy.zip
 
-### update
+### update (docker)
 bash ../imagetool/bin/imagetool.sh update \
-    --fromImage "domain-home-in-image:14.1.1-jdbc" \
-    --tag "domain-home-in-image:14.1.1-deploy" \
+    --fromImage "weblogic:14.1.1-jdbc" \
+    --tag "weblogic:14.1.1-deploy" \
     --wdtModel "wdt_model_deploy.yaml" \
     --wdtVariables "domain.properties" \
     --wdtArchive "archive.zip" \
@@ -27,3 +27,16 @@ bash ../imagetool/bin/imagetool.sh update \
     --wdtVersion LATEST \
     --wdtDomainHome "/u01/oracle/user_projects/domains/sample-domain1" \
     --chown=oracle:root
+
+### update (podman)
+# bash ../imagetool/bin/imagetool.sh update \
+#     --builder=podman \
+#     --fromImage "weblogic:14.1.1-jdbc" \
+#     --tag "weblogic:14.1.1-deploy" \
+#     --wdtModel "wdt_model_deploy.yaml" \
+#     --wdtVariables "domain.properties" \
+#     --wdtArchive "archive.zip" \
+#     --wdtOperation CREATE \
+#     --wdtVersion LATEST \
+#     --wdtDomainHome "/u01/oracle/user_projects/domains/sample-domain1" \
+#     --chown=oracle:root
