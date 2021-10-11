@@ -20,7 +20,7 @@ bash ../imagetool/bin/imagetool.sh cache addInstaller \
 bash ../imagetool/bin/imagetool.sh update \
     --fromImage "weblogic:14.1.1" \
     --tag "weblogic:14.1.1-update" \
-    --wdtModel "wdt_model_deploy.yaml" \
+    --wdtModel "wdt_model.yaml" \
     --wdtVariables "domain.properties" \
     --wdtArchive "archive.zip" \
     --wdtOperation CREATE \
@@ -33,7 +33,7 @@ bash ../imagetool/bin/imagetool.sh update \
 #     --builder=podman \
 #     --fromImage "weblogic:14.1.1" \
 #     --tag "weblogic:14.1.1-update" \
-#     --wdtModel "wdt_model_deploy.yaml" \
+#     --wdtModel "wdt_model.yaml" \
 #     --wdtVariables "domain.properties" \
 #     --wdtArchive "archive.zip" \
 #     --wdtOperation CREATE \

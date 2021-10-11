@@ -1,0 +1,68 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: sample-domain1-gateway
+  namespace: sample-domain1-ns
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - "sample-domain1.example.com"
+      port:
+        name: http-sample-domain1
+        number: 80
+        protocol: HTTP
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: sample-domain1-virtualservice
+  namespace: sample-domain1-ns
+spec:
+  gateways:
+    - sample-domain1-gateway
+  hosts:
+    - "sample-domain1.example.com"
+  http:
+    - match:
+        - uri:
+            prefix: /console
+      route:
+        - destination:
+            host: sample-domain1-admin-server.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 7001
+    - match:
+        - uri:
+            prefix: /failover
+      route:
+        - destination:
+            host: sample-domain1-cluster-cluster-1.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 8001
+    - match:
+        - uri:
+            prefix: /cache
+      route:
+        - destination:
+            host: sample-domain1-cluster-cluster-1.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 8001
+    - match:
+        - uri:
+            prefix: /jdbcdriver
+      route:
+        - destination:
+            host: sample-domain1-cluster-cluster-1.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 8001
+    - match:
+        - uri:
+            prefix: /session-persistence
+      route:
+        - destination:
+            host: sample-domain1-cluster-cluster-1.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 8001

@@ -19,7 +19,9 @@
         <jdbc:min-capacity f:combine-mode="replace">10</jdbc:min-capacity>
         <jdbc:max-capacity f:combine-mode="replace">10</jdbc:max-capacity>
         <jdbc:test-connections-on-reserve f:combine-mode="replace">true</jdbc:test-connections-on-reserve>
+        <!--
         <jdbc:connection-harvest-max-count f:combine-mode="add">7</jdbc:connection-harvest-max-count>
         <jdbc:inactive-connection-timeout-seconds f:combine-mode="add">60</jdbc:inactive-connection-timeout-seconds>
+        -->
     </jdbc:jdbc-connection-pool-params>
 </jdbc:jdbc-data-source>
