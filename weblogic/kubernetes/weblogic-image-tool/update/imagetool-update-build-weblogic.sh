@@ -10,8 +10,8 @@ export JAVA_HOME
 ### delete cache
 rm -rf ~/cache
 
-../imagetool/bin/imagetool.sh cache deleteEntry --key wdt_latest
-../imagetool/bin/imagetool.sh cache addInstaller \
+bash ../imagetool/bin/imagetool.sh cache deleteEntry --key wdt_latest
+bash ../imagetool/bin/imagetool.sh cache addInstaller \
     --type wdt \
     --version latest \
     --path ../weblogic-deploy.zip
@@ -19,8 +19,8 @@ rm -rf ~/cache
 ### update (docker)
 bash ../imagetool/bin/imagetool.sh update \
     --fromImage "weblogic:14.1.1" \
-    --tag "weblogic:14.1.1-jdbc" \
-    --wdtModel "wdt_model_jdbc_resource.yaml" \
+    --tag "weblogic:14.1.1-update" \
+    --wdtModel "wdt_model_deploy.yaml" \
     --wdtVariables "domain.properties" \
     --wdtArchive "archive.zip" \
     --wdtOperation CREATE \
@@ -32,8 +32,8 @@ bash ../imagetool/bin/imagetool.sh update \
 # bash ../imagetool/bin/imagetool.sh update \
 #     --builder=podman \
 #     --fromImage "weblogic:14.1.1" \
-#     --tag "weblogic:14.1.1-jdbc" \
-#     --wdtModel "wdt_model_jdbc_resource.yaml" \
+#     --tag "weblogic:14.1.1-update" \
+#     --wdtModel "wdt_model_deploy.yaml" \
 #     --wdtVariables "domain.properties" \
 #     --wdtArchive "archive.zip" \
 #     --wdtOperation CREATE \
