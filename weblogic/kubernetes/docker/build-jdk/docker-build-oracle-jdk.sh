@@ -25,6 +25,7 @@ function docker_image_build_11_oraclelinux8 {
 
     /bin/cp -f ${SHARE_DIR}/oracle-jdk/11/jdk-11.0.12_linux-x64_bin.tar.gz .
     docker build -f Dockerfile.jdk11 -t oracle/jdk:11-oraclelinux8 .
+    # podman build -f Dockerfile.jdk11 -t oracle/jdk:11-oraclelinux8 .
     rm -f *.tar.gz
 }
 

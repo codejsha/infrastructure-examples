@@ -10,7 +10,7 @@ spec:
   domainHome: /u01/oracle/user_projects/domains/sample-domain1
   domainHomeSourceType: Image
 
-  image: "domain-home-in-image:14.1.1-deploy"
+  image: "weblogic:14.1.1-deploy"
   imagePullPolicy: "IfNotPresent"
   # imagePullSecrets:
   # - name:
