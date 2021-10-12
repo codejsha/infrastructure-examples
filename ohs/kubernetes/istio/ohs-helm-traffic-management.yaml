@@ -1,0 +1,36 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ohs-gw
+  namespace: ohs
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-ohs
+        protocol: HTTP
+      hosts:
+        - ohs.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ohs-vs
+  namespace: ohs
+spec:
+  hosts:
+    - ohs.example.com
+  gateways:
+    - ohs-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: my-ohs-ohs-helm.ohs.svc.cluster.local
+            port:
+              number: 7777
