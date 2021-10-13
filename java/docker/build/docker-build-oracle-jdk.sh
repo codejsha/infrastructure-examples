@@ -28,6 +28,19 @@ function docker_image_build_11_oraclelinux8 {
     # rm -f *.tar.gz
 }
 
+function docker_image_build_8_oraclelinux8 {
+    cd 8
+    /bin/cp -f ${SHARE_DIR}/oracle-jdk/8/server-jre-8u301-linux-x64.tar.gz .
+    # /bin/cp -f ${SCRIPT_DIR}/Dockerfile.jdk8 .
+    bash ./build.sh 8
+    rm -f *.tar.gz
+
+    # /bin/cp -f ${SHARE_DIR}/oracle-jdk/8/server-jre-8u301-linux-x64.tar.gz .
+    # docker build -f Dockerfile.jdk8 -t oracle/jdk:8-oraclelinux8 .
+    # rm -f *.tar.gz
+}
+
 ######################################################################
 
 docker_image_build_11_oraclelinux8
+# docker_image_build_8_oraclelinux8
