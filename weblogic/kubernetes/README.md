@@ -2,6 +2,9 @@
 
 - https://oracle.github.io/weblogic-kubernetes-operator/
 - https://github.com/oracle/weblogic-kubernetes-operator
+- https://github.com/oracle/weblogic-image-tool
+- https://github.com/oracle/weblogic-deploy-tooling
+- https://github.com/oracle/weblogic-monitoring-exporter
 - https://github.com/oracle/docker-images
 
 ## Install the WebLogic Operator
