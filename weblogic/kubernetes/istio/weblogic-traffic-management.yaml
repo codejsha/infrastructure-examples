@@ -36,6 +36,14 @@ spec:
               number: 7001
     - match:
         - uri:
+            prefix: /wls-exporter
+      route:
+        - destination:
+            host: sample-domain1-cluster-cluster-1.sample-domain1-ns.svc.cluster.local
+            port:
+              number: 8001
+    - match:
+        - uri:
             prefix: /failover
       route:
         - destination:
