@@ -16,7 +16,7 @@ bash ../imagetool/bin/imagetool.sh cache addInstaller \
     --version latest \
     --path ../weblogic-deploy.zip
 
-### update (docker)
+### update build (docker)
 bash ../imagetool/bin/imagetool.sh update \
     --fromImage "weblogic:14.1.1" \
     --tag "weblogic:14.1.1-update" \
@@ -28,7 +28,7 @@ bash ../imagetool/bin/imagetool.sh update \
     --wdtDomainHome "/u01/oracle/user_projects/domains/sample-domain1" \
     --chown=oracle:root
 
-### update (podman)
+### update build (podman)
 # bash ../imagetool/bin/imagetool.sh update \
 #     --builder=podman \
 #     --fromImage "weblogic:14.1.1" \

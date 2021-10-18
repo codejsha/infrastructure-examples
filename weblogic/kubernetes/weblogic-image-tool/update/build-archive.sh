@@ -19,6 +19,13 @@ mkdir -p wlsdeploy/applications
 /bin/cp -rf ${SHARE_DIR}/app/weblogic-application/jdbcdrivertest wlsdeploy/applications/
 /bin/cp -rf ${SHARE_DIR}/app/weblogic-application/cachetest wlsdeploy/applications/
 /bin/cp -rf ${SHARE_DIR}/app/weblogic-application/session-persistence-failover-app wlsdeploy/applications/
+### wls-exporter
+/bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/weblogic-monitoring-exporter/get2.0.sh wlsdeploy/applications/
+cd wlsdeploy/applications
+bash ./get2.0.sh
+bash ./get2.0.sh ../../wls-exporter-config.yaml
+rm -f get2.0.sh
+cd ../../
 
 ### classpathLibraries
 mkdir -p wlsdeploy/classpathLibraries
