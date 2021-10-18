@@ -57,21 +57,32 @@ metadata:
 data:
   alertmanager.yml: |-
     route:
-      group_by: ['alertname']
+      group_by: ["alertname"]
       group_wait: 10s
-      group_interval: 10s
-      repeat_interval: 1h
-      receiver: 'web.hook.scaleup'
+      group_interval: 1m
+      repeat_interval: 3m
+      receiver: "default-receiver"
+      routes:
+        - receiver: "web_hook_scaleup"
+          matchers:
+            - alertname = scaleup
+        - receiver: "web_hook_scaledown"
+          matchers:
+            - alertname = scaledown
     receivers:
-    - name: 'web.hook.scaleup'
-      webhook_configs:
-      - url: 'http://webhook:9000/hooks/scaleup'
+      - name: "default-receiver"
+      - name: "web_hook_scaleup"
+        webhook_configs:
+          - url: "http://webhook:9000/hooks/scale"
+      - name: "web_hook_scaledown"
+        webhook_configs:
+          - url: "http://webhook:9000/hooks/scale"
     inhibit_rules:
       - source_match:
-          severity: 'critical'
+          severity: "critical"
         target_match:
-          severity: 'warning'
-        equal: ['alertname', 'dev', 'instance']
+          severity: "warning"
+        equal: ["alertname", "dev", "instance"]
 ---
 apiVersion: v1
 kind: Service
