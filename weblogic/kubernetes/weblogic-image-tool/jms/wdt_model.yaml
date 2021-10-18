@@ -1,0 +1,81 @@
+domainInfo:
+  AdminUserName: "@@PROP:ADMIN_USER_NAME@@"
+  AdminPassword: "@@PROP:ADMIN_USER_PASS@@"
+topology:
+  Name: "@@PROP:DOMAIN_NAME@@"
+  AdminServerName: "@@PROP:ADMIN_NAME@@"
+  ProductionModeEnabled: "@@PROP:PRODUCTION_MODE_ENABLED@@"
+  Log:
+    FileName: "@@PROP:DOMAIN_NAME@@.log"
+  Cluster:
+    "@@PROP:CLUSTER_NAME@@":
+      DynamicServers:
+        ServerTemplate: "@@PROP:CLUSTER_NAME@@-template"
+        CalculatedListenPorts: false
+        ServerNamePrefix: "@@PROP:MANAGED_SERVER_NAME_BASE@@"
+        DynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
+        MaxDynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
+  Server:
+    "@@PROP:ADMIN_NAME@@":
+      ListenPort: "@@PROP:ADMIN_PORT@@"
+      SSL:
+        Enabled: "@@PROP:SSL_ENABLED@@"
+        ListenPort: "@@PROP:ADMIN_SERVER_SSL_PORT@@"
+      NetworkAccessPoint:
+        T3Channel:
+          ListenPort: "@@PROP:T3_CHANNEL_PORT@@"
+          PublicAddress: "@@PROP:T3_PUBLIC_ADDRESS@@"
+          PublicPort: "@@PROP:T3_CHANNEL_PORT@@"
+  ServerTemplate:
+    "@@PROP:CLUSTER_NAME@@-template":
+      ListenPort: "@@PROP:MANAGED_SERVER_PORT@@"
+      SSL:
+        Enabled: "@@PROP:SSL_ENABLED@@"
+        ListenPort: "@@PROP:MANAGED_SERVER_SSL_PORT@@"
+      Cluster: "@@PROP:CLUSTER_NAME@@"
+      NetworkAccessPoint:
+        MyT3Channel:
+          Protocol: "t3"
+          ListenPort: "@@PROP:SERVER_T3_CHANNEL_PORT@@"
+          PublicAddress: "@@PROP:SERVER_T3_PUBLIC_ADDRESS@@"
+          PublicPort: "@@PROP:SERVER_T3_PUBLIC_PORT@@"
+          HttpEnabledForThisProtocol: true
+          TunnelingEnabled: true
+          OutboundEnabled: false
+          Enabled: true
+          TwoWaySslEnabled: false
+          ClientCertificateEnforced: false
+resources:
+  FileStore:
+    ClusterFileStore:
+      DistributionPolicy: Distributed
+      MigrationPolicy: "Off"
+      Directory: "wlsdeploy/stores/ClusterFileStore"
+      Target: "@@PROP:CLUSTER_NAME@@"
+  JMSServer:
+    ClusterJmsServer:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      PersistentStore: "ClusterFileStore"
+  JMSSystemResource:
+    ClusterJmsModule:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      SubDeployment:
+        ClusterSubDeployment:
+          Target: ClusterJmsServer
+      JmsResource:
+        ConnectionFactory:
+          ClusterConnectionFactory:
+            SubDeploymentName: ClusterSubDeployment
+            JNDIName: "@@PROF:CONNECTION_FACTORY_JNDI_NAME@@"
+            LoadBalancingParams:
+              ServerAffinityEnabled: false
+              LoadBalancingEnabled: true
+        UniformDistributedQueue:
+          ClusterDistributedQueue:
+            SubDeploymentName: ClusterSubDeployment
+            JNDIName: "@@PROF:UNIFORM_DISTRIBUTED_QUEUE_JNDI_NAME@@"
+        UniformDistributedTopic:
+          ClusterDistributedTopic:
+            SubDeploymentName: ClusterSubDeployment
+            ForwardingPolicy: Partitioned
+            JNDIName: "@@PROF:UNIFORM_DISTRIBUTED_TOPIC_JNDI_NAME@@"
