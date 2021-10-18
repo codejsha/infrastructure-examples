@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: sample-domain2-ns
+  name: sample-domain2-cluster-cluster-1-ext
+  labels:
+    weblogic.domainUID: sample-domain2
+spec:
+  type: NodePort
+  externalTrafficPolicy: Cluster
+  sessionAffinity: ClientIP
+  selector:
+    weblogic.domainUID: sample-domain2
+    weblogic.clusterName: cluster-1
+  ports:
+    - name: myclustert3channel
+      nodePort: 30999
+      port: 7999
+      protocol: TCP
+      targetPort: 7999
