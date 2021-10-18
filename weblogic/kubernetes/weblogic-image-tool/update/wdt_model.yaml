@@ -42,7 +42,7 @@ resources:
           JNDIName: jdbc/generic1
         JDBCDriverParams:
           DriverName: oracle.jdbc.OracleDriver
-          URL: "jdbc:oracle:thin:@//@@PROP:DATASOURCE1_URL@@"
+          URL: "jdbc:oracle:thin:@@@PROP:DATASOURCE1_URL@@"
           PasswordEncrypted: "@@PROP:DATASOURCE1_PASSWORD@@"
           Properties:
             user:
@@ -62,7 +62,7 @@ resources:
           JNDIName: jdbc/generic2
         JDBCDriverParams:
           DriverName: com.mysql.cj.jdbc.Driver
-          URL: "jdbc:mysql:@//@@PROP:DATASOURCE2_URL@@"
+          URL: "jdbc:mysql://@@PROP:DATASOURCE2_URL@@"
           PasswordEncrypted: "@@PROP:DATASOURCE2_PASSWORD@@"
           Properties:
             user:
@@ -79,7 +79,7 @@ resources:
           JNDIName: jdbc/generic3
         JDBCDriverParams:
           DriverName: com.tmax.tibero.jdbc.TbDriver
-          URL: "jdbc:tibero:thin:@//@@PROP:DATASOURCE3_URL@@"
+          URL: "jdbc:tibero:thin://@@PROP:DATASOURCE3_URL@@"
           PasswordEncrypted: "@@PROP:DATASOURCE3_PASSWORD@@"
           Properties:
             user:
@@ -91,6 +91,10 @@ resources:
           TestConnectionsOnReserve: true
 appDeployments:
   Application:
+    "wls-exporter":
+      SourcePath: "wlsdeploy/applications/wls-exporter.war"
+      ModuleType: war
+      Target: "@@PROP:CLUSTER_NAME@@"
     failovertest:
       SourcePath: "wlsdeploy/applications/failovertest"
       ModuleType: war

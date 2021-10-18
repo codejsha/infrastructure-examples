@@ -16,7 +16,7 @@ bash ../imagetool/bin/imagetool.sh cache addInstaller \
     --version latest \
     --path ../weblogic-deploy.zip
 
-### update (docker)
+### update build (docker)
 bash ../imagetool/bin/imagetool.sh update \
     --fromImage "weblogic:14.1.1" \
     --tag "weblogic:14.1.1-jms" \
@@ -29,7 +29,7 @@ bash ../imagetool/bin/imagetool.sh update \
 
     # --wdtArchive "archive.zip" \
 
-### update (podman)
+### update build (podman)
 # bash ../imagetool/bin/imagetool.sh update \
 #     --builder=podman \
 #     --fromImage "weblogic:14.1.1" \
