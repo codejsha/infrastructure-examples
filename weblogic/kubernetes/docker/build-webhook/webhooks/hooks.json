@@ -1,14 +1,14 @@
 [
   {
-    "id": "scaleup",
-    "execute-command": "/var/scripts/scaleUpAction.sh",
+    "id": "scale",
+    "execute-command": "/var/scripts/scaleReceiver.sh",
     "command-working-directory": "/var/scripts",
-    "response-message": "scale-up call ok\n"
-  },
-  {
-    "id": "scaledown",
-    "execute-command": "/var/scripts/scaleDownAction.sh",
-    "command-working-directory": "/var/scripts",
-    "response-message": "scale-down call ok\n"
+    "response-message": "scale receiver call ok\n",
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "receiver"
+      }
+    ]
   }
 ]

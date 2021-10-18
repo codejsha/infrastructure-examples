@@ -6,6 +6,7 @@ RUN yum install -y python2 && \
 
 COPY apps/webhook /bin/webhook
 COPY webhooks/hooks.json /etc/webhook/
+COPY scripts/scaleReceiver.sh /var/scripts/
 COPY scripts/scaleUpAction.sh /var/scripts/
 COPY scripts/scaleDownAction.sh /var/scripts/
 COPY scripts/scalingAction.sh /var/scripts/
