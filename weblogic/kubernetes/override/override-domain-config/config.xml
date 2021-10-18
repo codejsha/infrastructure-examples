@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:domain xmlns:d="http://xmlns.oracle.com/weblogic/domain"
+    xmlns:f="http://xmlns.oracle.com/weblogic/domain-fragment"
+    xmlns:s="http://xmlns.oracle.com/weblogic/situational-config">
+
+    <d:security-configuration>
+        <d:connection-filter f:combine-mode="add">weblogic.security.net.ConnectionFilterImpl</d:connection-filter>
+        <d:connection-filter-rule f:combine-mode="add">10.0.0.0/8 * 7001 allow</d:connection-filter-rule>
+        <d:connection-filter-rule f:combine-mode="add">10.0.0.0/8 * 8001 allow</d:connection-filter-rule>
+        <d:connection-filter-rule f:combine-mode="add">10.0.0.0/8 * 8002 allow</d:connection-filter-rule>
+        <d:connection-filter-rule f:combine-mode="add">0.0.0.0/0 * 7001 deny</d:connection-filter-rule>
+        <d:connection-logger-enabled f:combine-mode="add">true</d:connection-logger-enabled>
+    </d:security-configuration>
+
+    <d:server-template>
+        <d:overload-protection f:combine-mode="add">
+            <d:shared-capacity-for-work-managers f:combine-mode="add">65536</d:shared-capacity-for-work-managers>
+            <d:panic-action f:combine-mode="add">system-exit</d:panic-action>
+            <d:failure-action f:combine-mode="add">force-shutdown</d:failure-action>
+            <d:free-memory-percent-high-threshold f:combine-mode="add">0</d:free-memory-percent-high-threshold>
+            <d:free-memory-percent-low-threshold f:combine-mode="add">0</d:free-memory-percent-low-threshold>
+            <d:server-failure-trigger f:combine-mode="add">
+                <d:max-stuck-thread-time f:combine-mode="add">30</d:max-stuck-thread-time>
+                <d:stuck-thread-count f:combine-mode="add">5</d:stuck-thread-count>
+            </d:server-failure-trigger>
+        </d:overload-protection>
+    </d:server-template>
+</d:domain>
