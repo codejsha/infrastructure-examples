@@ -10,7 +10,13 @@ bash ./install-addon.sh
 ### CERTIFICATES
 cd vault
 
-bash ./create-ingress-domain-certificate.sh
+### cert-manager
+kubectl apply --filename grafana-certificate.yaml
+kubectl apply --filename kiali-certificate.yaml
+kubectl apply --filename prometheus-certificate.yaml
+kubectl apply --filename tracing-certificate.yaml
+
+### openssl
 # bash ./create-ingress-domain-certificate-with-openssl.sh
 
 cd ..
@@ -20,9 +26,9 @@ cd ..
 ### TRAFFIC MANAGEMENT
 cd istio
 
-kubectl apply --namespace istio-system --filename grafana-traffic-management.yaml
-kubectl apply --namespace istio-system --filename kiali-traffic-management.yaml
-kubectl apply --namespace istio-system --filename prometheus-traffic-management.yaml
-kubectl apply --namespace istio-system --filename tracing-traffic-management.yaml
+kubectl apply --filename grafana-traffic-management.yaml
+kubectl apply --filename kiali-traffic-management.yaml
+kubectl apply --filename prometheus-traffic-management.yaml
+kubectl apply --filename tracing-traffic-management.yaml
 
 cd ..
