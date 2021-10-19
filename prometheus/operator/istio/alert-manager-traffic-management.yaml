@@ -1,0 +1,44 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: alertmanager-gw
+  namespace: monitoring
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-alertmanager
+        protocol: HTTP
+      hosts:
+        - monitoring-alertmanager.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: alertmanager-vs
+  namespace: monitoring
+spec:
+  hosts:
+    - monitoring-alertmanager.example.com
+  gateways:
+    - alertmanager-gw
+  http:
+    - route:
+        - destination:
+            host: alertmanager-main.monitoring.svc.cluster.local
+            port:
+              number: 9093
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: alertmanager-dr
+  namespace: monitoring
+spec:
+  host: alertmanager-main.monitoring.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE

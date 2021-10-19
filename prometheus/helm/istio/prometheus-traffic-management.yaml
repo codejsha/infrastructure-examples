@@ -1,0 +1,44 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: prometheus-gw
+  namespace: prometheus
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-prometheus
+        protocol: HTTP
+      hosts:
+        - monitoring-prometheus.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: prometheus-vs
+  namespace: prometheus
+spec:
+  hosts:
+    - monitoring-prometheus.example.com
+  gateways:
+    - prometheus-gw
+  http:
+    - route:
+        - destination:
+            host: my-prometheus-stack-kube-p-prometheus.prometheus.svc.cluster.local
+            port:
+              number: 9090
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: prometheus-dr
+  namespace: prometheus
+spec:
+  host: my-prometheus-stack-kube-p-prometheus.prometheus.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
