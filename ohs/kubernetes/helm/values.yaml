@@ -67,6 +67,7 @@ securityContext:
 service:
   type: ClusterIP
   port: 7777
+  sslPort: 4443
 
 ingress:
   enabled: false
