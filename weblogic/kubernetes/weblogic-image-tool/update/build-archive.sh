@@ -33,3 +33,4 @@ mkdir -p wlsdeploy/classpathLibraries
 /bin/cp -rf ${SHARE_DIR}/tmax-tibero/tibero6-jdbc-driver/tibero6-jdbc.jar wlsdeploy/classpathLibraries/
 
 ${JAVA_HOME}/bin/jar -cf archive.zip wlsdeploy
+${JAVA_HOME}/bin/jar -tvf archive.zip
