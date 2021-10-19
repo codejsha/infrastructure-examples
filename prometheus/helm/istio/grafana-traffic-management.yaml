@@ -1,0 +1,44 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: grafana-gw
+  namespace: prometheus
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-grafana
+        protocol: HTTP
+      hosts:
+        - monitoring-grafana.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana-vs
+  namespace: prometheus
+spec:
+  hosts:
+    - monitoring-grafana.example.com
+  gateways:
+    - grafana-gw
+  http:
+    - route:
+        - destination:
+            host: my-prometheus-stack-grafana.prometheus.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: grafana-dr
+  namespace: prometheus
+spec:
+  host: my-prometheus-stack-grafana.prometheus.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE
