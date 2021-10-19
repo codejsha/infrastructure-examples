@@ -89,6 +89,25 @@ resources:
           MinCapacity: 30
           MaxCapacity: 30
           TestConnectionsOnReserve: true
+  WLDFSystemResource:
+    MyWldfModule:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      WLDFResource:
+        WatchNotification:
+          Severity: Info
+          LogWatchSeverity: Info
+          Watch:
+            SeverityPolicy:
+              Enabled: true
+              RuleType: Log
+              RuleExpression: "SEVERITY IN ('Error','Emergency','Critical')"
+              Notification: "MyThreadDumpAction"
+              AlarmType: AutomaticReset
+          ThreadDumpAction:
+            MyThreadDumpAction:
+              Enabled: true
+              ThreadDumpCount: 3
+              ThreadDumpDelaySeconds: 5
 appDeployments:
   Application:
     "wls-exporter":
