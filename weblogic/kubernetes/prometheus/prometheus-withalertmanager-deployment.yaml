@@ -147,7 +147,7 @@ data:
 
         # Default to scraping over https. If required, just disable this or change to
         # `http`.
-        scheme: http
+        scheme: https
 
         # This TLS & bearer token file config is used to connect to the actual scrape
         # endpoints for cluster components. This is separate to discovery auth
