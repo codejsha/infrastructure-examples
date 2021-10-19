@@ -93,21 +93,31 @@ appDeployments:
   Application:
     "wls-exporter":
       SourcePath: "wlsdeploy/applications/wls-exporter.war"
+      Target: ["@@PROP:ADMIN_NAME@@,@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
-      Target: "@@PROP:CLUSTER_NAME@@"
+      StagingMode: nostage
+      PlanStagingMode: nostage
     failovertest:
       SourcePath: "wlsdeploy/applications/failovertest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
-      Target: "@@PROP:CLUSTER_NAME@@"
+      StagingMode: nostage
+      # PlanStagingMode: nostage
     jdbcdrivertest:
       SourcePath: "wlsdeploy/applications/jdbcdrivertest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
-      Target: "@@PROP:CLUSTER_NAME@@"
+      StagingMode: nostage
+      # PlanStagingMode: nostage
     cachetest:
       SourcePath: "wlsdeploy/applications/cachetest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
-      Target: "@@PROP:CLUSTER_NAME@@"
+      StagingMode: nostage
+      # PlanStagingMode: nostage
     "session-persistence-failover-app":
       SourcePath: "wlsdeploy/applications/session-persistence-failover-app"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
-      Target: "@@PROP:CLUSTER_NAME@@"
+      StagingMode: nostage
+      # PlanStagingMode: nostage
