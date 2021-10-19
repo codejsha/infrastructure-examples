@@ -8,8 +8,12 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
       name: http
+    - port: {{ .Values.service.sslPort }}
+      targetPort: {{ .Values.service.sslPort }}
+      protocol: TCP
+      name: https
   selector:
     {{- include "ohs-helm.selectorLabels" . | nindent 4 }}
