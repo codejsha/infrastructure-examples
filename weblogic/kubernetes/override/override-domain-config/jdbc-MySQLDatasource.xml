@@ -5,7 +5,6 @@
     <jdbc:name>MySQLDatasource</jdbc:name>
     <jdbc:jdbc-driver-params>
         <jdbc:url f:combine-mode="replace">${secret:mysql-datasource-secret.url}</jdbc:url>
-        <!-- <jdbc:driver-name f:combine-mode="replace">com.mysql.cj.jdbc.Driver</jdbc:driver-name> -->
         <jdbc:properties>
             <jdbc:property>
                 <jdbc:name>user</jdbc:name>
@@ -14,14 +13,4 @@
         </jdbc:properties>
         <jdbc:password-encrypted f:combine-mode="replace">${secret:mysql-datasource-secret.password:encrypt}</jdbc:password-encrypted>
     </jdbc:jdbc-driver-params>
-    <jdbc:jdbc-connection-pool-params>
-        <jdbc:initial-capacity f:combine-mode="replace">10</jdbc:initial-capacity>
-        <jdbc:min-capacity f:combine-mode="replace">10</jdbc:min-capacity>
-        <jdbc:max-capacity f:combine-mode="replace">10</jdbc:max-capacity>
-        <jdbc:test-connections-on-reserve f:combine-mode="replace">true</jdbc:test-connections-on-reserve>
-        <!--
-        <jdbc:connection-harvest-max-count f:combine-mode="add">7</jdbc:connection-harvest-max-count>
-        <jdbc:inactive-connection-timeout-seconds f:combine-mode="add">60</jdbc:inactive-connection-timeout-seconds>
-        -->
-    </jdbc:jdbc-connection-pool-params>
 </jdbc:jdbc-data-source>
