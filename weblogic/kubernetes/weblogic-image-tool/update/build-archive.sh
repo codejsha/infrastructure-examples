@@ -11,6 +11,7 @@ if [ -z ${JAVA_HOME} ] || [ ! -e ${JAVA_HOME}/bin/jar ]; then
     exit 1
 fi
 
+### reset wlsdeploy
 rm -rf wlsdeploy
 
 ### applications
