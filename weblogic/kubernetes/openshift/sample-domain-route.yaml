@@ -1,0 +1,44 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: sample-domain1-cluster-cluster-1
+  namespace: sample-domain1-ns
+spec:
+  host: sample-domain1-cluster-cluster-1-sample-domain1-ns.apps.ocp46.klid.io
+  path: /
+  port:
+    targetPort: 8001
+  to:
+    kind: Service
+    name: sample-domain1-cluster-cluster-1
+    weight: 100
+  wildcardPolicy: None
+  # tls:
+  #   termination: edge
+  #   insecureEdgeTerminationPolicy: Redirect
+  #   key: |-
+  #     -----BEGIN RSA PRIVATE KEY-----
+  #     -----END RSA PRIVATE KEY-----
+  #   certificate: |-
+  #     -----BEGIN CERTIFICATE-----
+  #     -----END CERTIFICATE-----
+  #   caCertificate: |-
+  #     -----BEGIN CERTIFICATE-----
+  #     -----END CERTIFICATE-----
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: sample-domain1-admin-server
+  namespace: sample-domain1-ns
+spec:
+  host: sample-domain1-admin-server-sample-domain1-ns.apps.ocp46.klid.io
+  path: /
+  port:
+    targetPort: 7001
+  to:
+    kind: Service
+    name: sample-domain1-admin-server
+    weight: 100
+  wildcardPolicy: None
