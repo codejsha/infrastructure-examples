@@ -7,6 +7,19 @@
 - https://github.com/oracle/weblogic-monitoring-exporter
 - https://github.com/oracle/docker-images
 
+Table of Contents:
+
+- [Oracle WebLogic Server on Kubernetes](#oracle-weblogic-server-on-kubernetes)
+  - [Install the WebLogic Operator](#install-the-weblogic-operator)
+  - [Create a WebLogic Domain](#create-a-weblogic-domain)
+    - [Domain in Image](#domain-in-image)
+    - [Domain in PV](#domain-in-pv)
+    - [Model in Image](#model-in-image)
+  - [Configuration Overrides (situational configuration)](#configuration-overrides-situational-configuration)
+    - [Override template](#override-template)
+    - [Apply configuration templates](#apply-configuration-templates)
+  - [Istio](#istio)
+
 ## Install the WebLogic Operator
 
 - https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/installation/
@@ -15,7 +28,7 @@
 
 configurations:
 
-- `enableClusterRoleBinding: true`: the operator will have privilege in all Kubernetes namespaces (cluster level)
+- `enableClusterRoleBinding: true`: the operator will have privilege in all Kubernetes namespaces (cluster scope)
 - `domainNamespaceSelectionStrategy: LabelSelector` and `domainNamespaceLabelSelector: weblogic-operator=enabled`: manage domains with the label "`weblogic-operator=enabled`"
 - `kubernetesPlatform: OpenShift`: Sets the domain home file permissions in each WebLogic Server pod to work correctly in OpenShift for Model in Image, and Domain home in Image domains.
 
@@ -33,11 +46,10 @@ Domain home source type:
 
 - https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-in-image/
 
-#### Build image
-
 1. build oracle jdk image (docker/build-jdk)
 2. build weblogic image by imagetool (weblogic-image-tool/create)
-3. build weblogic image that contain applications and data sources (weblogic-image-tool/update)
+3. build weblogic image that contain applications and data sources by imagetool (weblogic-image-tool/update)
+4. build weblogic image to include wldf scripts (weblogic-image-tool/update/docker/build-wldf)
 
 ### Domain in PV
 
@@ -70,6 +82,7 @@ template files:
 override-domain-config/
 ├── jdbc-MySQLDatasource.xml            # jdbc module
 ├── jms-ClusterJmsSystemResource.xml    # jms module
+├── diagnostics-MyWldfModule.xml        # diagnostics module
 └── version.txt                         # version file
 ```
 
@@ -79,6 +92,8 @@ the `version.txt` file must contain exactly the string `2.0`:
 # cat version.txt
 2.0
 ```
+
+### Apply configuration templates
 
 create configmap(override template) and secret(secret reference):
 
@@ -94,7 +109,7 @@ kubectl create secret generic ${SECRET_NAME} \
 kubectl label secret ${SECRET_NAME} --namespace ${NAMESPACE} weblogic.domainUID="${DOMAIN_NAME}"
 ```
 
-configure secret and config map in domain yaml file:
+configure config map and secret in domain yaml file:
 
 ```yaml
 ---
