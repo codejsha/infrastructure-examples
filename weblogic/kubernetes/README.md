@@ -94,7 +94,7 @@ kubectl create secret generic ${SECRET_NAME} \
 kubectl label secret ${SECRET_NAME} --namespace ${NAMESPACE} weblogic.domainUID="${DOMAIN_NAME}"
 ```
 
-configure domain yaml file:
+configure secret and config map in domain yaml file:
 
 ```yaml
 ---
