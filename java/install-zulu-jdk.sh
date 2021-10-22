@@ -3,15 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-######################################################################
+### rhel - yum
+sudo yum install -y https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
 
-function install_zulujdk_with_yum {
-    sudo yum install -y https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
-
-    sudo yum install zulu11-jdk
-    sudo yum install zulu8-jdk
-}
-
-######################################################################
-
-install_zulujdk_with_yum
+sudo yum install -y zulu11-jdk
+sudo yum install -y zulu8-jdk

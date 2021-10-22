@@ -3,7 +3,6 @@
 mkdir cert
 cd cert
 
-
 ### create root key
 
 openssl genrsa -des3 -out ca.key 4096

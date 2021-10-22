@@ -58,7 +58,7 @@ function install_confluent_kafka_with_download {
     # export PATH
 }
 
-function install_confluent_kafka_with_yum {
+function install_confluent_kafka_by_yum {
 cat <<EOF | sudo tee /etc/yum.repos.d/confluent.repo
 [Confluent.dist]
 name=Confluent repository (dist)
@@ -83,4 +83,4 @@ EOF
 ######################################################################
 
 install_confluent_kafka_with_download
-# install_confluent_kafka_with_yum
+# install_confluent_kafka_by_yum
