@@ -8,7 +8,7 @@ set -o errtrace
 
 export PASSWORD="${PASSWORD}"
 
-envsubst < ./values.yaml > ./values-temp.yaml
+envsubst < ./values-bitnami.yaml > ./values-bitnami-temp.yaml
 
 NAMESPACE="wildfly-system"
 
@@ -16,5 +16,6 @@ NAMESPACE="wildfly-system"
 helm upgrade --install my-wildfly \
     --create-namespace \
     --namespace ${NAMESPACE} \
-    --version 1.4.1 \
-    wildfly/wildfly
+    --values values-bitnami-temp.yaml \
+    --version 8.2.3 \
+    bitnami/wildfly
