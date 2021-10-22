@@ -5,11 +5,11 @@ set -o errtrace
 
 ######################################################################
 
-function install_git_with_dnf {
+function install_git_by_dnf {
     sudo dnf install -y git
 }
 
-function install_git_with_yum {
+function install_git_by_yum {
     sudo yum install -y git
 }
 
@@ -36,6 +36,6 @@ function install_git_build {
 
 ######################################################################
 
-install_git_with_dnf
-# install_git_with_yum
+install_git_by_dnf
+# install_git_by_yum
 # install_git_build
