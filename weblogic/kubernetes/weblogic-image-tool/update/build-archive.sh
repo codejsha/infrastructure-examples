@@ -1,4 +1,7 @@
 #!/bin/bash
+# trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
+# set -o errexit
+# set -o errtrace
 
 JAVA_HOME="/usr/java/java-11"
 # JAVA_HOME="/usr/java/java-1.8.0"
