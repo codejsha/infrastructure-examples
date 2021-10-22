@@ -14,6 +14,7 @@ topology:
         CalculatedListenPorts: false
         ServerNamePrefix: "@@PROP:MANAGED_SERVER_NAME_BASE@@"
         DynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
+        MinDynamicClusterSize: "1"
         MaxDynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
   Server:
     "@@PROP:ADMIN_NAME@@":
@@ -28,13 +29,14 @@ topology:
           PublicPort: "@@PROP:T3_CHANNEL_PORT@@"
   ServerTemplate:
     "@@PROP:CLUSTER_NAME@@-template":
+      Cluster: "@@PROP:CLUSTER_NAME@@"
       ListenPort: "@@PROP:MANAGED_SERVER_PORT@@"
       SSL:
         Enabled: "@@PROP:SSL_ENABLED@@"
         ListenPort: "@@PROP:MANAGED_SERVER_SSL_PORT@@"
-      Cluster: "@@PROP:CLUSTER_NAME@@"
       NetworkAccessPoint:
         MyT3Channel:
+          Enabled: true
           Protocol: "t3"
           ListenPort: "@@PROP:SERVER_T3_CHANNEL_PORT@@"
           PublicAddress: "@@PROP:SERVER_T3_PUBLIC_ADDRESS@@"
@@ -42,8 +44,7 @@ topology:
           HttpEnabledForThisProtocol: true
           TunnelingEnabled: true
           OutboundEnabled: false
-          Enabled: true
-          TwoWaySslEnabled: false
+          TwoWaySSLEnabled: false
           ClientCertificateEnforced: false
 resources:
   FileStore:
@@ -74,8 +75,18 @@ resources:
           ClusterDistributedQueue:
             SubDeploymentName: ClusterSubDeployment
             JNDIName: "@@PROF:UNIFORM_DISTRIBUTED_QUEUE_JNDI_NAME@@"
+            DestinationKey: MyAscendingOrder
         UniformDistributedTopic:
           ClusterDistributedTopic:
             SubDeploymentName: ClusterSubDeployment
-            ForwardingPolicy: Partitioned
             JNDIName: "@@PROF:UNIFORM_DISTRIBUTED_TOPIC_JNDI_NAME@@"
+            ForwardingPolicy: Partitioned
+        DestinationKey:
+          MyAscendingOrder:
+            Property: JMSCorrelationID
+            KeyType: String
+            SortOrder: Ascending
+          MyDescendingOrder:
+            Property: JMSCorrelationID
+            KeyType: String
+            SortOrder: Descending

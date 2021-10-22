@@ -67,7 +67,7 @@ spec:
   clusters:
     - clusterName: cluster-1
       serverStartState: "RUNNING"
-      replicas: 2
+      replicas: 1
       serverPod:
         affinity:
           podAntiAffinity:

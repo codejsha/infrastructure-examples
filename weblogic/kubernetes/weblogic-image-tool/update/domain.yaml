@@ -35,6 +35,8 @@ spec:
         value: "-Djava.security.egd=file:/dev/./urandom"
       - name: USER_MEM_ARGS
         value: "-Xms1024m -Xmx1024m"
+      - name: EXT_PRE_CLASSPATH
+        value: ""
     resources:
       requests:
         memory: "1024Mi"

@@ -3,5 +3,5 @@
 # set -o errexit
 # set -o errtrace
 
-kubectl create namespace sample-domain1-ns
-kubectl label ns sample-domain1-ns weblogic-operator=enabled
+docker image tag weblogic:14.1.1-jms harbor.example.com/weblogic:14.1.1-jms
+docker image push harbor.example.com/weblogic:14.1.1-jms

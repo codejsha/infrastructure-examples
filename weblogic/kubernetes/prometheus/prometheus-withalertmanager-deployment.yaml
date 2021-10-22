@@ -106,7 +106,7 @@ data:
           - alert: scaleup
             expr: sum(wls_web_app_component_open_sessions_current_count{app="failovertest"} offset 1m) > 30
           - alert: scaledown
-            expr: avg(wls_cluster_alive_server_count{name="cluster-1"} offset 10m) > 2
+            expr: sum(wls_web_app_component_open_sessions_current_count{app="failovertest"} offset 5m) < 30
   prometheus.yml: |-
     global:
       scrape_interval: 5s
