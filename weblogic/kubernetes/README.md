@@ -16,7 +16,7 @@ Table of Contents:
     - [Domain in PV](#domain-in-pv)
     - [Model in Image](#model-in-image)
   - [Configuration Overrides (situational configuration)](#configuration-overrides-situational-configuration)
-    - [Override template](#override-template)
+    - [Template name and syntax](#template-name-and-syntax)
     - [Apply configuration templates](#apply-configuration-templates)
   - [Istio](#istio)
 
@@ -65,7 +65,7 @@ Domain home source type:
 
 be used in Domain in Image and Domain in PV domains (Model in Image domains, use runtime updates instead)
 
-### Override template
+### Template name and syntax
 
 override template names:
 
