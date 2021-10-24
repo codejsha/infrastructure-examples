@@ -23,3 +23,8 @@ spec:
     #   nodeAffinity:
     #   podAffinity:
     #   podAntiAffinity:
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30010
+      host: localhost
