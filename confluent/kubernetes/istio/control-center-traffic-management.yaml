@@ -35,6 +35,16 @@ spec:
     - control-center.example.com
   gateways:
     - confluent-control-center-gw
+  # http:
+  #   - match:
+  #       - port: 80
+  #         gateways:
+  #           - confluent-control-center-gw
+  #     route:
+  #       - destination:
+  #           host: controlcenter.confluent.svc.cluster.local
+  #           port:
+  #             number: 9021
   tls:
     - match:
         - port: 443
