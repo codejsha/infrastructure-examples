@@ -3,8 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-source ../env-base.sh
-source ./env-instance.sh
+source ../../env-base.sh
+source ../env-instance.sh
 source ./env-redisson.sh
 
 ######################################################################
@@ -23,9 +23,9 @@ mkdir -p ${DUMP_LOG_DIR}
 ######################################################################
 
 ### copy config files
-envsubst < ./server-cluster-full.xml > ${CATALINA_BASE}/conf/server.xml
+envsubst < ../server-cluster-full.xml > ${CATALINA_BASE}/conf/server.xml
 envsubst < ./context-redis.xml > ${CATALINA_BASE}/conf/Catalina/localhost/ROOT.xml
-envsubst < ./tomcat-users.xml > ${CATALINA_BASE}/conf/tomcat-users.xml
+envsubst < ../tomcat-users.xml > ${CATALINA_BASE}/conf/tomcat-users.xml
 
 # /bin/cp -pf ./server-cluster-redis.xml ${CATALINA_BASE}/conf/server.xml
 # /bin/cp -pf ./context-redis.xml ${CATALINA_BASE}/conf/context.xml
