@@ -7,7 +7,6 @@ source ../../env-base.sh
 source ./env-password-vault-keystore.sh
 
 if [ ! -f "${JBOSS_HOME}/vault/vault.keystore" ]; then
-    echo "[INFO] The keystore is created."
     keytool \
         -genseckey \
         -alias vault \
@@ -19,6 +18,7 @@ if [ ! -f "${JBOSS_HOME}/vault/vault.keystore" ]; then
         -keypass ${KEYSTORE_PASSWORD} \
         -validity 36500 \
         -keystore ${JBOSS_HOME}/vault/vault.keystore
+    echo "[INFO] The keystore has been created."
 else
     echo "[ERROR] The keystore is already exists!"
 fi
