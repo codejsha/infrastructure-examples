@@ -18,10 +18,10 @@ masterSlaveServersConfig:
   masterConnectionPoolSize: 64
   readMode: "SLAVE"
   subscriptionMode: "SLAVE"
-  slaveAddresses:
-    - "redis://127.0.0.1:6381"
-    - "redis://127.0.0.1:6380"
   masterAddress: "redis://127.0.0.1:6379"
+  slaveAddresses:
+    - "redis://127.0.0.1:6380"
+    - "redis://127.0.0.1:6381"
   database: 0
 threads: 16
 nettyThreads: 32
