@@ -13,7 +13,7 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>NoAccess</web-resource-name>
+            <web-resource-name>restricted methods</web-resource-name>
             <url-pattern>/*</url-pattern>
             <http-method>PUT</http-method>
             <http-method>DELETE</http-method>
