@@ -11,7 +11,8 @@ spec:
     init: confluentinc/confluent-init-container:2.0.3
   dataVolumeCapacity: 100Gi
   configOverrides:
-    server: []
+    server:
+      - auto.create.topics.enable=false
     jvm: []
     log4j: []
   podTemplate:
@@ -24,5 +25,12 @@ spec:
     #   nodeAffinity:
     #   podAffinity:
     #   podAntiAffinity:
+  listeners:
+    external:
+      externalAccess:
+        type: nodePort
+        nodePort:
+          nodePortOffset: 30000
+          host: localhost
   metricReporter:
     enabled: true
