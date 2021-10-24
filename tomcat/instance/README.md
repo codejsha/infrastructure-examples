@@ -53,6 +53,6 @@ https://github.com/redisson/redisson/tree/master/redisson-tomcat
 ## Create scripts
 
 ```bash
-bash ./create-scripts.sh inst1
-bash ./create-scripts.sh inst2
+bash ./create-scripts.sh inst1 8080 8443 8005 8009 8050
+bash ./create-scripts.sh inst2 8081 8444 8006 8010 8051
 ```
