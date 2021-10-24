@@ -1,10 +1,17 @@
 ######################################################################
 
+# ${ORACLE_HOME}/oracle_common/bin
+
+./orapki wallet create -wallet ./default -auto_login
+
 ### display wallet
-${ORACLE_HOME}/oracle_common/bin/orapki wallet display -wallet ${WALLET_LOCATION}
-${ORACLE_HOME}/oracle_common/bin/orapki wallet display -complete -wallet ${WALLET_LOCATION}
+./orapki wallet display -wallet ./default
+./orapki wallet display -complete -wallet ./default
 
 ######################################################################
 
-### import certificate
-orapki wallet add -wallet ./remote_wallet -trusted_cert -cert RemoteProxyRoot.pem -pwd ${PASSWORD}
+### self signed certificate
+./orapki wallet create -wallet default -auto_login_only
+./orapki wallet add -wallet default -dn "CN=test.example.com,ST=Seoul,C=KR" -keysize 2048 -self_signed -validity 1095 -auto_login_only
+./orapki wallet add -wallet default -dn "CN=localhost,ST=Seoul,C=KR" -keysize 2048 -self_signed -validity 1095 -auto_login_only
+./orapki wallet display -wallet default/
