@@ -41,7 +41,11 @@ helm show readme ingress-nginx/ingress-nginx
 helm show values ingress-nginx/ingress-nginx
 
 ### push (plugin)
-helm push --insecure tomcat-9.0.0.tgz local-harbor
+helm cm-push tomcat-9.0.0.tgz local-harbor
+helm cm-push tomcat-9.0.0.tgz http://harbor.example.com/chartrepo/library
+helm cm-push --force tomcat-9.0.0.tgz local-harbor
+helm cm-push --insecure tomcat-9.0.0.tgz local-harbor
+
 ### push
 export HELM_EXPERIMENTAL_OCI=1
 helm chart push harbor.example.com/chartrepo/library/tomcat:9.0.0
