@@ -3,8 +3,9 @@
 export PATH="${PATH}:${KREW_ROOT:-"${HOME}/.krew"}/bin"
 
 function kubectl-ctx() { echo "+ kubectl-ctx ${@}">&2; command kubectl-ctx ${@}; }      # kctx
-function kubectl-krew() { echo "+ kubectl-krew ${@}">&2; command kubectl-krew ${@}; }   # krew
 function kubectl-ns() { echo "+ kubectl-ns ${@}">&2; command kubectl-ns ${@}; }         # kns
+
+function kubectl-krew() { echo "+ kubectl-krew ${@}">&2; command kubectl-krew ${@}; }   # krew
 function kubectl-tail() { echo "+ kubectl-tail ${@}">&2; command kubectl-tail ${@}; }   # ktail
 function kubectl-tree() { echo "+ kubectl-tree ${@}">&2; command kubectl-tree ${@}; }   # ktree
 
