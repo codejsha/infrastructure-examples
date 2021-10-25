@@ -7,10 +7,10 @@ metadata:
 spec:
   replicas: 1
   image:
-    application: confluentinc/cp-server-connect:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-    # application: harbor.example.com/confluentinc/cp-server-connect:6.2.1
-    # init: harbor.example.com/confluentinc/confluent-init-container:2.0.3
+    # application: confluentinc/cp-server-connect:6.2.1
+    # init: confluentinc/confluent-init-container:2.0.3
+    application: harbor.example.com/confluentinc/confluentinc/cp-custom-server-connect:6.2.1
+    init: harbor.example.com/confluentinc/confluent-init-container:2.0.3
     # pullSecretRef:
   configOverrides:
     server: []
