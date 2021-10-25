@@ -59,6 +59,13 @@ kubectl create secret generic mds-kafka-rest \
     --from-file=basic.txt=mds/mds-kafka-client.txt \
     --namespace confluent
 
+cat mds/mds-kafka-client.txt | base64 | vault kv put kv/confluent/kafka/bearer.txt bearer=-
+cat mds/mds-schema-registry-client.txt | base64 | vault kv put kv/confluent/schema-registry/bearer.txt bearer=-
+cat mds/mds-kafka-connect-client.txt | base64 | vault kv put kv/confluent/kafka-connect/bearer.txt bearer=-
+cat mds/mds-replicator-client.txt | base64 | vault kv put kv/confluent/replicator/bearer.txt bearer=-
+cat mds/mds-ksqldb-client.txt | base64 | vault kv put kv/confluent/ksqldb/bearer.txt bearer=-
+cat mds/mds-control-center-client.txt | base64 | vault kv put kv/confluent/control-center/bearer.txt bearer=-
+
 ### ldap
 cat credentials/ldap.txt | base64 | vault kv put kv/confluent/ldap.txt ldapsimple=-
 
