@@ -14,4 +14,5 @@ bash ./create-policy.sh
 bash ./create-each-component-certificate.sh
 
 bash ./create-java-key-store.sh
+bash ./create-kv-secret.sh
 bash ./add-kv-secret.sh
