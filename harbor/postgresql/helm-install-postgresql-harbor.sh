@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm repo update
 
-export PASSWORD="${PASSWORD}"
+export PASSWORD="postgres"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
