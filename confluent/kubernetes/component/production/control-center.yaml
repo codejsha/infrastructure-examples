@@ -33,7 +33,7 @@ spec:
         useLdaps: "false"
         debug: "true"
         contextFactory: "com.sun.jndi.ldap.LdapCtxFactory"
-        hostname: "my-ldap-service.ldap-system.svc.cluster.local"
+        hostname: "my-ldap-service.ldap.svc.cluster.local"
         port: "389"
         bindDn: "cn=admin,dc=example,dc=com"
         bindPassword: "admin"

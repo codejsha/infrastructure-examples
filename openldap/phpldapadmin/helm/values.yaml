@@ -1,6 +1,6 @@
 ---
 env:
-  PHPLDAPADMIN_LDAP_HOSTS: "my-ldap-service.ldap-system.svc.cluster.local"
+  PHPLDAPADMIN_LDAP_HOSTS: "my-ldap-service.ldap.svc.cluster.local"
   PHPLDAPADMIN_HTTPS: "false"
   PHPLDAPADMIN_TRUST_PROXY_SSL: "true"
 
