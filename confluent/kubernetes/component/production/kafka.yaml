@@ -60,7 +60,7 @@ spec:
       provider:
         type: ldap
         ldap:
-          address: ldap://my-ldap-service.ldap-system.svc.cluster.local:389
+          address: ldap://my-ldap-service.ldap.svc.cluster.local:389
           authentication:
             type: simple
             simple:
