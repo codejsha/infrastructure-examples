@@ -5,7 +5,7 @@ set -o errtrace
 
 curl -L https://istio.io/downloadIstio | sh -
 
-# ISTIO_VERSION="1.11.2"
+# ISTIO_VERSION="1.11.4"
 # curl -L https://istio.io/downloadIstio | ISTIO_VERSION="${ISTIO_VERSION}" TARGET_ARCH="x86_64" sh -
 
 cd istio-*
