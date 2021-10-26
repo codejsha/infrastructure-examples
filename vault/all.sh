@@ -13,6 +13,7 @@ cd ..
 
 cd pki
 bash ./generate-root-ca.sh
+bash ./generate-intermediate-ca.sh
 cd ..
 
 cd kubernetes
