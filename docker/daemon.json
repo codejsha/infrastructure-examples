@@ -1,14 +1,19 @@
 {
+  "registry-mirrors": [],
   "insecure-registries": [
     "registry.example.com",
     "harbor.example.com",
-    "kraken.example.com",
     "nexus.example.com"
   ],
-  "registry-mirrors": [
-    "http://nexus.example.com",
-    "https://nexus.example.com"
-  ],
   "debug": false,
-  "experimental": false
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "builder": {
+    "gc": {
+      "enabled": true,
+      "defaultKeepStorage": "20GB"
+    }
+  }
 }
