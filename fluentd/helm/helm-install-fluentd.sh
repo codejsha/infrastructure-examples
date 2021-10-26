@@ -10,5 +10,5 @@ helm upgrade --install my-fluentd \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values.yaml \
-    --version 3.6.1 \
+    --version 4.3.1 \
     bitnami/fluentd
