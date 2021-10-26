@@ -4,6 +4,7 @@ namePrefix: my-
 namespace: ldap
 resources:
   - ../../base
+  - namespace.yaml
   - pvc.yaml
   - default-startup-configmap.yaml
 images:
