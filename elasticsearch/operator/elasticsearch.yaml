@@ -22,6 +22,20 @@ spec:
       count: 1
       config:
         node.roles: ["master"]
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: -Xms2g -Xmx2g
+              resources:
+                requests:
+                  memory: 2Gi
+                  cpu: 100m
+                limits:
+                  memory: 2Gi
+                  cpu: 100m
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
@@ -37,6 +51,20 @@ spec:
       count: 1
       config:
         node.roles: ["data", "ingest"]
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: -Xms2g -Xmx2g
+              resources:
+                requests:
+                  memory: 2Gi
+                  cpu: 100m
+                limits:
+                  memory: 2Gi
+                  cpu: 100m
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
