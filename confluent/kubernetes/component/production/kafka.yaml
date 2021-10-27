@@ -69,12 +69,12 @@ spec:
             groupNameAttribute: cn
             groupObjectClass: groupOfNames
             groupMemberAttribute: member
-            groupMemberAttributePattern: CN=(.*),ou=ConfluentOSGroup,dc=example,dc=com
-            groupSearchBase: cn=osgroup,ou=ConfluentOSGroup,dc=example,dc=com
+            groupMemberAttributePattern: cn=(.*),ou=confluentgroup,dc=example,dc=com
+            groupSearchBase: ou=confluentgroup,dc=example,dc=com
             userNameAttribute: cn
-            userMemberOfAttributePattern: CN=(.*),ou=ConfluentGroup,DC=example,DC=com
+            userMemberOfAttributePattern: cn=(.*),ou=confluentuser,dc=example,dc=com
             userObjectClass: organizationalRole
-            userSearchBase: ou=ConfluentGroup,dc=example,dc=com
+            userSearchBase: ou=confluentuser,dc=example,dc=com
   podTemplate:
     podSecurityContext:
       fsGroup: 1000
