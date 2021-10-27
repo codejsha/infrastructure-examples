@@ -626,7 +626,7 @@ aggregator:
         host elasticstack-es-master.elastic.svc.cluster.local
         port 9200
         user elastic
-        password Sf4h4vV1fa20u276Pe1He0DB
+        password ${ELASTICSEARCH_PASSWORD}
         logstash_format true
       </match>
     metrics.conf: |
