@@ -45,8 +45,8 @@ spec:
         userIdAttribute: "cn"
         roleBaseDn: "ou=confluentgroup,dc=example,dc=com"
         roleNameAttribute: "cn"
-        roleMemberAttribute: "memberUid"
-        roleObjectClass: "posixGroup"
+        roleMemberAttribute: "member"
+        roleObjectClass: "groupOfNames"
         userPasswordAttribute: "userPassword"
   authorization:
     type: rbac
