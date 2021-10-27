@@ -10,13 +10,6 @@ bash ./install-docker.sh
 
 - https://docs.docker.com/engine/reference/commandline/build/
 
-### Dockerfile Examples
-
-- [RPM Package Repository Server README](/linux/rpm-package-repo-server/README.md)
-- [Tomcat README](/tomcat/README.md)
-- [CMAK - Kafka README](/kafka/README.md)
-- [Kafka Connect - Confluent README](/kafka/confluent/README.md)
-
 ## Daemon
 
 - https://docs.docker.com/engine/reference/commandline/dockerd/
