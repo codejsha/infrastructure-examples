@@ -1,0 +1,15 @@
+######################################################################
+
+### all components and operator
+kubernetes.labels.clusterId: confluent
+
+### all components
+kubernetes.labels.confluent-platform: true
+
+### each component
+kubernetes.labels.app: confluent-operator
+kubernetes.labels.app: zookeeper
+kubernetes.labels.app: kafka
+kubernetes.labels.app: schemaregistry
+kubernetes.labels.app: connect
+kubernetes.labels.app: controlcenter
