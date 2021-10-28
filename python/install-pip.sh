@@ -5,3 +5,6 @@ set -o errtrace
 
 ### rhel
 sudo yum install -y python3-pip
+
+### ubuntu
+# sudo apt install python3-pip
