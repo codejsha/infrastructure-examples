@@ -56,3 +56,9 @@ git stash list
 git stash pop
 
 git restore --source=stash@{0} -- ./tomcat/helper.sh
+
+######################################################################
+
+### submodule
+
+git submodule add https://github.com/codejsha/infrastructure infrastructure
