@@ -12,9 +12,7 @@ alertmanager:
     enabled: true
     size: 2Gi
     # storageClass: "standard"
-    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
-    # storageClass: "local-path"
   replicaCount: 1
   service:
     type: ClusterIP
@@ -31,11 +29,11 @@ kubeStateMetrics:
   enabled: true
 
 nodeExporter:
-  hostRootfs: false
   enabled: true
+  name: node-exporter
+  hostRootfs: false
   hostNetwork: true
   hostPID: true
-  name: node-exporter
   service:
     annotations:
       prometheus.io/scrape: "true"
@@ -55,9 +53,7 @@ server:
     enabled: true
     size: 8Gi
     # storageClass: "standard"
-    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
-    # storageClass: "local-path"
   replicaCount: 1
   service:
     type: ClusterIP
@@ -80,6 +76,4 @@ pushgateway:
     enabled: true
     size: 2Gi
     # storageClass: "standard"
-    # storageClass: "hostpath"
     # storageClass: "rook-ceph-block"
-    # storageClass: "local-path"
