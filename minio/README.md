@@ -43,7 +43,7 @@ bash ./helm-install-minio.sh
 
 ### Architecture
 
-![minio-operator-architecture](/contents/images/minio-operator-architecture.png)
+![minio-operator-architecture](/docs/images/minio-operator-architecture.png)
 
 ## Grafana dashboard
 

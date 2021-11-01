@@ -19,4 +19,4 @@ bash ./load-sample-db.sh
 
 DVD Rental ER Model:
 
-![dvd-rental-erd](/contents/images/dvd-rental-sample-database-diagram.png)
+![dvd-rental-erd](/docs/images/dvd-rental-sample-database-diagram.png)

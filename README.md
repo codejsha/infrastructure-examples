@@ -6,30 +6,9 @@
 
 ```bash
 git clone https://github.com/codejsha/infrastructure.git
+
 ### with GitHub CLI
 gh repo clone codejsha/infrastructure
-```
-
-### Pull main branch
-
-```bash
-git pull origin main
-```
-
-### Overwrite main branch
-
-```bash
-git stash
-git fetch --all
-git reset --hard origin/main
-```
-
-### Stash
-
-```bash
-git stash list
-git stash show
-git restore -s stash@{0} -- ${FILENAME}
 ```
 
 ## Directory Structure
@@ -37,9 +16,7 @@ git restore -s stash@{0} -- ${FILENAME}
 ```txt
 ├─── ...            # s/w
 │
-├───contents
-│   ├───images      # image files
-│   └───svg         # svg files
+├───docs            # docs
 │
 └───others
     └─── ...        # other s/w
