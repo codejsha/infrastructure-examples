@@ -9,7 +9,7 @@ set -o errtrace
 HTTPD_HOME="/usr/local/httpd"
 
 cat <<EOF | sudo tee /etc/ld.so.conf.d/weblogic-plugin.conf
-/usr/local/httpd/modules/weblogic-plugin/lib
+/usr/local/httpd/weblogic-plugin/lib
 EOF
 
 sudo ldconfig
