@@ -19,7 +19,7 @@ spec:
         providerName: "ldap"
         config:
           vendor: "other"
-          connectionUrl: "ldap://my-ldap-service.ldap-system.svc.cluster.local"
+          connectionUrl: "ldap://my-ldap-service.ldap.svc.cluster.local"
           bindDn: "cn=admin,dc=example,dc=com"
           bindCredential: "${vault.bindCredential}"
           usersDn: "DC=example,DC=com"
