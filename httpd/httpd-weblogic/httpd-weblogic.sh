@@ -6,7 +6,7 @@ set -o errtrace
 source ../env-base.sh
 
 HTTPD_HOME="${HTTPD_HOME}"
-PLUGIN_HOME="${HTTPD_HOME}/modules/weblogic-plugin"
+PLUGIN_HOME="${HTTPD_HOME}/weblogic-plugin"
 
 # PLUGIN_FILE_DIR="/mnt/share/oracle-http-server/ohs11.1.1.9/ofm_wlsplugins_generic_11.1.1.9.0_disk1_1of1"
 PLUGIN_FILE_DIR="/mnt/share/oracle-http-server/ohs12.2.1.3/fmw_12.2.1.3.0_wlsplugins_Disk1_1of1"
