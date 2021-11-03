@@ -30,7 +30,7 @@ configurations:
 
 - `enableClusterRoleBinding: true`: the operator will have privilege in all Kubernetes namespaces (cluster scope)
 - `domainNamespaceSelectionStrategy: LabelSelector` and `domainNamespaceLabelSelector: weblogic-operator=enabled`: manage domains with the label "`weblogic-operator=enabled`"
-- `kubernetesPlatform: OpenShift`: Sets the domain home file permissions in each WebLogic Server pod to work correctly in OpenShift for Model in Image, and Domain home in Image domains.
+- `kubernetesPlatform: OpenShift`: set the domain home file permissions in each WebLogic Server pod to work correctly in OpenShift for Model in Image, and Domain home in Image domains.
 
 ## Create a WebLogic Domain
 
@@ -138,3 +138,26 @@ spec:
 ## Istio
 
 - https://oracle.github.io/weblogic-kubernetes-operator/userguide/istio/istio/
+
+```bash
+kubectl label namespace weblogic-operator istio-injection=enabled
+kubectl label namespace sample-domain1-ns istio-injection=enabled
+```
+
+```yaml
+apiVersion: "weblogic.oracle/v8"
+kind: Domain
+metadata:
+  name: sample-domain1
+  namespace: sample-domain1-ns
+  labels:
+    weblogic.domainUID: sample-domain1
+spec:
+  # ...
+  configuration:
+    istio:
+      enabled: true
+      readinessPort: 8888
+      replicationChannelPort: 4564
+      localhostBindingsEnabled: false
+```
