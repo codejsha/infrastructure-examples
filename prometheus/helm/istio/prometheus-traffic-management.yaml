@@ -28,7 +28,7 @@ spec:
   http:
     - route:
         - destination:
-            host: my-prometheus-stack-kube-p-prometheus.prometheus.svc.cluster.local
+            host: my-kube-prometheus-stack-prometheus.monitoring.svc.cluster.local
             port:
               number: 9090
 ---
@@ -38,7 +38,7 @@ metadata:
   name: prometheus-dr
   namespace: prometheus
 spec:
-  host: my-prometheus-stack-kube-p-prometheus.prometheus.svc.cluster.local
+  host: my-kube-prometheus-stack-prometheus.monitoring.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
