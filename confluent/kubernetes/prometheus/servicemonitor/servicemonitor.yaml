@@ -1,0 +1,115 @@
+---
+### zookeeper
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: zookeeper
+  namespace: confluent
+  labels:
+    release: my-kube-prometheus-stack
+    type: zookeeper
+    confluent-platform: "true"
+spec:
+  jobLabel: zookeeper
+  selector:
+    matchLabels:
+      type: zookeeper
+      confluent-platform: "true"
+  namespaceSelector:
+    matchNames:
+      - confluent
+  endpoints:
+    - port: prometheus
+      interval: 10s
+---
+### kafka
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kafka
+  namespace: confluent
+  labels:
+    release: my-kube-prometheus-stack
+    type: kafka
+    confluent-platform: "true"
+spec:
+  jobLabel: kafka
+  selector:
+    matchLabels:
+      type: kafka
+      confluent-platform: "true"
+  namespaceSelector:
+    matchNames:
+      - confluent
+  endpoints:
+    - port: prometheus
+      interval: 10s
+---
+### schema-registry
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: schemaregistry
+  namespace: confluent
+  labels:
+    release: my-kube-prometheus-stack
+    type: schemaregistry
+    confluent-platform: "true"
+spec:
+  jobLabel: schemaregistry
+  selector:
+    matchLabels:
+      type: schemaregistry
+      confluent-platform: "true"
+  namespaceSelector:
+    matchNames:
+      - confluent
+  endpoints:
+    - port: prometheus
+      interval: 10s
+---
+### kafka-connect
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: connect
+  namespace: confluent
+  labels:
+    release: my-kube-prometheus-stack
+    type: connect
+    confluent-platform: "true"
+spec:
+  jobLabel: connect
+  selector:
+    matchLabels:
+      type: connect
+      confluent-platform: "true"
+  namespaceSelector:
+    matchNames:
+      - confluent
+  endpoints:
+    - port: prometheus
+      interval: 10s
+---
+### control-center
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: controlcenter
+  namespace: confluent
+  labels:
+    release: my-kube-prometheus-stack
+    type: controlcenter
+    confluent-platform: "true"
+spec:
+  jobLabel: controlcenter
+  selector:
+    matchLabels:
+      type: controlcenter
+      confluent-platform: "true"
+  namespaceSelector:
+    matchNames:
+      - confluent
+  endpoints:
+    - port: prometheus
+      interval: 10s
