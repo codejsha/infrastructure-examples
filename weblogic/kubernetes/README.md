@@ -12,8 +12,8 @@ Table of Contents:
 - [Oracle WebLogic Server on Kubernetes](#oracle-weblogic-server-on-kubernetes)
   - [Install the WebLogic Operator](#install-the-weblogic-operator)
   - [Create a WebLogic Domain](#create-a-weblogic-domain)
-    - [Domain in Image](#domain-in-image)
-    - [Domain in PV](#domain-in-pv)
+    - [Domain home in Image](#domain-home-in-image)
+    - [Domain home on PV](#domain-home-on-pv)
     - [Model in Image](#model-in-image)
   - [Configuration Overrides (situational configuration)](#configuration-overrides-situational-configuration)
     - [Template name and syntax](#template-name-and-syntax)
@@ -38,11 +38,11 @@ configurations:
 
 Domain home source type:
 
-- **Domain in Image**
-- **Domain in PV**
+- **Domain home in Image**
+- **Domain home on PV**
 - **Model in Image**
 
-### Domain in Image
+### Domain home in Image
 
 - https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-in-image/
 
@@ -51,7 +51,7 @@ Domain home source type:
 3. build weblogic image that contain applications and data sources by imagetool (weblogic-image-tool/update)
 4. build weblogic image to include wldf scripts (weblogic-image-tool/update/docker/build-wldf)
 
-### Domain in PV
+### Domain home on PV
 
 - https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-on-pv/
 
@@ -63,7 +63,7 @@ Domain home source type:
 
 - https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/configoverrides/
 
-be used in Domain in Image and Domain in PV domains (Model in Image domains, use runtime updates instead)
+be used in Domain home in Image and Domain home on PV domains (Model in Image domains, use runtime updates instead)
 
 ### Template name and syntax
 
