@@ -28,7 +28,7 @@ spec:
   http:
     - route:
         - destination:
-            host: my-prometheus-stack-kube-p-alertmanager.prometheus.svc.cluster.local
+            host: my-kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local
             port:
               number: 9093
 ---
@@ -38,7 +38,7 @@ metadata:
   name: alertmanager-dr
   namespace: prometheus
 spec:
-  host: my-prometheus-stack-kube-p-alertmanager.prometheus.svc.cluster.local
+  host: my-kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE

@@ -28,7 +28,7 @@ spec:
   http:
     - route:
         - destination:
-            host: my-prometheus-stack-grafana.prometheus.svc.cluster.local
+            host: my-kube-prometheus-stack-grafana.monitoring.svc.cluster.local
             port:
               number: 80
 ---
@@ -38,7 +38,7 @@ metadata:
   name: grafana-dr
   namespace: prometheus
 spec:
-  host: my-prometheus-stack-grafana.prometheus.svc.cluster.local
+  host: my-kube-prometheus-stack-grafana.monitoring.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
