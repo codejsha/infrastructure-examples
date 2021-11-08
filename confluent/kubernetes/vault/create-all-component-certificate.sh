@@ -11,7 +11,7 @@ mkdir -p ${CERT_DIR}
 
 vault write -format="json" pki_int/issue/confluent-operator \
     common_name="kafka.example.com" \
-    alt_names="*.zookeeper.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local,*.ksql.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
+    alt_names="localhost,*.zookeeper.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local,*.ksql.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
     ttl="4380h" \
     > ${CERT_DIR}/tls.json
 
