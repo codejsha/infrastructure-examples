@@ -12,7 +12,7 @@ vault secrets tune -max-lease-ttl="87600h" pki_int
 
 ### generate csr and private key
 vault write -format="json" pki_int/intermediate/generate/exported \
-    common_name="example.com Intermediate Authority" \
+    common_name="Example Intermediate Authority" \
     > request_intermediate.json
 
 jq -r '.data.csr' < request_intermediate.json > intermediate.csr

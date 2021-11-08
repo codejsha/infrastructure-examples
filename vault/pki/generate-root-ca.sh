@@ -12,7 +12,7 @@ vault secrets tune -max-lease-ttl="87600h" pki
 
 ### generate root ca
 vault write pki/root/generate/internal \
-    common_name="example.com" \
+    common_name="Example Root CA" \
     ttl="87600h" \
     > ca.crt
 
