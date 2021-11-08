@@ -6,6 +6,7 @@ metadata:
   name: zookeeper
   namespace: confluent
   labels:
+    app: kube-prometheus-stack
     release: my-kube-prometheus-stack
     type: zookeeper
     confluent-platform: "true"
@@ -29,6 +30,7 @@ metadata:
   name: kafka
   namespace: confluent
   labels:
+    app: kube-prometheus-stack
     release: my-kube-prometheus-stack
     type: kafka
     confluent-platform: "true"
@@ -52,6 +54,7 @@ metadata:
   name: schemaregistry
   namespace: confluent
   labels:
+    app: kube-prometheus-stack
     release: my-kube-prometheus-stack
     type: schemaregistry
     confluent-platform: "true"
@@ -75,6 +78,7 @@ metadata:
   name: connect
   namespace: confluent
   labels:
+    app: kube-prometheus-stack
     release: my-kube-prometheus-stack
     type: connect
     confluent-platform: "true"
@@ -98,6 +102,7 @@ metadata:
   name: controlcenter
   namespace: confluent
   labels:
+    app: kube-prometheus-stack
     release: my-kube-prometheus-stack
     type: controlcenter
     confluent-platform: "true"
