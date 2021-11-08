@@ -3,6 +3,14 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+### check cluster scope access
+# kubectl confluent operator --namespaced=false pre-check
+
+### check namespace scope access
+kubectl confluent operator pre-check
+
+######################################################################
+
 ### from helm repo
 
 # helm repo add confluentinc https://packages.confluent.io/helm
