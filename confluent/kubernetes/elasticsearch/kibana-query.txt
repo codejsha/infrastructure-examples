@@ -1,4 +1,6 @@
 ######################################################################
+### Kibana Query Language (KQL) Examples
+######################################################################
 
 ### all components and operator
 kubernetes.labels.clusterId: confluent
@@ -13,3 +15,6 @@ kubernetes.labels.app: kafka
 kubernetes.labels.app: schemaregistry
 kubernetes.labels.app: connect
 kubernetes.labels.app: controlcenter
+
+### search log
+kubernetes.labels.app: kafka and log: ssl.endpoint.identification.algorithm
