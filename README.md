@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-### Clone repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/codejsha/infrastructure.git
@@ -13,13 +13,11 @@ git clone https://github.com/codejsha/infrastructure.git
 gh repo clone codejsha/infrastructure
 ```
 
-## Directory Structure
+### Directory Structure
 
 ```txt
 ├─── ...            # s/w
-│
 ├───docs            # docs
-│
 └───others
     └─── ...        # other s/w
 ```
