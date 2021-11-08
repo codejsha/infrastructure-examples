@@ -7,24 +7,14 @@ metadata:
 spec:
   replicas: 3
   image:
-    application: confluentinc/cp-server:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
+    application: confluentinc/cp-server:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
   dataVolumeCapacity: 100Gi
   configOverrides:
     server:
       - auto.create.topics.enable=false
     jvm: []
     log4j: []
-  podTemplate:
-    podSecurityContext:
-      fsGroup: 1000
-      runAsUser: 1000
-      runAsNonRoot: true
-    # tolerations:
-    # affinity:
-    #   nodeAffinity:
-    #   podAffinity:
-    #   podAntiAffinity:
   listeners:
     external:
       externalAccess:
@@ -34,3 +24,20 @@ spec:
           host: localhost
   metricReporter:
     enabled: true
+  podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 400m
+    #     memory: 4Gi
+    #   limits:
+    #     cpu: 1
+    #     memory: 8Gi
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:

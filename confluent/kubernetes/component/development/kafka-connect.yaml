@@ -7,15 +7,30 @@ metadata:
 spec:
   replicas: 1
   image:
-    # application: confluentinc/cp-server-connect:6.2.1
-    # init: confluentinc/confluent-init-container:2.0.3
-    application: harbor.example.com/confluentinc/confluentinc/cp-custom-server-connect:6.2.1
-    init: harbor.example.com/confluentinc/confluentinc/confluent-init-container:2.0.3
+    # application: confluentinc/cp-server-connect:7.0.0
+    # init: confluentinc/confluent-init-container:2.2.0
+    application: harbor.example.com/confluentinc/confluentinc/cp-custom-server-connect:7.0.0
+    init: harbor.example.com/confluentinc/confluentinc/confluent-init-container:2.2.0
   configOverrides:
     server: []
     jvm: []
     log4j: []
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30020
+      host: localhost
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
   podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 100m
+    #     memory: 512Mi
+    #   limits:
+    #     cpu: 200m
+    #     memory: 4Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000
@@ -25,11 +40,3 @@ spec:
     #   nodeAffinity:
     #   podAffinity:
     #   podAntiAffinity:
-  externalAccess:
-    type: nodePort
-    nodePort:
-      nodePortOffset: 30020
-      host: localhost
-  dependencies:
-    kafka:
-      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071

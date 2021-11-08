@@ -26,16 +26,16 @@ spec:
     directoryPathInContainer: /vault/secrets
   authorization:
     type: rbac
-  externalAccess:
-    type: loadBalancer
-    loadBalancer:
-      domain: example.com
-      prefix: ksql
   # externalAccess:
-  #   type: nodePort
-  #   nodePort:
-  #     nodePortOffset: 30040
-  #     host: localhost
+  #   type: loadBalancer
+  #   loadBalancer:
+  #     domain: example.com
+  #     prefix: ksql
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30040
+      host: localhost
   dependencies:
     kafka:
       bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
@@ -64,11 +64,11 @@ spec:
   podTemplate:
     resources:
       requests:
-        cpu: 4
-        memory: 16Gi
+        cpu: 100m
+        memory: 1Gi
       limits:
-        cpu: 12
-        memory: 24Gi
+        cpu: 200m
+        memory: 2Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000

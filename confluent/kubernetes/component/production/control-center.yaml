@@ -7,14 +7,14 @@ metadata:
 spec:
   replicas: 1
   image:
-    application: confluentinc/cp-enterprise-control-center:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-    # application: harbor.example.com/confluentinc/cp-enterprise-control-center:6.2.1
-    # init: harbor.example.com/confluentinc/confluent-init-container:2.0.3
+    application: confluentinc/cp-enterprise-control-center:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+    # application: harbor.example.com/confluentinc/cp-enterprise-control-center:7.0.0
+    # init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   # storageClass:
   #   name: standard
-  dataVolumeCapacity: 10Gi
+  dataVolumeCapacity: 250Gi
   configOverrides:
     server: []
     jvm: []
@@ -50,7 +50,59 @@ spec:
         userPasswordAttribute: "userPassword"
   authorization:
     type: rbac
+  externalAccess:
+    type: loadBalancer
+    loadBalancer:
+      domain: example.com
+      prefix: controlcenter
+  # externalAccess:
+  #   type: nodePort
+  #   nodePort:
+  #     nodePortOffset: 30050
+  #     host: localhost
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    schemaRegistry:
+      url: https://schemaregistry.confluent.svc.cluster.local:8081
+      tls:
+        enabled: true
+    connect:
+      - name: connect
+        url: https://connect.confluent.svc.cluster.local:8083
+        tls:
+          enabled: true
+    ksqldb:
+      - name: ksqldb
+        url: https://ksqldb.confluent.svc.cluster.local:8088
+        tls:
+          enabled: true
+    mds:
+      endpoint: https://kafka.confluent.svc.cluster.local:8090
+      tokenKeyPair:
+        # directoryPathInContainer: /vault/secrets
+        secretRef: mds-token
+      authentication:
+        type: bearer
+        bearer:
+          # directoryPathInContainer: /vault/secrets
+          secretRef: mds-control-center-client
+      tls:
+        enabled: true
   podTemplate:
+    resources:
+      requests:
+        cpu: 4
+        memory: 16Gi
+      limits:
+        cpu: 12
+        memory: 24Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000
@@ -111,43 +163,3 @@ spec:
         {{- with secret "kv/data/confluent/license.txt" -}}
         {{ .Data.data.license | base64Decode }}
         {{- end }}
-  # externalAccess:
-  #   type: loadBalancer
-  #   loadBalancer:
-  #     domain: example.com
-  #     prefix: controlcenter
-  dependencies:
-    kafka:
-      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
-      authentication:
-        type: plain
-        jaasConfigPassThrough:
-          directoryPathInContainer: /vault/secrets/jaas
-      tls:
-        enabled: true
-    schemaRegistry:
-      url: https://schemaregistry.confluent.svc.cluster.local:8081
-      tls:
-        enabled: true
-    connect:
-      - name: connect
-        url: https://connect.confluent.svc.cluster.local:8083
-        tls:
-          enabled: true
-    ksqldb:
-      - name: ksqldb
-        url: https://ksqldb.confluent.svc.cluster.local:8088
-        tls:
-          enabled: true
-    mds:
-      endpoint: https://kafka.confluent.svc.cluster.local:8090
-      tokenKeyPair:
-        # directoryPathInContainer: /vault/secrets
-        secretRef: mds-token
-      authentication:
-        type: bearer
-        bearer:
-          # directoryPathInContainer: /vault/secrets
-          secretRef: mds-control-center-client
-      tls:
-        enabled: true
