@@ -7,13 +7,25 @@ metadata:
 spec:
   replicas: 1
   image:
-    application: confluentinc/cp-schema-registry:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
+    application: confluentinc/cp-schema-registry:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
   configOverrides:
     server: []
     jvm: []
     log4j: []
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30010
+      host: localhost
   podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 100m
+    #     memory: 512Mi
+    #   limits:
+    #     cpu: 200m
+    #     memory: 1Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000
@@ -23,8 +35,3 @@ spec:
     #   nodeAffinity:
     #   podAffinity:
     #   podAntiAffinity:
-  externalAccess:
-    type: nodePort
-    nodePort:
-      nodePortOffset: 30010
-      host: localhost

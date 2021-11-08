@@ -7,23 +7,18 @@ metadata:
 spec:
   replicas: 1
   image:
-    application: confluentinc/cp-enterprise-control-center:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-  dataVolumeCapacity: 10Gi
+    application: confluentinc/cp-enterprise-control-center:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+  dataVolumeCapacity: 100Gi
   configOverrides:
     server: []
     jvm: []
     log4j: []
-  podTemplate:
-    podSecurityContext:
-      fsGroup: 1000
-      runAsUser: 1000
-      runAsNonRoot: true
-    # tolerations:
-    # affinity:
-    #   nodeAffinity:
-    #   podAffinity:
-    #   podAntiAffinity:
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30050
+      host: localhost
   dependencies:
     schemaRegistry:
       url: http://schemaregistry.confluent.svc.cluster.local:8081
@@ -33,3 +28,20 @@ spec:
     ksqldb:
       - name: ksqldb
         url: http://ksqldb.confluent.svc.cluster.local:8088
+  podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 500m
+    #     memory: 2Gi
+    #   limits:
+    #     cpu: 1
+    #     memory: 4Gi
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:

@@ -1,20 +1,20 @@
 ---
 apiVersion: platform.confluent.io/v1beta1
-kind: KsqlDB
+kind: ControlCenter
 metadata:
-  name: ksqldb
+  name: controlcenter
   namespace: confluent
 spec:
   replicas: 1
   image:
-    application: confluentinc/cp-ksqldb-server:7.0.0
+    application: confluentinc/cp-enterprise-control-center:7.0.0
     init: confluentinc/confluent-init-container:2.2.0
-    # application: harbor.example.com/confluentinc/cp-ksqldb-server:7.0.0
+    # application: harbor.example.com/confluentinc/cp-enterprise-control-center:7.0.0
     # init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   # storageClass:
   #   name: standard
-  dataVolumeCapacity: 100Gi
+  dataVolumeCapacity: 250Gi
   configOverrides:
     server: []
     jvm: []
@@ -24,18 +24,42 @@ spec:
     # directoryPathInContainer: /vault/secrets
   tls:
     directoryPathInContainer: /vault/secrets
+  authentication:
+    type: ldap
+    ldap:
+      roles: [c3users, readonlyusers]
+      restrictedRoles: [readonlyusers]
+      property:
+        useLdaps: "false"
+        debug: "true"
+        contextFactory: "com.sun.jndi.ldap.LdapCtxFactory"
+        hostname: "my-ldap-service.ldap.svc.cluster.local"
+        port: "389"
+        bindDn: "cn=admin,dc=example,dc=com"
+        bindPassword: "admin"
+        authenticationMethod: "simple"
+        forceBindingLogin: "false"
+        userBaseDn: "ou=confluentuser,dc=example,dc=com"
+        userObjectClass: "inetOrgPerson"
+        userRdnAttribute: "uid"
+        userIdAttribute: "cn"
+        roleBaseDn: "ou=confluentgroup,dc=example,dc=com"
+        roleNameAttribute: "cn"
+        roleMemberAttribute: "member"
+        roleObjectClass: "groupOfNames"
+        userPasswordAttribute: "userPassword"
   authorization:
     type: rbac
-  externalAccess:
-    type: loadBalancer
-    loadBalancer:
-      domain: example.com
-      prefix: ksql
   # externalAccess:
-  #   type: nodePort
-  #   nodePort:
-  #     nodePortOffset: 30040
-  #     host: localhost
+  #   type: loadBalancer
+  #   loadBalancer:
+  #     domain: example.com
+  #     prefix: controlcenter
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30050
+      host: localhost
   dependencies:
     kafka:
       bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
@@ -49,6 +73,16 @@ spec:
       url: https://schemaregistry.confluent.svc.cluster.local:8081
       tls:
         enabled: true
+    connect:
+      - name: connect
+        url: https://connect.confluent.svc.cluster.local:8083
+        tls:
+          enabled: true
+    ksqldb:
+      - name: ksqldb
+        url: https://ksqldb.confluent.svc.cluster.local:8088
+        tls:
+          enabled: true
     mds:
       endpoint: https://kafka.confluent.svc.cluster.local:8090
       tokenKeyPair:
@@ -58,17 +92,17 @@ spec:
         type: bearer
         bearer:
           # directoryPathInContainer: /vault/secrets
-          secretRef: mds-ksqldb-client
+          secretRef: mds-control-center-client
       tls:
         enabled: true
   podTemplate:
     resources:
       requests:
-        cpu: 4
-        memory: 16Gi
+        cpu: 500m
+        memory: 2Gi
       limits:
-        cpu: 12
-        memory: 24Gi
+        cpu: 1
+        memory: 4Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000
@@ -99,9 +133,9 @@ spec:
         {{- with secret "kv/data/confluent/jksPassword.txt" -}}
         {{ .Data.data.password }}
         {{- end }}
-      vault.hashicorp.com/agent-inject-secret-keystore.jks: kv/data/confluent/ksqldb/keystore.jks
+      vault.hashicorp.com/agent-inject-secret-keystore.jks: kv/data/confluent/control-center/keystore.jks
       vault.hashicorp.com/agent-inject-template-keystore.jks: |
-        {{- with secret "kv/data/confluent/ksqldb/keystore.jks" -}}
+        {{- with secret "kv/data/confluent/control-center/keystore.jks" -}}
         {{ .Data.data.keystore | base64Decode }}
         {{- end }}
       vault.hashicorp.com/agent-inject-secret-truststore.jks: kv/data/confluent/truststore.jks
@@ -116,10 +150,10 @@ spec:
         {{- with secret "kv/data/confluent/mdsPublicKey.pem" -}}
         {{ .Data.data.mdspublickey | base64Decode }}
         {{- end }}
-      vault.hashicorp.com/agent-inject-secret-ksqldb-bearer: kv/data/confluent/ksqldb/bearer.txt
-      vault.hashicorp.com/agent-inject-file-ksqldb-bearer: bearer.txt
-      vault.hashicorp.com/agent-inject-template-ksqldb-bearer: |
-        {{- with secret "kv/data/confluent/ksqldb/bearer.txt" -}}
+      vault.hashicorp.com/agent-inject-secret-controlcenter-bearer: kv/data/confluent/control-center/bearer.txt
+      vault.hashicorp.com/agent-inject-file-controlcenter-bearer: bearer.txt
+      vault.hashicorp.com/agent-inject-template-controlcenter-bearer: |
+        {{- with secret "kv/data/confluent/control-center/bearer.txt" -}}
         {{ .Data.data.bearer | base64Decode }}
         {{- end }}
       ### license

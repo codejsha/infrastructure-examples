@@ -56,16 +56,16 @@ spec:
         enabled: true
       tokenKeyPair:
         directoryPathInContainer: /vault/secrets
-      externalAccess:
-        type: loadBalancer
-        loadBalancer:
-          domain: example.com
-          brokerPrefix: mds
       # externalAccess:
-      #   type: nodePort
-      #   nodePort:
-      #     nodePortOffset: 30060
-      #     host: localhost
+      #   type: loadBalancer
+      #   loadBalancer:
+      #     domain: example.com
+      #     brokerPrefix: mds-
+      externalAccess:
+        type: nodePort
+        nodePort:
+          nodePortOffset: 30060
+          host: localhost
       provider:
         type: ldap
         ldap:
@@ -99,23 +99,23 @@ spec:
           directoryPathInContainer: /vault/secrets/jaas
       tls:
         enabled: true
-      externalAccess:
-        type: staticForHostBasedRouting
-        staticForHostBasedRouting:
-          domain: example.com
-          port: 443
-          brokerPrefix: broker-
+      # externalAccess:
+      #   type: staticForHostBasedRouting
+      #   staticForHostBasedRouting:
+      #     domain: example.com
+      #     port: 443
+      #     brokerPrefix: broker-
       # externalAccess:
       #   type: loadBalancer
       #   loadBalancer:
       #     domain: example.com
       #     bootstrapPrefix: kafka
       #     brokerPrefix: broker-
-      # externalAccess:
-      #   type: nodePort
-      #   nodePort:
-      #     nodePortOffset: 30000
-      #     host: localhost
+      externalAccess:
+        type: nodePort
+        nodePort:
+          nodePortOffset: 30000
+          host: localhost
   metricReporter:
     enabled: true
     bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
@@ -142,11 +142,11 @@ spec:
   podTemplate:
     resources:
       requests:
-        cpu: 4
-        memory: 16Gi
+        cpu: 400m
+        memory: 4Gi
       limits:
-        cpu: 12
-        memory: 24Gi
+        cpu: 1
+        memory: 8Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000

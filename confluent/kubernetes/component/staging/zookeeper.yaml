@@ -32,11 +32,11 @@ spec:
   podTemplate:
     resources:
       requests:
-        cpu: 2
-        memory: 8Gi
+        cpu: 100m
+        memory: 512Mi
       limits:
-        cpu: 4
-        memory: 14Gi
+        cpu: 200m
+        memory: 1Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000

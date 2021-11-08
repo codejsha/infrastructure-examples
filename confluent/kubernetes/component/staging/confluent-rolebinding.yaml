@@ -8,7 +8,7 @@ metadata:
 spec:
   principal:
     type: user
-    name: kafkaadmin
+    name: clusteradmin
   role: ClusterAdmin
   kafkaRestClassRef:
     name: default
@@ -22,7 +22,7 @@ metadata:
 spec:
   principal:
     type: user
-    name: kafkaadmin
+    name: clusteradmin
   clustersScopeByIds:
     schemaRegistryClusterId: id_schemaregistry_confluent
   role: SystemAdmin
@@ -38,7 +38,7 @@ metadata:
 spec:
   principal:
     type: user
-    name: kafkaadmin
+    name: clusteradmin
   clustersScopeByIds:
     connectClusterId: confluent.connect
   role: SystemAdmin
@@ -54,7 +54,7 @@ metadata:
 spec:
   principal:
     type: user
-    name: kafkaadmin
+    name: clusteradmin
   clustersScopeByIds:
     ksqlClusterId: confluent.ksqldb
   role: ResourceOwner
