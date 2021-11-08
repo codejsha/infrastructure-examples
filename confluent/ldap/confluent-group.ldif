@@ -1,0 +1,42 @@
+######################################################################
+
+dn: ou=confluentgroup,dc=example,dc=com
+objectClass: organizationalUnit
+ou: confluentgroup
+
+######################################################################
+
+dn: cn=confluent-components,ou=confluentgroup,dc=example,dc=com
+cn: confluent-components
+objectClass: top
+objectclass: groupOfNames
+description: a group for confluent platform components
+member: cn=kafka,ou=confluentuser,dc=example,dc=com
+member: cn=sr,ou=confluentuser,dc=example,dc=com
+member: cn=connect,ou=confluentuser,dc=example,dc=com
+member: cn=replicator,ou=confluentuser,dc=example,dc=com
+member: cn=ksql,ou=confluentuser,dc=example,dc=com
+member: cn=erp,ou=confluentuser,dc=example,dc=com
+member: cn=c3,ou=confluentuser,dc=example,dc=com
+member: cn=kafkaadmin,ou=confluentuser,dc=example,dc=com
+
+dn: cn=c3users,ou=confluentgroup,dc=example,dc=com
+cn: c3users
+objectClass: top
+objectclass: groupOfNames
+description: a group of control center users
+member: cn=kafkaadmin,ou=confluentuser,dc=example,dc=com
+
+dn: cn=readonlyusers,ou=confluentgroup,dc=example,dc=com
+cn: readonlyusers
+objectClass: top
+objectclass: groupOfNames
+description: a group of readonly users
+member: cn=developer,ou=confluentuser,dc=example,dc=com
+
+dn: cn=kafka-developer,ou=confluentgroup,dc=example,dc=com
+cn: kafka-developer
+objectClass: top
+objectclass: groupOfNames
+description: a group of kafka developers
+member: cn=developer,ou=confluentuser,dc=example,dc=com

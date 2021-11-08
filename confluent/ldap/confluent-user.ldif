@@ -1,0 +1,75 @@
+######################################################################
+
+dn: ou=confluentuser,dc=example,dc=com
+objectClass: organizationalUnit
+ou: confluentuser
+
+######################################################################
+
+dn: cn=kafka,ou=confluentuser,dc=example,dc=com
+cn: kafka
+userPassword: kafka-secret
+description: kafka user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=sr,ou=confluentuser,dc=example,dc=com
+cn: sr
+userPassword: sr-secret
+description: schema registry user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=connect,ou=confluentuser,dc=example,dc=com
+cn: connect
+userPassword: connect-secret
+description: kakfa connect user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=replicator,ou=confluentuser,dc=example,dc=com
+cn: replicator
+userPassword: replicator-secret
+description: replicator user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=ksql,ou=confluentuser,dc=example,dc=com
+cn: ksql
+userPassword: ksql-secret
+description: ksqldb user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=erp,ou=confluentuser,dc=example,dc=com
+cn: erp
+userPassword: erp-secret
+description: kafka rest api user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=c3,ou=confluentuser,dc=example,dc=com
+cn: c3
+userPassword: c3-secret
+description: control center user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+dn: cn=kafkaadmin,ou=confluentuser,dc=example,dc=com
+cn: kafkaadmin
+userPassword: kafkaadmin
+description: cluster admin user
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+
+######################################################################
+
+dn: cn=developer,ou=confluentuser,dc=example,dc=com
+cn: developer
+sn: developer
+givenname: developer
+displayname: developer
+description: developer
+objectclass: inetOrgPerson
+objectclass: top
+userpassword: developer
