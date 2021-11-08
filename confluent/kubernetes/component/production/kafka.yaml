@@ -60,7 +60,7 @@ spec:
         type: loadBalancer
         loadBalancer:
           domain: example.com
-          brokerPrefix: mds
+          prefix: mds
       # externalAccess:
       #   type: nodePort
       #   nodePort:
