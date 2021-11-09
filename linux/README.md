@@ -40,8 +40,3 @@ User Settings:
 
 - Root Password: Root Password is set
 - User Creation: User prouser will be created
-
-## ISCSI
-
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/online-storage-management
-- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/osm-create-iscsi-initiator
