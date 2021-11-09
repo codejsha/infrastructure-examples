@@ -84,6 +84,14 @@ export JAVA_OPTIONS
 
 ######################################################################
 
+### http session
+
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugHttpSessions=true"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.StdoutDebugEnabled=true"
+export JAVA_OPTIONS
+
+######################################################################
+
 ### jta
 
 ### xa
