@@ -9,4 +9,4 @@ set -o errtrace
 HTTPD_HOME="/usr/local/httpd"
 
 sudo chown root ${HTTPD_HOME}/bin/httpd
-sudo chmod 4750 ${HTTPD_HOME}/bin/httpd
+sudo chmod 4755 ${HTTPD_HOME}/bin/httpd
