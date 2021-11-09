@@ -3,6 +3,7 @@
 
     <context-root>/</context-root>
 
+    <!-- replicated_if_clustered -->
     <session-descriptor>
         <cookie-name>JSESSIONID</cookie-name>
         <persistent-store-type>replicated_if_clustered</persistent-store-type>
@@ -13,6 +14,16 @@
         <cookie-secure>false</cookie-secure>
         <url-rewriting-enabled>true</url-rewriting-enabled>
     </session-descriptor>
+
+    <!-- jdbc -->
+    <!--
+    <session-descriptor>
+        <persistent-store-type>jdbc</persistent-store-type>
+        <persistent-store-pool>jdbc_session_store</persistent-store-pool>
+        <persistent-data-source-jndi-name>jdbc/session_store</persistent-data-source-jndi-name>
+        <persistent-store-table>wl_servlet_sessions</persistent-store-table>
+    </session-descriptor>
+    -->
 
     <jsp-descriptor>
         <page-check-seconds>-1</page-check-seconds>
