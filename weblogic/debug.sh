@@ -33,6 +33,16 @@ export JAVA_OPTIONS
 
 ######################################################################
 
+### plugin
+
+### apache http server
+### httpd.conf
+LogLevel debug
+### httpd-vhosts.conf
+Debug ALL
+
+######################################################################
+
 ### ssl
 JAVA_OPTIONS="${JAVA_OPTIONS} -Djavax.net.debug=all"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dssl.debug=true"
