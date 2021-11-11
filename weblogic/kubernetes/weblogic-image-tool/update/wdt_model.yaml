@@ -142,7 +142,7 @@ resources:
           LogWatchSeverity: Warning
           Watch:
             MyLowHeapFreePercentPolicy:
-              Enabled: true
+              Enabled: false
               RuleType: Harvester
               RuleExpression: "wls.runtime.serverRuntime.JVMRuntime.heapFreePercent < 20"
               ExpressionLanguage: EL
@@ -153,7 +153,7 @@ resources:
                 Minute: "*/3"
                 Second: "*"
             MyHighHeapFreePercentPolicy:
-              Enabled: true
+              Enabled: false
               RuleType: Harvester
               RuleExpression: "wls.runtime.serverRuntime.JVMRuntime.heapFreePercent > 80"
               ExpressionLanguage: EL
@@ -170,7 +170,7 @@ resources:
               Notification: "MyThreadDumpAction"
               AlarmType: AutomaticReset
             MyStuckPolicy:
-              Enabled: true
+              Enabled: false
               RuleType: Log
               RuleExpression: "log.messageId == 'BEA-000337'"
               ExpressionLanguage: EL
@@ -192,6 +192,10 @@ resources:
               WorkingDirectory: "bin/scripts"
               PathToScript: "scalingAction.sh"
               Parameter: "--action scaleDown --domain_uid @@PROP:DOMAIN_NAME@@ --cluster_name @@PROP:CLUSTER_NAME@@ --wls_domain_namespace @@PROP:DOMAIN_NAME@@-ns --operator_service_name @@PROP:OPERATOR_SERVICE_NAME@@ --operator_service_account @@PROP:OPERATOR_SERVICE_ACCOUNT@@ --operator_namespace @@PROP:OPERATOR_NAMESPACE@@ --scaling_size 1"
+            MyKillJavaScriptAction:
+              Enabled: true
+              WorkingDirectory: "bin/scripts"
+              PathToScript: "killjava.sh"
           ThreadDumpAction:
             MyThreadDumpAction:
               Enabled: true
