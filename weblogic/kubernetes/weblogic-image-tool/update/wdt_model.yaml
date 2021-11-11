@@ -228,8 +228,8 @@ appDeployments:
       ModuleType: war
       StagingMode: nostage
       # PlanStagingMode: nostage
-    "session-persistence-failover-app":
-      SourcePath: "wlsdeploy/applications/session-persistence-failover-app"
+    "session-persistence-app":
+      SourcePath: "wlsdeploy/applications/session-persistence-app"
       Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
       StagingMode: nostage
