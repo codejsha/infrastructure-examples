@@ -18,6 +18,8 @@ bash ../imagetool/bin/imagetool.sh cache addInstaller \
 
 ### update build (docker)
 bash ../imagetool/bin/imagetool.sh update \
+    --builder=docker \
+    --docker=/usr/bin/docker \
     --fromImage "weblogic:14.1.1" \
     --tag "weblogic:14.1.1-jms" \
     --wdtModel "wdt_model.yaml" \
