@@ -5,4 +5,4 @@
 
 OPERATOR_NAMESPACE="sample-weblogic-operator-ns"
 
-kubectl describe configmap weblogic-operator-cm -n ${OPERATOR_NAMESPACE}
+kubectl get configmap weblogic-operator-cm --namespace ${OPERATOR_NAMESPACE} --output json | jq -r ".data.internalOperatorCert"
