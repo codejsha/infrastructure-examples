@@ -66,7 +66,7 @@ spec:
           name: webhook
           env:
             - name: INTERNAL_OPERATOR_CERT
-              value: <INTERNAL_OPERATOR_CERT>
+              value: "<INTERNAL_OPERATOR_CERT>"
           ports:
             - containerPort: 9000
               protocol: TCP

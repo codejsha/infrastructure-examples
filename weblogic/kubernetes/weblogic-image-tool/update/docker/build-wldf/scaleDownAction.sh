@@ -2,7 +2,7 @@
 
 echo "scale down action" >> scaleDownAction.log
 
-export INTERNAL_OPERATOR_CERT=<INTERNAL_OPERATOR_CERT>
+export INTERNAL_OPERATOR_CERT="<INTERNAL_OPERATOR_CERT>"
 
 bash /u01/oracle/user_projects/domains/sample-domain1/bin/scripts/scalingAction.sh \
     --action=scaleDown \
