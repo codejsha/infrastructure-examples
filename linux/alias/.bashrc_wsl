@@ -131,6 +131,7 @@ alias watch="watch "
 [ -f ~/.aliases/docker_aliases ] && source ~/.aliases/docker_aliases
 [ -f ~/.aliases/docker_compose_aliases ] && source ~/.aliases/docker_compose_aliases
 [ -f ~/.aliases/git_aliases ] && source ~/.aliases/git_aliases
+[ -f ~/.aliases/go_aliases ] && source ~/.aliases/go_aliases
 [ -f ~/.aliases/helm_aliases ] && source ~/.aliases/helm_aliases
 [ -f ~/.aliases/istio_aliases ] && source ~/.aliases/istio_aliases
 [ -f ~/.aliases/jdk_aliases ] && source ~/.aliases/jdk_aliases
@@ -176,6 +177,5 @@ export LS_COLORS
 TZ="Asia/Seoul"
 
 # path
-PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/maven/bin"
 export PATH

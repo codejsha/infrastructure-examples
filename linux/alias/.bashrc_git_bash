@@ -67,6 +67,5 @@ export LS_COLORS
 TZ="Asia/Seoul"
 
 # path
-PATH="${PATH}:/usr/local/go/bin"
 PATH="${PATH}:/usr/local/maven/bin"
 export PATH
