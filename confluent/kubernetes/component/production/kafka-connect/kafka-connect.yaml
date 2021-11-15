@@ -9,7 +9,7 @@ spec:
   image:
     # application: confluentinc/cp-server-connect:7.0.0
     # init: confluentinc/confluent-init-container:2.2.0
-    application: harbor.example.com/confluentinc/confluentinc/cp-custom-server-connect:7.0.0
+    application: harbor.example.com/confluentinc/cp-server-connect-custom:7.0.0
     init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   configOverrides:

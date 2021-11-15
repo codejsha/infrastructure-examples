@@ -9,7 +9,7 @@ spec:
   image:
     # application: confluentinc/cp-server-connect:7.0.0
     # init: confluentinc/confluent-init-container:2.2.0
-    application: harbor.example.com/confluentinc/confluentinc/cp-custom-server-connect:7.0.0
+    application: harbor.example.com/confluentinc/cp-server-connect-custom:7.0.0
     init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   configOverrides:
@@ -64,10 +64,10 @@ spec:
   podTemplate:
     resources:
       requests:
-        cpu: 100m
-        memory: 512Mi
+        cpu: 500m
+        memory: 1Gi
       limits:
-        cpu: 200m
+        cpu: 1
         memory: 4Gi
     podSecurityContext:
       fsGroup: 1000
