@@ -27,7 +27,7 @@ RUN \
     confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:latest && \
     confluent-hub install --no-prompt confluentinc/kafka-connect-http:latest && \
     confluent-hub install --no-prompt confluentinc/kafka-connect-cassandra:latest && \
-    confluent-hub install --no-prompt confluentinc/kafka-connect-jms-sink:1.3.2 && \
+    confluent-hub install --no-prompt confluentinc/kafka-connect-jms-sink:latest && \
     confluent-hub install --no-prompt wepay/kafka-connect-bigquery:latest && \
     echo
 
