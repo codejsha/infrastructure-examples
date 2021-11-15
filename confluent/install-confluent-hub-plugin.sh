@@ -27,7 +27,7 @@ ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-conne
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:latest
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-http:latest
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-cassandra:latest
-${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-jms-sink:1.3.2
+${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-jms-sink:latest
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-prometheus-metrics:latest
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt wepay/kafka-connect-bigquery:latest
 
