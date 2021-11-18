@@ -35,7 +35,7 @@ export KSQL_JVM_PERFORMANCE_OPTS
 
 ### generic jvm settings
 KSQL_OPTS="${KSQL_OPTS} -D${SERVER_NAME}"
-# JMX_EXPORTER_JAVA_AGENT_FILE="${CONFLUENT_HOME}/prometheus/jmx_prometheus_javaagent-0.15.0.jar"
+# JMX_EXPORTER_JAVA_AGENT_FILE="${CONFLUENT_HOME}/prometheus/jmx_prometheus_javaagent-0.16.1.jar"
 # JMX_EXPORTER_CONFIG_FILE="${CONFLUENT_HOME}/prometheus/confluent_ksql.yml"
 # JMX_EXPORTER_HOST_PORT="1234"
 # KSQL_OPTS="${KSQL_OPTS} -javaagent:${JMX_EXPORTER_JAVA_AGENT_FILE}=${JMX_EXPORTER_HOST_PORT}:${JMX_EXPORTER_CONFIG_FILE}"

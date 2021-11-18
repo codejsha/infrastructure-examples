@@ -27,7 +27,7 @@ sudo /bin/cp -rf ${SHARE_DIR}/confluent-platform/grafana/{dashboards,datasources
 
 ### jmx-exporter
 sudo mkdir -p ${JMX_EXPORTER_VOLUME_DIR}
-sudo /bin/cp -f ${SHARE_DIR}/prometheus/jmx_prometheus_javaagent-0.15.0.jar ${KAFKA_VOLUME_DIR}/jmx_exporter
+sudo /bin/cp -f ${SHARE_DIR}/prometheus/jmx_prometheus_javaagent-0.16.1.jar ${KAFKA_VOLUME_DIR}/jmx_exporter
 sudo /bin/cp -f ${SHARE_DIR}/confluent-platform/jmx-exporter/*.yml ${KAFKA_VOLUME_DIR}/jmx_exporter
 
 ### kafka-lag-exporter

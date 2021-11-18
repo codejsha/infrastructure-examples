@@ -18,7 +18,7 @@ services:
       # ZOO_AUTOPURGE_PURGEINTERVAL: 1
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181 server.2=zookeeper2:2888:3888;2181 server.3=zookeeper3:2888:3888;2181
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
     volumes:
       # - /mnt/volume/zookeeper/zookeeper1/zoo.cfg:/conf/zoo.cfg
       - /mnt/volume/zookeeper/zookeeper1/data:/data
@@ -43,7 +43,7 @@ services:
       # ZOO_AUTOPURGE_PURGEINTERVAL: 1
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zookeeper1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zookeeper3:2888:3888;2181
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
     volumes:
       # - /mnt/volume/zookeeper/zookeeper2/zoo.cfg:/conf/zoo.cfg
       - /mnt/volume/zookeeper/zookeeper2/data:/data
@@ -68,7 +68,7 @@ services:
       # ZOO_AUTOPURGE_PURGEINTERVAL: 1
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zookeeper1:2888:3888;2181 server.2=zookeeper2:2888:3888;2181 server.3=0.0.0.0:2888:3888;2181
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
     volumes:
       # - /mnt/volume/zookeeper/zookeeper3/zoo.cfg:/conf/zoo.cfg
       - /mnt/volume/zookeeper/zookeeper3/data:/data
@@ -91,7 +91,7 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
     volumes:
       - /mnt/volume/kafka/kafka1:/bitnami/kafka
       - /mnt/volume/kafka/jmx_exporter:/usr/share/jmx-exporter
@@ -111,7 +111,7 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
     volumes:
       - /mnt/volume/kafka/kafka2:/bitnami/kafka
       - /mnt/volume/kafka/jmx_exporter:/usr/share/jmx-exporter
@@ -131,7 +131,7 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
     volumes:
       - /mnt/volume/kafka/kafka3:/bitnami/kafka
       - /mnt/volume/kafka/jmx_exporter:/usr/share/jmx-exporter
@@ -153,7 +153,7 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
-      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.15.0.jar=1234:/usr/share/jmx-exporter/confluent_schemaregistry.yml
+      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=1234:/usr/share/jmx-exporter/confluent_schemaregistry.yml
     volumes:
       - /mnt/volume/kafka/jmx_exporter:/usr/share/jmx-exporter
 
