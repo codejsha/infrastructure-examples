@@ -30,7 +30,7 @@ export KAFKA_JVM_PERFORMANCE_OPTS
 
 ### generic jvm settings
 KAFKA_OPTS="${KAFKA_OPTS} -D${SERVER_NAME}"
-# JMX_EXPORTER_JAVA_AGENT_FILE="${CONFLUENT_HOME}/prometheus/jmx_prometheus_javaagent-0.15.0.jar"
+# JMX_EXPORTER_JAVA_AGENT_FILE="${CONFLUENT_HOME}/prometheus/jmx_prometheus_javaagent-0.16.1.jar"
 # JMX_EXPORTER_CONFIG_FILE="${CONFLUENT_HOME}/prometheus/kafka_connect.yml"
 # JMX_EXPORTER_HOST_PORT="1234"
 # KAFKA_OPTS="${KAFKA_OPTS} -javaagent:${JMX_EXPORTER_JAVA_AGENT_FILE}=${JMX_EXPORTER_HOST_PORT}:${JMX_EXPORTER_CONFIG_FILE}"
