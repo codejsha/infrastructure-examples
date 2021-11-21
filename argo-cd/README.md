@@ -1,8 +1,4 @@
-# Argo Projects
-
-https://argoproj.github.io/
-
-## Argo CD
+# Argo CD
 
 Declarative Continuous Delivery for Kubernetes
 

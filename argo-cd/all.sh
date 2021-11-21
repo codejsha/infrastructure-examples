@@ -12,5 +12,10 @@ bash ./account-configmap.yaml
 bash ./rbac-configmap.yaml
 cd ..
 
+cd cluster
 bash ./add-cluster.sh
+cd ..
+
+cd repository
 bash ./add-repository.sh
+cd ..
