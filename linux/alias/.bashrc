@@ -40,7 +40,7 @@ alias watch="watch "
 [ -f ~/.aliases/podman_aliases ] && source ~/.aliases/podman_aliases
 [ -f ~/.aliases/process_aliases ] && source ~/.aliases/process_aliases
 [ -f ~/.aliases/python_aliases ] && source ~/.aliases/python_aliases
-[ -f ~/.aliases/strimzi_aliases ] && source ~/.aliases/strimzi_aliases
+# [ -f ~/.aliases/strimzi_aliases ] && source ~/.aliases/strimzi_aliases
 [ -f ~/.aliases/systemctl_aliases ] && source ~/.aliases/systemctl_aliases
 [ -f ~/.aliases/tekton_aliases ] && source ~/.aliases/tekton_aliases
 [ -f ~/.aliases/vault_aliases ] && source ~/.aliases/vault_aliases
