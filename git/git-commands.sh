@@ -8,6 +8,9 @@ git init
 
 ### config
 
+git config --global --list
+git config --local --list
+
 git config user.name developer
 git config user.email developer
 
