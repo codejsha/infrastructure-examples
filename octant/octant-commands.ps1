@@ -1,6 +1,6 @@
 ######################################################################
 
+octant
 octant version
-
-### debug logging
 octant --verbose
+octant --disable-open-browser
