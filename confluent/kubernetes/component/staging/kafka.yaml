@@ -178,13 +178,13 @@ spec:
         {{- with secret "kv/data/confluent/kafka-server/plain-jaas.conf" -}}
         {{ .Data.data.plainjaas | base64Decode }}
         {{- end }}
-      # vault.hashicorp.com/agent-inject-secret-kafka-apikeys: kv/data/confluent/kafka-server/apikeys.json
-      # vault.hashicorp.com/secret-volume-path-kafka-apikeys: /vault/secrets/jaas
-      # vault.hashicorp.com/agent-inject-file-kafka-apikeys: apikeys.json
-      # vault.hashicorp.com/agent-inject-template-kafka-apikeys: |
-      #   {{- with secret "kv/data/confluent/kafka-server/apikeys.json" -}}
-      #   {{ .Data.data.apikeys | base64Decode }}
-      #   {{- end }}
+      vault.hashicorp.com/agent-inject-secret-kafka-apikeys: kv/data/confluent/kafka-server/apikeys.json
+      vault.hashicorp.com/secret-volume-path-kafka-apikeys: /vault/secrets/jaas
+      vault.hashicorp.com/agent-inject-file-kafka-apikeys: apikeys.json
+      vault.hashicorp.com/agent-inject-template-kafka-apikeys: |
+        {{- with secret "kv/data/confluent/kafka-server/apikeys.json" -}}
+        {{ .Data.data.apikeys | base64Decode }}
+        {{- end }}
       vault.hashicorp.com/agent-inject-secret-kafka-client-sasl-plain: kv/data/confluent/kafka-client/plain-jaas.conf
       vault.hashicorp.com/secret-volume-path-kafka-client-sasl-plain: /vault/secrets/client
       vault.hashicorp.com/agent-inject-file-kafka-client-sasl-plain: plain-jaas.conf
