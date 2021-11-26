@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# USER="cp-kafka"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="kafka1"
-
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/server.properties"
 PROPERTIES_FILE="/usr/local/confluent/properties/kafka1.properties"
 
-# DATA_DIR="/var/lib/kafka"
-# LOG_DIR="/var/log/kafka"
 DATA_DIR="/mnt/kafka/data"
 LOG_DIR="/mnt/kafka/logs"
 

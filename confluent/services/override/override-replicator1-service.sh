@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# USER="cp-kafka-connect"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="replicator1"
-
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka-connect-replicator/replicator.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka-connect-replicator/replicator-connect-standalone.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka-connect-replicator/replicator-connect-distributed.properties"
 PROPERTIES_FILE="/usr/local/confluent/properties/replicator1.properties"
 
-# LOG_DIR="/var/log/kafka"
 LOG_DIR="/mnt/replicator/logs"
 
 ######################################################################

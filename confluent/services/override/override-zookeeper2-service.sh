@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# USER="cp-kafka"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="zookeeper2"
+PROPERTIES_FILE="/usr/local/confluent/properties/zookeeper2.properties"
 MYID="2"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/zookeeper.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/zookeeper2.properties"
-
-# DATA_DIR="/var/lib/zookeeper"
-# LOG_DIR="/var/log/kafka"
 DATA_DIR="/mnt/zookeeper/data"
 LOG_DIR="/mnt/zookeeper/logs"
 

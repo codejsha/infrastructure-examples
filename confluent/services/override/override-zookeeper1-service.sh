@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# USER="cp-kafka"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
-SERVER_NAME="zookeeper3"
-MYID="3"
+SERVER_NAME="zookeeper1"
+PROPERTIES_FILE="/usr/local/confluent/properties/zookeeper1.properties"
+MYID="1"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/zookeeper.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/zookeeper3.properties"
-
-# DATA_DIR="/var/lib/zookeeper"
-# LOG_DIR="/var/log/kafka"
 DATA_DIR="/mnt/zookeeper/data"
 LOG_DIR="/mnt/zookeeper/logs"
 
@@ -61,10 +55,10 @@ User=confluent
 Group=confluent
 
 Environment=
-EnvironmentFile=/usr/local/confluent/services/zookeeper3-service.env
+EnvironmentFile=/usr/local/confluent/services/zookeeper1-service.env
 
 ExecStart=
-ExecStart=/usr/bin/zookeeper-server-start /usr/local/confluent/properties/zookeeper3.properties
+ExecStart=/usr/bin/zookeeper-server-start /usr/local/confluent/properties/zookeeper1.properties
 EOF
 
 ######################################################################
