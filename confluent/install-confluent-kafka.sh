@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_confluent_kafka_with_download {
+function install_confluent_kafka {
     local CONFLUENT_HOME="/usr/local/confluent"
     local INSTALL_FILE_DIR="/mnt/share/confluent-platform"
     local INSTALL_FILE="confluent-6.2.0.tar.gz"
@@ -58,29 +58,6 @@ function install_confluent_kafka_with_download {
     # export PATH
 }
 
-function install_confluent_kafka_by_yum {
-cat <<EOF | sudo tee /etc/yum.repos.d/confluent.repo
-[Confluent.dist]
-name=Confluent repository (dist)
-baseurl=https://packages.confluent.io/rpm/6.2/\$releasever
-gpgcheck=1
-gpgkey=https://packages.confluent.io/rpm/6.2/archive.key
-enabled=1
-
-[Confluent]
-name=Confluent repository
-baseurl=https://packages.confluent.io/rpm/6.2
-gpgcheck=1
-gpgkey=https://packages.confluent.io/rpm/6.2/archive.key
-enabled=1
-EOF
-
-    sudo yum install -y curl which
-    sudo yum install -y confluent-platform
-    sudo yum install -y confluent-security
-}
-
 ######################################################################
 
-install_confluent_kafka_with_download
-# install_confluent_kafka_by_yum
+install_confluent_kafka
