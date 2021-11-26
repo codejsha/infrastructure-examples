@@ -1,17 +1,12 @@
 #!/bin/bash
 
-# USER="cp-schema-registry"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
-SERVER_NAME="schema-registry2"
+SERVER_NAME="schema-registry1"
+PROPERTIES_FILE="/usr/local/confluent/properties/schema-registry1.properties"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/schema-registry/schema-registry.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/schema-registry2.properties"
-
-# LOG_DIR="/var/log/confluent/schema-registry"
 LOG_DIR="/mnt/schema-registry/logs"
 
 ######################################################################
@@ -57,10 +52,10 @@ User=confluent
 Group=confluent
 
 Environment=
-EnvironmentFile=/usr/local/confluent/services/schema-registry2-service.env
+EnvironmentFile=/usr/local/confluent/services/schema-registry1-service.env
 
 ExecStart=
-ExecStart=/usr/bin/schema-registry-start /usr/local/confluent/properties/schema-registry2.properties
+ExecStart=/usr/bin/schema-registry-start /usr/local/confluent/properties/schema-registry1.properties
 EOF
 
 ######################################################################

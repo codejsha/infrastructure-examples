@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# USER="cp-kafka"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
-SERVER_NAME="kafka3"
+SERVER_NAME="kafka2"
+PROPERTIES_FILE="/usr/local/confluent/properties/kafka2.properties"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/server.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/kafka3.properties"
-
-# DATA_DIR="/var/lib/kafka"
-# LOG_DIR="/var/log/kafka"
 DATA_DIR="/mnt/kafka/data"
 LOG_DIR="/mnt/kafka/logs"
 
@@ -59,10 +53,10 @@ User=confluent
 Group=confluent
 
 Environment=
-EnvironmentFile=/usr/local/confluent/services/kafka3-service.env
+EnvironmentFile=/usr/local/confluent/services/kafka2-service.env
 
 ExecStart=
-ExecStart=/usr/bin/kafka-server-start /usr/local/confluent/properties/kafka3.properties
+ExecStart=/usr/bin/kafka-server-start /usr/local/confluent/properties/kafka2.properties
 EOF
 
 ######################################################################

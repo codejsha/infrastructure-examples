@@ -1,20 +1,12 @@
 #!/bin/bash
 
-# USER="cp-kafka-connect"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
-SERVER_NAME="kafka-connect1"
+SERVER_NAME="kafka-connect2"
+PROPERTIES_FILE="/usr/local/confluent/properties/kafka-connect2.properties"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/connect-standalone.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/kafka/connect-distributed.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/schema-registry/connect-avro-standalone.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/schema-registry/connect-avro-distributed.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/kafka-connect1.properties"
-
-# LOG_DIR="/var/log/kafka"
 LOG_DIR="/mnt/kafka-connect/logs"
 
 ######################################################################
@@ -59,10 +51,10 @@ User=confluent
 Group=confluent
 
 Environment=
-EnvironmentFile=/usr/local/confluent/services/kafka-connect1-service.env
+EnvironmentFile=/usr/local/confluent/services/kafka-connect2-service.env
 
 ExecStart=
-ExecStart=/usr/bin/connect-distributed /usr/local/confluent/properties/kafka-connect1.properties
+ExecStart=/usr/bin/connect-distributed /usr/local/confluent/properties/kafka-connect2.properties
 EOF
 
 ######################################################################

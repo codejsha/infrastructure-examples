@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# USER="cp-ksql"
-# GROUP="confluent"
 USER="confluent"
 GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
-SERVER_NAME="ksqldb1"
+SERVER_NAME="ksqldb2"
+PROPERTIES_FILE="/usr/local/confluent/properties/ksqldb2.properties"
 
-# PROPERTIES_FILE="/usr/local/confluent/etc/ksqldb/ksql-server.properties"
-# PROPERTIES_FILE="/usr/local/confluent/etc/ksqldb/ksql-production-server.properties"
-PROPERTIES_FILE="/usr/local/confluent/properties/ksqldb1.properties"
-
-# DATA_DIR="/var/lib/kafka-streams"
-# LOG_DIR="/var/log/confluent/ksql"
 DATA_DIR="/mnt/ksqldb/data"
 LOG_DIR="/mnt/ksqldb/logs"
 
@@ -60,10 +53,10 @@ User=confluent
 Group=confluent
 
 Environment=
-EnvironmentFile=/usr/local/confluent/services/ksqldb1-service.env
+EnvironmentFile=/usr/local/confluent/services/ksqldb2-service.env
 
 ExecStart=
-ExecStart=/usr/bin/ksql-server-start /usr/local/confluent/properties/ksqldb1.properties
+ExecStart=/usr/bin/ksql-server-start /usr/local/confluent/properties/ksqldb2.properties
 EOF
 
 ######################################################################
