@@ -9,7 +9,8 @@ IPLANET_SSL_PORT="8989"
 IPLANET_USER="admin"
 IPLANET_PASSWORD="welcome1"
 
-IPLANET_SERVER="server1"
+IPLANET_SERVER="${1:-"server1"}"
+IPLANET_VSERVER="${2:-"vserver1"}"
 
 cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
@@ -24,9 +25,10 @@ ${IPLANET_HOME}/bin/wadm pull-config \
     --rcfile="null" \
     --no-prompt \
     --config="${IPLANET_SERVER}" \
+    --echo \
     "${IPLANET_HOST}"
 
-${IPLANET_HOME}/bin/wadm delete-instance \
+${IPLANET_HOME}/bin/wadm delete-virtual-server \
     --user="${IPLANET_USER}" \
     --password-file="${IPLANET_HOME}/pswd-file" \
     --host="${IPLANET_HOST}" \
@@ -35,9 +37,10 @@ ${IPLANET_HOME}/bin/wadm delete-instance \
     --rcfile="null" \
     --no-prompt \
     --config="${IPLANET_SERVER}" \
-    "${IPLANET_HOST}"
+    --echo \
+    "${IPLANET_VSERVER}"
 
-${IPLANET_HOME}/bin/wadm delete-config \
+${IPLANET_HOME}/bin/wadm deploy-config \
     --user="${IPLANET_USER}" \
     --password-file="${IPLANET_HOME}/pswd-file" \
     --host="${IPLANET_HOST}" \
@@ -45,4 +48,5 @@ ${IPLANET_HOME}/bin/wadm delete-config \
     --ssl="true" \
     --rcfile="null" \
     --no-prompt \
+    --echo \
     "${IPLANET_SERVER}"

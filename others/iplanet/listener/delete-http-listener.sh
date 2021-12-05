@@ -9,8 +9,9 @@ IPLANET_SSL_PORT="8989"
 IPLANET_USER="admin"
 IPLANET_PASSWORD="welcome1"
 
-IPLANET_SERVER="server1"
-IPLANET_VSERVER="vserver1"
+IPLANET_SERVER="${1:-"server1"}"
+IPLANET_VSERVER="${2:-"vserver1"}"
+HTTP_LISTENER_NAME="http-listener-2"
 
 cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
@@ -25,9 +26,10 @@ ${IPLANET_HOME}/bin/wadm pull-config \
     --rcfile="null" \
     --no-prompt \
     --config="${IPLANET_SERVER}" \
+    --echo \
     "${IPLANET_HOST}"
 
-${IPLANET_HOME}/bin/wadm delete-virtual-server \
+${IPLANET_HOME}/bin/wadm delete-http-listener \
     --user="${IPLANET_USER}" \
     --password-file="${IPLANET_HOME}/pswd-file" \
     --host="${IPLANET_HOST}" \
@@ -36,7 +38,8 @@ ${IPLANET_HOME}/bin/wadm delete-virtual-server \
     --rcfile="null" \
     --no-prompt \
     --config="${IPLANET_SERVER}" \
-    "${IPLANET_VSERVER}"
+    --echo \
+    "${HTTP_LISTENER_NAME}"
 
 ${IPLANET_HOME}/bin/wadm deploy-config \
     --user="${IPLANET_USER}" \
@@ -46,4 +49,5 @@ ${IPLANET_HOME}/bin/wadm deploy-config \
     --ssl="true" \
     --rcfile="null" \
     --no-prompt \
+    --echo \
     "${IPLANET_SERVER}"

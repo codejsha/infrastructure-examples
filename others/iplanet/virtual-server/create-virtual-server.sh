@@ -9,11 +9,10 @@ IPLANET_SSL_PORT="8989"
 IPLANET_USER="admin"
 IPLANET_PASSWORD="welcome1"
 
-IPLANET_SERVER="server1"
-HTTP_LISTENER_NAME="http-listener-2"
-HTTP_LISTENER_IP_ADDRESS="*"
-HTTP_LISTENER_PORT="80"
-IPLANET_VSERVER="vserver1"
+IPLANET_SERVER="${1:-"server1"}"
+IPLANET_VSERVER="${2:-"vserver1"}"
+IPLANET_VSERVER_DOCROOT="${IPLANET_HOME}/https-${IPLANET_SERVER}/docs"
+HTTP_LISTENER_NAME="http-listener-1"
 
 cat <<EOF > ${IPLANET_HOME}/pswd-file
 wadm_password=${IPLANET_PASSWORD}
@@ -28,9 +27,10 @@ ${IPLANET_HOME}/bin/wadm pull-config \
     --rcfile="null" \
     --no-prompt \
     --config="${IPLANET_SERVER}" \
+    --echo \
     "${IPLANET_HOST}"
 
-${IPLANET_HOME}/bin/wadm create-http-listener \
+${IPLANET_HOME}/bin/wadm create-virtual-server \
     --user="${IPLANET_USER}" \
     --password-file="${IPLANET_HOME}/pswd-file" \
     --host="${IPLANET_HOST}" \
@@ -38,13 +38,12 @@ ${IPLANET_HOME}/bin/wadm create-http-listener \
     --ssl="true" \
     --rcfile="null" \
     --no-prompt \
-    --enabled="true" \
-    --ip="${HTTP_LISTENER_IP_ADDRESS}" \
-    --listener-port="${HTTP_LISTENER_PORT}" \
-    --default-virtual-server-name="${IPLANET_VSERVER}" \
-    --server-name="${IPLANET_SERVER}" \
     --config="${IPLANET_SERVER}" \
-    "${HTTP_LISTENER_NAME}"
+    --echo \
+    --http-listener-name="${HTTP_LISTENER_NAME}" \
+    --host-pattern="${IPLANET_SERVER}" \
+    --document-root="${IPLANET_VSERVER_DOCROOT}" \
+    "${IPLANET_VSERVER}"
 
 ${IPLANET_HOME}/bin/wadm deploy-config \
     --user="${IPLANET_USER}" \
@@ -54,4 +53,5 @@ ${IPLANET_HOME}/bin/wadm deploy-config \
     --ssl="true" \
     --rcfile="null" \
     --no-prompt \
+    --echo \
     "${IPLANET_SERVER}"
