@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 IPLANET_HOME="/usr/local/iplanet"
-IPLANET_SERVER="${1}"
+IPLANET_SERVER="${1:-"admin-server"}"
 
 if [ "${IPLANET_SERVER}" == "admin-server" ]; then
     ln -snf ${IPLANET_HOME}/admin-server/bin/startserv ${IPLANET_HOME}/start-admin.sh

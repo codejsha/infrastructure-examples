@@ -7,34 +7,12 @@ bash ./install-iplanet.sh
 bash ./create-links.sh admin-server
 ```
 
-## Server
+## wadm
 
 ```bash
-bash ./create-server.sh
-bash ./create-links.sh ${IPLANET_SERVER}
-bash ./delete-server.sh
+IPLANET_HOME="/usr/local/iplanet"
+${IPLANET_HOME}/bin/wadm --user=admin --password-file="${IPLANET_HOME}/pswd-file" --host="test.example.com" --port="8989" --ssl="true" --rcfile="null"
 ```
-
-## Listener
-
-```bash
-bash ./create-http-listener.sh
-bash ./delete-http-listener.sh
-```
-
-## Virtual Server
-
-```bash
-bash ./create-virtual-server.sh
-bash ./delete-virtual-server.sh
-```
-
-## Others
-
-- `get-version.sh`
-- `create-links.sh`
-- `disable-java.sh`
-- `set-self-signed-cert.sh`
 
 ## Log Rotation
 
