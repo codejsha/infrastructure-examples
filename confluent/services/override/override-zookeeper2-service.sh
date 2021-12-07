@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="zookeeper2"
-PROPERTIES_FILE="/usr/local/confluent/properties/zookeeper2.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/zookeeper2.properties"
 MYID="2"
 
 DATA_DIR="/mnt/zookeeper/data"
@@ -24,7 +24,7 @@ sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-zookeeper.service
 [Unit]
-Description=Apache Kafka - ZooKeeper
+Description=Confluent ZooKeeper
 Documentation=http://docs.confluent.io/
 After=network.target
 
@@ -47,18 +47,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-zookeeper.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/zookeeper2-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/zookeeper-service.env
 
 ExecStart=
-ExecStart=/usr/bin/zookeeper-server-start /usr/local/confluent/properties/zookeeper2.properties
+ExecStart=/usr/bin/zookeeper-server-start ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################

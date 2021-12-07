@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="replicator1"
-PROPERTIES_FILE="/usr/local/confluent/properties/replicator1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/replicator1.properties"
 
 LOG_DIR="/mnt/replicator/logs"
 
@@ -43,18 +43,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-replicator.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/replicator1-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/replicator-service.env
 
 ExecStart=
-ExecStart=/usr/bin/connect-distributed /usr/local/confluent/properties/replicator1.properties
+ExecStart=/usr/bin/connect-distributed ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################
