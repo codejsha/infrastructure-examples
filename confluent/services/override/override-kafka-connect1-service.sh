@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="kafka-connect1"
-PROPERTIES_FILE="/usr/local/confluent/properties/kafka-connect1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/kafka-connect1.properties"
 
 LOG_DIR="/mnt/kafka-connect/logs"
 
@@ -21,7 +21,7 @@ sudo chown -R confluent:confluent ${LOG_DIR}
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-kafka-connect.service
 [Unit]
-Description=Apache Kafka Connect - distributed
+Description=Confluent Kafka Connect
 Documentation=http://docs.confluent.io/
 After=network.target confluent-server.target
 
@@ -43,18 +43,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-kafka-connect.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/kafka-connect1-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/kafka-connect-service.env
 
 ExecStart=
-ExecStart=/usr/bin/connect-distributed /usr/local/confluent/properties/kafka-connect1.properties
+ExecStart=/usr/bin/connect-distributed ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################

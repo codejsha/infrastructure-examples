@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="kafka3"
-PROPERTIES_FILE="/usr/local/confluent/properties/kafka3.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/kafka3.properties"
 
 DATA_DIR="/mnt/kafka/data"
 LOG_DIR="/mnt/kafka/logs"
@@ -22,7 +22,7 @@ sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-server.service
 [Unit]
-Description=Apache Kafka - broker
+Description=Confluent Kafka
 Documentation=http://docs.confluent.io/
 After=network.target confluent-zookeeper.target
 
@@ -45,18 +45,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-server.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/kafka3-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/kafka-service.env
 
 ExecStart=
-ExecStart=/usr/bin/kafka-server-start /usr/local/confluent/properties/kafka3.properties
+ExecStart=/usr/bin/kafka-server-start ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################

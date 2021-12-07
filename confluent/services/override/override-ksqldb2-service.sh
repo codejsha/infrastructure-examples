@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="ksqldb2"
-PROPERTIES_FILE="/usr/local/confluent/properties/ksqldb2.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/ksqldb2.properties"
 
 DATA_DIR="/mnt/ksqldb/data"
 LOG_DIR="/mnt/ksqldb/logs"
@@ -22,7 +22,7 @@ sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-ksqldb.service
 [Unit]
-Description=Streaming SQL engine for Apache Kafka
+Description=Confluent ksqlDB
 Documentation=http://docs.confluent.io/
 After=network.target confluent-kafka.target confluent-schema-registry.target
 
@@ -45,18 +45,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-ksqldb.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/ksqldb2-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/ksqldb-service.env
 
 ExecStart=
-ExecStart=/usr/bin/ksql-server-start /usr/local/confluent/properties/ksqldb2.properties
+ExecStart=/usr/bin/ksql-server-start ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################

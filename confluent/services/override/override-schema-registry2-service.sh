@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="schema-registry2"
-PROPERTIES_FILE="/usr/local/confluent/properties/schema-registry2.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/schema-registry2.properties"
 
 LOG_DIR="/mnt/schema-registry/logs"
 
@@ -21,7 +21,7 @@ sudo chown -R confluent:confluent ${LOG_DIR}
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-schema-registry.service
 [Unit]
-Description=RESTful Avro schema registry for Apache Kafka
+Description=Confluent Schema Registry
 Documentation=http://docs.confluent.io/
 After=network.target confluent-kafka.target
 
@@ -44,18 +44,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-schema-registry.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/schema-registry2-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/schema-registry-service.env
 
 ExecStart=
-ExecStart=/usr/bin/schema-registry-start /usr/local/confluent/properties/schema-registry2.properties
+ExecStart=/usr/bin/schema-registry-start ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################

@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="control-center1"
-PROPERTIES_FILE="/usr/local/confluent/properties/control-center1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/control-center1.properties"
 
 DATA_DIR="/mnt/control-center/data"
 LOG_DIR="/mnt/control-center/logs"
@@ -20,7 +20,7 @@ sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 ### default
 
-cat <<EOF | sudo tee confluent-control-center.service
+cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-control-center.service
 [Unit]
 Description=Confluent Control Center
 Documentation=http://docs.confluent.io/
@@ -46,18 +46,22 @@ EOF
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-control-center.service.d/override.conf
 [Service]
-SuccessExitStatus=143
-
 User=
 Group=
 User=confluent
 Group=confluent
 
+Restart=no
+RestartSec=100ms
+SuccessExitStatus=0 143
+
 Environment=
-EnvironmentFile=/usr/local/confluent/services/control-center1-service.env
+EnvironmentFile=-${CONFLUENT_HOME}/services/control-center-service.env
 
 ExecStart=
-ExecStart=/usr/bin/control-center-start /usr/local/confluent/properties/control-center1.properties
+ExecStart=/usr/bin/control-center-start ${PROPERTIES_FILE}
+
+# ExecStop=
 EOF
 
 ######################################################################
