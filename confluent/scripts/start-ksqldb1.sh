@@ -42,13 +42,23 @@ KSQL_OPTS="${KSQL_OPTS} -D${SERVER_NAME}"
 export KSQL_OPTS
 
 ### gc option
-export GC_LOG_ENABLED="true"
+GC_LOG_FILE_NAME="${SERVER_NAME}-gc.log"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -Xloggc:${LOG_DIR}/${GC_LOG_FILE_NAME}"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -verbose:gc"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCDetails"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCDateStamps"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCTimeStamps"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+UseGCLogFileRotation"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:NumberOfGCLogFiles=10"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:GCLogFileSize=100M"
+# KAFKA_GC_LOG_OPTS="-Xlog:gc*:file=${LOG_DIR}/${GC_LOG_FILE_NAME}:time,tags:filecount=10,filesize=100M"
+export KAFKA_GC_LOG_OPTS
 
 ### jmx
-# export JMX_PORT=""
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote"
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.port=9010"
 export KSQL_JMX_OPTS
 
 ### log4j

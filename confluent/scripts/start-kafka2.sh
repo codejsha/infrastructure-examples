@@ -38,13 +38,23 @@ KAFKA_OPTS="${KAFKA_OPTS} -D${SERVER_NAME}"
 export KAFKA_OPTS
 
 ### gc option
-export GC_LOG_ENABLED="true"
+GC_LOG_FILE_NAME="${SERVER_NAME}-gc.log"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -Xloggc:${LOG_DIR}/${GC_LOG_FILE_NAME}"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -verbose:gc"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCDetails"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCDateStamps"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+PrintGCTimeStamps"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:+UseGCLogFileRotation"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:NumberOfGCLogFiles=10"
+KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:GCLogFileSize=100M"
+# KAFKA_GC_LOG_OPTS="-Xlog:gc*:file=${LOG_DIR}/${GC_LOG_FILE_NAME}:time,tags:filecount=10,filesize=100M"
+export KAFKA_GC_LOG_OPTS
 
 ### jmx
-# export JMX_PORT=""
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote"
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.port=9010"
 export KAFKA_JMX_OPTS
 
 ### log4j
