@@ -17,3 +17,7 @@
 - https://docs.confluent.io/home/connect/monitoring.html
 - https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/replicator-monitoring.html
 - https://docs.ksqldb.io/en/latest/reference/metrics/
+
+## Security
+
+- https://docs.confluent.io/platform/current/security/zk-security.html
