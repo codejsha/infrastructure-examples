@@ -9,9 +9,9 @@ CATALINA_HOME="${CATALINA_HOME}"
 
 INSTALL_FILE_DIR="/mnt/share/apache-tomcat"
 
-# INSTALL_FILE="apache-tomcat-8.5.59.tar.gz"
-INSTALL_FILE="apache-tomcat-9.0.39.tar.gz"
-# INSTALL_FILE="apache-tomcat-10.0.0-M9.tar.gz"
+# INSTALL_FILE="apache-tomcat-8.5.73.tar.gz"
+INSTALL_FILE="apache-tomcat-9.0.55.tar.gz"
+# INSTALL_FILE="apache-tomcat-10.0.13.tar.gz"
 
 ######################################################################
 
