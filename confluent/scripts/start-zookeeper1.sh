@@ -5,7 +5,7 @@ export JAVA_HOME
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="zookeeper1"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/zookeeper1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 DATA_DIR="/mnt/zookeeper/data"
 LOG_DIR="/mnt/zookeeper/logs"

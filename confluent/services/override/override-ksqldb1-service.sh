@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="ksqldb1"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/ksqldb1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 DATA_DIR="/mnt/ksqldb/data"
 LOG_DIR="/mnt/ksqldb/logs"
