@@ -1,17 +1,28 @@
-<!-- ###################################################################### -->
+### Configuring Hosts
 
-<!-- ${CATALINA_BASE}/conf/server.xml -->
+## Deployment
 
-<!-- ###################################################################### -->
+server config file location:
 
-<!-- webapps -->
+- `${CATALINA_BASE}/conf/server.xml`
+
+## Examples:
+
+### webapps
+
+deploy only applications under the webapps directory
+
+```xml
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="false">
       </Host>
+```
 
-<!-- ###################################################################### -->
+### webapps + contexts
 
-<!-- webapps + contexts -->
+deploy applications under the webapps directory and applications designated as context
+
+```xml
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="false">
 
@@ -20,10 +31,13 @@
         <Context path="/failover" docBase="/svc/app/failovertest" reloadable="false"/>
 
       </Host>
+```
 
-<!-- ###################################################################### -->
+### contexts
 
-<!-- contexts -->
+deploy only applications designated as context
+
+```xml
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="false" deployOnStartup="false">
 
@@ -32,3 +46,4 @@
         <Context path="/failover" docBase="/svc/app/failovertest" reloadable="false"/>
 
       </Host>
+```
