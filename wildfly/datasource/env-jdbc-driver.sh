@@ -53,7 +53,7 @@ function print_help {
 }
 
 function set_arguments {
-    while [[ $# -gt 0 ]]
+    while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
         shift
