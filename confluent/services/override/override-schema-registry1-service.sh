@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="schema-registry1"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/schema-registry1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 LOG_DIR="/mnt/schema-registry/logs"
 

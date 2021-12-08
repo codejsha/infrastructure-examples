@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="zookeeper3"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/zookeeper3.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 MYID="3"
 
 DATA_DIR="/mnt/zookeeper/data"

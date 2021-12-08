@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="kafka-connect2"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/kafka-connect2.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 LOG_DIR="/mnt/kafka-connect/logs"
 

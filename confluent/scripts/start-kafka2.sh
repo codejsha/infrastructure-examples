@@ -5,7 +5,7 @@ export JAVA_HOME
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="kafka2"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/kafka2.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 DATA_DIR="/mnt/kafka/data"
 LOG_DIR="/mnt/kafka/logs"
@@ -35,6 +35,7 @@ KAFKA_OPTS="${KAFKA_OPTS} -D${SERVER_NAME}"
 # JMX_EXPORTER_CONFIG_FILE="${CONFLUENT_HOME}/prometheus/kafka_broker.yml"
 # JMX_EXPORTER_HOST_PORT="1234"
 # KAFKA_OPTS="${KAFKA_OPTS} -javaagent:${JMX_EXPORTER_JAVA_AGENT_FILE}=${JMX_EXPORTER_HOST_PORT}:${JMX_EXPORTER_CONFIG_FILE}"
+# KAFKA_OPTS="${KAFKA_OPTS} -Djava.security.auth.login.config=${CONFLUENT_HOME}/properties/kafka-jaas.conf"
 export KAFKA_OPTS
 
 ### gc option

@@ -5,7 +5,7 @@ GROUP="confluent"
 
 CONFLUENT_HOME="/usr/local/confluent"
 SERVER_NAME="control-center1"
-PROPERTIES_FILE="${CONFLUENT_HOME}/properties/control-center1.properties"
+PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 DATA_DIR="/mnt/control-center/data"
 LOG_DIR="/mnt/control-center/logs"
