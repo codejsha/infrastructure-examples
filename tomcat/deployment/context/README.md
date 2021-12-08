@@ -1,15 +1,28 @@
-<!-- ###################################################################### -->
+### Configuring Web Application Contexts
 
-<!--
-    ${CATALINA_BASE}/conf/[enginename]/[hostname]/<context>.xml
+## Deployment
 
-    Requirement:
-    - deployOnStartup="true" (default: true)
+requirement:
+
+- deployOnStartup="true" (default: true)
+
+```xml
+    <!-- server.xml -->
+
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="false">
 
       <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="false" deployOnStartup="true">
--->
+```
 
+context file location:
+
+- `${CATALINA_BASE}/conf/[enginename]/[hostname]/<context>.xml`
+
+## Examples:
+
+```xml
 <!-- ROOT.xml -->
 <Context docBase="/svc/app/basic" reloadable="false">
 
@@ -21,3 +34,4 @@
 
 <!-- failover.xml -->
 <Context docBase="/svc/app/failovertest" reloadable="false">
+```
