@@ -49,4 +49,4 @@ find ${CATALINA_BASE}/conf -type f | xargs chmod 600
 
 ######################################################################
 
-echo "[INFO] An instance (${INSTANCE_NAME}) is created."
+echo "[INFO] An instance (${INSTANCE_NAME}) has been created."
