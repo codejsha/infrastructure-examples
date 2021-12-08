@@ -53,7 +53,6 @@ User=confluent
 Group=confluent
 
 Restart=no
-RestartSec=100ms
 SuccessExitStatus=0 143
 
 Environment=
