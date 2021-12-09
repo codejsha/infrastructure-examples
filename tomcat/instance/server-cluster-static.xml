@@ -157,6 +157,19 @@
                     host="${TOMCAT_CLUSTER_ADDRESS2}"
                     uniqueId="{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1}"/>
           </Membership>
+
+          <!-- Tomcat 9.0.16 and previous -->
+          <!--
+          <Membership className="org.apache.catalina.tribes.membership.StaticMembershipService">
+            <LocalMember className="org.apache.catalina.tribes.membership.StaticMember"
+                       uniqueId="{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}"/>
+            <Member className="org.apache.catalina.tribes.membership.StaticMember"
+                       port="4000"
+                       host="tomcat02.mydomain.com"
+                       uniqueId="{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1}"/>
+          </Membership>
+          -->
+
           <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
                     address="${TOMCAT_ADDRESS}"
                     port="${TOMCAT_RECEIVER_PORT}"
@@ -167,6 +180,7 @@
           <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
             <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
           </Sender>
+
           <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
           <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor"/>
         </Channel>
