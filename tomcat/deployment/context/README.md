@@ -29,9 +29,9 @@ context file location:
 <!-- cache.xml -->
 <Context docBase="/svc/app/cachetest" reloadable="false">
 
-<!-- jdbcdriver.xml -->
-<Context docBase="/svc/app/jdbcdrivertest" reloadable="false">
-
 <!-- failover.xml -->
 <Context docBase="/svc/app/failovertest" reloadable="false">
 ```
+
+<!-- jdbc.xml -->
+<Context docBase="/svc/app/jdbctest" reloadable="false">
