@@ -11,13 +11,13 @@ LOG_DIR="/mnt/kafka-rest/logs"
 
 ######################################################################
 
-sudo mkdir -p /usr/lib/systemd/system/confluent-kafka-rest.service.d
+sudo mkdir -p /etc/systemd/system/confluent-kafka-rest.service.d
 sudo mkdir -p ${LOG_DIR}
 sudo chown -R confluent:confluent ${LOG_DIR}
 
 ######################################################################
 
-### default
+### service
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-kafka-rest.service
 [Unit]
@@ -43,7 +43,7 @@ EOF
 
 ### override
 
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-kafka-rest.service.d/override.conf
+cat <<EOF | sudo tee /etc/systemd/system/confluent-kafka-rest.service.d/override.conf
 [Service]
 User=
 Group=
@@ -56,9 +56,9 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/kafka-rest-service.env
 
+# ExecStartPre=mkdir -p \${LOG_DIR}
 ExecStart=
-ExecStart=/usr/bin/kafka-server-start ${PROPERTIES_FILE}
-
+ExecStart=/usr/bin/kafka-rest-start ${PROPERTIES_FILE}
 # ExecStop=
 EOF
 

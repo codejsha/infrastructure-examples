@@ -11,13 +11,13 @@ LOG_DIR="/mnt/schema-registry/logs"
 
 ######################################################################
 
-sudo mkdir -p /usr/lib/systemd/system/confluent-schema-registry.service.d
+sudo mkdir -p /etc/systemd/system/confluent-schema-registry.service.d
 sudo mkdir -p ${LOG_DIR}
 sudo chown -R confluent:confluent ${LOG_DIR}
 
 ######################################################################
 
-### default
+### service
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-schema-registry.service
 [Unit]
@@ -42,7 +42,7 @@ EOF
 
 ### override
 
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-schema-registry.service.d/override.conf
+cat <<EOF | sudo tee /etc/systemd/system/confluent-schema-registry.service.d/override.conf
 [Service]
 User=
 Group=
@@ -55,9 +55,9 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/schema-registry-service.env
 
+# ExecStartPre=mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/schema-registry-start ${PROPERTIES_FILE}
-
 # ExecStop=
 EOF
 
