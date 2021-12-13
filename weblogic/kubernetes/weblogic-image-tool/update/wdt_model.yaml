@@ -210,6 +210,12 @@ appDeployments:
       ModuleType: war
       StagingMode: nostage
       PlanStagingMode: nostage
+    cachetest:
+      SourcePath: "wlsdeploy/applications/cachetest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      # PlanStagingMode: nostage
     failovertest:
       SourcePath: "wlsdeploy/applications/failovertest"
       Target: ["@@PROP:CLUSTER_NAME@@"]
@@ -217,13 +223,7 @@ appDeployments:
       StagingMode: nostage
       # PlanStagingMode: nostage
     jdbcdrivertest:
-      SourcePath: "wlsdeploy/applications/jdbcdrivertest"
-      Target: ["@@PROP:CLUSTER_NAME@@"]
-      ModuleType: war
-      StagingMode: nostage
-      # PlanStagingMode: nostage
-    cachetest:
-      SourcePath: "wlsdeploy/applications/cachetest"
+      SourcePath: "wlsdeploy/applications/jdbctest"
       Target: ["@@PROP:CLUSTER_NAME@@"]
       ModuleType: war
       StagingMode: nostage

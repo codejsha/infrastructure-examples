@@ -27,8 +27,8 @@ deploy applications under the webapps directory and applications designated as c
             unpackWARs="true" autoDeploy="false">
 
         <Context path="/cache" docBase="/svc/app/cachetest" reloadable="false"/>
-        <Context path="/jdbcdriver" docBase="/svc/app/jdbcdrivertest" reloadable="false"/>
         <Context path="/failover" docBase="/svc/app/failovertest" reloadable="false"/>
+        <Context path="/jdbc" docBase="/svc/app/jdbctest" reloadable="false"/>
 
       </Host>
 ```
@@ -42,8 +42,8 @@ deploy only applications designated as context
             unpackWARs="true" autoDeploy="false" deployOnStartup="false">
 
         <Context path="/cache" docBase="/svc/app/cachetest" reloadable="false"/>
-        <Context path="/jdbcdriver" docBase="/svc/app/jdbcdrivertest" reloadable="false"/>
         <Context path="/failover" docBase="/svc/app/failovertest" reloadable="false"/>
+        <Context path="/jdbc" docBase="/svc/app/jdbctest" reloadable="false"/>
 
       </Host>
 ```

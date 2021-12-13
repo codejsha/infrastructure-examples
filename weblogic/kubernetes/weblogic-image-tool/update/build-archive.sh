@@ -19,9 +19,9 @@ rm -rf wlsdeploy
 
 ### applications
 mkdir -p wlsdeploy/applications
-/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/failovertest wlsdeploy/applications/
-/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/jdbcdrivertest wlsdeploy/applications/
 /bin/cp -rf ${SHARE_DIR}/app/weblogic-application/cachetest wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/failovertest wlsdeploy/applications/
+/bin/cp -rf ${SHARE_DIR}/app/weblogic-application/jdbctest wlsdeploy/applications/
 /bin/cp -rf ${SHARE_DIR}/app/weblogic-application/session-persistence-app wlsdeploy/applications/
 ### wls-exporter
 /bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/weblogic-monitoring-exporter/get2.0.sh wlsdeploy/applications/

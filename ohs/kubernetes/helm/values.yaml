@@ -20,14 +20,14 @@ domain:
     <Location /console>
       WebLogicHost sample-domain1-admin-server.sample-domain1-ns.svc.cluster.local
       WeblogicPort 7001
-      WLCookieName JSESSIONID-console
+      WLCookieName JSESSIONID_CONSOLE
       SetHandler weblogic-handler
     </Location>
 
     <Location /failover>
       WebLogicCluster sample-domain1-managed-server1.sample-domain1-ns.svc.cluster.local:8001,sample-domain1-managed-server2.sample-domain1-ns.svc.cluster.local:8001,sample-domain1-managed-server3.sample-domain1-ns.svc.cluster.local:8001,sample-domain1-managed-server4.sample-domain1-ns.svc.cluster.local:8001,sample-domain1-managed-server5.sample-domain1-ns.svc.cluster.local:8001
       # PathTrim /weblogic
-      WLCookieName JSESSIONID-failover
+      WLCookieName JSESSIONID_FAILOVER
       ConnectTimeoutSecs 10
       ConnectRetrySecs 2
       Idempotent OFF
