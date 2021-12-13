@@ -13,14 +13,14 @@ LOG_DIR="/mnt/zookeeper/logs"
 
 ######################################################################
 
-sudo mkdir -p /usr/lib/systemd/system/confluent-zookeeper.service.d
+sudo mkdir -p /etc/systemd/system/confluent-zookeeper.service.d
 sudo mkdir -p {${DATA_DIR},${LOG_DIR}}
 echo ${MYID} | sudo tee ${DATA_DIR}/myid
 sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 ######################################################################
 
-### default
+### service
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-zookeeper.service
 [Unit]
@@ -45,7 +45,7 @@ EOF
 
 ### override
 
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-zookeeper.service.d/override.conf
+cat <<EOF | sudo tee /etc/systemd/system/confluent-zookeeper.service.d/override.conf
 [Service]
 User=
 Group=
@@ -58,9 +58,11 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/zookeeper-service.env
 
+# ExecStartPre=mkdir -p \${DATA_DIR}
+# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=echo ${MYID} > \${DATA_DIR}/myid
 ExecStart=
 ExecStart=/usr/bin/zookeeper-server-start ${PROPERTIES_FILE}
-
 # ExecStop=
 EOF
 

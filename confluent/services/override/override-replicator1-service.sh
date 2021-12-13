@@ -11,13 +11,13 @@ LOG_DIR="/mnt/replicator/logs"
 
 ######################################################################
 
-sudo mkdir -p /usr/lib/systemd/system/confluent-replicator.service.d
+sudo mkdir -p /etc/systemd/system/confluent-replicator.service.d
 sudo mkdir -p ${LOG_DIR}
 sudo chown -R confluent:confluent ${LOG_DIR}
 
 ######################################################################
 
-### default (custom)
+### service (custom)
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-replicator.service
 [Unit]
@@ -41,7 +41,7 @@ EOF
 
 ### override
 
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-replicator.service.d/override.conf
+cat <<EOF | sudo tee /etc/systemd/system/confluent-replicator.service.d/override.conf
 [Service]
 User=
 Group=
@@ -54,9 +54,9 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/replicator-service.env
 
+# ExecStartPre=mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/connect-distributed ${PROPERTIES_FILE}
-
 # ExecStop=
 EOF
 

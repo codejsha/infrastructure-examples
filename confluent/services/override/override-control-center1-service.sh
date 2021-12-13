@@ -12,13 +12,13 @@ LOG_DIR="/mnt/control-center/logs"
 
 ######################################################################
 
-sudo mkdir -p /usr/lib/systemd/system/confluent-control-center.service.d
+sudo mkdir -p /etc/systemd/system/confluent-control-center.service.d
 sudo mkdir -p {${DATA_DIR},${LOG_DIR}}
 sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
 
 ######################################################################
 
-### default
+### service
 
 cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-control-center.service
 [Unit]
@@ -44,7 +44,7 @@ EOF
 
 ### override
 
-cat <<EOF | sudo tee /usr/lib/systemd/system/confluent-control-center.service.d/override.conf
+cat <<EOF | sudo tee /etc/systemd/system/confluent-control-center.service.d/override.conf
 [Service]
 User=
 Group=
@@ -57,9 +57,10 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/control-center-service.env
 
+# ExecStartPre=mkdir -p \${DATA_DIR}
+# ExecStartPre=mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/control-center-start ${PROPERTIES_FILE}
-
 # ExecStop=
 EOF
 
