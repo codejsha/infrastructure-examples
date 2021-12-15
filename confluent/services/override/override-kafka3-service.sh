@@ -56,8 +56,8 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/kafka-service.env
 
-# ExecStartPre=mkdir -p \${DATA_DIR}
-# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=/bin/mkdir -p \${DATA_DIR}
+# ExecStartPre=/bin/mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/kafka-server-start ${PROPERTIES_FILE}
 # ExecStop=

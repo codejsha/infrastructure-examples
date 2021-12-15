@@ -56,7 +56,7 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/kafka-rest-service.env
 
-# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=/bin/mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/kafka-rest-start ${PROPERTIES_FILE}
 # ExecStop=

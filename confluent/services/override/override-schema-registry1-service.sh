@@ -55,7 +55,7 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/schema-registry-service.env
 
-# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=/bin/mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/schema-registry-start ${PROPERTIES_FILE}
 # ExecStop=
