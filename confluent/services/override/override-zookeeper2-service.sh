@@ -58,8 +58,8 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/zookeeper-service.env
 
-# ExecStartPre=mkdir -p \${DATA_DIR}
-# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=/bin/mkdir -p \${DATA_DIR}
+# ExecStartPre=/bin/mkdir -p \${LOG_DIR}
 # ExecStartPre=echo ${MYID} > \${DATA_DIR}/myid
 ExecStart=
 ExecStart=/usr/bin/zookeeper-server-start ${PROPERTIES_FILE}

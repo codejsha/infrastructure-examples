@@ -54,7 +54,7 @@ SuccessExitStatus=0 143
 Environment=
 EnvironmentFile=-${CONFLUENT_HOME}/services/replicator-service.env
 
-# ExecStartPre=mkdir -p \${LOG_DIR}
+# ExecStartPre=/bin/mkdir -p \${LOG_DIR}
 ExecStart=
 ExecStart=/usr/bin/connect-distributed ${PROPERTIES_FILE}
 # ExecStop=
