@@ -62,6 +62,12 @@ git restore --source=stash@{0} -- ./tomcat/helper.sh
 
 ######################################################################
 
+### reset
+
+git reset --hard origin/main
+
+######################################################################
+
 ### submodule
 
 git submodule add https://github.com/codejsha/infrastructure infrastructure
