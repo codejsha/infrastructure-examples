@@ -9,12 +9,13 @@ PROPERTIES_FILE="${CONFLUENT_HOME}/properties/${SERVER_NAME}.properties"
 
 DATA_DIR="/mnt/control-center/data"
 LOG_DIR="/mnt/control-center/logs"
+TEMP_DIR="/mnt/control-center/temp"
 
 ######################################################################
 
 sudo mkdir -p /etc/systemd/system/confluent-control-center.service.d
-sudo mkdir -p {${DATA_DIR},${LOG_DIR}}
-sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR}
+sudo mkdir -p {${DATA_DIR},${LOG_DIR},${TEMP_DIR}}
+sudo chown -R confluent:confluent ${DATA_DIR} ${LOG_DIR} ${TEMP_DIR}
 
 ######################################################################
 
