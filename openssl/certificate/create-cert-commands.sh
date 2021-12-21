@@ -1,6 +1,6 @@
 ######################################################################
 
-cd cert
+cd certs
 
 ### create certificate key
 openssl genrsa -out tls.key 2048
