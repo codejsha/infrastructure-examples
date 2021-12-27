@@ -1,4 +1,4 @@
-### Configuring Hosts
+# Configuring Hosts
 
 ## Deployment
 

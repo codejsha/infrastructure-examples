@@ -1,4 +1,4 @@
-### Configuring Web Application Contexts
+# Configuring Web Application Contexts
 
 ## Deployment
 
