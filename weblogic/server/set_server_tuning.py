@@ -11,7 +11,7 @@ managed_server_name = os.environ['MANAGED_SERVER_NAME']
 ######################################################################
 
 
-def set_server_tunning_config(_server_name):
+def set_server_tuning_config(_server_name):
     cd('/Servers/' + _server_name)
     cmo.setNativeIOEnabled(True)
     # cmo.setThreadPoolPercentSocketReaders(33)
@@ -42,7 +42,7 @@ edit()
 startEdit()
 domain_version = cmo.getDomainVersion()
 
-set_server_tunning_config(managed_server_name)
+set_server_tuning_config(managed_server_name)
 
 save()
 activate()

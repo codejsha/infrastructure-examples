@@ -21,7 +21,7 @@ mkdir -p ${LOG_DIR}/${MANAGED_SERVER_NAME}
 
 export CONFIG_JVM_ARGS="${CONFIG_JVM_ARGS} -Djava.security.egd=file:///dev/urandom"
 if [[ ${WEBLOGIC_VERSION} =~ ^14.1|^12. ]]; then
-    ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh set_server_tunning.py
+    ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh set_server_tuning.py
 elif [[ ${WEBLOGIC_VERSION} =~ ^10.3 ]]; then
-    ${MW_HOME}/wlserver_10.3/common/bin/wlst.sh set_server_tunning.py
+    ${MW_HOME}/wlserver_10.3/common/bin/wlst.sh set_server_tuning.py
 fi
