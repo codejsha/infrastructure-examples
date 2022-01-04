@@ -21,21 +21,25 @@ for COMPONENT_NAME in ${COMPONENTS[@]}; do
     cat ${COMPONENT_NAME}.crt > ${COMPONENT_NAME}-chain.crt
     cat ca.crt >> ${COMPONENT_NAME}-chain.crt
 
-    openssl pkcs12 -export -name ${COMPONENT_NAME} \
+    openssl pkcs12 -export -name localhost \
         -in ${COMPONENT_NAME}-chain.crt -inkey ${COMPONENT_NAME}.key \
         -out ${COMPONENT_NAME}.p12 -passout pass:mystorepassword
-    keytool -importkeystore -alias ${COMPONENT_NAME} \
+    keytool -importkeystore -alias localhost \
         -srckeystore ${COMPONENT_NAME}.p12 -srcstoretype pkcs12 -srcstorepass mystorepassword \
         -destkeystore ${COMPONENT_NAME}-keystore.jks -deststoretype pkcs12 -deststorepass mystorepassword -destkeypass mystorepassword
 
     ### truststore
-    keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore ${COMPONENT_NAME}-truststore.jks
+    # keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore ${COMPONENT_NAME}-truststore.jks
 
 done
+
+### truststore
+keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore truststore.jks
 
 ### client truststore
 keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore client-truststore.jks
 
 ### move files
 mkdir -p ssl
-mv *.crt *.csr *.key *.srl *.jks ssl/
+mv *.crt *.csr *.key *.srl *.p12 *.jks ssl/
+/bin/cp -f *.csr.conf ssl/
