@@ -1,75 +1,116 @@
-######################################################################
+dn: uid=mds,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: mds
+uid: mds
+uidNumber: 5000
+gidNumber: 5000
+homeDirectory: /home/mds
+loginShell: /bin/bash
+gecos: confluent mds user
+userPassword: mds-secret
 
-dn: ou=confluentuser,dc=example,dc=com
-objectClass: organizationalUnit
-ou: confluentuser
-
-######################################################################
-
-dn: cn=kafka,ou=confluentuser,dc=example,dc=com
+dn: uid=kafka,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
 cn: kafka
+uid: kafka
+uidNumber: 5001
+gidNumber: 5001
+homeDirectory: /home/kafka
+loginShell: /bin/bash
+gecos: confluent kafka user
 userPassword: kafka-secret
-description: kafka user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
 
-dn: cn=sr,ou=confluentuser,dc=example,dc=com
-cn: sr
-userPassword: sr-secret
-description: schema registry user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
+dn: uid=schema-registry,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: schema-registry
+uid: schema-registry
+uidNumber: 5002
+gidNumber: 5002
+homeDirectory: /home/schema-registry
+loginShell: /bin/bash
+gecos: confluent schema registry user
+userPassword: schema-registry-secret
 
-dn: cn=connect,ou=confluentuser,dc=example,dc=com
-cn: connect
-userPassword: connect-secret
-description: kakfa connect user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
+dn: uid=kafka-connect,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: kafka-connect
+uid: kafka-connect
+uidNumber: 5003
+gidNumber: 5003
+homeDirectory: /home/kafka-connect
+loginShell: /bin/bash
+gecos: confluent kafka connect user
+userPassword: kafka-connect-secret
 
-dn: cn=replicator,ou=confluentuser,dc=example,dc=com
+dn: uid=replicator,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
 cn: replicator
+uid: replicator
+uidNumber: 5004
+gidNumber: 5004
+homeDirectory: /home/replicator
+loginShell: /bin/bash
+gecos: confluent replicator user
 userPassword: replicator-secret
-description: replicator user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
 
-dn: cn=ksql,ou=confluentuser,dc=example,dc=com
-cn: ksql
-userPassword: ksql-secret
-description: ksqldb user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
+dn: uid=kafka-rest,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: kafka-rest
+uid: kafka-rest
+uidNumber: 5005
+gidNumber: 5005
+homeDirectory: /home/kafka-rest
+loginShell: /bin/bash
+gecos: confluent kafka rest user
+userPassword: kafka-rest-secret
 
-dn: cn=erp,ou=confluentuser,dc=example,dc=com
-cn: erp
-userPassword: erp-secret
-description: kafka rest api user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
+dn: uid=ksqldb,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: ksqldb
+uid: ksqldb
+uidNumber: 5006
+gidNumber: 5006
+homeDirectory: /home/ksqldb
+loginShell: /bin/bash
+gecos: confluent ksqldb user
+userPassword: ksqldb-secret
 
-dn: cn=c3,ou=confluentuser,dc=example,dc=com
-cn: c3
-userPassword: c3-secret
-description: control center user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
+dn: uid=control-center,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: control-center
+uid: control-center
+uidNumber: 5007
+gidNumber: 5007
+homeDirectory: /home/control-center
+loginShell: /bin/bash
+gecos: confluent control center user
+userPassword: control-center-secret
 
-dn: cn=kafkaadmin,ou=confluentuser,dc=example,dc=com
-cn: kafkaadmin
-userPassword: kafkaadmin
-description: cluster admin user
-objectClass: simpleSecurityObject
-objectClass: organizationalRole
-
-######################################################################
-
-dn: cn=developer,ou=confluentuser,dc=example,dc=com
-cn: developer
-sn: developer
-givenname: developer
-displayname: developer
-description: developer
-objectclass: inetOrgPerson
-objectclass: top
-userpassword: developer
+dn: uid=client,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: client
+uid: client
+uidNumber: 5008
+gidNumber: 5008
+homeDirectory: /home/client
+loginShell: /bin/bash
+gecos: confluent client user
+userPassword: client-secret
