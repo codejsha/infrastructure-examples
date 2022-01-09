@@ -31,5 +31,10 @@ fi
 
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_NODE_EXPORTER_HOME}
-sudo mv ${PARENT_NODE_EXPORTER_HOME}/${NODE_EXPORTER_DIR_NAME} ${NODE_EXPORTER_HOME}
+cd ${PARENT_NODE_EXPORTER_HOME}
+sudo ln -snf ${PARENT_NODE_EXPORTER_HOME} node-exporter
+
+### change ownership
+cd ${PARENT_NODE_EXPORTER_HOME}
 sudo chown -R $(id -un):$(id -gn) ${NODE_EXPORTER_HOME}
+sudo chown -R $(id -un):$(id -gn) node-exporter
