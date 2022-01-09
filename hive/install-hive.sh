@@ -33,8 +33,13 @@ function install_hive  {
 
     ### install
     sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_HIVE_HOME}
-    sudo mv ${PARENT_HIVE_HOME}/${HIVE_DIR_NAME} ${HIVE_HOME}
+    cd ${PARENT_HIVE_HOME}
+    sudo ln -snf ${PARENT_HIVE_HOME} hive
+
+    ### change ownership
+    cd ${PARENT_HIVE_HOME}
     sudo chown -R $(id -un):$(id -gn) ${HIVE_HOME}
+    sudo chown -R $(id -un):$(id -gn) hive
 }
 
 ######################################################################

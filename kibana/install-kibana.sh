@@ -31,5 +31,10 @@ fi
 
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_KIBANA_HOME}
-sudo mv ${PARENT_KIBANA_HOME}/${KIBANA_DIR_NAME} ${KIBANA_HOME}
+cd ${PARENT_KIBANA_HOME}
+sudo ln -snf ${LAG_EXPORTER_DIR_NAME} kibana
+
+### change ownership
+cd ${PARENT_KIBANA_HOME}
 sudo chown -R $(id -un):$(id -gn) ${KIBANA_HOME}
+sudo chown -R $(id -un):$(id -gn) kibana

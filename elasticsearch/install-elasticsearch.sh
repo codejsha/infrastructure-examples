@@ -31,5 +31,10 @@ fi
 
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_ELASTICSEARCH_HOME}
-sudo mv ${PARENT_ELASTICSEARCH_HOME}/${ELASTICSEARCH_DIR_NAME} ${ELASTICSEARCH_HOME}
+cd ${PARENT_ELASTICSEARCH_HOME}
+sudo ln -snf ${ELASTICSEARCH_DIR_NAME} elasticsearch
+
+### change ownership
+cd ${PARENT_ELASTICSEARCH_HOME}
 sudo chown -R $(id -un):$(id -gn) ${ELASTICSEARCH_HOME}
+sudo chown -R $(id -un):$(id -gn) elasticsearch
