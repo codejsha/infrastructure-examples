@@ -26,6 +26,6 @@ useradd \
     ${USER_NAME}
 
 ### sudoers
-cat <<EOF | sudo tee /etc/sudoers.d/${USER_NAME}
-${USER_NAME} ALL=(ALL) NOPASSWD:ALL
-EOF
+# cat <<EOF | sudo tee /etc/sudoers.d/${USER_NAME}
+# ${USER_NAME} ALL=(ALL) NOPASSWD:ALL
+# EOF
