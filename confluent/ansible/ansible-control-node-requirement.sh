@@ -3,6 +3,12 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+### git
+sudo yum install -y git
+
+### python3
+sudo yum install -y python3
+
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 get-pip.py --user
 
