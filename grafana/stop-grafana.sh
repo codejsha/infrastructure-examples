@@ -8,4 +8,3 @@ pkill -9 -ecx grafana-server
 
 # pkill -9 -ecf ${GRAFANA_CONFIG_FILE}
 # pkill -15 -ecf ${GRAFANA_CONFIG_FILE}
-
