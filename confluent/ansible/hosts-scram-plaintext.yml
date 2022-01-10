@@ -1,0 +1,292 @@
+---
+all:
+  vars:
+    ### ansible
+    ansible_connection: ssh
+    ansible_user: root
+    ansible_become: true
+    # ansible_ssh_private_key_file: /tmp/confluent/certs/ssh-private.key
+    mask_sensitive_logs: false
+    mask_sensitive_diff: false
+
+    ### confluent kafka
+    confluent_server_enabled: true
+    # confluent_package_version: 7.0.1
+    # confluent_license:
+
+    ### confluent-cli
+    confluent_cli_download_enabled: true
+    # confluent_cli_custom_download_url:
+    confluent_cli_base_path: /opt/confluent-cli
+    confluent_cli_path: "/usr/local/bin/confluent"
+
+    ### Custom Yum Repo File (Rhel/Centos)
+    # repository_configuration: custom
+    # custom_yum_repofile_filepath: /tmp/my-repo.repo
+    ### Custom Apt Repo File (Ubuntu/Debian)
+    # repository_configuration: custom
+    # custom_apt_repo_filepath: "/tmp/my-source.list"
+
+    ### package install
+    # installation_method: package
+    ### archive install
+    installation_method: archive
+    confluent_archive_file_remote: true
+    archive_destination_path: /opt/confluent
+    # confluent_archive_file_source: http://<hostname>/confluent-{{confluent_package_version}}.tar.gz
+    # confluent_archive_file_source: /path/to/confluent-{{confluent_package_version}}.tar.gz
+
+    ### deployment strategy
+    deployment_strategy: parallel
+    # deployment_strategy: rolling
+
+    ### sasl authentication
+    # sasl_protocol: none
+    # sasl_protocol: plain
+    sasl_protocol: scram
+    # sasl_protocol: kerberos
+
+    ### scram users
+    sasl_scram_users:
+      client:
+        principal: client
+        password: client-secret
+      admin:
+        principal: kafka
+        password: kafka-secret
+      schema_registry:
+        principal: schema-registry
+        password: schema-registry-secret
+      kafka_connect:
+        principal: kafka-connect
+        password: kafka-connect-secret
+      kafka_rest:
+        principal: kafka-rest
+        password: kafka-rest-secret
+      ksql:
+        principal: ksqldb
+        password: ksqldb-secret
+      control_center:
+        principal: control-center
+        password: control-center-secret
+      kafka_connect_replicator:
+        principal: replicator
+        password: replicator-secret
+
+    ### tls
+    ssl_enabled: false
+    ssl_mutual_auth_enabled: false
+
+    ### rbac
+    rbac_enabled: false
+
+    ### monitoring
+    jmxexporter_enabled: true
+    jmxexporter_jar_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar
+    jmxexporter_url_remote: true
+    # jolokia_enabled: true
+    # jolokia_url_remote: false
+    # jolokia_jar_url: http://<inteneral-server>/jolokia-jvm-1.6.2-agent.jar
+
+zookeeper:
+  vars:
+    zookeeper_user: root
+    zookeeper_group: root
+    zookeeper_log_dir: /mnt/zookeeper/logs
+
+    zookeeper_client_authentication_type: digest
+    zookeeper_quorum_authentication_type: digest
+    zookeeper_digest_users:
+      admin:
+        principal: zookeeper
+        password: zookeeper-secret
+      kafka_broker:
+        principal: kafka
+        password: kafka-secret
+
+    # zookeeper_custom_java_args:
+    zookeeper_service_environment_overrides:
+      KAFKA_HEAP_OPTS: "-Xms512m -Xmx512m"
+    zookeeper_custom_properties:
+      dataDir: /mnt/zookeeper/data
+      tickTime: 2000
+      initLimit: 5
+      syncLimit: 2
+      maxClientCnxns: 0
+
+      autopurge.snapRetainCount: 10
+      autopurge.purgeInterval: 1
+      admin.enableServer: "false"
+      4lw.commands.whitelist: ruok,stat
+
+  hosts:
+    zookeeper1:
+      ansible_host: 192.168.200.11
+      zookeeper_id: 1
+    zookeeper2:
+      ansible_host: 192.168.200.12
+      zookeeper_id: 2
+    zookeeper3:
+      ansible_host: 192.168.200.13
+      zookeeper_id: 3
+
+kafka_broker:
+  vars:
+    kafka_broker_user: root
+    kafka_broker_group: root
+    kafka_broker_log_dir: /mnt/kafka/logs
+
+    kafka_broker_configure_multiple_listeners: true
+    kafka_broker_configure_control_plane_listener: true
+    kafka_broker_custom_listeners:
+      internal:
+        name: INTERNAL
+        port: 9091
+        ssl_enabled: false
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: scram
+      external:
+        name: EXTERNAL
+        port: 9092
+        ssl_enabled: false
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: scram
+      broker:
+        name: BROKER
+        port: 9093
+        ssl_enabled: false
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: scram
+      controller:
+        name: CONTROLLER
+        port: 9094
+        ssl_enabled: false
+        ssl_mutual_auth_enabled: false
+        sasl_protocol: scram
+
+    # kafka_broker_custom_java_args:
+    kafka_broker_service_environment_overrides:
+      KAFKA_HEAP_OPTS: "-Xms1g -Xmx1g"
+    kafka_broker_custom_properties:
+      log.dirs: /mnt/kafka/data
+      log.retention.hours: 168
+      log.segment.bytes: 1073741824
+
+      num.io.threads: 16
+      num.network.threads: 8
+      num.partitions: 3
+      num.recovery.threads.per.data.dir: 2
+
+      confluent.balancer.enable: "true"
+      confluent.balancer.heal.uneven.load.trigger: EMPTY_BROKER
+      confluent.balancer.disk.max.load: 0.85
+      confluent.balancer.topic.replication.factor: 3
+
+  hosts:
+    kafka1:
+      ansible_host: 192.168.200.11
+      broker_id: 1
+    kafka2:
+      ansible_host: 192.168.200.12
+      broker_id: 2
+    kafka3:
+      ansible_host: 192.168.200.13
+      broker_id: 3
+
+schema_registry:
+  vars:
+    schema_registry_user: root
+    schema_registry_group: root
+    schema_registry_log_dir: /mnt/schema-registry/logs
+
+    # schema_registry_custom_java_args:
+    schema_registry_service_environment_overrides:
+      SCHEMA_REGISTRY_HEAP_OPTS: "-Xms512m -Xmx512m"
+    # schema_registry_custom_properties:
+
+  hosts:
+    schema-registry1:
+      ansible_host: 192.168.200.12
+    schema-registry2:
+      ansible_host: 192.168.200.13
+
+kafka_connect:
+  vars:
+    kafka_connect_user: root
+    kafka_connect_group: root
+    kafka_connect_log_dir: /mnt/kafka-connect/logs
+    kafka_connect_group_id: connect-cluster
+
+    # kafka_connect_custom_java_args:
+    kafka_connect_service_environment_overrides:
+      KAFKA_HEAP_OPTS: "-Xms1g -Xmx1g"
+    # kafka_connect_custom_properties:
+
+    kafka_connect_plugins_path:
+      - /usr/share/java
+      - /usr/share/confluent-hub-components
+
+  hosts:
+    kafka-connect1:
+      ansible_host: 192.168.200.12
+    kafka-connect2:
+      ansible_host: 192.168.200.13
+
+# kafka_rest:
+#   vars:
+#     kafka_rest_user: root
+#     kafka_rest_group: root
+#
+#   hosts:
+#     kafka-rest1:
+#       ansible_host: 192.168.200.12
+#     kafka-rest2:
+#       ansible_host: 192.168.200.13
+
+ksql:
+  vars:
+    ksql_user: root
+    ksql_group: root
+    ksql_log_dir: /mnt/ksqldb/logs
+    ksql_service_id: ksql-cluster
+
+    # ksql_custom_java_args:
+    ksql_service_environment_overrides:
+      KSQL_HEAP_OPTS: "-Xms1g -Xmx1g"
+    ksql_custom_properties:
+      ksql.streams.state.dir: /mnt/ksqldb/data
+
+  hosts:
+    ksqldb1:
+      ansible_host: 192.168.200.12
+    ksqldb2:
+      ansible_host: 192.168.200.13
+
+control_center:
+  vars:
+    control_center_user: root
+    control_center_group: root
+    control_center_log_dir: /mnt/control-center/logs
+
+    # control_center_custom_java_args:
+    control_center_service_environment_overrides:
+      # CONTROL_CENTER_HEAP_OPTS: "-Xms6g -Xmx6g"
+      CONTROL_CENTER_HEAP_OPTS: "-Xms4g -Xmx4g"
+    control_center_custom_properties:
+      confluent.controlcenter.data.dir: /mnt/control-center/data
+      confluent.controlcenter.command.topic: _confluent-command
+      confluent.controlcenter.command.topic.replication: 3
+      confluent.controlcenter.internal.topics.partitions: 12
+      confluent.controlcenter.internal.topics.replication: 3
+      confluent.metrics.topic: _confluent-metrics
+      confluent.metrics.topic.partitions: 12
+      confluent.metrics.topic.replication: 3
+      confluent.controlcenter.streams.num.stream.threads: 8
+
+      confluent.controlcenter.ui.autoupdate.enable: false
+      confluent.controlcenter.ui.controller.chart.enable: true
+      confluent.controlcenter.usage.data.collection.enable: false
+
+  hosts:
+    control-center1:
+      ansible_host: 192.168.200.11
