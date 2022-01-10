@@ -15,7 +15,7 @@ for COMPONENT_NAME in ${COMPONENTS[@]}; do
     openssl req -new -sha256 -key ${COMPONENT_NAME}.key -out ${COMPONENT_NAME}.csr -config ${COMPONENT_NAME}.csr.conf
     # openssl req -in ${COMPONENT_NAME}.csr -noout -text
 
-    openssl x509 -req -CA ca.crt -CAkey ca.key -in ${COMPONENT_NAME}.csr -out ${COMPONENT_NAME}.crt -days 365 -CAcreateserial -sha256 -extensions req_ext -extfile ${COMPONENT_NAME}.csr.conf -passin pass:mystorepassword
+    openssl x509 -req -CA ca.crt -CAkey ca.key -in ${COMPONENT_NAME}.csr -out ${COMPONENT_NAME}.crt -days 365 -CAcreateserial -sha256 -extensions v3_req -extfile ${COMPONENT_NAME}.csr.conf -passin pass:changeit
     # openssl x509 -in ${COMPONENT_NAME}.crt -text -noout
 
     cat ${COMPONENT_NAME}.crt > ${COMPONENT_NAME}-chain.crt
@@ -23,21 +23,21 @@ for COMPONENT_NAME in ${COMPONENTS[@]}; do
 
     openssl pkcs12 -export -name localhost \
         -in ${COMPONENT_NAME}-chain.crt -inkey ${COMPONENT_NAME}.key \
-        -out ${COMPONENT_NAME}.p12 -passout pass:mystorepassword
+        -out ${COMPONENT_NAME}.p12 -passout pass:changeit
     keytool -importkeystore -alias localhost \
-        -srckeystore ${COMPONENT_NAME}.p12 -srcstoretype pkcs12 -srcstorepass mystorepassword \
-        -destkeystore ${COMPONENT_NAME}-keystore.jks -deststoretype pkcs12 -deststorepass mystorepassword -destkeypass mystorepassword
+        -srckeystore ${COMPONENT_NAME}.p12 -srcstoretype pkcs12 -srcstorepass changeit \
+        -destkeystore ${COMPONENT_NAME}-keystore.jks -deststoretype pkcs12 -deststorepass changeit -destkeypass changeit
 
     ### truststore
-    # keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore ${COMPONENT_NAME}-truststore.jks
+    # keytool -importcert -alias RootCA -file ca.crt -storepass changeit -noprompt -keystore ${COMPONENT_NAME}-truststore.jks
 
 done
 
 ### truststore
-keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore truststore.jks
+keytool -importcert -alias RootCA -file ca.crt -storepass changeit -noprompt -keystore truststore.jks
 
 ### client truststore
-keytool -importcert -alias RootCA -file ca.crt -storepass mystorepassword -noprompt -keystore client-truststore.jks
+keytool -importcert -alias RootCA -file ca.crt -storepass changeit -noprompt -keystore client-truststore.jks
 
 ### move files
 mkdir -p ssl
