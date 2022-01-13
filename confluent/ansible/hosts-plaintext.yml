@@ -15,16 +15,16 @@ all:
     # confluent_package_version: 7.0.1
     # confluent_license:
 
-    ### confluent-cli
+    ### confluent cli
     confluent_cli_download_enabled: true
     # confluent_cli_custom_download_url:
     confluent_cli_base_path: /opt/confluent-cli
     confluent_cli_path: "/usr/local/bin/confluent"
 
-    ### Custom Yum Repo File (Rhel/Centos)
+    ### custom yum repo file (rhel/centos)
     # repository_configuration: custom
     # custom_yum_repofile_filepath: /tmp/my-repo.repo
-    ### Custom Apt Repo File (Ubuntu/Debian)
+    ### custom apt repo file (ubuntu/debian)
     # repository_configuration: custom
     # custom_apt_repo_filepath: "/tmp/my-source.list"
 
@@ -51,24 +51,10 @@ all:
     ssl_enabled: false
     ssl_mutual_auth_enabled: false
     # ssl_file_dir: /var/ssl/private
+    # fips_enabled: true
 
     ### rbac
     rbac_enabled: false
-
-    ### monitoring
-    jmxexporter_enabled: true
-    jmxexporter_url_remote: true
-    jmxexporter_jar_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar
-    jmxexporter_jar_path: "{{archive_destination_path}}/prometheus/jmx_prometheus_javaagent.jar"
-    zookeeper_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/zookeeper.yml"
-    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka.yml"
-    schema_registry_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/schema_registry.yml"
-    kafka_rest_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_rest.yml"
-    kafka_connect_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_connect.yml"
-    ksql_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/ksql.yml"
-    # jolokia_enabled: true
-    # jolokia_url_remote: false
-    # jolokia_jar_url: http://<inteneral-server>/jolokia-jvm-1.6.2-agent.jar
 
     ### component cluster group names
     kafka_connect_cluster_ansible_group_names:
@@ -80,7 +66,7 @@ all:
     kafka_broker_configure_multiple_listeners: true
     kafka_broker_configure_control_plane_listener: true
     kafka_broker_inter_broker_listener_name: broker
-    kafka_broker_control_plane_listener_name: internal
+    kafka_broker_control_plane_listener_name: controller
     kafka_broker_custom_listeners:
       internal:
         name: INTERNAL
@@ -107,13 +93,28 @@ all:
         # ssl_mutual_auth_enabled: false
         # sasl_protocol: none
 
-    ### internal listeners
+    ### kafka internal listener
     schema_registry_kafka_listener_name: internal
     kafka_connect_kafka_listener_name: internal
     kafka_rest_kafka_listener_name: internal
     ksql_kafka_listener_name: internal
     ksql_processing_log_kafka_listener_name: internal
     control_center_kafka_listener_name: internal
+
+    ### monitoring
+    jmxexporter_enabled: true
+    jmxexporter_url_remote: true
+    jmxexporter_jar_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar
+    jmxexporter_jar_path: "{{archive_destination_path}}/prometheus/jmx_prometheus_javaagent.jar"
+    zookeeper_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/zookeeper.yml"
+    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka.yml"
+    schema_registry_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/schema_registry.yml"
+    kafka_rest_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_rest.yml"
+    kafka_connect_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_connect.yml"
+    ksql_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/ksql.yml"
+    # jolokia_enabled: true
+    # jolokia_url_remote: false
+    # jolokia_jar_url: http://<inteneral-server>/jolokia-jvm-1.6.2-agent.jar
 
 zookeeper:
   vars:
@@ -164,7 +165,7 @@ kafka_broker:
       log.retention.check.interval.ms: 300000
       log.segment.bytes: 1073741824
       log.cleanup.policy: delete
-      # log.cleaner.enable: true
+      # log.cleaner.enable: "true"
       # log.cleaner.threads: 1
 
       num.io.threads: 16
@@ -175,9 +176,9 @@ kafka_broker:
       default.replication.factor: 3
       min.insync.replicas: 2
       replica.lag.time.max.ms: 30000
-      unclean.leader.election.enable: false
+      unclean.leader.election.enable: "false"
 
-      auto.create.topics.enable: false
+      auto.create.topics.enable: "false"
       group.initial.rebalance.delay.ms: 3000
       offsets.topic.replication.factor: 3
       transaction.state.log.min.isr: 2
@@ -188,8 +189,8 @@ kafka_broker:
       confluent.balancer.disk.max.load: 0.85
       confluent.balancer.topic.replication.factor: 3
 
-      confluent.tier.enable: false
-      # confluent.tier.feature: true
+      confluent.tier.enable: "false"
+      # confluent.tier.feature: "true"
       # confluent.tier.backend: S3
       # confluent.tier.s3.region: ap-northeast-2
       # confluent.tier.s3.bucket: kafka-tiered-storage
@@ -329,9 +330,9 @@ control_center:
       confluent.metrics.topic.replication: 3
       confluent.controlcenter.streams.num.stream.threads: 8
 
-      confluent.controlcenter.ui.autoupdate.enable: false
-      confluent.controlcenter.ui.controller.chart.enable: true
-      confluent.controlcenter.usage.data.collection.enable: false
+      confluent.controlcenter.ui.autoupdate.enable: "false"
+      confluent.controlcenter.ui.controller.chart.enable: "true"
+      confluent.controlcenter.usage.data.collection.enable: "false"
 
   hosts:
     control-center1:
