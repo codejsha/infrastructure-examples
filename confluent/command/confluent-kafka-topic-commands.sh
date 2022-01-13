@@ -22,7 +22,6 @@
 ./kafka-topics \
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
     --list
-### topic list (sasl)
 ./kafka-topics \
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
     --list \
@@ -33,3 +32,8 @@
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
     --describe \
     --topic my-topic
+./kafka-topics \
+    --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
+    --describe \
+    --topic my-topic \
+    --command-config /usr/local/confluent/properties/client.properties
