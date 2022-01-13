@@ -9,6 +9,7 @@ sudo mkdir -p /mnt/docker/openldap/config
 docker run \
     --detach \
     --name openldap \
+    --hostname openldap \
     --publish 389:389 \
     --publish 636:636 \
     --env LDAP_ORGANISATION="My Company" \
