@@ -4,6 +4,11 @@ openssl s_client -connect test.example.com:443 -tls1_2
 
 ######################################################################
 
+openssl req -in tls.csr -noout -text
+openssl x509 -in tls.crt -text -noout
+
+######################################################################
+
 ### create pfx file
 openssl pkcs12 -export -in /svc/certs/tls.crt -inkey /svc/certs/tls.key -out tls.pfx
 openssl pkcs12 -info -in tls.pfx -passin file:tls.password.txt
