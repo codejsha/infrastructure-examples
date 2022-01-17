@@ -18,6 +18,7 @@
     "database.history.kafka.topic": "database2.history.sakila",
     "database.history.kafka.bootstrap.servers": "localhost:9092",
     "database.include.list": "sakila",
+    "table.include.list": "sakila.*",
     "database.allowPublicKeyRetrieval": "true",
     "time.precision.mode": "adaptive_time_microseconds",
     "decimal.handling.mode": "precise",
