@@ -24,6 +24,7 @@ WLIOTimeoutSecs=300
 DynamicServerList=OFF
 KeepAliveEnabled=ON
 KeepAliveSecs=20
+FileCaching OFF
 ErrorPage=http://test.example.com/503.html
 DebugConfigInfo=ON
 Debug=ALL

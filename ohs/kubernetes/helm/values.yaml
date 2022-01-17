@@ -35,6 +35,7 @@ domain:
       DynamicServerList OFF
       KeepAliveEnabled ON
       KeepAliveSecs 20
+      FileCaching OFF
       DebugConfigInfo ON
       Debug ALL
       WLSRequest On
