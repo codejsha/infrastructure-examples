@@ -1,3 +1,0 @@
-[submodule "confluent/confluent/confluent-kafka-script-generator"]
-	path = confluent/confluent/confluent-kafka-script-generator
-	url = https://github.com/codejsha/confluent-kafka-script-generator.git
