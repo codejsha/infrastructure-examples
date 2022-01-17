@@ -124,17 +124,9 @@ all:
     kafka_connect_cluster_name: connect-cluster
     ksql_cluster_name: ksql-cluster
 
-    # rbac_component_additional_system_admins:
-    # kafka_broker_additional_system_admins:
-    # schema_registry_additional_system_admins:
-    # kafka_connect_additional_system_admins:
-    # ksql_additional_system_admins:
-    # control_center_additional_system_admins:
-
-    ### super user
+    ### ldap user
     mds_super_user: mds
     mds_super_user_password: mds-secret
-    ### ldap user
     kafka_broker_ldap_user: kafka
     kafka_broker_ldap_password: kafka-secret
     schema_registry_ldap_user: schema-registry
@@ -147,6 +139,13 @@ all:
     ksql_ldap_password: ksqldb-secret
     control_center_ldap_user: control-center
     control_center_ldap_password: control-center-secret
+
+    # rbac_component_additional_system_admins:
+    # kafka_broker_additional_system_admins:
+    # schema_registry_additional_system_admins:
+    # kafka_connect_additional_system_admins:
+    # ksql_additional_system_admins:
+    # control_center_additional_system_admins:
 
     ### basic authentication
     # schema_registry_authentication_type: basic
