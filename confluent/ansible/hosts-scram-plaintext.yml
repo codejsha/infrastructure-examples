@@ -12,11 +12,12 @@ all:
 
     ### confluent kafka
     confluent_server_enabled: true
-    # confluent_package_version: 7.0.1
+    # confluent_package_version: "7.0.1"
     # confluent_license:
 
     ### confluent cli
     confluent_cli_download_enabled: true
+    confluent_cli_version: "2.3.1"
     # confluent_cli_custom_download_url:
     confluent_cli_base_path: /opt/confluent-cli
     confluent_cli_path: "/usr/local/bin/confluent"
