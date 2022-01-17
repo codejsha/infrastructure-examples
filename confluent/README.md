@@ -1,5 +1,12 @@
 # Confluent
 
+## Examples
+
+- OS tuning: https://github.com/codejsha/infrastructure/tree/main/kafka/os
+- Connector: https://github.com/codejsha/infrastructure/tree/main/kafka/connector
+
+## References
+
 - https://docs.confluent.io/platform/current/overview.html
 - https://github.com/confluentinc/examples.git
 
