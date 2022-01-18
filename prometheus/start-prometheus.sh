@@ -17,5 +17,5 @@ fi
 
 ### start
 nohup ${PROMETHEUS_HOME}/prometheus \
-    --config.file ${PROMETHEUS_HOME} \
+    --config.file ${PROMETHEUS_CONFIG_FILE} \
     --web.enable-admin-api > ${LOG_DIR}/nohup.prometheus.out 2>&1 &
