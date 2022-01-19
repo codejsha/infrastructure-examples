@@ -111,25 +111,25 @@ all:
       internal:
         name: INTERNAL
         port: 9091
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: scram
       external:
         name: EXTERNAL
         port: 9092
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: scram
       broker:
         name: BROKER
         port: 9093
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: scram
       controller:
         name: CONTROLLER
         port: 9094
-        ssl_enabled: true
+        ssl_enabled: false
         ssl_mutual_auth_enabled: false
         sasl_protocol: scram
 
