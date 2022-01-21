@@ -10,7 +10,7 @@ function create_vm {
     VM_CPU="${4}"
     VM_MEMORY="${5}"
 
-    /bin/cp -f ${DISK_DIR}/${BASE_DISK} ${DISK_DIR}/${VM_NAME}.qcow2
+    qemu-img convert -f qcow2 -O qcow2 ${DISK_DIR}/${BASE_DISK} ${DISK_DIR}/${VM_NAME}.qcow2
 
     virt-install \
         --import \
