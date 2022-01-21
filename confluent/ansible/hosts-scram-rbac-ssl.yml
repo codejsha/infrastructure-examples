@@ -180,7 +180,7 @@ all:
     #     password: control-center-secret
     #     roles: admin
 
-    ### component cluster group names
+    ### component cluster group
     kafka_connect_cluster_ansible_group_names:
       - connect-cluster
     ksql_cluster_ansible_group_names:
