@@ -60,13 +60,20 @@ done
 # VM_CPU="1"
 # VM_MEMORY="4096"
 # for VM_NAME in ${KAFKA_REST_VM_NAMES[@]}; do
+#     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
+# done
+
+KSQLDB_VM_NAMES=("cp1-ksqldb1" "cp1-ksqldb2")
+VM_CPU="4"
+VM_MEMORY="8192"
+for VM_NAME in ${KSQLDB_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
 
-# KSQLDB_VM_NAMES=("cp1-ksqldb1" "cp1-ksqldb2")
-# VM_CPU="4"
-# VM_MEMORY="16384"
-# for VM_NAME in ${KSQLDB_VM_NAMES[@]}; do
+REPLICATOR_VM_NAMES=("cp1-replicator1" "cp1-replicator2")
+VM_CPU="4"
+VM_MEMORY="8192"
+for VM_NAME in ${REPLICATOR_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
 
