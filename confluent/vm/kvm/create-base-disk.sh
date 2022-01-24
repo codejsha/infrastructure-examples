@@ -3,6 +3,6 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-DISK_DIR="/mnt/disk"
+DISK_DIR="/GUEST"
 
 qemu-img create -f qcow2 ${DISK_DIR}/cp1-base.qcow2 256G

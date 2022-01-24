@@ -2,6 +2,7 @@
 trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
 set -o errexit
 set -o errtrace
+set -o xtrace
 
 function create_vm {
     DISK_DIR="${1}"
@@ -25,7 +26,7 @@ function create_vm {
 }
 
 
-DISK_DIR="/mnt/disk"
+DISK_DIR="/GUEST"
 BASE_DISK="${DISK_DIR}/cp1-base.qcow2"
 
 ZOOKEEPER_VM_NAMES=("cp1-zookeeper1" "cp1-zookeeper2" "cp1-zookeeper3")
@@ -42,7 +43,7 @@ for VM_NAME in ${KAFKA_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
 
-SCHEMA_REGISTRY_VM_NAMES=("cp1-schema-registry1" "cp1-schema-registry2" "cp1-schema-registry3")
+SCHEMA_REGISTRY_VM_NAMES=("cp1-schema-registry1" "cp1-schema-registry2")
 VM_CPU="1"
 VM_MEMORY="4096"
 for VM_NAME in ${SCHEMA_REGISTRY_VM_NAMES[@]}; do
