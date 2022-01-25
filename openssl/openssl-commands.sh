@@ -9,6 +9,13 @@ openssl x509 -in tls.crt -text -noout
 
 ######################################################################
 
+### modulus
+openssl rsa -noout -modulus -in tls.key
+openssl req -noout -modulus -in tls.csr
+openssl x509 -noout -modulus -in tls.crt
+
+######################################################################
+
 ### create pfx file
 openssl pkcs12 -export -in /svc/certs/tls.crt -inkey /svc/certs/tls.key -out tls.pfx
 openssl pkcs12 -info -in tls.pfx -passin file:tls.password.txt
