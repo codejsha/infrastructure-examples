@@ -12,7 +12,7 @@ for COMPONENT_NAME in ${COMPONENTS[@]}; do
 
     ### keystore
     openssl genrsa -out ${COMPONENT_NAME}.key 2048
-    openssl req -new -sha256 -key ${COMPONENT_NAME}.key -out ${COMPONENT_NAME}.csr -config ${COMPONENT_NAME}.csr.conf
+    openssl req -new -key ${COMPONENT_NAME}.key -out ${COMPONENT_NAME}.csr -config ${COMPONENT_NAME}.csr.conf
     # openssl req -in ${COMPONENT_NAME}.csr -noout -text
 
     openssl x509 -req -CA ca.crt -CAkey ca.key -in ${COMPONENT_NAME}.csr -out ${COMPONENT_NAME}.crt -days 365 -CAcreateserial -sha256 -extensions v3_req -extfile ${COMPONENT_NAME}.csr.conf -passin pass:changeit
