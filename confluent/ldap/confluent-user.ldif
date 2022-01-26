@@ -11,14 +11,27 @@ loginShell: /bin/bash
 gecos: confluent mds user
 userPassword: mds-secret
 
+dn: uid=kafkaadmin,ou=rbac,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+cn: kafkaadmin
+uid: kafkaadmin
+uidNumber: 5001
+gidNumber: 5001
+homeDirectory: /home/kafkaadmin
+loginShell: /bin/bash
+gecos: confluent kafkaadmin user
+userPassword: kafkaadmin
+
 dn: uid=kafka,ou=rbac,dc=example,dc=com
 objectClass: top
 objectClass: account
 objectClass: posixAccount
 cn: kafka
 uid: kafka
-uidNumber: 5001
-gidNumber: 5001
+uidNumber: 5002
+gidNumber: 5002
 homeDirectory: /home/kafka
 loginShell: /bin/bash
 gecos: confluent kafka user
@@ -30,8 +43,8 @@ objectClass: account
 objectClass: posixAccount
 cn: schema-registry
 uid: schema-registry
-uidNumber: 5002
-gidNumber: 5002
+uidNumber: 5003
+gidNumber: 5003
 homeDirectory: /home/schema-registry
 loginShell: /bin/bash
 gecos: confluent schema registry user
@@ -43,8 +56,8 @@ objectClass: account
 objectClass: posixAccount
 cn: kafka-connect
 uid: kafka-connect
-uidNumber: 5003
-gidNumber: 5003
+uidNumber: 5004
+gidNumber: 5004
 homeDirectory: /home/kafka-connect
 loginShell: /bin/bash
 gecos: confluent kafka connect user
@@ -56,8 +69,8 @@ objectClass: account
 objectClass: posixAccount
 cn: replicator
 uid: replicator
-uidNumber: 5004
-gidNumber: 5004
+uidNumber: 5005
+gidNumber: 5005
 homeDirectory: /home/replicator
 loginShell: /bin/bash
 gecos: confluent replicator user
@@ -69,8 +82,8 @@ objectClass: account
 objectClass: posixAccount
 cn: kafka-rest
 uid: kafka-rest
-uidNumber: 5005
-gidNumber: 5005
+uidNumber: 5006
+gidNumber: 5006
 homeDirectory: /home/kafka-rest
 loginShell: /bin/bash
 gecos: confluent kafka rest user
@@ -82,8 +95,8 @@ objectClass: account
 objectClass: posixAccount
 cn: ksqldb
 uid: ksqldb
-uidNumber: 5006
-gidNumber: 5006
+uidNumber: 5007
+gidNumber: 5007
 homeDirectory: /home/ksqldb
 loginShell: /bin/bash
 gecos: confluent ksqldb user
@@ -95,8 +108,8 @@ objectClass: account
 objectClass: posixAccount
 cn: control-center
 uid: control-center
-uidNumber: 5007
-gidNumber: 5007
+uidNumber: 5008
+gidNumber: 5008
 homeDirectory: /home/control-center
 loginShell: /bin/bash
 gecos: confluent control center user
@@ -108,8 +121,8 @@ objectClass: account
 objectClass: posixAccount
 cn: client
 uid: client
-uidNumber: 5008
-gidNumber: 5008
+uidNumber: 5009
+gidNumber: 5009
 homeDirectory: /home/client
 loginShell: /bin/bash
 gecos: confluent client user
