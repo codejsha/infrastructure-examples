@@ -5,7 +5,7 @@ set -o errtrace
 
 NODE_EXPORTER_HOME="/usr/local/node-exporter"
 INSTALL_FILE_DIR="/mnt/share/prometheus/node-exporter"
-INSTALL_FILE="node_exporter-1.1.2.linux-amd64.tar.gz"
+INSTALL_FILE="node_exporter-1.3.1.linux-amd64.tar.gz"
 
 NODE_EXPORTER_VERSION="$(echo ${INSTALL_FILE} | grep -o -E "[0-9]*\.[0-9]*\.[0-9]*")"
 PARENT_NODE_EXPORTER_HOME="$(readlink --canonicalize-missing ${NODE_EXPORTER_HOME}/../)"
