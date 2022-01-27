@@ -5,7 +5,7 @@ set -o errtrace
 
 ELASTICSEARCH_HOME="/usr/local/elasticsearch"
 INSTALL_FILE_DIR="/mnt/share/elastic-stack"
-INSTALL_FILE="elasticsearch-7.13.2-linux-x86_64.tar.gz"
+INSTALL_FILE="elasticsearch-7.16.3-linux-x86_64.tar.gz"
 
 ELASTICSEARCH_VERSION="$(echo ${INSTALL_FILE} | grep -o -E "[0-9]*\.[0-9]*\.[0-9]*")"
 PARENT_ELASTICSEARCH_HOME="$(readlink --canonicalize-missing ${ELASTICSEARCH_HOME}/../)"
