@@ -3,7 +3,7 @@
 ## Examples
 
 - OS tuning: https://github.com/codejsha/infrastructure/tree/main/kafka/os
-- Connector: https://github.com/codejsha/infrastructure/tree/main/kafka/connector
+- Connectors: https://github.com/codejsha/infrastructure/tree/main/kafka/connector
 
 ## References
 

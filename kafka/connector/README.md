@@ -1,20 +1,16 @@
 # Kafka Connect Connectors
 
-- https://debezium.io/
-- https://www.confluent.io/hub/
-- https://www.confluent.io/product/connectors/
-
-## Debezium
-
-- https://debezium.io/documentation/reference/1.4/index.html
-- https://debezium.io/documentation/reference/1.4/architecture.html
-- https://debezium.io/documentation/reference/1.4/tutorial.html
-
 ## Confluent
 
+- https://www.confluent.io/hub/
+- https://www.confluent.io/product/connectors/
 - https://docs.confluent.io/platform/current/connect/index.html
 - https://docs.confluent.io/platform/current/connect/references/allconfigs.html
 - https://docs.confluent.io/platform/current/connect/references/connector-configs.html
+
+## Debezium
+
+- https://debezium.io/
 
 ### REST API
 
