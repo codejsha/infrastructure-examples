@@ -2,6 +2,7 @@
 
 GRAFANA_HOME="/usr/local/grafana"
 GRAFANA_CONFIG_FILE="${GRAFANA_HOME}/conf/defaults.ini"
+LOG_DIR="${GRAFANA_HOME}"
 
 ### create log directory
 if [ ! -d "${LOG_DIR}/backup" ]; then

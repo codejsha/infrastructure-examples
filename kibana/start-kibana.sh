@@ -2,6 +2,7 @@
 
 KIBANA_HOME="/usr/local/kibana"
 KIBANA_CONFIG_FILE="${KIBANA_HOME}/config/kibana.yml"
+LOG_DIR="${KIBANA_HOME}"
 
 ### create log directory
 if [ ! -d "${LOG_DIR}/backup" ]; then
