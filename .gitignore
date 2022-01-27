@@ -26,7 +26,6 @@ nohup.*
 *-temp.*
 *.zip
 
-/apicurio/helm/apicurio-registry
 /cassandra/operator/cassandra-operator/
 /cmak/cmak-*/
 /confluent/kubernetes/confluent-operator/
