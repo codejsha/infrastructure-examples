@@ -23,8 +23,8 @@ kubectl get configmap kube-proxy --namespace kube-system -o yaml | \
 sed -e "s/strictARP: false/strictARP: true/" | \
 kubectl apply --namespace kube-system --filename -
 
-kubectl apply --filename https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
-kubectl apply --filename https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+kubectl apply --filename https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/namespace.yaml
+kubectl apply --filename https://raw.githubusercontent.com/metallb/metallb/v0.11.0/manifests/metallb.yaml
 
 kubectl apply --filename configmap.yaml
 # kubectl apply --filename configmap-kind.yaml
