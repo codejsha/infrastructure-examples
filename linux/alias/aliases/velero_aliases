@@ -1,5 +1,0 @@
-# velero
-
-source <(velero completion bash)
-
-function velero() { echo "+ velero ${@}">&2; command velero ${@}; }
