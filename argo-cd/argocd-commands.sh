@@ -1,5 +1,10 @@
 ######################################################################
 
+### bash completion
+source <(argocd completion bash)
+
+######################################################################
+
 ### login/logout
 
 ### secure
@@ -19,7 +24,12 @@ argocd logout --grpc-web --insecure --plaintext argocd.example.com:80
 
 ######################################################################
 
-### account password
+### get password
+kubectl get pods --namespace argocd --selector app.kubernetes.io/name=argocd-server --output name | cut -d'/' -f 2
+
+######################################################################
+
+### update account password
 
 ### secure
 argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
@@ -106,5 +116,11 @@ argocd app set guestbook --sync-policy none
 argocd app set guestbook --sync-policy automated
 argocd app set guestbook --auto-prune
 argocd app set guestbook --self-heal
+
+argocd app history guestbook
+argocd app diff guestbook
+
+argocd app manifests guestbook
+argocd app resources guestbook
 
 argocd app delete guestbook
