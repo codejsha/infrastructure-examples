@@ -8,13 +8,12 @@ ansible-galaxy collection install \
 
 ansible -i hosts.yml all -m ping
 
-# ansible-playbook -i hosts.yml confluent.platform.all
-ansible-playbook -i hosts.yml confluent.platform.all -vvv
+ansible-playbook -i hosts.yml confluent.platform.all
 
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=zookeeper -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_broker -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=schema_registry -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_rest -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_connect -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=ksql -vvv
-# ansible-playbook -i hosts.yml confluent.platform.all --tags=control_center -vvv
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=zookeeper
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_broker
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=schema_registry
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_connect
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=ksql
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_rest
+# ansible-playbook -i hosts.yml confluent.platform.all --tags=control_center
