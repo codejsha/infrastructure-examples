@@ -1,7 +1,6 @@
 ######################################################################
 
 ### repo
-
 git init
 
 ######################################################################
@@ -27,26 +26,41 @@ git remote set-url origin http://git.example.com/developer/my-app-cd.git
 ######################################################################
 
 ### branch
-
 git checkout -b main
 
 ######################################################################
 
-### status
+### add
+git add --all
+git add --no-all
+git add --update
 
+######################################################################
+
+### status
 git status
 git status --untracked-files=no
 
 ######################################################################
 
-### commit
+### fetch
+git fetch --all
 
+######################################################################
+
+### commit
 git commit -m "update" --allow-empty
+git commit --message "update" --allow-empty
+
+######################################################################
+
+### pull
+git pull origin
+git pull origin main
 
 ######################################################################
 
 ### push
-
 git push origin main
 git push --force origin main
 
@@ -63,11 +77,9 @@ git restore --source=stash@{0} -- ./tomcat/helper.sh
 ######################################################################
 
 ### reset
-
 git reset --hard origin/main
 
 ######################################################################
 
 ### submodule
-
 git submodule add https://github.com/codejsha/infrastructure infrastructure
