@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-ISTIO_VERSION="1.11.0"
+ISTIO_VERSION="1.12.2"
 PARENT_ISTIO_DIR="${HOME}"
 ISTIO_DIR="${PARENT_ISTIO_DIR}/istio-${ISTIO_VERSION}"
 
