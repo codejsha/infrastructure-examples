@@ -1,36 +1,9 @@
 # kafka aliases
 
-source <(confluent completion bash)
+alias pxjava="pgrep -xa java | grep java"
+alias killjava="pkill -9 -ecx java"
 
-function kafkacat() { echo "+ kafkacat ${@}">&2; command kafkacat ${@}; }
-
-alias kafkacat="docker container run -it --network host edenhill/kafkacat:1.6.0"
-
-######################################################################
-
-# by helper
-
-CONFLUENT_HOME="/usr/local/confluent"
-export CONFLUENT_HOME
-PATH="${PATH}:${CONFLUENT_HOME}/bin"
-export PATH
-
-# JAVA_HOME=/usr/lib/jvm/java-1.8.0
-# export JAVA_HOME
-# PATH="${PATH}:${JAVA_HOME}/bin"
-# export PATH
-
-# alias pxjava="pgrep -xa java | grep java"
-# alias pxprometheus="pgrep -xa prometheus | grep prometheus"
-# alias pxgrafana="pgrep -xa grafana-server | grep grafana-server"
-# alias pxnodeexporter="pgrep -xa node_exporter | grep node_exporter"
-# alias pxlagexporter="pgrep -xa java | grep kafka-lag-exporter"
-# alias pxelasticsearch="pgrep -xa java | grep elasticsearch"
-# alias pxkibana="pgrep -xa node | grep kibana"
-
-# alias killjava="pkill -9 -ecx java"
-
-# alias goconfluent="cd ${CONFLUENT_HOME}"
-# alias goprops="cd ${CONFLUENT_HOME}/properties"
-# alias goscripts="cd ${CONFLUENT_HOME}/scripts"
-# alias goconnector="cd ${CONFLUENT_HOME}/connectors"
+alias goconfluent="cd /opt/confluent"
+alias goprops="cd /opt/confluent/properties"
+alias goscripts="cd /opt/confluent/scripts"
+alias goconnector="cd /opt/confluent/connectors"
