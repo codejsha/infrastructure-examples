@@ -1,8 +1,8 @@
 #!/bin/bash
 
-CONFLUENT_HOME="/usr/local/confluent"
+CONFLUENT_BASE_DIR="/opt/confluent"
 
-pssh --hosts=${CONFLUENT_HOME}/pssh/hosts/schema-registry.hosts --askpass --inline --timeout=5 --option=StrictHostKeyChecking=no \
+pssh --hosts=${CONFLUENT_BASE_DIR}/pssh/hosts/schema-registry.hosts --askpass --inline --timeout=5 --option=StrictHostKeyChecking=no \
     "sudo systemctl start confluent-schema-registry"
-# sshpass -p ${PASSWORD} pssh --hosts=${CONFLUENT_HOME}/pssh/hosts/schema-registry.hosts --askpass --inline --timeout=5 --option=StrictHostKeyChecking=no \
+# sshpass -p ${PASSWORD} pssh --hosts=${CONFLUENT_BASE_DIR}/pssh/hosts/schema-registry.hosts --askpass --inline --timeout=5 --option=StrictHostKeyChecking=no \
 #     "sudo systemctl start confluent-schema-registry"
