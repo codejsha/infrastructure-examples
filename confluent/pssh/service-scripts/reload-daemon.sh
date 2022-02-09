@@ -15,7 +15,7 @@ pssh \
     --inline \
     --timeout=5 \
     --options=StrictHostKeyChecking=no \
-    "pkill -9 -ecx java"
+    "sudo systemctl daemon-reload"
 
 # sshpass -p ${PASSWORD} \
 #     pssh \
@@ -31,4 +31,4 @@ pssh \
 #     --inline \
 #     --timeout=5 \
 #     --options=StrictHostKeyChecking=no \
-#     "pkill -9 -ecx java"
+#     "sudo systemctl daemon-reload"
