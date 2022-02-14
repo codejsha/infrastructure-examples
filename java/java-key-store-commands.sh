@@ -14,6 +14,9 @@ keytool -list -v -keystore ${JAVA_HOME}/lib/security/cacerts
 keytool -list -keystore ${JAVA_HOME}/jre/lib/security/cacerts
 keytool -list -v -keystore ${JAVA_HOME}/jre/lib/security/cacerts
 
+keytool -list -keystore keystore.jks
+keytool -list -v -keystore keystore.jks
+
 keytool -list -alias example -keystore keystore.jks
 keytool -list -v -alias example -keystore keystore.jks
 
@@ -36,15 +39,16 @@ keytool -genkey -keyalg RSA -alias example -keystore keystore.jks -storepass wel
 ### convert and import
 
 ### convert x.509 cert and key to pkcs12 file
-openssl pkcs12 -export -name test \
+openssl pkcs12 -export -name example \
     -in tls.crt -inkey tls.key -out tls.p12 \
     -CAfile ca.crt -caname rootca
 
 ### convert pkcs12 file to java keystore
-keytool -importkeystore -alias test \
+keytool -importkeystore -alias example \
         -srckeystore tls.p12 -srcstoretype pkcs12 -srcstorepass welcome1 \
         -destkeystore tls.jks -deststoretype pkcs12 -deststorepass welcome1 -destkeypass welcome1
 
+### import keystore
 keytool -importkeystore -srckeystore tls.jks -destkeystore keystore.jks -deststoretype pkcs12
 
 ######################################################################
