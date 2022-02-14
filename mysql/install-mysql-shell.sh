@@ -11,13 +11,16 @@ INSTALL_FILE="mysql80-community-release-el8-3.noarch.rpm"
 # INSTALL_FILE="mysql-apt-config_0.8.16-1_all.deb"
 
 ### rhel - dnf
-sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
+# sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
+sudo rpm -Uvh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 sudo dnf install -y mysql-shell
 
 ### rhel - yum
 # sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
+# sudo rpm -Uvh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 # sudo yum install -y mysql-shell
 
 ### ubuntu
 # sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
+# sudo rpm -Uvh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 # sudo apt-get install -y mysql-shell
