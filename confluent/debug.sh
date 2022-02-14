@@ -17,10 +17,6 @@ log4j.logger.kafka.authorizer.logger=DEBUG, authorizerAppender
 -Djavax.net.debug=all
 export KAFKA_OPTS="${KAFKA_OPTS} -Djavax.net.debug=all"
 
-### sasl debug
--Dsun.security.krb5.debug=true
-export KAFKA_OPTS="${KAFKA_OPTS} -Dsun.security.krb5.debug=true"
-
 ### gssapi debug
 -Dsun.security.krb5.debug=true
 export KAFKA_OPTS="${KAFKA_OPTS} -Dsun.security.krb5.debug=true"
