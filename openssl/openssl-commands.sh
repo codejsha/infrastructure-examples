@@ -1,6 +1,12 @@
 ######################################################################
 
-openssl s_client -connect test.example.com:443 -tls1_2
+openssl s_client -connect test.example.com:443 < /dev/null
+openssl s_client -connect test.example.com:443 -tls1_2 < /dev/null
+
+######################################################################
+
+### display server certificate list
+openssl s_client -connect test.example.com:443 -showcerts < /dev/null
 
 ######################################################################
 
@@ -17,7 +23,7 @@ openssl x509 -noout -modulus -in tls.crt
 ######################################################################
 
 ### create pfx file
-openssl pkcs12 -export -in /svc/certs/tls.crt -inkey /svc/certs/tls.key -out tls.pfx
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.pfx
 openssl pkcs12 -info -in tls.pfx -passin file:tls.password.txt
 
 ### extract certificate
