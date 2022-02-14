@@ -35,7 +35,7 @@ strings mod_wl.so | grep WLSPLUGINS
 Use Sysinternals strings:
 
 ```powershell
-strings64.exe iisproxy.dll | Select-String "WLSPLUGINS" -SimpleMatch
+strings64.exe iisproxy.dll | Select-String "WLSPLUGINS" -SimpleMatch -CaseSensitive
 # WLSPLUGINS_12.2.1.3.0_WINDOWS.X64_170817.2030
 # WebLogic Server Plugin version 12.2.1.3.0 <WLSPLUGINS_12.2.1.3.0_WINDOWS.X64_170817.2030>
 
