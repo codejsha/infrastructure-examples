@@ -17,7 +17,7 @@ export LOG_DIR
 KSQL_HEAP_OPTS="${KSQL_HEAP_OPTS} -Xms3g -Xmx3g"
 export KSQL_HEAP_OPTS
 
-### performance
+### performance options
 KSQL_JVM_PERFORMANCE_OPTS="${KSQL_JVM_PERFORMANCE_OPTS} -server"
 # KSQL_JVM_PERFORMANCE_OPTS="${KSQL_JVM_PERFORMANCE_OPTS} -XX:+UseG1GC"
 # KSQL_JVM_PERFORMANCE_OPTS="${KSQL_JVM_PERFORMANCE_OPTS} -XX:MaxGCPauseMillis=20"
@@ -41,7 +41,7 @@ KSQL_OPTS="${KSQL_OPTS} -D${SERVER_NAME}"
 # KSQL_OPTS="${KSQL_OPTS} -javaagent:${JMX_EXPORTER_JAVA_AGENT_FILE}=${JMX_EXPORTER_HOST_PORT}:${JMX_EXPORTER_CONFIG_FILE}"
 export KSQL_OPTS
 
-### gc option
+### gc options
 GC_LOG_FILE_NAME="${SERVER_NAME}-gc.log"
 KSQL_GC_LOG_OPTS="${KSQL_GC_LOG_OPTS} -Xloggc:${LOG_DIR}/${GC_LOG_FILE_NAME}"
 KSQL_GC_LOG_OPTS="${KSQL_GC_LOG_OPTS} -verbose:gc"
@@ -54,14 +54,14 @@ KSQL_GC_LOG_OPTS="${KSQL_GC_LOG_OPTS} -XX:GCLogFileSize=100M"
 # KSQL_GC_LOG_OPTS="-Xlog:gc*:file=${LOG_DIR}/${GC_LOG_FILE_NAME}:time,tags:filecount=10,filesize=100M"
 export KSQL_GC_LOG_OPTS
 
-### jmx
+### jmx settings
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote"
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
 KSQL_JMX_OPTS="${KSQL_JMX_OPTS} -Dcom.sun.management.jmxremote.port=9010"
 export KSQL_JMX_OPTS
 
-### log4j
+### log4j settings
 KSQL_LOG4J_OPTS="${KSQL_LOG4J_OPTS} -Dlog4j.configuration=file:${CONFLUENT_HOME}/log4j/ksqldb-log4j.properties"
 export KSQL_LOG4J_OPTS
 

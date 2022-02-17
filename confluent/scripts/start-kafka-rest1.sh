@@ -16,7 +16,7 @@ export LOG_DIR
 KAFKAREST_HEAP_OPTS="${KAFKAREST_HEAP_OPTS} -Xms256m -Xmx256m"
 export KAFKAREST_HEAP_OPTS
 
-### performance
+### performance options
 KAFKAREST_JVM_PERFORMANCE_OPTS="${KAFKAREST_JVM_PERFORMANCE_OPTS} -server"
 KAFKAREST_JVM_PERFORMANCE_OPTS="${KAFKAREST_JVM_PERFORMANCE_OPTS} -XX:+UseG1GC"
 KAFKAREST_JVM_PERFORMANCE_OPTS="${KAFKAREST_JVM_PERFORMANCE_OPTS} -XX:MaxGCPauseMillis=20"
@@ -36,7 +36,7 @@ KAFKAREST_OPTS="${KAFKAREST_OPTS} -D${SERVER_NAME}"
 # KAFKAREST_OPTS="${KAFKAREST_OPTS} -javaagent:${JMX_EXPORTER_JAVA_AGENT_FILE}=${JMX_EXPORTER_HOST_PORT}:${JMX_EXPORTER_CONFIG_FILE}"
 export KAFKAREST_OPTS
 
-### gc option
+### gc options
 GC_LOG_FILE_NAME="${SERVER_NAME}-gc.log"
 KAFKAREST_OPTS="${KAFKAREST_OPTS} -Xloggc:${LOG_DIR}/${GC_LOG_FILE_NAME}"
 KAFKAREST_OPTS="${KAFKAREST_OPTS} -verbose:gc"
@@ -49,14 +49,14 @@ KAFKAREST_OPTS="${KAFKAREST_OPTS} -XX:GCLogFileSize=100M"
 # KAFKAREST_OPTS="-Xlog:gc*:file=${LOG_DIR}/${GC_LOG_FILE_NAME}:time,tags:filecount=10,filesize=100M"
 export KAFKAREST_OPTS
 
-### jmx
+### jmx settings
 KAFKAREST_JMX_OPTS="${KAFKAREST_JMX_OPTS} -Dcom.sun.management.jmxremote"
 KAFKAREST_JMX_OPTS="${KAFKAREST_JMX_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 KAFKAREST_JMX_OPTS="${KAFKAREST_JMX_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
 KAFKAREST_JMX_OPTS="${KAFKAREST_JMX_OPTS} -Dcom.sun.management.jmxremote.port=9010"
 export KAFKAREST_JMX_OPTS
 
-### log4j
+### log4j settings
 KAFKAREST_LOG4J_OPTS="${KAFKAREST_LOG4J_OPTS} -Dlog4j.configuration=file:${CONFLUENT_HOME}/log4j/kafka-rest-log4j.properties"
 export KAFKAREST_LOG4J_OPTS
 
