@@ -17,7 +17,7 @@ export LOG_DIR
 KAFKA_HEAP_OPTS="${KAFKA_HEAP_OPTS} -Xms1g -Xmx1g"
 export KAFKA_HEAP_OPTS
 
-### performance
+### performance options
 KAFKA_JVM_PERFORMANCE_OPTS="${KAFKA_JVM_PERFORMANCE_OPTS} -server"
 KAFKA_JVM_PERFORMANCE_OPTS="${KAFKA_JVM_PERFORMANCE_OPTS} -XX:+UseG1GC"
 KAFKA_JVM_PERFORMANCE_OPTS="${KAFKA_JVM_PERFORMANCE_OPTS} -XX:MaxGCPauseMillis=20"
@@ -38,7 +38,7 @@ KAFKA_OPTS="${KAFKA_OPTS} -D${SERVER_NAME}"
 # KAFKA_OPTS="${KAFKA_OPTS} -Djava.security.auth.login.config=${CONFLUENT_HOME}/properties/kafka-jaas.conf"
 export KAFKA_OPTS
 
-### gc option
+### gc options
 GC_LOG_FILE_NAME="${SERVER_NAME}-gc.log"
 KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -Xloggc:${LOG_DIR}/${GC_LOG_FILE_NAME}"
 KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -verbose:gc"
@@ -51,14 +51,14 @@ KAFKA_GC_LOG_OPTS="${KAFKA_GC_LOG_OPTS} -XX:GCLogFileSize=100M"
 # KAFKA_GC_LOG_OPTS="-Xlog:gc*:file=${LOG_DIR}/${GC_LOG_FILE_NAME}:time,tags:filecount=10,filesize=100M"
 export KAFKA_GC_LOG_OPTS
 
-### jmx
+### jmx settings
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote"
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
 KAFKA_JMX_OPTS="${KAFKA_JMX_OPTS} -Dcom.sun.management.jmxremote.port=9010"
 export KAFKA_JMX_OPTS
 
-### log4j
+### log4j settings
 KAFKA_LOG4J_OPTS="${KAFKA_LOG4J_OPTS} -Dlog4j.configuration=file:${CONFLUENT_HOME}/log4j/kafka-log4j.properties"
 export KAFKA_LOG4J_OPTS
 
