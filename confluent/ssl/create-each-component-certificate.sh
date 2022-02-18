@@ -18,8 +18,8 @@ for COMPONENT_NAME in ${COMPONENTS[@]}; do
     openssl x509 -req -CA ca.crt -CAkey ca.key -in ${COMPONENT_NAME}.csr -out ${COMPONENT_NAME}.crt -days 365 -CAcreateserial -sha256 -extensions v3_req -extfile ${COMPONENT_NAME}.csr.conf -passin pass:changeit
     # openssl x509 -in ${COMPONENT_NAME}.crt -text -noout
 
-    cat ${COMPONENT_NAME}.crt > ${COMPONENT_NAME}-chain.crt
-    cat ca.crt >> ${COMPONENT_NAME}-chain.crt
+    cat ca.crt > ${COMPONENT_NAME}-chain.crt
+    cat ${COMPONENT_NAME}.crt >> ${COMPONENT_NAME}-chain.crt
 
     openssl pkcs12 -export -name localhost \
         -in ${COMPONENT_NAME}-chain.crt -inkey ${COMPONENT_NAME}.key \
