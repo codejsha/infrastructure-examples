@@ -228,7 +228,7 @@ zookeeper:
       admin.enableServer: "false"
       4lw.commands.whitelist: ruok,stat,srvr
 
-    zookeeper_broker_copy_files:
+    zookeeper_copy_files:
       - source_path: "/root/confluent/log4j/zookeeper-log4j.properties"
         destination_path: "{{archive_destination_path}}/log4j/zookeeper-log4j.properties"
 

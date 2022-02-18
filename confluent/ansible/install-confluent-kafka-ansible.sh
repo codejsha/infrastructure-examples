@@ -11,20 +11,21 @@ ansible-galaxy collection install \
 cd /root/ansible-infra-stack
 
 # ansible -i inventory/confluent-hosts-plaintext.yml all -m ping
-# ansible-playbook -i inventory/confluent-hosts-plaintext.yml all confluent.platform.all
+# ansible-playbook -i inventory/confluent-hosts-plaintext.yml confluent.platform.all
 
 # ansible -i inventory/confluent-hosts-scram-plaintext.yml all -m ping
-# ansible-playbook -i inventory/confluent-hosts-scram-plaintext.yml all confluent.platform.all
+# ansible-playbook -i inventory/confluent-hosts-scram-plaintext.yml confluent.platform.all
 
 # ansible -i inventory/confluent-hosts-scram-rbac-ssl.yml all -m ping
-# ansible-playbook -i inventory/confluent-hosts-scram-rbac-ssl.yml all confluent.platform.all
+# ansible-playbook -i inventory/confluent-hosts-scram-rbac-ssl.yml confluent.platform.all
 
 ansible -i inventory/confluent-hosts-kerberos-rbac-ssl.yml all -m ping
-ansible-playbook -i inventory/confluent-hosts-kerberos-rbac-ssl.yml all confluent.platform.all
+ansible-playbook -i inventory/confluent-hosts-kerberos-rbac-ssl.yml confluent.platform.all
 
 # ansible -i inventory/confluent-hosts-kerberos-rbac-mtls.yml all -m ping
-# ansible-playbook -i inventory/confluent-hosts-kerberos-rbac-mtls.yml all confluent.platform.all
+# ansible-playbook -i inventory/confluent-hosts-kerberos-rbac-mtls.yml confluent.platform.all
 
+# ansible -i hosts.yml all -m ping
 # ansible-playbook -i hosts.yml confluent.platform.all --tags=zookeeper
 # ansible-playbook -i hosts.yml confluent.platform.all --tags=kafka_broker
 # ansible-playbook -i hosts.yml confluent.platform.all --tags=schema_registry
