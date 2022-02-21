@@ -5,23 +5,26 @@ all:
     ansible_connection: ssh
     ansible_user: root
     ansible_become: true
-    # ansible_ssh_private_key_file: /root/confluent/ssl/ssh-private.key
+    # ansible_ssh_private_key_file: "/root/confluent/ssl/ssh-private.key"
+    archive_owner: confluent
+    archive_group: confluent
     mask_secrets: false
     mask_sensitive_logs: false
     mask_sensitive_diff: false
 
     ### custom yum repo file (rhel/centos)
     # repository_configuration: custom
-    # custom_yum_repofile_filepath: /root/confluent/repo/confluent-package.repo
+    # custom_yum_repofile_filepath: "/root/confluent/repo/confluent-package.repo"
     ### custom apt repo file (ubuntu/debian)
     # repository_configuration: custom
     # custom_apt_repo_filepath: "/root/confluent/repo/confluent-package.list"
 
     ### jdk
     install_java: true
-    redhat_java_package_name: java-11-openjdk
+    redhat_java_package_name: java-11-openjdk-devel
     # ubuntu_java_package_name: openjdk-11-jdk
     # debian_java_package_name: openjdk-11-jdk
+    # ubuntu_java_repository: ppa:openjdk-r/ppa
 
     ### confluent kafka
     confluent_server_enabled: true
@@ -32,14 +35,14 @@ all:
     confluent_cli_download_enabled: true
     confluent_cli_version: "2.4.0"
     # confluent_cli_custom_download_url:
-    confluent_cli_base_path: /opt/confluent-cli
+    confluent_cli_base_path: "/opt/confluent-cli"
     confluent_cli_path: "/usr/local/bin/confluent"
 
     ### package install
     # installation_method: package
     ### archive install
     installation_method: archive
-    archive_destination_path: /opt/confluent
+    archive_destination_path: "/opt/confluent"
     confluent_archive_file_remote: true
     # confluent_archive_file_source: "/root/confluent/archive/confluent-{{confluent_package_version}}.tar.gz"
     # confluent_archive_file_source: "http://<hostname>/archive/confluent-{{confluent_package_version}}.tar.gz"
@@ -93,8 +96,8 @@ all:
     rbac_enabled: true
     mds_acls_enabled: true
     create_mds_certs: false
-    token_services_public_pem_file: /root/confluent/ssl/public.pem
-    token_services_private_pem_file: /root/confluent/ssl/tokenKeypair.pem
+    token_services_public_pem_file: "/root/confluent/ssl/public.pem"
+    token_services_private_pem_file: "/root/confluent/ssl/tokenKeypair.pem"
 
     ### ldap user
     mds_super_user: mds
@@ -175,7 +178,7 @@ all:
     ### monitoring
     jmxexporter_enabled: true
     jmxexporter_url_remote: true
-    jmxexporter_jar_url: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar
+    jmxexporter_jar_url: "https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar"
     jmxexporter_jar_path: "{{archive_destination_path}}/prometheus/jmx_prometheus_javaagent.jar"
     zookeeper_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/zookeeper.yml"
     zookeeper_jmxexporter_port: 1234
@@ -239,21 +242,18 @@ zookeeper:
   hosts:
     zookeeper1.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.11
       zookeeper_id: 1
       zookeeper_keytab_path: "{{archive_destination_path}}/keytabs/zookeeper.keytab"
       zookeeper_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       zookeeper_kerberos_principal: "zookeeper/{{inventory_hostname}}@EXAMPLE.COM"
     zookeeper2.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.12
       zookeeper_id: 2
       zookeeper_keytab_path: "{{archive_destination_path}}/keytabs/zookeeper.keytab"
       zookeeper_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       zookeeper_kerberos_principal: "zookeeper/{{inventory_hostname}}@EXAMPLE.COM"
     zookeeper3.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.13
       zookeeper_id: 3
       zookeeper_keytab_path: "{{archive_destination_path}}/keytabs/zookeeper.keytab"
       zookeeper_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
@@ -319,7 +319,7 @@ kafka_broker:
       confluent.balancer.disk.max.load: 0.85
       confluent.balancer.topic.replication.factor: 3
 
-      # confluent.metadata.server.openapi.enable: true
+      # confluent.metadata.server.openapi.enable: "true"
 
       ldap.java.naming.factory.initial: com.sun.jndi.ldap.LdapCtxFactory
       ldap.com.sun.jndi.ldap.read.timeout: 3000
@@ -362,7 +362,6 @@ kafka_broker:
   hosts:
     kafka1.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.11
       broker_id: 1
       kafka_broker_keytab_path: "{{archive_destination_path}}/keytabs/kafka.keytab"
       kafka_broker_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
@@ -372,7 +371,6 @@ kafka_broker:
       #   replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
     kafka2.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.12
       broker_id: 2
       kafka_broker_keytab_path: "{{archive_destination_path}}/keytabs/kafka.keytab"
       kafka_broker_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
@@ -382,7 +380,6 @@ kafka_broker:
       #   replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
     kafka3.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.13
       broker_id: 3
       kafka_broker_keytab_path: "{{archive_destination_path}}/keytabs/kafka.keytab"
       kafka_broker_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
@@ -419,6 +416,7 @@ schema_registry:
     schema_registry_custom_properties:
       schema.registry.group.id: schema-cluster
       schema.compatibility.level: backward
+      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
       # confluent.license:
 
@@ -433,13 +431,11 @@ schema_registry:
   hosts:
     schema-registry1.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.12
       schema_registry_keytab_path: "{{archive_destination_path}}/keytabs/schema-registry.keytab"
       schema_registry_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       schema_registry_kerberos_principal: "schema-registry/{{inventory_hostname}}@EXAMPLE.COM"
     schema-registry2.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.13
       schema_registry_keytab_path: "{{archive_destination_path}}/keytabs/schema-registry.keytab"
       schema_registry_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       schema_registry_kerberos_principal: "schema-registry/{{inventory_hostname}}@EXAMPLE.COM"
@@ -488,14 +484,91 @@ kafka_connect:
           status.storage.partitions: 5
           status.storage.replication.factor: 3
 
+          confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
+          connector.client.config.override.policy: All
+
           # confluent.license:
 
         kafka_connect_custom_rest_extension_classes:
           - io.confluent.connect.replicator.monitoring.ReplicatorMonitoringExtension
 
         kafka_connect_plugins_path:
-          - "{{archive_destination_path}}/share/java"
-          - "{{archive_destination_path}}/share/confluent-hub-components"
+          - "{{archive_destination_path}}/connect/plugins"
+
+        kafka_connect_plugins_dest: "{{archive_destination_path}}/connect/plugins"
+        # kafka_connect_plugins:
+        #   - "/root/confluent/connect/example-connector.zip"
+        # kafka_connect_plugins_remote:
+        #   - "https://sftp.example.com/pub/kafka-connect/example-connector.zip"
+
+        kafka_connect_confluent_hub_plugins_dest: "{{archive_destination_path}}/connect/plugins"
+        # kafka_connect_confluent_hub_plugins:
+        #   ### source
+        #   - confluentinc/kafka-connect-datagen:latest
+        #   - confluentinc/kafka-connect-replicator:latest
+        #   - confluentinc/kafka-connect-s3-source:latest
+        #   - confluentinc/kafka-connect-kinesis:latest
+        #   - confluentinc/kafka-connect-azure-blob-storage-source:latest
+        #   - confluentinc/kafka-connect-azure-service-bus:latest
+        #   - confluentinc/kafka-connect-azure-event-hubs:latest
+        #   - confluentinc/kafka-connect-gcs-source:latest
+        #   - confluentinc/kafka-connect-gcp-pubsub:latest
+        #   - confluentinc/kafka-connect-hdfs3-source:latest
+        #   - confluentinc/kafka-connect-rabbitmq:latest
+        #   - confluentinc/kafka-connect-activemq:latest
+        #   - confluentinc/kafka-connect-jms:latest
+        #   - confluentinc/kafka-connect-weblogic:latest
+        #   - confluentinc/kafka-connect-oracle-cdc:latest
+        #   - debezium/debezium-connector-postgresql:latest
+        #   - debezium/debezium-connector-mysql:latest
+        #   - debezium/debezium-connector-sqlserver:latest
+        #   - debezium/debezium-connector-mongodb:latest
+        #   - jcustenborder/kafka-connect-spooldir:latest
+        #   ### sink
+        #   - confluentinc/kafka-connect-s3:latest
+        #   - confluentinc/kafka-connect-aws-dynamodb:latest
+        #   - confluentinc/kafka-connect-aws-lambda:latest
+        #   - confluentinc/kafka-connect-azure-blob-storage:latest
+        #   - confluentinc/kafka-connect-azure-data-lake-gen2-storage:latest
+        #   - confluentinc/kafka-connect-azure-functions:latest
+        #   - confluentinc/kafka-connect-gcs:latest
+        #   - confluentinc/kafka-connect-gcp-bigtable:latest
+        #   - confluentinc/kafka-connect-gcp-functions:latest
+        #   - confluentinc/kafka-connect-databricks-delta-lake:latest
+        #   - confluentinc/kafka-connect-hdfs3:latest
+        #   - confluentinc/kafka-connect-rabbitmq-sink:latest
+        #   - confluentinc/kafka-connect-activemq-sink:latest
+        #   - confluentinc/kafka-connect-elasticsearch:latest
+        #   - confluentinc/kafka-connect-cassandra:latest
+        #   - confluentinc/kafka-connect-hbase:latest
+        #   - confluentinc/kafka-connect-jms-sink:latest
+        #   - confluentinc/kafka-connect-http:latest
+        #   - confluentinc/kafka-connect-prometheus-metrics:latest
+        #   - snowflakeinc/snowflake-kafka-connector:latest
+        #   - jcustenborder/kafka-connect-redis:latest
+        #   - wepay/kafka-connect-bigquery:latest
+        #   ### source and sink
+        #   - confluentinc/kafka-connect-firebase:latest
+        #   - confluentinc/kafka-connect-jdbc:latest
+        #   - confluentinc/kafka-connect-mqtt:latest
+        #   - confluentinc/kafka-connect-influxdb:latest
+        #   - confluentinc/kafka-connect-sftp:latest
+        #   - confluentinc/kafka-connect-ftps:latest
+        #   - mongodb/kafka-connect-mongodb:latest
+        #   - neo4j/kafka-connect-neo4j:latest
+        #   ### transform
+        #   - confluentinc/connect-transforms:latest
+        #   ### converter
+        #   - confluentinc/kafka-connect-json-schema-converter:latest
+        #   - confluentinc/kafka-connect-avro-converter:latest
+        #   - confluentinc/kafka-connect-protobuf-converter:latest
+
+        # kafka_connect_connectors:
+        #   - name: example-connector
+        #     config:
+        #       connector.class: ""
+        #       tasks.max: "1"
+        #       # confluent.license:
 
         kafka_connect_copy_files:
           - source_path: "/root/confluent/log4j/kafka-connect-log4j.properties"
@@ -505,31 +578,17 @@ kafka_connect:
         ssl_key_filepath: "/root/confluent/ssl/kafka-connect.key"
         ssl_key_password: changeit
 
-        # kafka_connect_connectors:
-        #   - name: example-connector
-        #     config:
-        #       connector.class: ""
-        #       tasks.max: "1"
-        #       # confluent.license:
-
       hosts:
         kafka-connect1.example.com:
           # ansible_host:
-          ansible_host: 192.168.200.12
           kafka_connect_keytab_path: "{{archive_destination_path}}/keytabs/kafka-connect.keytab"
           kafka_connect_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
           kafka_connect_kerberos_principal: "kafka-connect/{{inventory_hostname}}@EXAMPLE.COM"
         kafka-connect2.example.com:
           # ansible_host:
-          ansible_host: 192.168.200.13
           kafka_connect_keytab_path: "{{archive_destination_path}}/keytabs/kafka-connect.keytab"
           kafka_connect_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
           kafka_connect_kerberos_principal: "kafka-connect/{{inventory_hostname}}@EXAMPLE.COM"
-        # kafka-connect3:
-        #   # ansible_host:
-        #   # kafka_connect_keytab_path: "{{archive_destination_path}}/keytabs/kafka-connect.keytab"
-        #   # kafka_connect_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
-        #   # kafka_connect_kerberos_principal: "kafka-connect/{{inventory_hostname}}@EXAMPLE.COM"
 
 ksql:
   children:
@@ -561,6 +620,7 @@ ksql:
 
         ksql_custom_properties:
           ksql.streams.state.dir: /data/ksqldb
+          confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
         ksql_copy_files:
           - source_path: "/root/confluent/log4j/ksqldb-log4j.properties"
@@ -573,13 +633,11 @@ ksql:
       hosts:
         ksqldb1.example.com:
           # ansible_host:
-          ansible_host: 192.168.200.12
           ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
           ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
           ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
         ksqldb2.example.com:
           # ansible_host:
-          ansible_host: 192.168.200.13
           ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
           ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
           ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
@@ -606,8 +664,10 @@ ksql:
 #       ### log4j settings
 #       KAFKAREST_LOG4J_OPTS: "-Dlog4j.configuration=file:{{archive_destination_path}}/log4j/kafka-rest-log4j.properties"
 
-#     # kafka_rest_custom_properties:
-#     #   # confluent.license:
+#     kafka_rest_custom_properties:
+#       confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
+
+#       # confluent.license:
 
 #     kafka_rest_copy_files:
 #       - source_path: "/root/confluent/log4j/kafka-rest-log4j.properties"
@@ -670,6 +730,8 @@ control_center:
       confluent.controlcenter.ui.controller.chart.enable: "true"
       confluent.controlcenter.usage.data.collection.enable: "false"
 
+      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
+
       # confluent.license:
 
     control_center_copy_files:
@@ -683,7 +745,6 @@ control_center:
   hosts:
     control-center1.example.com:
       # ansible_host:
-      ansible_host: 192.168.200.11
       control_center_keytab_path: "{{archive_destination_path}}/keytabs/control-center.keytab"
       control_center_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       control_center_kerberos_principal: "control-center/{{inventory_hostname}}@EXAMPLE.COM"
