@@ -29,7 +29,7 @@ all:
     ### confluent kafka
     confluent_server_enabled: true
     confluent_package_version: "7.0.1"
-    # confluent_license:
+    # confluent_license: ""
 
     ### confluent cli
     confluent_cli_download_enabled: true
@@ -363,7 +363,7 @@ kafka_broker:
       # confluent.tier.local.hotset.ms: 3600000
       # confluent.tier.local.hotset.bytes: 1073741824
 
-      # confluent.license:
+      # confluent.license: "{{confluent_license}}"
 
     kafka_broker_copy_files:
       - source_path: "/root/confluent/log4j/kafka-log4j.properties"
@@ -425,7 +425,7 @@ schema_registry:
       schema.compatibility.level: backward
       confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
-      # confluent.license:
+      # confluent.license: "{{confluent_license}}"
 
     schema_registry_copy_files:
       - source_path: "/root/confluent/log4j/schema-registry-log4j.properties"
@@ -488,7 +488,7 @@ kafka_connect:
           confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
           connector.client.config.override.policy: All
 
-          # confluent.license:
+          # confluent.license: "{{confluent_license}}"
 
         kafka_connect_custom_rest_extension_classes:
           - io.confluent.connect.replicator.monitoring.ReplicatorMonitoringExtension
@@ -569,7 +569,7 @@ kafka_connect:
         #     config:
         #       connector.class: ""
         #       tasks.max: "1"
-        #       # confluent.license:
+        #       # confluent.license: "{{confluent_license}}"
 
         kafka_connect_copy_files:
           - source_path: "/root/confluent/log4j/kafka-connect-log4j.properties"
@@ -656,7 +656,7 @@ ksql:
 #     kafka_rest_custom_properties:
 #       confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
-#       # confluent.license:
+#       # confluent.license: "{{confluent_license}}"
 
 #     kafka_rest_copy_files:
 #       - source_path: "/root/confluent/log4j/kafka-rest-log4j.properties"
@@ -714,8 +714,6 @@ control_center:
       confluent.controlcenter.usage.data.collection.enable: "false"
 
       confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
-
-      # confluent.license:
 
     control_center_copy_files:
       - source_path: "/root/confluent/log4j/control-center-log4j.properties"
