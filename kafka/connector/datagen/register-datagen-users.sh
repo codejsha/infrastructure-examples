@@ -1,9 +1,6 @@
 #!/bin/bash
 
 KAFKA_CONNECT_URL="http://localhost:8083"
-# KAFKA_CONNECT_URL="http://kafka-connect1:8083"
-# KAFKA_CONNECT_URL="http://kafka-connect.example.com"
-
 CONNECTOR_NAME="datagen-users"
 CONNECTOR_CONFIG_FILE="datagen-users.json"
 
