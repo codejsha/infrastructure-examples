@@ -308,7 +308,6 @@ all:
     schema_registry_custom_properties:
       schema.registry.group.id: schema-cluster
       schema.compatibility.level: backward
-      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
       # confluent.license: "{{confluent_license}}"
 
@@ -353,7 +352,6 @@ all:
       status.storage.partitions: 5
       status.storage.replication.factor: 3
 
-      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
       connector.client.config.override.policy: All
 
       # confluent.license: "{{confluent_license}}"
@@ -466,7 +464,6 @@ all:
 
     ksql_custom_properties:
       ksql.streams.state.dir: /data/ksqldb
-      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
     ######################################################################
     ### kafka rest
@@ -490,7 +487,6 @@ all:
       KAFKAREST_LOG4J_OPTS: "-Dlog4j.configuration=file:{{archive_destination_path}}/log4j/kafka-rest-log4j.properties"
 
     kafka_rest_custom_properties:
-      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
       # confluent.license: "{{confluent_license}}"
 
@@ -533,8 +529,6 @@ all:
       confluent.controlcenter.ui.autoupdate.enable: "false"
       confluent.controlcenter.ui.controller.chart.enable: "true"
       confluent.controlcenter.usage.data.collection.enable: "false"
-
-      confluent.metadata.ssl.endpoint.identification.algorithm: HTTPS
 
       # confluent.license: "{{confluent_license}}"
 
