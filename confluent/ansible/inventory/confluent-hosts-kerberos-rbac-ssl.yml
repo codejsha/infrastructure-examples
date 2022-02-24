@@ -86,6 +86,9 @@ all:
       kafka_broker:
         principal: kafka
         password: kafka-secret
+      kafkaadmin:
+        principal: kafkaadmin
+        password: kafkaadmin
 
     ### ssl
     ssl_enabled: true
@@ -765,6 +768,8 @@ control_center:
   hosts:
     control-center1.example.com:
       # ansible_host:
+      control_center_custom_properties:
+        confluent.controlcenter.id: 1
       control_center_keytab_path: "{{archive_destination_path}}/keytabs/control-center.keytab"
       control_center_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
       control_center_kerberos_principal: "control-center/{{inventory_hostname}}@EXAMPLE.COM"

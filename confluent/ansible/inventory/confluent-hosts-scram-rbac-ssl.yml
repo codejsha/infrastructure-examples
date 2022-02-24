@@ -81,6 +81,9 @@ all:
       kafka_broker:
         principal: kafka
         password: kafka-secret
+      kafkaadmin:
+        principal: kafkaadmin
+        password: kafkaadmin
 
     ### scram users
     sasl_scram_users:
@@ -748,3 +751,5 @@ control_center:
   hosts:
     control-center1.example.com:
       # ansible_host:
+      control_center_custom_properties:
+        confluent.controlcenter.id: 1

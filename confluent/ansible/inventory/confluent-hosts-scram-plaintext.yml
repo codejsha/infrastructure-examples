@@ -81,6 +81,9 @@ all:
       kafka_broker:
         principal: kafka
         password: kafka-secret
+      kafkaadmin:
+        principal: kafkaadmin
+        password: kafkaadmin
 
     ### scram users
     sasl_scram_users:
@@ -138,7 +141,7 @@ all:
         port: 9091
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        sasl_protocol: none
       external:
         name: EXTERNAL
         port: 9092
@@ -150,13 +153,13 @@ all:
         port: 9093
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        sasl_protocol: none
       controller:
         name: CONTROLLER
         port: 9094
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        sasl_protocol: none
 
     ### kafka internal listener
     schema_registry_kafka_listener_name: internal
@@ -655,3 +658,5 @@ control_center:
   hosts:
     control-center1.example.com:
       # ansible_host:
+      control_center_custom_properties:
+        confluent.controlcenter.id: 1
