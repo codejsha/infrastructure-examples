@@ -10,6 +10,6 @@ show topics;
 show streams;
 show queries;
 
--- auto
+-- offset reset
 SET 'ksql.streams.auto.offset.reset' = 'earliest';
 SET 'ksql.streams.auto.offset.reset' = 'latest';
