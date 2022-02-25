@@ -652,7 +652,6 @@ zookeeper:
     ssl_signed_cert_filepath: "/root/confluent/ssl/zookeeper-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/zookeeper.key"
     ssl_key_password: changeit
-
   hosts:
     zookeeper1.example.com:
       # ansible_host:
@@ -669,7 +668,6 @@ kafka_broker:
     ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/kafka.key"
     ssl_key_password: changeit
-
   hosts:
     kafka1.example.com:
       # ansible_host:
@@ -695,7 +693,6 @@ schema_registry:
     ssl_signed_cert_filepath: "/root/confluent/ssl/schema-registry-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/schema-registry.key"
     ssl_key_password: changeit
-
   hosts:
     schema-registry1.example.com:
       # ansible_host:
@@ -709,33 +706,30 @@ kafka_connect:
         ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-connect-chain.crt"
         ssl_key_filepath: "/root/confluent/ssl/kafka-connect.key"
         ssl_key_password: changeit
-
       hosts:
         kafka-connect1.example.com:
           # ansible_host:
         kafka-connect2.example.com:
           # ansible_host:
 
-ksql:
-  children:
-    ksql-cluster:
-      vars:
-        ssl_signed_cert_filepath: "/root/confluent/ssl/ksqldb-chain.crt"
-        ssl_key_filepath: "/root/confluent/ssl/ksqldb.key"
-        ssl_key_password: changeit
-
-      hosts:
-        ksqldb1.example.com:
-          # ansible_host:
-        ksqldb2.example.com:
-          # ansible_host:
+# ksql:
+#   children:
+#     ksql-cluster:
+#       vars:
+#         ssl_signed_cert_filepath: "/root/confluent/ssl/ksqldb-chain.crt"
+#         ssl_key_filepath: "/root/confluent/ssl/ksqldb.key"
+#         ssl_key_password: changeit
+#       hosts:
+#         ksqldb1.example.com:
+#           # ansible_host:
+#         ksqldb2.example.com:
+#           # ansible_host:
 
 # kafka_rest:
 #   vars:
 #     ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-rest-chain.crt"
 #     ssl_key_filepath: "/root/confluent/ssl/kafka-rest.key"
 #     ssl_key_password: changeit
-
 #   hosts:
 #     kafka-rest1.example.com:
 #       # ansible_host:
@@ -747,7 +741,6 @@ control_center:
     ssl_signed_cert_filepath: "/root/confluent/ssl/control-center-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/control-center.key"
     ssl_key_password: changeit
-
   hosts:
     control-center1.example.com:
       # ansible_host:

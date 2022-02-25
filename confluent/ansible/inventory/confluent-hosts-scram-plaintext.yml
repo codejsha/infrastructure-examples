@@ -577,7 +577,6 @@ all:
 
 zookeeper:
   # vars:
-
   hosts:
     zookeeper1.example.com:
       # ansible_host:
@@ -591,7 +590,6 @@ zookeeper:
 
 kafka_broker:
   # vars:
-
   hosts:
     kafka1.example.com:
       # ansible_host:
@@ -614,7 +612,6 @@ kafka_broker:
 
 schema_registry:
   # vars:
-
   hosts:
     schema-registry1.example.com:
       # ansible_host:
@@ -625,27 +622,24 @@ kafka_connect:
   children:
     connect-cluster:
       # vars:
-
       hosts:
         kafka-connect1.example.com:
           # ansible_host:
         kafka-connect2.example.com:
           # ansible_host:
 
-ksql:
-  children:
-    ksql-cluster:
-      # vars:
-
-      hosts:
-        ksqldb1.example.com:
-          # ansible_host:
-        ksqldb2.example.com:
-          # ansible_host:
+# ksql:
+#   children:
+#     ksql-cluster:
+#       # vars:
+#       hosts:
+#         ksqldb1.example.com:
+#           # ansible_host:
+#         ksqldb2.example.com:
+#           # ansible_host:
 
 # kafka_rest:
 #   # vars:
-
 #   hosts:
 #     kafka-rest1.example.com:
 #       # ansible_host:
@@ -654,7 +648,6 @@ ksql:
 
 control_center:
   # vars:
-
   hosts:
     control-center1.example.com:
       # ansible_host:
