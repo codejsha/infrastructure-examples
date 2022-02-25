@@ -21,9 +21,9 @@ curl --silent \
 
 curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/subjects | jq
 curl --silent \
+    --user schema-registry:schema-registry-secret \
     --request GET \
     --header "Accept:application/json" \
-    --user schema-registry:schema-registry-secret \
     --cacert /opt/confluent/ssl/ca.crt \
     --cert /opt/confluent/ssl/schema_registry.crt \
     --key /opt/confluent/ssl/schema_registry.key \
