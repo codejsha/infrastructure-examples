@@ -4,7 +4,11 @@
 
 ### schema
 
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/schemas/types | jq
+curl --silent \
+    --header "Accept:application/json" \
+    --request GET \
+    http://schema-registry1:8081/schemas/types \
+    | jq
 ### [
 ###   "JSON",
 ###   "PROTOBUF",
@@ -15,12 +19,21 @@ curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/schemas
 
 ### subject
 
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/subjects | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/subjects | jq
+curl --silent \
+    --request GET \
+    --header "Accept:application/json" \
+    --user schema-registry:schema-registry-secret \
+    --cacert /opt/confluent/ssl/ca.crt \
+    --cert /opt/confluent/ssl/schema_registry.crt \
+    --key /opt/confluent/ssl/schema_registry.key \
+    https://schema-registry1.example.com:8081/subjects \
+    | jq
 
 ### version
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/subjects/sakila-value/versions | jq
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/subjects/sakila-value/versions/1 | jq
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/subjects/sakila-value/versions/1/schema | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/subjects/sakila-value/versions | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/subjects/sakila-value/versions/1 | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/subjects/sakila-value/versions/1/schema | jq
 
 ######################################################################
 
@@ -32,10 +45,10 @@ curl -s -X POST -H "Accept:application/json" -H "Content-Type:application/json" 
 
 ### mode
 
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/mode | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/mode | jq
 
 ######################################################################
 
 ### config
 
-curl -s -H "Accept:application/json" -X GET http://schema-registry1:8081/config | jq
+curl -s -X GET -H "Accept:application/json" http://schema-registry1:8081/config | jq

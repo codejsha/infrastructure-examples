@@ -11,10 +11,22 @@
     --partitions 3 \
     --replication-factor 1 \
     --topic my-topic
+./kafka-topics \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
+    --create \
+    --partitions 3 \
+    --replication-factor 3 \
+    --topic my-topic
 
 ### delete
 ./kafka-topics \
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
+    --delete \
+    --topic my-topic
+./kafka-topics \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
     --delete \
     --topic my-topic
 
@@ -23,9 +35,9 @@
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
     --list
 ./kafka-topics \
-    --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
-    --list \
-    --command-config /usr/local/confluent/properties/client.properties
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
+    --list
 
 ### describe
 ./kafka-topics \
@@ -33,7 +45,14 @@
     --describe \
     --topic my-topic
 ./kafka-topics \
-    --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
     --describe \
-    --topic my-topic \
-    --command-config /usr/local/confluent/properties/client.properties
+    --topic my-topic
+kafka-configs \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
+    --entity-type topics \
+    --entity-name my-topic \
+    --describe \
+    --all
