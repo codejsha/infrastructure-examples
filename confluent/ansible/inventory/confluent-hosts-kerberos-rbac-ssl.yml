@@ -627,7 +627,6 @@ zookeeper:
     ssl_signed_cert_filepath: "/root/confluent/ssl/zookeeper-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/zookeeper.key"
     ssl_key_password: changeit
-
   hosts:
     zookeeper1.example.com:
       # ansible_host:
@@ -653,7 +652,6 @@ kafka_broker:
     ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/kafka.key"
     ssl_key_password: changeit
-
   hosts:
     kafka1.example.com:
       # ansible_host:
@@ -688,7 +686,6 @@ schema_registry:
     ssl_signed_cert_filepath: "/root/confluent/ssl/schema-registry-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/schema-registry.key"
     ssl_key_password: changeit
-
   hosts:
     schema-registry1.example.com:
       # ansible_host:
@@ -708,7 +705,6 @@ kafka_connect:
         ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-connect-chain.crt"
         ssl_key_filepath: "/root/confluent/ssl/kafka-connect.key"
         ssl_key_password: changeit
-
       hosts:
         kafka-connect1.example.com:
           # ansible_host:
@@ -721,32 +717,30 @@ kafka_connect:
           kafka_connect_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
           kafka_connect_kerberos_principal: "kafka-connect/{{inventory_hostname}}@EXAMPLE.COM"
 
-ksql:
-  children:
-    ksql-cluster:
-      vars:
-        ssl_signed_cert_filepath: "/root/confluent/ssl/ksqldb-chain.crt"
-        ssl_key_filepath: "/root/confluent/ssl/ksqldb.key"
-        ssl_key_password: changeit
-
-      hosts:
-        ksqldb1.example.com:
-          # ansible_host:
-          ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
-          ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
-          ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
-        ksqldb2.example.com:
-          # ansible_host:
-          ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
-          ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
-          ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
+# ksql:
+#   children:
+#     ksql-cluster:
+#       vars:
+#         ssl_signed_cert_filepath: "/root/confluent/ssl/ksqldb-chain.crt"
+#         ssl_key_filepath: "/root/confluent/ssl/ksqldb.key"
+#         ssl_key_password: changeit
+#       hosts:
+#         ksqldb1.example.com:
+#           # ansible_host:
+#           ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
+#           ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
+#           ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
+#         ksqldb2.example.com:
+#           # ansible_host:
+#           ksql_keytab_path: "{{archive_destination_path}}/keytabs/ksqldb.keytab"
+#           ksql_kerberos_keytab_path: "/root/confluent/keytabs/{{inventory_hostname}}.keytab"
+#           ksql_kerberos_principal: "ksqldb/{{inventory_hostname}}@EXAMPLE.COM"
 
 # kafka_rest:
 #   vars:
 #     ssl_signed_cert_filepath: "/root/confluent/ssl/kafka-rest-chain.crt"
 #     ssl_key_filepath: "/root/confluent/ssl/kafka-rest.key"
 #     ssl_key_password: changeit
-
 #   hosts:
 #     kafka-rest1.example.com:
 #       # ansible_host:
@@ -764,7 +758,6 @@ control_center:
     ssl_signed_cert_filepath: "/root/confluent/ssl/control-center-chain.crt"
     ssl_key_filepath: "/root/confluent/ssl/control-center.key"
     ssl_key_password: changeit
-
   hosts:
     control-center1.example.com:
       # ansible_host:
