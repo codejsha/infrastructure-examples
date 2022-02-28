@@ -133,7 +133,7 @@ all:
     jmxexporter_jar_path: "{{archive_destination_path}}/prometheus/jmx_prometheus_javaagent.jar"
     zookeeper_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/zookeeper.yml"
     zookeeper_jmxexporter_port: 1234
-    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka.yml"
+    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_broker.yml"
     kafka_broker_jmxexporter_port: 1234
     schema_registry_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/schema_registry.yml"
     schema_registry_jmxexporter_port: 1234
