@@ -163,7 +163,6 @@ all:
 
     rbac_component_additional_system_admins:
       - kafkaadmin
-      - control-center
     # kafka_broker_additional_system_admins:
     # schema_registry_additional_system_admins:
     # kafka_connect_additional_system_admins:
