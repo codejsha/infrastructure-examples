@@ -141,7 +141,7 @@ all:
         port: 9091
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: none
+        sasl_protocol: scram
       external:
         name: EXTERNAL
         port: 9092
@@ -153,13 +153,13 @@ all:
         port: 9093
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: none
+        sasl_protocol: scram
       controller:
         name: CONTROLLER
         port: 9094
         ssl_enabled: false
         ssl_mutual_auth_enabled: false
-        sasl_protocol: none
+        sasl_protocol: scram
 
     ### kafka internal listener
     schema_registry_kafka_listener_name: internal
@@ -176,7 +176,7 @@ all:
     jmxexporter_jar_path: "{{archive_destination_path}}/prometheus/jmx_prometheus_javaagent.jar"
     zookeeper_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/zookeeper.yml"
     zookeeper_jmxexporter_port: 1234
-    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka.yml"
+    kafka_broker_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/kafka_broker.yml"
     kafka_broker_jmxexporter_port: 1234
     schema_registry_jmxexporter_config_path: "{{archive_destination_path}}/prometheus/schema_registry.yml"
     schema_registry_jmxexporter_port: 1234
