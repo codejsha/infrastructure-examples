@@ -44,9 +44,9 @@ confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --
 ### producer/consumer
 CLIENT_USER="client"
 TOPIC_NAME="my-topic"
-GROUP_NAME_PREFIX="my-consumer"
+CONSUMER_GROUP_ID_PREFIX="my-consumer"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${TOPIC_NAME}
-confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Group:${GROUP_NAME_PREFIX} --prefix
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Group:${CONSUMER_GROUP_ID_PREFIX} --prefix
 
 ######################################################################
 
@@ -63,10 +63,17 @@ confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --
 
 ### client
 SCHEMA_REGISTRY_CLUSTER_ID="schema-cluster"
-CLIENT_USER="client"
+CLIENT_USER="schema-registry"
 TOPIC_NAME="my-topic"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Subject:${TOPIC_NAME}-key
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Subject:${TOPIC_NAME}-value
+
+### client (topic prefix)
+SCHEMA_REGISTRY_CLUSTER_ID="schema-cluster"
+CLIENT_USER="schema-registry"
+TOPIC_NAME_PREFIX="database"
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${TOPIC_NAME_PREFIX} --prefix
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Subject:${TOPIC_NAME_PREFIX} --prefix
 
 ######################################################################
 
@@ -158,20 +165,19 @@ confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --ksql-cluster-id ${KSQLDB_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource KsqlCluster:${KSQLDB_CLUSTER_ID}
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:_confluent-ksql-${KSQLDB_CLUSTER_ID}_command_topic
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:${KSQLDB_CLUSTER_ID}ksql_processing_log
-
-### client admin
-KSQLDB_CLUSTER_ID="ksql-cluster"
-CLIENT_USER="client"
-TOPIC_NAME="my-topic"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource TransactionalId:${KSQLDB_CLUSTER_ID}
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:_confluent-ksql-${KSQLDB_CLUSTER_ID}transient --prefix
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:_confluent-ksql-${KSQLDB_CLUSTER_ID} --prefix
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role DeveloperRead --resource Group:_confluent-ksql-${KSQLDB_CLUSTER_ID} --prefix
+
+### client admin
+KSQLDB_ADMIN_USER="ksqldb"
+TOPIC_NAME="my-topic"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
 
 ### client user
 KSQLDB_CLUSTER_ID="ksql-cluster"
-CLIENT_USER="client"
+CLIENT_USER="ksqldb"
 TOPIC_NAME="my-topic"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --ksql-cluster-id ${KSQLDB_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperWrite --resource KsqlCluster:${KSQLDB_CLUSTER_ID}
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:_confluent-ksql-${KSQLDB_CLUSTER_ID}transient --prefix
@@ -180,15 +186,15 @@ confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
 
 ### csas, ctas
-# KSQLDB_ADMIN_USER="ksqldb"
-# CLIENT_USER="client"
-# CSAS_STREAM_NAME=""
-# CTAS_TABLE_NAME=""
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:${CSAS_STREAM_NAME}
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:${CTAS_TABLE_NAME}
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${CSAS_STREAM_NAME}
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${CTAS_TABLE_NAME}
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
+KSQLDB_ADMIN_USER="ksqldb"
+CLIENT_USER="ksqldb"
+CSAS_STREAM_NAME=""
+CTAS_TABLE_NAME=""
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:${CSAS_STREAM_NAME}
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${KSQLDB_ADMIN_USER} --role ResourceOwner --resource Topic:${CTAS_TABLE_NAME}
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${CSAS_STREAM_NAME}
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role ResourceOwner --resource Topic:${CTAS_TABLE_NAME}
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
 
 ######################################################################
 
@@ -197,22 +203,22 @@ confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --
 ### admin
 CONTROL_CENTER_ADMIN_USER="control-center"
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role SystemAdmin
-confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role ClusterAdmin
-confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --connect-cluster-id ${KAFKA_CONNECT_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role ClusterAdmin
-confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --ksql-cluster-id ${KSQLDB_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role ClusterAdmin
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role SystemAdmin
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --connect-cluster-id ${KAFKA_CONNECT_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role SystemAdmin
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --ksql-cluster-id ${KSQLDB_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role SystemAdmin
 confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role ResourceOwner --resource Topic:_confluent-command
 # confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CONTROL_CENTER_ADMIN_USER} --role ResourceOwner --resource Topic:_confluent-license
 
 ### client
-# SCHEMA_REGISTRY_CLUSTER_ID="schema-cluster"
-# KAFKA_CONNECT_CLUSTER_ID="connect-cluster"
-# CLIENT_USER="client"
-# CONNECTOR_NAME="postgresql-source"
-# TOPIC_NAME="my-topic"
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Subject:${TOPIC_NAME}-key
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Subject:${TOPIC_NAME}-value
-# confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --connect-cluster-id ${KAFKA_CONNECT_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Connector:${CONNECTOR_NAME}
+SCHEMA_REGISTRY_CLUSTER_ID="schema-cluster"
+KAFKA_CONNECT_CLUSTER_ID="connect-cluster"
+CLIENT_USER="control-center"
+CONNECTOR_NAME="postgresql-source"
+TOPIC_NAME="my-topic"
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Topic:${TOPIC_NAME}
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Subject:${TOPIC_NAME}-key
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --schema-registry-cluster-id ${SCHEMA_REGISTRY_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Subject:${TOPIC_NAME}-value
+confluent iam rbac role-binding create --kafka-cluster-id ${KAFKA_CLUSTER_ID} --connect-cluster-id ${KAFKA_CONNECT_CLUSTER_ID} --principal User:${CLIENT_USER} --role DeveloperRead --resource Connector:${CONNECTOR_NAME}
 
 ######################################################################
 
