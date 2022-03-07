@@ -68,3 +68,11 @@ kafka-configs --bootstrap-server localhost:9092 --alter --add-config "producer_b
 
 kafka-configs --bootstrap-server localhost:9092 --alter --delete-config producer_byte_rate,consumer_byte_rate --entity-type clients
 kafka-configs --bootstrap-server localhost:9092 --alter --delete-config producer_byte_rate,consumer_byte_rate --entity-name my-producer-1 --entity-type clients
+
+######################################################################
+
+### delete topic records
+./kafka-delete-records \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
+    --offset-json-file delete-records.json

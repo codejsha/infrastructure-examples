@@ -42,8 +42,14 @@
 ### schema
 ./kafka-avro-console-consumer \
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
-    --property print.key=true \
+    --property print.key=false \
     --property schema.registry.url=http://schema-registry1:8081 \
+    --topic my-topic
+./kafka-avro-console-consumer \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --consumer.config /opt/confluent/etc/kafka/client.properties \
+    --property schema.registry.url=http://schema-registry1.example.com:8081 \
+    --from-beginning \
     --topic my-topic
 
 ### max message

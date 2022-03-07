@@ -49,10 +49,21 @@
     --command-config /opt/confluent/etc/kafka/client.properties \
     --describe \
     --topic my-topic
-kafka-configs \
+./kafka-configs \
     --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
     --command-config /opt/confluent/etc/kafka/client.properties \
     --entity-type topics \
     --entity-name my-topic \
     --describe \
     --all
+
+######################################################################
+
+### add config
+./kafka-configs \
+    --bootstrap-server kafka1.example.com:9092,kafka2.example.com:9092,kafka3.example.com:9092 \
+    --command-config /opt/confluent/etc/kafka/client.properties \
+    --entity-type topics \
+    --entity-name my-topic \
+    --alter \
+    --add-config retention.ms=1000
