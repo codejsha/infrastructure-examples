@@ -3,6 +3,7 @@
   "config": {
     "connector.class": "io.confluent.connect.cassandra.CassandraSinkConnector",
     "tasks.max": "1",
+    "topics": "pageviews",
     "cassandra.contact.points": "cassandra.example.com",
     "cassandra.port": "9042",
     "cassandra.local.datacenter": "datacenter1",
@@ -19,7 +20,6 @@
     "cassandra.write.mode": "insert",
     "cassandra.deletes.enabled": "true",
     "cassandra.compression": "NONE",
-    "topics": "pageviews",
     "transforms": "ValueToKey",
     "transforms.ValueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
     "transforms.ValueToKey.fields": "userid",
