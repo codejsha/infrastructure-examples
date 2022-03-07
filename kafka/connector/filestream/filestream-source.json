@@ -1,7 +1,6 @@
 {
   "name": "filestream-source",
   "config": {
-    "name": "filestream-source",
     "connector.class": "FileStreamSource",
     "tasks.max": "1",
     "topic": "filestream.source",

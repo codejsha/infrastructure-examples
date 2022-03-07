@@ -1,8 +1,8 @@
 #!/bin/bash
 
 KAFKA_CONNECT_URL="http://localhost:8083"
-CONNECTOR_NAME="aws-s3-sink"
-CONNECTOR_CONFIG_FILE="aws-s3-sink.json"
+CONNECTOR_NAME="oracle-source"
+CONNECTOR_CONFIG_FILE="oracle-source.json"
 
 ######################################################################
 
