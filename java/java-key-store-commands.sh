@@ -14,6 +14,12 @@ keytool -list -v -keystore ${JAVA_HOME}/lib/security/cacerts
 keytool -list -keystore ${JAVA_HOME}/jre/lib/security/cacerts
 keytool -list -v -keystore ${JAVA_HOME}/jre/lib/security/cacerts
 
+### import
+
+keytool -import -trustcacerts -alias rootca -file ca.crt -keystore cacerts
+
+######################################################################
+
 keytool -list -keystore keystore.jks
 keytool -list -v -keystore keystore.jks
 
