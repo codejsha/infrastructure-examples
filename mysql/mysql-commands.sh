@@ -1,6 +1,7 @@
 ######################################################################
 
 ### connect
+mysqlsh root:password@localhost:3306/mysql --sql
 mysqlsh root:password@test.example.com:3306/mysql --sql
 mysqlsh root@test.example.com:3306/mysql --password=password --sql
 mysqlsh --user=root --password=password --host=test.example.com --port=3306 --database=mysql --sql
