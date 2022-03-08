@@ -8,6 +8,8 @@ openssl s_client -connect test.example.com:443 -tls1_2 < /dev/null
 ### display server certificate list
 openssl s_client -connect test.example.com:443 -showcerts < /dev/null
 
+openssl s_client -connect test.example.com:443 -showcerts < /dev/null | openssl x509 -noout -dates
+
 ######################################################################
 
 openssl req -in tls.csr -noout -text
