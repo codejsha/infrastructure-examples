@@ -33,4 +33,4 @@ spec:
         - destination:
             host: my-minio.minio.svc.cluster.local
             port:
-              number: 9000
+              number: 9001

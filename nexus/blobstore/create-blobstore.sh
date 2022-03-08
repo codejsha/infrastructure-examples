@@ -12,7 +12,7 @@ BUCKET_NAME="${BLOBSTORE_NAME}"
 
 AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
 AWS_SECRET_KEY="${AWS_SECRET_KEY}"
-# AWS_ENDPOINT_URL="http://10.10.10.52:9000"
+# AWS_ENDPOINT_URL="http://10.10.10.52:9001"
 AWS_ENDPOINT_URL="http://minio.example.com"
 # AWS_ENDPOINT_URL="https://minio-tenant-1.example.com"
 
