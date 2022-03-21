@@ -1,0 +1,31 @@
+######################################################################
+### custom properties
+######################################################################
+
+
+    ######################################################################
+    ### custom
+    ######################################################################
+    redhat_epel_repo_enabled: true
+    install_additional_tools: true
+    install_additional_infra_tools: true
+    install_vscode_remote_dev_requirements: true
+
+    zookeeper_log_file_name: zookeeper-server.log
+    zookeeper_gc_log_file_name: zookeeper-gc.log
+    kafka_broker_log_file_name: server.log
+    kafka_broker_gc_log_file_name: kafka-gc.log
+    schema_registry_log_file_name: schema-registry.log
+    schema_registry_gc_log_file_name: schema-registry-gc.log
+    kafka_connect_log_file_name: connect.log
+    kafka_connect_gc_log_file_name: connect-gc.log
+    ksql_log_file_name: ksql.log
+    ksql_gc_log_file_name: ksql-server-gc.log
+    kafka_rest_log_file_name: kafka-rest.log
+    kafka_rest_gc_log_file_name: kafka-rest-gc.log
+    control_center_log_file_name: control-center.log
+    control_center_gc_log_file_name: control-center-gc.log
+
+    default_user_home_dir: /home/confluent
+
+    ######################################################################

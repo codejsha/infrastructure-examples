@@ -27,8 +27,6 @@ all:
     kafka_rest_group: confluent
     control_center_user: confluent
     control_center_group: confluent
-    kafka_connect_replicator_user: confluent
-    kafka_connect_replicator_group: confluent
 
     ### custom yum repo file (rhel/centos)
     # repository_configuration: custom
@@ -70,50 +68,7 @@ all:
     # deployment_strategy: rolling
 
     ### sasl authentication
-    sasl_protocol: scram
-    zookeeper_sasl_protocol: digest
-    zookeeper_client_authentication_type: digest
-    zookeeper_quorum_authentication_type: digest
-    zookeeper_digest_users:
-      admin:
-        principal: zookeeper
-        password: zookeeper-secret
-      kafka_broker:
-        principal: kafka
-        password: kafka-secret
-      kafkaadmin:
-        principal: kafkaadmin
-        password: kafkaadmin
-
-    ### scram users
-    sasl_scram_users:
-      client:
-        principal: client
-        password: client-secret
-      kafkaadmin:
-        principal: kafkaadmin
-        password: kafkaadmin
-      admin:
-        principal: kafka
-        password: kafka-secret
-      schema_registry:
-        principal: schema-registry
-        password: schema-registry-secret
-      kafka_connect:
-        principal: kafka-connect
-        password: kafka-connect-secret
-      kafka_connect_replicator:
-        principal: replicator
-        password: replicator-secret
-      ksql:
-        principal: ksqldb
-        password: ksqldb-secret
-      kafka_rest:
-        principal: kafka-rest
-        password: kafka-rest-secret
-      control_center:
-        principal: control-center
-        password: control-center-secret
+    sasl_protocol: none
 
     ### ssl
     ssl_enabled: false
@@ -126,9 +81,10 @@ all:
 
     ### component cluster group
     kafka_connect_cluster_ansible_group_names:
-      - connect-cluster
+      - connect-cluster1
+      # - replicator-cluster1
     ksql_cluster_ansible_group_names:
-      - ksql-cluster
+      - ksql-cluster1
 
     ### kafka listeners
     kafka_broker_configure_multiple_listeners: true
@@ -139,27 +95,27 @@ all:
       internal:
         name: INTERNAL
         port: 9091
-        ssl_enabled: false
-        ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        # ssl_enabled: false
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: none
       external:
         name: EXTERNAL
         port: 9092
-        ssl_enabled: false
-        ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        # ssl_enabled: false
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: none
       broker:
         name: BROKER
         port: 9093
-        ssl_enabled: false
-        ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        # ssl_enabled: false
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: none
       controller:
         name: CONTROLLER
         port: 9094
-        ssl_enabled: false
-        ssl_mutual_auth_enabled: false
-        sasl_protocol: scram
+        # ssl_enabled: false
+        # ssl_mutual_auth_enabled: false
+        # sasl_protocol: none
 
     ### kafka internal listener
     schema_registry_kafka_listener_name: internal
@@ -218,7 +174,8 @@ all:
     zookeeper_log_dir: /logs/zookeeper
     zookeeper_chroot: /clusterlocal
 
-    # zookeeper_custom_java_args: "-Dsun.security.krb5.disableReferrals=true"
+    ### generic jvm settings
+    # zookeeper_custom_java_args: ""
 
     zookeeper_service_environment_overrides:
       ### memory options
@@ -226,8 +183,6 @@ all:
       KAFKA_HEAP_OPTS: "-Xms512m -Xmx512m"
       ### performance options
       KAFKA_JVM_PERFORMANCE_OPTS: "-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings
-      # KAFKA_OPTS:
       ### gc options
       KAFKA_GC_LOG_OPTS: "-Xlog:gc*:file={{zookeeper_log_dir}}/zookeeper-gc.log:time,tags:filecount=10,filesize=100M"
       # KAFKA_GC_LOG_OPTS: "-Xloggc:{{zookeeper_log_dir}}/zookeeper-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
@@ -254,6 +209,7 @@ all:
     ######################################################################
     kafka_broker_log_dir: /logs/kafka
 
+    ### generic jvm settings
     # kafka_broker_custom_java_args: ""
 
     kafka_broker_service_environment_overrides:
@@ -262,8 +218,6 @@ all:
       KAFKA_HEAP_OPTS: "-Xms1g -Xmx1g"
       ### performance options
       KAFKA_JVM_PERFORMANCE_OPTS: "-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings
-      # KAFKA_OPTS:
       ### gc options
       KAFKA_GC_LOG_OPTS: "-Xlog:gc*:file={{kafka_broker_log_dir}}/kafka-gc.log:time,tags:filecount=10,filesize=100M"
       # KAFKA_GC_LOG_OPTS: "-Xloggc:{{kafka_broker_log_dir}}/kafka-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
@@ -329,6 +283,7 @@ all:
     ######################################################################
     schema_registry_log_dir: /logs/schema-registry
 
+    ### generic jvm settings
     # schema_registry_custom_java_args: ""
 
     schema_registry_service_environment_overrides:
@@ -337,8 +292,6 @@ all:
       SCHEMA_REGISTRY_HEAP_OPTS: "-Xms512m -Xmx512m"
       ### performance options
       SCHEMA_REGISTRY_JVM_PERFORMANCE_OPTS: "-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings
-      # SCHEMA_REGISTRY_OPTS:
       ### gc options
       SCHEMA_REGISTRY_GC_LOG_OPTS: "-Xlog:gc*:file={{schema_registry_log_dir}}/schema-registry-gc.log:time,tags:filecount=10,filesize=100M"
       # SCHEMA_REGISTRY_GC_LOG_OPTS: "-Xloggc:{{schema_registry_log_dir}}/schema-registry-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
@@ -349,7 +302,6 @@ all:
       SCHEMA_REGISTRY_LOG4J_OPTS: "-Dlog4j.configuration=file:{{archive_destination_path}}/log4j/schema-registry-log4j.properties"
 
     schema_registry_custom_properties:
-      schema.registry.group.id: schema-cluster
       schema.compatibility.level: backward
 
       # confluent.license: "{{confluent_license}}"
@@ -358,8 +310,8 @@ all:
     ### kafka connect
     ######################################################################
     kafka_connect_log_dir: /logs/kafka-connect
-    kafka_connect_group_id: connect-cluster
 
+    ### generic jvm settings
     # kafka_connect_custom_java_args: ""
 
     kafka_connect_service_environment_overrides:
@@ -368,8 +320,6 @@ all:
       KAFKA_HEAP_OPTS: "-Xms1g -Xmx1g"
       ### performance options
       KAFKA_JVM_PERFORMANCE_OPTS: "-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings
-      # KAFKA_OPTS:
       ### gc options
       KAFKA_GC_LOG_OPTS: "-Xlog:gc*:file={{kafka_connect_log_dir}}/connect-gc.log:time,tags:filecount=10,filesize=100M"
       # KAFKA_GC_LOG_OPTS: "-Xloggc:{{kafka_connect_log_dir}}/connect-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
@@ -385,13 +335,10 @@ all:
       # AWS_SECRET_ACCESS_KEY:
 
     kafka_connect_custom_properties:
-      config.storage.topic: connect-cluster-configs
       config.storage.replication.factor: 3
-      offset.storage.topic: connect-cluster-offsets
       offset.storage.partitions: 25
       offset.storage.replication.factor: 3
       offset.flush.interval.ms: 10000
-      status.storage.topic: connect-cluster-status
       status.storage.partitions: 5
       status.storage.replication.factor: 3
 
@@ -484,8 +431,8 @@ all:
     ### ksqldb
     ######################################################################
     ksql_log_dir: /logs/ksqldb
-    ksql_service_id: ksql-cluster
 
+    ### generic jvm settings
     # ksql_custom_java_args: ""
 
     ksql_service_environment_overrides:
@@ -494,8 +441,6 @@ all:
       KSQL_HEAP_OPTS: "-Xms1g -Xmx1g"
       ### performance options
       KSQL_JVM_PERFORMANCE_OPTS: "-server -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings
-      # KSQL_OPTS:
       ### gc options
       KSQL_GC_LOG_OPTS: "-Xlog:gc*:file={{ksql_log_dir}}/ksql-server-gc.log:time,tags:filecount=10,filesize=100M"
       # KSQL_GC_LOG_OPTS: "-Xloggc:{{ksql_log_dir}}/ksql-server-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
@@ -513,16 +458,15 @@ all:
     ######################################################################
     kafka_rest_log_dir: /logs/kafka-rest
 
-    # kafka_rest_custom_java_args: ""
+    ### generic jvm settings and gc options
+    kafka_rest_custom_java_args: "-Xlog:gc*:file={{kafka_rest_log_dir}}/kafka-rest-gc.log:time,tags:filecount=10,filesize=100M"
+    # kafka_rest_custom_java_args: "-Xloggc:{{kafka_rest_log_dir}}/kafka-rest-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
 
     kafka_rest_service_environment_overrides:
       ### memory options
       KAFKAREST_HEAP_OPTS: "-Xms256m -Xmx256m"
       ### performance options
       KAFKAREST_JVM_PERFORMANCE_OPTS: "-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings and gc options
-      KAFKAREST_OPTS: "-Xlog:gc*:file={{kafka_rest_log_dir}}/kafka-rest-gc.log:time,tags:filecount=10,filesize=100M"
-      # KAFKAREST_OPTS: "-Xloggc:{{kafka_rest_log_dir}}/kafka-rest-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
       ### jmx settings
       KAFKAREST_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
       # KAFKAREST_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9010"
@@ -538,7 +482,9 @@ all:
     ######################################################################
     control_center_log_dir: /logs/control-center
 
-    # control_center_custom_java_args: ""
+    ### generic jvm settings and gc options
+    control_center_custom_java_args: "-Xlog:gc*:file={{control_center_log_dir}}/control-center-gc.log:time,tags:filecount=10,filesize=100M"
+    # control_center_custom_java_args: "-Xloggc:{{control_center_log_dir}}/control-center-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
 
     control_center_service_environment_overrides:
       ### memory options
@@ -546,9 +492,6 @@ all:
       CONTROL_CENTER_HEAP_OPTS: "-Xms4g -Xmx4g"
       ### performance options
       CONTROL_CENTER_JVM_PERFORMANCE_OPTS: "-server -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC -XX:MaxInlineLevel=15 -Djava.awt.headless=true"
-      ### generic jvm settings and gc options
-      CONTROL_CENTER_OPTS: "-Xlog:gc*:file={{control_center_log_dir}}/control-center-gc.log:time,tags:filecount=10,filesize=100M"
-      # CONTROL_CENTER_OPTS: "-Xloggc:{{control_center_log_dir}}/control-center-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
       ### jmx settings
       CONTROL_CENTER_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
       # CONTROL_CENTER_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=9010"
@@ -611,7 +554,9 @@ kafka_broker:
       #   replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
 
 schema_registry:
-  # vars:
+  vars:
+    schema_registry_custom_properties:
+      schema.registry.group.id: schema-cluster1
   hosts:
     schema-registry1.example.com:
       # ansible_host:
@@ -620,18 +565,31 @@ schema_registry:
 
 kafka_connect:
   children:
-    connect-cluster:
-      # vars:
+    connect-cluster1:
+      vars:
+        kafka_connect_group_id: connect-cluster1
       hosts:
         kafka-connect1.example.com:
           # ansible_host:
         kafka-connect2.example.com:
           # ansible_host:
+    # replicator-cluster1:
+    #   vars:
+    #     kafka_connect_group_id: replicator-cluster1
+    #     ssl_signed_cert_filepath: "/root/confluent/ssl/replicator-chain.crt"
+    #     ssl_key_filepath: "/root/confluent/ssl/replicator.key"
+    #     ssl_key_password: changeit
+    #   hosts:
+    #     replicator1.example.com:
+    #       # ansible_host:
+    #     replicator2.example.com:
+    #       # ansible_host:
 
 # ksql:
 #   children:
-#     ksql-cluster:
-#       # vars:
+#     ksql-cluster1:
+#       vars:
+#         ksql_service_id: ksql-cluster1
 #       hosts:
 #         ksqldb1.example.com:
 #           # ansible_host:
