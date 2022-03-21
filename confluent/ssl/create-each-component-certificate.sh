@@ -6,7 +6,7 @@ set -o xtrace
 
 rm -f *.jks
 
-COMPONENTS=("zookeeper" "kafka" "schema-registry" "kafka-connect" "kafka-rest" "ksqldb" "control-center")
+COMPONENTS=("zookeeper" "kafka" "schema-registry" "kafka-connect" "replicator" "kafka-rest" "ksqldb" "control-center")
 
 for COMPONENT_NAME in ${COMPONENTS[@]}; do
 
