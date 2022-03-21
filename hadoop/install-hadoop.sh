@@ -34,7 +34,7 @@ function install_hadoop  {
     ### install
     sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_HADOOP_HOME}
     cd ${PARENT_HADOOP_HOME}
-    sudo ln -snf ${PARENT_HADOOP_HOME} hadoop
+    sudo ln -snf ${HADOOP_DIR_NAME} hadoop
 
     ### change ownership
     cd ${PARENT_HADOOP_HOME}

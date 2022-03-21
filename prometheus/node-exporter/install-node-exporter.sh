@@ -32,7 +32,7 @@ fi
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_NODE_EXPORTER_HOME}
 cd ${PARENT_NODE_EXPORTER_HOME}
-sudo ln -snf ${PARENT_NODE_EXPORTER_HOME} node-exporter
+sudo ln -snf ${NODE_EXPORTER_DIR_NAME} node-exporter
 
 ### change ownership
 cd ${PARENT_NODE_EXPORTER_HOME}
