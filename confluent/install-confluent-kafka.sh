@@ -11,6 +11,8 @@ function install_confluent_kafka {
     local INSTALL_FILE="confluent-7.0.1.tar.gz"
 
     local CONFLUENT_VERSION="$(echo ${INSTALL_FILE} | grep -o -E "([^confluent-].*[^\.tar\.gz])")"
+    local CONFLUENT_MAJOR_VERSION="$(echo ${CONFLUENT_VERSION} | grep -o -E "^[0-9]\.[0-9]")"
+    local PARENT_CONFLUENT_HOME="$(readlink --canonicalize-missing ${CONFLUENT_HOME}/../)"
 
     function check_install_home {
         if [ -d "${CONFLUENT_HOME}" ]; then
@@ -22,11 +24,18 @@ function install_confluent_kafka {
     function download_install_file {
         if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
             sudo curl -o ${INSTALL_FILE_DIR}/${INSTALL_FILE} \
-                -LJO http://packages.confluent.io/archive/${CONFLUENT_MAJOR_VERSION}/${INSTALL_FILE}
+                -LJO https://packages.confluent.io/archive/${CONFLUENT_MAJOR_VERSION}/${INSTALL_FILE}
         fi
     }
 
-    function check_install_file {
+    function check_install_file_exist {
+        if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
+            echo "[ERROR] The install file (${INSTALL_FILE_DIR}/${INSTALL_FILE}) does not exist!"
+            exit
+        fi
+    }
+
+    function check_install_file_corrupt {
         if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
             echo "[ERROR] The install file (${INSTALL_FILE_DIR}/${INSTALL_FILE}) does not exist!"
             exit
@@ -49,13 +58,12 @@ function install_confluent_kafka {
     check_install_file
     install_confluent
     install_bash_completion
-
-    ### add path
-    # CONFLUENT_HOME="/usr/local/confluent"
-    # PATH="${PATH}:${CONFLUENT_HOME}/bin"
-    # export PATH
 }
 
 ######################################################################
 
 install_confluent_kafka
+
+### variables
+# export CONFLUENT_HOME="/usr/local/confluent"
+# export PATH="${PATH}:${CONFLUENT_HOME}/bin"
