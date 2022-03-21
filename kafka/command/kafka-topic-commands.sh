@@ -38,7 +38,7 @@ cat <<EOF > ./delete-records.json
     {
       "topic": "my-topic",
       "partition": 0,
-      "offset": 100
+      "offset": 0
     }
   ],
   "version": 1
@@ -47,6 +47,13 @@ EOF
 ./kafka-delete-records.sh \
     --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
     --offset-json-file delete-records.json
+
+######################################################################
+
+### dump log
+./kafka-dump-log.sh \
+    --print-data-log \
+    --files /data/kafka/my-topic-0/00000000000000000000.log
 
 ######################################################################
 
