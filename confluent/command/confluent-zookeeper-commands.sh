@@ -3,22 +3,22 @@
 ######################################################################
 
 ### cluster controller
-./zookeeper-shell localhost:2181 ls /controller
+zookeeper-shell localhost:2181 ls /controller
 
 ### broker id
-./zookeeper-shell localhost:2181 ls /brokers/ids
-./zookeeper-shell localhost:2181 ls /clusterlocal/brokers/ids
-./zookeeper-shell zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 ls /brokers/ids
-./zookeeper-shell zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 ls /clusterlocal/brokers/ids
+zookeeper-shell localhost:2181 ls /brokers/ids
+zookeeper-shell localhost:2181 ls /clusterlocal/brokers/ids
+zookeeper-shell zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 ls /brokers/ids
+zookeeper-shell zookeeper1:2181,zookeeper2:2181,zookeeper3:2181 ls /clusterlocal/brokers/ids
 
 ### topic
-./zookeeper-shell localhost:2181 ls /brokers/topics
+zookeeper-shell localhost:2181 ls /brokers/topics
 
 ### config
-./zookeeper-shell localhost:2181 ls /config
+zookeeper-shell localhost:2181 ls /config
 
 ### consumers (__consumer_offsets)
-# ./zookeeper-shell localhost:2181 ls /consumers
+# zookeeper-shell localhost:2181 ls /consumers
 
 ######################################################################
 
