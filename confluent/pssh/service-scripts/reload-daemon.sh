@@ -14,7 +14,7 @@ pssh \
     --askpass \
     --inline \
     --timeout=5 \
-    --options=StrictHostKeyChecking=no \
+    --option=StrictHostKeyChecking=no \
     "sudo systemctl daemon-reload"
 
 # sshpass -p ${PASSWORD} \
@@ -30,5 +30,5 @@ pssh \
 #     --askpass \
 #     --inline \
 #     --timeout=5 \
-#     --options=StrictHostKeyChecking=no \
+#     --option=StrictHostKeyChecking=no \
 #     "sudo systemctl daemon-reload"
