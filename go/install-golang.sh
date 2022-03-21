@@ -11,5 +11,7 @@ curl -LJO https://golang.org/dl/go${VERSION}.${OS}-${ARCH}.tar.gz
 sudo tar -C /usr/local -xzf go${VERSION}.${OS}-${ARCH}.tar.gz
 rm -f go${VERSION}.${OS}-${ARCH}.tar.gz
 
-### add path
-### export PATH="${PATH}:/usr/local/go/bin"
+### env
+# export GOROOT="/usr/local/go"
+# export GOPATH="${HOME}/go"
+# export PATH="${PATH}:/usr/local/go/bin"
