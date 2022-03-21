@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-VERSION="1.15.6"
+VERSION="1.18"
 OS="linux"
 ARCH="amd64"
 
