@@ -123,8 +123,8 @@ all:
     kafka_connect_cluster_ansible_group_names:
       - connect-cluster1
       # - replicator-cluster1
-    ksql_cluster_ansible_group_names:
-      - ksql-cluster1
+    # ksql_cluster_ansible_group_names:
+    #   - ksql-cluster1
 
     ### kafka listeners
     kafka_broker_configure_multiple_listeners: true
