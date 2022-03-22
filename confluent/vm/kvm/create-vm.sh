@@ -85,16 +85,16 @@ for VM_NAME in ${CONTROL_CENTER_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
 
-MONIGORING_VM_NAMES=("cp1-monitoring")
+MONITORING_VM_NAMES=("cp1-monitoring")
 VM_CPU="2"
 VM_MEMORY="18432"
-for VM_NAME in ${MONIGORING_VM_NAMES[@]}; do
+for VM_NAME in ${MONITORING_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
 
-MONIGORING_VM_NAMES=("cp1-database")
+MONITORING_VM_NAMES=("cp1-database")
 VM_CPU="2"
 VM_MEMORY="10240"
-for VM_NAME in ${MONIGORING_VM_NAMES[@]}; do
+for VM_NAME in ${MONITORING_VM_NAMES[@]}; do
     create_vm ${DISK_DIR} ${BASE_DISK} ${VM_NAME} ${VM_CPU} ${VM_MEMORY}
 done
