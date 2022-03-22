@@ -77,6 +77,9 @@ export JAVA_OPTS
 # JAVA_OPTS="${JAVA_OPTS} -verbose:jni"
 # export JAVA_OPTS
 
+# JAVA_OPTS="${JAVA_OPTS} -Djava.library.path="
+# export JAVA_OPTS
+
 if [ -f "${JBOSS_LOG_DIR}/nohup.${INSTANCE_NAME}.out" ]; then
     mv ${JBOSS_LOG_DIR}/nohup.${INSTANCE_NAME}.out \
         ${JBOSS_LOG_DIR}/backup/nohup.${INSTANCE_NAME}.${DATETIME}.out

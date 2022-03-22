@@ -135,6 +135,12 @@ fi
 
 cat <<EOF >> ${JBOSS_BASE_DIR}/start-${INSTANCE_NAME}.sh
 
+# JAVA_OPTS="\${JAVA_OPTS} -Djava.library.path="
+# export JAVA_OPTS
+
+EOF
+
+cat <<EOF >> ${JBOSS_BASE_DIR}/start-${INSTANCE_NAME}.sh
 if [ -f "\${JBOSS_LOG_DIR}/nohup.\${INSTANCE_NAME}.out" ]; then
     mv \${JBOSS_LOG_DIR}/nohup.\${INSTANCE_NAME}.out \\
         \${JBOSS_LOG_DIR}/backup/nohup.\${INSTANCE_NAME}.\${DATETIME}.out
