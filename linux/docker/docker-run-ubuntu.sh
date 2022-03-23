@@ -10,7 +10,6 @@ function docker_run_ubuntu {
         -it \
         --name ubuntu \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         ubuntu:20.04
 }
 

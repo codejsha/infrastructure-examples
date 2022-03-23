@@ -10,7 +10,6 @@ function docker_run_centos8 {
         -it \
         --name centos8 \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         centos:8.2.2004
 }
 
@@ -19,7 +18,6 @@ function docker_run_centos7 {
         -it \
         --name centos7 \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         centos:7.8.2003
 }
 
@@ -28,7 +26,6 @@ function docker_run_centos6 {
         -it \
         --name centos6 \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         centos:6.10
 }
 
