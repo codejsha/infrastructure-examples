@@ -616,9 +616,6 @@ kafka_connect:
     # replicator-cluster1:
     #   vars:
     #     kafka_connect_group_id: replicator-cluster1
-    #     ssl_signed_cert_filepath: "/root/confluent/ssl/replicator-chain.crt"
-    #     ssl_key_filepath: "/root/confluent/ssl/replicator.key"
-    #     ssl_key_password: changeit
     #   hosts:
     #     replicator1.example.com:
     #       # ansible_host:
