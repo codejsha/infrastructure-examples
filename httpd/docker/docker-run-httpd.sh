@@ -17,7 +17,6 @@ function docker_run_httpd {
         --mount type="bind",source="${HTTPD_VOLUME_DIR}/conf",target="/usr/local/apache2/conf" \
         --mount type="bind",source="${HTTPD_VOLUME_DIR}/htdocs",target="/usr/local/apache2/htdocs" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         httpd:2.4
 }
 

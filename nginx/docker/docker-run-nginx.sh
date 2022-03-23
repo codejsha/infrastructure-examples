@@ -21,7 +21,6 @@ function docker_run_nginx {
         --mount type="bind",source="${NGINX_VOLUME_DIR}/htdocs",target="/usr/share/nginx/html" \
         --mount type="bind",source="${NGINX_VOLUME_DIR}/logs",target="/var/log/nginx" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         nginx:latest
 }
 
@@ -37,7 +36,6 @@ function docker_run_nginx_specific_network {
         --mount type="bind",source="${NGINX_VOLUME_DIR}/htdocs",target="/usr/share/nginx/html" \
         --mount type="bind",source="${NGINX_VOLUME_DIR}/logs",target="/var/log/nginx" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         nginx:latest
 }
 
