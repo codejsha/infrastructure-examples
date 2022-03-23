@@ -22,7 +22,7 @@ sudo yum install -y \
 
 ### auto
 echo "//192.168.137.1/share   /mnt/share              cifs    username=shareuser,password=${PASSWORD},file_mode=0755,dir_mode=0755 0 0" | sudo tee -a /etc/fstab
-echo "//192.168.137.1/storage /mnt/storage            cifs    username=shareuser,password=${PASSWORD},uid=prouser,gid=progroup 0 0" | sudo tee -a /etc/fstab
+# echo "//192.168.137.1/storage /mnt/storage            cifs    username=shareuser,password=${PASSWORD},uid=prouser,gid=progroup 0 0" | sudo tee -a /etc/fstab
 # echo "//192.168.140.1/share   /mnt/share              cifs    username=shareuser,password=${PASSWORD},file_mode=0755,dir_mode=0755 0 0" | sudo tee -a /etc/fstab
 # echo "//192.168.140.1/storage /mnt/storage            cifs    username=shareuser,password=${PASSWORD},uid=prouser,gid=progroup 0 0" | sudo tee -a /etc/fstab
 

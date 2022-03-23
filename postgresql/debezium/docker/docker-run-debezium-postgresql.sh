@@ -23,7 +23,6 @@ function docker_run_debezium_postgresql14 {
         --env PGDATA="/var/lib/postgresql/data/pgdata" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/postgresql.conf",dst="/etc/postgresql/postgresql.conf" \
         debezium/postgres:14 \
         -c "config_file=/etc/postgresql/postgresql.conf"
@@ -47,7 +46,6 @@ function docker_run_debezium_postgresql13 {
         --env PGDATA="/var/lib/postgresql/data/pgdata" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/postgresql.conf",dst="/etc/postgresql/postgresql.conf" \
         debezium/postgres:13 \
         -c "config_file=/etc/postgresql/postgresql.conf"
@@ -72,7 +70,6 @@ function docker_run_debezium_postgresql12 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/postgresql.conf",dst="/etc/postgresql/postgresql.conf" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         debezium/postgres:12 \
         -c "config_file=/etc/postgresql/postgresql.conf"
 }
@@ -96,7 +93,6 @@ function docker_run_debezium_postgresql11 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/postgresql.conf",dst="/etc/postgresql/postgresql.conf" \
         --mount type="bind",src="/mnt/share",dst="/mnt/share",readonly \
-        --mount type="bind",src="/mnt/storage",dst="/mnt/storage" \
         debezium/postgres:11 \
         -c "config_file=/etc/postgresql/postgresql.conf"
 }
