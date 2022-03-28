@@ -1,11 +1,9 @@
 ######################################################################
-### custom properties
+### custom variables
 ######################################################################
-
-
-    ######################################################################
-    ### custom
-    ######################################################################
+---
+all:
+  vars:
     redhat_epel_repo_enabled: true
     install_additional_tools: true
     install_additional_infra_tools: true
@@ -27,5 +25,3 @@
     control_center_gc_log_file_name: control-center-gc.log
 
     default_user_home_dir: /home/confluent
-
-    ######################################################################
