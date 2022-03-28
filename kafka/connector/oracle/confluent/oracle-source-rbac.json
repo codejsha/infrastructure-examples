@@ -29,6 +29,6 @@
     "value.converter.schema.registry.ssl.key.password": "confluentkeystorestorepass",
     "value.converter.schema.registry.basic.auth.credentials.source": "USER_INFO",
     "value.converter.schema.registry.basic.auth.user.info": "schema-registry:schema-registry-secret",
-    "producer.override.sasl.jaas.config": "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required username=\"kafka-connect\" password=\"kafka-connect-secret\" metadataServerUrls=\"https://kafka2.example.com:8090,https://kafka2.example.com:8090,https://kafka3.example.com:8090\";"
+    "producer.override.sasl.jaas.config": "org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required username=\"kafka-connect\" password=\"kafka-connect-secret\" metadataServerUrls=\"https://kafka1.example.com:8090,https://kafka2.example.com:8090,https://kafka3.example.com:8090\";"
   }
 }
