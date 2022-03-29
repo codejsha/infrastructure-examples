@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "partitions": [
+    {
+      "topic": "database1.public.rental",
+      "partition": 0,
+      "offset": 0
+    },
+    {
+      "topic": "database1.public.rental",
+      "partition": 1,
+      "offset": 0
+    },
+    {
+      "topic": "database1.public.rental",
+      "partition": 2,
+      "offset": 0
+    }
+  ]
+}
