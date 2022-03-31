@@ -1,5 +1,7 @@
 ######################################################################
 
+### example:
+
 virsh console cp1-zookeeper11
 bash setup.sh "10.0.1.44/23" zookeeper11
 virsh console cp1-zookeeper12
