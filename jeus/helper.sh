@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 JEUS_HOME="/usr/local/jeus"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/others/jeus"
+INSTALL_SCRIPT_DIR="/svc/infrastructure/jeus"
 
 ######################################################################
 

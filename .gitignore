@@ -46,8 +46,7 @@ nohup.*
 /ohs/kubernetes/docker/docker-images/
 /openldap/kustomize/base/
 /oracledb/docker/build/docker-images/
-/others/backstage/backstage/
-/others/kraken/kraken/
+/kraken/kraken/
 /prometheus/operator/kube-prometheus/
 /rook/operator/rook/
 /strimzi/strimzi-*/
