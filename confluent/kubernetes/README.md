@@ -47,11 +47,11 @@ LDAP authentication only applies to the Confluent Control Center.
 
 - https://docs.confluent.io/operator/current/co-network-encryption.html
 
-| Environment | Authorization |
-| ----------- | ------------- |
-| Development | No            |
-| Staging     | TLS           |
-| Production  | TLS           |
+| Environment | Authentication |
+| ----------- | -------------- |
+| Development | No             |
+| Staging     | TLS            |
+| Production  | TLS            |
 
 In production, staging examples, each component has its own certificate.
 
