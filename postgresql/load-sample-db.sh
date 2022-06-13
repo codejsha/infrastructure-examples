@@ -6,7 +6,7 @@ set -o errtrace
 
 PASSWORD="postgres"
 
-SAMPLE_DB_FILE_DIR="/mnt/share/postgresql"
+SAMPLE_DB_FILE_DIR="/mnt/share/postgresql/sample-db"
 
 ### unzip archive file
 unzip -d . ${SAMPLE_DB_FILE_DIR}/dvdrental.zip

@@ -99,5 +99,10 @@ docker context create testmachine --docker "host=ssh://prouser@testmachine"
 ######################################################################
 
 ### for windows
+
 # cd \\wsl$\docker-desktop-data
 cd /mnt/wsl/docker-desktop-data
+
+### unregister
+wsl --unregister docker-desktop
+wsl --unregister docker-desktop-data

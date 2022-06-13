@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_httpd_by_dnf {
+function install_httpd_with_dnf {
     sudo dnf install -y httpd
     sudo systemctl enable httpd
     sudo systemctl start httpd
@@ -13,7 +13,7 @@ function install_httpd_by_dnf {
 
 ######################################################################
 
-function install_httpd_by_yum {
+function install_httpd_with_yum {
     sudo yum install -y httpd
     sudo systemctl enable httpd
     sudo systemctl start httpd
@@ -125,6 +125,6 @@ function install_httpd {
 
 ######################################################################
 
-# install_httpd_by_dnf
-# install_httpd_by_yum
+# install_httpd_with_dnf
+# install_httpd_with_yum
 install_httpd

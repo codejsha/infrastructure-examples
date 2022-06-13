@@ -13,7 +13,7 @@ DRIVER_NAME="postgres"
 MODULE_NAME="org.postgres"
 DRIVER_CLASS_NAME="org.postgresql.xa.PGXADataSource"
 
-DRIVER_FILE_DIR="/mnt/share/postgresql"
+DRIVER_FILE_DIR="/mnt/share/postgresql/jdbc-driver"
 DRIVER_FILE="postgresql-42.2.19.jar"
 
 

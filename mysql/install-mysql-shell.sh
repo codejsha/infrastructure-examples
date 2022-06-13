@@ -5,7 +5,7 @@ set -o errtrace
 
 ### requirement: mysql yum repository
 
-INSTALL_FILE_DIR="/mnt/share/oracle-mysql"
+INSTALL_FILE_DIR="/mnt/share/oracle-mysql/repo"
 # INSTALL_FILE="mysql80-community-release-el7-3.noarch.rpm"
 INSTALL_FILE="mysql80-community-release-el8-3.noarch.rpm"
 # INSTALL_FILE="mysql-apt-config_0.8.16-1_all.deb"

@@ -25,4 +25,4 @@ gh repo create --private
 gh repo create --public
 gh repo view
 
-gh repo clone codejsha/infrastructure
+gh repo clone codejsha/infrastructure-examples
