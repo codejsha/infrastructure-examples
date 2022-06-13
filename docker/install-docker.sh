@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_docker_with_dnf {
+function install_docker_dnf {
     sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
     sudo dnf install -y docker-ce docker-ce-cli containerd.io
 
@@ -16,7 +16,7 @@ function install_docker_with_dnf {
     exit
 }
 
-function install_docker_with_yum {
+function install_docker_yum {
     sudo yum remove -y \
         docker \
         docker-client \
@@ -40,7 +40,7 @@ function install_docker_with_yum {
     exit
 }
 
-function install_docker_specific_version_with_yum {
+function install_docker_specific_version_yum {
     local DOCKER_VERSION="19.03.15"
     local CONTAINERD_VERSION="1.3.9"
 
@@ -70,7 +70,7 @@ function install_docker_specific_version_with_yum {
     exit
 }
 
-function install_docker_with_apt {
+function install_docker_apt {
     curl -fsSL https://get.docker.com | sudo sh
 
     sudo usermod -a -G docker ${USER}
@@ -80,7 +80,7 @@ function install_docker_with_apt {
 
 ######################################################################
 
-install_docker_with_dnf
-# install_docker_with_yum
-# install_docker_specific_version_with_yum
-# install_docker_with_apt
+install_docker_dnf
+# install_docker_yum
+# install_docker_specific_version_yum
+# install_docker_apt

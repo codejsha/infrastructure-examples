@@ -5,11 +5,11 @@ set -o errtrace
 
 ######################################################################
 
-function install_cassandra_with_artifacthub {
+function install_cassandra_artifacthub {
     kubectl create --filename https://operatorhub.io/install/alpha/cassandra-operator.yaml
 }
 
-function install_cassandra_with_git {
+function install_cassandra_git {
     git clone https://github.com/instaclustr/cassandra-operator.git
     # gh repo clone instaclustr/cassandra-operator
 
@@ -20,5 +20,5 @@ function install_cassandra_with_git {
 
 ######################################################################
 
-# install_cassandra_with_artifacthub
-install_cassandra_with_git
+# install_cassandra_artifacthub
+install_cassandra_git

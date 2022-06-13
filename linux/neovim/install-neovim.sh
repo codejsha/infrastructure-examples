@@ -5,18 +5,18 @@ set -o errtrace
 
 ######################################################################
 
-function install_neovim_with_yum {
+function install_neovim_yum {
     sudo yum install -y epel-release
     sudo yum install -y neovim
     # sudo yum install -y python36-neovim
 }
 
-function install_neovim_with_apt {
+function install_neovim_apt {
     sudo apt-get install -y neovim
     # sudo apt-get install -y python3-neovim
 }
 
-function install_neovim_with_download {
+function install_neovim_appimage {
     local NEOVIM_VERSION="0.4.4"
 
     sudo yum install -y fuse fuse-sshfs
@@ -29,9 +29,9 @@ function install_neovim_with_download {
 
 ######################################################################
 
-install_neovim_with_yum
-# install_neovim_with_apt
-# install_neovim_with_download
+install_neovim_yum
+# install_neovim_apt
+# install_neovim_appimage
 
 mkdir -p ${HOME}/.config/nvim
 
