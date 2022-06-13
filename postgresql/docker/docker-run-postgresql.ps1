@@ -2,7 +2,7 @@ function New-DockerRunPostgreSQL14 {
     $password="postgres"
     $PostgreSQLVolumeDir = "$env:USERPROFILE\volume\postgresql"
     # Remove-Item -Path $PostgreSQLVolumeDir -Recurse -Force
-    New-Item -Path $PostgreSQLVolumeDir -ItemType Directory -Force
+    New-Item -Path $PostgreSQLVolumeDir/data -ItemType Directory -Force
 
     docker container run `
     --detach `
@@ -20,7 +20,7 @@ function New-DockerRunPostgreSQL13 {
     $password="postgres"
     $PostgreSQLVolumeDir = "$env:USERPROFILE\volume\postgresql"
     # Remove-Item -Path $PostgreSQLVolumeDir -Recurse -Force
-    New-Item -Path $PostgreSQLVolumeDir -ItemType Directory -Force
+    New-Item -Path $PostgreSQLVolumeDir/data -ItemType Directory -Force
 
     docker container run `
     --detach `
@@ -38,7 +38,7 @@ function New-DockerRunPostgreSQL12 {
     $password="postgres"
     $PostgreSQLVolumeDir = "$env:USERPROFILE\volume\postgresql"
     # Remove-Item -Path $PostgreSQLVolumeDir -Recurse -Force
-    New-Item -Path $PostgreSQLVolumeDir -ItemType Directory -Force
+    New-Item -Path $PostgreSQLVolumeDir/data -ItemType Directory -Force
 
     docker container run `
     --detach `
@@ -56,7 +56,7 @@ function New-DockerRunPostgreSQL11 {
     $password="postgres"
     $PostgreSQLVolumeDir = "$env:USERPROFILE\volume\postgresql"
     # Remove-Item -Path $PostgreSQLVolumeDir -Recurse -Force
-    New-Item -Path $PostgreSQLVolumeDir -ItemType Directory -Force
+    New-Item -Path $PostgreSQLVolumeDir/data -ItemType Directory -Force
 
     docker container run `
         --detach `

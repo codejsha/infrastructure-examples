@@ -10,6 +10,7 @@ virsh destroy testmachine
 ######################################################################
 
 virsh undefine testmachine
+virsh undefine --remove-all-storage testmachine
 
 ######################################################################
 

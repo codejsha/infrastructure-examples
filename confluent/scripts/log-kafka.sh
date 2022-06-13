@@ -1,5 +1,5 @@
 #!/bin/bash
-# Maintained by Ansible
+# Maintained by Ansible (custom)
 
 LOG_DIR="/logs/kafka"
 LOG_FILE_NAME="server.log"

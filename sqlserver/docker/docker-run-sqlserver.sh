@@ -3,11 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-PASSWORD="${PASSWORD}"
-
 ######################################################################
 
 function docker_run_sqlserver2019 {
+    PASSWORD="${PASSWORD}"
+
     docker container run \
         --detach \
         --name sqlserver2019 \
@@ -20,6 +20,8 @@ function docker_run_sqlserver2019 {
 }
 
 function docker_run_sqlserver2017 {
+    PASSWORD="${PASSWORD}"
+
     docker container run \
         --detach \
         --name sqlserver2017 \

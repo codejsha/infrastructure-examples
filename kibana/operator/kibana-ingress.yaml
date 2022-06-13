@@ -1,6 +1,5 @@
-# apiVersion: extensions/v1beta1
-apiVersion: networking.k8s.io/v1beta1
-# apiVersion: networking.k8s.io/v1
+---
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: elasticstack-kibana-ingress
@@ -15,6 +14,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: elasticstack-kb-http
-              servicePort: 5601
+              service:
+                name: elasticstack-kb-http
+                port:
+                  number: 5601

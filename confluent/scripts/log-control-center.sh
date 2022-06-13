@@ -1,5 +1,5 @@
 #!/bin/bash
-# Maintained by Ansible
+# Maintained by Ansible (custom)
 
 LOG_DIR="/logs/control-center"
 LOG_FILE_NAME="control-center.log"

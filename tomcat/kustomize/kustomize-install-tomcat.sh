@@ -7,6 +7,6 @@ set -o errtrace
 # kustomize build ./overlays/development | kubectl apply --filename -
 # kustomize build ./overlays/production | kubectl apply --filename -
 
-kustomize build https://github.com/codejsha/infrastructure/tree/main/tomcat/kustomize/base | kubectl apply --filename -
-# kustomize build https://github.com/codejsha/infrastructure/tree/main/tomcat/kustomize/overlays/development | kubectl apply --filename -
-# kustomize build https://github.com/codejsha/infrastructure/tree/main/tomcat/kustomize/overlays/production | kubectl apply --filename -
+kustomize build https://github.com/codejsha/infrastructure-examples/tree/main/tomcat/kustomize/base | kubectl apply --filename -
+# kustomize build https://github.com/codejsha/infrastructure-examples/tree/main/tomcat/kustomize/overlays/development | kubectl apply --filename -
+# kustomize build https://github.com/codejsha/infrastructure-examples/tree/main/tomcat/kustomize/overlays/production | kubectl apply --filename -

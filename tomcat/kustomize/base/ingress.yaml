@@ -1,6 +1,5 @@
-# apiVersion: extensions/v1beta1
-apiVersion: networking.k8s.io/v1beta1
-# apiVersion: networking.k8s.io/v1
+---
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tomcat-starter
@@ -12,6 +11,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: tomcat-starter
-              servicePort: 8080
+              service:
+                name: tomcat-starter
+                port:
+                  number: 8080

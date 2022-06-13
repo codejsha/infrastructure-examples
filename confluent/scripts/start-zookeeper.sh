@@ -1,5 +1,5 @@
 #!/bin/bash
-# Maintained by Ansible
+# Maintained by Ansible (custom)
 
 CONFLUENT_HOME="/opt/confluent/confluent-7.0.1"
 PROPERTIES_FILE="/opt/confluent/etc/kafka/zookeeper.properties"
