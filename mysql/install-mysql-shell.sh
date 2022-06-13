@@ -21,6 +21,5 @@ sudo dnf install -y mysql-shell
 # sudo yum install -y mysql-shell
 
 ### ubuntu
-# sudo rpm -ivh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
-# sudo rpm -Uvh ${INSTALL_FILE_DIR}/${INSTALL_FILE}
+# sudo dpkg -i ${INSTALL_FILE_DIR}/${INSTALL_FILE}
 # sudo apt-get install -y mysql-shell
