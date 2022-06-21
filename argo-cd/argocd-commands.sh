@@ -96,6 +96,7 @@ argocd app get ${PROJECT} ${ROLE_NAME} --auth-token ${JWT_TOKEN}
 ### repository
 
 argocd repo add https://git.example.com/developer/my-app-cd.git --type git --username developer --password developer --insecure --server argocd.example.com
+argocd repo add https://git.example.com/developer/my-app-cd.git --type git --username developer --password developer --insecure-skip-server-verification --insecure --server argocd.example.com
 
 ######################################################################
 
