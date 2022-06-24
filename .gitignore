@@ -8,6 +8,7 @@ venv/
 
 temp/
 temp.*
+*-temp.*
 
 nohup.*
 
@@ -23,7 +24,6 @@ nohup.*
 *.tar
 *.tar.gz
 *.tgz
-*-temp.*
 *.zip
 
 /cassandra/operator/cassandra-operator/
@@ -46,7 +46,6 @@ nohup.*
 /ohs/kubernetes/docker/docker-images/
 /openldap/kustomize/base/
 /oracledb/docker/build/docker-images/
-/kraken/kraken/
 /prometheus/operator/kube-prometheus/
 /rook/operator/rook/
 /strimzi/strimzi-*/
