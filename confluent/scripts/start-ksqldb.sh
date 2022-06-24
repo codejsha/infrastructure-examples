@@ -64,7 +64,7 @@ fi
 touch ${LOG_DIR}/ksql.log
 nohup ${CONFLUENT_HOME}/bin/ksql-server-start ${PROPERTIES_FILE} > /dev/null 2>&1 &
 
-### tail stdout log
+### tail log
 if [ "${1}" == "tail" ]; then
     tail -f ${LOG_DIR}/ksql.log
 fi

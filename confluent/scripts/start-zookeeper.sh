@@ -66,7 +66,7 @@ fi
 touch ${LOG_DIR}/zookeeper-server.log
 nohup ${CONFLUENT_HOME}/bin/zookeeper-server-start ${PROPERTIES_FILE} > /dev/null 2>&1 &
 
-### tail stdout log
+### tail log
 if [ "${1}" == "tail" ]; then
     tail -f ${LOG_DIR}/zookeeper-server.log
 fi

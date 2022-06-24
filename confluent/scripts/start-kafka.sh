@@ -65,7 +65,7 @@ fi
 touch ${LOG_DIR}/server.log
 nohup ${CONFLUENT_HOME}/bin/kafka-server-start ${PROPERTIES_FILE} > /dev/null 2>&1 &
 
-### tail stdout log
+### tail log
 if [ "${1}" == "tail" ]; then
     tail -f ${LOG_DIR}/server.log
 fi
