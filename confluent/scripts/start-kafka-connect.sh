@@ -59,7 +59,7 @@ fi
 touch ${LOG_DIR}/connect.log
 nohup ${CONFLUENT_HOME}/bin/connect-distributed ${PROPERTIES_FILE} > /dev/null 2>&1 &
 
-### tail stdout log
+### tail log
 if [ "${1}" == "tail" ]; then
     tail -f ${LOG_DIR}/connect.log
 fi
