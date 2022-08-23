@@ -6,13 +6,13 @@ set -o errtrace
 ######################################################################
 
 function install_confluent_kafka {
-    local CONFLUENT_HOME="/usr/local/confluent"
+    local PARENT_CONFLUENT_HOME="/opt/confluent"
     local INSTALL_FILE_DIR="/mnt/share/confluent-platform"
-    local INSTALL_FILE="confluent-7.0.1.tar.gz"
+    local INSTALL_FILE="confluent-7.2.1.tar.gz"
 
     local CONFLUENT_VERSION="$(echo ${INSTALL_FILE} | grep -o -E "([^confluent-].*[^\.tar\.gz])")"
     local CONFLUENT_MAJOR_VERSION="$(echo ${CONFLUENT_VERSION} | grep -o -E "^[0-9]\.[0-9]")"
-    local PARENT_CONFLUENT_HOME="$(readlink --canonicalize-missing ${CONFLUENT_HOME}/../)"
+    local CONFLUENT_HOME="${PARENT_CONFLUENT_HOME}/confluent-${CONFLUENT_VERSION}"
 
     function check_install_home {
         if [ -d "${CONFLUENT_HOME}" ]; then
