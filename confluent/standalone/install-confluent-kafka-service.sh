@@ -7,18 +7,18 @@ set -o errtrace
 
 function install_confluent_kafka {
 cat <<EOF | sudo tee /etc/yum.repos.d/confluent.repo
-[Confluent.dist]
-name=Confluent repository (dist)
-baseurl=https://packages.confluent.io/rpm/7.0/\$releasever
-gpgcheck=1
-gpgkey=https://packages.confluent.io/rpm/7.0/archive.key
-enabled=1
-
 [Confluent]
 name=Confluent repository
-baseurl=https://packages.confluent.io/rpm/7.0
+baseurl=https://packages.confluent.io/rpm/7.2
 gpgcheck=1
-gpgkey=https://packages.confluent.io/rpm/7.0/archive.key
+gpgkey=https://packages.confluent.io/rpm/7.2/archive.key
+enabled=1
+
+[Confluent-Clients]
+name=Confluent Clients repository
+baseurl=https://packages.confluent.io/clients/rpm/centos/\$releasever/\$basearch
+gpgcheck=1
+gpgkey=https://packages.confluent.io/clients/rpm/archive.key
 enabled=1
 EOF
 
