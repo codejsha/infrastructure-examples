@@ -1,0 +1,24 @@
+{
+  "connect.name": "ksql.User",
+  "fields": [
+    {
+      "name": "registertime",
+      "type": "long"
+    },
+    {
+      "name": "userid",
+      "type": "string"
+    },
+    {
+      "name": "regionid",
+      "type": "string"
+    },
+    {
+      "name": "gender",
+      "type": "string"
+    }
+  ],
+  "name": "User",
+  "namespace": "ksql",
+  "type": "record"
+}

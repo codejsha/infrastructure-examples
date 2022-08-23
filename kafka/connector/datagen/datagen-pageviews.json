@@ -7,9 +7,14 @@
     "quickstart": "pageviews",
     "max.interval": "100",
     "iterations": "10000000",
+    "transforms": "SetSchemaMetadata",
+    "transforms.SetSchemaMetadata.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+    "transforms.SetSchemaMetadata.schema.name": "ksql.Pageview",
     "key.converter": "io.confluent.connect.avro.AvroConverter",
     "key.converter.schema.registry.url": "http://localhost:8081",
+    "key.converter.enhanced.avro.schema.support": "true",
     "value.converter": "io.confluent.connect.avro.AvroConverter",
-    "value.converter.schema.registry.url": "http://localhost:8081"
+    "value.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.enhanced.avro.schema.support": "true"
   }
 }

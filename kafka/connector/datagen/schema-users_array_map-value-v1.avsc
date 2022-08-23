@@ -1,0 +1,38 @@
+{
+  "connect.name": "ksql.UserArrayMap",
+  "fields": [
+    {
+      "name": "registertime",
+      "type": "long"
+    },
+    {
+      "name": "userid",
+      "type": "string"
+    },
+    {
+      "name": "regionid",
+      "type": "string"
+    },
+    {
+      "name": "gender",
+      "type": "string"
+    },
+    {
+      "name": "interests",
+      "type": {
+        "items": "string",
+        "type": "array"
+      }
+    },
+    {
+      "name": "contactinfo",
+      "type": {
+        "type": "map",
+        "values": "string"
+      }
+    }
+  ],
+  "name": "UserArrayMap",
+  "namespace": "ksql",
+  "type": "record"
+}

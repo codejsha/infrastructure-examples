@@ -1,0 +1,20 @@
+{
+  "connect.name": "ksql.Inventory",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "quantity",
+      "type": "long"
+    },
+    {
+      "name": "productid",
+      "type": "long"
+    }
+  ],
+  "name": "Inventory",
+  "namespace": "ksql",
+  "type": "record"
+}

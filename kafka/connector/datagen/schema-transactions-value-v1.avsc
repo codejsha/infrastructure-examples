@@ -1,0 +1,28 @@
+{
+  "connect.name": "datagen.example.Transaction",
+  "fields": [
+    {
+      "name": "transaction_id",
+      "type": "long"
+    },
+    {
+      "name": "card_id",
+      "type": "long"
+    },
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "purchase_id",
+      "type": "long"
+    },
+    {
+      "name": "store_id",
+      "type": "int"
+    }
+  ],
+  "name": "Transaction",
+  "namespace": "datagen.example",
+  "type": "record"
+}
