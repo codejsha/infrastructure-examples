@@ -1,0 +1,16 @@
+{
+  "connect.name": "clickstream.Code",
+  "fields": [
+    {
+      "name": "code",
+      "type": "int"
+    },
+    {
+      "name": "definition",
+      "type": "string"
+    }
+  ],
+  "name": "Code",
+  "namespace": "clickstream",
+  "type": "record"
+}

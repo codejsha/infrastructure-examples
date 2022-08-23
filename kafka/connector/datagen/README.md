@@ -1,18 +1,23 @@
 # Datagen Connector
 
+- https://www.confluent.io/hub/confluentinc/kafka-connect-datagen
 - https://github.com/confluentinc/kafka-connect-datagen
-- https://docs.confluent.io/platform/current/ksqldb/tutorials/basics-local.html
 
 `DatagenTask.Quickstart` enum:
 
-- `clickstream_codes`
+- `campaign_finance`
 - `clickstream`
+- `clickstream_codes`
 - `clickstream_users`
-- `orders`
-- `ratings`
-- `users`
-- `users_`
-- `pageviews`
-- `stock_trades`
+- `credit_cards`
 - `inventory`
+- `orders`
+- `pageviews`
 - `product`
+- `purchases`
+- `ratings`
+- `stock_trades`
+- `stores`
+- `transactions`
+- `users`
+- `users_` (users_array_map)

@@ -1,0 +1,35 @@
+{
+  "connect.name": "datagen.example.Purchase",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "item_type",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "long"
+    },
+    {
+      "name": "price_per_unit",
+      "type": {
+        "connect.name": "org.apache.kafka.connect.data.Decimal",
+        "connect.parameters": {
+          "connect.decimal.precision": "4",
+          "scale": "2"
+        },
+        "connect.version": 1,
+        "logicalType": "decimal",
+        "precision": 4,
+        "scale": 2,
+        "type": "bytes"
+      }
+    }
+  ],
+  "name": "Purchase",
+  "namespace": "datagen.example",
+  "type": "record"
+}

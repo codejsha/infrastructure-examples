@@ -1,0 +1,20 @@
+{
+  "connect.name": "datagen.example.Store",
+  "fields": [
+    {
+      "name": "store_id",
+      "type": "int"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "state",
+      "type": "string"
+    }
+  ],
+  "name": "Store",
+  "namespace": "datagen.example",
+  "type": "record"
+}

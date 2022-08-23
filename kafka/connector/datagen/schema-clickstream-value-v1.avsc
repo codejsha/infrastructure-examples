@@ -1,0 +1,48 @@
+{
+  "connect.name": "clickstream.Event",
+  "fields": [
+    {
+      "name": "ip",
+      "type": "string"
+    },
+    {
+      "name": "userid",
+      "type": "int"
+    },
+    {
+      "name": "remote_user",
+      "type": "string"
+    },
+    {
+      "name": "time",
+      "type": "string"
+    },
+    {
+      "name": "_time",
+      "type": "long"
+    },
+    {
+      "name": "request",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "bytes",
+      "type": "string"
+    },
+    {
+      "name": "referrer",
+      "type": "string"
+    },
+    {
+      "name": "agent",
+      "type": "string"
+    }
+  ],
+  "name": "Event",
+  "namespace": "clickstream",
+  "type": "record"
+}
