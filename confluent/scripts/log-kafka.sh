@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o xtrace
 # Maintained by Ansible (custom)
 
 LOG_DIR="/logs/kafka"
