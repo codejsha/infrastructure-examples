@@ -3,10 +3,12 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-CONFLUENT_HOME="/opt/confluent/confluent-7.0.1"
+CONFLUENT_HOME="/opt/confluent/confluent-7.2.1"
 
-### example:
+### examples:
 ### ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt --component-dir /opt/confluent/connect/plugins --worker-configs /opt/confluent/etc/kafka/connect-distributed.properties confluentinc/kafka-connect-datagen:latest
+### ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt --component-dir /opt/confluent/connect/plugins confluentinc/kafka-connect-datagen:latest
+### ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt confluentinc/kafka-connect-datagen:latest
 
 ### source
 ${CONFLUENT_HOME}/bin/confluent-hub install --no-prompt --component-dir /opt/confluent/connect/plugins --worker-configs /opt/confluent/etc/kafka/connect-distributed.properties confluentinc/kafka-connect-datagen:latest
