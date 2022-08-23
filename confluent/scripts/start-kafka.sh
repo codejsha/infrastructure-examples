@@ -4,7 +4,7 @@
 CONFLUENT_HOME="/opt/confluent/confluent-7.0.1"
 PROPERTIES_FILE="/opt/confluent/etc/kafka/server.properties"
 
-DATA_DIR="['/data/kafka']"
+DATA_DIR="/data/kafka"
 LOG_DIR="/logs/kafka"
 export LOG_DIR
 
@@ -49,7 +49,7 @@ if [ -n "${PID}" ]; then
 fi
 
 ### check data and log directories
-DIRS="(${DATA_DIR/,/ })"
+DIRS="(${DATA_DIR//,/ })"
 for DIR in ${DIRS[@]}; do
     if [ ! -d "${DIR}" ]; then
         echo "[ERROR] The data dir (${DIR}) does not exist!"
