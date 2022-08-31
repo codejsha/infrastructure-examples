@@ -605,7 +605,7 @@ schema_registry:
 
 kafka_connect:
   children:
-    connect-cluster:
+    connect-cluster1:
       vars:
         kafka_connect_group_id: connect-cluster1
       hosts:
