@@ -1,16 +1,16 @@
 # Infrastructure Examples
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
 ## Overview
 
-This project is configuration examples of infrastructure software. Each software can be part of an infrastructure architecture. Although this repository does not include all relevant configurations, you can use a few examples to configure the architecture you want. In a cloud environment, declarative approaches under *Infrastructure as code (IaC)* enable efficient and fast configurations. Using appropriate tools can reduce boilerplate codes and repetitive tasks.
+This project is configuration examples of infrastructure software. Each software can be part of an infrastructure architecture. Although this repository does not include all relevant configurations, you can use a few examples to configure the architecture you want.
+
+In cloud environment, declarative approaches under *Infrastructure as code (IaC)* enable efficient and fast configurations. Using appropriate tools can reduce boilerplate codes and repetitive tasks.
 
 highly recommend the following useful tools:
 
 - VM infra: `Ansible`, `PSSH`
 - Cloud infra: `Terraform`
-- Kubernetes infra: `Helm`, `Operator`, `Krew`
+- Kubernetes infra: `Helm`, `Krew`
 
 ## License
 
