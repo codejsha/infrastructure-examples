@@ -8,9 +8,13 @@ In cloud environment, declarative approaches under *Infrastructure as code (IaC)
 
 highly recommend the following useful tools:
 
-- VM infra: `Ansible`, `PSSH`
-- Cloud infra: `Terraform`
-- Kubernetes infra: `Helm`, `Krew`
+- VM infra: Ansible, PSSH
+- Cloud infra: Terraform
+- Kubernetes infra: Helm, Krew
+
+and the following helpful commands and tools in linux:
+
+- `vscode`(remote), `curl`, `jq`, `perl`, `find`, `xargs`, `set`, `envsubst`, `&`(background process)
 
 ## License
 
