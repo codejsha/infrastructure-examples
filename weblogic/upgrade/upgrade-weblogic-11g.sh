@@ -2,6 +2,7 @@
 trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
 set -o errexit
 set -o errtrace
+set -o xtrace
 
 JAVA_HOME="/usr/java/java-1.7.0"
 INSTALL_FILE_DIR="/mnt/share/oracle-weblogic-server/wls10.3.6"
