@@ -58,7 +58,7 @@ def print_status_value(_items, _values):
 
 
 def get_server_datasource_status(_servers):
-    _datasource_length = 0
+    # _datasource_length = 0
     _server_names = []
     _datasource_names = []
 
@@ -103,7 +103,7 @@ def get_server_datasource_status(_servers):
     _datasource_values = []
     for _server in _servers:
         _datasources = _server.getJDBCServiceRuntime().getJDBCDataSourceRuntimeMBeans()
-        _datasource_length = len(_datasources)
+        # _datasource_length = len(_datasources)
         for _datasource in _datasources:
             _server_names.append(_server.getName())
             _datasource_names.append(_datasource.getName())
