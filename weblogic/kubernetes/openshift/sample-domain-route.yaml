@@ -5,7 +5,7 @@ metadata:
   name: sample-domain1-cluster-cluster-1
   namespace: sample-domain1-ns
 spec:
-  host: sample-domain1-cluster-cluster-1-sample-domain1-ns.apps.ocp46.klid.io
+  host: sample-domain1-cluster-cluster-1-sample-domain1-ns.apps.ocp.example.io
   path: /
   port:
     targetPort: 8001
@@ -33,7 +33,7 @@ metadata:
   name: sample-domain1-admin-server
   namespace: sample-domain1-ns
 spec:
-  host: sample-domain1-admin-server-sample-domain1-ns.apps.ocp46.klid.io
+  host: sample-domain1-admin-server-sample-domain1-ns.apps.ocp.example.io
   path: /
   port:
     targetPort: 7001
