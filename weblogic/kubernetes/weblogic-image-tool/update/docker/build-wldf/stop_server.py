@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = 'sample-domain1'
 domain_home = '/u01/oracle/user_projects/domains/' + domain_name

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 class ansiformat(object):
     reset = '\033[0m'

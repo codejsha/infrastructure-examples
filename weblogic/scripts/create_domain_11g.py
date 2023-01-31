@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 mw_home = '/usr/local/weblogic'
 domain_home = mw_home + '/user_projects/domains/base_domain'

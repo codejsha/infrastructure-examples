@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 oracle_home = os.environ['MW_HOME']
 domain_name = os.environ['DOMAIN_NAME']
