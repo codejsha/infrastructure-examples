@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 log_dir = os.environ['LOG_DIR']
 

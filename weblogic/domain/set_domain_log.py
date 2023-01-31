@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 log_dir = os.environ['LOG_DIR']
