@@ -3,5 +3,5 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl apply --filename https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml
-# kubectl apply --filename https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml
+kubectl apply --f https://github.com/jetstack/cert-manager/releases/latest/download/cert-manager.yaml
+# kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
