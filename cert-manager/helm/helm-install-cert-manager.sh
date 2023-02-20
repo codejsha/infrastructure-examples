@@ -7,10 +7,10 @@ set -o errtrace
 # helm repo update
 
 NAMESPACE="cert-manager"
+kubectl create namespace ${NAMESPACE}
+kubectl label namespace ${NAMESPACE} istio-injection=enabled
 
-# helm install my-cert-manager \
 helm upgrade --install my-cert-manager \
-    --create-namespace \
     --namespace ${NAMESPACE} \
     --set installCRDs="true" \
     jetstack/cert-manager
