@@ -1,5 +1,5 @@
 # choco install --confirm temurin
-# choco install --confirm temurin17
+choco install --confirm temurin17
 choco install --confirm temurin11
 choco install --confirm temurin8
 
