@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: argocd-issuer
+  namespace: argocd
+spec:
+  vault:
+    server: https://my-vault.vault.svc.cluster.local:8200
+    path: pki_int/sign/argocd
+    caBundle: "${BASE64_ENCODED_CABUNDLE}"
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: argocd-issuer
+        secretRef:
+          name: ${ARGOCD_ISSUER_SECRET_REF}
+          key: token

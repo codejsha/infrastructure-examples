@@ -5,6 +5,18 @@ source <(argocd completion bash)
 
 ######################################################################
 
+### initial
+
+### get init password
+kubectl exec -it $(kubectl get pods --selector app.kubernetes.io/name=argocd-server --output jsonpath='{.items[0].metadata.name}') -c argocd-server -- argocd admin initial-password
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+argocd login --username admin --password ${PASSWORD} --insecure localhost:8080
+argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
+argocd cluster add docker-desktop --insecure --server argocd.example.com
+
+######################################################################
+
 ### login/logout
 
 ### secure
@@ -21,11 +33,6 @@ argocd logout --insecure argocd.example.com
 argocd login --username admin --password ${PASSWORD} --grpc-web --insecure --plaintext argocd.example.com:80
 argocd login --username developer --password developer --grpc-web --insecure --plaintext argocd.example.com:80
 argocd logout --grpc-web --insecure --plaintext argocd.example.com:80
-
-######################################################################
-
-### get password
-kubectl get pods --namespace argocd --selector app.kubernetes.io/name=argocd-server --output name | cut -d'/' -f 2
 
 ######################################################################
 
