@@ -1,0 +1,54 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: minio-tenant-issuer
+  namespace: minio-tenant-1
+spec:
+  vault:
+    server: https://my-vault.vault.svc.cluster.local:8200
+    path: pki_int/sign/minio1
+    caBundle: "${BASE64_ENCODED_CABUNDLE}"
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: minio-tenant-issuer
+        secretRef:
+          name: "${MINIO_TENANT_ISSUER_SECRET_REF}"
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: minio-tenant-console-issuer
+  namespace: minio-tenant-1
+spec:
+  vault:
+    server: https://my-vault.vault.svc.cluster.local:8200
+    path: pki_int/sign/minio1-console
+    caBundle: "${BASE64_ENCODED_CABUNDLE}"
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: minio-tenant-console-issuer
+        secretRef:
+          name: "${MINIO_TENANT_CONSONE_ISSUER_SECRET_REF}"
+          key: token
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: minio-tenant-kes-issuer
+  namespace: minio-tenant-1
+spec:
+  vault:
+    server: https://my-vault.vault.svc.cluster.local:8200
+    path: pki_int/sign/minio1-kes
+    caBundle: "${BASE64_ENCODED_CABUNDLE}"
+    auth:
+      kubernetes:
+        mountPath: /v1/auth/kubernetes
+        role: minio-tenant-kes-issuer
+        secretRef:
+          name: "${MINIO_TENANT_KES_ISSUER_SECRET_REF}"
+          key: token

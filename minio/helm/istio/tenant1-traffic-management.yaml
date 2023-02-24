@@ -1,0 +1,47 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: minio1-gw
+  namespace: minio-tenant-1
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-minio1
+        protocol: HTTP
+      hosts:
+        - minio1.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https-minio1
+        protocol: HTTPS
+      hosts:
+        - minio1.example.com
+      tls:
+        credentialName: minio1-cert
+        mode: SIMPLE
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: minio1-vs
+  namespace: minio-tenant-1
+spec:
+  hosts:
+    - minio1.example.com
+  gateways:
+    - minio1-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: minio1-hl.minio-tenant-1.svc.cluster.local
+            port:
+              number: 9000

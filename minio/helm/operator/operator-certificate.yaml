@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: operator-cert
+  namespace: minio-operator
+spec:
+  secretName: operator-cert
+  commonName: "operator.minio-operator.svc"
+  dnsNames:
+    - "operator.minio-operator.svc"
+    - "localhost"
+    - "operator"
+    - "operator.minio-operator"
+    - "operator.minio-operator.svc.cluster.local"
+  issuerRef:
+    name: minio-operator-issuer

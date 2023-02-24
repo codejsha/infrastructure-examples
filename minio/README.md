@@ -26,30 +26,11 @@ start and stop scripts: `start-minio.sh`, `stop-minio.sh`
 bash ./docker-run-minio.sh
 ```
 
-## Kubernetes (Helm chart)
-
-⚠️ Deprecated chart
-
-- https://github.com/minio/charts
-
-```bash
-bash ./helm-install-minio.sh
-```
-
-## Kubernetes (Operator)
+## Kubernetes
 
 - https://github.com/minio/operator
 - https://github.com/minio/console
 
-### Architecture
-
-![minio-operator-architecture](/docs/images/minio-operator-architecture.png)
-
 ## Grafana dashboard
 
 - https://grafana.com/grafana/dashboards/13502
-
-## Command examples
-
-- `aws-cli-minio-commands.sh`
-- `minio-client-commands.sh`

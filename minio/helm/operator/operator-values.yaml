@@ -1,0 +1,12 @@
+---
+operator:
+  replicaCount: 1
+  env:
+    - name: MINIO_OPERATOR_TLS_ENABLE
+      value: "on"
+    - name: MINIO_CONSOLE_TLS_ENABLE
+      value: "on"
+    - name: CLUSTER_DOMAIN
+      value: "cluster.local"
+    - name: WATCHED_NAMESPACE
+      value: "minio-tenant-1,minio-tenant-2"
