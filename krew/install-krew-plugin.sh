@@ -3,6 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+kubectl krew install access-matrix
+kubectl krew install ca-cert
 kubectl krew install ctx
 kubectl krew install cert-manager
 kubectl krew install ingress-nginx
@@ -13,3 +15,4 @@ kubectl krew install score
 kubectl krew install sniff
 kubectl krew install tail
 kubectl krew install tree
+kubectl krew install view-secret
