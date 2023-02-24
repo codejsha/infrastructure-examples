@@ -1,5 +1,5 @@
 # choco install --confirm oraclejdk
-# choco install --confirm oracle17jdk
+choco install --confirm oracle17jdk
 choco install --confirm jdk11
 choco install --confirm jdk8
 
