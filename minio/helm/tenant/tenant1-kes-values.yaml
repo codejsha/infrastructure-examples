@@ -1,0 +1,40 @@
+---
+# secrets: false
+tenant:
+  name: minio1
+  configuration:
+    name: minio1-env-configuration
+  certificate:
+    requestAutoCert: false
+    externalCertSecret:
+      - name: minio1-cert
+        type: cert-manager.io/v1
+      - name: minio1-kes-cert
+        type: kubernetes.io/tls
+      - name: minio1-client-cert
+        type: kubernetes.io/tls
+  serviceAccountName: "minio-service-account"
+  pools:
+    - servers: 1
+      name: pool-0
+      volumesPerServer: 4
+      size: 1000Gi
+      storageClassName: hostpath
+      annotations: {}
+  kes:
+    replicas: 1
+    kesSecret:
+      name: minio1-kes-configuration
+    externalCertSecret:
+      name: minio1-kes-cert
+      type: kubernetes.io/tls
+    clientCertSecret:
+      name: minio1-client-cert
+      type: kubernetes.io/tls
+    keyName: "minio1-key"
+    serviceAccountName: "minio-service-account"
+    annotations: {}
+  prometheus:
+    disabled: true
+  log:
+    disabled: true

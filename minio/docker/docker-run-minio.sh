@@ -5,7 +5,6 @@ set -o errtrace
 
 USERNAME="minio"
 PASSWORD="minio123"
-# PASSWORD="${PASSWORD}"
 
 MINIO_VOLUME_DIR="/mnt/volume/minio"
 sudo mkdir -p ${MINIO_VOLUME_DIR}

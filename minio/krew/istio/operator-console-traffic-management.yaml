@@ -1,0 +1,56 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: minio-console-gw
+  namespace: minio-operator
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-minio-console
+        protocol: HTTP
+      hosts:
+        - minio-console.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https-minio-console
+        protocol: HTTPS
+      hosts:
+        - minio-console.example.com
+      tls:
+        mode: PASSTHROUGH
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: minio-vs
+  namespace: minio-operator
+spec:
+  hosts:
+    - minio-console.example.com
+  gateways:
+    - minio-console-gw
+  # http:
+  #   - match:
+  #       - uri:
+  #           prefix: /
+  #     route:
+  #       - destination:
+  #           host: console.minio-operator.svc.cluster.local
+  #           port:
+  #             number: 9090
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - minio-console.example.com
+      route:
+        - destination:
+            host: console.minio-operator.svc.cluster.local
+            port:
+              number: 9443

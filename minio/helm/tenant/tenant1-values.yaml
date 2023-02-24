@@ -1,0 +1,22 @@
+---
+secrets:
+  name: minio1-env-configuration
+  accessKey: minio
+  secretKey: minio123
+tenant:
+  name: minio1
+  configuration:
+    name: minio1-env-configuration
+  pools:
+    - servers: 1
+      name: pool-0
+      volumesPerServer: 4
+      size: 1000Gi
+      storageClassName: hostpath
+  buckets: []
+  certificate:
+    requestAutoCert: false
+  prometheus:
+    disabled: true
+  log:
+    disabled: true
