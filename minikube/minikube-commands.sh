@@ -1,5 +1,9 @@
 ######################################################################
 
+function minikube() { echo "+ minikube ${@}">&2; command minikube ${@}; }
+
+######################################################################
+
 minikube
 minikube addons
 minikube addons enable
@@ -30,6 +34,7 @@ minikube pause
 minikube podman-env
 minikube profile
 minikube delete
+minikube delete --all --purge
 
 minikube service
 minikube service list
