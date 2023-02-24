@@ -1,5 +1,9 @@
 ######################################################################
 
+function helm() { echo "+ helm ${@}">&2; command helm ${@}; }
+
+######################################################################
+
 ### repo
 
 ### add
@@ -35,6 +39,10 @@ helm plugin list
 
 ### chart
 
+### list
+helm list
+helm list --all
+
 ### show
 helm show chart ingress-nginx/ingress-nginx
 helm show readme ingress-nginx/ingress-nginx
@@ -50,6 +58,9 @@ helm cm-push --insecure tomcat-9.0.0.tgz local-harbor
 export HELM_EXPERIMENTAL_OCI=1
 helm chart push harbor.example.com/chartrepo/library/tomcat:9.0.0
 
+### pull
+helm pull --untar --untardir charts ingress-nginx/ingress-nginx
+
 ### install / upgrade
 helm install my-release
 helm upgrade my-release
@@ -60,9 +71,6 @@ helm uninstall my-release
 
 ### rollback
 helm rollback my-release
-
-### pull
-helm pull --untar --untardir charts ingress-nginx/ingress-nginx
 
 ### dependency
 helm dependency update
