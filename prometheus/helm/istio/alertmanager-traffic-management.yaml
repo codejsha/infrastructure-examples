@@ -3,7 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: alertmanager-gw
-  namespace: prometheus
+  namespace: monitoring
 spec:
   selector:
     istio: ingressgateway
@@ -19,7 +19,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: alertmanager-vs
-  namespace: prometheus
+  namespace: monitoring
 spec:
   hosts:
     - monitoring-alertmanager.example.com
@@ -36,7 +36,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: alertmanager-dr
-  namespace: prometheus
+  namespace: monitoring
 spec:
   host: my-kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local
   trafficPolicy:
