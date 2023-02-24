@@ -19,6 +19,7 @@ curl --silent \
 
 ### subject
 
+### get
 curl -s -X GET -H "Accept:application/json" http://schema-registry1.example.com:8081/subjects | jq
 curl --silent \
     --user schema-registry:schema-registry-secret \
@@ -29,6 +30,12 @@ curl --silent \
     --key /opt/confluent/ssl/schema_registry.key \
     https://schema-registry1.example.com:8081/subjects \
     | jq
+
+### post
+curl -s -X POST -H "Accept:application/json" -H "Content-Type:application/json" http://schema-registry1.example.com:8081/subjects/clickstream-value/versions | jq
+
+### delete
+curl -s -X DELETE -H "Accept:application/json" -H "Content-Type:application/json" http://localhost:8081/subjects/clickstream-value/versions | jq
 
 ### version
 curl -s -X GET -H "Accept:application/json" http://schema-registry1.example.com:8081/subjects/sakila-value/versions | jq
