@@ -11,4 +11,4 @@
 # [ -f ~/.aliases/location_aliases_wsl ] && source ~/.aliases/location_aliases_wsl
 [ -f ~/.aliases/process_aliases ] && source ~/.aliases/process_aliases
 [ -f ~/.aliases/python_aliases ] && source ~/.aliases/python_aliases
-[ -f ~/.vault/root_token.txt ] && export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+[ -f ${HOME}/.vault/root_token.txt ] && export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"

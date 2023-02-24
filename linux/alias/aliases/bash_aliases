@@ -37,7 +37,7 @@ export PATH="${PATH}:${CONFLUENT_HOME}/bin"
 
 ### variables
 export TZ="Asia/Seoul"
-export VAULT_ADDR="http://vault.example.com"
+export VAULT_ADDR="https://vault.example.com"
 
 ### path
 PATH="${PATH}:/usr/local/.krew/bin"
