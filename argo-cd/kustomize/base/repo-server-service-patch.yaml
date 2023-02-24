@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-repo-server
+spec:
+  ports:
+    - name: https-server
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+    - name: http-metrics
+      port: 8084
+      protocol: TCP
+      targetPort: 8084

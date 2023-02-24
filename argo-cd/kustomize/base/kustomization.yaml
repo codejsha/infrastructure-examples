@@ -1,0 +1,76 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argocd
+resources:
+  ### Non HA
+  # - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.2/manifests/install.yaml
+  ### HA
+  # - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
+  # - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.2/manifests/ha/install.yaml
+patches:
+  - path: account-config-patch.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-cm
+  - path: account-rbac-config-patch.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-rbac-cm
+  - path: applicationset-controller-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-applicationset-controller
+  - path: dex-server-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-dex-server
+  - path: metrics-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-metrics
+  - path: notifications-controller-metrics-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-notifications-controller-metrics
+  - path: redis-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-redis
+  - path: repo-server-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-repo-server
+  - path: server-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-server
+  - path: server-metrics-service-patch.yaml
+    target:
+      kind: Service
+      name: argocd-server-metrics
+  - path: applicationset-controller-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-applicationset-controller
+  - path: dex-server-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-dex-server
+  - path: notifications-controller-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-notifications-controller
+  - path: redis-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-redis
+  - path: repo-server-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-repo-server
+  - path: server-deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: argocd-server

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-applicationset-controller
+spec:
+  ports:
+    - name: http-webhook
+      port: 7000
+      protocol: TCP
+      targetPort: http-webhook
+    - name: metrics
+      port: 8080
+      protocol: TCP
+      targetPort: metrics

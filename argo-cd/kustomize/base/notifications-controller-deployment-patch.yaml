@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: argocd-notifications-controller
+    version: v2.6.2
+  name: argocd-notifications-controller
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-notifications-controller
+        app: argocd-notifications-controller
+        version: v2.6.2
