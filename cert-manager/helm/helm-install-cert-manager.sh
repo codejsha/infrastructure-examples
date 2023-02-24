@@ -7,8 +7,6 @@ set -o errtrace
 # helm repo update
 
 NAMESPACE="cert-manager"
-kubectl create namespace ${NAMESPACE}
-kubectl label namespace ${NAMESPACE} istio-injection=enabled
 
 helm upgrade --install my-cert-manager \
     --namespace ${NAMESPACE} \
