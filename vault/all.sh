@@ -4,11 +4,19 @@ set -o errexit
 set -o errtrace
 
 bash ./init-vault-server.sh
-bash ./get-root-token.sh
-bash ./unseal-vault-server.sh
+
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
+
+# kubectl -n vault port-forward service/my-vault 8200:8200
+# export VAULT_ADDR="https://localhost:8200"
+# export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+# export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 cd istio
 kubectl apply -f vault-traffic-management.yaml
+# kubectl apply -f vault-traffic-management-http.yaml
 cd ..
 
 cd pki
@@ -18,4 +26,6 @@ cd ..
 
 cd kubernetes
 bash ./enable-kubernetes-auth-method.sh
+vault secrets enable -version=2 kv
+vault auth enable approle
 cd ..
