@@ -3,11 +3,12 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 vault write auth/kubernetes/role/confluent-operator \
     bound_service_account_names="confluent-sa" \
     bound_service_account_namespaces="confluent" \
     policies="confluent-operator" \
-    ttl="4380h"
+    ttl="8760h"
