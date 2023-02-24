@@ -3,8 +3,9 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+# export VAULT_ADDR="https://vault.example.com"
+# export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+# export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 ### enable pki
 vault secrets enable pki
@@ -18,8 +19,8 @@ vault write pki/root/generate/internal \
 
 ### configure issuing certificate and crl endpoints
 vault write pki/config/urls \
-    issuing_certificates="http://vault.example.com/v1/pki/ca" \
-    crl_distribution_points="http://vault.example.com/v1/pki/crl"
+    issuing_certificates="https://vault.example.com/v1/pki/ca" \
+    crl_distribution_points="https://vault.example.com/v1/pki/crl"
 
 ### create policy
 vault policy write pki - <<EOF

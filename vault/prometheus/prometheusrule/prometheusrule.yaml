@@ -1,0 +1,33 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: my-vault
+  namespace: vault
+  labels:
+    app: kube-prometheus-stack
+    app.kubernetes.io/instance: my-vault
+    app.kubernetes.io/name: vault
+    release: my-kube-prometheus-stack
+spec:
+  groups:
+    - name: my-vault
+      rules:
+        - alert: VaultMediumResponseTime
+          annotations:
+            message:
+              The response time of Vault is over 500ms on average over the last
+              5 minutes.
+          expr: vault_core_handle_request{quantile="0.5", namespace="vault"} > 500
+          for: 5m
+          labels:
+            severity: warning
+        - alert: VaultHighResponseTime
+          annotations:
+            message:
+              The response time of Vault is over 1s on average over the last 5
+              minutes.
+          expr: vault_core_handle_request{quantile="0.5", namespace="vault"} > 1000
+          for: 5m
+          labels:
+            severity: critical

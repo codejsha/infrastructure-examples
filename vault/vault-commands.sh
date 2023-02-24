@@ -1,35 +1,54 @@
 ######################################################################
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_ADDR="http://localhost:8200"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
+
+kubectl -n vault port-forward service/my-vault 8200:8200
+export VAULT_ADDR="https://localhost:8200"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 ######################################################################
 
-### unseal vault server
+### initialize the vault and unseal it
 
-mkdir -p ~/.vault
-kubectl exec -it my-vault-0 -- vault operator init > ~/.vault/unseal_keys_and_root_token.txt
-cat ~/.vault/unseal_keys_and_root_token.txt
+export WORKDIR="./tls"
+kubectl exec -n vault my-vault-0 -- vault operator init \
+    -key-shares=1 \
+    -key-threshold=1 \
+    -format=json > ${WORKDIR}/cluster-keys.json
+VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ${WORKDIR}/cluster-keys.json)
+kubectl exec -n vault my-vault-0 -- vault operator unseal ${VAULT_UNSEAL_KEY}
 
-# kubectl exec -it my-vault-0 -- vault operator unseal
-kubectl exec -it my-vault-0 -- vault operator unseal <UNSEAL_KEY_1>
-kubectl exec -it my-vault-0 -- vault operator unseal <UNSEAL_KEY_2>
-kubectl exec -it my-vault-0 -- vault operator unseal <UNSEAL_KEY_3>
+mkdir -p ${HOME}/.vault
+CLUSTER_ROOT_TOKEN=$(cat ${WORKDIR}/cluster-keys.json | jq -r ".root_token")
+echo ${CLUSTER_ROOT_TOKEN} > ${HOME}/.vault/root_token.txt
+
+export CLUSTER_ROOT_TOKEN=$(cat ${WORKDIR}/cluster-keys.json | jq -r ".root_token")
+kubectl exec -n ${VAULT_NAMESPACE} ${VAULT_HELM_RELEASE_NAME}-0 -- vault login ${CLUSTER_ROOT_TOKEN}
+kubectl exec -n ${VAULT_NAMESPACE} ${VAULT_HELM_RELEASE_NAME}-0 -- vault operator raft list-peers
+kubectl exec -n ${VAULT_NAMESPACE} ${VAULT_HELM_RELEASE_NAME}-0 -- vault status
+
+######################################################################
+
+### unseal vault
+
+VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ${HOME}/.vault/cluster-keys.json)
+kubectl exec -n vault my-vault-0 -- vault operator unseal ${VAULT_UNSEAL_KEY}
+
+export CLUSTER_ROOT_TOKEN=$(cat ${HOME}/.vault/cluster-keys.json | jq -r ".root_token")
+kubectl exec -n vault my-vault-0 -- vault login ${CLUSTER_ROOT_TOKEN}
+kubectl exec -n vault my-vault-0 -- vault operator raft list-peers
+kubectl exec -n vault my-vault-0 -- vault status
 
 ######################################################################
 
 ### connect to running container
 
-### default namespace
-NAMESPACE="default"
-
-### vault namespace
 NAMESPACE="vault"
-
 VAULT_PODNAME="$(kubectl get pods --namespace ${NAMESPACE} --selector app.kubernetes.io/name=vault --output custom-columns=:metadata.name)"
 kubectl exec -it --namespace ${NAMESPACE} ${VAULT_PODNAME} --container vault -- /bin/sh
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
 
 ######################################################################
 
@@ -70,14 +89,45 @@ vault secrets tune -max-lease-ttl="87600h" pki
 ### read ca certificate
 vault read pki/cert/ca -format="json" | jq -r '.data.certificate' |  openssl x509 -text -noout
 vault read pki/cert/ca -format="json" | jq -r '.data.certificate' > ca.crt
-curl -s http://vault.example.com/v1/pki/ca/pem | openssl x509 -text -noout
+curl -s https://vault.example.com/v1/pki/ca/pem | openssl x509 -text -noout
 
 ### certificate list
 vault list pki/certs
+vault list pki_int/certs
 curl \
     --header "X-Vault-Token:${VAULT_TOKEN}" \
     --request LIST \
-    http://vault.example.com/v1/pki/certs
+    https://vault.example.com/v1/pki/certs
 
 ### get certificate
 vault read pki/cert/${SERIAL} -format="json" | jq -r '.data.certificate' |  openssl x509 -text -noout
+
+######################################################################
+
+### example1
+
+kubectl exec -it -n vault my-vault-0 -- vault secrets enable -path=secret kv-v2
+kubectl exec -it -n vault my-vault-0 -- vault kv put secret/tls/apitest username="user" password="secret"
+kubectl exec -it -n vault my-vault-0 -- vault kv get secret/tls/apitest
+
+kubectl -n vault get service my-vault
+kubectl -n vault port-forward service/my-vault 8200:8200
+export WORKDIR="./tls"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+curl --cacert ${WORKDIR}/kubernetes-ca.crt \
+   --header "X-Vault-Token: ${VAULT_TOKEN}" \
+   https://127.0.0.1:8200/v1/secret/data/tls/apitest | jq .data.data
+
+######################################################################
+
+### example2
+
+jq -r ".unseal_keys_b64[]" ./vault-keys.json
+VAULT_UNSEAL_KEY=$(jq -r ".unseal_keys_b64[]" ./vault-keys.json)
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN=$(echo $VAULT_UNSEAL_KEY | awk '{print $1;}')
+kubectl exec --namespace vault my-vault-0 -- vault login ${VAULT_TOKEN}
+vault secrets enable -path=secret kv-v2
+
+kubectl exec -it --namespace vault my-vault-0 --container vault -- /bin/sh
+vault login ${VAULT_TOKEN}
