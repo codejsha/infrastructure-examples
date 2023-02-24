@@ -1,3 +1,8 @@
 ---
+prometheus:
+  prometheusSpec:
+    scrapeInterval: 30s
+    evaluationInterval: 30s
 prometheus-node-exporter:
-  hostRootFsMount: false
+  hostRootFsMount:
+    enabled: false
