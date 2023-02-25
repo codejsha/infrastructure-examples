@@ -12,9 +12,9 @@ highly recommend the following useful tools:
 - Cloud infra: Terraform
 - Kubernetes infra: Helm, Krew
 
-and the following helpful commands and tools in linux:
+and the following tools in linux:
 
-- `vscode`(remote), `curl`, `jq`, `perl`, `find`, `xargs`, `set`, `envsubst`, `&`(background process)
+- `vscode`(remote), `curl`, `jq`, `perl`, `find`, `xargs`, `fzf`, `set`, `envsubst`, `&`(background process)
 
 ## License
 
