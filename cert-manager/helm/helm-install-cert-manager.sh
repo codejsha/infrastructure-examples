@@ -9,6 +9,7 @@ set -o errtrace
 NAMESPACE="cert-manager"
 
 helm upgrade --install my-cert-manager \
+    --create-namespace \
     --namespace ${NAMESPACE} \
     --set installCRDs="true" \
     jetstack/cert-manager

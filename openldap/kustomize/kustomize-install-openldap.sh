@@ -9,5 +9,5 @@ mkdir -p ${BASE_DIR}
 CONTENT="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/examples/ldap"
 curl -s -o "${BASE_DIR}/#1" "${CONTENT}/base/{deployment.yaml,kustomization.yaml,service.yaml,env.startup.txt}"
 
-kustomize build ./overlays/development | kubectl apply --filename -
-# kustomize build ./overlays/development | kubectl delete --filename -
+kustomize build ./overlays/development | kubectl apply -f -
+# kustomize build ./overlays/development | kubectl delete -f -
