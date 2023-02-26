@@ -4,6 +4,6 @@ set -o errexit
 set -o errtrace
 
 ### Non HA
-kubectl apply --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ### HA
-# kubectl apply --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
+# kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
