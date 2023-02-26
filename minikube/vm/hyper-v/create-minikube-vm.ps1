@@ -14,6 +14,7 @@ function New-Machine {
 
     # $InstallMedia = "F:\os-iso\CentOS-7-x86_64-DVD-2009"
     # $InstallMedia = "F:\os-iso\CentOS-8.3.2011-x86_64-dvd1.iso"
+    $InstallMedia = "F:\os-iso\CentOS-Stream-9-latest-x86_64-dvd1.iso"
 
     New-VM -Name $VMName `
         -Path $VMPath `
@@ -29,13 +30,13 @@ function New-Machine {
         -Count $VMProcessor
     Set-VMMemory -VMName $VMName `
         -DynamicMemoryEnabled $false
-    # Add-VMDvdDrive -VMName $VMName  `
-    #     -ControllerNumber 0 `
-    #     -ControllerLocation 1 `
-    #     -Path $InstallMedia
-    # $DVDDrive = Get-VMDvdDrive -VMName $VMName
-    # Set-VMFirmware -VMName $VMName `
-    #     -FirstBootDevice $DVDDrive
+    Add-VMDvdDrive -VMName $VMName  `
+        -ControllerNumber 0 `
+        -ControllerLocation 1 `
+        -Path $InstallMedia
+    $DVDDrive = Get-VMDvdDrive -VMName $VMName
+    Set-VMFirmware -VMName $VMName `
+        -FirstBootDevice $DVDDrive
     Set-VM -Name $VMName `
         -AutomaticCheckpointsEnabled $false
 }

@@ -4,11 +4,14 @@ function minikube() { echo "+ minikube ${@}">&2; command minikube ${@}; }
 
 ######################################################################
 
+$env:MINIKUBE_HOME = "E:\.minikube"
+
 minikube
 minikube addons
 minikube addons enable
 minikube addons disable
 minikube addons list
+minikube addons configure metallb
 minikube cache
 
 minikube config
