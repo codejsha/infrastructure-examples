@@ -4,7 +4,7 @@ set -o errexit
 set -o errtrace
 
 ### install
-kustomize build . | kubectl apply --filename -
+kustomize build . | kubectl apply -f -
 
 ### uninstall
-# kustomize build . | kubectl delete --filename -
+# kustomize build . | kubectl delete -f -

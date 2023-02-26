@@ -14,10 +14,10 @@ cd vault
 kubectl apply --filename grafana-certificate.yaml
 kubectl apply --filename kiali-certificate.yaml
 kubectl apply --filename prometheus-certificate.yaml
-kubectl apply --filename tracing-certificate.yaml
+kubectl apply --filename jaeger-certificate.yaml
 
 ### openssl
-# bash ./create-ingress-domain-certificate-with-openssl.sh
+# bash ./create-certificate-with-openssl.sh
 
 cd ..
 
@@ -29,6 +29,6 @@ cd istio
 kubectl apply --filename grafana-traffic-management.yaml
 kubectl apply --filename kiali-traffic-management.yaml
 kubectl apply --filename prometheus-traffic-management.yaml
-kubectl apply --filename tracing-traffic-management.yaml
+kubectl apply --filename jaeger-traffic-management.yaml
 
 cd ..

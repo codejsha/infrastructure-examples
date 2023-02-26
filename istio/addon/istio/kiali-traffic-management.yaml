@@ -9,6 +9,14 @@ spec:
     istio: ingressgateway
   servers:
     - port:
+        number: 80
+        name: http-kiali
+        protocol: HTTP
+      hosts:
+        - kiali.example.com
+      tls:
+        httpsRedirect: true
+    - port:
         number: 443
         name: https-kiali
         protocol: HTTPS

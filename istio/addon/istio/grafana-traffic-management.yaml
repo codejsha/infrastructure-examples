@@ -9,6 +9,14 @@ spec:
     istio: ingressgateway
   servers:
     - port:
+        number: 80
+        name: http-grafana
+        protocol: HTTP
+      hosts:
+        - grafana.example.com
+      tls:
+        httpsRedirect: true
+    - port:
         number: 443
         name: https-grafana
         protocol: HTTPS

@@ -2,46 +2,54 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: tracing-gw
+  name: jaeger-gw
   namespace: istio-system
 spec:
   selector:
     istio: ingressgateway
   servers:
     - port:
+        number: 80
+        name: http-jaeger
+        protocol: HTTP
+      hosts:
+        - jaeger.example.com
+      tls:
+        httpsRedirect: true
+    - port:
         number: 443
-        name: https-tracing
+        name: https-jaeger
         protocol: HTTPS
       hosts:
-        - tracing.example.com
+        - jaeger.example.com
       tls:
-        credentialName: tracing-cert
+        credentialName: jaeger-cert
         mode: SIMPLE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: tracing-vs
+  name: jaeger-vs
   namespace: istio-system
 spec:
   hosts:
-    - tracing.example.com
+    - jaeger.example.com
   gateways:
-    - tracing-gw
+    - jaeger-gw
   http:
     - route:
         - destination:
-            host: tracing.istio-system.svc.cluster.local
+            host: jaeger.istio-system.svc.cluster.local
             port:
               number: 80
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: tracing-dr
+  name: jaeger-dr
   namespace: istio-system
 spec:
-  host: tracing.istio-system.svc.cluster.local
+  host: jaeger.istio-system.svc.cluster.local
   trafficPolicy:
     tls:
       mode: DISABLE
