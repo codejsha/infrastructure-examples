@@ -1,10 +1,7 @@
 # bash
 
-function docker() { echo "+ docker ${@}">&2; command docker ${@}; }
-function docker-compose() { echo "+ docker-compose ${@}">&2; command docker-compose ${@}; }
 function ssh() { echo "+ ssh ${@}">&2; command ssh ${@}; }
 function sudo() { echo "+ sudo ${@}">&2; command sudo ${@}; }
-function vault() { echo "+ vault ${@}">&2; command vault ${@}; }
 function xargs() { echo "+ xargs ${@}">&2; command xargs ${@}; }
 
 alias ll="ls -l -h --color=auto"
@@ -12,6 +9,8 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias watch="watch "
+
+export TZ="Asia/Seoul"
 
 LS_COLORS="${LS_COLORS}:di=\e[38;2;86;156;214"        # directory
 LS_COLORS="${LS_COLORS}:ex=\e[38;2;87;166;74"         # executable file
@@ -25,21 +24,3 @@ LS_COLORS="${LS_COLORS}:*.tgz=\e[38;2;214;157;133"
 LS_COLORS="${LS_COLORS}:*.war=\e[38;2;214;157;133"
 LS_COLORS="${LS_COLORS}:*.zip=\e[38;2;214;157;133"
 export LS_COLORS
-
-### go
-export GOROOT="/usr/local/go"
-export GOPATH="${HOME}/go"
-export PATH="${PATH}:${GOROOT}/bin"
-
-### confluent
-export CONFLUENT_HOME="/usr/local/confluent"
-export PATH="${PATH}:${CONFLUENT_HOME}/bin"
-
-### variables
-export TZ="Asia/Seoul"
-export VAULT_ADDR="https://vault.example.com"
-
-### path
-PATH="${PATH}:/usr/local/.krew/bin"
-PATH="${PATH}:/usr/local/maven/bin"
-export PATH
