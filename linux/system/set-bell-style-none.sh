@@ -3,5 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-rm -rf ~/.aliases
-/bin/cp -rf aliases ~/.aliases
+echo "set bell-style none" >> ~/.inputrc

@@ -1,12 +1,57 @@
-# location
+######################################################################
 
-function cdp() { DIRECTORY="${1}"; echo "+ cd -P ${@}">&2; command cd -P ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then printf "\e[38;2;216;160;223mLOCATION: $(pwd)\e[0m\n"; ls --almost-all -l; fi; }
-function readlinkpwd() { echo "+ readlink --canonicalize .">&2; command readlink --canonicalize .; }
+watch -x bash -ic "my-alias"
 
-function goinfra() { DIRECTORY="/mnt/c/Users/*/source/repos/infrastructure"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all; fi; }
-function gorepos() { DIRECTORY="/mnt/c/Users/*/source/repos"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
-function gocoderepos() { DIRECTORY="/mnt/c/Users/*/source/coderepos"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all; fi; }
-function gocoderepos() { DIRECTORY="/mnt/c/Users/*/source/subrepos"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all; fi; }
+######################################################################
+
+alias killgrafana="pkill -9 --echo --count --exact grafana-server"
+alias killhttpd="sudo pkill -9 --echo --count --exact httpd"
+alias killjava="sudo pkill -9 --echo --count --exact java"
+alias killlagexporter="pkill -9 --echo --count --exact kafka-lag-exporter"
+alias killnodeexporter="pkill -9 --echo --count --exact node_exporter"
+alias killprometheus="sudo pkill -9 --echo --count --exact prometheus"
+
+alias killjboss="sudo pkill -9 --echo --count --full \"org\.jboss\.as\.standalone\""
+alias killtomcat="sudo pkill -9 --echo --count --full \"org\.apache\.catalina\.startup\.Bootstrap\""
+alias killweblogic="sudo pkill -9 --echo --count --full \"weblogic\.Server\""
+
+alias killzookeeper="sudo pkill -9 --echo --count --full \"org\.apache\.zookeeper\.server\.quorum\.QuorumPeerMain\""
+alias killkafka="sudo pkill -9 --echo --count --full \"kafka\.Kafka\""
+alias killschemaregistry="sudo pkill -9 --echo --count --full \"io\.confluent\.kafka\.schemaregistry\.rest\.SchemaRegistryMain\""
+alias killkafkaconnect="sudo pkill -9 --echo --count --full \"org\.apache\.kafka\.connect\.cli\.ConnectDistributed\""
+alias killkafkarest="sudo pkill -9 --echo --count --full \"io\.confluent\.kafkarest\.KafkaRestMain\""
+alias killksqldb="sudo pkill -9 --echo --count --full \"io\.confluent\.ksql\.rest\.server\.KsqlServerMain\""
+alias killcontrolcenter="sudo pkill -9 --echo --count --full \"io\.confluent\.controlcenter\.ControlCenter\""
+alias killconfluent="killzookeeper; killkafka; killschemaregistry; killkafkaconnect; killkafkarest; killksqldb; killcontrolcenter;"
+
+alias psef="sudo ps -ef | grep "
+alias psefhttpd="sudo ps -ef | grep httpd"
+alias psefjava="sudo ps -ef | grep java"
+alias psefjboss="sudo ps -ef | grep jboss"
+alias psefnginx="sudo ps -ef | grep nginx"
+alias pseftomcat="sudo ps -ef | grep tomcat"
+alias psefweblogic="sudo ps -ef | grep weblogic"
+
+alias pxhttpd="sudo pgrep --exact --list-full httpd | grep httpd"
+alias pxdockerd="sudo pgrep --exact --list-full dockerd | grep dockerd"
+alias pxdockerproxy="sudo pgrep --exact --list-full docker-proxy | grep docker-proxy"
+alias pxelasticsearch="pgrep --exact --list-full java | grep elasticsearch"
+alias pxfluentd="pgrep --exact --list-full ruby | grep fluentd"
+alias pxgrafana="pgrep --exact --list-full grafana-server | grep grafana-server"
+alias pxkibana="pgrep --exact --list-full node | grep kibana"
+alias pxlagexporter="pgrep --exact --list-full java | grep kafka-lag-exporter"
+alias pxnginx="sudo pgrep --exact --list-full nginx | grep nginx"
+alias pxnodeexporter="pgrep --exact --list-full node_exporter | grep node_exporter"
+alias pxjava="sudo pgrep --exact --list-full java | grep java"
+alias pxjboss="sudo pgrep --exact --list-full java | grep jboss"
+alias pxprometheus="pgrep --exact --list-full prometheus | grep prometheus"
+alias pxtomcat="sudo pgrep --exact --list-full java | grep tomcat"
+alias pxweblogic="sudo pgrep --exact --list-full java | grep weblogic"
+
+alias goconfluent="cd /opt/confluent"
+alias goprops="cd /opt/confluent/properties"
+alias goscripts="cd /opt/confluent/scripts"
+alias goconnectors="cd /opt/confluent/connect/connectors"
 
 function goapp() { DIRECTORY="/svc/app"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 function goapm() { DIRECTORY="/svc/apm"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }

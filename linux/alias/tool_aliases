@@ -1,0 +1,10 @@
+# tool
+
+function kill() { echo "+ kill ${@}">&2; command kill ${@}; }
+function pgrep() { echo "+ pgrep ${@}">&2; command pgrep ${@}; }
+function pkill() { echo "+ pkill ${@}">&2; command pkill ${@}; }
+
+function python() { echo "+ python ${@}">&2; command python ${@}; }
+function fzf() { echo "+ fzf ${@}">&2; command fzf ${@}; }
+
+function kubectl() { echo "+ kubectl ${@}">&2; command kubectl-krew ${@}; }   # krew
