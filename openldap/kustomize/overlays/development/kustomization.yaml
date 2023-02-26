@@ -11,4 +11,4 @@ images:
   - name: osixia/openldap
     newTag: latest
 patchesStrategicMerge:
-  - patch-pvc.yaml
+  - pvc-patch.yaml
