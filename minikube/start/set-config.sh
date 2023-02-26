@@ -11,8 +11,8 @@ minikube config set cpus 4
 
 ### driver
 # minikube config set driver none
-minikube config set driver kvm2
-# minikube config set driver docker
+# minikube config set driver kvm2
+minikube config set driver docker
 # minikube config set driver podman
 
 ### podman
