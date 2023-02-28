@@ -32,8 +32,8 @@ cd istio
 # kubectl apply --filename argocd-traffic-management-simple.yaml
 cd ..
 
-cd ambassador
-kubectl apply --filename argocd-ambassador-mapping.yaml
-cd ..
+# cd ambassador
+# kubectl apply --filename argocd-edge-stack.yaml
+# cd ..
 
 # kubectl apply --filename argocd-server-ingress.yaml
