@@ -14,5 +14,5 @@ spec:
         mountPath: /v1/auth/kubernetes
         role: argocd-issuer
         secretRef:
-          name: ${ARGOCD_ISSUER_SECRET_REF}
+          name: "${ARGOCD_ISSUER_SECRET_REF}"
           key: token
