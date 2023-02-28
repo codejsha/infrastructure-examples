@@ -1,8 +1,9 @@
 ### wsl --list --all
 ###     Windows Subsystem for Linux Distributions:
-###     Ubuntu-20.04 (Default)
-###     docker-desktop
+###     Ubuntu-22.04 (Default)
+###     Ubuntu-20.04
 ###     docker-desktop-data
+###     docker-desktop
 
 $DataLocation = "E:\Docker\wsl\data"
 wsl --export docker-desktop-data "$DataLocation\docker-desktop-data.tar"

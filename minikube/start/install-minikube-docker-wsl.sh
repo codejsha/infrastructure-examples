@@ -6,8 +6,8 @@ set -o errtrace
 sudo mkdir /sys/fs/cgroup/systemd && sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd.
 sudo usermod -aG docker $USER && newgrp docker
 
-minikube config set driver docker
-minikube config set memory 16384
-minikube config set cpus 4
-
-minikube start
+# minikube config set driver docker
+# minikube config set memory 16384
+# minikube config set cpus 4
+#
+# minikube start

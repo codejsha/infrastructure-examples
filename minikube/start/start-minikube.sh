@@ -7,10 +7,19 @@ set -o errtrace
 minikube start --driver=docker
 
 ### kvm
-# minikube start --driver=kvm2
+# minikube start \
+#     --driver=kvm2 \
+#     --extra-config=kubelet.authentication-token-webhook=true \
+#     --extra-config=kubelet.authorization-mode=Webhook \
+#     --extra-config=scheduler.address=0.0.0.0 \
+#     --extra-config=controller-manager.address=0.0.0.0
 
 ### podman
 # minikube start \
 #     --driver=podman \
 #     --container-runtime=cri-o \
-#     --cri-socket=/var/run/crio/crio.sock
+#     --cri-socket=/var/run/crio/crio.sock \
+#     --extra-config=kubelet.authentication-token-webhook=true \
+#     --extra-config=kubelet.authorization-mode=Webhook \
+#     --extra-config=scheduler.address=0.0.0.0 \
+#     --extra-config=controller-manager.address=0.0.0.0
