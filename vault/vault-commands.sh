@@ -1,8 +1,14 @@
 ######################################################################
 
+function vault() { echo "+ vault ${@}">&2; command vault ${@}; }
+
+######################################################################
+
 export VAULT_ADDR="https://vault.example.com"
 export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
 export VAULT_CACERT="${HOME}/.vault/ca.crt"
+
+export VAULT_SKIP_VERIFY="true"
 
 kubectl -n vault port-forward service/my-vault 8200:8200
 export VAULT_ADDR="https://localhost:8200"
@@ -131,3 +137,21 @@ vault secrets enable -path=secret kv-v2
 
 kubectl exec -it --namespace vault my-vault-0 --container vault -- /bin/sh
 vault login ${VAULT_TOKEN}
+
+######################################################################
+
+### debug
+
+vault debug
+vault debug -duration=1m -interval=10s -metrics-interval=5s -compress=false
+vault debug -target=host -target=metrics
+
+### audit log
+vault audit enable -path=file_raw file \
+        file_path=/vault/audit-law.log \
+        log_raw=true
+vault audit disable file_raw
+
+### policy review (403 permission denied)
+vault token create -policy=pki_int
+vault token capabilities ${TOKEN} pki_int/sign/argocd

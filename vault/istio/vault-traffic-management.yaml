@@ -9,6 +9,14 @@ spec:
     istio: ingressgateway
   servers:
     - port:
+        number: 80
+        name: http-vault
+        protocol: HTTP
+      hosts:
+        - vault.example.com
+      tls:
+        httpsRedirect: true
+    - port:
         number: 443
         name: https-vault
         protocol: HTTPS

@@ -3,6 +3,10 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+# cd helm
+# bash ./helm-install-vault-ha-tls.sh
+# cd ..
+
 bash ./init-vault-server.sh
 
 export VAULT_ADDR="https://vault.example.com"
