@@ -46,6 +46,7 @@ nohup.*
 /ohs/kubernetes/docker/docker-images/
 /openldap/kustomize/base/
 /oracledb/docker/build/docker-images/
+/kraken/kraken/
 /prometheus/operator/kube-prometheus/
 /rook/operator/rook/
 /strimzi/strimzi-*/
@@ -54,6 +55,7 @@ nohup.*
 /tomcat/kustomize/.gitattributes
 /tomcat/kustomize/.gitignore
 /tomcat/log4j/apache-log4j-*-bin/
+/vault/helm/tls/
 /vault/pki/*.json
 /weblogic/kubernetes/docker/build-jdbcdriver/lib/
 /weblogic/kubernetes/docker/build-jdk/docker-images/
