@@ -9,11 +9,6 @@ export VAULT_ADDR="https://vault.example.com"
 export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
 export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
-# kubectl -n vault port-forward service/my-vault 8200:8200
-# export VAULT_ADDR="https://localhost:8200"
-# export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
-# export VAULT_CACERT="${HOME}/.vault/ca.crt"
-
 ######################################################################
 
 cd operator/
@@ -22,8 +17,7 @@ bash ./helm-install-minio-operator.sh
 bash ./create-kubernetes-role.sh
 bash ./create-pki-role.sh
 kubectl apply --filename issuer-serviceaccount.yaml
-kubectl apply --filename issuer-serviceaccount-secret.yaml
-bash ./create-vault-issuer.sh
+bash ./create-issuer.sh
 kubectl apply --filename operator-certificate.yaml
 bash ./patch-operator-secret.sh
 bash ./get-console-token.sh
@@ -38,7 +32,6 @@ cd ..
 cd tenant/
 kubectl apply --filename tenant1-namespace.yaml
 kubectl apply --filename tenant1-serviceaccount.yaml
-kubectl apply --filename tenant1-clusterrolebinding.yaml
 cd ..
 
 ######################################################################
@@ -53,8 +46,7 @@ bash ./create-policy.sh
 
 ### issuers
 kubectl apply --filename issuer-serviceaccount.yaml
-kubectl apply --filename issuer-serviceaccount-secret.yaml
-bash ./create-vault-issuer.sh
+bash ./create-issuer.sh
 
 ### certificates
 kubectl apply --filename tenant1-certificate.yaml
