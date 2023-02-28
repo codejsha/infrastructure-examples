@@ -14,7 +14,7 @@
     "pk.fields": "viewtime",
     "db.timezone": "Asia/Seoul",
     "auto.create": "true",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "http://localhost:8081",
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081"

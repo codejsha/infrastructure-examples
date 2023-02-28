@@ -31,7 +31,7 @@
     "transforms.Reroute.topic.regex": "database2.sakila.(.*)",
     "transforms.Reroute.topic.replacement": "database2-sakila-$1",
     "database.history.kafka.bootstrap.servers": "localhost:9092",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "http://localhost:8081",
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081"

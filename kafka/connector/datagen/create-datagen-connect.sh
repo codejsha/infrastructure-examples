@@ -6,7 +6,7 @@ set -o errtrace
 # ./register-datagen-campaign-finance.sh
 ./register-datagen-clickstream-codes.sh
 ./register-datagen-clickstream-users.sh
-./register-datagen-clickstream.sh
+./register-datagen-clickstream-events.sh
 ./register-datagen-credit-cards.sh
 ./register-datagen-inventory.sh
 ./register-datagen-orders.sh
