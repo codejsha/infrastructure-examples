@@ -8,6 +8,7 @@ journalctl --utc
 # current boot
 journalctl -b
 
+
 journalctl --since "2015-01-10 17:15:00"
 journalctl --since "2015-01-10" --until "2015-01-11 03:00"
 journalctl --since yesterday

@@ -12,4 +12,6 @@ https://github.com/helm/charts#%EF%B8%8F-deprecation-and-archive-notice
 
 - https://github.com/microsoft/sql-server-samples
 
-MIT License, Copyright (c) Microsoft Corporation
+MIT License
+
+Copyright (c) Microsoft Corporation
