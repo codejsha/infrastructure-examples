@@ -1,0 +1,36 @@
+{
+  "connect.name": "clickstream.UserClickEvent",
+  "fields": [
+    {
+      "name": "userid",
+      "type": "int"
+    },
+    {
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "name": "ip",
+      "type": "string"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "request",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "bytes",
+      "type": "string"
+    }
+  ],
+  "name": "UserClickEvent",
+  "namespace": "clickstream",
+  "type": "record"
+}

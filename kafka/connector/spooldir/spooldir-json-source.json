@@ -11,7 +11,7 @@
     "cleanup.policy": "MOVE",
     "halt.on.error": "false",
     "schema.generation.enabled": "true",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "http://localhost:8081",
     "value.converter": "io.confluent.connect.avro.AvroConverter",
     "value.converter.schema.registry.url": "http://localhost:8081"

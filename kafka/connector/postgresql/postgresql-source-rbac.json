@@ -26,7 +26,7 @@
     "transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
     "transforms.Reroute.topic.regex": "database1.public.(.*)",
     "transforms.Reroute.topic.replacement": "database1-public-$1",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "https://schema-registry1.example.com:8081,https://schema-registry2.example.com:8081",
     "key.converter.schema.registry.ssl.truststore.location": "/opt/confluent/ssl/schema_registry.truststore.jks",
     "key.converter.schema.registry.ssl.truststore.password": "confluenttruststorepass",

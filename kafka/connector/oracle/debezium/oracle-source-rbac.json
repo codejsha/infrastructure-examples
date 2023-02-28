@@ -30,7 +30,7 @@
     "database.history.consumer.ssl.keystore.location": "/opt/confluent/ssl/kafka_broker.keystore.jks",
     "database.history.consumer.ssl.keystore.password": "confluentkeystorestorepass",
     "database.history.consumer.ssl.key.password": "confluentkeystorestorepass",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "https://schema-registry1.example.com:8081,https://schema-registry2.example.com:8081",
     "key.converter.schema.registry.ssl.truststore.location": "/opt/confluent/ssl/schema_registry.truststore.jks",
     "key.converter.schema.registry.ssl.truststore.password": "confluenttruststorepass",

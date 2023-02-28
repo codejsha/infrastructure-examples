@@ -7,29 +7,27 @@ set -o errtrace
 ### apache kafka
 ######################################################################
 
-KAFKA_HOME="/usr/local/kafka"
-
-# ${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic campaign_finance
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream_codes
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream_users
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic credit_cards
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic inventory
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic orders
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic pageviews
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic product
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic purchases
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic ratings
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic stock_trades
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic stores
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic transactions
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic users
-${KAFKA_HOME}/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic users_array_map
+# kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic campaign_finance
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_events
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_codes
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_users
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic credit_cards
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic inventory
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic orders
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic pageviews
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic product
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic purchases
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic ratings
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic stock_trades
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic stores
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic transactions
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic users
+kafka-topics.sh --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic users_array_map
 
 # curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/campaign_finance-key/versions | jq
 # curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-campaign_finance-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/campaign_finance-value/versions | jq
-curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/clickstream-key/versions | jq
-curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream-value/versions | jq
+curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/clickstream_events-key/versions | jq
+curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream_events-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream_events-value/versions | jq
 curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"int\"}"}' http://localhost:8081/subjects/clickstream_codes-key/versions | jq
 curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream_codes-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream_codes-value/versions | jq
 curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"int\"}"}' http://localhost:8081/subjects/clickstream_users-key/versions | jq
@@ -63,27 +61,27 @@ curl --silent --request POST --header "Content-Type:application/vnd.schemaregist
 ### confluent kafka
 ######################################################################
 
-# # kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic campaign_finance
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream_codes
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic clickstream_users
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic credit_cards
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic inventory
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic orders
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic pageviews
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic product
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic purchases
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic ratings
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic stock_trades
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic stores
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic transactions
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic users
-# kafka-topics --bootstrap-server localhost:9092 --create --partitions 1 --replication-factor 1 --topic users_array_map
+# # kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic campaign_finance
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_events
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_codes
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic clickstream_users
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic credit_cards
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic inventory
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic orders
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic pageviews
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic product
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic purchases
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic ratings
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic stock_trades
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic stores
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic transactions
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic users
+# kafka-topics --bootstrap-server localhost:9092 --create --partitions 3 --replication-factor 3 --topic users_array_map
 
 # # curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/campaign_finance-key/versions | jq
 # # curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-campaign_finance-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/campaign_finance-value/versions | jq
-# curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/clickstream-key/versions | jq
-# curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream-value/versions | jq
+# curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"string\"}"}' http://localhost:8081/subjects/clickstream_events-key/versions | jq
+# curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream_events-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream_events-value/versions | jq
 # curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"int\"}"}' http://localhost:8081/subjects/clickstream_codes-key/versions | jq
 # curl --silent --request POST --header "Content-Type:application/vnd.schemaregistry.v1+json" --data "{\"schema\": $(cat schema-clickstream_codes-value-v1.avsc | jq -c . | jq -R .)}" http://localhost:8081/subjects/clickstream_codes-value/versions | jq
 # curl --silent --request POST --header "Content-Type: application/vnd.schemaregistry.v1+json" --data '{"schema": "{\"type\": \"int\"}"}' http://localhost:8081/subjects/clickstream_users-key/versions | jq

@@ -1,6 +1,5 @@
 # Datagen Connector
 
-- https://www.confluent.io/hub/confluentinc/kafka-connect-datagen
 - https://github.com/confluentinc/kafka-connect-datagen
 
 `DatagenTask.Quickstart` enum:

@@ -25,7 +25,7 @@
     "predicates.IsOrders.pattern": "ORCLPDB1[.]OE[.]ORDERS",
     "predicates.IsJobHistory.type": "org.apache.kafka.connect.transforms.predicates.TopicNameMatches",
     "predicates.IsJobHistory.pattern": "ORCLPDB1[.]HR[.]JOB_HISTORY",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "key.converter.schema.registry.url": "https://schema-registry1.example.com:8081,https://schema-registry2.example.com:8081",
     "key.converter.schema.registry.ssl.truststore.location": "/opt/confluent/ssl/schema_registry.truststore.jks",
     "key.converter.schema.registry.ssl.truststore.password": "confluenttruststorepass",
