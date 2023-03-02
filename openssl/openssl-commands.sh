@@ -12,7 +12,11 @@ openssl s_client -connect test.example.com:443 -showcerts < /dev/null | openssl 
 
 ######################################################################
 
-openssl req -in tls.csr -noout -text
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 1024 -out ca.crt -subj "/C=KR/ST=Seoul/CN=Example Root CA"
+openssl req -newkey rsa:2048 -nodes -x509 -keyout tls.key -out tls.crt -days 365 -subj "/C=KR/ST=Seoul/CN=example.com"
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12 -name "example.com" -password pass:changeit
+
+openssl req -in tls.csr -text -noout
 openssl x509 -in tls.crt -text -noout
 
 ######################################################################
@@ -24,16 +28,16 @@ openssl x509 -noout -modulus -in tls.crt
 
 ######################################################################
 
-### create pfx file
-openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.pfx
-openssl pkcs12 -info -in tls.pfx -passin file:tls.password.txt
+### create p12 file
+openssl pkcs12 -export -in tls.crt -inkey tls.key -out tls.p12
+openssl pkcs12 -info -in tls.p12 -passin file:tls.password.txt
 
 ### extract certificate
-openssl pkcs12 -in tls.pfx -clcerts -nokeys -out tls.crt.pem
-openssl pkcs12 -in tls.pfx -clcerts -nokeys -out tls.crt.pem -password pass:PASSWORD
-openssl pkcs12 -in tls.pfx -clcerts -nokeys -out tls.crt.pem -passin file:tls.password.txt
+openssl pkcs12 -in tls.p12 -clcerts -nokeys -out tls.crt.pem
+openssl pkcs12 -in tls.p12 -clcerts -nokeys -out tls.crt.pem -password pass:PASSWORD
+openssl pkcs12 -in tls.p12 -clcerts -nokeys -out tls.crt.pem -passin file:tls.password.txt
 
 ### extract private key
-openssl pkcs12 -in tls.pfx -nocerts -nodes -out tls.key.pem
-openssl pkcs12 -in tls.pfx -nocerts -nodes -out tls.key.pem -password pass:PASSWORD
-openssl pkcs12 -in tls.pfx -nocerts -nodes -out tls.key.pem -passin file:tls.password.txt
+openssl pkcs12 -in tls.p12 -nocerts -nodes -out tls.key.pem
+openssl pkcs12 -in tls.p12 -nocerts -nodes -out tls.key.pem -password pass:PASSWORD
+openssl pkcs12 -in tls.p12 -nocerts -nodes -out tls.key.pem -passin file:tls.password.txt
