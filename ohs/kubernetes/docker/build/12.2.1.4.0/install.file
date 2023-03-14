@@ -1,0 +1,11 @@
+[ENGINE]
+
+Response File Version=1.0.0.0.0
+
+[GENERIC]
+
+DECLINE_AUTO_UPDATES=true
+INSTALL_TYPE=Standalone HTTP Server (Managed independently of WebLogic server)
+DECLINE_SECURITY_UPDATES=true
+SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
+
