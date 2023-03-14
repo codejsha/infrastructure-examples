@@ -18,8 +18,8 @@ function docker_run_mysql8 {
         --publish 3306:3306 \
         --publish 33060:33060 \
         --env MYSQL_ROOT_PASSWORD="${PASSWORD}" \
+        --env TZ="Asia/Seoul" \
         --mount type="volume",src="${MYSQL_DATA_VOLUME}",dst="/var/lib/mysql" \
-        --mount type="volume",src="${MYSQL_CONFIG_VOLUME}",dst="/etc/mysql/conf.d" \
         mysql:8
 }
 
@@ -34,6 +34,7 @@ function docker_run_mysql8_bind {
         --publish 3306:3306 \
         --publish 33060:33060 \
         --env MYSQL_ROOT_PASSWORD="${PASSWORD}" \
+        --env TZ="Asia/Seoul" \
         --mount type="bind",src="${MYSQL_VOLUME_DIR}/data",dst="/var/lib/mysql" \
         mysql:8
 
@@ -51,6 +52,7 @@ function docker_run_mysql5_bind {
         --publish 3306:3306 \
         --publish 33060:33060 \
         --env MYSQL_ROOT_PASSWORD="${PASSWORD}" \
+        --env TZ="Asia/Seoul" \
         --mount type="bind",src="${MYSQL_VOLUME_DIR}/data",dst="/var/lib/mysql" \
         mysql:5
 
