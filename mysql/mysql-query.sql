@@ -41,21 +41,20 @@ CREATE USER 'debezium'@'localhost' IDENTIFIED BY 'dbz';
 -- remote access
 CREATE USER 'prouser'@'%' IDENTIFIED BY 'password';
 CREATE USER 'debezium'@'%' IDENTIFIED BY 'dbz';
+CREATE USER 'sakila'@'%' IDENTIFIED BY 'sakila';
 
 -- ######################################################################
 
 -- privilege
-
 GRANT ALL PRIVILEGES ON *.* TO 'prouser'@'%';
 GRANT ALL PRIVILEGES ON db_name.* TO 'prouser'@'%';
 GRANT ALL PRIVILEGES ON sakila.* TO 'debezium'@'%';
-
+GRANT ALL PRIVILEGES ON sakila.* TO 'sakila'@'%';
 FLUSH PRIVILEGES;
 
 -- ######################################################################
 
 -- password
-
 ALTER USER 'debezium'@'%' IDENTIFIED WITH mysql_native_password BY 'dbz';
 UPDATE user SET password=password('new_password') WHERE user='root';
 
@@ -85,3 +84,8 @@ SELECT ST_AsBinary(address.location) FROM sakila.address WHERE address_id = 1;
 SELECT ST_GeomFromWKB(address.location) FROM sakila.address WHERE address_id = 1;
 SELECT ST_GeomFromWKB(ST_AsWKB(address.location)) FROM sakila.address WHERE address_id = 1;
 SELECT ST_SRID(address.location, 4326) FROM sakila.address WHERE address_id = 1;
+
+-- time zone
+SELECT @@global.time_zone, @@session.time_zone;
+SELECT TIMEDIFF(NOW(), CONVERT_TZ(NOW(), @@session.time_zone, '+00:00'));
+SELECT NOW()
