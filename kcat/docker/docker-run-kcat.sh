@@ -3,4 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-docker container run -it --network host edenhill/kafkacat:1.6.0
+docker container run -it --network host edenhill/kcat:1.7.1

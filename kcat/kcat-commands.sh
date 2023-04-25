@@ -1,10 +1,10 @@
 ######################################################################
 
-alias kafkacat="docker container run -it edenhill/kafkacat:1.6.0"
-alias kafkacat="docker container run -it --network host edenhill/kafkacat:1.6.0"
+alias kafkacat="docker container run -it edenhill/kcat:1.7.1"
+alias kafkacat="docker container run -it --network host edenhill/kcat:1.7.1"
 
 ### version
-docker container run -it --network host edenhill/kafkacat:1.6.0 -V
+docker container run -it --network host edenhill/kcat:1.7.1 -V
 
 ######################################################################
 
