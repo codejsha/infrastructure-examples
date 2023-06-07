@@ -76,10 +76,10 @@ tail -f /var/log/mysql/mysql.log
 
 -- examples
 DESC sakila.address;
-select ST_AsText(address.location) from sakila.address where address_id = 1;
-select ST_AsGeoJson(address.location) from sakila.address where address_id = 1;
-select ST_AsWKT(address.location) from sakila.address where address_id = 1;
-select ST_AsWKB(address.location) from sakila.address where address_id = 1;
+SELECT ST_AsText(address.location) FROM sakila.address WHERE address_id = 1;
+SELECT ST_AsGeoJson(address.location) FROM sakila.address WHERE address_id = 1;
+SELECT ST_AsWKT(address.location) FROM sakila.address WHERE address_id = 1;
+SELECT ST_AsWKB(address.location) FROM sakila.address WHERE address_id = 1;
 SELECT ST_AsBinary(address.location) FROM sakila.address WHERE address_id = 1;
 SELECT ST_GeomFromWKB(address.location) FROM sakila.address WHERE address_id = 1;
 SELECT ST_GeomFromWKB(ST_AsWKB(address.location)) FROM sakila.address WHERE address_id = 1;
@@ -89,3 +89,5 @@ SELECT ST_SRID(address.location, 4326) FROM sakila.address WHERE address_id = 1;
 SELECT @@global.time_zone, @@session.time_zone;
 SELECT TIMEDIFF(NOW(), CONVERT_TZ(NOW(), @@session.time_zone, '+00:00'));
 SELECT NOW()
+
+SELECT schema_name, default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA;

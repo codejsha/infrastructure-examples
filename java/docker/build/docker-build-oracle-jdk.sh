@@ -43,3 +43,4 @@ function docker_image_build_8_oraclelinux8 {
 ######################################################################
 
 docker_image_build_jdk11_oraclelinux8
+# docker_image_build_8_oraclelinux8

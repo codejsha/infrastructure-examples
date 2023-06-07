@@ -1,7 +1,7 @@
 ######################################################################
 
-alias kafkacat="docker container run -it edenhill/kcat:1.7.1"
-alias kafkacat="docker container run -it --network host edenhill/kcat:1.7.1"
+alias kcat="docker container run -it edenhill/kcat:1.7.1"
+alias kcat="docker container run -it --network host edenhill/kcat:1.7.1"
 
 ### version
 docker container run -it --network host edenhill/kcat:1.7.1 -V
@@ -10,8 +10,8 @@ docker container run -it --network host edenhill/kcat:1.7.1 -V
 
 ### topic
 
-kafkacat -b localhost:9092 -t pageviews -L
-kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -L
+kcat -b localhost:9092 -t pageviews -L
+kcat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -L
 
 ######################################################################
 
@@ -23,13 +23,13 @@ kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -L
 
 ### avro consumer
 
-kafkacat -b localhost:9092 -t pageviews -s avro -r http://localhost:8081
-kafkacat -b localhost:9092 -t pageviews -s avro -r http://localhost:8081 -c10
-kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081
-kafkacat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081 -c10
+kcat -b localhost:9092 -t pageviews -s avro -r http://localhost:8081
+kcat -b localhost:9092 -t pageviews -s avro -r http://localhost:8081 -c10
+kcat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081
+kcat -b kafka1:9092,kafka2:9092,kafka3:9092 -t pageviews -s avro -r http://schema-registry1:8081 -c10
 
-kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews
-kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users
-kafkacat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users -c10
+kcat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews
+kcat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users
+kcat -b localhost:9092 -s avro -r http://localhost:8081 -G my-group pageviews users -c10
 
-kafkacat -b kubernetes.docker.internal:30000 -s avro -r http://kubernetes.docker.internal:30004 -G my-group my-avro-topic
+kcat -b kubernetes.docker.internal:30000 -s avro -r http://kubernetes.docker.internal:30004 -G my-group my-avro-topic
