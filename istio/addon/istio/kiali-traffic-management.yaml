@@ -51,5 +51,7 @@ metadata:
 spec:
   host: kiali.istio-system.svc.cluster.local
   trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
     tls:
       mode: DISABLE

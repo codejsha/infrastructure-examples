@@ -34,3 +34,14 @@ spec:
             host: my-ldapadmin-phpldapadmin.ldap.svc.cluster.local
             port:
               number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ldapadmin-dr
+  namespace: ldap
+spec:
+  host: my-ldapadmin-phpldapadmin.ldap.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

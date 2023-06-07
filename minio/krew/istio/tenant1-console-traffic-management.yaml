@@ -45,3 +45,14 @@ spec:
             host: minio1-console.minio-tenant-1.svc.cluster.local
             port:
               number: 9443
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: minio1-console-dr
+  namespace: minio-tenant-1
+spec:
+  host: minio1-console.minio-tenant-1.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

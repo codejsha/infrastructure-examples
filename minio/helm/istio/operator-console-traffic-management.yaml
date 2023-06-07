@@ -54,3 +54,14 @@ spec:
             host: console.minio-operator.svc.cluster.local
             port:
               number: 9443
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: minio-console-dr
+  namespace: minio-operator
+spec:
+  host: console.minio-operator.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

@@ -47,3 +47,14 @@ spec:
             host: kafka.confluent.svc.cluster.local
             port:
               number: 8090
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-kafka-swagger-dr
+  namespace: confluent
+spec:
+  host: kafka.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

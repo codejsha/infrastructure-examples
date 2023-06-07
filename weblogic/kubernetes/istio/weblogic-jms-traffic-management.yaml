@@ -39,3 +39,25 @@ spec:
             host: sample-domain2-cluster-cluster-1.sample-domain2-ns.svc.cluster.local
             port:
               number: 7999
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sample-domain2-admin-server
+  namespace: sample-domain2-ns
+spec:
+  host: sample-domain2-admin-server.sample-domain2-ns.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sample-domain2-cluster-cluster-1
+  namespace:
+spec:
+  host: sample-domain2-cluster-cluster-1.sample-domain2-ns.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

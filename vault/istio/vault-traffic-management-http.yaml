@@ -34,3 +34,14 @@ spec:
             host: my-vault.vault.svc.cluster.local
             port:
               number: 8200
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: vault-dr
+  namespace: vault
+spec:
+  host: my-vault.vault.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
