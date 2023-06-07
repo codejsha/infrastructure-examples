@@ -34,3 +34,14 @@ spec:
             host: tekton-dashboard.tekton-pipelines.svc.cluster.local
             port:
               number: 9097
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: tekton-dr
+  namespace: tekton-pipelines
+spec:
+  host: tekton-dashboard.tekton-pipelines.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

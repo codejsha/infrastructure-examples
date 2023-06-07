@@ -73,3 +73,14 @@ spec:
             host: harbor.harbor.svc.cluster.local
             port:
               number: 4443
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: harbor-dr
+  namespace: harbor
+spec:
+  host: harbor.harbor.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

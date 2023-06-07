@@ -51,3 +51,14 @@ spec:
             host: my-ohs-ohs-helm.ohs.svc.cluster.local
             port:
               number: 4443
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ohs-dr
+  namespace: ohs
+spec:
+  host: my-ohs-ohs-helm.ohs.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
