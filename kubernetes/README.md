@@ -8,21 +8,8 @@
 
 ## CLI Tools
 
-### kubectl
-
-- https://kubernetes.io/docs/tasks/tools/install-kubectl
-
-```bash
-bash ./install-kubectl.sh
-```
-
-### kubectl-aliases
-
-- https://github.com/ahmetb/kubectl-aliases
-
-```bash
-bash ./install-kubectl-aliases.sh
-```
+- kubectl: https://kubernetes.io/docs/tasks/tools/install-kubectl
+- kubectl-aliases: https://github.com/ahmetb/kubectl-aliases
 
 ## Linux daemon
 
