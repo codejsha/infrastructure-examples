@@ -18,5 +18,5 @@ KAFKA_CONNECT_URL="http://localhost:8083"
 SCHEMA_REGISTRY_URL="${SCHEMA_REGISTRY_URL//\//\\/}"
 KAFKA_CONNECT_URL="${KAFKA_CONNECT_URL//\//\\/}"
 
-perl -pi -e "s/http:\/\/localhost:8081/${SCHEMA_REGISTRY_URL}/" */*.json
-perl -pi -e "s/http:\/\/localhost:8083/${KAFKA_CONNECT_URL}/" */*.json
+find . -type f -name "*.json" -print0 | xargs perl -pi -e "s/http:\/\/localhost:8081/${SCHEMA_REGISTRY_URL}/"
+find . -type f -name "*.json" -print0 | xargs perl -pi -e "s/http:\/\/localhost:8083/${KAFKA_CONNECT_URL}/"
