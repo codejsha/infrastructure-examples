@@ -1,0 +1,27 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: example-api-shared-vs
+spec:
+  hosts:
+    - api.example.com
+  gateways:
+    - example-api-gw
+  http:
+    - match:
+        - uri:
+            prefix: /foo
+      route:
+        - destination:
+            host: foo.example-api.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /bar
+      route:
+        - destination:
+            host: bar.example-api.svc.cluster.local
+            port:
+              number: 80
