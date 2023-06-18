@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 oracle_home = '/usr/local/ohs'
 domain_name = 'base_domain'

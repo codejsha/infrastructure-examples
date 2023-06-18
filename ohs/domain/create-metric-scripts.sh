@@ -32,7 +32,7 @@ VAR_DOMAIN_HOME="${VAR_DOMAIN_HOME/${DOMAIN_NAME}/${TEMP}}"
 ### dumpMetrics
 
 cat <<EOF > ${DOMAIN_HOME}/scripts/get_dump_metrics.py
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 component_name = os.environ['COMPONENT_NAME']
@@ -78,7 +78,7 @@ EOF
 ### displayMetricTables
 
 cat <<EOF > ${DOMAIN_HOME}/scripts/get_metrics.py
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 component_name = os.environ['COMPONENT_NAME']
