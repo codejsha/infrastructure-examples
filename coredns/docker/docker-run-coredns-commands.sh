@@ -1,15 +1,10 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
-COREDNS_VOLUME_DIR="/mnt/volume/coredns"
-sudo mkdir -p ${COREDNS_VOLUME_DIR}
-sudo /bin/cp -f corefile-server.conf ${COREDNS_VOLUME_DIR}/Corefile
-
 ######################################################################
 
-function docker_run_coredns {
+function docker_run_coredns() {
+    local COREDNS_VOLUME_DIR="/mnt/volume/coredns"
+    sudo mkdir -p ${COREDNS_VOLUME_DIR}
+    sudo /bin/cp -f corefile-server.conf ${COREDNS_VOLUME_DIR}/Corefile
+
     docker container run \
         --detach \
         --name coredns \
@@ -19,8 +14,13 @@ function docker_run_coredns {
         coredns/coredns:latest \
         -conf /root/coredns/Corefile
 }
+docker_run_coredns
 
-function podman_run_coredns {
+function podman_run_coredns() {
+    local COREDNS_VOLUME_DIR="/mnt/volume/coredns"
+    sudo mkdir -p ${COREDNS_VOLUME_DIR}
+    sudo /bin/cp -f corefile-server.conf ${COREDNS_VOLUME_DIR}/Corefile
+
     sudo podman container run \
         --detach \
         --name coredns \
@@ -30,8 +30,4 @@ function podman_run_coredns {
         coredns/coredns:latest \
         -conf /root/coredns/Corefile
 }
-
-######################################################################
-
-docker_run_coredns
-# podman_run_coredns
+podman_run_coredns

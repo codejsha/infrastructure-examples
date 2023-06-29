@@ -1,3 +1,5 @@
+######################################################################
+
 function New-DockerRunPostgreSQL14 {
     $password="postgres"
     $PostgreSQLVolumeDir = "$env:USERPROFILE\volume\postgresql"
@@ -15,6 +17,7 @@ function New-DockerRunPostgreSQL14 {
         --mount type="bind",src="$PostgreSQLVolumeDir/data",dst="/var/lib/postgresql/data" `
         postgres:14
 }
+New-DockerRunPostgreSQL14
 
 function New-DockerRunPostgreSQL13 {
     $password="postgres"
@@ -33,6 +36,7 @@ function New-DockerRunPostgreSQL13 {
         --mount type="bind",src="$PostgreSQLVolumeDir/data",dst="/var/lib/postgresql/data" `
         postgres:13
 }
+New-DockerRunPostgreSQL13
 
 function New-DockerRunPostgreSQL12 {
     $password="postgres"
@@ -51,6 +55,7 @@ function New-DockerRunPostgreSQL12 {
         --mount type="bind",src="$PostgreSQLVolumeDir/data",dst="/var/lib/postgresql/data" `
         postgres:12
 }
+New-DockerRunPostgreSQL12
 
 function New-DockerRunPostgreSQL11 {
     $password="postgres"
@@ -69,10 +74,4 @@ function New-DockerRunPostgreSQL11 {
         --mount type="bind",src="$PostgreSQLVolumeDir/data",dst="/var/lib/postgresql/data" `
         postgres:11
 }
-
-######################################################################
-
-New-DockerRunPostgreSQL14
-# New-DockerRunPostgreSQL13
-# New-DockerRunPostgreSQL12
-# New-DockerRunPostgreSQL11
+New-DockerRunPostgreSQL11

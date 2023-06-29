@@ -3,8 +3,4 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-docker container run \
-    -it \
-    --rm \
-    --name busybox \
-    busybox
+docker container run --rm -it --name busybox busybox:latest

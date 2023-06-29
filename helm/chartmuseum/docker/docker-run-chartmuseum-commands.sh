@@ -1,13 +1,8 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
 ######################################################################
 
-function docker_run_chartmuseum_with_local_storage {
+function docker_run_chartmuseum_with_local_storage() {
     local CHARTMUSEUM_VOLUME_DIR="/mnt/volume/chartmuseum"
-    local sudo mkdir -p ${CHARTMUSEUM_VOLUME_DIR}
+    sudo mkdir -p ${CHARTMUSEUM_VOLUME_DIR}
 
     docker container run \
         --rm \
@@ -20,8 +15,9 @@ function docker_run_chartmuseum_with_local_storage {
         --mount type="bind",src="${CHARTMUSEUM_VOLUME_DIR}",dst="/charts" \
         chartmuseum/chartmuseum:latest
 }
+docker_run_chartmuseum_with_local_storage
 
-function docker_run_chartmuseum_with_s3_storage {
+function docker_run_chartmuseum_with_s3_storage() {
     # mc mb my-minio/chart-storage
 
     docker container run \
@@ -37,8 +33,4 @@ function docker_run_chartmuseum_with_s3_storage {
         --mount type="bind",src="~/.aws",dst="/home/chartmuseum/.aws",readonly \
         chartmuseum/chartmuseum:latest
 }
-
-######################################################################
-
-# docker_run_chartmuseum_with_local_storage
 docker_run_chartmuseum_with_s3_storage

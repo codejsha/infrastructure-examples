@@ -1,11 +1,6 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
 ######################################################################
 
-function docker_run_postgresql14 {
+function docker_run_postgresql14() {
     local PASSWORD="postgres"
     local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
@@ -22,8 +17,9 @@ function docker_run_postgresql14 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         postgres:14
 }
+docker_run_postgresql14
 
-function docker_run_postgresql13 {
+function docker_run_postgresql13() {
     local PASSWORD="postgres"
     local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
@@ -40,8 +36,9 @@ function docker_run_postgresql13 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         postgres:13
 }
+docker_run_postgresql13
 
-function docker_run_postgresql12 {
+function docker_run_postgresql12() {
     local PASSWORD="postgres"
     local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
@@ -58,8 +55,9 @@ function docker_run_postgresql12 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         postgres:12
 }
+docker_run_postgresql12
 
-function docker_run_postgresql11 {
+function docker_run_postgresql11() {
     local PASSWORD="postgres"
     local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
@@ -76,10 +74,4 @@ function docker_run_postgresql11 {
         --mount type="bind",src="${POSTGRESQL_VOLUME_DIR}/data",dst="/var/lib/postgresql/data" \
         postgres:11
 }
-
-######################################################################
-
-docker_run_postgresql14
-# docker_run_postgresql13
-# docker_run_postgresql12
-# docker_run_postgresql11
+docker_run_postgresql11
