@@ -44,7 +44,6 @@ HikariCP:
 
 - https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc.)
 
-
 ## Deployment descriptor
 
 - https://cloud.google.com/appengine/docs/standard/java/config/webxml

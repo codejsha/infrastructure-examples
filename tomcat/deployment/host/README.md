@@ -6,9 +6,9 @@ server config file location:
 
 - `${CATALINA_BASE}/conf/server.xml`
 
-## Examples:
+## Examples
 
-### webapps
+### Webapps
 
 deploy only applications under the webapps directory
 
@@ -18,7 +18,7 @@ deploy only applications under the webapps directory
       </Host>
 ```
 
-### webapps + contexts
+### Webapps + Contexts
 
 deploy applications under the webapps directory and applications designated as context
 
@@ -33,7 +33,7 @@ deploy applications under the webapps directory and applications designated as c
       </Host>
 ```
 
-### contexts
+### Contexts
 
 deploy only applications designated as context
 
