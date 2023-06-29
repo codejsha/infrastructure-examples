@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_kubectl_yum {
+function install_kubectl_yum() {
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -19,7 +19,7 @@ EOF
     sudo yum install -y bash-completion
 }
 
-function install_kubectl_specific_version_yum {
+function install_kubectl_specific_version_yum() {
     local KUBECTL_VERSION="1.18.8"
 
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -37,7 +37,7 @@ EOF
     sudo yum install -y bash-completion
 }
 
-function install_kubectl_binary {
+function install_kubectl_binary() {
     local KUBECTL_VERSION="1.18.8"
 
     curl -LO https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
@@ -46,7 +46,7 @@ function install_kubectl_binary {
     sudo chwon root:root /usr/local/bin/kubectl
 }
 
-function install_kubectl_apt {
+function install_kubectl_apt() {
     sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2 curl
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list

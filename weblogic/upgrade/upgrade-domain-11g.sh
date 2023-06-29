@@ -12,7 +12,7 @@ INSTALL_SCRIPT_DIR="/svc/infrastructure/weblogic"
 
 ######################################################################
 
-function upgrade_domain_11g {
+function upgrade_domain_11g() {
     ${JAVA_HOME}/bin/java \
         -classpath ${WL_HOME}/server/lib/weblogic.jar \
         weblogic.Upgrade \

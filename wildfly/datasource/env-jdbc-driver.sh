@@ -46,13 +46,13 @@ DRIVER_FILE="postgresql-42.2.19.jar"
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo "  --driver-name|--driver-name=  : set the name of jdbc driver"
     echo "  --module-name|--module-name=  : set the module name of jdbc driver"
     echo "  --driver-runtime-name|--driver-runtime-name=  : set the driver runtime name of jdbc driver"
 }
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -71,4 +71,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

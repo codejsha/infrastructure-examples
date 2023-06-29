@@ -24,7 +24,7 @@ fi
 
 ######################################################################
 
-function create_job {
+function create_job() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

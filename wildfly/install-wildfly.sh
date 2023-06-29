@@ -19,21 +19,21 @@ JBOSS_DIR_NAME="${INSTALL_FILE/\.tar\.gz/}"
 
 ######################################################################
 
-function check_jboss_home {
+function check_jboss_home() {
     if [ -d "${JBOSS_HOME}" ]; then
         echo "[ERROR] The JBOSS_HOME (${JBOSS_HOME}) already exists!"
         exit
     fi
 }
 
-function check_install_file {
+function check_install_file() {
     if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
         echo "[ERROR] The install file (${INSTALL_FILE_DIR}/${INSTALL_FILE}) does not exist!"
         exit
     fi
 }
 
-function install_wildfly {
+function install_wildfly() {
     sudo tar -C ${PARENT_JBOSS_HOME} -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE}
     sudo mv ${PARENT_JBOSS_HOME}/${JBOSS_DIR_NAME} ${JBOSS_HOME}
     sudo chown -R $(id -un):$(id -gn) ${JBOSS_HOME}

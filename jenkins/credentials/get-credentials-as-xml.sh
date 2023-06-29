@@ -10,7 +10,7 @@ CREDENTIALS_UUID="${2}"
 
 ######################################################################
 
-function get_credentials_as_xml {
+function get_credentials_as_xml() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

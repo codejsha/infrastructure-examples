@@ -4,7 +4,7 @@
 
 export PATH="${PATH}:${HOME}/.istioctl/bin"
 
-function istioctl() { echo "+ istioctl ${@}">&2; command istioctl ${@}; }
+function istioctl() { echo "+ istioctl ${*}">&2; command istioctl "${*}"; }
 
 ######################################################################
 

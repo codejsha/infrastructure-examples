@@ -8,7 +8,7 @@ rm -f *.jks
 
 COMPONENTS=("zookeeper" "kafka" "schema-registry" "kafka-connect" "replicator" "kafka-rest" "ksqldb" "control-center")
 
-for COMPONENT_NAME in ${COMPONENTS[@]}; do
+for COMPONENT_NAME in "${COMPONENTS[@]}"; do
 
     ### keystore
     openssl genrsa -out ${COMPONENT_NAME}.key 2048

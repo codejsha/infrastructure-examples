@@ -9,11 +9,11 @@ ORACLE_HOME="${ORACLE_HOME}"
 
 ######################################################################
 
-function get_version_from_directory {
+function get_version_from_directory() {
     ls ${ORACLE_HOME}/inventory/Components21/oracle.ohs2
 }
 
-function get_version_from_httpd {
+function get_version_from_httpd() {
     export ORACLE_HOME="${ORACLE_HOME}"
     export LD_LIBRARY_PATH="${ORACLE_HOME}/lib:${ORACLE_HOME}/ohs/lib:${ORACLE_HOME}"
     ${ORACLE_HOME}/ohs/bin/httpd -V

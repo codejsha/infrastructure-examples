@@ -9,7 +9,7 @@ source ./env-credentials.sh
 
 ######################################################################
 
-function add_credentials {
+function add_credentials() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

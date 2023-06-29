@@ -1,10 +1,12 @@
 ######################################################################
 
-function minikube() { echo "+ minikube ${@}">&2; command minikube ${@}; }
+function minikube() { echo "+ minikube ${*}">&2; command minikube "${*}"; }
 
 ######################################################################
 
-$env:MINIKUBE_HOME = "E:\.minikube"
+# $env:MINIKUBE_HOME="E:\.minikube"
+
+######################################################################
 
 minikube
 minikube addons

@@ -11,7 +11,7 @@ mkdir -p ${APP_PATH}/WEB-INF
 
 ######################################################################
 
-function generate_deployment_descriptor {
+function generate_deployment_descriptor() {
     ${JAVA_HOME}/bin/java \
         -cp ${WL_HOME}/server/lib/weblogic.jar weblogic.marathon.ddinit.WebInit \
         ${APP_PATH}

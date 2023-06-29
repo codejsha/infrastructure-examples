@@ -5,10 +5,10 @@
 # export JAVA_HOME="/usr/lib/jvm/java-1.8.0"
 # export PATH="${PATH}:${JAVA_HOME}/bin"
 
-function jcmd() { echo "+ jcmd ${@}">&2; command jcmd ${@}; }
-function jar() { echo "+ jar ${@}">&2; command jar ${@}; }
-function java() { echo "+ java ${@}">&2; command java ${@}; }
-function jstack() { echo "+ jstack ${@}">&2; command jstack ${@}; }
+function jcmd() { echo "+ jcmd ${*}">&2; command jcmd "${*}"; }
+function jar() { echo "+ jar ${*}">&2; command jar "${*}"; }
+function java() { echo "+ java ${*}">&2; command java "${*}"; }
+function jstack() { echo "+ jstack ${*}">&2; command jstack "${*}"; }
 
 # java process
 alias pxjava="pgrep -xa java | grep java"

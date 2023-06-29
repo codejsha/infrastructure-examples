@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function list_jobs {
+function list_jobs() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

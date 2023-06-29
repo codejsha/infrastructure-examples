@@ -21,7 +21,7 @@ envsubst < ./data-user.json > ./data-user-temp.json
 
 ######################################################################
 
-function create_user {
+function create_user() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

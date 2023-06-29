@@ -50,7 +50,7 @@ fi
 
 ### check data and log directories
 DIRS="(${DATA_DIR//,/ })"
-for DIR in ${DIRS[@]}; do
+for DIR in "${DIRS[@]}"; do
     if [ ! -d "${DIR}" ]; then
         echo "[ERROR] The data dir (${DIR}) does not exist!"
         exit

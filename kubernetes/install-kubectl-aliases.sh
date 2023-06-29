@@ -6,7 +6,7 @@ set -o errtrace
 mkdir -p ~/.aliases
 curl -o ~/.aliases/.kubectl_aliases -LJO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
 
-# function kubectl() { echo "+ kubectl ${@}">&2; command kubectl ${@}; }
+# function kubectl() { echo "+ kubectl ${*}">&2; command kubectl "${*}"; }
 # [ -f ~/.aliases/.kubectl_aliases ] && source ~/.aliases/.kubectl_aliases
 
 ######################################################################
@@ -14,4 +14,4 @@ curl -o ~/.aliases/.kubectl_aliases -LJO https://raw.githubusercontent.com/ahmet
 # mkdir -p ~/.bashrc.d
 # curl -o ~/.bashrc.d/kubectl_aliases -LJO https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
 
-# function kubectl() { echo "+ kubectl ${@}">&2; command kubectl ${@}; }
+# function kubectl() { echo "+ kubectl ${*}">&2; command kubectl "${*}"; }

@@ -8,7 +8,7 @@ source ./env-jdbc-driver.sh
 
 ######################################################################
 
-function remove_jdbc_driver {
+function remove_jdbc_driver() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

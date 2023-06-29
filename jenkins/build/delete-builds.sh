@@ -11,7 +11,7 @@ JENKINS_JOB_RANGE="${2:-${JENKINS_JOB_RANGE}}"
 
 ######################################################################
 
-function delete_builds {
+function delete_builds() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \
