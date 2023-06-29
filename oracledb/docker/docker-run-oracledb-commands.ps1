@@ -1,8 +1,7 @@
-$password = "$password"
-
 ######################################################################
 
 function New-DockerRunOracleDB19 {
+    $password = "$password"
     # $OracleDBVolumeDir="C:\volume\oracledb19"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb19"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -19,8 +18,10 @@ function New-DockerRunOracleDB19 {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/opt/oracle/oradata" `
         oracle/database:19.3.0-ee
 }
+New-DockerRunOracleDB19
 
 function New-DockerRunOracleDB18 {
+    $password = "$password"
     # $OracleDBVolumeDir="C:\volume\oracledb18"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb18"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -37,8 +38,10 @@ function New-DockerRunOracleDB18 {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/opt/oracle/oradata" `
         oracle/database:18.3.0-ee
 }
+New-DockerRunOracleDB18
 
 function New-DockerRunOracleDB12R2 {
+    $password = "$password"
     # $OracleDBVolumeDir="C:\volume\oracledb12"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb12"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -55,10 +58,12 @@ function New-DockerRunOracleDB12R2 {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/opt/oracle/oradata" `
         oracle/database:12.2.0.1-ee
 }
+New-DockerRunOracleDB12R2
 
-function New-DockerRunOracleDB12R2OfficialVolume {
+function New-DockerRunOracleDB12R2Official {
+    $password = "$password"
+
     docker pull store/oracle/database-enterprise:12.2.0.1
-
     docker volume create oracledb12vol
 
     docker container run `
@@ -68,13 +73,15 @@ function New-DockerRunOracleDB12R2OfficialVolume {
         --mount type="bind",src="oracledb12vol",dst="/ORCL" `
         store/oracle/database-enterprise:12.2.0.1
 }
+New-DockerRunOracleDB12R2Official
 
-function New-DockerRunOracleDB12R2Official {
-    docker pull store/oracle/database-enterprise:12.2.0.1
-
+function New-DockerRunOracleDB12R2OfficialBind {
+    $password = "$password"
     # $OracleDBVolumeDir="C:\volume\oracledb12"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb12"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
+
+    docker pull store/oracle/database-enterprise:12.2.0.1
 
     docker container run `
         --detach `
@@ -83,8 +90,11 @@ function New-DockerRunOracleDB12R2Official {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/ORCL" `
         store/oracle/database-enterprise:12.2.0.1
 }
+New-DockerRunOracleDB12R2OfficialBind
 
 function New-DockerRunOracleDB12R1 {
+    $password = "$password"
+
     # $OracleDBVolumeDir="C:\volume\oracledb12"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb12"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -101,8 +111,11 @@ function New-DockerRunOracleDB12R1 {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/opt/oracle/oradata" `
         oracle/database:12.1.0.2-ee
 }
+New-DockerRunOracleDB12R1
 
 function New-DockerRunOracleDB11 {
+    $password = "$password"
+
     # $OracleDBVolumeDir="C:\volume\oracledb11"
     $OracleDBVolumeDir="$env:USERPROFILE\volume\oracledb11"
     New-Item -Path $OracleDBVolumeDir -ItemType Directory -Force
@@ -117,13 +130,4 @@ function New-DockerRunOracleDB11 {
         --mount type="bind",src="$OracleDBVolumeDir",dst="/u01/app/oracle/oradata" `
         oracle/database:11.2.0.2-xe
 }
-
-######################################################################
-
-New-DockerRunOracleDB19
-# New-DockerRunOracleDB18
-# New-DockerRunOracleDB12R2
-# New-DockerRunOracleDB12R2OfficialVolume
-# New-DockerRunOracleDB12R2Official
-# New-DockerRunOracleDB12R1
-# New-DockerRunOracleDB11
+New-DockerRunOracleDB11

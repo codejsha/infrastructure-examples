@@ -1,13 +1,7 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
-PASSWORD="${PASSWORD}"
-
 ######################################################################
 
-function docker_run_oracledb19 {
+function docker_run_oracledb19() {
+    local PASSWORD="${PASSWORD}"
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb19"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}/recovery_area
 
@@ -48,11 +42,12 @@ function docker_run_oracledb19 {
     #     --mount type="bind",src="/mnt/share",dst="/mnt/share" \
     #     oracle/database:19.3.0-ee
 }
+docker_run_oracledb19
 
-function docker_run_oracledb18 {
+function docker_run_oracledb18() {
+    local PASSWORD="${PASSWORD}"
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb18"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
-
     sudo chmod 777 ${ORACLE_DB_VOLUME_DIR}
 
     docker container run \
@@ -68,11 +63,12 @@ function docker_run_oracledb18 {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         oracle/database:18.3.0-ee
 }
+docker_run_oracledb18
 
-function docker_run_oracledb12_r2 {
+function docker_run_oracledb12_r2() {
+    local PASSWORD="${PASSWORD}"
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb12"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
-
     sudo chmod 777 ${ORACLE_DB_VOLUME_DIR}
 
     docker container run \
@@ -88,10 +84,12 @@ function docker_run_oracledb12_r2 {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         oracle/database:12.2.0.1-ee
 }
+docker_run_oracledb12_r2
 
-function docker_run_oracledb12_r2_official_volume {
+function docker_run_oracledb12_r2_official() {
+    local PASSWORD="${PASSWORD}"
+
     docker pull store/oracle/database-enterprise:12.2.0.1
-
     docker volume create oracledb12vol
 
     docker container run \
@@ -102,12 +100,14 @@ function docker_run_oracledb12_r2_official_volume {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         store/oracle/database-enterprise:12.2.0.1
 }
+docker_run_oracledb12_r2_official
 
-function docker_run_oracledb12_r2_official {
-    docker pull store/oracle/database-enterprise:12.2.0.1
-
+function docker_run_oracledb12_r2_official_bind() {
+    local PASSWORD="${PASSWORD}"
     sudo mkdir -p /mnt/volume/oracledb12
     sudo chmod 777 /mnt/volume/oracledb12
+
+    docker pull store/oracle/database-enterprise:12.2.0.1
 
     docker container run \
         --detach \
@@ -117,11 +117,12 @@ function docker_run_oracledb12_r2_official {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         store/oracle/database-enterprise:12.2.0.1
 }
+docker_run_oracledb12_r2_official_bind
 
-function docker_run_oracledb12_r1 {
+function docker_run_oracledb12_r1() {
+    local PASSWORD="${PASSWORD}"
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb12"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
-
     sudo chmod 777 ${ORACLE_DB_VOLUME_DIR}
 
     docker container run \
@@ -137,11 +138,12 @@ function docker_run_oracledb12_r1 {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         oracle/database:12.1.0.2-ee
 }
+docker_run_oracledb12_r1
 
-function docker_run_oracledb11 {
+function docker_run_oracledb11() {
+    local PASSWORD="${PASSWORD}"
     local ORACLE_DB_VOLUME_DIR="/mnt/volume/oracledb11"
     sudo mkdir -p ${ORACLE_DB_VOLUME_DIR}
-
     sudo chmod 777 ${ORACLE_DB_VOLUME_DIR}
 
     docker container run \
@@ -155,13 +157,4 @@ function docker_run_oracledb11 {
         --mount type="bind",src="/mnt/share",dst="/mnt/share" \
         oracle/database:11.2.0.2-xe
 }
-
-######################################################################
-
-docker_run_oracledb19
-# docker_run_oracledb18
-# docker_run_oracledb12_r2
-# docker_run_oracledb12_r2_official_volume
-# docker_run_oracledb12_r2_official
-# docker_run_oracledb12_r1
-# docker_run_oracledb11
+docker_run_oracledb11

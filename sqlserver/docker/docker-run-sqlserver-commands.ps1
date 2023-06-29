@@ -1,3 +1,5 @@
+######################################################################
+
 function New-DockerRunSQLServer2022 {
     $password = "$password"
 
@@ -11,6 +13,7 @@ function New-DockerRunSQLServer2022 {
         --env MSSQL_AGENT_ENABLED="True" `
         mcr.microsoft.com/mssql/server:2022-latest
 }
+New-DockerRunSQLServer2022
 
 function New-DockerRunSQLServer2019 {
     $password = "$password"
@@ -25,6 +28,7 @@ function New-DockerRunSQLServer2019 {
         --env MSSQL_AGENT_ENABLED="True" `
         mcr.microsoft.com/mssql/server:2019-latest
 }
+New-DockerRunSQLServer2019
 
 function New-DockerRunSQLServer2017 {
     $password = "$password"
@@ -39,8 +43,4 @@ function New-DockerRunSQLServer2017 {
         --env MSSQL_AGENT_ENABLED="True" `
         mcr.microsoft.com/mssql/server:2017-latest
 }
-
-######################################################################
-
-New-DockerRunSQLServer2019
-# New-DockerRunSQLServer2017
+New-DockerRunSQLServer2017

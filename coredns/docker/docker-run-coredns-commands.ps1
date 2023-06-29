@@ -1,11 +1,11 @@
-# $CoreDNSVolumeDir = "C:\volume\gitlab"
-$CoreDNSVolumeDir = "$env:USERPROFILE\volume\coredns"
-New-Item -Path $CoreDNSVolumeDir -ItemType Directory -Force
-Copy-Item -Path corefile-server.conf -Destination $CoreDNSVolumeDir\Corefile -Force
-
 ######################################################################
 
 function New-DockerRunCoreDNS {
+    # $CoreDNSVolumeDir = "C:\volume\gitlab"
+    $CoreDNSVolumeDir = "$env:USERPROFILE\volume\coredns"
+    New-Item -Path $CoreDNSVolumeDir -ItemType Directory -Force
+    Copy-Item -Path corefile-server.conf -Destination $CoreDNSVolumeDir\Corefile -Force
+
     docker container run `
         --detach `
         --name coredns `
@@ -15,7 +15,4 @@ function New-DockerRunCoreDNS {
         coredns/coredns:latest `
         -conf /root/coredns/Corefile
 }
-
-######################################################################
-
 New-DockerRunCoreDNS

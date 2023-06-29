@@ -1,14 +1,9 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
-USERNAME="user"
-PASSWORD="${PASSWORD}"
-
 ######################################################################
 
-function docker_run_sftp_server_share {
+function docker_run_sftp_server_share() {
+    local USERNAME="user"
+    local PASSWORD="${PASSWORD}"
+
     docker container run \
         --detach \
         --name sftp-server \
@@ -17,8 +12,12 @@ function docker_run_sftp_server_share {
         atmoz/sftp \
         ${USERNAME}:${PASSWORD}:1000
 }
+docker_run_sftp_server_share
 
-function docker_run_sftp_server_pub {
+function docker_run_sftp_server_pub() {
+    local USERNAME="user"
+    local PASSWORD="${PASSWORD}"
+
     local SFTP_SERVER_VOLUME_DIR="/mnt/volume/ftp/pub"
     sudo mkdir -p ${SFTP_SERVER_VOLUME_DIR}
     # sudo mkdir -p ${SFTP_SERVER_VOLUME_DIR}/{data,error,finished}
@@ -32,8 +31,4 @@ function docker_run_sftp_server_pub {
         atmoz/sftp \
         ${USERNAME}:${PASSWORD}:1000
 }
-
-######################################################################
-
-docker_run_sftp_server_share
-# docker_run_sftp_server_pub
+docker_run_sftp_server_pub

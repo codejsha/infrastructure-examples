@@ -1,9 +1,10 @@
-$IISVolumeDir = "$env:USERPROFILE\volume\iis"
-New-Item -Path $IISVolumeDir -ItemType Directory -Force
 
 ######################################################################
 
 function New-DockerRunIIS {
+    $IISVolumeDir = "$env:USERPROFILE\volume\iis"
+    New-Item -Path $IISVolumeDir -ItemType Directory -Force
+
     docker container run `
     --detach `
     --name winiis `
@@ -13,7 +14,4 @@ function New-DockerRunIIS {
     --mount type="bind",src="F:\storage",dst="$env:SystemDrive\storage" `
     mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2016
 }
-
-######################################################################
-
 New-DockerRunIIS

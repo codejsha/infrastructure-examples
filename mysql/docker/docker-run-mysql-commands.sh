@@ -1,11 +1,6 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
-
 ######################################################################
 
-function docker_run_mysql8 {
+function docker_run_mysql8() {
     local PASSWORD="${PASSWORD}"
     local MYSQL_DATA_VOLUME="mysql_data"
     local MYSQL_CONFIG_VOLUME="mysql_config"
@@ -22,8 +17,11 @@ function docker_run_mysql8 {
         --mount type="volume",src="${MYSQL_DATA_VOLUME}",dst="/var/lib/mysql" \
         mysql:8
 }
+docker_run_mysql8
 
-function docker_run_mysql8_bind {
+######################################################################
+
+function docker_run_mysql8_bind() {
     local PASSWORD="${PASSWORD}"
     local MYSQL_VOLUME_DIR="/mnt/volume/mysql"
     mkdir -p ${MYSQL_VOLUME_DIR}/data
@@ -40,8 +38,11 @@ function docker_run_mysql8_bind {
 
         # --mount type="bind",src="${MYSQL_VOLUME_DIR}/config-file.cnf",dst="/etc/mysql/conf.d/config-file.cnf" \
 }
+docker_run_mysql8_bind
 
-function docker_run_mysql5_bind {
+######################################################################
+
+function docker_run_mysql5_bind() {
     local PASSWORD="${PASSWORD}"
     local MYSQL_VOLUME_DIR="/mnt/volume/mysql"
     mkdir -p ${MYSQL_VOLUME_DIR}/data
@@ -58,9 +59,4 @@ function docker_run_mysql5_bind {
 
         # --mount type="bind",src="${MYSQL_VOLUME_DIR}/config-file.cnf",dst="/etc/mysql/conf.d/config-file.cnf" \
 }
-
-######################################################################
-
-docker_run_mysql8
-# docker_run_mysql8_bind
-# docker_run_mysql5_bind
+docker_run_mysql5_bind
