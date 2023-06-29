@@ -20,7 +20,7 @@ context file location:
 
 - `${CATALINA_BASE}/conf/[enginename]/[hostname]/<context>.xml`
 
-## Examples:
+## Examples
 
 ```xml
 <!-- ROOT.xml -->
@@ -31,7 +31,7 @@ context file location:
 
 <!-- failover.xml -->
 <Context docBase="/svc/app/failovertest" reloadable="false">
-```
 
 <!-- jdbc.xml -->
 <Context docBase="/svc/app/jdbctest" reloadable="false">
+```
