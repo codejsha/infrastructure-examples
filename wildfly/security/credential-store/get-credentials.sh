@@ -8,7 +8,7 @@ source ./env-credential-store.sh
 
 ######################################################################
 
-function get_credentials {
+function get_credentials() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

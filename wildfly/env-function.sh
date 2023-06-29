@@ -5,14 +5,14 @@ set -o errtrace
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo ""
     echo "Usage:"
     echo "  --instance|--instance=        : set a instance name"
     echo "  --port-offset|--port-offset=  : set the port offset"
 }
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -29,4 +29,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

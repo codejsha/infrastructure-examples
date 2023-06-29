@@ -11,7 +11,7 @@ REPOSITORY_NAME="${1}"
 
 ######################################################################
 
-function delete_repository {
+function delete_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request DELETE \

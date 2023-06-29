@@ -17,7 +17,7 @@ envsubst < ./data-maven-proxy-repo.json > ./data-maven-proxy-repo-temp.json
 
 ######################################################################
 
-function create_maven_proxy_repository {
+function create_maven_proxy_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

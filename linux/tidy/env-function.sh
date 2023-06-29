@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function tidy_indent {
+function tidy_indent() {
     local XML_FILE="${1}"
 
     tidy -modify \
@@ -16,7 +16,7 @@ function tidy_indent {
         ${XML_FILE}
 }
 
-function tidy_nowrap {
+function tidy_nowrap() {
     local XML_FILE="${1}"
 
     tidy -modify \

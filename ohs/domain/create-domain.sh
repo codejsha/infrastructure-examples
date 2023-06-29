@@ -15,11 +15,11 @@ export CONFIG_JVM_ARGS="${CONFIG_JVM_ARGS} -Djava.security.egd=file:///dev/urand
 
 ######################################################################
 
-function ohs_create_domain {
+function ohs_create_domain() {
     ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh create_domain.py
 }
 
-function ohs_create_domain_12cr1 {
+function ohs_create_domain_12cr1() {
     ${ORACLE_HOME}/oracle_common/common/bin/wlst.sh create_domain_12cr1.py
 }
 

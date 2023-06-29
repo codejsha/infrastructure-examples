@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function set_cached_connection_manager {
+function set_cached_connection_manager() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -21,7 +21,7 @@ quit
 EOF
 }
 
-function reload_server {
+function reload_server() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

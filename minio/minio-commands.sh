@@ -5,7 +5,7 @@ kubectl -n minio-operator get secret console-sa-secret -o jsonpath="{.data.token
 
 ######################################################################
 
-function mc() { echo "+ mc ${@}">&2; command mc ${@}; }
+function mc() { echo "+ mc ${*}">&2; command mc "${*}"; }
 complete -C /usr/local/bin/mc mc
 
 ######################################################################

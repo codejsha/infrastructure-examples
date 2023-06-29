@@ -9,7 +9,7 @@ source ./env-credentials.sh
 
 ######################################################################
 
-function remove_credentials {
+function remove_credentials() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

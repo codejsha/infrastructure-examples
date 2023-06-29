@@ -17,7 +17,7 @@ cd docker-images/OracleJava
 ######################################################################
 
 ### oracle/serverjre:8-oraclelinux8
-function docker_image_build_jre8_oraclelinux8 {
+function docker_image_build_jre8_oraclelinux8() {
     cd 8
     /bin/cp -f ${SHARE_DIR}/oracle-jdk/8/server-jre-8u301-linux-x64.tar.gz .
     # /bin/cp -f ${SCRIPT_DIR}/Dockerfile.jdk8 Dockerfile.8

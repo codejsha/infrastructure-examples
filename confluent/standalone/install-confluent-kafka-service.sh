@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_confluent_kafka {
+function install_confluent_kafka() {
 cat <<EOF | sudo tee /etc/yum.repos.d/confluent.repo
 [Confluent]
 name=Confluent repository

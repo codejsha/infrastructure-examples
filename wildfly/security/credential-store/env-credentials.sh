@@ -8,14 +8,14 @@ CREDENTIALS_SECRET_VALUE="${PASSWORD}"
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo ""
     echo "Usage:"
     echo "  --alias|--alias=              : set the alias"
     echo "  --secret-value|--secret-value= : set the secret value"
 }
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -32,4 +32,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

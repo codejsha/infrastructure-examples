@@ -8,7 +8,7 @@ source ./env-app.sh
 
 ######################################################################
 
-function deploy_application {
+function deploy_application() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -25,7 +25,7 @@ quit
 EOF
 }
 
-function get_deployment_status {
+function get_deployment_status() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -35,7 +35,7 @@ function get_deployment_status {
         --command="deployment-info --name=${APP_NAME}"
 }
 
-function get_deployment_status_all {
+function get_deployment_status_all() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

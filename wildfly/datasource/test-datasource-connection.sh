@@ -8,7 +8,7 @@ source ./env-datasource.sh
 
 ######################################################################
 
-function test_connection_pool {
+function test_connection_pool() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

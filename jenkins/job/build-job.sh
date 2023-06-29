@@ -10,7 +10,7 @@ JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 
 ######################################################################
 
-function build_job {
+function build_job() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \
@@ -18,7 +18,7 @@ function build_job {
         build ${JENKINS_JOB_NAME}
 }
 
-function build_job_follow {
+function build_job_follow() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \
@@ -26,7 +26,7 @@ function build_job_follow {
         build ${JENKINS_JOB_NAME} -f -v
 }
 
-function build_job_follow_foreground {
+function build_job_follow_foreground() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

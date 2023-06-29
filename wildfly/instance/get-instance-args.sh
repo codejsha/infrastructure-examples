@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function get_server_args {
+function get_server_args() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

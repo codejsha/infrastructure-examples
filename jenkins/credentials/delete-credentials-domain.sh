@@ -10,7 +10,7 @@ CREDENTIALS_DOMAIN="${1:-${CREDENTIALS_DOMAIN}}"
 
 ######################################################################
 
-function delete_credentials_domain {
+function delete_credentials_domain() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

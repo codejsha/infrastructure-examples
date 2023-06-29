@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_hive  {
+function install_hive() {
     local HIVE_HOME="/usr/local/hive"
     local INSTALL_FILE_DIR="/mnt/share/apache-hive"
     local INSTALL_FILE="apache-hive-3.1.2-bin.tar.gz"

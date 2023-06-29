@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -41,4 +41,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

@@ -9,13 +9,13 @@ APP_RUNTIME_NAME="failovertest.war"
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo "  --path|--path=                : set the path of application"
     echo "  --name|--name=                : set the name of application"
     echo "  --runtime-name|--runtime-name=  : set the runtime name of application"
 }
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -34,4 +34,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

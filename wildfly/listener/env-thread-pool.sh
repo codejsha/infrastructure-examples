@@ -10,13 +10,13 @@ WORKER_NAME="default"
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo ""
     echo "Usage:"
     echo "  --worker-name|--worker-name=  : set a worker name"
 }
 
-function set_arguments {
+function set_arguments() {
     while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
@@ -31,4 +31,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

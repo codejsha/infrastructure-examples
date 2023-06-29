@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function all_12cr2 {
+function all_12cr2() {
     cd domain
 
     bash ./create-domain.sh
@@ -20,7 +20,7 @@ function all_12cr2 {
     bash ./create-metric-scripts.sh
 }
 
-function all_12cr1 {
+function all_12cr1() {
     cd domain
 
     bash ./create-domain.sh
@@ -34,7 +34,7 @@ function all_12cr1 {
     bash ./create-metric-scripts.sh
 }
 
-function all_11g {
+function all_11g() {
     cd instance
 
     bash ./create-instance-11g.sh

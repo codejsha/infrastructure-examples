@@ -17,7 +17,7 @@ envsubst < ./data-helm-proxy-repo.json > ./data-helm-proxy-repo-temp.json
 
 ######################################################################
 
-function create_helm_proxy_repository {
+function create_helm_proxy_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

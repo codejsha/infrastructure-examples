@@ -1,6 +1,6 @@
 ######################################################################
 
-function kustomize() { echo "+ kustomize ${@}">&2; command kustomize ${@}; }
+function kustomize() { echo "+ kustomize ${*}">&2; command kustomize "${*}"; }
 
 ######################################################################
 

@@ -16,14 +16,14 @@ PATCH_FILE_DIR="/mnt/share/oracle-weblogic-server/wls12.2.1.3"
 
 ######################################################################
 
-function check_java_home {
+function check_java_home() {
     if [ ! -d "${JAVA_HOME}" ]; then
         echo "[ERROR] The JAVA_HOME (${JAVA_HOME}) does not exist!"
         exit
     fi
 }
 
-function check_oracle_home {
+function check_oracle_home() {
     if [ ! -d "${ORACLE_HOME}" ]; then
         echo "[ERROR] The ORACLE_HOME (${ORACLE_HOME}) does not exist!"
         exit
@@ -32,14 +32,14 @@ function check_oracle_home {
     mkdir -p ${ORACLE_HOME}/OPatch/patch_files
 }
 
-function check_inventory_file {
+function check_inventory_file() {
     if [ ! -f "${ORACLE_HOME}/${INVENTORY_FILE}" ]; then
         echo "[ERROR] The inventory file (${ORACLE_HOME}/${INVENTORY_FILE}) does not exist!"
         exit
     fi
 }
 
-function check_inventory_group {
+function check_inventory_group() {
     local ORACLE_HOME_GROUP="$(stat -c '%G' ${ORACLE_HOME})"
     local INST_GROUP="$(grep inst_group ${ORACLE_HOME}/${INVENTORY_FILE} | cut -d'=' -f 2)"
 
@@ -49,7 +49,7 @@ function check_inventory_group {
     fi
 }
 
-function check_inventory_location {
+function check_inventory_location() {
     local INVENTORY_LOC="$(grep inventory_loc ${ORACLE_HOME}/${INVENTORY_FILE} | cut -d'=' -f 2)"
 
     if [ ! -d "${INVENTORY_LOC}" ]; then
@@ -58,7 +58,7 @@ function check_inventory_location {
     fi
 }
 
-function check_patch_file {
+function check_patch_file() {
     local PATCH_FILE_PATH="${1}"
 
     if [ ! -f "${PATCH_FILE_PATH}" ]; then
@@ -67,7 +67,7 @@ function check_patch_file {
     fi
 }
 
-function opatch_update {
+function opatch_update() {
     local PATCH_FILE="${1}"
     local PATCH_ID="${2}"
 
@@ -91,13 +91,13 @@ function opatch_update {
     #     -invPtrLoc ${ORACLE_HOME}/${INVENTORY_FILE}
 }
 
-function opatch_rollback {
+function opatch_rollback() {
     local PATCH_ID="${1}"
 
     ${ORACLE_HOME}/OPatch/opatch rollback -silent -id ${PATCH_ID}
 }
 
-function opatch_apply {
+function opatch_apply() {
     local PATCH_FILE="${1}"
     local PATCH_ID="${2}"
     if [ -z "${PATCH_ID}" ]; then
@@ -119,7 +119,7 @@ function opatch_apply {
         ${ORACLE_HOME}/OPatch/patch_files/${PATCH_ID}
 }
 
-function opatch_lsinventory {
+function opatch_lsinventory() {
     # ${ORACLE_HOME}/OPatch/opatch lsinventory
     # ${ORACLE_HOME}/OPatch/opatch lsinventory -all
     ${ORACLE_HOME}/OPatch/opatch lsinventory \

@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_confluent_kafka {
+function install_confluent_kafka() {
     local PARENT_CONFLUENT_HOME="/opt/confluent"
     local INSTALL_FILE_DIR="/mnt/share/confluent-platform"
     local INSTALL_FILE="confluent-7.2.1.tar.gz"

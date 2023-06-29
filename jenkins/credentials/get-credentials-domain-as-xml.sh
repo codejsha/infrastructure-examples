@@ -10,7 +10,7 @@ CREDENTIALS_DOMAIN="${CREDENTIALS_DOMAIN}"
 
 ######################################################################
 
-function get_credentials_domain_as_xml {
+function get_credentials_domain_as_xml() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

@@ -23,7 +23,7 @@ envsubst < ./data-blobstore.json > ./data-blobstore-temp.json
 
 ######################################################################
 
-function create_s3_blob_store {
+function create_s3_blob_store() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

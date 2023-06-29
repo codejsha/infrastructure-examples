@@ -11,7 +11,7 @@ BLOBSTORE_NAME="${1}"
 
 ######################################################################
 
-function delete_blob_store {
+function delete_blob_store() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request DELETE \

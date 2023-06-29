@@ -9,7 +9,7 @@ ADMIN_SERVER_URL="http://test.example.com:7001"
 
 ######################################################################
 
-function start_edit {
+function start_edit() {
     curl \
         --user weblogic:welcome1 \
         --request POST \
@@ -19,7 +19,7 @@ function start_edit {
         ${ADMIN_SERVER_URL}/management/weblogic/latest/edit/changeManager/startEdit
 }
 
-function cancel_edit {
+function cancel_edit() {
     curl \
         --user weblogic:welcome1 \
         --request POST \
@@ -29,7 +29,7 @@ function cancel_edit {
         ${ADMIN_SERVER_URL}/management/weblogic/latest/edit/changeManager/cancelEdit
 }
 
-function activate {
+function activate() {
     curl \
         --user weblogic:welcome1 \
         --request POST \
@@ -39,7 +39,7 @@ function activate {
         ${ADMIN_SERVER_URL}/management/weblogic/latest/edit/changeManager/activate
 }
 
-function create_cluster {
+function create_cluster() {
     curl \
         --user weblogic:welcome1 \
         --request POST \
