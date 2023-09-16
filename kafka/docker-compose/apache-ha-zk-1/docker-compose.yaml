@@ -327,6 +327,29 @@ services:
     networks:
       - stream-network
 
+  kafka-ui:
+    image: provectuslabs/kafka-ui:v0.7.2
+    hostname: kafka-ui
+    ports:
+      - 8180:8080
+    environment:
+      KAFKA_CLUSTERS_0_NAME: clusterlocal
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry1:8081
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: connect-cluster1
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: connect-worker1:8083
+      KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: connect-cluster2
+      KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: connect-worker2:8083
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker1
+      - kafka-broker2
+      - kafka-broker3
+      - schema-registry1
+      - connect-worker1
+      - connect-worker2
+
   kafka-client:
     image: harbor.example.com/library/bitnami/kafka:3.8
     hostname: kafka-client
