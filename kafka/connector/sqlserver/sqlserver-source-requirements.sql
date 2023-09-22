@@ -20,11 +20,11 @@ FETCH NEXT FROM table_cursor INTO @Schema, @Table;
 WHILE @@FETCH_STATUS = 0
 BEGIN
 EXEC sys.sp_cdc_enable_table
-	@source_schema = @Schema,
-	@source_name   = @Table,
-	@role_name     = NULL,
-	@filegroup_name = N'PRIMARY',
-	@supports_net_changes = 0
+    @source_schema = @Schema,
+    @source_name   = @Table,
+    @role_name     = NULL,
+    @filegroup_name = N'PRIMARY',
+    @supports_net_changes = 0
 
 FETCH NEXT FROM table_cursor INTO @Schema, @Table;
 END
