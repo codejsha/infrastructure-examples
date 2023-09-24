@@ -1,0 +1,19 @@
+[user]
+        name = <name>
+        email = <email>
+        signingKey = <signingKey>
+[gpg]
+        format = openpgp
+        program = gpg
+[commit]
+        gpgSign = true
+[tag]
+        forceSignAnnotated = true
+[gpg "ssh"]
+        program = ssh-keygen
+        allowedSignersFile = ""
+[core]
+        excludesfile = ~/properties/git/.gitignore_global
+        hooksPath = ~/properties/git/hooks/personal
+[includeIf "gitdir:~/source/workrepos/"]
+        path = ~/properties/git/config/work/.gitconfig
