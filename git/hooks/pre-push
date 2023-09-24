@@ -1,0 +1,41 @@
+#!/bin/sh
+
+source $(pwd)/.git/hooks/.env
+
+COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
+
+for COMMIT in ${COMMITS_TO_PUSH}; do
+    ### Check if the commit is GPG signed
+    if ! git verify-commit ${COMMIT} > /dev/null 2>&1; then
+        echo "Error: Commit ${COMMIT} is not GPG signed."
+        exit 1
+    fi
+
+    COMMIT_USER_NAME="$(git show -s --pretty=format:%aN ${COMMIT})"
+    COMMIT_USER_EMAIL="$(git show -s --pretty=format:%aE ${COMMIT})"
+
+    ### Check if the commit user name and email match the env config
+    if [ "${COMMIT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
+        [ "${COMMIT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
+        echo "Error: Push rejected. Your user name or email is incorrect."
+        exit 1
+    fi
+
+    COMMIT_GPG_SIGNING_KEY="$(git show -s --pretty=format:%GF ${COMMIT})"
+    COMMIT_GPG_USER_INFO="$(git show -s --pretty=format:%GS ${COMMIT})"
+    COMMIT_GPG_USER_NAME="${COMMIT_GPG_USER_INFO% <*}"
+    COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_INFO#*<}" && COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_EMAIL%>}"
+
+    ### Check if the commit GPG signing key matches the env config
+    if [ "${COMMIT_GPG_SIGNING_KEY}" != "${ENV_GPG_SIGNING_KEY}" ]; then
+        echo "Error: Commit ${COMMIT} is signed with a different GPG key."
+        exit 1
+    fi
+    if [ "${COMMIT_GPG_USER_NAME}" != "${ENV_USER_NAME}" ] ||
+        [ "${COMMIT_GPG_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
+        echo "Error: Push rejected. Your GPG user name or email is incorrect."
+        exit 1
+    fi
+done
+
+exit 0
