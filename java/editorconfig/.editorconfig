@@ -1278,6 +1278,7 @@ ij_jsp_keep_indents_on_empty_lines = false
 ij_jspx_keep_indents_on_empty_lines = false
 
 [{*.kt,*.kts}]
+ij_continuation_indent_size = 4
 ij_kotlin_align_in_columns_case_branch = false
 ij_kotlin_align_multiline_binary_operation = false
 ij_kotlin_align_multiline_extends_list = false
