@@ -22,6 +22,7 @@ pip3 list
 
 ### create venv
 virtualenv --python /usr/bin/python3 venv
+virtualenv --python /opt/homebrew/bin/python3 venv
 
 ### activate
 source venv/bin/activate
