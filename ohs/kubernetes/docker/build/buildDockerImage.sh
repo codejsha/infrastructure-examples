@@ -50,7 +50,7 @@ while getopts "hsdgiv:" optname; do
     "v")
       VERSION="$OPTARG"
       ;;
-	 *)
+   *)
     # Should not occur
       echo "Unknown error while processing options inside buildDockerImage.sh"
       ;;
