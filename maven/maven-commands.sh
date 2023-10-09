@@ -1,3 +1,5 @@
 ######################################################################
 
-gpg --symmetric --output filename.encrypted filename
+mvn clean
+
+mvn install -DskipTests
