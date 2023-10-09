@@ -1,0 +1,10 @@
+{
+  "namespace": "com.example.avro",
+  "type": "record",
+  "name": "Order",
+  "fields": [
+    { "name": "transactionId", "type": { "type": "string", "logicalType": "uuid" } },
+    { "name": "productCode", "type": "int" },
+    { "name": "orderTime", "type": { "type": "long", "logicalType": "timestamp-millis" }}
+  ]
+}
