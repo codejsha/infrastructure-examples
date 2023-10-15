@@ -12,7 +12,8 @@ And it is possible to run the Kafka servers using `docker-compose` for testing p
 
 ## Examples
 
-examples of kafka connector: [/infrastructure-examples/kafka/connector](/kafka/connector/)
+- docker-compose examples: [/infrastructure-examples/kafka/docker-compose](/kafka/docker-compose/)
+- kafka connector examples: [/infrastructure-examples/kafka/connector](/kafka/connector/)
 
 ## References
 
