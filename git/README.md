@@ -20,6 +20,8 @@ style: style or formatting change
 
 refactor: restructure function to be more modular
 
+chore: update build tasks, package manager configs, etc
+
 test: test a feature
 ```
 
