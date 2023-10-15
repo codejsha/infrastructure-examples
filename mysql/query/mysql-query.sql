@@ -91,3 +91,13 @@ SELECT TIMEDIFF(NOW(), CONVERT_TZ(NOW(), @@session.time_zone, '+00:00'));
 SELECT NOW()
 
 SELECT schema_name, default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA;
+
+-- ######################################################################
+
+-- enable function
+SET GLOBAL log_bin_trust_function_creators = 1;
+
+-- ######################################################################
+
+SHOW VARIABLES LIKE 'character%';
+SHOW VARIABLES LIKE 'collation%';
