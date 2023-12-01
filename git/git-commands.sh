@@ -58,6 +58,17 @@ git commit --message "update" --allow-empty
 ### reset
 git reset --hard origin/main
 
+### patch
+git diff $COMMIT_HASH > diff.patch
+git diff $COMMIT_HASH1 $COMMIT_HASH2 > diff.patch
+git apply diff.patch
+
+######################################################################
+
+### debug
+
+GIT_TRACE=1 git push origin main
+
 ######################################################################
 
 ### submodule
