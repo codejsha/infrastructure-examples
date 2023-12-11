@@ -90,7 +90,10 @@ SELECT @@global.time_zone, @@session.time_zone;
 SELECT TIMEDIFF(NOW(), CONVERT_TZ(NOW(), @@session.time_zone, '+00:00'));
 SELECT NOW()
 
-SELECT schema_name, default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA;
+-- collation
+SELECT SCHEMA_NAME, DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA;
+SHOW TABLE STATUS FROM sakila;
+ALTER TABLE company CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- ######################################################################
 
