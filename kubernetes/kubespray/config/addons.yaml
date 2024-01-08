@@ -129,7 +129,7 @@ cert_manager_namespace: "cert-manager"
 # MetalLB deployment
 metallb_enabled: true
 metallb_ip_range:
-  - "192.168.140.50-192.168.140.149"
+  - "192.168.137.50-192.168.137.149"
 metallb_version: v0.9.3
 metallb_protocol: "layer2"
 metallb_port: "7472"
