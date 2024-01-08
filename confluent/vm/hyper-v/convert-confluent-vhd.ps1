@@ -32,11 +32,11 @@ function Convert-ConfluentVHD {
         -FirstBootDevice $HardDrive
 }
 
-# Convert-ConfluentVHD "ConfluentNodeMachine0" "C:\hyper" "ConfluentNodeMachine1" "C:\hyper"
-# Convert-ConfluentVHD "ConfluentNodeMachine0" "C:\hyper" "ConfluentNodeMachine2" "C:\hyper"
-# Convert-ConfluentVHD "ConfluentNodeMachine0" "C:\hyper" "ConfluentNodeMachine3" "C:\hyper"
-# Convert-ConfluentVHD "ConfluentNodeMachine0" "C:\hyper" "ConfluentNodeMachine4" "C:\hyper"
-# Convert-ConfluentVHD "ConfluentNodeMachine0" "C:\hyper" "ConfluentNodeMachine5" "C:\hyper"
+# Convert-ConfluentVHD "ConfluentNodeMachine0" "E:\hyper" "ConfluentNodeMachine1" "E:\hyper"
+# Convert-ConfluentVHD "ConfluentNodeMachine0" "E:\hyper" "ConfluentNodeMachine2" "E:\hyper"
+# Convert-ConfluentVHD "ConfluentNodeMachine0" "E:\hyper" "ConfluentNodeMachine3" "E:\hyper"
+# Convert-ConfluentVHD "ConfluentNodeMachine0" "E:\hyper" "ConfluentNodeMachine4" "E:\hyper"
+# Convert-ConfluentVHD "ConfluentNodeMachine0" "E:\hyper" "ConfluentNodeMachine5" "E:\hyper"
 
 Convert-ConfluentVHD "ConfluentNodeMachine0" "$env:USERPROFILE\hyper" "ConfluentNodeMachine1" "$env:USERPROFILE\hyper"
 Convert-ConfluentVHD "ConfluentNodeMachine0" "$env:USERPROFILE\hyper" "ConfluentNodeMachine2" "$env:USERPROFILE\hyper"
