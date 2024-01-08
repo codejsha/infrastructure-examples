@@ -6,5 +6,7 @@ set -o errtrace
 ### rhel - yum
 sudo yum install -y https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
 
-sudo yum install -y zulu11-jdk
-sudo yum install -y zulu8-jdk
+# sudo yum install -y zulu21-jdk
+sudo yum install -y zulu17-jdk
+# sudo yum install -y zulu11-jdk
+# sudo yum install -y zulu8-jdk

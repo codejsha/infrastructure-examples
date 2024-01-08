@@ -5,12 +5,12 @@ set -o errtrace
 
 PASSWORD="${PASSWORD}"
 declare -A NODES=(
-    [controlplane1]="192.168.140.11"
-    [controlplane2]="192.168.140.12"
-    [controlplane3]="192.168.140.13"
-    [node1]="192.168.140.21"
-    [node2]="192.168.140.22"
-    [node3]="192.168.140.23"
+    [controlplane1]="192.168.137.11"
+    [controlplane2]="192.168.137.12"
+    [controlplane3]="192.168.137.13"
+    [node1]="192.168.137.21"
+    [node2]="192.168.137.22"
+    [node3]="192.168.137.23"
 )
 
 rm --force ~/.ssh/id_rsa

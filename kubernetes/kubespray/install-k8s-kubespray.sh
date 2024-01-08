@@ -18,7 +18,7 @@ cd kubespray
 sudo pip3 install -r requirements.txt
 /bin/cp -rpf inventory/sample inventory/mycluster
 
-declare -a IPS=(192.168.140.11 192.168.140.12 192.168.140.13 192.168.140.21 192.168.140.22 192.168.140.23)
+declare -a IPS=(192.168.137.11 192.168.137.12 192.168.137.13 192.168.137.21 192.168.137.22 192.168.137.23)
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py "${IPS[@]}"
 
 /bin/cp -f ../config/hosts.yaml inventory/mycluster/hosts.yaml
