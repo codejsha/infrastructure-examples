@@ -147,7 +147,7 @@ nodelocaldns_external_zones:
   - zones:
       - example.com
     nameservers:
-      - 192.168.140.10
+      - 192.168.137.10
     cache: 5
 #  - zones:
 #      - https://mycompany.local:4453
