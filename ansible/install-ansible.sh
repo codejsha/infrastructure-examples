@@ -3,6 +3,6 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-pip3 install -y ansible
+pip3 install ansible
 
 # pip3 install --requirement requirements.txt
