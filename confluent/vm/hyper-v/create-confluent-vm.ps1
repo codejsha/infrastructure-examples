@@ -44,16 +44,16 @@ function New-Machine {
 
 ### Internal
 
-# New-Machine -VMName "ConfluentNodeMachine0" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-# New-Machine -VMName "ConfluentNodeMachine1" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-# New-Machine -VMName "ConfluentNodeMachine2" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-# New-Machine -VMName "ConfluentNodeMachine3" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-# New-Machine -VMName "ConfluentNodeMachine4" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-# New-Machine -VMName "ConfluentNodeMachine5" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
+# New-Machine -VMName "ConfluentNodeMachine0" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+# New-Machine -VMName "ConfluentNodeMachine1" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+# New-Machine -VMName "ConfluentNodeMachine2" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+# New-Machine -VMName "ConfluentNodeMachine3" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+# New-Machine -VMName "ConfluentNodeMachine4" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+# New-Machine -VMName "ConfluentNodeMachine5" -VMPath "C:\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
 
-New-Machine -VMName "ConfluentNodeMachine0" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-New-Machine -VMName "ConfluentNodeMachine1" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-New-Machine -VMName "ConfluentNodeMachine2" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-New-Machine -VMName "ConfluentNodeMachine3" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-New-Machine -VMName "ConfluentNodeMachine4" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
-New-Machine -VMName "ConfluentNodeMachine5" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "AlphaInternal"
+New-Machine -VMName "ConfluentNodeMachine0" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+New-Machine -VMName "ConfluentNodeMachine1" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+New-Machine -VMName "ConfluentNodeMachine2" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+New-Machine -VMName "ConfluentNodeMachine3" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+New-Machine -VMName "ConfluentNodeMachine4" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
+New-Machine -VMName "ConfluentNodeMachine5" -VMPath "$env:USERPROFILE\hyper" -VMProcessor 2 -VMMemory 8GB -Switch "HyperInternal"
