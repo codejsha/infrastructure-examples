@@ -3,6 +3,7 @@ const userEmail = pm.environment.get("userEmail");
 const userPassword = pm.environment.get("userPassword");
 
 const requestOptions = {
+    url: loginUrl,
     method: 'POST',
     header: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -11,18 +12,22 @@ const requestOptions = {
     body: {
         mode: 'raw',
         raw: JSON.stringify({
-            email: userEmail,
-            password: userPassword
+            'email': userEmail,
+            'password': userPassword
         })
     }
 };
 
-pm.sendRequest(loginUrl, requestOptions, (err, res) => {
+pm.sendRequest(requestOptions, function (err, res) {
     if (err) {
         console.error("Error during login:", err);
     } else {
-        const responseBody = res.json();
-        console.log("Login response:", responseBody);
-        pm.environment.set("bearerToken", responseBody.token);
+        const data = res.json();
+        if (data && data.response.token) {
+            pm.environment.set("bearerToken", data.response.token);
+        } else {
+            console.log("Login response:", data);
+            console.error("Token not found in response");
+        }
     }
 });
