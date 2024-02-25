@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jeus-web-dd xmlns="http://www.tmaxsoft.com/xml/ns/jeus" version="7.0">
+    <context-path>/failover</context-path>
+    <enable-jsp>true</enable-jsp>
+    <auto-reload>
+        <enable-reload>false</enable-reload>
+        <check-on-demand>false</check-on-demand>
+    </auto-reload>
+    <max-instance-pool-size>-1</max-instance-pool-size>
+    <webinf-first>false</webinf-first>
+    <attach-stacktrace-on-error>false</attach-stacktrace-on-error>
+    <!-- <target-session-cluster>sessionCluster1</target-session-cluster> -->
+</jeus-web-dd>
