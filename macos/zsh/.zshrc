@@ -2,6 +2,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
 ZSH_THEME="agnoster"
 DISABLE_AUTO_TITLE="true"
+SHOW_AWS_PROMPT="false"
 plugins=(
     aliases
     argocd
