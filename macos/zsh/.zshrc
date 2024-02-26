@@ -42,6 +42,8 @@ case ${TERM} in
     ;;
 esac
 
+LS_COLORS="di=36:ln=38;5;210:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+
 export GPG_TTY="$(tty)"
 export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
