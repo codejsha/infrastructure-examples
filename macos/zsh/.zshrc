@@ -2,6 +2,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
 ZSH_THEME="agnoster"
 DISABLE_AUTO_TITLE="true"
+SHOW_AWS_PROMPT="false"
 plugins=(
     aliases
     argocd
@@ -41,6 +42,8 @@ case ${TERM} in
     precmd () {print -Pn "\e]0;%~\a"}
     ;;
 esac
+
+LS_COLORS="di=36:ln=38;5;210:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
 export GPG_TTY="$(tty)"
 export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
