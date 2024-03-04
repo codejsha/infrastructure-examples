@@ -1,0 +1,5 @@
+{
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.import.gradle.java.home": "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home",
+  "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"
+}
