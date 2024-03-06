@@ -2,7 +2,7 @@
 
 Tekton is a cloud-native open-source framework for creating continuous integration and continuous delivery (CI/CD) systems.
 
-## Install
+## Installation
 
 ```bash
 bash ./install-tekton-cli.sh
@@ -25,7 +25,7 @@ kubectl apply --filename tekton-dashboard-ingress.yaml
 
 ## Examples
 
-- example of java pipeline: [/infrastructure-examples/tekton/pipeline-java/argocd](/tekton/pipeline-java/)
+- java pipeline example: [/infrastructure-examples/tekton/pipeline-java/argocd](/tekton/pipeline-java/)
 - tekton pipeline example: https://github.com/tektoncd/pipeline/tree/main/examples
 - tekton triggers example: https://github.com/tektoncd/triggers/tree/main/examples
 
