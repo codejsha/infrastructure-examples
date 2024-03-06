@@ -16,7 +16,7 @@ It uses a Git repository as a resource repository to store the desired state of 
 
 ## Examples
 
-- example of argocd resources in tekton pipeline: [/infrastructure-examples/tekton/pipeline-java/argocd](/tekton/pipeline-java/argocd)
+- argocd resource example in tekton pipeline: [/infrastructure-examples/tekton/pipeline-java/argocd](/tekton/pipeline-java/argocd)
 - guestbook example: [/infrastructure-examples/argo-cd/guestbook](/argo-cd/guestbook)
 - ArgoCD Example Apps: https://github.com/argoproj/argocd-example-apps
 
