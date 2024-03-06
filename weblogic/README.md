@@ -1,6 +1,10 @@
 # WebLogic
 
-## Install
+Oracle WebLogic Server is a Java EE(Java Platform, Enterprise Edition) application server. It is part of the Oracle Fusion Middleware suite.
+
+## Installation
+
+### Install server
 
 ```bash
 ### pre-install
@@ -8,12 +12,14 @@
 bash ./helper.sh
 ### 11g:
 bash ./helper-11g.sh
+```
 
+```bash
 ### install
 bash ./install-weblogic.sh
 ```
 
-## Create a domain
+### Create a domain
 
 ```bash
 cd domain
@@ -21,7 +27,9 @@ bash ./create-domain.sh
 cd ..
 ```
 
-## Configuration
+### Configure domain
+
+`all.sh` script contains other configuration scripts:
 
 ```bash
 bash ./all.sh
@@ -35,7 +43,7 @@ bash ./all.sh
 export CONFIG_JVM_ARGS="${CONFIG_JVM_ARGS} -Djava.security.egd=file:///dev/urandom"
 ```
 
-### Connect WLST
+### Connect server using WLST
 
 ```py
 admin_server_listen_address = 'test.example.com'

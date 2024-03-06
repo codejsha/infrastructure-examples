@@ -1,14 +1,5 @@
 # Tomcat
 
-- https://tomcat.apache.org/tomcat-9.0-doc/
-- https://tomcat.apache.org/tomcat-9.0-doc/config/executor.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/http.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/ajp.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/context.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/host.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/cluster.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html
-
 ## Install
 
 ```bash
@@ -21,7 +12,7 @@ bash ./install-tomcat.sh
 
 ### Create instances
 
-- [Instance README](/tomcat/instance/README.md)
+- [Tomcat instances README](/tomcat/instance/README.md)
 
 ## Logging
 
@@ -48,3 +39,14 @@ HikariCP:
 
 - https://cloud.google.com/appengine/docs/standard/java/config/webxml
 - https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
+
+## References
+
+- https://tomcat.apache.org/tomcat-9.0-doc/
+- https://tomcat.apache.org/tomcat-9.0-doc/config/executor.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/http.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/ajp.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/context.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/host.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/cluster.html
+- https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html

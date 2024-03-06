@@ -1,8 +1,10 @@
 # WebLogic Plugin
 
-## Check plugin version
+WebLogic plugin is a software module that integrates WebLogic Server with web servers.
 
-### DebugConfigInfo
+## How to identify the plugin version
+
+### Using DebugConfigInfo
 
 Enable the query parameter:
 
@@ -16,7 +18,7 @@ Invoke:
 http://www.example.com/helloworld?__WebLogicBridgeConfig
 ```
 
-### Linux
+### Using strings command in linux
 
 ```bash
 strings mod_wl.so | grep WLSPLUGINS
@@ -30,9 +32,7 @@ strings mod_wl.so | grep WLSPLUGINS
 # WebLogic Server Plugin version 1.1 <WLSPLUGINS_11.1.1.9.0_LINUX.X64_150206.1116>
 ```
 
-### Windows
-
-Use Sysinternals strings:
+### Using strings command in windows (Sysinternals strings required)
 
 ```powershell
 strings64.exe iisproxy.dll | Select-String "WLSPLUGINS" -SimpleMatch -CaseSensitive
@@ -45,3 +45,6 @@ strings64.exe iisproxy.dll | Select-String "WLSPLUGINS" -SimpleMatch -CaseSensit
 # WLSPLUGINS_11.1.1.9.0_WINDOWS.X64_150209.1021
 # WebLogic Server Plugin version 1.1 <WLSPLUGINS_11.1.1.9.0_WINDOWS.X64_150209.1021>
 ```
+
+- [Sysinternals Suite](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
+- [Sysinternals strings](https://docs.microsoft.com/en-us/sysinternals/downloads/strings)
