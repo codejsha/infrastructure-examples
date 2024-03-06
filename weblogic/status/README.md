@@ -1,5 +1,7 @@
 # Status
 
+print server and datasource status using scripts.
+
 ## Server monitoring
 
 ```bash
