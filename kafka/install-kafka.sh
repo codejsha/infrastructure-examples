@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_kafka_with_download {
+function install_apache_kafka() {
     local KAFKA_HOME="/usr/local/kafka"
     local INSTALL_FILE_DIR="/mnt/share/apache-kafka"
     local INSTALL_FILE="kafka_2.13-2.8.0.tgz"
@@ -54,4 +54,4 @@ function install_kafka_with_download {
 
 ######################################################################
 
-install_kafka_with_download
+install_apache_kafka

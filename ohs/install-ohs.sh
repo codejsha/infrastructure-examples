@@ -28,7 +28,7 @@ INSTALL_SCRIPT_DIR="/svc/infrastructure/ohs"
 
 ######################################################################
 
-function install_required_package_12c_rhel8 {
+function install_required_package_12c_rhel8() {
     echo "[INFO] Installing WebLogic 12c"
     sudo yum install -y binutils gcc gcc-c++ glibc.x86_64 glibc-devel.x86_64 libaio.x86_64 libaio-devel.x86_64 libgcc.x86_64 libstdc++.x86_64 libstdc++-devel.x86_64 libnsl.x86_64 sysstat motif.x86_64 motif-devel.x86_64 redhat-lsb.x86_64 redhat-lsb-core.x86_64 openssl make xorg-x11-utils
 
@@ -37,19 +37,19 @@ function install_required_package_12c_rhel8 {
     # sudo yum install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
 }
 
-function install_required_package_12c_rhel7 {
+function install_required_package_12c_rhel7() {
     echo "[INFO] Installing WebLogic 12c"
     sudo yum install -y binutils compat-libcap1 compat-libstdc++-33.x86_64 compat-libstdc++-33.i686 gcc gcc-c++ glibc.x86_64 glibc.i686 glibc-devel.x86_64 libaio.x86_64 libaio-devel.x86_64 libgcc.x86_64 libgcc.i686 libstdc++.x86_64 libstdc++.i686 libstdc++-devel.x86_64 dejavu-serif-fonts ksh make sysstat numactl.x86_64 numactl-devel.x86_64 motif.x86_64 motif-devel.x86_64 redhat-lsb.x86_64 redhat-lsb-core.x86_64 openssl xorg-x11-utils
 }
 
-function install_required_package_11g {
+function install_required_package_11g() {
     echo "[INFO] Installing WebLogic 11g"
     sudo yum install -y binutils compat-libcap1 compat-libstdc++-33.x86_64 compat-libstdc++-33.i686 gcc gcc-c++ glibc.x86_64 glibc.i686 glibc-devel.x86_64 glibc-devel.i686 libaio.x86_64 libaio-devel.x86_64 libgcc.x86_64 libgcc.i686 libstdc++.x86_64 libstdc++.i686 libstdc++-devel.x86_64 ksh make sysstat numactl.x86_64 numactl-devel.x86_64 motif.x86_64 motif-devel.x86_64 redhat-lsb.x86_64 redhat-lsb-core.x86_64
 }
 
 ######################################################################
 
-function install_ohs {
+function install_ohs() {
     local OS_VERSION="$(grep "^VERSION=" /etc/os-release | grep -o -E "[0-9]{1,2}\.{0,1}[0-9]{0,2}")"
     echo "[INFO] OS version: ${OS_VERSION}"
     echo "[INFO] Install file: ${INSTALL_FILE}"

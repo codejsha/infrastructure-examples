@@ -1,0 +1,40 @@
+# Copyright 2022 Jinseong Ha
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+######################################################################
+### variables for customized playbooks
+######################################################################
+all:
+  vars:
+    redhat_epel_repo_enabled: true
+    install_additional_tools: true
+    install_additional_infra_tools: true
+    install_vscode_remote_dev_requirements: true
+
+    zookeeper_log_file_name: zookeeper-server.log
+    zookeeper_gc_log_file_name: zookeeper-gc.log
+    kafka_broker_log_file_name: server.log
+    kafka_broker_gc_log_file_name: kafka-gc.log
+    schema_registry_log_file_name: schema-registry.log
+    schema_registry_gc_log_file_name: schema-registry-gc.log
+    kafka_connect_log_file_name: connect.log
+    kafka_connect_gc_log_file_name: connect-gc.log
+    ksql_log_file_name: ksql.log
+    ksql_gc_log_file_name: ksql-server-gc.log
+    kafka_rest_log_file_name: kafka-rest.log
+    kafka_rest_gc_log_file_name: kafka-rest-gc.log
+    control_center_log_file_name: control-center.log
+    control_center_gc_log_file_name: control-center-gc.log
+
+    default_user_home_dir: /home/confluent

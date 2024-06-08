@@ -31,7 +31,7 @@ export HARBOR_SECRET_KEY="${HARBOR_SECRET_KEY}" # Must be a string of 16 chars
 export REGISTRY_USERNAME="admin"
 export REGISTRY_PASSWORD="${PASSWORD}"
 export REGISTRY_HTPASSWD="$(htpasswd -nbBC10 ${REGISTRY_USERNAME} ${REGISTRY_PASSWORD})"
-export DATABASE_PASSWORD="${PASSWORD}"
+export DATABASE_PASSWORD="postgres"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 

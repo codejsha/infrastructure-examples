@@ -306,3 +306,12 @@ deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest
 /subsystem=logging/console-handler=CONSOLE:write-attribute(name=encoding,value=UTF-8)
 /subsystem=logging/periodic-rotating-file-handler=FILE:write-attribute(name=encoding,value=UTF-8)
 /subsystem=logging/root-logger=ROOT:write-attribute(name=level,value=INFO)
+
+######################################################################
+
+### http only
+/subsystem=undertow/servlet-container=default/setting=session-cookie:add
+/subsystem=undertow/servlet-container=default/setting=session-cookie:write-attribute(name=http-only,value=true)
+
+/subsystem=undertow/server=default-server/host=default-host/setting=single-sign-on:add
+/subsystem=undertow/server=default-server/host=default-host/setting=single-sign-on:write-attribute(name=http-only,value=true)

@@ -7,7 +7,7 @@ SECRET_NAME="mysql-datasource-secret"
 NAMESPACE="sample-domain1-ns"
 DOMAIN_NAME="sample-domain1"
 
-URL="my-mysql.mysql.svc.cluster.local:3306/mysqldb"
+URL="jdbc:mysql://my-mysql.mysql.svc.cluster.local:3306/mysqldb"
 USERNAME="admin"
 PASSWORD="admin"
 
@@ -16,5 +16,4 @@ kubectl create secret generic ${SECRET_NAME} \
     --from-literal=username="${USERNAME}" \
     --from-literal=password="${PASSWORD}" \
     --namespace ${NAMESPACE}
-
-kubectl label secret ${SECRET_NAME} --namespace ${NAMESPACE} weblogic.domainUID=${DOMAIN_NAME}
+kubectl label secret ${SECRET_NAME} --namespace ${NAMESPACE} weblogic.domainUID="${DOMAIN_NAME}"

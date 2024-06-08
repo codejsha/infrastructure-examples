@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 oracle_home = os.environ['MW_HOME']
 domain_name = os.environ['DOMAIN_NAME']
@@ -14,7 +14,7 @@ admin_password = os.environ['ADMIN_PASSWORD']
 def set_domain_cookie_name(_oracle_home, _domain_version, _domain_name):
     cd('/AdminConsole/' + _domain_name)
     # _prefix = _oracle_home.replace('/', '_').upper()
-    _prefix = 'WLS_' + domain_version.replace('.', '').upper()
+    _prefix = 'WLS_' + _domain_version.replace('.', '').upper()
     _domain_upper = _domain_name.replace('_', '').replace('-', '').upper()
     cmo.setCookieName(_prefix + '_' + _domain_upper + '_SESSION')
 

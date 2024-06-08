@@ -7,15 +7,15 @@ metadata:
 spec:
   replicas: 3
   image:
-    application: confluentinc/cp-zookeeper:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-    # application: harbor.example.com/confluentinc/cp-zookeeper:6.2.1
-    # init: harbor.example.com/confluentinc/confluent-init-container:2.0.3
+    application: confluentinc/cp-zookeeper:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+    # application: harbor.example.com/confluentinc/cp-zookeeper:7.0.0
+    # init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   # storageClass:
   #   name: standard
-  dataVolumeCapacity: 10Gi
-  logVolumeCapacity: 10Gi
+  dataVolumeCapacity: 100Gi
+  logVolumeCapacity: 100Gi
   configOverrides:
     server: []
     jvm: []
@@ -30,6 +30,13 @@ spec:
     jaasConfigPassThrough:
       directoryPathInContainer: /vault/secrets/jaas
   podTemplate:
+    resources:
+      requests:
+        cpu: 2
+        memory: 8Gi
+      limits:
+        cpu: 4
+        memory: 14Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000

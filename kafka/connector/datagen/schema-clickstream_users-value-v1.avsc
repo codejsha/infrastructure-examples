@@ -1,0 +1,36 @@
+{
+  "connect.name": "clickstream.User",
+  "fields": [
+    {
+      "name": "user_id",
+      "type": "int"
+    },
+    {
+      "name": "username",
+      "type": "string"
+    },
+    {
+      "name": "registered_at",
+      "type": "long"
+    },
+    {
+      "name": "first_name",
+      "type": "string"
+    },
+    {
+      "name": "last_name",
+      "type": "string"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "level",
+      "type": "string"
+    }
+  ],
+  "name": "User",
+  "namespace": "clickstream",
+  "type": "record"
+}

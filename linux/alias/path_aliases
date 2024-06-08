@@ -1,0 +1,17 @@
+# path
+
+PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+
+### go
+export GOROOT="/usr/local/go"
+export GOPATH="${HOME}/go"
+PATH="${GOROOT}/bin:${PATH}"
+
+# kubernetes
+PATH="${HOME}/.krew/bin:${PATH}"
+
+### confluent
+export CONFLUENT_HOME="/usr/local/confluent"
+PATH="${CONFLUENT_HOME}/bin:${PATH}"
+
+export PATH

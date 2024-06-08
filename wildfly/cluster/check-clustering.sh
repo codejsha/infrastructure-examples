@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function check_clustering {
+function check_clustering() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

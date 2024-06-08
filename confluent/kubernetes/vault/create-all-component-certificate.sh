@@ -3,16 +3,17 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 CERT_DIR="./certs"
 mkdir -p ${CERT_DIR}
 
 vault write -format="json" pki_int/issue/confluent-operator \
     common_name="kafka.example.com" \
-    alt_names="*.zookeeper.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local,*.ksql.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,*.zookeeper.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local,*.ksql.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/tls.json > ${CERT_DIR}/tls.key

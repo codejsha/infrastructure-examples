@@ -1,20 +1,19 @@
 {
   "name": "spooldir-json-source",
   "config": {
-    "name": "spooldir-json-source",
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirJsonSourceConnector",
     "tasks.max": "2",
-    "key.converter": "io.confluent.connect.avro.AvroConverter",
-    "key.converter.schema.registry.url": "http://localhost:8081",
-    "value.converter": "io.confluent.connect.avro.AvroConverter",
-    "value.converter.schema.registry.url": "http://localhost:8081",
-    "schema.generation.enabled": "true",
-    "topic": "spooldir.json.topic",
+    "topic": "spooldir-json-topic",
     "input.file.pattern": ".*\\.json",
     "input.path": "/path/to/data",
     "error.path": "/path/to/error",
     "finished.path": "/path/to/finished",
     "cleanup.policy": "MOVE",
-    "halt.on.error": "false"
+    "halt.on.error": "false",
+    "schema.generation.enabled": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081"
   }
 }

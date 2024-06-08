@@ -25,6 +25,16 @@ rm -f get_helm.sh
 helm completion bash | sudo tee /etc/bash_completion.d/helm
 source <(helm completion bash)
 
+### install helm (rhel)
+# sudo dnf install helm
+
+### install helm (ubuntu)
+# curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+# sudo apt-get install apt-transport-https --yes
+# echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+# sudo apt-get update
+# sudo apt-get install helm
+
 ### helm repo
 # helm repo add stable https://charts.helm.sh/stable
 # helm repo add incubator https://charts.helm.sh/incubator

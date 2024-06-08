@@ -1,0 +1,52 @@
+---
+#
+# Copyright Prometheus Community
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+######################################################################
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: my-kube-prometheus-stack-kube-prometheus-node-recording.rules
+  namespace: monitoring
+  labels:
+    app: kube-prometheus-stack
+    release: my-kube-prometheus-stack
+spec:
+  groups:
+    - name: kube-prometheus-node-recording.rules
+      rules:
+        - expr:
+            sum(rate(node_cpu_seconds_total{mode!="idle",mode!="iowait",mode!="steal"}[3m]))
+            BY (instance)
+          record: instance:node_cpu:rate:sum
+        - expr: sum(rate(node_network_receive_bytes_total[3m])) BY (instance)
+          record: instance:node_network_receive_bytes:rate:sum
+        - expr: sum(rate(node_network_transmit_bytes_total[3m])) BY (instance)
+          record: instance:node_network_transmit_bytes:rate:sum
+        - expr:
+            sum(rate(node_cpu_seconds_total{mode!="idle",mode!="iowait",mode!="steal"}[5m]))
+            WITHOUT (cpu, mode) / ON(instance) GROUP_LEFT() count(sum(node_cpu_seconds_total)
+            BY (instance, cpu)) BY (instance)
+          record: instance:node_cpu:ratio
+        - expr: sum(rate(node_cpu_seconds_total{mode!="idle",mode!="iowait",mode!="steal"}[5m]))
+          record: cluster:node_cpu:sum_rate5m
+        - expr:
+            cluster:node_cpu_seconds_total:rate5m / count(sum(node_cpu_seconds_total)
+            BY (instance, cpu))
+          record: cluster:node_cpu:ratio

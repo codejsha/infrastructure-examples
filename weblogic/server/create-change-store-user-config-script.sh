@@ -26,7 +26,7 @@ VAR_LOG_DIR="${LOG_DIR/${DOMAIN_HOME}/${TEMP}}"
 ######################################################################
 
 cat <<EOF > ${DOMAIN_HOME}/scripts/change_store_user_config.py
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_home = os.environ['DOMAIN_HOME']
 admin_server_url = os.environ['ADMIN_SERVER_URL']

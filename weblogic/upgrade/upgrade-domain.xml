@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin-silent-responses>
+    <group name="DomainSelectionGroup">
+        <plugin name="SelectWebLogicVersionPlugIn">
+            <input-adapter name="ChoiceIA">
+                <bind-property name="selectedChoiceIds">
+                    <value>9.0 or higher</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+        <plugin name="DomainDirectorySelectionPlugIn">
+            <input-adapter name="IA">
+                <bind-property name="selectedFile">
+                    <value>/usr/local/weblogic/user_projects/domains/base_domain</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+    </group>
+    <group name="PostDirSelectionGroup">
+        <plugin name="AdminServerSelectionPlugIn">
+            <input-adapter name="IA">
+                <bind-property name="selectedChoiceIds">
+                    <value>AdminServer</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+        <plugin name="NodeManagerCredentialsPlugIn">
+            <input-adapter name="UsernameIA">
+                <bind-property name="value">
+                    <value>weblogic</value>
+                </bind-property>
+            </input-adapter>
+            <input-adapter name="PasswordIA">
+                <bind-property name="value">
+                    <value>welcome12#</value>
+                </bind-property>
+            </input-adapter>
+            <input-adapter name="PasswordConfirmIA">
+                <bind-property name="value">
+                    <value>welcome12#</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+        <plugin name="OptionalGroupsSelectionPlugIn">
+            <input-adapter name="IA">
+                <bind-property name="selectedChoiceIds">
+                    <value>DOMAIN_DIRECTORY_BACKUP_SELECTED_VALUE</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+    </group>
+    <group name="PostDirSelectionPost81Group">
+        <plugin name="AdminServerSelectionPlugIn">
+            <input-adapter name="IA">
+                <bind-property name="selectedChoiceIds">
+                    <value>AdminServer</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+        <plugin name="OptionalGroupsSelectionPlugIn">
+            <input-adapter name="IA">
+                <bind-property name="selectedChoiceIds">
+                    <value>DOMAIN_DIRECTORY_BACKUP_SELECTED_VALUE</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+    </group>
+    <group name="DomainBackupGroup">
+        <plugin name="DomainDirectoryBackupPlugIn">
+            <input-adapter name="FileSelectionIA">
+                <bind-property name="selectedFileNames">
+                    <value>/usr/local/weblogic/user_projects/domains</value>
+                </bind-property>
+            </input-adapter>
+            <input-adapter name="TextIA">
+                <bind-property name="value">
+                    <value>base_domain_backup.zip</value>
+                </bind-property>
+            </input-adapter>
+        </plugin>
+    </group>
+</plugin-silent-responses>

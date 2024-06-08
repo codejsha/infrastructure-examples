@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add cetic https://cetic.github.io/helm-charts
 # helm repo update
 
-NAMESPACE="ldap-system"
+NAMESPACE="ldap"
 
 # helm install my-ldapadmin \
 helm upgrade --install my-ldapadmin \

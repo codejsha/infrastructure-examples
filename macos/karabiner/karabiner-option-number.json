@@ -1,0 +1,497 @@
+{
+  "description": "Option + Number: Open app",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "1",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.microsoft.edgemac"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "1",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "2",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.google.Chrome"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.google\\.Chrome$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "2",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.google\\.Chrome$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "3",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.naver.Whale"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.naver\\.Whale$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "3",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.naver\\.Whale$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "4",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b co.zeit.hyper"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^co\\.zeit\\.hyper$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "4",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^co\\.zeit\\.hyper$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "5",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.microsoft.VSCode"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "5",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "6",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.intellij"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "6",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "7",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.pycharm"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "7",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.WebStorm"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "9",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.goland"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "9",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "0",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.CLion-EAP"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.jetbrains\\.CLion-EAP$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "0",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.jetbrains\\.CLion-EAP$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "hyphen",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.getupnote.desktop"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.getupnote\\.desktop$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "hyphen",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.getupnote\\.desktop$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "equal_sign",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.tinyspeck.slackmacgap"
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_unless",
+          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"]
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "equal_sign",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "frontmost_application_if",
+          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"]
+        }
+      ]
+    }
+  ]
+}

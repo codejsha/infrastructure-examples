@@ -8,7 +8,7 @@ PATCH_FILE_DIR="/mnt/share/oracle-weblogic-server/wls10.3.6"
 
 ######################################################################
 
-function check_middleware_home {
+function check_middleware_home() {
     if [ ! -d "${MW_HOME}" ]; then
         echo "[ERROR] The MW_HOME (${MW_HOME}) does not exist!"
         exit
@@ -17,7 +17,7 @@ function check_middleware_home {
     mkdir -p ${MW_HOME}/utils/bsu/cache_dir
 }
 
-function check_patch_file {
+function check_patch_file() {
     local PATCH_FILE_PATH="${1}"
 
     if [ ! -f "${PATCH_FILE_PATH}" ]; then
@@ -26,17 +26,17 @@ function check_patch_file {
     fi
 }
 
-function change_bsu_mem_args {
+function change_bsu_mem_args() {
     local MEM_ARGS="${1:-"-Xms4096m -Xmx4096m"}"
     sed -i "s/MEM_ARGS=.*/MEM_ARGS=\"${MEM_ARGS}\"/g" ${MW_HOME}/utils/bsu/bsu.sh
 }
 
-function backup_cache_dir {
+function backup_cache_dir() {
     local DATETIME="$(date +'%Y%m%d_%H%M%S')"
     mv ${MW_HOME}/utils/bsu/cache_dir ${MW_HOME}/utils/bsu/cache_dir_${DATETIME}
 }
 
-function bsu_update {
+function bsu_update() {
     local PATCH_FILE="${1}"
 
     cd ${MW_HOME}/utils/bsu
@@ -47,7 +47,7 @@ function bsu_update {
     ${MW_HOME}/utils/bsu/bsu_update.sh install
 }
 
-function bsu_remove {
+function bsu_remove() {
     local PATCH_FILE="${1}"
     local PATCH_LIST="${2}"
 
@@ -73,7 +73,7 @@ function bsu_remove {
     #     -log=${MW_HOME}/utils/bsu/bsu-remove-${PATCH_LIST}.log
 }
 
-function bsu_install {
+function bsu_install() {
     local PATCH_FILE="${1}"
     local PATCH_LIST="${2}"
 
@@ -101,7 +101,7 @@ function bsu_install {
     #     -log=${MW_HOME}/utils/bsu/bsu-install-${PATCH_LIST}.log
 }
 
-function bsu_view_applied {
+function bsu_view_applied() {
     cd ${MW_HOME}/utils/bsu
 
     echo "[INFO] View applied patches..."
@@ -113,7 +113,7 @@ function bsu_view_applied {
     #     -prod_dir=${MW_HOME}/wlserver_10.3 \
     #     -verbose \
     #     -log_priority=debug \
-    #     -log=${MW_HOME}/utils/bsu/bsu-install-${PATCH_LIST}.log
+    #     -log=${MW_HOME}/utils/bsu/bsu-view.log
     # ${MW_HOME}/utils/bsu/bsu.sh \
     #     -view \
     #     -status=applied \
@@ -121,7 +121,7 @@ function bsu_view_applied {
     #     -patch_download_dir=${MW_HOME}/utils/bsu/cache_dir \
     #     -verbose \
     #     -log_priority=debug \
-    #     -log=${MW_HOME}/utils/bsu/bsu-install-${PATCH_LIST}.log
+    #     -log=${MW_HOME}/utils/bsu/bsu-view.log
 }
 
 ######################################################################

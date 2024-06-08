@@ -18,7 +18,7 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: confluent-schema-registry-bootstrap-vs
+  name: confluent-schema-registry-vs
   namespace: confluent
 spec:
   hosts:
@@ -33,3 +33,14 @@ spec:
             host: schemaregistry.confluent.svc.cluster.local
             port:
               number: 8081
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-schema-registry-dr
+  namespace: confluent
+spec:
+  host: schemaregistry.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

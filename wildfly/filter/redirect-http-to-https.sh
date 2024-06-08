@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function add_filter {
+function add_filter() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

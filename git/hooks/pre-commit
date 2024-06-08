@@ -1,0 +1,33 @@
+#!/bin/sh
+
+source $(pwd)/.git/hooks/.env
+
+CURRENT_USER_NAME="$(git config user.name)"
+CURRENT_USER_EMAIL="$(git config user.email)"
+CURRENT_GPG_SIGNING_KEY="$(git config user.signingkey)"
+
+### Check if the current GPG signing key exists
+if [ -z "${CURRENT_GPG_SIGNING_KEY}" ]; then
+    echo "Error: No GPG key set for signing commits."
+    exit 1
+fi
+
+### Check if the current user name and email match the env config
+if [ "${CURRENT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
+    [ "${CURRENT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
+    echo "Error: Commit rejected. Your user name or email is incorrect."
+    exit 1
+fi
+
+GPG_USER_INFO="$(gpg --list-keys --with-colons "${ENV_GPG_SIGNING_KEY}" | grep "^uid:" | head -n 1 | cut -d: -f10)"
+GPG_USER_NAME="${GPG_USER_INFO% <*}"
+GPG_USER_EMAIL="${GPG_USER_INFO#*<}" && GPG_USER_EMAIL="${GPG_USER_EMAIL%>}"
+
+### Check if the current GPG signing key matches the env config
+if [ "${CURRENT_USER_NAME}" != "${GPG_USER_NAME}" ] ||
+    [ "${CURRENT_USER_EMAIL}" != "${GPG_USER_EMAIL}" ]; then
+    echo "Error: Git config user name or email doesn't match the GPG key's user name or email."
+    exit 1
+fi
+
+exit 0

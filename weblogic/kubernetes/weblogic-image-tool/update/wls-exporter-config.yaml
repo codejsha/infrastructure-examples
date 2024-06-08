@@ -1,0 +1,78 @@
+---
+restPort: 7001
+metricsNameSnakeCase: true
+queries:
+  - applicationRuntimes:
+      key: name
+      keyName: app
+      componentRuntimes:
+        type: WebAppComponentRuntime
+        prefix: wls_web_app_component_
+        key: name
+        values:
+          [
+            deploymentState,
+            contextRoot,
+            sourceInfo,
+            openSessionsHighCount,
+            openSessionsCurrentCount,
+            sessionsOpenedTotalCount,
+            sessionCookieMaxAgeSecs,
+            sessionInvalidationIntervalSecs,
+            sessionTimeoutSecs,
+            singleThreadedServletPoolSize,
+            sessionIDLength,
+            servletReloadCheckSecs,
+            jSPPageCheckSecs,
+          ]
+        servlets:
+          prefix: wls_web_app_component_servlet_
+          key: servletName
+          values:
+            [
+              invocationTotalCount,
+              reloadTotal,
+              executionTimeAverage,
+              poolMaxCapacity,
+              executionTimeTotal,
+              reloadTotalCount,
+              executionTimeHigh,
+              executionTimeLow,
+            ]
+  - clusterRuntime:
+      prefix: wls_cluster_
+      key: name
+  - JVMRuntime:
+      prefix: wls_jvm_
+      key: name
+  - executeQueueRuntimes:
+      prefix: wls_execute_queue_
+      key: name
+  - workManagerRuntimes:
+      prefix: wls_work_manager_
+      key: name
+  - threadPoolRuntime:
+      prefix: wls_thread_pool_
+      key: name
+  - JMSRuntime:
+      prefix: wls_jms_
+      key: name
+      keyName: jms
+      JMSServers:
+        prefix: wls_jms_server_
+        key: name
+        keyName: jms_server
+        destinations:
+          prefix: wls_jms_server_dest_
+          key: name
+          keyName: jms_dest
+  - persistentStoreRuntimes:
+      prefix: wls_persistent_store_
+      key: name
+  - JDBCServiceRuntime:
+      JDBCDataSourceRuntimeMBeans:
+        prefix: wls_jdbc_datasource_
+        key: name
+  - JTARuntime:
+      prefix: wls_jta_
+      key: name

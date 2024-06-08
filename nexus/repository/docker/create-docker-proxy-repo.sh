@@ -19,7 +19,7 @@ envsubst < ./data-docker-proxy-repo.json > ./data-docker-proxy-repo-temp.json
 
 ######################################################################
 
-function create_docker_proxy_repository {
+function create_docker_proxy_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

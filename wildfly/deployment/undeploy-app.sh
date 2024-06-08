@@ -8,7 +8,7 @@ source ./env-app.sh
 
 ######################################################################
 
-function undeploy_application {
+function undeploy_application() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -22,7 +22,7 @@ quit
 EOF
 }
 
-function get_deployment_status_all {
+function get_deployment_status_all() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

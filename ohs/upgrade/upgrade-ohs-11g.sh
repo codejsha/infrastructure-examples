@@ -11,7 +11,7 @@ INSTALL_SCRIPT_DIR="/svc/infrastructure/ohs"
 
 ######################################################################
 
-function install_required_package {
+function install_required_package() {
     sudo yum install -y \
         binutils \
         compat-libcap1 \
@@ -30,7 +30,7 @@ function install_required_package {
         libaio-devel
 }
 
-function upgrade_ohs {
+function upgrade_ohs() {
     ${INSTALL_FILE_DIR}/${INSTALL_FILE} \
         -silent \
         -responseFile ${INSTALL_SCRIPT_DIR}/${RESPONSE_FILE} \

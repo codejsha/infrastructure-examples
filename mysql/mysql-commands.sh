@@ -1,9 +1,32 @@
 ######################################################################
 
-### connect
-mysqlsh root:password@test.example.com:3306/mysql --sql
-mysqlsh root@test.example.com:3306/mysql --password=password --sql
-mysqlsh --user=root --password=password --host=test.example.com --port=3306 --database=mysql --sql
+### mysql dump
+
+mysqldump --host=localhost --port=3306 --user=root --password sakila > database_dump.sql
+mysqldump --host=localhost --port=3306 --user=root --password --no-data sakila > database_dump.sql
+mysqldump --host=localhost --port=3306 --user=root --password --routines --triggers --no-data sakila > database_dump.sql
+
+docker exec mysqldb mysqldump --host=localhost --port=3306 --user=root --password sakila > database_dump.sql
+docker exec mysqldb mysqldump --host=localhost --port=3306 --user=root --password --no-data sakila > database_dump.sql
+docker exec mysqldb mysqldump --host=localhost --port=3306 --user=root --password --routines --triggers --no-data sakila > database_dump.sql
+
+######################################################################
+
+### mysql dump with config file
+
+cat << EOF | tee ~/.my.cnf
+[mysqldump]
+user=root
+password=test
+EOF
+
+mysqldump --host=localhost --port=3306 sakila > database_dump.sql
+mysqldump --host=localhost --port=3306 --no-data sakila > database_dump.sql
+mysqldump --host=localhost --port=3306 --routines --triggers --no-data sakila > database_dump.sql
+
+docker exec mysqldb mysqldump --host=localhost --port=3306 sakila > database_dump.sql
+docker exec mysqldb mysqldump --host=localhost --port=3306 --no-data sakila > database_dump.sql
+docker exec mysqldb mysqldump --host=localhost --port=3306 --routines --triggers --no-data sakila > database_dump.sql
 
 ######################################################################
 

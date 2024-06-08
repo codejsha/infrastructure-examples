@@ -1,13 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namePrefix: my-
-namespace: ldap-system
+namespace: ldap
 resources:
   - ../../base
+  - namespace.yaml
   - pvc.yaml
   - default-startup-configmap.yaml
 images:
   - name: osixia/openldap
     newTag: latest
 patchesStrategicMerge:
-  - patch-pvc.yaml
+  - pvc-patch.yaml

@@ -1,0 +1,110 @@
+---
+#
+# Copyright Prometheus Community
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+######################################################################
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: my-kube-prometheus-stack-kubernetes-system-apiserver
+  namespace: monitoring
+  labels:
+    app: kube-prometheus-stack
+    release: my-kube-prometheus-stack
+spec:
+  groups:
+    - name: kubernetes-system-apiserver
+      rules:
+        - alert: KubeClientCertificateExpiration
+          annotations:
+            description:
+              A client certificate used to authenticate to the apiserver is
+              expiring in less than 7.0 days.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
+            summary: Client certificate is about to expire.
+          expr:
+            apiserver_client_certificate_expiration_seconds_count{job="apiserver"}
+            > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m])))
+            < 604800
+          labels:
+            severity: warning
+        - alert: KubeClientCertificateExpiration
+          annotations:
+            description:
+              A client certificate used to authenticate to the apiserver is
+              expiring in less than 24.0 hours.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeclientcertificateexpiration
+            summary: Client certificate is about to expire.
+          expr:
+            apiserver_client_certificate_expiration_seconds_count{job="apiserver"}
+            > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m])))
+            < 86400
+          labels:
+            severity: critical
+        - alert: AggregatedAPIErrors
+          annotations:
+            description:
+              An aggregated API {{ $labels.name }}/{{ $labels.namespace }}
+              has reported errors. It has appeared unavailable {{ $value | humanize }}
+              times averaged over the past 10m.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-aggregatedapierrors
+            summary: An aggregated API has reported errors.
+          expr:
+            sum by(name, namespace)(increase(aggregator_unavailable_apiservice_total[10m]))
+            > 4
+          labels:
+            severity: warning
+        - alert: AggregatedAPIDown
+          annotations:
+            description:
+              An aggregated API {{ $labels.name }}/{{ $labels.namespace }}
+              has been only {{ $value | humanize }}% available over the last 10m.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-aggregatedapidown
+            summary: An aggregated API is down.
+          expr:
+            (1 - max by(name, namespace)(avg_over_time(aggregator_unavailable_apiservice[10m])))
+            * 100 < 85
+          for: 5m
+          labels:
+            severity: warning
+        - alert: KubeAPIDown
+          annotations:
+            description: KubeAPI has disappeared from Prometheus target discovery.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapidown
+            summary: Target disappeared from Prometheus target discovery.
+          expr: absent(up{job="apiserver"} == 1)
+          for: 15m
+          labels:
+            severity: critical
+        - alert: KubeAPITerminatedRequests
+          annotations:
+            description:
+              The apiserver has terminated {{ $value | humanizePercentage }}
+              of its incoming requests.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubeapiterminatedrequests
+            summary:
+              The apiserver has terminated {{ $value | humanizePercentage }} of
+              its incoming requests.
+          expr:
+            sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m]))  /
+            (  sum(rate(apiserver_request_total{job="apiserver"}[10m])) + sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m]))
+            ) > 0.20
+          for: 5m
+          labels:
+            severity: warning

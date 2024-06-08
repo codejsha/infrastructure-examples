@@ -1,29 +1,32 @@
-# Create instances
+# Tomcat instances
 
-## Instance
+## Create instances
 
 ```bash
-### params: ${INSTANCE_NAME} ${HTTP_PORT} ${HTTPS_PORT} ${SHUTDOWN_PORT}
-
-bash ./create-instance.sh inst1 8080 8443 8005
-bash ./create-instance.sh inst2 8081 8444 8006
+bash ./create-instance.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005
+bash ./create-instance.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006
 ```
 
-## Cluster
+## Create cluster
 
 ### General (Multicast)
 
 ```bash
-### params: ${INSTANCE_NAME} ${HTTP_PORT} ${HTTPS_PORT} ${SHUTDOWN_PORT} ${AJP_PORT} ${JMX_PORT}
+bash ./create-instance-cluster.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005 --ajp-port=8009 --jmx-port=8050
+bash ./create-instance-cluster.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006 --ajp-port=8010 --jmx-port=8051
 
-bash ./create-instance-cluster.sh inst1 8080 8443 8005 8009 8050
-bash ./create-instance-cluster.sh inst2 8081 8444 8006 8010 8051
-
-bash ./create-instance-cluster-full.sh inst1 8080 8443 8005 8009 8050
-bash ./create-instance-cluster-full.sh inst2 8081 8444 8006 8010 8051
+bash ./create-instance-cluster-full.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005 --ajp-port=8009 --jmx-port=8050
+bash ./create-instance-cluster-full.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006 --ajp-port=8010 --jmx-port=8051
 ```
 
-### With Redis
+### Static
+
+```bash
+bash ./create-instance-cluster-static.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005 --ajp-port=8009 --jmx-port=8050 --cluster-address1=test1.example.com --cluster-port1=4000 --cluster-address2=test2.example.com --cluster-port2=4000 --receiver-port=4000
+bash ./create-instance-cluster-static.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006 --ajp-port=8010 --jmx-port=8051 --cluster-address1=test1.example.com --cluster-port1=4000 --cluster-address2=test2.example.com --cluster-port2=4000 --receiver-port=4000
+```
+
+### With external store (with Redis)
 
 Set redisson mode in `env-redisson.sh`:
 
@@ -36,13 +39,11 @@ REDISSON_MODE="MASTER_SLAVE_MODE"
 Create instances:
 
 ```bash
-### params: ${INSTANCE_NAME} ${HTTP_PORT} ${HTTPS_PORT} ${SHUTDOWN_PORT} ${AJP_PORT} ${JMX_PORT}
-
-bash ./create-instance-cluster-redis.sh inst1 8080 8443 8005 8009 8050
-bash ./create-instance-cluster-redis.sh inst2 8081 8444 8006 8010 8051
+bash ./create-instance-cluster-redis.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005 --ajp-port=8009 --jmx-port=8050
+bash ./create-instance-cluster-redis.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006 --ajp-port=8010 --jmx-port=8051
 ```
 
-Set addresses and password(If Redis has a password) in redisson.yaml.
+Set addresses and password(If Redis has a password) in `redisson.yaml`.
 
 Add libraries:
 
@@ -50,9 +51,9 @@ Add redisson-all-xxx.jar, redisson-tomcat-xxx.jar into `${CATALINA_BASE}/lib` di
 
 https://github.com/redisson/redisson/tree/master/redisson-tomcat
 
-## Create scripts
+## Create scripts for instance
 
 ```bash
-bash ./create-scripts.sh inst1
-bash ./create-scripts.sh inst2
+bash ./create-scripts.sh --instance=inst1 --http-port=8080 --https-port=8443 --shutdown-port=8005 --ajp-port=8009 --jmx-port=8050
+bash ./create-scripts.sh --instance=inst2 --http-port=8081 --https-port=8444 --shutdown-port=8006 --ajp-port=8010 --jmx-port=8051
 ```

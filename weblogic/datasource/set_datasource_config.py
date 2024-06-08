@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 admin_server_listen_address = os.environ['ADMIN_SERVER_LISTEN_ADDRESS']
 admin_server_listen_port = os.environ['ADMIN_SERVER_LISTEN_PORT']
@@ -60,7 +60,8 @@ def set_generic_datasource_param_config(_domain_version, _ds_name, _ds_jndi, _ds
     # cmo.setStatementCacheType('LRU')
     # cmo.setStatementCacheSize(10)
     # cmo.setTestConnectionsOnReserve(False)
-    # cmo.setTestFrequencySeconds(120)
+    cmo.setTestConnectionsOnReserve(True)
+    cmo.setTestFrequencySeconds(120)
     if ('14.' in _domain_version) or ('12.2' in _domain_version) or ('12.1.3' in _domain_version):
         cmo.setTestTableName('SQL ISVALID\r\n')
     elif ('12.1' in _domain_version) or ('10.3' in _domain_version):
@@ -71,10 +72,12 @@ def set_generic_datasource_param_config(_domain_version, _ds_name, _ds_jndi, _ds
     # cmo.setShrinkFrequencySeconds(900)
     # cmo.setConnectionCreationRetryFrequencySeconds(0)
     # cmo.setLoginDelaySeconds(0)
-    cmo.setInactiveConnectionTimeoutSeconds(0)
+    # cmo.setInactiveConnectionTimeoutSeconds(0)
+    cmo.setInactiveConnectionTimeoutSeconds(120)
     cmo.setHighestNumWaiters(2147483647)
     # cmo.setConnectionReserveTimeoutSeconds(10)
-    cmo.setStatementTimeout(-1)
+    # cmo.setStatementTimeout(-1)
+    cmo.setStatementTimeout(120)
     # cmo.setIgnoreInUseConnectionsEnabled(True)
     # cmo.setPinnedToThread(False)
     # cmo.setRemoveInfectedConnections(True)
@@ -86,7 +89,7 @@ def set_generic_datasource_param_config(_domain_version, _ds_name, _ds_jndi, _ds
 
     ### Diagnostics Profile
     # cmo.setProfileType(0)     # default
-    # cmo.setProfileType(4)     # Profile Connection Leak
+    cmo.setProfileType(4)     # Profile Connection Leak
 
     cd('/JDBCSystemResources/' + _ds_name)
     _objects = []

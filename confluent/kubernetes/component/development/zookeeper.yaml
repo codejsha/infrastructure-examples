@@ -7,15 +7,22 @@ metadata:
 spec:
   replicas: 3
   image:
-    application: confluentinc/cp-zookeeper:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-  dataVolumeCapacity: 10Gi
-  logVolumeCapacity: 10Gi
+    application: confluentinc/cp-zookeeper:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+  dataVolumeCapacity: 100Gi
+  logVolumeCapacity: 100Gi
   configOverrides:
     server: []
     jvm: []
     log4j: []
   podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 100m
+    #     memory: 512Mi
+    #   limits:
+    #     cpu: 200m
+    #     memory: 1Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000

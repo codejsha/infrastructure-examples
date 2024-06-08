@@ -8,7 +8,6 @@ set -o errtrace
 
 NAMESPACE="cert-manager"
 
-# helm install my-cert-manager \
 helm upgrade --install my-cert-manager \
     --create-namespace \
     --namespace ${NAMESPACE} \

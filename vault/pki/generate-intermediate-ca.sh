@@ -3,8 +3,9 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+# export VAULT_ADDR="https://vault.example.com"
+# export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+# export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 ### enable pki
 vault secrets enable -path="pki_int" pki
@@ -12,7 +13,7 @@ vault secrets tune -max-lease-ttl="87600h" pki_int
 
 ### generate csr and private key
 vault write -format="json" pki_int/intermediate/generate/exported \
-    common_name="example.com Intermediate Authority" \
+    common_name="Example Intermediate Authority" \
     > request_intermediate.json
 
 jq -r '.data.csr' < request_intermediate.json > intermediate.csr

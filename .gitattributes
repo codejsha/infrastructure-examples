@@ -5,5 +5,7 @@
 *.txt text eol=lf
 *.yaml text eol=lf
 
+/linux/alias/** text eol=lf
+
 *.jpg binary
 *.png binary

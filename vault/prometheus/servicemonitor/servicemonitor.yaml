@@ -1,0 +1,31 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: my-vault
+  namespace: vault
+  labels:
+    app: kube-prometheus-stack
+    app.kubernetes.io/instance: my-vault
+    app.kubernetes.io/name: vault
+    release: my-kube-prometheus-stack
+spec:
+  endpoints:
+    - interval: 30s
+      params:
+        format:
+          - prometheus
+      path: /v1/sys/metrics
+      port: https
+      scheme: https
+      scrapeTimeout: 10s
+      tlsConfig:
+        insecureSkipVerify: true
+  namespaceSelector:
+    matchNames:
+      - vault
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: my-vault
+      app.kubernetes.io/name: vault
+      vault-active: "true"

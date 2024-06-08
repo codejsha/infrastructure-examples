@@ -10,7 +10,7 @@ CREDENTIALS_UUID="${2}"
 
 ######################################################################
 
-function delete_credentials {
+function delete_credentials() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

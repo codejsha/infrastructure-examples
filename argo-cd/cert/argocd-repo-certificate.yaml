@@ -1,0 +1,21 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-repo-cert
+  namespace: argocd
+spec:
+  secretName: argocd-repo-server-tls
+  commonName: "argocd-repo.example.com"
+  dnsNames:
+    ### ingress domain
+    - "argocd-repo.example.com"
+    ### internal domain
+    - "argocd-repo-server"
+    - "argocd-repo-server.argocd"
+    - "argocd-repo-server.argocd.svc"
+    - "argocd-repo-server.argocd.svc.cluster.local"
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: argocd-issuer

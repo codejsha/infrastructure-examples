@@ -3,22 +3,11 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-######################################################################
+### rhel - dnf
+sudo dnf install -y tidy
 
-function install_tidy_with_dnf {
-    sudo dnf install -y tidy
-}
+### rhel - yum
+# sudo yum install -y tidy
 
-function install_tidy_with_yum {
-    sudo yum install -y tidy
-}
-
-function install_tidy_with_apt {
-    sudo apt-get install -y tidy
-}
-
-######################################################################
-
-install_tidy_with_dnf
-# install_tidy_with_yum
-# install_tidy_with_apt
+### ubuntu
+# sudo apt-get install -y tidy

@@ -10,7 +10,7 @@ JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 
 ######################################################################
 
-function stop_builds {
+function stop_builds() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

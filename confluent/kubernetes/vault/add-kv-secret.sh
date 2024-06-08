@@ -12,10 +12,12 @@ cat sasl/kafka-client-plain-jaas.conf | base64 | vault kv put kv/confluent/kafka
 
 ### certs
 kubectl create secret generic kafka-tls \
+    --namespace confluent \
     --from-file=keystore.jks=jks/kafka-keystore.jks \
     --from-file=truststore.jks=jks/truststore.jks \
     --from-file=jksPassword.txt=jks/jksPassword.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 
 vault kv put kv/confluent/jksPassword.txt password=jksPassword=mystorepassword
 cat jks/truststore.jks | base64 | vault kv put kv/confluent/truststore.jks truststore=-
@@ -31,33 +33,56 @@ cat jks/control-center-keystore.jks | base64 | vault kv put kv/confluent/control
 cat mds/mds-public.key | base64 | vault kv put kv/confluent/mdsPublicKey.pem mdspublickey=-
 cat mds/mds-private.key | base64 | vault kv put kv/confluent/mdsTokenKeyPair.pem mdstokenkeypair=-
 kubectl create secret generic mds-token \
+    --namespace confluent \
     --from-file=mdsPublicKey.pem=mds/mds-public.key  \
     --from-file=mdsTokenKeyPair.pem=mds/mds-private.key \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 
 ### mds
 kubectl create secret generic mds-kafka-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-kafka-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-schema-registry-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-schema-registry-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-kafka-connect-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-kafka-connect-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-replicator-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-replicator-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-ksqldb-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-ksqldb-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-control-center-client \
+    --namespace confluent \
     --from-file=bearer.txt=mds/mds-control-center-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
 kubectl create secret generic mds-kafka-rest \
     --from-file=bearer.txt=mds/mds-kafka-client.txt \
+    --namespace confluent \
     --from-file=basic.txt=mds/mds-kafka-client.txt \
-    --namespace confluent
+    --save-config --dry-run=client -o yaml | \
+    kubectl apply -f -
+
+cat mds/mds-kafka-client.txt | base64 | vault kv put kv/confluent/kafka/bearer.txt bearer=-
+cat mds/mds-schema-registry-client.txt | base64 | vault kv put kv/confluent/schema-registry/bearer.txt bearer=-
+cat mds/mds-kafka-connect-client.txt | base64 | vault kv put kv/confluent/kafka-connect/bearer.txt bearer=-
+cat mds/mds-replicator-client.txt | base64 | vault kv put kv/confluent/replicator/bearer.txt bearer=-
+cat mds/mds-ksqldb-client.txt | base64 | vault kv put kv/confluent/ksqldb/bearer.txt bearer=-
+cat mds/mds-control-center-client.txt | base64 | vault kv put kv/confluent/control-center/bearer.txt bearer=-
 
 ### ldap
 cat credentials/ldap.txt | base64 | vault kv put kv/confluent/ldap.txt ldapsimple=-

@@ -32,7 +32,7 @@ fi
 
 ######################################################################
 
-function create_credentials_with_xml_aws {
+function create_credentials_with_xml_aws() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

@@ -13,6 +13,7 @@ helm repo add cetic https://cetic.github.io/helm-charts
 helm repo add chartmuseum https://chartmuseum.github.io/charts
 helm repo add confluentinc https://packages.confluent.io/helm
 helm repo add datadog https://helm.datadoghq.com
+helm repo add datawire https://app.getambassador.io
 helm repo add descheduler https://kubernetes-sigs.github.io/descheduler
 helm repo add drone https://charts.drone.io
 helm repo add elastic https://helm.elastic.co
@@ -20,6 +21,7 @@ helm repo add enix https://charts.enix.io
 helm repo add gitea-charts https://dl.gitea.io/charts
 helm repo add gitlab https://charts.gitlab.io
 helm repo add harbor https://helm.goharbor.io
+helm repo add haproxytech https://haproxytech.github.io/helm-charts
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add incubator https://charts.helm.sh/incubator
 helm repo add influxdata https://helm.influxdata.com

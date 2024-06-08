@@ -1,0 +1,48 @@
+{
+  "connect.name": "ksql.StockTrade",
+  "connect.parameters": {
+    "io.confluent.connect.avro.field.doc.account": "Simulated accounts assigned to the trade",
+    "io.confluent.connect.avro.field.doc.price": "A simulated random trade price in pennies",
+    "io.confluent.connect.avro.field.doc.quantity": "A simulated random quantity of the trade",
+    "io.confluent.connect.avro.field.doc.side": "A simulated trade side (buy or sell or short)",
+    "io.confluent.connect.avro.field.doc.symbol": "Simulated stock symbols",
+    "io.confluent.connect.avro.field.doc.userid": "The simulated user who executed the trade",
+    "io.confluent.connect.avro.record.doc": "Defines a hypothetical stock trade using some known test stock symbols."
+  },
+  "doc": "Defines a hypothetical stock trade using some known test stock symbols.",
+  "fields": [
+    {
+      "doc": "A simulated trade side (buy or sell or short)",
+      "name": "side",
+      "type": "string"
+    },
+    {
+      "doc": "A simulated random quantity of the trade",
+      "name": "quantity",
+      "type": "int"
+    },
+    {
+      "doc": "Simulated stock symbols",
+      "name": "symbol",
+      "type": "string"
+    },
+    {
+      "doc": "A simulated random trade price in pennies",
+      "name": "price",
+      "type": "int"
+    },
+    {
+      "doc": "Simulated accounts assigned to the trade",
+      "name": "account",
+      "type": "string"
+    },
+    {
+      "doc": "The simulated user who executed the trade",
+      "name": "userid",
+      "type": "string"
+    }
+  ],
+  "name": "StockTrade",
+  "namespace": "ksql",
+  "type": "record"
+}

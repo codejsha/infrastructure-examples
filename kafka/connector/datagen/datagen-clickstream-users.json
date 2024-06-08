@@ -1,0 +1,20 @@
+{
+  "name": "datagen-clickstream-users",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "tasks.max": "1",
+    "kafka.topic": "clickstream_users",
+    "quickstart": "clickstream_users",
+    "max.interval": "100",
+    "iterations": "40",
+    "transforms": "SetSchemaMetadata",
+    "transforms.SetSchemaMetadata.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+    "transforms.SetSchemaMetadata.schema.name": "clickstream.User",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "key.converter.enhanced.avro.schema.support": "true",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.enhanced.avro.schema.support": "true"
+  }
+}

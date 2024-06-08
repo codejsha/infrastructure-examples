@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+    app: argocd-server
+    version: v2.6.2
+  name: argocd-server
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-server
+        app: argocd-server
+        version: v2.6.2
+    # spec:
+    #   containers:
+    #     - name: argocd-server
+    #       command:
+    #         - argocd-server
+    #         - --insecure

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ohs-helm.fullname" . }}
+  labels:
+    {{- include "ohs-helm.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+    - port: {{ .Values.service.sslPort }}
+      targetPort: {{ .Values.service.sslPort }}
+      protocol: TCP
+      name: https
+  selector:
+    {{- include "ohs-helm.selectorLabels" . | nindent 4 }}

@@ -24,5 +24,5 @@ helm upgrade --install my-mysql \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values-temp.yaml \
-    --version 8.8.8 \
+    --version 9.4.6 \
     bitnami/mysql

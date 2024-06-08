@@ -7,13 +7,13 @@ COREDNS_HOME="/svc/infrastructure/coredns"
 
 ######################################################################
 
-function start_coredns {
+function start_coredns() {
     sudo /usr/local/bin/coredns \
         -conf ${COREDNS_HOME}/corefile-server.conf \
         -pidfile ${COREDNS_HOME}/coredns.pid
 }
 
-function start_coredns_nohup {
+function start_coredns_nohup() {
     sudo nohup /usr/local/bin/coredns \
         -conf ${COREDNS_HOME}/corefile-server.conf \
         -pidfile ${COREDNS_HOME}/coredns.pid \

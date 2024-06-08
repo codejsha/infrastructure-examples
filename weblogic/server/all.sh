@@ -73,11 +73,11 @@ bash ./set-server-protocol.sh ManagedServer2
 
 ######################################################################
 
-### CONFIGURE TUNNING
-### bash ./set-server-tunning.sh ${MANAGED_SERVER_NAME}
+### CONFIGURE TUNING
+### bash ./set-server-tuning.sh ${MANAGED_SERVER_NAME}
 
-bash ./set-server-tunning.sh ManagedServer1
-bash ./set-server-tunning.sh ManagedServer2
+bash ./set-server-tuning.sh ManagedServer1
+bash ./set-server-tuning.sh ManagedServer2
 
 ######################################################################
 

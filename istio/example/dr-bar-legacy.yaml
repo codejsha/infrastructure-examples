@@ -1,0 +1,10 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: example-api-bar-legacy-dr
+spec:
+  host: bar-legacy.example-api.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

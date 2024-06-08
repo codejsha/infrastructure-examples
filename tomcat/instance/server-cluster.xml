@@ -163,8 +163,11 @@
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
-        <!-- Stuck Thread Detection Valve -->
+        <!-- StuckThreadDetectionValve -->
         <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="600" />
+
+        <!-- ErrorReportValve -->
+        <Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
       </Host>
     </Engine>
   </Service>

@@ -10,7 +10,7 @@ NEXUS_PASSWORD="admin123"
 
 ######################################################################
 
-function get_repository_list {
+function get_repository_list() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request GET \
