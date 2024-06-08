@@ -1,0 +1,26 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: weblogic-domain-cluster-role
+rules:
+  - apiGroups: [""]
+    resources: ["services/status"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["weblogic.oracle"]
+    resources: ["domains"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: domain-cluster-rolebinding
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: sample-domain1-ns
+    apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: weblogic-domain-cluster-role
+  apiGroup: "rbac.authorization.k8s.io"

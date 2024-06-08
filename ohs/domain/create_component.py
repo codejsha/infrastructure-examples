@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_home = os.environ['DOMAIN_HOME']
 node_manager_name = os.environ['NODE_MANAGER_NAME']

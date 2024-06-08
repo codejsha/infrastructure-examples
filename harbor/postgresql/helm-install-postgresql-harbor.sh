@@ -6,13 +6,13 @@ set -o errtrace
 # helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm repo update
 
-export PASSWORD="${PASSWORD}"
+export PASSWORD="postgres"
 
 envsubst < ./values.yaml > ./values-temp.yaml
 
 ######################################################################
 
-function helm_install_postgresql_harbor {
+function helm_install_postgresql_harbor() {
     local NAMESPACE="harbor"
 
     # helm install my-harbor-postgres \

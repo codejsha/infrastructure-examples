@@ -12,7 +12,7 @@ JENKINS_JOB_NAME="${1:-${JENKINS_JOB_NAME}}"
 
 if [ ! -f "job.xml" ]; then
 cat <<EOF > ./job.xml
-<?xml version='1.1' encoding='UTF-8'?>
+<?xml version="1.1" encoding="UTF-8"?>
 <flow-definition plugin="workflow-job@2.39">
     <keepDependencies>false</keepDependencies>
     <properties/>
@@ -24,7 +24,7 @@ fi
 
 ######################################################################
 
-function create_job {
+function create_job() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

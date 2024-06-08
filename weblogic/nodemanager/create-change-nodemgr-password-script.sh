@@ -24,7 +24,7 @@ VAR_DOMAIN_HOME="${VAR_DOMAIN_HOME/${DOMAIN_NAME}/${TEMP}}"
 ######################################################################
 
 cat <<EOF > ${DOMAIN_HOME}/scripts/change_nodemgr_password.py
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 admin_server_listen_address = os.environ['ADMIN_SERVER_LISTEN_ADDRESS']

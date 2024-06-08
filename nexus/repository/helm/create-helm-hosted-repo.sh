@@ -16,7 +16,7 @@ envsubst < ./data-helm-hosted-repo.json > ./data-helm-hosted-repo-temp.json
 
 ######################################################################
 
-function create_helm_hosted_repository {
+function create_helm_hosted_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

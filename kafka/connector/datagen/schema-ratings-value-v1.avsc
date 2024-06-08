@@ -1,0 +1,36 @@
+{
+  "connect.name": "ksql.Rating",
+  "fields": [
+    {
+      "name": "rating_id",
+      "type": "long"
+    },
+    {
+      "name": "user_id",
+      "type": "int"
+    },
+    {
+      "name": "stars",
+      "type": "int"
+    },
+    {
+      "name": "route_id",
+      "type": "int"
+    },
+    {
+      "name": "rating_time",
+      "type": "long"
+    },
+    {
+      "name": "channel",
+      "type": "string"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ],
+  "name": "Rating",
+  "namespace": "ksql",
+  "type": "record"
+}

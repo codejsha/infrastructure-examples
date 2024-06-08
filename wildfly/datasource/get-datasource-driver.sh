@@ -8,7 +8,7 @@ source ./env-jdbc-driver.sh
 
 ######################################################################
 
-function get_installed_driver {
+function get_installed_driver() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -18,7 +18,7 @@ function get_installed_driver {
         --command="/subsystem=datasources:get-installed-driver(driver-name=${DRIVER_NAME})"
 }
 
-function get_installed_driver_list {
+function get_installed_driver_list() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

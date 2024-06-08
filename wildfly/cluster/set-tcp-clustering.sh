@@ -8,7 +8,7 @@ source ./env-tcpping.sh
 
 ######################################################################
 
-function set_server_name {
+function set_server_name() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -22,7 +22,7 @@ quit
 EOF
 }
 
-function set_tcp_stack {
+function set_tcp_stack() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -69,7 +69,7 @@ EOF
 # /subsystem=jgroups/stack=tcp:add-protocol(type=FRAG2)
 }
 
-function reload_server {
+function reload_server() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

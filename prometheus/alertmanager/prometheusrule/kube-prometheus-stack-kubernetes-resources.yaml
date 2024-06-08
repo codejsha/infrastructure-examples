@@ -1,0 +1,154 @@
+---
+#
+# Copyright Prometheus Community
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+######################################################################
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: my-kube-prometheus-stack-kubernetes-resources
+  namespace: monitoring
+  labels:
+    app: kube-prometheus-stack
+    release: my-kube-prometheus-stack
+spec:
+  groups:
+    - name: kubernetes-resources
+      rules:
+        - alert: KubeCPUOvercommit
+          annotations:
+            description:
+              Cluster has overcommitted CPU resource requests for Pods and
+              cannot tolerate node failure.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubecpuovercommit
+            summary: Cluster has overcommitted CPU resource requests.
+          expr: |-
+            sum(namespace_cpu:kube_pod_container_resource_requests:sum{})
+              /
+            sum(kube_node_status_allocatable{resource="cpu"})
+              >
+            ((count(kube_node_status_allocatable{resource="cpu"}) > 1) - 1) / count(kube_node_status_allocatable{resource="cpu"})
+          for: 5m
+          labels:
+            severity: warning
+        - alert: KubeMemoryOvercommit
+          annotations:
+            description:
+              Cluster has overcommitted memory resource requests for Pods and
+              cannot tolerate node failure.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubememoryovercommit
+            summary: Cluster has overcommitted memory resource requests.
+          expr: |-
+            sum(namespace_memory:kube_pod_container_resource_requests:sum{})
+              /
+            sum(kube_node_status_allocatable{resource="memory"})
+              >
+            ((count(kube_node_status_allocatable{resource="memory"}) > 1) - 1)
+              /
+            count(kube_node_status_allocatable{resource="memory"})
+          for: 5m
+          labels:
+            severity: warning
+        - alert: KubeCPUQuotaOvercommit
+          annotations:
+            description: Cluster has overcommitted CPU resource requests for Namespaces.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubecpuquotaovercommit
+            summary: Cluster has overcommitted CPU resource requests.
+          expr: |-
+            sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="cpu"})
+              /
+            sum(kube_node_status_allocatable{resource="cpu"})
+              > 1.5
+          for: 5m
+          labels:
+            severity: warning
+        - alert: KubeMemoryQuotaOvercommit
+          annotations:
+            description: Cluster has overcommitted memory resource requests for Namespaces.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubememoryquotaovercommit
+            summary: Cluster has overcommitted memory resource requests.
+          expr: |-
+            sum(kube_resourcequota{job="kube-state-metrics", type="hard", resource="memory"})
+              /
+            sum(kube_node_status_allocatable{resource="memory",job="kube-state-metrics"})
+              > 1.5
+          for: 5m
+          labels:
+            severity: warning
+        - alert: KubeQuotaAlmostFull
+          annotations:
+            description:
+              Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage
+              }} of its {{ $labels.resource }} quota.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubequotaalmostfull
+            summary: Namespace quota is going to be full.
+          expr: |-
+            kube_resourcequota{job="kube-state-metrics", type="used"}
+              / ignoring(instance, job, type)
+            (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+              > 0.9 < 1
+          for: 15m
+          labels:
+            severity: info
+        - alert: KubeQuotaFullyUsed
+          annotations:
+            description:
+              Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage
+              }} of its {{ $labels.resource }} quota.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubequotafullyused
+            summary: Namespace quota is fully used.
+          expr: |-
+            kube_resourcequota{job="kube-state-metrics", type="used"}
+              / ignoring(instance, job, type)
+            (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+              == 1
+          for: 15m
+          labels:
+            severity: info
+        - alert: KubeQuotaExceeded
+          annotations:
+            description:
+              Namespace {{ $labels.namespace }} is using {{ $value | humanizePercentage
+              }} of its {{ $labels.resource }} quota.
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubequotaexceeded
+            summary: Namespace quota has exceeded the limits.
+          expr: |-
+            kube_resourcequota{job="kube-state-metrics", type="used"}
+              / ignoring(instance, job, type)
+            (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
+              > 1
+          for: 15m
+          labels:
+            severity: warning
+        - alert: CPUThrottlingHigh
+          annotations:
+            description:
+              "{{ $value | humanizePercentage }} throttling of CPU in namespace
+              {{ $labels.namespace }} for container {{ $labels.container }} in pod {{
+              $labels.pod }}."
+            runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-cputhrottlinghigh
+            summary: Processes experience elevated CPU throttling.
+          expr: |-
+            sum(increase(container_cpu_cfs_throttled_periods_total{container!="", }[5m])) by (container, pod, namespace)
+              /
+            sum(increase(container_cpu_cfs_periods_total{}[5m])) by (container, pod, namespace)
+              > ( 25 / 100 )
+          for: 15m
+          labels:
+            severity: info

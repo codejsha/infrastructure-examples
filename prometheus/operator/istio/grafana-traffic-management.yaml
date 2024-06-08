@@ -1,0 +1,44 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: grafana-gw
+  namespace: monitoring
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http-grafana
+        protocol: HTTP
+      hosts:
+        - monitoring-grafana.example.com
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana-vs
+  namespace: monitoring
+spec:
+  hosts:
+    - monitoring-grafana.example.com
+  gateways:
+    - grafana-gw
+  http:
+    - route:
+        - destination:
+            host: grafana.monitoring.svc.cluster.local
+            port:
+              number: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: grafana-dr
+  namespace: monitoring
+spec:
+  host: grafana.monitoring.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE

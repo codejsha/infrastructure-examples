@@ -1,0 +1,24 @@
+{
+  "connect.name": "ksql.Product",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "price",
+      "type": "double"
+    }
+  ],
+  "name": "Product",
+  "namespace": "ksql",
+  "type": "record"
+}

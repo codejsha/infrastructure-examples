@@ -4,6 +4,8 @@ set -o errexit
 set -o errtrace
 
 GRAFANA_HOME="/usr/local/grafana"
+# LOG_DIR="${GRAFANA_HOME}"
+
 INSTALL_FILE_DIR="/mnt/share/grafana"
 INSTALL_FILE="grafana-8.0.3.linux-amd64.tar.gz"
 
@@ -31,5 +33,18 @@ fi
 
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_GRAFANA_HOME}
-sudo mv ${PARENT_GRAFANA_HOME}/${GRAFANA_DIR_NAME} ${GRAFANA_HOME}
+cd ${PARENT_GRAFANA_HOME}
+sudo ln -snf ${GRAFANA_DIR_NAME} grafana
+
+### copy config files
+/bin/cp -pf dashboard.yml ${PROMETHEUS_HOME}/conf/provisioning/dashboards
+
+### change ownership
+cd ${PARENT_GRAFANA_HOME}
 sudo chown -R $(id -un):$(id -gn) ${GRAFANA_HOME}
+sudo chown -R $(id -un):$(id -gn) grafana
+
+### create log directory
+# if [ ! -d "${LOG_DIR}/backup" ]; then
+#     mkdir -p ${LOG_DIR}/backup
+# fi

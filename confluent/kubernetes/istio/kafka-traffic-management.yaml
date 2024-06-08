@@ -111,3 +111,36 @@ spec:
             host: kafka-2-internal.confluent.svc.cluster.local
             port:
               number: 9092
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-kafka-broker-0-dr
+  namespace: confluent
+spec:
+  host: kafka-0-internal.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-kafka-broker-1-dr
+  namespace: confluent
+spec:
+  host: kafka-1-internal.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-kafka-broker-2-dr
+  namespace: confluent
+spec:
+  host: kafka-2-internal.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

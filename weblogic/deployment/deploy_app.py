@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 admin_server_listen_address = os.environ['ADMIN_SERVER_LISTEN_ADDRESS']
 admin_server_listen_port = os.environ['ADMIN_SERVER_LISTEN_PORT']
@@ -16,9 +16,9 @@ app_target = os.environ['APP_TARGET']
 def deploy_application(_app_name, _app_path, _app_target):
     cd('/')
     if _app_name in [appdeploy.getName() for appdeploy in cmo.getAppDeployments()]:
-        redeploy(_app_name)
+        redeploy(appName=_app_name)
     else:
-        deploy(_app_name, _app_path, _app_target, 'nostage')
+        deploy(appName=_app_name, path=_app_path, targets=_app_target, stageMode='nostage')
 
 
 ######################################################################

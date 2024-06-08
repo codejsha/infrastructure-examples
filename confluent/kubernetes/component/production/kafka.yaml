@@ -7,14 +7,14 @@ metadata:
 spec:
   replicas: 3
   image:
-    application: confluentinc/cp-server:6.2.1
-    init: confluentinc/confluent-init-container:2.0.3
-    # application: harbor.example.com/confluentinc/cp-server:6.2.1
-    # init: harbor.example.com/confluentinc/confluent-init-container:2.0.3
+    application: confluentinc/cp-server:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+    # application: harbor.example.com/confluentinc/cp-server:7.0.0
+    # init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
     # pullSecretRef:
   # storageClass:
   #   name: standard
-  dataVolumeCapacity: 100Gi
+  dataVolumeCapacity: 1Ti
   configOverrides:
     server:
       - auto.create.topics.enable=false
@@ -32,7 +32,7 @@ spec:
       # confluent.tier.s3.region=ap-northeast-2
       # confluent.tier.s3.bucket=confluent-kafka-tiered-storage
       # confluent.tier.s3.aws.endpoint.override=
-      # confluent.tier.s3.cred.file.path=/mnt/secrets/tiered-storage-secret-aws/aws/creds
+      # confluent.tier.s3.cred.file.path=/vault/secrets/aws/credentials
       # confluent.tier.s3.sse.algorithm=none
       # confluent.tier.metadata.replication.factor=3
       # confluent.tier.local.hotset.ms=3600000
@@ -56,11 +56,20 @@ spec:
         enabled: true
       tokenKeyPair:
         directoryPathInContainer: /vault/secrets
+      externalAccess:
+        type: loadBalancer
+        loadBalancer:
+          domain: example.com
+          prefix: mds
       # externalAccess:
+      #   type: nodePort
+      #   nodePort:
+      #     nodePortOffset: 30060
+      #     host: localhost
       provider:
         type: ldap
         ldap:
-          address: ldap://my-ldap-service.ldap-system.svc.cluster.local:389
+          address: ldap://my-ldap-service.ldap.svc.cluster.local:389
           authentication:
             type: simple
             simple:
@@ -69,13 +78,75 @@ spec:
             groupNameAttribute: cn
             groupObjectClass: groupOfNames
             groupMemberAttribute: member
-            groupMemberAttributePattern: CN=(.*),ou=ConfluentOSGroup,dc=example,dc=com
-            groupSearchBase: cn=osgroup,ou=ConfluentOSGroup,dc=example,dc=com
+            groupMemberAttributePattern: cn=(.*),ou=confluentgroup,dc=example,dc=com
+            groupSearchBase: ou=confluentgroup,dc=example,dc=com
             userNameAttribute: cn
-            userMemberOfAttributePattern: CN=(.*),ou=ConfluentGroup,DC=example,DC=com
+            userMemberOfAttributePattern: cn=(.*),ou=confluentuser,dc=example,dc=com
             userObjectClass: organizationalRole
-            userSearchBase: ou=ConfluentGroup,dc=example,dc=com
+            userSearchBase: ou=confluentuser,dc=example,dc=com
+  listeners:
+    internal:
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    external:
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+      externalAccess:
+        type: staticForHostBasedRouting
+        staticForHostBasedRouting:
+          domain: example.com
+          port: 443
+          brokerPrefix: broker-
+      # externalAccess:
+      #   type: loadBalancer
+      #   loadBalancer:
+      #     domain: example.com
+      #     bootstrapPrefix: kafka
+      #     brokerPrefix: broker-
+      # externalAccess:
+      #   type: nodePort
+      #   nodePort:
+      #     nodePortOffset: 30000
+      #     host: localhost
+  metricReporter:
+    enabled: true
+    bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+    authentication:
+      type: plain
+      jaasConfigPassThrough:
+        directoryPathInContainer: /vault/secrets/client
+    tls:
+      enabled: true
+  dependencies:
+    zookeeper:
+      endpoint: zookeeper.confluent.svc.cluster.local:2182
+      authentication:
+        type: digest
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    kafkaRest:
+      authentication:
+        type: bearer
+        bearer:
+          directoryPathInContainer: /vault/secrets
   podTemplate:
+    resources:
+      requests:
+        cpu: 4
+        memory: 16Gi
+      limits:
+        cpu: 12
+        memory: 24Gi
     podSecurityContext:
       fsGroup: 1000
       runAsUser: 1000
@@ -171,53 +242,3 @@ spec:
         {{- with secret "kv/data/confluent/license.txt" -}}
         {{ .Data.data.license | base64Decode }}
         {{- end }}
-  listeners:
-    internal:
-      authentication:
-        type: plain
-        jaasConfigPassThrough:
-          directoryPathInContainer: /vault/secrets/jaas
-      tls:
-        enabled: true
-    external:
-      authentication:
-        type: plain
-        jaasConfigPassThrough:
-          directoryPathInContainer: /vault/secrets/jaas
-      tls:
-        enabled: true
-      externalAccess:
-        type: staticForHostBasedRouting
-        staticForHostBasedRouting:
-          domain: example.com
-          port: 443
-          brokerPrefix: broker-
-      # externalAccess:
-      #   type: loadBalancer
-      #   loadBalancer:
-      #     domain: example.com
-      #     bootstrapPrefix: kafka
-      #     brokerPrefix: broker-
-  metricReporter:
-    enabled: true
-    bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
-    authentication:
-      type: plain
-      jaasConfigPassThrough:
-        directoryPathInContainer: /vault/secrets/client
-    tls:
-      enabled: true
-  dependencies:
-    zookeeper:
-      endpoint: zookeeper.confluent.svc.cluster.local:2182
-      authentication:
-        type: digest
-        jaasConfigPassThrough:
-          directoryPathInContainer: /vault/secrets/jaas
-      tls:
-        enabled: true
-    kafkaRest:
-      authentication:
-        type: bearer
-        bearer:
-          directoryPathInContainer: /vault/secrets

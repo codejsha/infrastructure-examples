@@ -19,21 +19,21 @@ JBOSS_DIR_NAME="${INSTALL_FILE/\.0\.zip/}"
 
 ######################################################################
 
-function check_jboss_home {
+function check_jboss_home() {
     if [ -d "${JBOSS_HOME}" ]; then
         echo "[ERROR] The JBOSS_HOME (${JBOSS_HOME}) already exists!"
         exit
     fi
 }
 
-function check_install_file {
+function check_install_file() {
     if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
         echo "[ERROR] The install file (${INSTALL_FILE_DIR}/${INSTALL_FILE}) does not exist!"
         exit
     fi
 }
 
-function install_jboss {
+function install_jboss() {
     sudo unzip -q -o ${INSTALL_FILE_DIR}/${INSTALL_FILE} -d ${PARENT_JBOSS_HOME}
     sudo mv ${PARENT_JBOSS_HOME}/${JBOSS_DIR_NAME} ${JBOSS_HOME}
     sudo chown -R $(id -un):$(id -gn) ${JBOSS_HOME}

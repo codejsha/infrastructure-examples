@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 admin_server_listen_address = os.environ['ADMIN_SERVER_LISTEN_ADDRESS']

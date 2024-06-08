@@ -3,7 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: ldapadmin-gw
-  namespace: ldap-system
+  namespace: ldap
 spec:
   selector:
     istio: ingressgateway
@@ -19,7 +19,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: ldapadmin-vs
-  namespace: ldap-system
+  namespace: ldap
 spec:
   hosts:
     - ldapadmin.example.com
@@ -31,6 +31,17 @@ spec:
             prefix: /
       route:
         - destination:
-            host: my-ldapadmin-phpldapadmin.ldap-system.svc.cluster.local
+            host: my-ldapadmin-phpldapadmin.ldap.svc.cluster.local
             port:
               number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ldapadmin-dr
+  namespace: ldap
+spec:
+  host: my-ldapadmin-phpldapadmin.ldap.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

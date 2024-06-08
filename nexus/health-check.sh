@@ -10,7 +10,7 @@ NEXUS_PASSWORD="admin123"
 
 ######################################################################
 
-function status {
+function status() {
     curl --insecure \
         --head \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
@@ -19,7 +19,7 @@ function status {
         ${NEXUS_URL}/service/rest/v1/status
 }
 
-function status_check {
+function status_check() {
     # curl --insecure \
     #     --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
     #     --request GET \

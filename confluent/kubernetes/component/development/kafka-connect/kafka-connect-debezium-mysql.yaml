@@ -1,0 +1,43 @@
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: Connect
+metadata:
+  name: connect-debezium-mysql
+  namespace: confluent
+spec:
+  replicas: 1
+  image:
+    # application: confluentinc/cp-server-connect:7.0.0
+    # init: confluentinc/confluent-init-container:2.2.0
+    application: harbor.example.com/confluentinc/cp-server-connect-debezium-mysql:7.0.0
+    init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
+  configOverrides:
+    server: []
+    jvm:
+      - -Djava.security.egd=file:///dev/urandom
+    log4j: []
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30021
+      host: localhost
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+  podTemplate:
+    # resources:
+    #   requests:
+    #     cpu: 500m
+    #     memory: 1Gi
+    #   limits:
+    #     cpu: 1
+    #     memory: 4Gi
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:

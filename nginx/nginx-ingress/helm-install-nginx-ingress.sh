@@ -5,12 +5,15 @@ set -o errtrace
 
 # helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 # helm repo update
+#
+# helm upgrade --install ingress-nginx \
+#     --create-namespace \
+#     --namespace ingress-nginx \
+#     --version 4.0.16 \
+#     ingress-nginx/ingress-nginx
 
-NAMESPACE="ingress-nginx"
-
-# helm install my-ingress \
-helm upgrade --install my-ingress \
+helm upgrade --install ingress-nginx \
     --create-namespace \
-    --namespace ${NAMESPACE} \
-    --version 3.35.0 \
-    ingress-nginx/ingress-nginx
+    --namespace ingress-nginx \
+    --repo https://kubernetes.github.io/ingress-nginx \
+    ingress-nginx

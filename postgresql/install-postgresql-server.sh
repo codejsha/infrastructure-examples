@@ -7,7 +7,7 @@ POSTGRESQL_VERSION="13"
 
 ######################################################################
 
-function install_postgresql_server_with_dnf {
+function install_postgresql_server_dnf() {
     ### Install the repository RPM
     sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
@@ -23,7 +23,7 @@ function install_postgresql_server_with_dnf {
     # sudo systemctl start postgresql-${POSTGRESQL_VERSION}
 }
 
-function install_postgresql_server_with_yum {
+function install_postgresql_server_yum() {
     ### Install the repository RPM
     sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
@@ -38,5 +38,5 @@ function install_postgresql_server_with_yum {
 
 ######################################################################
 
-install_postgresql_server_with_dnf
-# install_postgresql_server_with_yum
+install_postgresql_server_dnf
+# install_postgresql_server_yum

@@ -4,6 +4,8 @@ set -o errexit
 set -o errtrace
 
 PROMETHEUS_HOME="/usr/local/prometheus"
+# LOG_DIR="${PROMETHEUS_HOME}"
+
 INSTALL_FILE_DIR="/mnt/share/prometheus"
 INSTALL_FILE="prometheus-2.25.2.linux-amd64.tar.gz"
 
@@ -31,5 +33,20 @@ fi
 
 ### install
 sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_PROMETHEUS_HOME}
-sudo mv ${PARENT_PROMETHEUS_HOME}/${PROMETHEUS_DIR_NAME} ${PROMETHEUS_HOME}
+cd ${PARENT_PROMETHEUS_HOME}
+sudo ln -snf ${PROMETHEUS_DIR_NAME} prometheus
+
+### copy config files
+/bin/cp -pf prometheus.yml ${PROMETHEUS_HOME}
+/bin/cp -pf start-prometheus.sh ${PROMETHEUS_HOME}
+/bin/cp -pf stop-prometheus.sh ${PROMETHEUS_HOME}
+
+### change ownership
+cd ${PARENT_PROMETHEUS_HOME}
 sudo chown -R $(id -un):$(id -gn) ${PROMETHEUS_HOME}
+sudo chown -R $(id -un):$(id -gn) prometheus
+
+### create log directory
+# if [ ! -d "${LOG_DIR}/backup" ]; then
+#     mkdir -p ${LOG_DIR}/backup
+# fi

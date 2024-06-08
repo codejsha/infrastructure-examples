@@ -1,0 +1,131 @@
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: Connect
+metadata:
+  name: replicator
+  namespace: confluent
+spec:
+  replicas: 1
+  image:
+    application: confluentinc/cp-enterprise-replicator:7.0.0
+    init: confluentinc/confluent-init-container:2.2.0
+    # application: harbor.example.com/confluentinc/cp-enterprise-replicator:7.0.0
+    # init: harbor.example.com/confluentinc/confluent-init-container:2.2.0
+    # pullSecretRef:
+  configOverrides:
+    server: []
+    jvm: []
+    log4j: []
+  license:
+    globalLicense: true
+    # directoryPathInContainer: /vault/secrets
+  tls:
+    directoryPathInContainer: /vault/secrets
+  authorization:
+    type: rbac
+  # externalAccess:
+  #   type: loadBalancer
+  #   loadBalancer:
+  #     domain: example.com
+  #     prefix: replicator
+  externalAccess:
+    type: nodePort
+    nodePort:
+      nodePortOffset: 30030
+      host: localhost
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    schemaRegistry:
+      url: https://schemaregistry.confluent.svc.cluster.local:8081
+      tls:
+        enabled: true
+    mds:
+      endpoint: https://kafka.confluent.svc.cluster.local:8090
+      tokenKeyPair:
+        # directoryPathInContainer: /vault/secrets
+        secretRef: mds-token
+      authentication:
+        type: bearer
+        bearer:
+          # directoryPathInContainer: /vault/secrets
+          secretRef: mds-replicator-client
+      tls:
+        enabled: true
+    # interceptor:
+    # producer:
+    # consumer:
+  podTemplate:
+    resources:
+      requests:
+        cpu: 4
+        memory: 16Gi
+      limits:
+        cpu: 12
+        memory: 24Gi
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    # tolerations:
+    # affinity:
+    #   nodeAffinity:
+    #   podAffinity:
+    #   podAntiAffinity:
+    serviceAccountName: confluent-sa
+    annotations:
+      vault.hashicorp.com/agent-inject: "true"
+      vault.hashicorp.com/agent-inject-status: update
+      vault.hashicorp.com/preserve-secret-case: "true"
+      vault.hashicorp.com/role: confluent-operator
+      # vault.hashicorp.com/log-level: debug
+      ### sasl
+      vault.hashicorp.com/agent-inject-secret-kafka-client-sasl-plain: kv/data/confluent/kafka-client/plain-jaas.conf
+      vault.hashicorp.com/secret-volume-path-kafka-client-sasl-plain: /vault/secrets/jaas
+      vault.hashicorp.com/agent-inject-file-kafka-client-sasl-plain: plain-jaas.conf
+      vault.hashicorp.com/agent-inject-template-kafka-client-sasl-plain: |
+        {{- with secret "kv/data/confluent/kafka-client/plain-jaas.conf" -}}
+        {{ .Data.data.plainjaas | base64Decode }}
+        {{- end }}
+      ### certificate
+      vault.hashicorp.com/agent-inject-secret-jksPassword.txt: kv/data/confluent/jksPassword.txt
+      vault.hashicorp.com/agent-inject-template-jksPassword.txt: |
+        {{- with secret "kv/data/confluent/jksPassword.txt" -}}
+        {{ .Data.data.password }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-keystore.jks: kv/data/confluent/replicator/keystore.jks
+      vault.hashicorp.com/agent-inject-template-keystore.jks: |
+        {{- with secret "kv/data/confluent/replicator/keystore.jks" -}}
+        {{ .Data.data.keystore | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-truststore.jks: kv/data/confluent/truststore.jks
+      vault.hashicorp.com/agent-inject-template-truststore.jks: |
+        {{- with secret "kv/data/confluent/truststore.jks" -}}
+        {{ .Data.data.truststore | base64Decode }}
+        {{- end }}
+      ### rbac
+      vault.hashicorp.com/agent-inject-secret-mds-publickey: kv/data/confluent/mdsPublicKey.pem
+      vault.hashicorp.com/agent-inject-file-mds-publickey: mdsPublicKey.pem
+      vault.hashicorp.com/agent-inject-template-mds-publickey: |
+        {{- with secret "kv/data/confluent/mdsPublicKey.pem" -}}
+        {{ .Data.data.mdspublickey | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-connect-bearer: kv/data/confluent/replicator/bearer.txt
+      vault.hashicorp.com/agent-inject-file-connect-bearer: bearer.txt
+      vault.hashicorp.com/agent-inject-template-connect-bearer: |
+        {{- with secret "kv/data/confluent/replicator/bearer.txt" -}}
+        {{ .Data.data.bearer | base64Decode }}
+        {{- end }}
+      ### license
+      vault.hashicorp.com/agent-inject-secret-license: kv/data/confluent/license.txt
+      vault.hashicorp.com/agent-inject-file-license: license.txt
+      vault.hashicorp.com/agent-inject-template-license: |
+        {{- with secret "kv/data/confluent/license.txt" -}}
+        {{ .Data.data.license | base64Decode }}
+        {{- end }}

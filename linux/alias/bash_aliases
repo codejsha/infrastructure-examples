@@ -1,0 +1,26 @@
+# bash
+
+function ssh() { echo "+ ssh ${*}">&2; command ssh "${*}"; }
+function sudo() { echo "+ sudo ${*}">&2; command sudo "${*}"; }
+function xargs() { echo "+ xargs ${*}">&2; command xargs "${*}"; }
+
+alias ll="ls -l -h --color=auto"
+alias vi="nvim"
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias watch="watch "
+
+export TZ="Asia/Seoul"
+
+LS_COLORS="${LS_COLORS}:di=\e[38;2;86;156;214"        # directory
+LS_COLORS="${LS_COLORS}:ex=\e[38;2;87;166;74"         # executable file
+LS_COLORS="${LS_COLORS}:ln=\e[38;2;78;201;176"        # symbolic link
+LS_COLORS="${LS_COLORS}:or=\e[38;2;255;0;0"           # orphan symbolic link
+LS_COLORS="${LS_COLORS}:so=\e[38;2;216;160;223"       # socket
+LS_COLORS="${LS_COLORS}:*.gz=\e[38;2;214;157;133"
+LS_COLORS="${LS_COLORS}:*.jar=\e[38;2;214;157;133"
+LS_COLORS="${LS_COLORS}:*.tar=\e[38;2;214;157;133"
+LS_COLORS="${LS_COLORS}:*.tgz=\e[38;2;214;157;133"
+LS_COLORS="${LS_COLORS}:*.war=\e[38;2;214;157;133"
+LS_COLORS="${LS_COLORS}:*.zip=\e[38;2;214;157;133"
+export LS_COLORS

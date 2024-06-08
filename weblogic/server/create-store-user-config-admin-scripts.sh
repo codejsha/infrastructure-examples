@@ -26,7 +26,7 @@ VAR_DOMAIN_HOME="${VAR_DOMAIN_HOME/${DOMAIN_NAME}/${TEMP}}"
 ######################################################################
 
 cat <<EOF > ${DOMAIN_HOME}/scripts/shutdown_${ADMIN_SERVER_NAME}.py
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_home = os.environ['DOMAIN_HOME']
 admin_server_url = os.environ['ADMIN_SERVER_URL']

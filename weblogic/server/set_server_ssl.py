@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 admin_server_listen_address = os.environ['ADMIN_SERVER_LISTEN_ADDRESS']
 admin_server_listen_port = os.environ['ADMIN_SERVER_LISTEN_PORT']

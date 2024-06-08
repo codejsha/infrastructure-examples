@@ -15,4 +15,4 @@ ${JBOSS_HOME}/bin/jboss-cli.sh \
 #     --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
 #     --user="${USERNAME}" \
 #     --password="${PASSWORD}" \
-#     ${@}
+#     "${@}"

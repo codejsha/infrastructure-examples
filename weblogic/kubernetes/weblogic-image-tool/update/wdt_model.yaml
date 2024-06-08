@@ -1,0 +1,236 @@
+domainInfo:
+  AdminUserName: "@@PROP:ADMIN_USER_NAME@@"
+  AdminPassword: "@@PROP:ADMIN_USER_PASS@@"
+topology:
+  Name: "@@PROP:DOMAIN_NAME@@"
+  AdminServerName: "@@PROP:ADMIN_NAME@@"
+  ProductionModeEnabled: "@@PROP:PRODUCTION_MODE_ENABLED@@"
+  SecurityConfiguration:
+      NodeManagerUsername: "@@PROP:ADMIN_USER_NAME@@"
+      NodeManagerPasswordEncrypted: "@@PROP:ADMIN_USER_PASS@@"
+  Log:
+    FileName: "@@PROP:DOMAIN_NAME@@.log"
+  Cluster:
+    "@@PROP:CLUSTER_NAME@@":
+      DynamicServers:
+        ServerTemplate: "@@PROP:CLUSTER_NAME@@-template"
+        CalculatedListenPorts: false
+        ServerNamePrefix: "@@PROP:MANAGED_SERVER_NAME_BASE@@"
+        DynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
+        MinDynamicClusterSize: "1"
+        MaxDynamicClusterSize: "@@PROP:CONFIGURED_MANAGED_SERVER_COUNT@@"
+  Server:
+    "@@PROP:ADMIN_NAME@@":
+      ListenPort: "@@PROP:ADMIN_PORT@@"
+      SSL:
+        Enabled: "@@PROP:SSL_ENABLED@@"
+        ListenPort: "@@PROP:ADMIN_SERVER_SSL_PORT@@"
+      NetworkAccessPoint:
+        T3Channel:
+          ListenPort: "@@PROP:T3_CHANNEL_PORT@@"
+          PublicAddress: "@@PROP:T3_PUBLIC_ADDRESS@@"
+          PublicPort: "@@PROP:T3_CHANNEL_PORT@@"
+  ServerTemplate:
+    "@@PROP:CLUSTER_NAME@@-template":
+      ListenPort: "@@PROP:MANAGED_SERVER_PORT@@"
+      SSL:
+        Enabled: "@@PROP:SSL_ENABLED@@"
+        ListenPort: "@@PROP:MANAGED_SERVER_SSL_PORT@@"
+      Cluster: "@@PROP:CLUSTER_NAME@@"
+      OverloadProtection:
+        ServerFailureTrigger:
+          MaxStuckThreadTime: 10
+          StuckThreadCount: 1
+        FailureAction: "force-shutdown"
+        PanicAction: "system-exit"
+        FreeMemoryPercentHighThreshold: 0
+        FreeMemoryPercentLowThreshold: 0
+        SharedCapacityForWorkManagers: 65536
+      StuckThreadMaxTime: 30
+      StuckThreadTimerInterval: 60
+resources:
+  JDBCSystemResource:
+    OracleDatasource:
+      # Target: "@@PROP:CLUSTER_NAME@@"
+      JdbcResource:
+        JDBCDataSourceParams:
+          JNDIName: jdbc/oracle
+        JDBCDriverParams:
+          DriverName: oracle.jdbc.OracleDriver
+          URL: "jdbc:oracle:thin:@@@PROP:DATASOURCE1_URL@@"
+          PasswordEncrypted: "@@PROP:DATASOURCE1_PASSWORD@@"
+          Properties:
+            user:
+              Value: "@@PROP:DATASOURCE1_USERNAME@@"
+            oracle.net.CONNECT_TIMEOUT:
+              Value: 5000
+        JDBCConnectionPoolParams:
+          InitialCapacity: 10
+          MinCapacity: 10
+          MaxCapacity: 10
+          TestConnectionsOnReserve: true
+          TestTableName: SQL ISVALID
+    MySQLDatasource:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      JdbcResource:
+        JDBCDataSourceParams:
+          JNDIName: jdbc/mysql
+        JDBCDriverParams:
+          DriverName: com.mysql.cj.jdbc.Driver
+          URL: "jdbc:mysql://@@PROP:DATASOURCE2_URL@@"
+          PasswordEncrypted: "@@PROP:DATASOURCE2_PASSWORD@@"
+          Properties:
+            user:
+              Value: "@@PROP:DATASOURCE2_USERNAME@@"
+        JDBCConnectionPoolParams:
+          InitialCapacity: 10
+          MinCapacity: 10
+          MaxCapacity: 10
+          TestConnectionsOnReserve: true
+    TiberoNonXADatasource:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      JdbcResource:
+        JDBCDataSourceParams:
+          JNDIName: jdbc/TiberoNonXA
+          GlobalTransactionsProtocol: OnePhaseCommit
+        JDBCDriverParams:
+          DriverName: com.tmax.tibero.jdbc.TbDriver
+          URL: "jdbc:tibero:thin:@@@PROP:DATASOURCE3_URL@@"
+          PasswordEncrypted: "@@PROP:DATASOURCE3_PASSWORD@@"
+          Properties:
+            user:
+              Value: "@@PROP:DATASOURCE3_USERNAME@@"
+        JDBCConnectionPoolParams:
+          InitialCapacity: 10
+          MinCapacity: 10
+          MaxCapacity: 10
+          TestConnectionsOnReserve: true
+          TestTableName: "tibero"
+          InactiveConnectionTimeoutSeconds: 70
+          ProfileType: 4
+          ProfileHarvestFrequencySeconds: 300
+          ProfileConnectionLeakTimeoutSeconds: 0
+    TiberoXADatasource:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      JdbcResource:
+        JDBCDataSourceParams:
+          JNDIName: jdbc/TiberoXA
+          GlobalTransactionsProtocol: TwoPhaseCommit
+        JDBCDriverParams:
+          DriverName: com.tmax.tibero.jdbc.ext.TbXADataSource
+          URL: "jdbc:tibero:thin:@@@PROP:DATASOURCE4_URL@@"
+          PasswordEncrypted: "@@PROP:DATASOURCE4_PASSWORD@@"
+          Properties:
+            user:
+              Value: "@@PROP:DATASOURCE4_USERNAME@@"
+        JDBCConnectionPoolParams:
+          InitialCapacity: 10
+          MinCapacity: 10
+          MaxCapacity: 10
+          TestConnectionsOnReserve: true
+          TestTableName: "tibero"
+          InactiveConnectionTimeoutSeconds: 70
+          ProfileType: 4
+          ProfileHarvestFrequencySeconds: 300
+          ProfileConnectionLeakTimeoutSeconds: 0
+  WLDFSystemResource:
+    MyWldfModule:
+      Target: "@@PROP:CLUSTER_NAME@@"
+      WLDFResource:
+        WatchNotification:
+          Severity: Error
+          LogWatchSeverity: Warning
+          Watch:
+            MyLowHeapFreePercentPolicy:
+              Enabled: false
+              RuleType: Harvester
+              RuleExpression: "wls.runtime.serverRuntime.JVMRuntime.heapFreePercent < 20"
+              ExpressionLanguage: EL
+              Notification: "MyScaleUpScriptAction"
+              AlarmType: AutomaticReset
+              AlarmResetPeriod: 60000
+              Schedule:
+                Minute: "*/3"
+                Second: "*"
+            MyHighHeapFreePercentPolicy:
+              Enabled: false
+              RuleType: Harvester
+              RuleExpression: "wls.runtime.serverRuntime.JVMRuntime.heapFreePercent > 80"
+              ExpressionLanguage: EL
+              Notification: "MyScaleDownScriptAction"
+              AlarmType: AutomaticReset
+              AlarmResetPeriod: 60000
+              Schedule:
+                Minute: "*/3"
+                Second: "*"
+            MySeverityPolicy:
+              Enabled: false
+              RuleType: Log
+              RuleExpression: "SEVERITY IN ('Error','Emergency','Critical')"
+              Notification: "MyThreadDumpAction"
+              AlarmType: AutomaticReset
+            MyStuckPolicy:
+              Enabled: false
+              RuleType: Log
+              RuleExpression: "log.messageId == 'BEA-000337'"
+              ExpressionLanguage: EL
+              Notification: "MyThreadDumpAction,MyKillJavaScriptAction"
+              AlarmType: AutomaticReset
+              AlarmResetPeriod: 60000
+          ScriptAction:
+            MyScaleUpScriptAction:
+              Enabled: true
+              Environment:
+                INTERNAL_OPERATOR_CERT: "@@PROP:INTERNAL_OPERATOR_CERT@@"
+              WorkingDirectory: "bin/scripts"
+              PathToScript: "scalingAction.sh"
+              Parameter: "--action scaleUp --domain_uid @@PROP:DOMAIN_NAME@@ --cluster_name @@PROP:CLUSTER_NAME@@ --wls_domain_namespace @@PROP:DOMAIN_NAME@@-ns --operator_service_name @@PROP:OPERATOR_SERVICE_NAME@@ --operator_service_account @@PROP:OPERATOR_SERVICE_ACCOUNT@@ --operator_namespace @@PROP:OPERATOR_NAMESPACE@@ --scaling_size 1"
+            MyScaleDownScriptAction:
+              Enabled: true
+              Environment:
+                INTERNAL_OPERATOR_CERT: "@@PROP:INTERNAL_OPERATOR_CERT@@"
+              WorkingDirectory: "bin/scripts"
+              PathToScript: "scalingAction.sh"
+              Parameter: "--action scaleDown --domain_uid @@PROP:DOMAIN_NAME@@ --cluster_name @@PROP:CLUSTER_NAME@@ --wls_domain_namespace @@PROP:DOMAIN_NAME@@-ns --operator_service_name @@PROP:OPERATOR_SERVICE_NAME@@ --operator_service_account @@PROP:OPERATOR_SERVICE_ACCOUNT@@ --operator_namespace @@PROP:OPERATOR_NAMESPACE@@ --scaling_size 1"
+            MyKillJavaScriptAction:
+              Enabled: true
+              WorkingDirectory: "bin/scripts"
+              PathToScript: "killjava.sh"
+          ThreadDumpAction:
+            MyThreadDumpAction:
+              Enabled: true
+              Timeout: 20
+              ThreadDumpCount: 3
+              ThreadDumpDelaySeconds: 5
+appDeployments:
+  Application:
+    "wls-exporter":
+      SourcePath: "wlsdeploy/applications/wls-exporter.war"
+      Target: ["@@PROP:ADMIN_NAME@@,@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      PlanStagingMode: nostage
+    cachetest:
+      SourcePath: "wlsdeploy/applications/cachetest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      # PlanStagingMode: nostage
+    failovertest:
+      SourcePath: "wlsdeploy/applications/failovertest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      # PlanStagingMode: nostage
+    jdbcdrivertest:
+      SourcePath: "wlsdeploy/applications/jdbctest"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      # PlanStagingMode: nostage
+    "session-persistence-app":
+      SourcePath: "wlsdeploy/applications/session-persistence-app"
+      Target: ["@@PROP:CLUSTER_NAME@@"]
+      ModuleType: war
+      StagingMode: nostage
+      # PlanStagingMode: nostage

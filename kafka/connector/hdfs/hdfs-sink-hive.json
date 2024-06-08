@@ -1,0 +1,25 @@
+{
+  "name": "hdfs-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.hdfs3.Hdfs3SinkConnector",
+    "tasks.max": "1",
+    "topics": "pageviews",
+    "hdfs.url": "hdfs://hdfs.example.com:9000",
+    "hadoop.home": "/usr/local/hadoop",
+    "hadoop.conf.dir": "/usr/local/hadoop/etc/hadoop",
+    "topics.dir": "/kafka-storage/topics",
+    "logs.dir": "/kafka-storage/logs",
+    "flush.size": "1000",
+    "format.class": "io.confluent.connect.hdfs3.parquet.ParquetFormat",
+    "partitioner.class": "io.confluent.connect.storage.partitioner.DefaultPartitioner",
+    "hive.integration": "true",
+    "hive.home": "/usr/local/hive",
+    "hive.conf.dir": "/usr/local/hive/conf",
+    "hive.metastore.uris": "thrift://hdfs.example.com:9083",
+    "hive.database": "default",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081"
+  }
+}

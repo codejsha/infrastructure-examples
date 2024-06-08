@@ -16,7 +16,7 @@ envsubst < ./data-docker-hosted-repo.json > ./data-docker-hosted-repo-temp.json
 
 ######################################################################
 
-function create_docker_hosted_repository {
+function create_docker_hosted_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

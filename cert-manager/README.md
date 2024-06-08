@@ -1,3 +1,4 @@
 # cert-manager
 
-- https://cert-manager.io/docs/installation/kubernetes/#verifying-the-installation
+- https://cert-manager.io/
+- https://github.com/cert-manager/cert-manager

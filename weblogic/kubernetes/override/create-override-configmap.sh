@@ -7,4 +7,4 @@ NAMESPACE="sample-domain1-ns"
 DOMAIN_NAME="sample-domain1"
 
 kubectl create configmap override-domain-config --namespace ${NAMESPACE} --from-file ./override-domain-config
-kubectl label configmap override-domain-config --namespace ${NAMESPACE} weblogic.domainUID=${DOMAIN_NAME}
+kubectl label configmap override-domain-config --namespace ${NAMESPACE} weblogic.domainUID="${DOMAIN_NAME}"

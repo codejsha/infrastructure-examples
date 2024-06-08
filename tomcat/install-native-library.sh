@@ -18,27 +18,27 @@ TOMCAT_NATIVE_CONNECTOR_DIR="$(echo ${INSTALL_FILE} | grep -o -E "(.*[^\.tar\.gz
 
 ######################################################################
 
-function check_catalina_home {
+function check_catalina_home() {
     if [ ! -d "${CATALINA_HOME}" ]; then
         echo "[ERROR] The CATALINA_HOME (${CATALINA_HOME}) does not exist!"
         exit
     fi
 }
 
-function check_install_file {
+function check_install_file() {
     if [ ! -f "${INSTALL_FILE_DIR}/${INSTALL_FILE}" ]; then
         echo "[ERROR] The install file (${INSTALL_FILE_DIR}/${INSTALL_FILE}) does not exist!"
         exit
     fi
 }
 
-function extract_install_file {
+function extract_install_file() {
     /bin/cp -f ${INSTALL_FILE_DIR}/${INSTALL_FILE} ${INSTALL_SCRIPT_DIR}/tomcat
     cd ${INSTALL_SCRIPT_DIR}/tomcat
     tar -xzf ${INSTALL_FILE}
 }
 
-function build_native_connector {
+function build_native_connector() {
     cd ${INSTALL_SCRIPT_DIR}/tomcat
     cd ${TOMCAT_NATIVE_CONNECTOR_DIR}
     cd jni/native
@@ -53,7 +53,7 @@ function build_native_connector {
     make install
 }
 
-function delete_install_file {
+function delete_install_file() {
     rm -f ${INSTALL_FILE}
 }
 

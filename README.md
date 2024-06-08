@@ -1,46 +1,27 @@
-# Infrastructure as Code
+# Infrastructure Examples
 
-## Getting Started
+## Overview
 
-### Clone repository
+This project is configuration examples of infrastructure architecture.
 
-```bash
-git clone https://github.com/codejsha/infrastructure.git
-### with GitHub CLI
-gh repo clone codejsha/infrastructure
-```
+Each software can be part of an infrastructure architecture. Although this repository does not include all relevant configurations, you can use a few examples to configure the architecture you want.
 
-### Pull main branch
+## License
 
-```bash
-git pull origin main
-```
+Apache License 2.0
 
-### Overwrite main branch
+```text
+Copyright 2020-2024 Jinseong Ha
 
-```bash
-git stash
-git fetch --all
-git reset --hard origin/main
-```
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-### Stash
+    http://www.apache.org/licenses/LICENSE-2.0
 
-```bash
-git stash list
-git stash show
-git restore -s stash@{0} -- ${FILENAME}
-```
-
-## Directory Structure
-
-```txt
-├─── ...            # s/w
-│
-├───contents
-│   ├───images      # image files
-│   └───svg         # svg files
-│
-└───others
-    └─── ...        # other s/w
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```

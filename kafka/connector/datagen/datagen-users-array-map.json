@@ -1,0 +1,20 @@
+{
+  "name": "datagen-users-array-map",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "tasks.max": "1",
+    "kafka.topic": "users_array_map",
+    "quickstart": "users_",
+    "max.interval": "100",
+    "iterations": "10000000",
+    "transforms": "SetSchemaMetadata",
+    "transforms.SetSchemaMetadata.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+    "transforms.SetSchemaMetadata.schema.name": "ksql.UserArrayMap",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "key.converter.enhanced.avro.schema.support": "true",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.enhanced.avro.schema.support": "true"
+  }
+}

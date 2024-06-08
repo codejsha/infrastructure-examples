@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domain_name = os.environ['DOMAIN_NAME']
 component_name = os.environ['COMPONENT_NAME']

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 mw_home = os.environ['MW_HOME']
 oracle_home = mw_home

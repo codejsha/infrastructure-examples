@@ -11,7 +11,7 @@ REALM_IDS="${1}"
 
 ######################################################################
 
-function set_active_realms_list {
+function set_active_realms_list() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request PUT \

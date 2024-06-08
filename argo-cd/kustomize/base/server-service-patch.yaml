@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server
+spec:
+  ports:
+    - name: http-server
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    - name: https-server
+      port: 443
+      protocol: TCP
+      targetPort: 8080
+    # - $patch: delete
+    #   name: https
+    #   port: 443
+    #   protocol: TCP
+    #   targetPort: 8080

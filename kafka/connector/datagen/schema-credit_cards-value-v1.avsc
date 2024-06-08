@@ -1,0 +1,24 @@
+{
+  "connect.name": "datagen.example.CreditCard",
+  "fields": [
+    {
+      "name": "card_id",
+      "type": "int"
+    },
+    {
+      "name": "card_number",
+      "type": "long"
+    },
+    {
+      "name": "cvv",
+      "type": "int"
+    },
+    {
+      "name": "expiration_date",
+      "type": "string"
+    }
+  ],
+  "name": "CreditCard",
+  "namespace": "datagen.example",
+  "type": "record"
+}

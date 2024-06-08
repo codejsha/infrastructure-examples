@@ -16,7 +16,7 @@ envsubst < ./data-maven-hosted-repo.json > ./data-maven-hosted-repo-temp.json
 
 ######################################################################
 
-function create_maven_hosted_repository {
+function create_maven_hosted_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request POST \

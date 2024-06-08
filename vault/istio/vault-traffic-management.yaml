@@ -14,6 +14,16 @@ spec:
         protocol: HTTP
       hosts:
         - vault.example.com
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https-vault
+        protocol: HTTPS
+      hosts:
+        - vault.example.com
+      tls:
+        mode: PASSTHROUGH
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -25,12 +35,24 @@ spec:
     - vault.example.com
   gateways:
     - vault-gw
-  http:
+  tls:
     - match:
-        - uri:
-            prefix: /
+        - port: 443
+          sniHosts:
+            - vault.example.com
       route:
         - destination:
             host: my-vault.vault.svc.cluster.local
             port:
               number: 8200
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: vault-dr
+  namespace: vault
+spec:
+  host: my-vault.vault.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

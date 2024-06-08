@@ -33,6 +33,16 @@ export JAVA_OPTIONS
 
 ######################################################################
 
+### plugin
+
+### apache http server
+### httpd.conf
+LogLevel debug
+### httpd-vhosts.conf
+Debug ALL
+
+######################################################################
+
 ### ssl
 JAVA_OPTIONS="${JAVA_OPTIONS} -Djavax.net.debug=all"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dssl.debug=true"
@@ -79,6 +89,14 @@ export JAVA_OPTIONS
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.utils.classloaders.GenericClassLoader.Verbose=true"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.utils.classloaders.FilteringClassLoader.Verbose=true"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.utils.classloaders.ChangeAwareClassLoader.Verbose=true"
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.StdoutDebugEnabled=true"
+export JAVA_OPTIONS
+
+######################################################################
+
+### http session
+
+JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.debug.DebugHttpSessions=true"
 JAVA_OPTIONS="${JAVA_OPTIONS} -Dweblogic.StdoutDebugEnabled=true"
 export JAVA_OPTIONS
 

@@ -11,7 +11,7 @@ INVENTORY_FILE="oraInst.loc"
 
 ######################################################################
 
-function opatch_lsinventory {
+function opatch_lsinventory() {
     # ${ORACLE_HOME}/OPatch/opatch lsinventory
     ${ORACLE_HOME}/OPatch/opatch lsinventory \
         -all \

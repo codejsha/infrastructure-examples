@@ -1,0 +1,13 @@
+<!-- ###################################################################### -->
+
+<!--
+    ${CATALINA_BASE}/conf/server.xml
+-->
+
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="false">
+
+        <!-- ErrorReportValve -->
+        <Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
+
+      </Host>

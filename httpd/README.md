@@ -1,10 +1,13 @@
 # Apache HTTP Server
 
-- http://httpd.apache.org/docs/current/
+Apache HTTP Server is a free and open-source cross-platform web server software, maintained by the Apache Software Foundation.
 
 ## Apache Tomcat Connector
 
-edit jk log file path in mod_jk.conf
+Apache Tomcat Connector (mod_jk) is an Apache module that enables Apache HTTP Server to communicate with Apache Tomcat.
+It uses *Apache JServ Protocol (AJP)* to connect to the backend. Backends known to support AJP are Apache Tomcat, Jetty and JBoss.
+
+### Configuration
 
 include mod_jk.conf file in httpd.conf:
 
@@ -13,16 +16,15 @@ include mod_jk.conf file in httpd.conf:
 Include conf/jk/mod_jk.conf
 ```
 
-copy config files to httpd home:
+run to copy config files to httpd home:
 
 ```bash
 bash ./httpd-tomcat.sh
 ```
 
-## Compression
+## References
 
-test:
-
-```bash
-curl -I -H "Accept-Encoding:gzip,deflate" http://test.example.com
-```
+- Apache HTTP Server Documentation: http://httpd.apache.org/docs/current/
+- Apache Tomcat Connector: https://tomcat.apache.org/connectors-doc/
+- Sisdig apache exporter: https://github.com/sysdiglabs/promcat-resources/tree/master/resources/apache
+- Lusitaniae apache exporter: https://github.com/Lusitaniae/apache_exporter

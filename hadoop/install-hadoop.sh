@@ -5,7 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_hadoop  {
+function install_hadoop() {
     local HADOOP_HOME="/usr/local/hadoop"
     local INSTALL_FILE_DIR="/mnt/share/apache-hadoop"
     local INSTALL_FILE="hadoop-3.1.2.tar.gz"
@@ -33,8 +33,13 @@ function install_hadoop  {
 
     ### install
     sudo tar -xzf ${INSTALL_FILE_DIR}/${INSTALL_FILE} -C ${PARENT_HADOOP_HOME}
-    sudo mv ${PARENT_HADOOP_HOME}/${HADOOP_DIR_NAME} ${HADOOP_HOME}
+    cd ${PARENT_HADOOP_HOME}
+    sudo ln -snf ${HADOOP_DIR_NAME} hadoop
+
+    ### change ownership
+    cd ${PARENT_HADOOP_HOME}
     sudo chown -R $(id -un):$(id -gn) ${HADOOP_HOME}
+    sudo chown -R $(id -un):$(id -gn) hadoop
 }
 
 ######################################################################

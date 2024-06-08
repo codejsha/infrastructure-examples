@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function list_credentials {
+function list_credentials() {
     ${JAVA_HOME}/bin/java -jar ${JENKINS_FILE_DIR}/jenkins-cli.jar \
         --silent ${JENKINS_URL} \
         -webSocket \

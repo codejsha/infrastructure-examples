@@ -15,13 +15,13 @@ cd docker-images/OracleWebLogic/dockerfiles
 
 ######################################################################
 
-function docker_image_build_wls1411 {
+function docker_image_build_wls1411() {
     /bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/wls14.1.1/fmw_14.1.1.0.0_wls_lite_Disk1_1of1.zip 14.1.1.0
     bash buildDockerImage.sh -v 14.1.1.0 -g
     rm -f 14.1.1.0/*.zip
 }
 
-function docker_image_build_wls12214 {
+function docker_image_build_wls12214() {
     /bin/cp -f ${SHARE_DIR}/oracle-weblogic-server/wls12.2.1.4/fmw_12.2.1.4.0_wls_lite_Disk1_1of1.zip 12.2.1.4
     bash buildDockerImage.sh -v 12.2.1.4 -g
     rm -f 12.2.1.4/*.zip

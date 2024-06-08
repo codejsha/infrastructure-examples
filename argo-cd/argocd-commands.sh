@@ -1,5 +1,22 @@
 ######################################################################
 
+### bash completion
+source <(argocd completion bash)
+
+######################################################################
+
+### initial
+
+### get init password
+kubectl exec -it $(kubectl get pods --selector app.kubernetes.io/name=argocd-server --output jsonpath='{.items[0].metadata.name}') -c argocd-server -- argocd admin initial-password
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+argocd login --username admin --password ${PASSWORD} --insecure localhost:8080
+argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
+argocd cluster add docker-desktop --insecure --server argocd.example.com
+
+######################################################################
+
 ### login/logout
 
 ### secure
@@ -19,7 +36,7 @@ argocd logout --grpc-web --insecure --plaintext argocd.example.com:80
 
 ######################################################################
 
-### account password
+### update account password
 
 ### secure
 argocd account update-password --account admin --current-password ${PASSWORD} --new-password ${NEW_PASSWORD}
@@ -86,6 +103,7 @@ argocd app get ${PROJECT} ${ROLE_NAME} --auth-token ${JWT_TOKEN}
 ### repository
 
 argocd repo add https://git.example.com/developer/my-app-cd.git --type git --username developer --password developer --insecure --server argocd.example.com
+argocd repo add https://git.example.com/developer/my-app-cd.git --type git --username developer --password developer --insecure-skip-server-verification --insecure --server argocd.example.com
 
 ######################################################################
 
@@ -106,5 +124,11 @@ argocd app set guestbook --sync-policy none
 argocd app set guestbook --sync-policy automated
 argocd app set guestbook --auto-prune
 argocd app set guestbook --self-heal
+
+argocd app history guestbook
+argocd app diff guestbook
+
+argocd app manifests guestbook
+argocd app resources guestbook
 
 argocd app delete guestbook

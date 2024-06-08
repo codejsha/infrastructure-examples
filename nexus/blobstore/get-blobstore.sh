@@ -11,7 +11,7 @@ BLOBSTORE_NAME="${1}"
 
 ######################################################################
 
-function get_s3_blob_store {
+function get_s3_blob_store() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request GET \

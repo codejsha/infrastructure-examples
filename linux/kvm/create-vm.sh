@@ -7,8 +7,9 @@ virt-install \
     --name centos \
     --vcpus 2 \
     --memory 2048 \
+    --os-type=Linux \
     --os-variant centos8 \
     --network network=default \
-    --cdrom /path/to/centos8.iso
---disk path=/tmp/winxp.img,size=6
---extra-args "console=tty0 console=ttyS0,115200n8"
+    --location /path/to/centos8.iso \
+    --disk path=/tmp/winxp.img,size=6 \
+    --extra-args "console=tty0 console=ttyS0,115200n8"

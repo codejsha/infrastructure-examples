@@ -17,7 +17,7 @@ envsubst < ./data-maven-group-repo.json > ./data-maven-group-repo-temp.json
 
 ######################################################################
 
-function update_maven_group_repository {
+function update_maven_group_repository() {
     curl --insecure \
         --user ${NEXUS_USER}:${NEXUS_PASSWORD} \
         --request PUT \

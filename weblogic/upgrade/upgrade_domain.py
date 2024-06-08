@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 domainlist = ['base_domain1', 'base_domain2', 'base_domain3']
 

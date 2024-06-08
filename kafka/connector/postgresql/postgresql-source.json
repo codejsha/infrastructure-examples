@@ -1,15 +1,9 @@
 {
   "name": "postgresql-source",
   "config": {
-    "name": "postgresql-source",
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
     "tasks.max": "1",
-    "plugin.name": "decoderbufs",
-    "key.converter": "io.confluent.connect.protobuf.ProtobufConverter",
-    "key.converter.schema.registry.url": "http://localhost:8081",
-    "value.converter": "io.confluent.connect.protobuf.ProtobufConverter",
-    "value.converter.schema.registry.url": "http://localhost:8081",
-    "database.hostname": "test.example.com",
+    "database.hostname": "postgresql.example.com",
     "database.port": "5432",
     "database.user": "debezium",
     "database.password": "dbz",
@@ -26,6 +20,15 @@
     "max.queue.size": "20240",
     "max.batch.size": "10240",
     "poll.interval.ms": "1000",
-    "sanitize.field.names": "false"
+    "sanitize.field.names": "false",
+    "transforms": "Unwrap,Reroute",
+    "transforms.Unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
+    "transforms.Reroute.topic.regex": "database1.public.(.*)",
+    "transforms.Reroute.topic.replacement": "database1-public-$1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081"
   }
 }

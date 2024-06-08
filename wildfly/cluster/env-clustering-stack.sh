@@ -7,14 +7,14 @@ STACK_NAME="udp"
 
 ######################################################################
 
-function print_help {
+function print_help() {
     echo ""
     echo "Usage:"
     echo "  --stack-name|--stack-name=     : set the clustering type"
 }
 
-function set_arguments {
-    while [[ $# -gt 0 ]]
+function set_arguments() {
+    while [[ ${#} -gt 0 ]]
     do
         ARGS="${1}"
         shift
@@ -28,4 +28,4 @@ function set_arguments {
 
 ######################################################################
 
-set_arguments ${@}
+set_arguments "${@}"

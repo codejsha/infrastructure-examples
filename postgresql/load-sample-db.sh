@@ -4,9 +4,9 @@ set -o errexit
 set -o errtrace
 # DVD Rental database (https://www.postgresqltutorial.com/postgresql-sample-database/)
 
-PASSWORD="${PASSWORD}"
+PASSWORD="postgres"
 
-SAMPLE_DB_FILE_DIR="/mnt/share/postgresql"
+SAMPLE_DB_FILE_DIR="/mnt/share/postgresql/sample-db"
 
 ### unzip archive file
 unzip -d . ${SAMPLE_DB_FILE_DIR}/dvdrental.zip
@@ -14,7 +14,7 @@ unzip -d . ${SAMPLE_DB_FILE_DIR}/dvdrental.zip
 ### create database
 PGPASSWORD="${PASSWORD}" \
     psql \
-    --host=postgres-lb.example.com \
+    --host=host.docker.internal \
     --port=5432 \
     --username=postgres \
     --command="CREATE DATABASE dvdrental"
@@ -22,7 +22,7 @@ PGPASSWORD="${PASSWORD}" \
 ### load database
 PGPASSWORD="${PASSWORD}" \
     pg_restore \
-    --host=postgres-lb.example.com \
+    --host=host.docker.internal \
     --port=5432 \
     --username=postgres \
     --dbname=dvdrental \

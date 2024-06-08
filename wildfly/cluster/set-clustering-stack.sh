@@ -8,7 +8,7 @@ source ./env-clustering-stack.sh
 
 ######################################################################
 
-function set_clustering_stack {
+function set_clustering_stack() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -22,7 +22,7 @@ quit
 EOF
 }
 
-function reload_server {
+function reload_server() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

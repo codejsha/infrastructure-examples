@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function remove_access_log {
+function remove_access_log() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -21,7 +21,7 @@ quit
 EOF
 }
 
-function reload_server {
+function reload_server() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

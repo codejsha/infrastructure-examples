@@ -12,7 +12,7 @@ mkdir -p ${DD_DIR}
 
 ######################################################################
 
-function convert_deployment_descriptor {
+function convert_deployment_descriptor() {
     ${JAVA_HOME}/bin/java \
         -cp ${WL_HOME}/server/lib/weblogic.jar weblogic.DDConverter \
         -d ${DD_DIR} \

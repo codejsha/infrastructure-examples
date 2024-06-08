@@ -1,0 +1,24 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: minio1-kes-cert
+  namespace: minio-tenant-1
+spec:
+  secretName: minio1-kes-cert
+  commonName: "minio1-kes.example.com"
+  dnsNames:
+    ### Ingress domain
+    - "minio1-kes.example.com"
+    ### Internal domain
+    - "localhost"
+    - "minio1-kes-hl-svc"
+    - "*.minio1-kes-hl-svc"
+    - "minio1-kes-hl-svc.minio-tenant-1"
+    - "*.minio1-kes-hl-svc.minio-tenant-1"
+    - "minio1-kes-hl-svc.minio-tenant-1.svc"
+    - "*.minio1-kes-hl-svc.minio-tenant-1.svc"
+    - "minio1-kes-hl-svc.minio-tenant-1.svc.cluster.local"
+    - "*.minio1-kes-hl-svc.minio-tenant-1.svc.cluster.local"
+  issuerRef:
+    name: minio-tenant-kes-issuer

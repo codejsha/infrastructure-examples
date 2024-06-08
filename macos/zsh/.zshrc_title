@@ -1,0 +1,32 @@
+######################################################################
+
+### full path using tilde
+
+case ${TERM} in
+  xterm*)
+    precmd () {print -Pn "\e]0;%~\a"}
+    ;;
+esac
+
+######################################################################
+
+### current directory name
+
+case ${TERM} in
+  xterm*)
+    precmd () {print -Pn "\e]0;${PWD##*/}\a"}
+    ;;
+esac
+
+######################################################################
+
+### current directory name using tilde
+
+case ${TERM} in
+  xterm*)
+    precmd () {
+        local DIR=${PWD/#$HOME/\~}
+        print -Pn "\e]0;${DIR##*/}\a"
+    }
+    ;;
+esac

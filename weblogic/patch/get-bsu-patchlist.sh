@@ -7,7 +7,7 @@ MW_HOME="/usr/local/weblogic"
 
 ######################################################################
 
-function bsu_view_applied {
+function bsu_view_applied() {
     echo "[INFO] View applied patches..."
     # ${MW_HOME}/utils/bsu/bsu.sh -view -status=applied -prod_dir=${MW_HOME}/wlserver_10.3
     ${MW_HOME}/utils/bsu/bsu.sh -view -status=applied -prod_dir=${MW_HOME}/wlserver_10.3 -verbose
@@ -17,7 +17,7 @@ function bsu_view_applied {
     #     -prod_dir=${MW_HOME}/wlserver_10.3 \
     #     -verbose \
     #     -log_priority=debug \
-    #     -log=${MW_HOME}/utils/bsu/bsu-install-${PATCH_LIST}.log
+    #     -log=${MW_HOME}/utils/bsu/bsu-view.log
     # ${MW_HOME}/utils/bsu/bsu.sh \
     #     -view \
     #     -status=applied \
@@ -25,7 +25,7 @@ function bsu_view_applied {
     #     -patch_download_dir=${MW_HOME}/utils/bsu/cache_dir \
     #     -verbose \
     #     -log_priority=debug \
-    #     -log=${MW_HOME}/utils/bsu/bsu-install-${PATCH_LIST}.log
+    #     -log=${MW_HOME}/utils/bsu/bsu-view.log
 }
 
 ######################################################################

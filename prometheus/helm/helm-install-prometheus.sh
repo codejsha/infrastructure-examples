@@ -7,12 +7,11 @@ set -o errtrace
 # helm repo add kube-state-metrics https://kubernetes.github.io/kube-state-metrics
 # helm repo update
 
-NAMESPACE="prometheus"
+NAMESPACE="monitoring"
 
-# helm install my-prometheus \
 helm upgrade --install my-prometheus \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values.yaml \
-    --version 14.6.0 \
+    --version 19.6.0 \
     prometheus-community/prometheus

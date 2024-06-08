@@ -3,4 +3,8 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
+### rhel
 sudo yum install -y python3-pip
+
+### ubuntu
+# sudo apt install python3-pip

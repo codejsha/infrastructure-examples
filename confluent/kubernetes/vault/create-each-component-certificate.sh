@@ -3,8 +3,9 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-export VAULT_ADDR="http://vault.example.com"
-export VAULT_TOKEN="$(cat ~/.vault/root_token.txt)"
+export VAULT_ADDR="https://vault.example.com"
+export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
+export VAULT_CACERT="${HOME}/.vault/ca.crt"
 
 CERT_DIR="./certs"
 mkdir -p ${CERT_DIR}
@@ -15,8 +16,8 @@ mkdir -p ${CERT_DIR}
 
 # vault write -format="json" pki_int/issue/confluent-operator \
 #     common_name="kafka.example.com" \
-#     alt_names="kafka.example.com,*.confluent.svc.cluster.local" \
-#     ttl="4380h" \
+#     alt_names="localhost,kafka.example.com,*.confluent.svc.cluster.local" \
+#     ttl="8760h" \
 #     > ${CERT_DIR}/confluent-tls.json
 
 # jq -r '.data.private_key' < ${CERT_DIR}/confluent-tls.json > ${CERT_DIR}/confluent-tls.key
@@ -34,8 +35,8 @@ mkdir -p ${CERT_DIR}
 
 vault write -format="json" pki_int/issue/confluent-zookeeper \
     common_name="zookeeper" \
-    alt_names="zookeeper,zookeeper.example.com,zookeeper.confluent.svc.cluster.local,*.zookeeper.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,zookeeper,zookeeper.example.com,zookeeper.confluent.svc.cluster.local,*.zookeeper.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/zookeeper-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/zookeeper-tls.json > ${CERT_DIR}/zookeeper-tls.key
@@ -53,8 +54,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/zookeeper-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-kafka \
     common_name="kafka" \
-    alt_names="kafka,kafka.example.com,kafka.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,kafka,kafka.example.com,kafka.confluent.svc.cluster.local,*.kafka.confluent.svc.cluster.local,mds.example.com" \
+    ttl="8760h" \
     > ${CERT_DIR}/kafka-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/kafka-tls.json > ${CERT_DIR}/kafka-tls.key
@@ -72,8 +73,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/kafka-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-schema-registry \
     common_name="sr" \
-    alt_names="sr,schemaregistry.example.com,schemaregistry.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,sr,schemaregistry.example.com,schemaregistry.confluent.svc.cluster.local,*.schemaregistry.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/schema-registry-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/schema-registry-tls.json > ${CERT_DIR}/schema-registry-tls.key
@@ -91,8 +92,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/schema-registry-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-kafka-connect \
     common_name="connect" \
-    alt_names="connect,connect.example.com,connect.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,connect,connect.example.com,connect.confluent.svc.cluster.local,*.connect.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/kafka-connect-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/kafka-connect-tls.json > ${CERT_DIR}/kafka-connect-tls.key
@@ -110,8 +111,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/kafka-connect-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-replicator \
     common_name="replicator" \
-    alt_names="replicator,replicator.example.com,replicator.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,replicator,replicator.example.com,replicator.confluent.svc.cluster.local,*.replicator.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/replicator-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/replicator-tls.json > ${CERT_DIR}/replicator-tls.key
@@ -129,8 +130,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/replicator-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-ksqldb \
     common_name="ksql" \
-    alt_names="ksql,ksqldb.example.com,ksqldb.confluent.svc.cluster.local,*.ksqldb.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,ksql,ksqldb.example.com,ksqldb.confluent.svc.cluster.local,*.ksqldb.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/ksqldb-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/ksqldb-tls.json > ${CERT_DIR}/ksqldb-tls.key
@@ -148,8 +149,8 @@ cat ${CERT_DIR}/ca.crt >> ${CERT_DIR}/ksqldb-tls.chain.crt
 
 vault write -format="json" pki_int/issue/confluent-control-center \
     common_name="c3" \
-    alt_names="c3,controlcenter.example.com,controlcenter.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
-    ttl="4380h" \
+    alt_names="localhost,c3,controlcenter.example.com,controlcenter.confluent.svc.cluster.local,*.controlcenter.confluent.svc.cluster.local" \
+    ttl="8760h" \
     > ${CERT_DIR}/control-center-tls.json
 
 jq -r '.data.private_key' < ${CERT_DIR}/control-center-tls.json > ${CERT_DIR}/control-center-tls.key

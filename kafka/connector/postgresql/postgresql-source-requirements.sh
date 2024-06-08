@@ -1,5 +1,5 @@
 #!/bin/bash
 
-PASSWORD="${PASSWORD}"
+PASSWORD="postgres"
 
-PGPASSWORD="${PASSWORD}" psql --host=test.example.com --port=5432 --username=postgres --file=postgresql-source-requirements.sql
+PGPASSWORD="${PASSWORD}" psql --host=host.docker.internal --port=5432 --username=postgres --file=postgresql-source-requirements.sql

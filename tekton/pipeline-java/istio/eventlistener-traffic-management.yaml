@@ -32,3 +32,14 @@ spec:
             host: el-my-app-eventlistener.tekton-pipelines.svc.cluster.local
             port:
               number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: my-app-eventlistener-dr
+  namespace: tekton-pipelines
+spec:
+  host: el-my-app-eventlistener.tekton-pipelines.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

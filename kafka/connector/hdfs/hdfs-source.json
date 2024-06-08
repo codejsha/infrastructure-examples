@@ -1,0 +1,22 @@
+{
+  "name": "hdfs-source",
+  "config": {
+    "connector.class": "io.confluent.connect.hdfs3.Hdfs3SourceConnector",
+    "tasks.max": "1",
+    "hdfs.url": "hdfs://hdfs.example.com:9000",
+    "hadoop.home": "/usr/local/hadoop",
+    "hadoop.conf.dir": "/usr/local/hadoop/etc/hadoop",
+    "topics.dir": "/kafka-storage/topics",
+    "record.batch.max.size": "1000",
+    "format.class": "io.confluent.connect.hdfs3.format.parquet.ParquetFormat",
+    "partitioner.class": "io.confluent.connect.storage.partitioner.DefaultPartitioner",
+    "transforms": "AddSuffix",
+    "transforms.AddSuffix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.AddSuffix.regex": ".*",
+    "transforms.AddSuffix.replacement": "$0-2",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081"
+  }
+}

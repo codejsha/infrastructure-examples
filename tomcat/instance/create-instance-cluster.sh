@@ -26,10 +26,6 @@ envsubst < ./server-cluster.xml > ${CATALINA_BASE}/conf/server.xml
 envsubst < ./context.xml > ${CATALINA_BASE}/conf/Catalina/localhost/ROOT.xml
 envsubst < ./tomcat-users.xml > ${CATALINA_BASE}/conf/tomcat-users.xml
 
-# /bin/cp -pf ./server-cluster.xml ${CATALINA_BASE}/conf/server.xml
-# /bin/cp -pf ./context.xml ${CATALINA_BASE}/conf/context.xml
-# /bin/cp -pf ./tomcat-users.xml ${CATALINA_BASE}/conf/tomcat-users.xml
-
 ######################################################################
 
 ### change permission
@@ -37,4 +33,4 @@ find ${CATALINA_BASE}/conf -type f | xargs chmod 600
 
 ######################################################################
 
-echo "[INFO] An instance (${INSTANCE_NAME}) is created."
+echo "[INFO] An instance (${INSTANCE_NAME}) has been created."

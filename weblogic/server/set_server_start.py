@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env jython
 
 java_home = os.environ['JAVA_HOME']
 oracle_home = os.environ['MW_HOME']

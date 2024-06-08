@@ -6,7 +6,7 @@ set -o errtrace
 # helm repo add stable https://charts.helm.sh/stable
 # helm repo update
 
-NAMESPACE="ldap-system"
+NAMESPACE="ldap"
 
 # helm install my-openldap \
 helm upgrade --install my-openldap \

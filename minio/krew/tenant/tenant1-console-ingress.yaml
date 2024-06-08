@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio1-console
+  namespace: minio-tenant-1
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    cert-manager.io/issuer: "vault-issuer"
+    acme.cert-manager.io/http01-ingress-class: "nginx"
+spec:
+  tls:
+    - hosts:
+        - minio1-console.example.com
+      secretName: minio1-console-cert
+  rules:
+    - host: minio1-console.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio1-console
+                port:
+                  number: 9443

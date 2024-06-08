@@ -1,0 +1,19 @@
+{
+  "name": "oracle-source",
+  "config": {
+    "connector.class": "io.confluent.connect.oracle.cdc.OracleCdcSourceConnector",
+    "tasks.max": "2",
+    "oracle.server": "oracledb.example.com",
+    "oracle.port": "1521",
+    "oracle.sid": "ORCLCDB",
+    "oracle.pdb.name": "ORCLPDB1",
+    "oracle.username": "system",
+    "oracle.password": "PASSWORD",
+    "table.inclusion.regex": "ORCLPDB1[.](OE[.]ORDERS|HR[.]JOB_HISTORY)",
+    "numeric.mapping": "best_fit",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://schema-registry1.example.com:8081,http://schema-registry2.example.com:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry1.example.com:8081,http://schema-registry2.example.com:8081"
+  }
+}

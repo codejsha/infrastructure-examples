@@ -7,7 +7,7 @@ source ../env-base.sh
 
 ######################################################################
 
-function disable_directory_index {
+function disable_directory_index() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \
@@ -21,7 +21,7 @@ quit
 EOF
 }
 
-function reload_server {
+function reload_server() {
     ${JBOSS_HOME}/bin/jboss-cli.sh \
         --connect \
         --controller="${BIND_ADDRESS_MGMT}:${JBOSS_MGMT_HTTP_PORT}" \

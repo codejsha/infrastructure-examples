@@ -28,13 +28,23 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: confluent-control-center-bootstrap-vs
+  name: confluent-control-center-vs
   namespace: confluent
 spec:
   hosts:
     - control-center.example.com
   gateways:
     - confluent-control-center-gw
+  # http:
+  #   - match:
+  #       - port: 80
+  #         gateways:
+  #           - confluent-control-center-gw
+  #     route:
+  #       - destination:
+  #           host: controlcenter.confluent.svc.cluster.local
+  #           port:
+  #             number: 9021
   tls:
     - match:
         - port: 443
@@ -47,3 +57,14 @@ spec:
             host: controlcenter.confluent.svc.cluster.local
             port:
               number: 9021
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: confluent-control-center-dr
+  namespace: confluent
+spec:
+  host: controlcenter.confluent.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
