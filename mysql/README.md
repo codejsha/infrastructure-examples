@@ -1,9 +1,49 @@
 # MySQL
 
-## Docker
+## Install MySQL Client (CLI)
 
-- https://hub.docker.com/_/mysql
+### Chocolatey
 
-## Sample database
+```ps1
+choco install -y mysql-cli
 
-- https://dev.mysql.com/doc/index-other.html
+# choco uninstall -y mysql-cli
+```
+
+## Install MySQL Server
+
+### Chocolatey
+
+```ps1
+choco install -y mysql
+
+# choco uninstall -y mysql
+```
+
+### Docker
+
+MySQL Docker Hub: <https://hub.docker.com/_/mysql>
+
+## MySQL Connector
+
+### Chocolatey
+
+```ps1
+choco install -y mysql-connector
+
+# choco uninstall -y mysql-connector
+```
+
+## MySQL Workbench
+
+### Chocolatey
+
+```ps1
+choco install -y mysql.workbench
+
+# choco uninstall -y mysql.workbench
+```
+
+## References
+
+- Sample database: <https://dev.mysql.com/doc/index-other.html>

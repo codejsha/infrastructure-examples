@@ -20,6 +20,8 @@ function docker_run_nginx() {
 }
 docker_run_nginx
 
+######################################################################
+
 function docker_run_nginx_with_network() {
     local NETWORK="minikube"
     local NGINX_VOLUME_DIR="/mnt/volume/nginx"

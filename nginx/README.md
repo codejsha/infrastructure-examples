@@ -1,6 +1,20 @@
 # Nginx
 
-- https://www.nginx.com/resources/wiki/start/topics/tutorials/install
+## Install
+
+### DNF/YUM
+
+```bash
+bash ./install-nginx.sh
+```
+
+### Chocolatey
+
+```ps1
+choco install -y nginx
+
+# choco uninstall -y nginx
+```
 
 ## Nginx Ingress Controller
 
@@ -8,10 +22,10 @@
 bash ./helm-install-nginx-ingress.sh
 ```
 
-### Grafana dashboard
-
-- https://github.com/kubernetes/ingress-nginx/tree/master/deploy/grafana/dashboards
-
 ## Prometheus Exporter
 
-- https://github.com/nginxinc/nginx-prometheus-exporter
+- <https://github.com/nginxinc/nginx-prometheus-exporter>
+
+## Grafana dashboard
+
+- <https://github.com/kubernetes/ingress-nginx/tree/master/deploy/grafana/dashboards>

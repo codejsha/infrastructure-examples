@@ -1,5 +1,5 @@
 # Zookeeper
 
-## Docker
+## References
 
-- https://hub.docker.com/_/zookeeper
+- Zookeeper Docker Hub: <https://hub.docker.com/_/zookeeper>
