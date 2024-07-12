@@ -19,21 +19,21 @@ And it is possible to run the Kafka servers using `docker-compose` for testing p
 
 docs:
 
-- Confluent Platform: https://docs.confluent.io/platform/current/overview.html
-- Confluent for Kubernetes: https://docs.confluent.io/operator/current/overview.html
+- Confluent Platform: <https://docs.confluent.io/platform/current/overview.html>
+- Confluent for Kubernetes: <https://docs.confluent.io/operator/current/overview.html>
 
 confluent github examples:
 
-- https://github.com/confluentinc/examples.git
-- https://github.com/confluentinc/kafka-streams-examples.git
-- https://github.com/confluentinc/confluent-kubernetes-examples.git
+- <https://github.com/confluentinc/examples.git>
+- <https://github.com/confluentinc/kafka-streams-examples.git>
+- <https://github.com/confluentinc/confluent-kubernetes-examples.git>
 
 monitoring:
 
-- https://github.com/confluentinc/jmx-monitoring-stacks.git
-- https://docs.confluent.io/platform/current/zookeeper/deployment.html
-- https://docs.confluent.io/platform/current/kafka/monitoring.html
-- https://docs.confluent.io/platform/current/schema-registry/monitoring.html
-- https://docs.confluent.io/home/connect/monitoring.html
-- https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/replicator-monitoring.html
-- https://docs.ksqldb.io/en/latest/reference/metrics/
+- <https://github.com/confluentinc/jmx-monitoring-stacks.git>
+- <https://docs.confluent.io/platform/current/zookeeper/deployment.html>
+- <https://docs.confluent.io/platform/current/kafka/monitoring.html>
+- <https://docs.confluent.io/platform/current/schema-registry/monitoring.html>
+- <https://docs.confluent.io/home/connect/monitoring.html>
+- <https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/replicator-monitoring.html>
+- <https://docs.ksqldb.io/en/latest/reference/metrics/>

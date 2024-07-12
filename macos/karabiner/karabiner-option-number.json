@@ -2,7 +2,12 @@
   "description": "Option + Number: Open app",
   "manipulators": [
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "1",
         "modifiers": {
@@ -14,15 +19,15 @@
           "shell_command": "open -b com.microsoft.edgemac"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "1",
         "modifiers": {
@@ -35,15 +40,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.microsoft\\.edgemac$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.google\\.Chrome$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "2",
         "modifiers": {
@@ -55,15 +60,15 @@
           "shell_command": "open -b com.google.Chrome"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.google\\.Chrome$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.google\\.Chrome$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "2",
         "modifiers": {
@@ -76,15 +81,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.google\\.Chrome$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.naver\\.Whale$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "3",
         "modifiers": {
@@ -96,15 +101,15 @@
           "shell_command": "open -b com.naver.Whale"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.naver\\.Whale$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.naver\\.Whale$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "3",
         "modifiers": {
@@ -117,15 +122,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.naver\\.Whale$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^co\\.zeit\\.hyper$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "4",
         "modifiers": {
@@ -137,15 +142,15 @@
           "shell_command": "open -b co.zeit.hyper"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^co\\.zeit\\.hyper$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^co\\.zeit\\.hyper$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "4",
         "modifiers": {
@@ -158,15 +163,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^co\\.zeit\\.hyper$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "5",
         "modifiers": {
@@ -178,15 +183,15 @@
           "shell_command": "open -b com.microsoft.VSCode"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "5",
         "modifiers": {
@@ -199,15 +204,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.microsoft\\.VSCode$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "6",
         "modifiers": {
@@ -219,15 +224,15 @@
           "shell_command": "open -b com.jetbrains.intellij"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "6",
         "modifiers": {
@@ -240,99 +245,17 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.jetbrains\\.intellij$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "7",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "shell_command": "open -b com.jetbrains.pycharm"
-        }
-      ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"]
-        }
-      ]
-    },
-    {
-      "type": "basic",
-      "from": {
-        "key_code": "7",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "key_code": "h",
-          "modifiers": ["left_command"]
-        }
-      ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"]
-        }
-      ]
-    },
-    {
-      "type": "basic",
-      "from": {
-        "key_code": "8",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "shell_command": "open -b com.jetbrains.WebStorm"
-        }
-      ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"]
-        }
-      ]
-    },
-    {
-      "type": "basic",
-      "from": {
-        "key_code": "8",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "key_code": "h",
-          "modifiers": ["left_command"]
-        }
-      ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"]
-        }
-      ]
-    },
-    {
-      "type": "basic",
-      "from": {
-        "key_code": "9",
         "modifiers": {
           "mandatory": ["left_alt"]
         }
@@ -342,15 +265,97 @@
           "shell_command": "open -b com.jetbrains.goland"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "7",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
+      "from": {
+        "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.pycharm"
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
+      "from": {
+        "key_code": "9",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.WebStorm"
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "9",
         "modifiers": {
@@ -363,15 +368,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.jetbrains\\.goland$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.CLion$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "0",
         "modifiers": {
@@ -380,18 +385,18 @@
       },
       "to": [
         {
-          "shell_command": "open -b com.jetbrains.CLion-EAP"
+          "shell_command": "open -b com.jetbrains.CLion"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.jetbrains\\.CLion-EAP$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.CLion$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "0",
         "modifiers": {
@@ -404,15 +409,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.jetbrains\\.CLion-EAP$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.axosoft\\.gitkraken$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "hyphen",
         "modifiers": {
@@ -421,18 +426,18 @@
       },
       "to": [
         {
-          "shell_command": "open -b com.getupnote.desktop"
+          "shell_command": "open -b com.axosoft.gitkraken"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.getupnote\\.desktop$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.axosoft\\.gitkraken$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "hyphen",
         "modifiers": {
@@ -445,15 +450,15 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.getupnote\\.desktop$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
       "from": {
         "key_code": "equal_sign",
         "modifiers": {
@@ -465,15 +470,15 @@
           "shell_command": "open -b com.tinyspeck.slackmacgap"
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_unless",
-          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"]
-        }
-      ]
+      "type": "basic"
     },
     {
-      "type": "basic",
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"],
+          "type": "frontmost_application_if"
+        }
+      ],
       "from": {
         "key_code": "equal_sign",
         "modifiers": {
@@ -486,12 +491,7 @@
           "modifiers": ["left_command"]
         }
       ],
-      "conditions": [
-        {
-          "type": "frontmost_application_if",
-          "bundle_identifiers": ["^com\\.tinyspeck\\.slackmacgap$"]
-        }
-      ]
+      "type": "basic"
     }
   ]
 }

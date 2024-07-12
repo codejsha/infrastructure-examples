@@ -1,6 +1,8 @@
 # HDFS Source/Sink Connector
 
-### hdfs source configurations
+## Configuration
+
+### HDFS source configurations
 
 ```json
     "hdfs.url": "",
@@ -9,7 +11,7 @@
     "topics.dir": "",
 ```
 
-### hdfs sink configurations
+### HDFS sink configurations
 
 ```json
     "hdfs.url": "",
@@ -19,7 +21,7 @@
     "logs.dir": "",
 ```
 
-hive integration:
+for hive integration:
 
 ```json
     "hive.integration": "",

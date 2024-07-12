@@ -5,15 +5,7 @@ set -o errtrace
 
 ######################################################################
 
-function install_git_dnf() {
-    sudo dnf install -y git
-}
-
-function install_git_yum() {
-    sudo yum install -y git
-}
-
-function install_git_build() {
+function install_git() {
     local GIT_VERSION="2.31.0"
 
     sudo yum install -y epel-release
@@ -36,6 +28,4 @@ function install_git_build() {
 
 ######################################################################
 
-install_git_dnf
-# install_git_yum
-# install_git_build
+install_git

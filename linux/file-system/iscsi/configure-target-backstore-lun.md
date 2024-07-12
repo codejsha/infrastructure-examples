@@ -1,5 +1,4 @@
-
-## Configure LUNs
+# Configure LUNs
 
 ```bash
 sudo targetcli

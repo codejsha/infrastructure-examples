@@ -1,6 +1,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export LANG=en_US.UTF-8
+export GPG_TTY="$(tty)"
 
 # Added by Toolbox App
 export PATH="${PATH}:${HOME}/Library/Application Support/JetBrains/Toolbox/scripts"

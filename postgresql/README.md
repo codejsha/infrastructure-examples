@@ -1,18 +1,37 @@
 # PostgreSQL
 
-### Grafana dashboard
+## Install PostgreSQL Client
 
-- https://grafana.com/grafana/dashboards/9628
-
-## Local
-
-- https://www.postgresql.org/download/linux/redhat/
-
-## Sample Database
-
-DVD Rental database (https://www.postgresqltutorial.com/postgresql-sample-database/)
+### DNF/YUM
 
 ```bash
-### load the sample database
-bash ./load-sample-db.sh
+bash ./install-postgresql-client.sh
 ```
+
+## Install PostgreSQL Server
+
+### DNF/YUM
+
+```bash
+bash ./install-postgresql-server.sh
+```
+
+### Chocolatey
+
+```ps1
+choco install -y postgresql13
+choco install -y postgresql12
+choco install -y postgresql11
+
+# choco uninstall -y postgresql13
+# choco uninstall -y postgresql12
+# choco uninstall -y postgresql11
+```
+
+## Grafana dashboard
+
+- <https://grafana.com/grafana/dashboards/9628>
+
+## References
+
+- Sample Database: DVD Rental database (<https://www.postgresqltutorial.com/postgresql-sample-database/>)

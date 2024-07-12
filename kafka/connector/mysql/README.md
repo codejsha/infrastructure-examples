@@ -1,6 +1,6 @@
 # MySQL Source Connector
 
-sample database: Sakila (cf. [MySQL README](/mysql/README.md))
+## Configuration
 
 include/exclude configurations:
 
@@ -12,3 +12,7 @@ include/exclude configurations:
     "column.include.list": "",
     "column.exclude.list": "",
 ```
+
+## References
+
+sample database: Sakila (cf. [MySQL README](/mysql/README.md))

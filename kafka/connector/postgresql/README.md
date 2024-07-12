@@ -1,6 +1,6 @@
 # PostgreSQL Source Connector
 
-sample database: dvdrental (cf. [PostgreSQL README](/postgresql/README.md))
+## Configuration
 
 include/exclude configurations:
 
@@ -13,3 +13,7 @@ include/exclude configurations:
     "column.include.list": "",
     "column.exclude.list": "",
 ```
+
+## References
+
+sample database: dvdrental (cf. [PostgreSQL README](/postgresql/README.md))
