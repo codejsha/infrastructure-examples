@@ -1,11 +1,16 @@
 ######################################################################
 
+function cdhadoop() { DIRECTORY="/usr/local/hadoop"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
+
+######################################################################
+
 hadoop version
-hdfs version
 
 ######################################################################
 
 ### hdfs
+
+hdfs version
 
 ### list
 hdfs dfs -ls /

@@ -1,8 +1,10 @@
 # JDBC Sink Connector
 
-requirements:
+## Requirement
 
 download the JDBC driver and add it to classpath
+
+## Configuration
 
 mapping configurations:
 

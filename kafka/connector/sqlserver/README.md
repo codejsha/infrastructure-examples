@@ -1,6 +1,6 @@
 # SQL Server Source Connector
 
-sample database: Northwind (cf. [SQL Server README](/sqlserver/README.md))
+## Configuration
 
 include/exclude configurations:
 
@@ -11,3 +11,7 @@ include/exclude configurations:
     "column.include.list": "",
     "column.exclude.list": "",
 ```
+
+## References
+
+sample database: Northwind (cf. [SQL Server README](/sqlserver/README.md))
