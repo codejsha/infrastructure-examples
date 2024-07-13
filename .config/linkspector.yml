@@ -1,6 +1,5 @@
 files:
   - README.md
-replacementPatterns:
-  - pattern: "^/"
-    replacement: "./"
+dirs:
+  - ./
 useGitIgnore: true
