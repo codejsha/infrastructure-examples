@@ -1,5 +1,7 @@
 # Infrastructure Examples
 
+![Markdown Link Check](https://github.com/codejsha/infrastructure-examples/actions/workflows/link-check.yml/badge.svg)
+
 ## Overview
 
 This project is configuration examples of infrastructure architecture.
