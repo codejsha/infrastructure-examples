@@ -2,9 +2,7 @@
 
 Oracle WebLogic Server is a Java EE(Java Platform, Enterprise Edition) application server. It is part of the Oracle Fusion Middleware suite.
 
-## Installation
-
-### Install server
+## Install
 
 ```bash
 ### pre-install
@@ -19,6 +17,8 @@ bash ./helper-11g.sh
 bash ./install-weblogic.sh
 ```
 
+## Configuration
+
 ### Create a domain
 
 ```bash
@@ -27,7 +27,7 @@ bash ./create-domain.sh
 cd ..
 ```
 
-### Configure domain
+### Configure the domain
 
 `all.sh` script contains other configuration scripts:
 

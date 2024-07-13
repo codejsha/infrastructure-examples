@@ -1,9 +1,30 @@
 # Hadoop
 
-## Hadoop
+## Install
 
-- https://hadoop.apache.org/
+### Binary/Archive
 
-### Docker
+```bash
+bash ./install-hadoop.sh
+```
 
-- https://github.com/big-data-europe/docker-hadoop
+### Homebrew
+
+```sh
+brew install -y hadoop
+
+# brew uninstall -y hadoop
+```
+
+### Chocolatey
+
+```ps1
+# choco install -y hadoop
+choco install -y hadoop -params "/unzipLocation:$env:USERPROFILE\portable"
+
+# choco uninstall -y hadoop
+```
+
+## References
+
+- Hadoop Website: <https://hadoop.apache.org/>

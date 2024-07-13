@@ -1,5 +1,11 @@
 ######################################################################
 
+alias pxprometheus="pgrep -xa prometheus | grep prometheus"
+
+alias killprometheus="sudo pkill -9 -ecx prometheus"
+
+######################################################################
+
 ### promtool
 
 ### update alert rules 1.x to 2.x (in 2.0 release)

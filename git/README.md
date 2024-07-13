@@ -1,5 +1,48 @@
 # Git
 
+## Install
+
+### DNF/YUM
+
+```bash
+sudo dnf install -y git
+
+sudo yum install -y git
+```
+
+### Build
+
+```bash
+bash ./install-git.sh
+```
+
+### Chocolatey
+
+```ps1
+choco install -y git.install --package-parameters="/NoShellIntegration"
+
+### package parameters
+###
+### /GitOnlyOnPath
+### /GitAndUnixToolsOnPath
+### /NoAutoCrlf
+### /WindowsTerminal
+### /NoShellIntegration
+### /NoGuiHereIntegration
+### /NoShellHereIntegration
+### /NoCredentialManager
+### /NoGitLfs
+### /SChannel
+### /NoOpenSSH
+### /WindowsTerminalProfile
+### /Symlinks
+### /DefaultBranchName:default_branch_name
+### /Editor:Nano|VIM|Notepad++|VisualStudioCode|VisualStudioCodeInsiders|SublimeText|Atom|VSCodium|Notepad|Wordpad|Custom editor path
+
+### uninstall
+# choco uninstall -y git.install
+```
+
 ## Git Flow
 
 Git flow is a Git branching strategy which designed to simplify release management. In the Git Flow, there are five branch types:
@@ -19,6 +62,17 @@ hotfix: fix a bug in production code
 - [A successful Git branching model by Vincent Driessen](https://nvie.com/posts/a-successful-git-branching-model/)
 - [What is Git Flow - GitKraken](https://www.gitkraken.com/learn/git/git-flow)
 - [Gitflow - GitKraken](https://help.gitkraken.com/gitkraken-client/git-flow/)
+
+### Install Git flow AVH edition
+
+:warning: NOTE: deprecated
+
+```sh
+# Homebrew
+brew install -y git-flow-avh
+
+# brew uninstall -y git-flow-avh
+```
 
 ## Commit messages
 

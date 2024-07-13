@@ -43,12 +43,16 @@ case ${TERM} in
     ;;
 esac
 
-LS_COLORS="di=36:ln=38;5;210:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
-export GPG_TTY="$(tty)"
 export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
+export PATH="${HOME}/go/bin:${PATH}"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home"
+export GROOVY_HOME="/opt/homebrew/opt/groovysdk/libexec"
+export GOOSE_DRIVER="mysql"
+export GOOSE_DIR="./db/migrations"
 
 alias ls="lsd"
 alias ll="lsd -alh"
@@ -56,9 +60,11 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 
+alias vcpkg="${HOME}/tools/vcpkg/vcpkg"
 alias mysql="/opt/homebrew/opt/mysql-client/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client/bin/mysqldump"
 
+function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdcoderepos() { DIRECTORY="${HOME}/source/coderepos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdsubrepos() { DIRECTORY="${HOME}/source/subrepos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
@@ -70,3 +76,5 @@ function change-java-temurin-8() { JAVA_HOME="/Library/Java/JavaVirtualMachines/
 function change-java-temurin-11() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 function change-java-temurin-17() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 function change-java-temurin-21() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
+
+function gclo() { REPO_URL="${1}"; REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }

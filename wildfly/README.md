@@ -2,9 +2,7 @@
 
 WildFly is an open-source Java EE(Java Platform, Enterprise Edition) application server. RedHat JBoss EAP (Enterprise Application Platform) is a commercially supported distribution of WildFly.
 
-## Installation
-
-### Install server
+## Install
 
 ```bash
 ### pre-install
@@ -21,7 +19,7 @@ bash ./install-wildfly.sh
 bash ./install-jboss.sh
 ```
 
-### Configure server
+## Configuration
 
 `all.sh` script contains other configuration scripts:
 

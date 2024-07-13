@@ -2,6 +2,9 @@
 
 function docker() { echo "+ docker ${*}">&2; command docker "${*}"; }
 
+alias pxdockerd="sudo pgrep -xa dockerd | grep dockerd"
+alias pxdockerproxy="sudo pgrep -xa docker-proxy | grep docker-proxy"
+
 ######################################################################
 
 ### container
