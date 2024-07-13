@@ -1,0 +1,17 @@
+name: Markdown Link Check
+
+on:
+  # every monday at 08:00
+  schedule:
+    # prettier-ignore
+    - cron: '0 8 * * 1'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: umbrelladocs/action-linkspector@v1
+        with:
+          # prettier-ignore
+          config_file: 'linkspector.yml'
