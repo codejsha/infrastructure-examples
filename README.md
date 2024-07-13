@@ -10,5 +10,5 @@ Each software can be part of an infrastructure architecture. Although this repos
 
 ```text
 SPDX-License-Identifier: APACHE-2.0
-Copyright © 2020-2024 Jinseong Ha. All rights reserved.
+Copyright (c) 2020-2024 Jinseong Ha. All rights reserved.
 ```

@@ -5,22 +5,6 @@ set -o errtrace
 
 ######################################################################
 
-function install_httpd_dnf() {
-    sudo dnf install -y httpd
-    sudo systemctl enable httpd
-    sudo systemctl start httpd
-}
-
-######################################################################
-
-function install_httpd_yum() {
-    sudo yum install -y httpd
-    sudo systemctl enable httpd
-    sudo systemctl start httpd
-}
-
-######################################################################
-
 function install_httpd() {
     local HTTPD_HOME="/usr/local/httpd"
     local INSTALL_FILE_DIR="/mnt/share/apache-http-server"
@@ -123,8 +107,4 @@ function install_httpd() {
     configure_and_install
 }
 
-######################################################################
-
-# install_httpd_dnf
-# install_httpd_yum
 install_httpd

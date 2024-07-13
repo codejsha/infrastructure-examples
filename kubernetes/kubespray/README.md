@@ -1,16 +1,25 @@
 # Installing Kubernetes with Kubespray
 
-- https://kubespray.io/
-- https://github.com/kubernetes-sigs/kubespray
-- https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
-
 Table of Contents:
 
 - [Pre-install](#pre-install)
 - [Virtual machine configuration](#virtual-machine-configuration)
+  - [1. Create Hyper-V VMs](#1-create-hyper-v-vms)
+  - [2. Install OS](#2-install-os)
+  - [3. Kubernetes requirements](#3-kubernetes-requirements)
+  - [4. Add scripts](#4-add-scripts)
+  - [5. Copy vhd](#5-copy-vhd)
 - [Host configuration](#host-configuration)
+  - [1. Set hostname](#1-set-hostname)
+  - [2. Set network](#2-set-network)
+  - [3. Copy ssh keys](#3-copy-ssh-keys)
 - [Deploy cluster](#deploy-cluster)
+  - [1. Configure cluster settings](#1-configure-cluster-settings)
+  - [2. Run playbook](#2-run-playbook)
 - [Post-install](#post-install)
+  - [1. Copy config and cert files](#1-copy-config-and-cert-files)
+  - [2. Create dashboard ingress](#2-create-dashboard-ingress)
+- [References](#references)
 
 ## Pre-install
 
@@ -125,3 +134,9 @@ bash ./post-install.sh
 bash ./dashboard-clusterrolebinding.sh
 kubectl apply --filename dashboard-ingress.yaml
 ```
+
+## References
+
+- <https://kubespray.io/>
+- <https://github.com/kubernetes-sigs/kubespray>
+- <https://kubernetes.io/docs/setup/production-environment/tools/kubespray/>

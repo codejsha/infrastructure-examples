@@ -7,30 +7,112 @@ Docker isolates containers from the host machine by using several built-in Linux
 
 ## Install
 
+### DNF/YUM
+
 ```bash
-bash ./install-docker.sh
+# dnf
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
+
+sudo usermod -a -G docker ${USER}
+sudo systemctl enable docker
+sudo systemctl start docker
+
+exit
+```
+
+```bash
+# yum
+sudo yum remove -y \
+    docker \
+    docker-client \
+    docker-client-latest \
+    docker-common \
+    docker-latest \
+    docker-latest-logrotate \
+    docker-logrotate \
+    docker-engine
+
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install -y docker-ce docker-ce-cli containerd.io
+
+sudo usermod -a -G docker ${USER}
+sudo systemctl enable docker
+sudo systemctl start docker
+
+exit
+```
+
+```bash
+# yum for specific version
+DOCKER_VERSION="19.03.15"
+CONTAINERD_VERSION="1.3.9"
+
+sudo yum remove -y \
+    docker \
+    docker-client \
+    docker-client-latest \
+    docker-common \
+    docker-latest \
+    docker-latest-logrotate \
+    docker-logrotate \
+    docker-engine
+
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install -y \
+    docker-ce-${DOCKER_VERSION} \
+    docker-ce-cli-${DOCKER_VERSION} \
+    containerd.io-${CONTAINERD_VERSION}
+
+sudo usermod -a -G docker ${USER}
+sudo systemctl enable docker
+sudo systemctl start docker
+
+exit
+```
+
+### APT
+
+```bash
+curl -fsSL https://get.docker.com | sudo sh
+
+sudo usermod -a -G docker ${USER}
+
+exit
+```
+
+### Homebrew
+
+```sh
+brew install --cask docker
+
+# brew uninstall --cask docker
+```
+
+### Chocolatey
+
+```ps1
+choco install -y docker-cli
+
+# choco uninstall -y docker-cli
 ```
 
 ## Build image
 
-- `docker build` Reference: https://docs.docker.com/engine/reference/commandline/build/
-- Docker Security Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html
+- `docker build` Reference: <https://docs.docker.com/engine/reference/commandline/build/>
+- Docker Security Cheat Sheet: <https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html>
 
 ## Daemon
 
-- Daemon CLI (dockerd): https://docs.docker.com/engine/reference/commandline/dockerd/
-- Test an insecure registry: https://docs.docker.com/registry/insecure/
-- example of daemon configuration file: `daemon.json` (`/etc/docker/daemon.json`)
-
-## Docker Compose
-
-- https://github.com/docker/compose
-
-## Docker Registry
-
-- Docker container: https://docs.docker.com/registry/deploying/
-- Helm chart (⚠️ Deprecated chart): https://github.com/helm/charts/tree/master/stable/docker-registry
-- Harbor: https://github.com/goharbor/harbor
+- Daemon CLI (dockerd): <https://docs.docker.com/engine/reference/commandline/dockerd/>
+- Test an insecure registry: <https://docs.docker.com/registry/insecure/>
+- daemon configuration example: `daemon.json` (`/etc/docker/daemon.json`)
 
 ## Others
 

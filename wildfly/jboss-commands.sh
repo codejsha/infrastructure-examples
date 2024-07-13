@@ -1,5 +1,15 @@
 ######################################################################
 
+alias pxjboss="sudo pgrep -xa java | grep jboss"
+alias psefjboss="sudo ps -ef | grep jboss"
+
+alias killjboss="sudo pkill -9 -ecf \"org\.jboss\.as\.standalone\""
+
+function cdjboss() { DIRECTORY="/usr/local/jboss"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
+function cdwildfly() { DIRECTORY="/usr/local/wildfly"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
+
+######################################################################
+
 ### interface
 /interface=management:write-attribute(name=inet-address,value=${jboss.bind.address.management:127.0.0.1})
 /interface=private:write-attribute(name=inet-address,value=${jboss.bind.address:127.0.0.1})

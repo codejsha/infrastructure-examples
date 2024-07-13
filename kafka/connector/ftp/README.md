@@ -1,5 +1,7 @@
 # FTP: SFTP CSV/JSON Source Connector
 
+## Configuration
+
 file path/pattern configurations:
 
 ```json

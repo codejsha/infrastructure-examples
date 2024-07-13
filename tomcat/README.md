@@ -2,6 +2,8 @@
 
 ## Install
 
+### Binary/Archive
+
 ```bash
 ### pre-install
 bash ./helper.sh
@@ -10,43 +12,38 @@ bash ./helper.sh
 bash ./install-tomcat.sh
 ```
 
-### Create instances
+### Chocolatey
+
+```ps1
+choco install -y tomcat
+
+# choco uninstall -y tomcat
+```
+
+## Create instances
 
 - [Tomcat instances README](/tomcat/instance/README.md)
 
 ## Logging
 
-- https://tomcat.apache.org/tomcat-9.0-doc/logging.html
-- https://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html
+- Logging in Tomcat: <https://tomcat.apache.org/tomcat-10.0-doc/logging.html>
 
-Log4j:
+### Log4j
 
-- https://logging.apache.org/log4j/2.x/log4j-appserver/index.html
-- https://logging.apache.org/log4j/2.x/manual/appenders.html#KafkaAppender
+- Using Log4j 2 in Web Applications: <https://logging.apache.org/log4j/2.x/manual/webapp.html>
+- Appenders: <https://logging.apache.org/log4j/2.x/manual/appenders.html>
 
 ## Datasource
 
-DBCP:
+### DBCP
 
-- https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html
-- https://commons.apache.org/proper/commons-dbcp/configuration.html
+- JNDI Datasource How-To: <https://tomcat.apache.org/tomcat-10.0-doc/jndi-datasource-examples-howto.html>
+- BasicDataSource Configuration Parameters: <https://commons.apache.org/proper/commons-dbcp/configuration.html>
 
-HikariCP:
+### HikariCP
 
-- https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc.)
-
-## Deployment descriptor
-
-- https://cloud.google.com/appengine/docs/standard/java/config/webxml
-- https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
+- HikariCP wiki: <https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc>.)
 
 ## References
 
-- https://tomcat.apache.org/tomcat-9.0-doc/
-- https://tomcat.apache.org/tomcat-9.0-doc/config/executor.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/http.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/ajp.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/context.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/host.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/cluster.html
-- https://tomcat.apache.org/tomcat-9.0-doc/config/filter.html
+- Apache Tomcat Website: <https://tomcat.apache.org/>

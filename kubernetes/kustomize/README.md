@@ -2,22 +2,37 @@
 
 ## Install
 
-- https://kubernetes-sigs.github.io/kustomize/installation/
-
-Binary:
+### Binary/Archive
 
 ```bash
-bash ./install-kustomize.sh
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+
+sudo mv kustomize /usr/local/bin
+sudo chown root:root /usr/local/bin/kustomize
 ```
 
-Docker image:
+### Homebrew
+
+```sh
+brew install -y kustomize
+
+# brew uninstall -y kustomize
+```
+
+### Chocolatey
+
+```ps1
+choco install -y kustomize
+
+# choco uninstall -y kustomize
+```
+
+### Docker Image
 
 ```bash
-docker container run k8s.gcr.io/kustomize/kustomize:v3.8.7 version
+docker pull registry.k8s.io/kustomize/kustomize:v5.0.0
 ```
 
-Chocolatey:
+## References
 
-```bash
-choco install --confirm kustomize
-```
+- kustomize GitHub: <https://github.com/kubernetes-sigs/kustomize>
