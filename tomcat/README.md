@@ -22,27 +22,12 @@ choco install -y tomcat
 
 ## Create instances
 
-- [Tomcat instances README](/tomcat/instance/README.md)
+- [Tomcat instances README](/tomcat/instance/)
 
-## Logging
+## Configuration
 
-- Logging in Tomcat: <https://tomcat.apache.org/tomcat-10.0-doc/logging.html>
-
-### Log4j
-
-- Using Log4j 2 in Web Applications: <https://logging.apache.org/log4j/2.x/manual/webapp.html>
-- Appenders: <https://logging.apache.org/log4j/2.x/manual/appenders.html>
-
-## Datasource
-
-### DBCP
-
-- JNDI Datasource How-To: <https://tomcat.apache.org/tomcat-10.0-doc/jndi-datasource-examples-howto.html>
-- BasicDataSource Configuration Parameters: <https://commons.apache.org/proper/commons-dbcp/configuration.html>
-
-### HikariCP
-
-- HikariCP wiki: <https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc>.)
+- Log4j: [/infrastructure-examples/tomcat/log4j](/tomcat/log4j/)
+- Datasource: [/infrastructure-examples/tomcat/datasource](/tomcat/datasource/)
 
 ## References
 
