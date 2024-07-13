@@ -1,4 +1,4 @@
-## Configure ACLs
+# Configure ACLs
 
 ## Find initiator's unique name
 

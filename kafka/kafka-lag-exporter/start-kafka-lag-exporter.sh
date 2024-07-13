@@ -5,9 +5,6 @@ LAG_EXPORTER_CONFIG_FILE="${LAG_EXPORTER_HOME}/application.conf"
 LAG_EXPORTER_LOGBACK_CONFIG_FILE="${LAG_EXPORTER_HOME}/logback.xml"
 LOG_DIR="${LAG_EXPORTER_HOME}"
 
-JAVA_HOME="/usr/lib/jvm/java-1.8.0"
-export JAVA_HOME
-
 ### create log directory
 if [ ! -d "${LOG_DIR}/backup" ]; then
     mkdir -p ${LOG_DIR}/backup

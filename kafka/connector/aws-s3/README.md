@@ -1,6 +1,6 @@
 # AWS S3 Sink Connector
 
-- https://docs.confluent.io/kafka-connect-s3-sink/current/overview.html
+## Configuration
 
 aws credentials in kafka-connect start script:
 
@@ -18,3 +18,7 @@ s3 bucket configurations:
     "s3.bucket.name": "kafka-s3-sink-storage",
     "s3.part.size": "5242880",
 ```
+
+## References
+
+- Amazon S3 Sink Connector for Confluent Platform: <https://docs.confluent.io/kafka-connectors/s3-sink/current/overview.html>

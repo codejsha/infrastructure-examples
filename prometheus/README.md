@@ -1,6 +1,13 @@
 # Prometheus
 
-## Exporter
+## Install Prometheus
 
-- https://prometheus.io/docs/instrumenting/exporters/
-- https://prometheus.io/docs/instrumenting/writing_exporters/
+### Binary/Archive
+
+```bash
+bash ./install-prometheus.sh
+```
+
+## References
+
+- EXPORTERS AND INTEGRATIONS: <https://prometheus.io/docs/instrumenting/exporters/>
