@@ -27,4 +27,4 @@ sudo yum install -y yum-utils
 
 ## Package Repo Server/Client
 
-Local RPM Package Repository Server Example: [/infrastructure-examples/linux/package-repo/rpm-package-repo-server](/linux/package-repo/rpm-package-repo-server)
+Local RPM Package Repository Server Example: [/infrastructure-examples/linux/package-repo/rpm-package-repo-server](/linux/package-repo/rpm-package-repo-server/)

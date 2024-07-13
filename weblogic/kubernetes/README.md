@@ -1,30 +1,25 @@
 # Oracle WebLogic Server on Kubernetes
 
-- https://oracle.github.io/weblogic-kubernetes-operator/
-- https://github.com/oracle/weblogic-kubernetes-operator
-- https://github.com/oracle/weblogic-image-tool
-- https://github.com/oracle/weblogic-deploy-tooling
-- https://github.com/oracle/weblogic-monitoring-exporter
-- https://github.com/oracle/docker-images
+version: weblogic-kubernetes-operator-3.3.2
 
 Table of Contents:
 
-- [Oracle WebLogic Server on Kubernetes](#oracle-weblogic-server-on-kubernetes)
-  - [Install the WebLogic Operator](#install-the-weblogic-operator)
-  - [Create a WebLogic Domain](#create-a-weblogic-domain)
-    - [Domain home in Image](#domain-home-in-image)
-    - [Domain home on PV](#domain-home-on-pv)
-    - [Model in Image](#model-in-image)
-  - [Configuration Overrides (situational configuration)](#configuration-overrides-situational-configuration)
-    - [Template name and syntax](#template-name-and-syntax)
-    - [Apply configuration templates](#apply-configuration-templates)
-  - [Istio](#istio)
+- [Install the WebLogic Operator](#install-the-weblogic-operator)
+- [Create a WebLogic Domain](#create-a-weblogic-domain)
+  - [Domain home in Image](#domain-home-in-image)
+  - [Domain home on PV](#domain-home-on-pv)
+  - [Model in Image](#model-in-image)
+- [Configuration Overrides (situational configuration)](#configuration-overrides-situational-configuration)
+  - [Template name and syntax](#template-name-and-syntax)
+  - [Apply configuration templates](#apply-configuration-templates)
+- [Istio](#istio)
+- [References](#references)
 
 ## Install the WebLogic Operator
 
-- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/installation/
-- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-operators/using-helm/
-- https://oracle.github.io/weblogic-kubernetes-operator/security/openshift/
+- installation and upgrade: <https://oracle.github.io/weblogic-kubernetes-operator/managing-operators/installation/>
+- configuration references: <https://oracle.github.io/weblogic-kubernetes-operator/managing-operators/using-helm/>
+- security for openshift <https://oracle.github.io/weblogic-kubernetes-operator/security/openshift/>
 
 configurations:
 
@@ -34,17 +29,15 @@ configurations:
 
 ## Create a WebLogic Domain
 
-- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/choosing-a-model/
+- choose a domain home source type: <https://oracle.github.io/weblogic-kubernetes-operator/managing-domains/choosing-a-model/>
 
-Domain home source type:
+Domain home source types:
 
-- **Domain home in Image**
+- **Domain home in Image** (:warning: deprecated in WebLogic Kubernetes Operator version 4.0)
 - **Domain home on PV**
 - **Model in Image**
 
 ### Domain home in Image
-
-- https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-in-image/
 
 1. build oracle jdk image (docker/build-jdk)
 2. build weblogic image by imagetool (weblogic-image-tool/create)
@@ -53,15 +46,15 @@ Domain home source type:
 
 ### Domain home on PV
 
-- https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-on-pv/
+- <https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/domain-home-on-pv/>
 
 ### Model in Image
 
-- https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/model-in-image/
+- <https://oracle.github.io/weblogic-kubernetes-operator/samples/domains/model-in-image/>
 
 ## Configuration Overrides (situational configuration)
 
-- https://oracle.github.io/weblogic-kubernetes-operator/userguide/managing-domains/configoverrides/
+- configuration overrides: <https://oracle.github.io/weblogic-kubernetes-operator/managing-domains/configoverrides/>
 
 be used in Domain home in Image and Domain home on PV domains (Model in Image domains, use runtime updates instead)
 
@@ -137,7 +130,7 @@ spec:
 
 ## Istio
 
-- https://oracle.github.io/weblogic-kubernetes-operator/userguide/istio/istio/
+- istio support: <https://oracle.github.io/weblogic-kubernetes-operator/managing-domains/accessing-the-domain/istio/istio/>
 
 ```bash
 kubectl label namespace weblogic-operator istio-injection=enabled
@@ -161,3 +154,12 @@ spec:
       replicationChannelPort: 4564
       localhostBindingsEnabled: false
 ```
+
+## References
+
+- WebLogic Kubernetes Operator Website: <https://oracle.github.io/weblogic-kubernetes-operator/>
+- WebLogic Kubernetes Operator GitHub: <https://github.com/oracle/weblogic-kubernetes-operator>
+- WebLogic Image Tool GitHub: <https://github.com/oracle/weblogic-image-tool>
+- WebLogic Deploy Tooling (WDT) GitHub: <https://github.com/oracle/weblogic-deploy-tooling>
+- WebLogic Monitoring Exporter GitHub: <https://github.com/oracle/weblogic-monitoring-exporter>
+- Docker Images from Oracle GitHub: <https://github.com/oracle/docker-images>
