@@ -5,6 +5,7 @@ on:
   schedule:
     # prettier-ignore
     - cron: '0 8 * * 1'
+  workflow_dispatch:
 
 jobs:
   check-links:
@@ -14,4 +15,4 @@ jobs:
       - uses: umbrelladocs/action-linkspector@v1
         with:
           # prettier-ignore
-          config_file: 'linkspector.yml'
+          config_file: '.config/linkspector.yml'
