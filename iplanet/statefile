@@ -1,0 +1,28 @@
+[STATE_BEGIN Oracle iPlanet Web Server 89f45387cb1feda373b0443a239d32fd1974d400]
+defaultInstallDirectory = /opt/oracle/webserver7
+currentInstallDirectory = /usr/local/iplanet
+UPGRADE = false
+SELECTED_COMPONENTS = svrcore,admincli
+USE_BUNDLED_JDK = true
+JDK_LOCATION =
+IS_ADMIN_NODE = false
+STARTUP_ONBOOT = false
+CREATE_SERVICE = false
+ADMIN_HOST = test.example.com
+ADMIN_SSL_PORT = 8989
+ADMIN_PORT =
+ADMIN_UID = root
+ADMIN_NAME = admin
+ADMIN_PASSWD = welcome1
+NODE_HOST =
+NODE_SSL_PORT =
+REGISTER_NODE =
+WEB_SERVERNAME = server1
+WEB_PORT = 80
+WEB_UID = webservd
+WEB_DOCROOT = /usr/local/iplanet/https-server1/docs
+SIXTYFOURBIT_INSTALL = false
+CONFIG_NAME = server1
+SKIP_INSTANCE_CREATION =
+START_ADMIN = false
+[STATE_DONE Oracle iPlanet Web Server 89f45387cb1feda373b0443a239d32fd1974d400]
