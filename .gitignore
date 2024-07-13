@@ -6,6 +6,10 @@ __pycache__/
 .pytest_cache/
 venv/
 
+node_modules/
+/package.json
+/package-lock.json
+
 temp/
 temp.*
 *-temp.*
