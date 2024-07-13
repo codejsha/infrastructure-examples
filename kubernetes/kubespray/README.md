@@ -137,6 +137,5 @@ kubectl apply --filename dashboard-ingress.yaml
 
 ## References
 
-- <https://kubespray.io/>
-- <https://github.com/kubernetes-sigs/kubespray>
-- <https://kubernetes.io/docs/setup/production-environment/tools/kubespray/>
+- Kubespray Website: <https://kubespray.io/>
+- Kubespray GitHub: <https://github.com/kubernetes-sigs/kubespray>
