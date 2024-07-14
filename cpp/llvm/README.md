@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y llvm
+brew install llvm
 
-# brew uninstall -y llvm
+# brew uninstall llvm
 ```
 
 ### Chocolatey

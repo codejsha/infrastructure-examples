@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y kotlin
+brew install kotlin
 
-# brew uninstall -y kotlin
+# brew uninstall kotlin
 ```

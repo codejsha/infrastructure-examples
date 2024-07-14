@@ -34,9 +34,9 @@ fnm use --install-if-missing 20
 ### Homebrew
 
 ```sh
-brew install -y yarn
+brew install yarn
 
-# brew uninstall -y yarn
+# brew uninstall yarn
 ```
 
 ### Chocolatey
@@ -52,7 +52,7 @@ choco install -y yarn
 ### Homebrew
 
 ```sh
-brew install -y pnpm
+brew install pnpm
 
-# brew uninstall -y pnpm
+# brew uninstall pnpm
 ```

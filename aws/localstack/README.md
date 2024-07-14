@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y localstack/tap/localstack-cli
+brew install localstack/tap/localstack-cli
 
-# brew uninstall -y localstack/tap/localstack-cli
+# brew uninstall localstack/tap/localstack-cli
 ```

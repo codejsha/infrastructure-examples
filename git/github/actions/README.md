@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y act
+brew install act
 
-# brew uninstall -y act
+# brew uninstall act
 ```
 
 ### Chocolatey

@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y ninja
+brew install ninja
 
-# brew uninstall -y ninja
+# brew uninstall ninja
 ```
