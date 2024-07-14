@@ -22,8 +22,8 @@ sudo mv maven /usr/local
 ### Homebrew
 
 ```sh
-brew install -y maven
-# brew uninstall -y maven
+brew install maven
+# brew uninstall maven
 
 ### maven home: /opt/homebrew/opt/maven/libexec
 ```

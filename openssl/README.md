@@ -11,9 +11,9 @@ bash ./install-openssl.sh
 ### Homebrew
 
 ```sh
-brew install -y openssl@3
+brew install openssl@3
 
-# brew uninstall -y openssl@3
+# brew uninstall openssl@3
 ```
 
 ### Chocolatey

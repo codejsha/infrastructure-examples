@@ -15,9 +15,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 ### Homebrew
 
 ```sh
-brew install -y docker-compose
+brew install docker-compose
 
-# brew uninstall -y docker-compose
+# brew uninstall docker-compose
 ```
 
 ### Chocolatey

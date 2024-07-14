@@ -22,7 +22,7 @@ sudo apt-get install -y kafkacat
 ### Homebrew
 
 ```sh
-brew install -y kcat
+brew install kcat
 ```
 
 ## References

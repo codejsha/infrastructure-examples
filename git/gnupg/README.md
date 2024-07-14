@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y gnupg
+brew install gnupg
 
-# brew uninstall -y gnupg
+# brew uninstall gnupg
 ```
 
 ## Pinentry
@@ -17,12 +17,12 @@ brew install -y gnupg
 #### Homebrew
 
 ```sh
-brew install -y pinentry
+brew install pinentry
 
-# brew uninstall -y pinentry
+# brew uninstall pinentry
 ```
 
 ```sh
-brew install -y pinentry-mac
+brew install pinentry-mac
 
-# brew uninstall -y pinentry-mac
+# brew uninstall pinentry-mac
