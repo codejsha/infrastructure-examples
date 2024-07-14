@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y typescript
+brew install typescript
 
-# brew uninstall -y typescript
+# brew uninstall typescript
 ```
 
 ### Chocolatey

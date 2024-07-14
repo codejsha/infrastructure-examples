@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y minikube
+brew install minikube
 
-# brew uninstall -y minikube
+# brew uninstall minikube
 ```
 
 ### Chocolatey
