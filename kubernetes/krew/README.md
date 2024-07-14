@@ -27,9 +27,9 @@
 ### Homebrew
 
 ```sh
-brew install -y krew
+brew install krew
 
-# brew uninstall -y krew
+# brew uninstall krew
 ```
 
 ### Chocolatey

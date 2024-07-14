@@ -54,8 +54,8 @@ brew install --cask firefox
 ### fzf
 
 ```sh
-brew install -y fzf
-# brew uninstall -y fzf
+brew install fzf
+# brew uninstall fzf
 ```
 
 ### Gather Town
@@ -82,15 +82,15 @@ brew install --cask google-chrome
 ### graphviz
 
 ```sh
-brew install -y graphviz
-# brew uninstall -y graphviz
+brew install graphviz
+# brew uninstall graphviz
 ```
 
 ### Groovy SDK
 
 ```sh
-brew install -y groovysdk
-# brew uninstall -y groovysdk
+brew install groovysdk
+# brew uninstall groovysdk
 ```
 
 ### Hyper
@@ -110,8 +110,8 @@ brew install --cask jetbrains-toolbox
 ### jq
 
 ```sh
-brew install -y jq
-# brew uninstall -y jq
+brew install jq
+# brew uninstall jq
 ```
 
 ### Karabiner-Elements
@@ -187,15 +187,15 @@ brew install --cask rectangle
 ### ripgrep
 
 ```sh
-brew install -y ripgrep
-# brew uninstall -y ripgrep
+brew install ripgrep
+# brew uninstall ripgrep
 ```
 
 ### Rust
 
 ```sh
-brew install -y rust
-# brew uninstall -y rust
+brew install rust
+# brew uninstall rust
 ```
 
 ### Slack

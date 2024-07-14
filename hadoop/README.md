@@ -11,9 +11,9 @@ bash ./install-hadoop.sh
 ### Homebrew
 
 ```sh
-brew install -y hadoop
+brew install hadoop
 
-# brew uninstall -y hadoop
+# brew uninstall hadoop
 ```
 
 ### Chocolatey

@@ -19,9 +19,9 @@ sudo /bin/cp -pf istioctl /usr/local/bin
 ### Homebrew
 
 ```sh
-brew install -y istioctl
+brew install istioctl
 
-# brew uninstall -y istioctl
+# brew uninstall istioctl
 ```
 
 ### Chocolatey

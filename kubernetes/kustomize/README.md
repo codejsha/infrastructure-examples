@@ -14,9 +14,9 @@ sudo chown root:root /usr/local/bin/kustomize
 ### Homebrew
 
 ```sh
-brew install -y kustomize
+brew install kustomize
 
-# brew uninstall -y kustomize
+# brew uninstall kustomize
 ```
 
 ### Chocolatey

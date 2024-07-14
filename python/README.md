@@ -11,9 +11,9 @@ bash ./install-python.sh
 ### Homebrew
 
 ```sh
-brew install -y python@3.11
+brew install python@3.11
 
-# brew uninstall -y python@3.11
+# brew uninstall python@3.11
 ```
 
 ### Chocolatey
@@ -33,9 +33,9 @@ choco install -y python311 --params "'/InstallDir:$env:USERPROFILE\tools\python3
 ### Homebrew
 
 ```sh
-brew install -y poetry
+brew install poetry
 
-# brew uninstall -y poetry
+# brew uninstall poetry
 ```
 
 ## Install Anaconda

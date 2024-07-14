@@ -25,9 +25,9 @@ sudo dnf install gh --repo gh-cli
 ### Homebrew
 
 ```sh
-brew install -y gh
+brew install gh
 
-# brew uninstall -y gh
+# brew uninstall gh
 ```
 
 ### Chocolatey

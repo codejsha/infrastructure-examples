@@ -69,9 +69,9 @@ hotfix: fix a bug in production code
 
 ```sh
 # Homebrew
-brew install -y git-flow-avh
+brew install git-flow-avh
 
-# brew uninstall -y git-flow-avh
+# brew uninstall git-flow-avh
 ```
 
 ## Commit messages

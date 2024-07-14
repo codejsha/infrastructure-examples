@@ -41,9 +41,9 @@ sudo apt-get install -y kubectl
 ### Homebrew
 
 ```sh
-brew install -y kubernetes-cli
+brew install kubernetes-cli
 
-# brew uninstall -y kubernetes-cli
+# brew uninstall kubernetes-cli
 ```
 
 ### Chocolatey

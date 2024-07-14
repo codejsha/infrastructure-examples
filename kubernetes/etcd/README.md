@@ -11,7 +11,7 @@ bash ./install-etcdctl.sh
 ### Homebrew
 
 ```sh
-brew install -y etcd
+brew install etcd
 ```
 
 ## References

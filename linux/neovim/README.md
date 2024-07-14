@@ -19,9 +19,9 @@ sudo apt-get install -y python3-neovim
 ### Homebrew
 
 ```sh
-brew install -y neovim
+brew install neovim
 
-# brew uninstall -y neovim
+# brew uninstall neovim
 ```
 
 ### Chocolatey

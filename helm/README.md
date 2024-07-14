@@ -34,7 +34,7 @@ sudo ./get_helm.sh
 ### Homebrew
 
 ```sh
-brew install -y helm
+brew install helm
 ```
 
 ### Chocolatey
