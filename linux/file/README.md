@@ -15,7 +15,7 @@ sudo apt-get install -y tree
 #### Homebrew
 
 ```sh
-brew install -y tree
+brew install tree
 ```
 
 ### unzip
@@ -37,7 +37,7 @@ sudo apt-get install -y unzip
 #### Homebrew
 
 ```sh
-brew install -y unzip
+brew install unzip
 ```
 
 ### tidy

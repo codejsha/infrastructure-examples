@@ -14,7 +14,7 @@ sudo chown root:root /usr/local/bin/mc
 ### Homebrew
 
 ```sh
-brew install -y minio-mc
+brew install minio-mc
 ```
 
 ## Install MinIO Server
@@ -51,7 +51,7 @@ sudo mv kes-linux-amd64 /usr/local/bin/kes
 ### Homebrew
 
 ```sh
-brew install -y minio/stable/kes
+brew install minio/stable/kes
 ```
 
 ## References

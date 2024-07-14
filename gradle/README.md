@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y gradle
+brew install gradle
 
-# brew uninstall -y gradle
+# brew uninstall gradle
 ```
 
 ### Chocolatey

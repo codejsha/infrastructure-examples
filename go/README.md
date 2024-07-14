@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y go
+brew install go
 
-# brew uninstall -y go
+# brew uninstall go
 ```
 
 ### Chocolatey

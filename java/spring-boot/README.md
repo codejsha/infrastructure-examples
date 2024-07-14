@@ -6,9 +6,9 @@
 
 ```sh
 brew tap spring-io/tap
-brew install -y spring-boot
+brew install spring-boot
 
-# brew uninstall -y spring-boot
+# brew uninstall spring-boot
 ```
 
 ### Chocolatey

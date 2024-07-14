@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y clang-format
+brew install clang-format
 
-# brew uninstall -y clang-format
+# brew uninstall clang-format
 ```

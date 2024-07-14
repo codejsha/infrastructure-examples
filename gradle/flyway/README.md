@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y flyway
+brew install flyway
 
-# brew uninstall -y flyway
+# brew uninstall flyway
 ```

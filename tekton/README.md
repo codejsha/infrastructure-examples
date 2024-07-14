@@ -13,9 +13,9 @@ bash ./install-tekton-cli.sh
 ### Homebrew
 
 ```sh
-brew install -y tektoncd-cli
+brew install tektoncd-cli
 
-# brew uninstall -y tektoncd-cli
+# brew uninstall tektoncd-cli
 ```
 
 ### Chocolatey

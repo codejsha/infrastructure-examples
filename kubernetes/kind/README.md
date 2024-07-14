@@ -16,9 +16,9 @@ sudo mv ./kind /usr/local/bin/kind
 ### Homebrew
 
 ```sh
-brew install -y kind
+brew install kind
 
-# brew uninstall -y kind
+# brew uninstall kind
 ```
 
 ### Chocolatey

@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y awscli
+brew install awscli
 
-# brew uninstall -y awscli
+# brew uninstall awscli
 ```
 
 ### Chocolatey

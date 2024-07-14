@@ -22,9 +22,9 @@ sudo yum -y install vault
 
 ```sh
 brew tap hashicorp/tap
-brew install -y hashicorp/tap/vault
+brew install hashicorp/tap/vault
 
-# brew uninstall -y hashicorp/tap/vault
+# brew uninstall hashicorp/tap/vault
 ```
 
 ### Chocolatey

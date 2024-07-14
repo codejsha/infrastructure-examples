@@ -5,7 +5,7 @@
 ### Homebrew
 
 ```sh
-brew install -y markdownlint-cli2
+brew install markdownlint-cli2
 
-# brew uninstall -y markdownlint-cli2
+# brew uninstall markdownlint-cli2
 ```
