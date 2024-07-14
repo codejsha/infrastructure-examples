@@ -57,10 +57,10 @@ brew install --cask corretto@8
 
 # openjdk
 brew install openjdk
-brew install -y openjdk@21
-brew install -y openjdk@17
-brew install -y openjdk@11
-brew install -y openjdk@8
+brew install openjdk@21
+brew install openjdk@17
+brew install openjdk@11
+brew install openjdk@8
 ```
 
 ### Chocolatey

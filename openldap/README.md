@@ -5,6 +5,6 @@
 ### Homebrew
 
 ```sh
-brew install -y openldap
-# brew uninstall -y openldap
+brew install openldap
+# brew uninstall openldap
 ```

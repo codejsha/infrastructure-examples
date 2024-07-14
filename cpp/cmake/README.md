@@ -5,9 +5,9 @@
 ### Homebrew
 
 ```sh
-brew install -y cmake
+brew install cmake
 
-# brew uninstall -y cmake
+# brew uninstall cmake
 ```
 
 ### Chocolatey

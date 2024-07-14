@@ -24,9 +24,9 @@ bash ./install-httpd.sh
 ### Homebrew
 
 ```sh
-brew install -y httpd
+brew install httpd
 
-# brew uninstall -y httpd
+# brew uninstall httpd
 ```
 
 ### Chocolatey
