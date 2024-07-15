@@ -28,7 +28,7 @@ function sudo() { echo "+ sudo ${*}">&2; command sudo "${*}"; }
 ### Change directory with logging and listing
 
 ```bash
-function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
+function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls -alh; fi; }
 ```
 
 ## Tools
