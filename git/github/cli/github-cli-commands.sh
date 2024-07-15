@@ -26,3 +26,17 @@ gh repo create --public
 gh repo view
 
 gh repo clone codejsha/infrastructure-examples
+
+######################################################################
+
+### workflow
+
+gh workflow list
+
+gh workflow run link-check.yml
+gh workflow run link-check.yml --ref develop
+
+gh workflow run cmake.yml
+gh workflow run poetry.yml
+gh workflow run go.yml
+gh workflow run gradle.yml
