@@ -63,6 +63,12 @@ brew install openjdk@11
 brew install openjdk@8
 ```
 
+listing installed java versions in macos:
+
+```sh
+/usr/libexec/java_home -V
+```
+
 ### Chocolatey
 
 ```ps1

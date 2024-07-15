@@ -184,13 +184,6 @@ brew install --cask rectangle
 # brew uninstall --cask rectangle
 ```
 
-### ripgrep
-
-```sh
-brew install ripgrep
-# brew uninstall ripgrep
-```
-
 ### Rust
 
 ```sh
