@@ -2,6 +2,39 @@
 
 ## File Tools
 
+### fd
+
+#### Homebrew
+
+```sh
+brew install fd
+```
+
+### ripgrep
+
+#### Homebrew
+
+```sh
+brew install ripgrep
+# brew uninstall ripgrep
+```
+
+### tidy
+
+formatting the content of XML files
+
+#### DNF/YUM
+
+```bash
+sudo dnf install -y tidy
+```
+
+#### APT
+
+```bash
+sudo apt-get install -y tidy
+```
+
 ### tree
 
 listing directories and files as trees
@@ -38,20 +71,4 @@ sudo apt-get install -y unzip
 
 ```sh
 brew install unzip
-```
-
-### tidy
-
-formatting the content of XML files
-
-#### DNF/YUM
-
-```bash
-sudo dnf install -y tidy
-```
-
-#### APT
-
-```bash
-sudo apt-get install -y tidy
 ```
