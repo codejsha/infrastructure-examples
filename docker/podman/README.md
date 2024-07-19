@@ -20,3 +20,4 @@ sudo dnf install -y podman-compose
 
 # yum
 sudo yum install -y podman-compose
+```
