@@ -30,4 +30,4 @@ choco install -y docker-compose
 
 ## References
 
-- https://github.com/docker/compose
+- <https://github.com/docker/compose>
