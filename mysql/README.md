@@ -10,6 +10,15 @@ choco install -y mysql-cli
 # choco uninstall -y mysql-cli
 ```
 
+## Install Mysql Shell (CLI)
+
+### Homebrew
+
+```sh
+brew install --cask mysql-shell
+# brew uninstall --cask mysql-shell
+```
+
 ## Install MySQL Server
 
 ### Chocolatey
