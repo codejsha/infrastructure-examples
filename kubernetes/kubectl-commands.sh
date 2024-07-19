@@ -1,10 +1,10 @@
 ######################################################################
 
-source <(kubectl completion bash)
-
 function kubectl() { echo "+ kubectl ${*}">&2; command kubectl "${*}"; }
 
 [ -f ~/.aliases/kubectl_aliases ] && source ~/.aliases/kubectl_aliases
+
+source <(kubectl completion bash)
 
 ######################################################################
 
