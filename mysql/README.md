@@ -2,6 +2,14 @@
 
 ## Install MySQL Client (CLI)
 
+### Homebrew
+
+```sh
+brew install mysql-client
+
+# brew uninstall mysql-client
+```
+
 ### Chocolatey
 
 ```ps1
