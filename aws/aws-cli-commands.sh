@@ -1,15 +1,14 @@
 ######################################################################
 
-docker container run --rm -it amazon/aws-cli --version
-docker container run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli --version
-docker container run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli --version
+function aws() { echo "+ aws ${@}">&2; command aws "${@}"; }
 
-######################################################################
-
-function aws() { echo "+ aws ${*}">&2; command aws "${*}"; }
 alias aws="docker container run --rm -it -v ~/.aws:/root/.aws -v \$(pwd):/aws amazon/aws-cli"
 
 ######################################################################
+
+docker container run --rm -it amazon/aws-cli --version
+docker container run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli --version
+docker container run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli --version
 
 mkdir ~/.aws
 docker container run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli configure
@@ -18,3 +17,5 @@ docker container run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli configure
 ### AWS Secret Access Key [None]:
 ### Default region name [None]:
 ### Default output format [None]:
+
+######################################################################

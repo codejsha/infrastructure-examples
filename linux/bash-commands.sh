@@ -1,13 +1,14 @@
 ######################################################################
 
-function ssh() { echo "+ ssh ${*}">&2; command ssh "${*}"; }
-function sudo() { echo "+ sudo ${*}">&2; command sudo "${*}"; }
-function xargs() { echo "+ xargs ${*}">&2; command xargs "${*}"; }
+function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
+function xargs() { echo "+ xargs ${@}">&2; command xargs "${@}"; }
+
+function ssh() { echo "+ ssh ${@}">&2; command ssh "${@}"; }
 
 ### process
-function pgrep() { echo "+ pgrep ${*}">&2; command pgrep "${*}"; }
-function kill() { echo "+ kill ${*}">&2; command kill "${*}"; }
-function pkill() { echo "+ pkill ${*}">&2; command pkill "${*}"; }
+function pgrep() { echo "+ pgrep ${@}">&2; command pgrep "${@}"; }
+function kill() { echo "+ kill ${@}">&2; command kill "${@}"; }
+function pkill() { echo "+ pkill ${@}">&2; command pkill "${@}"; }
 
 ######################################################################
 
