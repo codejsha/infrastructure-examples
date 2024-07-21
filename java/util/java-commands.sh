@@ -1,9 +1,9 @@
 ######################################################################
 
-function jcmd() { echo "+ jcmd ${*}">&2; command jcmd "${*}"; }
-function jar() { echo "+ jar ${*}">&2; command jar "${*}"; }
-function java() { echo "+ java ${*}">&2; command java "${*}"; }
-function jstack() { echo "+ jstack ${*}">&2; command jstack "${*}"; }
+function jcmd() { echo "+ jcmd ${@}">&2; command jcmd "${@}"; }
+function jar() { echo "+ jar ${@}">&2; command jar "${@}"; }
+function java() { echo "+ java ${@}">&2; command java "${@}"; }
+function jstack() { echo "+ jstack ${@}">&2; command jstack "${@}"; }
 
 function cdjava() { DIRECTORY="/usr/lib/jvm"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 function cdorcljava() { DIRECTORY="/usr/java"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }

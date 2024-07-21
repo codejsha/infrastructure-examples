@@ -51,25 +51,11 @@ brew install --cask firefox
 # brew uninstall --cask firefox
 ```
 
-### fzf
-
-```sh
-brew install fzf
-# brew uninstall fzf
-```
-
 ### Gather Town
 
 ```sh
 brew install --cask gather
 # brew uninstall --cask gather
-```
-
-### GitKraken
-
-```sh
-brew install --cask gitkraken
-# brew uninstall --cask gitkraken
 ```
 
 ### Google Chrome
@@ -184,11 +170,11 @@ brew install --cask rectangle
 # brew uninstall --cask rectangle
 ```
 
-### Rust
+### Setapp
 
 ```sh
-brew install rust
-# brew uninstall rust
+brew install --cask setapp
+# brew uninstall --cask setapp
 ```
 
 ### Slack
@@ -203,6 +189,13 @@ brew install --cask slack
 ```sh
 brew install --cask spotify
 # brew uninstall --cask spotify
+```
+
+### tlrc (tldr)
+
+```sh
+brew install tlrc
+# brew uninstall tlrc
 ```
 
 ### Tunnelblick
