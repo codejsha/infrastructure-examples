@@ -1,6 +1,6 @@
 ######################################################################
 
-function minikube() { echo "+ minikube ${*}">&2; command minikube "${*}"; }
+function minikube() { echo "+ minikube ${@}">&2; command minikube "${@}"; }
 
 ######################################################################
 
