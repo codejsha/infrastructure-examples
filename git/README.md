@@ -70,8 +70,6 @@ hotfix: fix a bug in production code
 ```sh
 # Homebrew
 brew install git-flow-avh
-
-# brew uninstall git-flow-avh
 ```
 
 ## Commit messages
@@ -98,3 +96,12 @@ test: test a feature
 
 - [What is the best Git branch strategy? - GitKraken](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy)
 - [Writing a Good Git Commit Message - GitKraken](https://www.gitkraken.com/learn/git/best-practices/git-commit-message)
+
+## Other Tools
+
+### Gitify
+
+```sh
+# Homebrew
+brew install --cask gitify
+```
