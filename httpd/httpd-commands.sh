@@ -1,6 +1,6 @@
 ######################################################################
 
-function httpd() { echo "+ httpd ${*}">&2; command httpd "${*}"; }
+function httpd() { echo "+ httpd ${@}">&2; command httpd "${@}"; }
 
 alias pxhttpd="sudo pgrep -xa httpd | grep httpd"
 alias psefhttpd="sudo ps -ef | grep httpd"

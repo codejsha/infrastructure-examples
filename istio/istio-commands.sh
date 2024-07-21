@@ -1,6 +1,6 @@
 ######################################################################
 
-function istioctl() { echo "+ istioctl ${*}">&2; command istioctl "${*}"; }
+function istioctl() { echo "+ istioctl ${@}">&2; command istioctl "${@}"; }
 
 [ -f ~/.istioctl/istioctl.bash ] && source ~/.istioctl/istioctl.bash
 
