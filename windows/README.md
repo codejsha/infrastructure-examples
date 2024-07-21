@@ -75,14 +75,6 @@ choco install -y firefox
 # choco uninstall -y firefox
 ```
 
-### GitKraken
-
-```ps1
-choco install -y gitkraken
-
-# choco uninstall -y gitkraken
-```
-
 ### Google Chrome
 
 ```ps1

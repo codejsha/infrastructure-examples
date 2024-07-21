@@ -2,7 +2,19 @@
 
 ## File Tools
 
+### bat
+
+A `cat` clone with syntax highlighting and Git integration.
+
+#### Homebrew
+
+```sh
+brew install bat
+```
+
 ### fd
+
+simple, fast and user-friendly alternative to find
 
 #### Homebrew
 
@@ -10,13 +22,24 @@
 brew install fd
 ```
 
-### ripgrep
+### fzf
+
+command-line fuzzy finder
+
+#### Homebrew
+
+```sh
+brew install fzf
+```
+
+### ripgrep (rg)
+
+ripgrep is a line-oriented search tool
 
 #### Homebrew
 
 ```sh
 brew install ripgrep
-# brew uninstall ripgrep
 ```
 
 ### tidy
