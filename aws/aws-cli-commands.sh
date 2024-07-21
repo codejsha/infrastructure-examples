@@ -1,6 +1,6 @@
 ######################################################################
 
-function aws() { echo "+ aws ${*}">&2; command aws "${*}"; }
+function aws() { echo "+ aws ${@}">&2; command aws "${@}"; }
 
 alias aws="docker container run --rm -it -v ~/.aws:/root/.aws -v \$(pwd):/aws amazon/aws-cli"
 

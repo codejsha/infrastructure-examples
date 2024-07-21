@@ -51,8 +51,6 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home"
 export GROOVY_HOME="/opt/homebrew/opt/groovysdk/libexec"
-export GOOSE_DRIVER="mysql"
-export GOOSE_DIR="./db/migrations"
 
 alias ls="lsd"
 alias ll="lsd -alh"
@@ -63,6 +61,25 @@ alias vimdiff="nvim -d"
 alias vcpkg="${HOME}/tools/vcpkg/vcpkg"
 alias mysql="/opt/homebrew/opt/mysql-client/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client/bin/mysqldump"
+
+function brew() { echo "+ brew ${@}">&2; command brew "${@}"; }
+function curl() { echo "+ curl ${@}">&2; command curl "${@}"; }
+function fd() { echo "+ fd ${@}">&2; command fd "${@}"; }
+function rg() { echo "+ rg ${@}">&2; command rg "${@}"; }
+function make() { echo "+ make ${@}">&2; command make "${@}"; }
+function go() { echo "+ go ${@}">&2; command go "${@}"; }
+function python() { echo "+ python ${@}">&2; command python "${@}"; }
+function jcmd() { echo "+ jcmd ${@}">&2; command jcmd "${@}"; }
+function jar() { echo "+ jar ${@}">&2; command jar "${@}"; }
+function java() { echo "+ java ${@}">&2; command java "${@}"; }
+function jstack() { echo "+ jstack ${@}">&2; command jstack "${@}"; }
+function docker() { echo "+ docker ${@}">&2; command docker "${@}"; }
+function kubectl() { echo "+ kubectl ${@}">&2; command kubectl "${@}"; }
+function kustomize() { echo "+ kustomize ${@}">&2; command kustomize "${@}"; }
+function helm() { echo "+ helm ${@}">&2; command helm "${@}"; }
+function istioctl() { echo "+ istioctl ${@}">&2; command istioctl "${@}"; }
+function vault() { echo "+ vault ${@}">&2; command vault "${@}"; }
+function aws() { echo "+ aws ${@}">&2; command aws "${@}"; }
 
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }

@@ -22,7 +22,7 @@ set -o xtrace
 ### Logging and executing the command
 
 ```bash
-function sudo() { echo "+ sudo ${*}">&2; command sudo "${*}"; }
+function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
 ```
 
 ### Change directory with logging and listing
