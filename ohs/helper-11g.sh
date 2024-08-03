@@ -6,7 +6,7 @@ set -o errtrace
 MW_HOME="/usr/local/ohs"
 ORACLE_HOME="${MW_HOME}/oracle_wt1"
 INSTANCE_NAME="instance1"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/ohs"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/ohs"
 
 ######################################################################
 

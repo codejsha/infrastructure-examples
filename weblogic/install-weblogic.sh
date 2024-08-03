@@ -38,7 +38,7 @@ INVENTORY_FILE="oraInst.loc"
 # INSTALL_FILE="wls1036_generic.jar"
 # SILENT_FILE="silent.xml"
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/weblogic"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/weblogic"
 
 ######################################################################
 

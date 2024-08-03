@@ -9,7 +9,7 @@ INSTALL_FILE_DIR="/mnt/share/oracle-weblogic-server/wls10.3.6"
 INSTALL_FILE="wls1036_upgrade_generic.jar"
 SILENT_FILE="silent.xml"
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/weblogic"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/weblogic"
 
 ######################################################################
 

@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-COREDNS_HOME="/svc/infrastructure/coredns"
+COREDNS_HOME="${HOME}/repos/infrastructure-examples/coredns"
 
 ######################################################################
 

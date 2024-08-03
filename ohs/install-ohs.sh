@@ -24,7 +24,7 @@ RESPONSE_FILE="response-sw-only.rsp"
 # RESPONSE_FILE="response-sw-only-11g.rsp"
 
 INVENTORY_FILE="oraInst.loc"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/ohs"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/ohs"
 
 ######################################################################
 

@@ -5,7 +5,7 @@ set -o errtrace
 
 ORACLE_HOME="/usr/local/ohs"
 DOMAIN_NAME="base_domain"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/ohs"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/ohs"
 
 ######################################################################
 

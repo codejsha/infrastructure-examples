@@ -15,7 +15,7 @@ BIND_ADDRESS="test.example.com"
 BIND_ADDRESS_MGMT="test.example.com"
 BIND_ADDRESS_PRIVATE="test.example.com"
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/wildfly"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/wildfly"
 
 ######################################################################
 
