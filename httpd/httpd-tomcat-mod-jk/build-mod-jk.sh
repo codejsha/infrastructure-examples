@@ -9,7 +9,7 @@ HTTPD_HOME="${HTTPD_HOME}"
 
 INSTALL_FILE_DIR="/mnt/share/apache-tomcat"
 INSTALL_FILE="tomcat-connectors-1.2.48-src.tar.gz"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/tomcat"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/tomcat"
 
 ######################################################################
 

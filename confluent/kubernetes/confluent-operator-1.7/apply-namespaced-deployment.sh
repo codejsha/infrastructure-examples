@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/kafka/confluent/kubernetes"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/kafka/confluent/kubernetes"
 OPERATOR_HOME="${INSTALL_SCRIPT_DIR}/confluent-operator"
 
 bash ./download-install-file.sh

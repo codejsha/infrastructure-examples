@@ -8,7 +8,7 @@ JAVA_HOME="/usr/java/current"
 WL_HOME="/usr/local/weblogic/wlserver_10.3"
 DOMAIN_HOME="/usr/local/weblogic/user_projects/domains/base_domain"
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/weblogic"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/weblogic"
 
 ######################################################################
 
