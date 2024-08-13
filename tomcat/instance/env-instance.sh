@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/tomcat/instance"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/tomcat/instance"
 
 INSTANCE_NAME="inst1"
 

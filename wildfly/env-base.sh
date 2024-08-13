@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-INSTALL_SCRIPT_DIR="/svc/infrastructure/wildfly"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/wildfly"
 
 INSTANCE_NAME="inst1"   # default
 PORT_OFFSET="0"         # default

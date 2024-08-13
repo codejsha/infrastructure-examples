@@ -10,7 +10,7 @@ CATALINA_HOME="${CATALINA_HOME}"
 
 INSTALL_FILE_DIR="/mnt/share/apache-tomcat"
 INSTALL_FILE="tomcat-native-1.2.26-src.tar.gz"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/tomcat"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/tomcat"
 
 ######################################################################
 

@@ -1,0 +1,12 @@
+#[[#ifndef]]# ${PROJECT_NAME.toUpperCase()}_${INCLUDE_GUARD}
+#[[#define]]# ${PROJECT_NAME.toUpperCase()}_${INCLUDE_GUARD}
+
+${NAMESPACES_OPEN}
+
+class ${NAME} {
+
+};
+
+}
+
+#[[#endif]]#

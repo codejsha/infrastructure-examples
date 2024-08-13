@@ -9,7 +9,7 @@ DOMAIN_NAME="base_domain"
 ADMIN_SERVER_LISTEN_ADDRESS="test.example.com"
 ADMIN_SERVER_LISTEN_PORT="7001"
 ORA_INVENTORY_LOCATION="/usr/local/oraInventory"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/weblogic"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/weblogic"
 
 ######################################################################
 

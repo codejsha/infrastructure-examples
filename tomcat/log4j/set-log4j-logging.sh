@@ -9,7 +9,7 @@ CATALINA_HOME="${CATALINA_HOME}"
 
 INSTALL_FILE_DIR="/mnt/share/apache-log4j"
 INSTALL_FILE="apache-log4j-2.14.0-bin.tar.gz"
-INSTALL_SCRIPT_DIR="/svc/infrastructure/tomcat/log4j"
+INSTALL_SCRIPT_DIR="${HOME}/repos/infrastructure-examples/tomcat/log4j"
 
 ######################################################################
 
