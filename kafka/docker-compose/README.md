@@ -1,46 +1,84 @@
-# docker-compose kafka
+# kafka docker-compose examples
+
+docker compose commands:
+
+```sh
+# start
+docker compose up -d
+# down
+docker compose down --remove-orphans --volumes
+```
 
 ## apache kafka
 
-### bitnami-kraft
+### apache-kraft-1
 
-- apache kafka in kraft mode
+- kafka broker in kraft mode
 
-### bitnami-zk-1
+### apache-zk-1
 
-- apache zookeeper
-- apache kafka
+single node cluster with basic configuration
+
+- zookeeper
+- kafka broker
+
+### apache-zk-2
+
+single node cluster with health checks
+
+- zookeeper
+- kafka broker
 - schema registry
-- kafka connect
+- kafka rest
+
+### apache-ha-zk-1
+
+kafka cluster with high availability
+
+- zookeeper (3 nodes)
+- kafka broker (3 nodes)
+- schema registry
+- kafka connect worker (2 nodes)
 - prometheus
 - grafana
 - kafka lag exporter
 
-### bitnami-zk-2
+requirements:
 
-- apache zookeeper
-- apache kafka
+- prometheus jmx exporter agent file. cf. [jmx exporter github](https://github.com/prometheus/jmx_exporter)
+- `jmx-exporter` directory. cf. [shared-assets/jmx-exporter](https://github.com/confluentinc/jmx-monitoring-stacks/tree/main/shared-assets/jmx-exporter) of confluent platform monitoring stack
+- `prometheus/prometheus-alerts` directory. cf. [jmxexporter-prometheus-grafana/assets/prometheus/prometheus-alerts](https://github.com/confluentinc/jmx-monitoring-stacks/tree/main/jmxexporter-prometheus-grafana/assets/prometheus/prometheus-alerts) of confluent platform monitoring stack
+- `grafana/dashboards` directory. cf. [jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards](https://github.com/confluentinc/jmx-monitoring-stacks/tree/main/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards) of confluent platform monitoring stack
+
+```sh
+curl -o ./apache-ha-zk-1/jmx_prometheus_javaagent-1.0.1.jar -LJO https://repo.maven.apache.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/1.0.1/jmx_prometheus_javaagent-1.0.1.jar
+
+git clone https://github.com/confluentinc/jmx-monitoring-stacks
+/bin/cp -rf jmx-monitoring-stacks/shared-assets/jmx-exporter/ apache-ha-zk-1/jmx-exporter/
+/bin/cp -rf jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/prometheus/prometheus-alerts/ apache-ha-zk-1/prometheus/prometheus-alerts/
+/bin/cp -rf jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/ apache-ha-zk-1/grafana/dashboards/
+```
 
 ## confluent kafka
 
 ### confluent-kraft-1
 
-- confluent kafka (community) in kraft mode
+- kafka broker (community) in kraft mode
 - schema registry
 
 ### confluent-kraft-2
 
-- confluent kafka (community) in kraft mode
+- kafka broker (community) in kraft mode
 - schema registry
 - ksqldb
 - ksqldb cli
 
 ### confluent-zk
 
-- confluent zookeeper
-- confluent kafka (commercial)
+- zookeeper
+- kafka broker (commercial)
 - schema registry
-- kafka connect
+- kafka connect worker
 - kafka-rest
 - ksqldb
 - ksqldb cli
