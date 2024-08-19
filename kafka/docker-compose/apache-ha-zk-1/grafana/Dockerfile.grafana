@@ -1,0 +1,6 @@
+FROM grafana/grafana:11.1.4
+
+COPY datasource.yml /etc/grafana/provisioning/datasources/
+COPY dashboards /etc/grafana/provisioning/dashboards
+
+EXPOSE 3000

@@ -1,0 +1,11 @@
+FROM bitnami/zookeeper:3.9
+
+USER root
+RUN mkdir -p /usr/share/jmx-exporter/ && \
+    chown -R 1001:1001 /usr/share/jmx-exporter/
+USER 1001
+
+COPY jmx_prometheus_javaagent-1.0.1.jar /usr/share/jmx-exporter/
+COPY jmx-exporter/zookeeper.yml /usr/share/jmx-exporter/
+
+EXPOSE 2181 2888 3888 1234

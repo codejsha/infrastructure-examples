@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: APACHE-2.0
+# SPDX-FileCopyrightText: Copyright 2024 Jinseong Ha
+
+services:
+  kafka-broker:
+    image: bitnami/kafka:3.8
+    hostname: kafka-broker
+    ports:
+      - "9092:9092"
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-broker:9094
+      # Listeners
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker:9091,EXTERNAL://localhost:9092,BROKER://kafka-broker:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,BROKER:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    networks:
+      - stream-network
+    volumes:
+      - kafka_broker_volume:/bitnami/kafka
+
+networks:
+  stream-network:
+    driver: bridge
+
+volumes:
+  kafka_broker_volume:
+    driver: local

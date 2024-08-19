@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: APACHE-2.0
+# SPDX-FileCopyrightText: Copyright 2024 Jinseong Ha
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:3.9
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_volume:/bitnami/zookeeper"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - stream-network
+
+  kafka-broker:
+    image: bitnami/kafka:3.8
+    hostname: kafka-broker
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    networks:
+      - stream-network
+    volumes:
+      - "kafka_broker_volume:/bitnami/kafka"
+    depends_on:
+      - zookeeper
+
+networks:
+  stream-network:
+    driver: bridge
+
+volumes:
+  zookeeper_volume:
+    driver: local
+  kafka_broker_volume:
+    driver: local

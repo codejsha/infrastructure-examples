@@ -1,30 +1,28 @@
-version: "3.8"
+# SPDX-License-Identifier: APACHE-2.0
+# SPDX-FileCopyrightText: Copyright 2023-2024 Jinseong Ha
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:3.9
+    image: bitnami/zookeeper:3.9
     hostname: zookeeper
-    restart: unless-stopped
     ports:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
       - ZOO_4LW_COMMANDS_WHITELIST=srvr,mntr,ruok
     healthcheck:
-      test: [ "CMD-SHELL", "echo ruok | nc localhost 2181" ]
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181"]
       interval: 5s
       timeout: 3s
       retries: 3
+    networks:
+      - stream-network
     volumes:
-      - zookeeper-data:/bitnami/zookeeper
+      - zookeeper_volume:/bitnami/zookeeper
 
   kafka-broker:
-    image: docker.io/bitnami/kafka:3.6
+    image: bitnami/kafka:3.8
     hostname: kafka-broker
-    restart: unless-stopped
-    depends_on:
-      zookeeper:
-        condition: service_healthy
     ports:
       - "9092:9092"
     environment:
@@ -34,9 +32,9 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,BROKER:PLAINTEXT,CONTROLLER:PLAINTEXT
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker:9091,EXTERNAL://localhost:9092,BROKER://kafka-broker:9093,CONTROLLER://kafka-broker:9094
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181/clusterlocal
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
       - KAFKA_CFG_CONTROL_PLANE_LISTENER_NAME=CONTROLLER
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181/clusterlocal
       ### threads
       - KAFKA_CFG_NUM_NETWORK_THREADS=8
       - KAFKA_CFG_NUM_IO_THREADS=16
@@ -59,15 +57,17 @@ services:
       - KAFKA_CFG_LOG_RETENTION_CHECK_INTERVAL_MS=300000
       - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824
       - KAFKA_CFG_LOG_CLEANUP_POLICY=delete
+    networks:
+      - stream-network
     volumes:
-      - kafka-data:/bitnami/kafka
+      - kafka_broker_volume:/bitnami/kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
 
   schema-registry:
-    image: docker.io/confluentinc/cp-schema-registry:7.4.3
+    image: confluentinc/cp-schema-registry:7.7.0
     hostname: schema-registry
-    restart: unless-stopped
-    depends_on:
-      - kafka-broker
     ports:
       - "8081:8081"
     environment:
@@ -75,19 +75,23 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
       SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: backward
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker
     healthcheck:
-      test: [ "CMD-SHELL", "curl -s -o /dev/null -w %{http_code} http://localhost:8081" ]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -o /dev/null -w %{http_code} http://localhost:8081",
+        ]
       interval: 5s
       timeout: 3s
       retries: 3
 
   kafka-rest:
-    image: docker.io/confluentinc/cp-kafka-rest:7.4.3
+    image: confluentinc/cp-kafka-rest:7.7.0
     hostname: kafka-rest
-    restart: unless-stopped
-    depends_on:
-      - kafka-broker
-      - schema-registry
     ports:
       - "8082:8082"
     environment:
@@ -95,16 +99,27 @@ services:
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka-broker:9091
       KAFKA_REST_LISTENERS: http://0.0.0.0:8082
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker
+      - schema-registry
     healthcheck:
-      test: [ "CMD-SHELL", "curl -s -o /dev/null -w %{http_code} http://localhost:8082" ]
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s -o /dev/null -w %{http_code} http://localhost:8082",
+        ]
       interval: 5s
       timeout: 3s
       retries: 3
 
-volumes:
-  zookeeper-data:
-  kafka-data:
-
 networks:
-  default:
-    name: kafka-cluster
+  stream-network:
+    driver: bridge
+
+volumes:
+  zookeeper_volume:
+    driver: local
+  kafka_broker_volume:
+    driver: local
