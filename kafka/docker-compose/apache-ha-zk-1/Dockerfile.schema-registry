@@ -1,0 +1,11 @@
+FROM confluentinc/cp-schema-registry:7.7.0
+
+USER root
+RUN mkdir -p /usr/share/jmx-exporter/ && \
+    chown -R 1001:1001 /usr/share/jmx-exporter/
+USER 1001
+
+COPY jmx_prometheus_javaagent-1.0.1.jar /usr/share/jmx-exporter/
+COPY jmx-exporter/confluent_schemaregistry.yml /usr/share/jmx-exporter/
+
+EXPOSE 8081 1234

@@ -1,0 +1,6 @@
+FROM prom/prometheus:v2.53.2
+
+COPY prometheus.yml /etc/prometheus/
+COPY prometheus-alerts/*alert.yml /etc/prometheus/
+
+EXPOSE 9090

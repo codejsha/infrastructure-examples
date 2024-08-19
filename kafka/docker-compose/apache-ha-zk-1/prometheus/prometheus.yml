@@ -1,0 +1,85 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 15s
+
+rule_files:
+  - "alerts.yml"
+  - "broker-alerts.yml"
+  - "connector-alerts.yml"
+  - "zookeeper-alerts.yml"
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets:
+            - "alertmanager:9093"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "zookeeper"
+    static_configs:
+      - targets:
+          - "zookeeper1:1234"
+          - "zookeeper2:1234"
+          - "zookeeper3:1234"
+        labels:
+          env: "clusterlocal"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"
+
+  - job_name: "kafka-broker"
+    static_configs:
+      - targets:
+          - "kafka-broker1:1234"
+          - "kafka-broker2:1234"
+          - "kafka-broker3:1234"
+        labels:
+          env: "clusterlocal"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"
+
+  - job_name: "schema-registry"
+    static_configs:
+      - targets:
+          - "schema-registry1:1234"
+        labels:
+          env: "clusterlocal"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"
+
+  - job_name: "connect-worker"
+    static_configs:
+      - targets:
+          - "connect-worker1:1234"
+          - "connect-worker2:1234"
+        labels:
+          env: "clusterlocal"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"
+
+  - job_name: "kafka-lag-exporter"
+    static_configs:
+      - targets:
+          - "kafka-lag-exporter:8000"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"

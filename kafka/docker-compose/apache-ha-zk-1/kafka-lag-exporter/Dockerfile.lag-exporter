@@ -1,0 +1,6 @@
+FROM lightbend/kafka-lag-exporter:0.6.8
+
+COPY application.conf /opt/docker/conf/
+COPY logback.xml /opt/docker/conf/
+
+EXPOSE 8000
