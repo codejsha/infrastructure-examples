@@ -16,9 +16,11 @@ services:
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - zookeeper
     volumes:
-      - zookeeper_volume1:/bitnami/zookeevolume
+      - zookeeper_volume1:/bitnami/zookeeper
 
   zookeeper2:
     image: harbor.example.com/library/bitnami/zookeeper:3.9
@@ -34,7 +36,9 @@ services:
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - zookeeper
     volumes:
       - zookeeper_volume2:/bitnami/zookeeper
 
@@ -52,7 +56,9 @@ services:
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - zookeeper
     volumes:
       - zookeeper_volume3:/bitnami/zookeeper
 
@@ -64,7 +70,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=1
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker1:9091,EXTERNAL://kafka-broker1:9092,BROKER://kafka-broker1:9093,CONTROLLER://kafka-broker1:9094
@@ -98,7 +104,9 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - kafka-broker
     volumes:
       - kafka_broker_volume1:/bitnami/kafka
     depends_on:
@@ -114,7 +122,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=2
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker2:9091,EXTERNAL://kafka-broker2:9092,BROKER://kafka-broker2:9093,CONTROLLER://kafka-broker2:9094
@@ -148,7 +156,9 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - kafka-broker
     volumes:
       - kafka_broker_volume2:/bitnami/kafka
     depends_on:
@@ -164,7 +174,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=3
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - KAFKA_OPTS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker3:9091,EXTERNAL://kafka-broker3:9092,BROKER://kafka-broker3:9093,CONTROLLER://kafka-broker3:9094
@@ -198,7 +208,9 @@ services:
       - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=2
       - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - kafka-broker
     volumes:
       - kafka_broker_volume3:/bitnami/kafka
     depends_on:
@@ -218,7 +230,9 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
       SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: backward
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - schema-registry
     depends_on:
       - kafka-broker1
       - kafka-broker2
@@ -230,7 +244,7 @@ services:
     ports:
       - 8083
     environment:
-      KAFKA_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
+      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
       GROUP_ID: connect-cluster1
       BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       CONFIG_STORAGE_TOPIC: _connect-configs
@@ -243,7 +257,9 @@ services:
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - connect-cluster1
     depends_on:
       - kafka-broker1
       - kafka-broker2
@@ -256,7 +272,7 @@ services:
     ports:
       - 8083
     environment:
-      KAFKA_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
+      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
       CONNECT_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       CONNECT_REST_PORT: 8083
       CONNECT_REST_ADVERTISED_HOST_NAME: connect-worker2
@@ -275,7 +291,9 @@ services:
       CONNECT_VALUE_CONVERTER_ENHANCED_AVRO_SCHEMA_SUPPORT: true
       CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components
     networks:
-      - stream-network
+      stream-network:
+        aliases:
+          - connect-cluster2
     depends_on:
       - kafka-broker1
       - kafka-broker2
@@ -306,6 +324,13 @@ services:
   kafka-lag-exporter:
     image: harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
     hostname: kafka-lag-exporter
+    networks:
+      - stream-network
+
+  kafka-client:
+    image: harbor.example.com/library/bitnami/kafka:3.8
+    hostname: kafka-client
+    entrypoint: tail -f /dev/null
     networks:
       - stream-network
 
