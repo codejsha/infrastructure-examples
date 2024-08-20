@@ -4,7 +4,7 @@ alias kcat="docker container run -it edenhill/kcat:1.7.1"
 alias kcat="docker container run -it --network host edenhill/kcat:1.7.1"
 
 ### version
-docker container run -it --network host edenhill/kcat:1.7.1 -V
+docker container run --rm -it --network host edenhill/kcat:1.7.1 -V
 
 ######################################################################
 
