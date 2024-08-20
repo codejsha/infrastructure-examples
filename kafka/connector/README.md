@@ -5,7 +5,7 @@
 connector plugin list:
 
 ```bash
-curl --header "Accept:application/json" http://localhost:8083/connector-plugins | jq .[].class
+curl --header "Accept:application/json" http://localhost:8083/connector-plugins | jq '.[].class'
 ```
 
 connector list:
