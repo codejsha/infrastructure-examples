@@ -56,7 +56,8 @@ FLUSH PRIVILEGES;
 
 -- password
 ALTER USER 'debezium'@'%' IDENTIFIED WITH mysql_native_password BY 'dbz';
-UPDATE user SET password=password('new_password') WHERE user='root';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+ALTER USER 'root'@'%' IDENTIFIED BY 'new_password';
 
 -- ######################################################################
 
