@@ -42,6 +42,7 @@ kafka cluster with high availability
 - prometheus
 - grafana
 - kafka lag exporter
+- burrow
 - kafka ui
 - kafka client
 
