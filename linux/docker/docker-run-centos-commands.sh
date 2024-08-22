@@ -1,5 +1,13 @@
 ######################################################################
 
+function docker_run_centos() {
+    docker container run \
+        -it \
+        --name centos \
+        centos:latest
+}
+docker_run_centos
+
 function docker_run_centos7() {
     docker container run \
         -it \

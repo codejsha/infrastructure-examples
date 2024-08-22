@@ -1,5 +1,20 @@
 ######################################################################
 
+### trap error
+
+#!/bin/bash
+trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
+set -o errexit
+set -o errtrace
+
+#!/bin/bash
+trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
+set -o errexit
+set -o errtrace
+set -o xtrace
+
+######################################################################
+
 function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
 function xargs() { echo "+ xargs ${@}">&2; command xargs "${@}"; }
 
