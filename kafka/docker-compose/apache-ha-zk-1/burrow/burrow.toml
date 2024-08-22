@@ -1,0 +1,28 @@
+[zookeeper]
+servers=[ "zookeeper1:2181", "zookeeper2:2181", "zookeeper3:2181" ]
+timeout=6
+root-path="/burrow"
+
+[cluster.clusterlocal]
+client-profile="myclient"
+class-name="kafka"
+servers=[ "kafka-broker1:9092" ]
+topic-refresh=60
+offset-refresh=30
+groups-reaper-refresh=30
+
+[consumer.clusterlocal]
+class-name="kafka"
+cluster="clusterlocal"
+servers=[ "kafka-broker1:9092", "kafka-broker2:9092", "kafka-broker3:9092" ]
+client-profile="myclient"
+offsets-topic="__consumer_offsets"
+start-latest=true
+group-allowlist=".*"
+group-denylist="^(not-this-group-prefix).*$"
+
+[client-profile.myclient]
+kafka-version="3.8.0"
+
+[httpserver.default]
+address=":8000"
