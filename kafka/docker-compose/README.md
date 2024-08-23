@@ -54,7 +54,7 @@ requirements:
 - `grafana/dashboards` directory. cf. [jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards](https://github.com/confluentinc/jmx-monitoring-stacks/tree/main/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards) of confluent platform monitoring stack
 
 ```sh
-curl -o ./apache-ha-zk-1/jmx_prometheus_javaagent-1.0.1.jar -LJO https://repo.maven.apache.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/1.0.1/jmx_prometheus_javaagent-1.0.1.jar
+curl -o ./apache-ha-zk-1/jmx_prometheus_javaagent-0.20.0.jar -LJO https://repo.maven.apache.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.20.0/jmx_prometheus_javaagent-0.20.0.jar
 
 git clone https://github.com/confluentinc/jmx-monitoring-stacks
 /bin/cp -rf jmx-monitoring-stacks/shared-assets/jmx-exporter/ apache-ha-zk-1/jmx-exporter/
