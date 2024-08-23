@@ -12,7 +12,7 @@ services:
       ZOO_MAX_CLIENT_CNXNS: 0
       ZOO_SERVER_ID: 1
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -32,7 +32,7 @@ services:
       ZOO_MAX_CLIENT_CNXNS: 0
       ZOO_SERVER_ID: 2
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -52,7 +52,7 @@ services:
       ZOO_MAX_CLIENT_CNXNS: 0
       ZOO_SERVER_ID: 3
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -70,7 +70,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=1
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker1:9091,EXTERNAL://kafka-broker1:9092,BROKER://kafka-broker1:9093,CONTROLLER://kafka-broker1:9094
@@ -122,7 +122,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=2
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker2:9091,EXTERNAL://kafka-broker2:9092,BROKER://kafka-broker2:9093,CONTROLLER://kafka-broker2:9094
@@ -174,7 +174,7 @@ services:
     environment:
       - KAFKA_CFG_BROKER_ID=3
       - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker3:9091,EXTERNAL://kafka-broker3:9092,BROKER://kafka-broker3:9093,CONTROLLER://kafka-broker3:9094
@@ -224,7 +224,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/confluent_schemaregistry.yml
+      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/confluent_schemaregistry.yml
       SCHEMA_REGISTRY_HOST_NAME: schema-registry1
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
@@ -244,7 +244,7 @@ services:
     ports:
       - 8083
     environment:
-      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
+      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
       GROUP_ID: connect-cluster1
       BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       CONFIG_STORAGE_TOPIC: _connect-configs
@@ -272,7 +272,7 @@ services:
     ports:
       - 8083
     environment:
-      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-1.0.1.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
+      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
       CONNECT_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       CONNECT_REST_PORT: 8083
       CONNECT_REST_ADVERTISED_HOST_NAME: connect-worker2
@@ -326,6 +326,18 @@ services:
     hostname: kafka-lag-exporter
     networks:
       - stream-network
+
+  burrow:
+    image: harbor.example.com/library/linkedin/burrow:1.8.0
+    hostname: burrow
+    ports:
+      - 8000:8000
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker1
+      - kafka-broker2
+      - kafka-broker3
 
   kafka-ui:
     image: provectuslabs/kafka-ui:v0.7.2

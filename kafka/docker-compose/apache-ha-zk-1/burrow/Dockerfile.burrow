@@ -1,0 +1,5 @@
+FROM ghcr.io/linkedin/burrow/burrow:v1.8.0
+
+COPY burrow.toml /etc/burrow/
+
+EXPOSE 8000
