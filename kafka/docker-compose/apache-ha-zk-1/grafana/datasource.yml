@@ -7,12 +7,12 @@ deleteDatasources:
 datasources:
   - name: Prometheus
     type: prometheus
-    uid: prometheus
     access: proxy
     orgId: 1
+    uid: prometheus
     url: http://prometheus:9090
-    password:
     user:
+    password:
     database:
     basicAuth: true
     basicAuthUser: admin
