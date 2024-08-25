@@ -1,4 +1,7 @@
-### Visual Studio
+# SPDX-License-Identifier: APACHE-2.0
+# SPDX-FileCopyrightText: Copyright 2023-2024 Jinseong Ha
+
+### Microsoft Visual Studio
 
 root = true
 
