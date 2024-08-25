@@ -28,7 +28,7 @@ scrape_configs:
           - "zookeeper2:1234"
           - "zookeeper3:1234"
         labels:
-          env: "clusterlocal"
+          env: "clusterlocal-dev"
     relabel_configs:
       - source_labels: [__address__]
         target_label: hostname
@@ -42,7 +42,7 @@ scrape_configs:
           - "kafka-broker2:1234"
           - "kafka-broker3:1234"
         labels:
-          env: "clusterlocal"
+          env: "clusterlocal-dev"
     relabel_configs:
       - source_labels: [__address__]
         target_label: hostname
@@ -54,20 +54,33 @@ scrape_configs:
       - targets:
           - "schema-registry1:1234"
         labels:
-          env: "clusterlocal"
+          env: "clusterlocal-dev"
     relabel_configs:
       - source_labels: [__address__]
         target_label: hostname
         regex: "([^:]+)(:[0-9]+)?"
         replacement: "${1}"
 
-  - job_name: "connect-worker"
+  - job_name: "connect-cluster1"
     static_configs:
       - targets:
           - "connect-worker1:1234"
+        labels:
+          env: "clusterlocal-dev"
+          kafka_connect_cluster_id: "connect-cluster1"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: hostname
+        regex: "([^:]+)(:[0-9]+)?"
+        replacement: "${1}"
+
+  - job_name: "connect-cluster2"
+    static_configs:
+      - targets:
           - "connect-worker2:1234"
         labels:
-          env: "clusterlocal"
+          env: "clusterlocal-dev"
+          kafka_connect_cluster_id: "connect-cluster2"
     relabel_configs:
       - source_labels: [__address__]
         target_label: hostname
@@ -78,6 +91,8 @@ scrape_configs:
     static_configs:
       - targets:
           - "kafka-lag-exporter:8000"
+        labels:
+          env: "clusterlocal-dev"
     relabel_configs:
       - source_labels: [__address__]
         target_label: instance
