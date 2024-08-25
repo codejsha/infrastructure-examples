@@ -24,17 +24,14 @@ Confluent Platform is an enterprise-level event streaming platform that is built
 
 - kafka-lag-exporter: [/infrastructure-examples/kafka/kafka-lag-exporter](/kafka/kafka-lag-exporter/)
 - kcat: [/infrastructure-examples/kafka/kcat](/kafka/kcat/)
-- burrow
-- kafka-ui
-- kafdrop
-- kouncil
+- burrow: [/infrastructure-examples/kafka/burrow](/kafka/burrow/)
+- kafka-ui: [/infrastructure-examples/kafka/kafka-ui](/kafka/kafka-ui/)
+- kafdrop: [/infrastructure-examples/kafka/kafdrop](/kafka/kafdrop/)
 
 others:
 
 - cruise-control: <https://github.com/linkedin/cruise-control>
 - cmak (kafka-manager)
-- kpow
-- redpanda-console
 - xinfra-monitor (kafka monitor): <https://github.com/linkedin/kafka-monitor>
 - secor: <https://github.com/pinterest/secor>
 
