@@ -1,10 +1,10 @@
 name: Markdown Link Check
 
 on:
-  # every monday at 08:00
+  # every monday at 23:00 UTC
   schedule:
     # prettier-ignore
-    - cron: '0 8 * * 1'
+    - cron: '0 23 * * 0'
   workflow_dispatch:
 
 jobs:
