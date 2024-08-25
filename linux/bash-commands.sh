@@ -15,6 +15,8 @@ set -o xtrace
 
 ######################################################################
 
+### print command
+
 function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
 function xargs() { echo "+ xargs ${@}">&2; command xargs "${@}"; }
 
@@ -49,8 +51,6 @@ function readlinkpwd() { echo "+ readlink --canonicalize .">&2; command readlink
 
 function cdldconf() { DIRECTORY="/etc/ld.so.conf.d"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 function cdlocal() { DIRECTORY="/usr/local"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
-
-######################################################################
 
 function cdservicesys() { DIRECTORY="/etc/systemd/system"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 function cdservicepkg() { DIRECTORY="/usr/lib/systemd/system"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
