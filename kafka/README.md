@@ -32,7 +32,7 @@ Confluent Platform is an enterprise-level event streaming platform that is built
 others:
 
 - cruise-control: <https://github.com/linkedin/cruise-control>
-- cmak (kafka-manager)
+- cmak (kafka-manager): [/infrastructure-examples/kafka/cmak](/kafka/cmak/)
 - kpow
 - redpanda-console
 - xinfra-monitor (kafka monitor): <https://github.com/linkedin/kafka-monitor>
