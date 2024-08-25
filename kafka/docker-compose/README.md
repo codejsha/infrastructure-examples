@@ -60,19 +60,25 @@ git clone https://github.com/confluentinc/jmx-monitoring-stacks
 /bin/cp -rf jmx-monitoring-stacks/shared-assets/jmx-exporter/ apache-ha-zk-1/jmx-exporter/
 /bin/cp -rf jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/prometheus/prometheus-alerts/ apache-ha-zk-1/prometheus/prometheus-alerts/
 
-/bin/cp -rf jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/debezium-connectors.json apache-ha-zk-1/grafana/dashboards/debezium-connectors.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-cluster.json > apache-ha-zk-1/grafana/dashboards/kafka-cluster.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-connect-cluster.json > apache-ha-zk-1/grafana/dashboards/kafka-connect-cluster.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-consumer.json > apache-ha-zk-1/grafana/dashboards/kafka-consumer.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-lag-exporter.json > apache-ha-zk-1/grafana/dashboards/kafka-lag-exporter.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-producer.json > apache-ha-zk-1/grafana/dashboards/kafka-producer.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-stream.json > apache-ha-zk-1/grafana/dashboards/kafka-stream.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-topics.json > apache-ha-zk-1/grafana/dashboards/kafka-topics.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/kafka-transaction-coordinator.json > apache-ha-zk-1/grafana/dashboards/kafka-transaction-coordinator.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/ksqldb-cluster.json > apache-ha-zk-1/grafana/dashboards/ksqldb-cluster.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/librdkafka-application.json > apache-ha-zk-1/grafana/dashboards/librdkafka-application.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/schema-registry-cluster.json > apache-ha-zk-1/grafana/dashboards/schema-registry-cluster.json
-jq 'walk(if type == "object" and has("uid") and .uid == "${Prometheus}" then .uid = "prometheus" else . end)' jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards/zookeeper-cluster.json > apache-ha-zk-1/grafana/dashboards/zookeeper-cluster.json
+DASHBOARD_DIR="jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/grafana/provisioning/dashboards"
+DASHBOARD_FILES=(
+    "debezium-connectors.json"
+    "kafka-cluster.json"
+    "kafka-connect-cluster.json"
+    "kafka-consumer.json"
+    "kafka-lag-exporter.json"
+    "kafka-producer.json"
+    "kafka-stream.json"
+    "kafka-topics.json"
+    "kafka-transaction-coordinator.json"
+    "ksqldb-cluster.json"
+    "librdkafka-application.json"
+    "schema-registry-cluster.json"
+    "zookeeper-cluster.json"
+)
+for DASHBOARD in "${DASHBOARD_FILES[@]}"; do
+    jq 'walk(if type == "object" and .datasource? and .datasource.uid? then .datasource.uid = "prometheus" else . end)' ${DASHBOARD_DIR}/${DASHBOARD} > apache-ha-zk-1/grafana/dashboards/${DASHBOARD}
+done
 ```
 
 ## confluent kafka

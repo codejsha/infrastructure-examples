@@ -6,13 +6,14 @@ services:
     image: harbor.example.com/library/bitnami/zookeeper:3.9
     hostname: zookeeper1
     environment:
+      ZOO_SERVER_ID: 1
+      ZOO_HEAP_SIZE: 512
+      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
       ZOO_MAX_CLIENT_CNXNS: 0
-      ZOO_SERVER_ID: 1
-      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -26,13 +27,14 @@ services:
     image: harbor.example.com/library/bitnami/zookeeper:3.9
     hostname: zookeeper2
     environment:
+      ZOO_SERVER_ID: 2
+      ZOO_HEAP_SIZE: 512
+      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
       ZOO_MAX_CLIENT_CNXNS: 0
-      ZOO_SERVER_ID: 2
-      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -46,13 +48,14 @@ services:
     image: harbor.example.com/library/bitnami/zookeeper:3.9
     hostname: zookeeper3
     environment:
+      ZOO_SERVER_ID: 3
+      ZOO_HEAP_SIZE: 512
+      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
+      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
       ZOO_MAX_CLIENT_CNXNS: 0
-      ZOO_SERVER_ID: 3
-      ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,mntr,ruok
     networks:
@@ -307,6 +310,8 @@ services:
       - 9090:9090
     networks:
       - stream-network
+    volumes:
+      - prometheus_volume:/prometheus
 
   grafana:
     image: harbor.example.com/library/grafana/grafana:11.1.4
@@ -385,4 +390,6 @@ volumes:
   kafka_broker_volume2:
     driver: local
   kafka_broker_volume3:
+    driver: local
+  prometheus_volume:
     driver: local
