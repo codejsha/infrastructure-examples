@@ -1,7 +1,4 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
+######################################################################
 
 HOSTNAME="$(hostname --fqdn)"
 HOSTIP="$(ip -4 addr show scope global dev eth0 | grep inet | awk '{print $2}' | cut -d / -f 1 | sed -n 1p)"

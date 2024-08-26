@@ -10,5 +10,5 @@ helm upgrade --install my-kafka \
     --create-namespace \
     --namespace ${NAMESPACE} \
     --values values.yaml \
-    --version 12.4.3 \
+    --version 18.3.1 \
     bitnami/kafka
