@@ -6,7 +6,7 @@ root-path="/burrow"
 [cluster.clusterlocal]
 client-profile="myclient"
 class-name="kafka"
-servers=[ "kafka-broker1:9092" ]
+servers=[ "kafka-broker1:9092", "kafka-broker2:9092", "kafka-broker3:9092" ]
 topic-refresh=60
 offset-refresh=30
 groups-reaper-refresh=30
