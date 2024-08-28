@@ -30,10 +30,8 @@ confluent github examples:
 
 monitoring:
 
-- <https://github.com/confluentinc/jmx-monitoring-stacks.git>
-- <https://docs.confluent.io/platform/current/zookeeper/deployment.html>
-- <https://docs.confluent.io/platform/current/kafka/monitoring.html>
-- <https://docs.confluent.io/platform/current/schema-registry/monitoring.html>
-- <https://docs.confluent.io/home/connect/monitoring.html>
-- <https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/replicator-monitoring.html>
-- <https://docs.ksqldb.io/en/latest/reference/metrics/>
+- confluent platform monitoring stack: <https://github.com/confluentinc/jmx-monitoring-stacks.git>
+- confluent kafka monitoring: <https://docs.confluent.io/platform/current/kafka/monitoring.html>
+- confluent schema registry monitoring: <https://docs.confluent.io/platform/current/schema-registry/monitoring.html>
+- confluent kafka connect monitoring: <https://docs.confluent.io/home/connect/monitoring.html>
+- ksqldb monitoring: <https://docs.ksqldb.io/en/latest/reference/metrics/>
