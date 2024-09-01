@@ -1,7 +1,7 @@
 name: Markdown Link Check
 
 on:
-  # every monday at 23:00 UTC
+  # every sunday at 23:00 UTC
   schedule:
     # prettier-ignore
     - cron: '0 23 * * 0'
