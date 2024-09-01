@@ -57,6 +57,7 @@ requirements:
 curl -o ./apache-ha-zk-1/jmx_prometheus_javaagent-0.20.0.jar -LJO https://repo.maven.apache.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.20.0/jmx_prometheus_javaagent-0.20.0.jar
 
 git clone https://github.com/confluentinc/jmx-monitoring-stacks
+
 /bin/cp -rf jmx-monitoring-stacks/shared-assets/jmx-exporter/ apache-ha-zk-1/jmx-exporter/
 /bin/cp -rf jmx-monitoring-stacks/jmxexporter-prometheus-grafana/assets/prometheus/prometheus-alerts/ apache-ha-zk-1/prometheus/prometheus-alerts/
 
@@ -76,6 +77,7 @@ DASHBOARD_FILES=(
     "schema-registry-cluster.json"
     "zookeeper-cluster.json"
 )
+mkdir -p apache-ha-zk-1/grafana/dashboards
 for DASHBOARD in "${DASHBOARD_FILES[@]}"; do
     jq 'walk(if type == "object" and .datasource? and .datasource.uid? then .datasource.uid = "prometheus" else . end)' ${DASHBOARD_DIR}/${DASHBOARD} > apache-ha-zk-1/grafana/dashboards/${DASHBOARD}
 done
