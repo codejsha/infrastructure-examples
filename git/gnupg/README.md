@@ -6,8 +6,6 @@
 
 ```sh
 brew install gnupg
-
-# brew uninstall gnupg
 ```
 
 ## Pinentry
@@ -18,11 +16,8 @@ brew install gnupg
 
 ```sh
 brew install pinentry
-
-# brew uninstall pinentry
 ```
 
 ```sh
 brew install pinentry-mac
-
-# brew uninstall pinentry-mac
+```
