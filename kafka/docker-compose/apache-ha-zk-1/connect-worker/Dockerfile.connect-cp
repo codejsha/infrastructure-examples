@@ -1,0 +1,20 @@
+FROM confluentinc/cp-kafka-connect:7.7.0
+
+USER root
+RUN mkdir -p /usr/share/prometheus && \
+    chown -R 1000:1000 /usr/share/prometheus
+USER 1000
+
+COPY jmx_prometheus_javaagent-0.20.0.jar /usr/share/prometheus/jmx_prometheus_javaagent.jar
+COPY jmx-exporter/kafka_connect.yml /usr/share/prometheus/
+
+COPY connect-worker/confluentinc-kafka-connect-datagen-0.6.5 /usr/share/kafka/plugins/confluentinc-kafka-connect-datagen
+COPY connect-worker/confluentinc-kafka-connect-s3-10.5.15 /usr/share/kafka/plugins/confluentinc-kafka-connect-s3
+COPY connect-worker/confluentinc-kafka-connect-s3-source-2.6.5 /usr/share/kafka/plugins/confluentinc-kafka-connect-s3-source
+
+# RUN \
+#     confluent-hub install --no-prompt --component-dir /usr/share/kafka/plugins confluentinc/kafka-connect-datagen:latest && \
+#     confluent-hub install --no-prompt --component-dir /usr/share/kafka/plugins confluentinc/kafka-connect-s3:latest && \
+#     confluent-hub install --no-prompt --component-dir /usr/share/kafka/plugins confluentinc/kafka-connect-s3-source:latest
+
+EXPOSE 8083 1234

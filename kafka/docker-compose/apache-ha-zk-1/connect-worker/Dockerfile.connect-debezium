@@ -1,0 +1,14 @@
+FROM debezium/connect:2.7
+
+USER root
+RUN mkdir -p /usr/share/prometheus /usr/share/kafka/plugins && \
+    chown -R kafka:kafka /usr/share/prometheus /usr/share/kafka/plugins
+USER kafka
+
+COPY jmx_prometheus_javaagent-0.20.0.jar /usr/share/prometheus/jmx_prometheus_javaagent.jar
+COPY jmx-exporter/kafka_connect.yml /usr/share/prometheus/
+
+COPY connect-worker/confluentinc-kafka-connect-avro-converter-7.7.0 /usr/share/kafka/plugins/confluentinc-kafka-connect-avro-converter
+COPY confluentinc-kafka-connect-json-schema-converter-7.7.0 /usr/share/kafka/plugins/confluentinc-kafka-connect-json-schema-converter
+
+EXPOSE 8083 1234
