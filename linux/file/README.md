@@ -6,9 +6,8 @@
 
 A `cat` clone with syntax highlighting and Git integration.
 
-#### Homebrew
-
 ```sh
+# Homebrew
 brew install bat
 ```
 
@@ -16,9 +15,8 @@ brew install bat
 
 simple, fast and user-friendly alternative to find
 
-#### Homebrew
-
 ```sh
+# Homebrew
 brew install fd
 ```
 
@@ -26,9 +24,8 @@ brew install fd
 
 command-line fuzzy finder
 
-#### Homebrew
-
 ```sh
+# Homebrew
 brew install fzf
 ```
 
@@ -36,9 +33,8 @@ brew install fzf
 
 ripgrep is a line-oriented search tool
 
-#### Homebrew
-
 ```sh
+# Homebrew
 brew install ripgrep
 ```
 
@@ -46,15 +42,10 @@ brew install ripgrep
 
 formatting the content of XML files
 
-#### DNF/YUM
-
 ```bash
+# DNF/YUM
 sudo dnf install -y tidy
-```
-
-#### APT
-
-```bash
+# APT
 sudo apt-get install -y tidy
 ```
 
@@ -62,15 +53,10 @@ sudo apt-get install -y tidy
 
 listing directories and files as trees
 
-#### APT
-
 ```bash
+# APT
 sudo apt-get install -y tree
-```
-
-#### Homebrew
-
-```sh
+# Homebrew
 brew install tree
 ```
 
@@ -78,20 +64,11 @@ brew install tree
 
 extraction utility for compressed archive files
 
-#### DNF/YUM
-
 ```bash
+# DNF/YUM
 sudo yum install -y unzip
-```
-
-#### APT
-
-```bash
+# APT
 sudo apt-get install -y unzip
-```
-
-#### Homebrew
-
-```sh
+# Homebrew
 brew install unzip
 ```

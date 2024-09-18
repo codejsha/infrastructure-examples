@@ -9,7 +9,7 @@ services:
       ZOO_SERVER_ID: 1
       ZOO_HEAP_SIZE: 512
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
@@ -30,7 +30,7 @@ services:
       ZOO_SERVER_ID: 2
       ZOO_HEAP_SIZE: 512
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
@@ -51,7 +51,7 @@ services:
       ZOO_SERVER_ID: 3
       ZOO_HEAP_SIZE: 512
       ZOO_SERVERS: zookeeper1:2888:3888,zookeeper2:2888:3888,zookeeper3:2888:3888
-      JVMFLAGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/zookeeper.yml
+      JVMFLAGS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/zookeeper.yml
       ZOO_TICK_TIME: 2000
       ZOO_INIT_LIMIT: 10
       ZOO_SYNC_LIMIT: 5
@@ -72,8 +72,8 @@ services:
       - 30001:9092
     environment:
       - KAFKA_CFG_BROKER_ID=1
-      - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_HEAP_OPTS=-Xms1G -Xmx1G
+      - EXTRA_ARGS=-javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker1:9091,EXTERNAL://kafka-broker1:9092,BROKER://kafka-broker1:9093,CONTROLLER://kafka-broker1:9094
@@ -81,7 +81,7 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
       - KAFKA_CFG_CONTROL_PLANE_LISTENER_NAME=CONTROLLER
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal-dev
 
       - KAFKA_CFG_LOG_RETENTION_HOURS=168
       # - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
@@ -124,8 +124,8 @@ services:
       - 30002:9092
     environment:
       - KAFKA_CFG_BROKER_ID=2
-      - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_HEAP_OPTS=-Xms1G -Xmx1G
+      - EXTRA_ARGS=-javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker2:9091,EXTERNAL://kafka-broker2:9092,BROKER://kafka-broker2:9093,CONTROLLER://kafka-broker2:9094
@@ -133,7 +133,7 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
       - KAFKA_CFG_CONTROL_PLANE_LISTENER_NAME=CONTROLLER
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal-dev
 
       - KAFKA_CFG_LOG_RETENTION_HOURS=168
       # - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
@@ -176,8 +176,8 @@ services:
       - 30003:9092
     environment:
       - KAFKA_CFG_BROKER_ID=3
-      - KAFKA_HEAP_OPTS=-Xmx1g -Xms1g
-      - EXTRA_ARGS=-javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_broker.yml
+      - KAFKA_HEAP_OPTS=-Xms1G -Xmx1G
+      - EXTRA_ARGS=-javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/kafka_broker.yml
 
       - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker3:9091,EXTERNAL://kafka-broker3:9092,BROKER://kafka-broker3:9093,CONTROLLER://kafka-broker3:9094
@@ -185,7 +185,7 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
       - KAFKA_CFG_CONTROL_PLANE_LISTENER_NAME=CONTROLLER
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/clusterlocal-dev
 
       - KAFKA_CFG_LOG_RETENTION_HOURS=168
       # - KAFKA_CFG_LOG_RETENTION_BYTES=1073741824
@@ -227,7 +227,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/confluent_schemaregistry.yml
+      SCHEMA_REGISTRY_OPTS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/confluent_schemaregistry.yml
       SCHEMA_REGISTRY_HOST_NAME: schema-registry1
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
@@ -235,7 +235,7 @@ services:
     networks:
       stream-network:
         aliases:
-          - schema-registry
+          - schema-cluster
     depends_on:
       - kafka-broker1
       - kafka-broker2
@@ -245,20 +245,27 @@ services:
     image: harbor.example.com/library/debezium/connect:2.7
     hostname: connect-worker1
     ports:
-      - 8083
+      - 8083:8083
     environment:
-      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
-      GROUP_ID: connect-cluster1
+      HEAP_OPTS: -Xms512M -Xmx512M
+      EXTRA_ARGS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/kafka_connect.yml
       BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
-      CONFIG_STORAGE_TOPIC: _connect-configs
-      OFFSET_STORAGE_TOPIC: _connect-offsets
-      STATUS_STORAGE_TOPIC: _connect-status
-      KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
-      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-      INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      GROUP_ID: connect-cluster1
+      CONFIG_STORAGE_TOPIC: _connect-cluster1-configs
+      OFFSET_STORAGE_TOPIC: _connect-cluster1-offsets
+      STATUS_STORAGE_TOPIC: _connect-cluster1-status
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 3
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 3
+      KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: true
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: true
+      CONNECT_KEY_CONVERTER_ENHANCED_AVRO_SCHEMA_SUPPORT: true
+      CONNECT_VALUE_CONVERTER_ENHANCED_AVRO_SCHEMA_SUPPORT: true
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
+      CONNECT_PLUGIN_PATH: /kafka/connect,/usr/share/kafka/plugins
     networks:
       stream-network:
         aliases:
@@ -273,26 +280,30 @@ services:
     image: harbor.example.com/library/confluentinc/cp-kafka-connect-custom:7.7.0
     hostname: connect-worker2
     ports:
-      - 8083
+      - 8084:8083
     environment:
-      EXTRA_ARGS: -javaagent:/usr/share/jmx-exporter/jmx_prometheus_javaagent-0.20.0.jar=1234:/usr/share/jmx-exporter/kafka_connect.yml
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      HEAP_OPTS: -Xms512M -Xmx512M
+      EXTRA_ARGS: -javaagent:/usr/share/prometheus/jmx_prometheus_javaagent.jar=1234:/usr/share/prometheus/kafka_connect.yml
       CONNECT_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
-      CONNECT_REST_PORT: 8083
       CONNECT_REST_ADVERTISED_HOST_NAME: connect-worker2
       CONNECT_GROUP_ID: connect-cluster2
-      CONNECT_CONFIG_STORAGE_TOPIC: _connect-configs
-      CONNECT_OFFSET_STORAGE_TOPIC: _connect-offsets
-      CONNECT_STATUS_STORAGE_TOPIC: _connect-status
+      CONNECT_CONFIG_STORAGE_TOPIC: _connect-cluster2-configs
+      CONNECT_OFFSET_STORAGE_TOPIC: _connect-cluster2-offsets
+      CONNECT_STATUS_STORAGE_TOPIC: _connect-cluster2-status
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 3
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 3
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 3
-      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
       CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: true
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: true
       CONNECT_KEY_CONVERTER_ENHANCED_AVRO_SCHEMA_SUPPORT: true
       CONNECT_VALUE_CONVERTER_ENHANCED_AVRO_SCHEMA_SUPPORT: true
-      CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry1:8081
+      CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/kafka/plugins
     networks:
       stream-network:
         aliases:
@@ -332,17 +343,20 @@ services:
     networks:
       - stream-network
 
-  burrow:
-    image: harbor.example.com/library/linkedin/burrow:1.8.0
-    hostname: burrow
-    ports:
-      - 8000:8000
-    networks:
-      - stream-network
-    depends_on:
-      - kafka-broker1
-      - kafka-broker2
-      - kafka-broker3
+  # burrow:
+  #   image: harbor.example.com/library/linkedin/burrow:1.8.0
+  #   hostname: burrow
+  #   ports:
+  #     - 8000:8000
+  #   networks:
+  #     - stream-network
+  #   depends_on:
+  #     - zookeeper1
+  #     - zookeeper2
+  #     - zookeeper3
+  #     - kafka-broker1
+  #     - kafka-broker2
+  #     - kafka-broker3
 
   kafka-ui:
     image: provectuslabs/kafka-ui:v0.7.2
@@ -350,13 +364,13 @@ services:
     ports:
       - 9080:8080
     environment:
-      KAFKA_CLUSTERS_0_NAME: clusterlocal
+      KAFKA_CLUSTERS_0_NAME: clusterlocal-dev
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
       KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry1:8081
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: connect-cluster1
-      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: connect-worker1:8083
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect-worker1:8083
       KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: connect-cluster2
-      KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: connect-worker2:8083
+      KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: http://connect-worker2:8083
     networks:
       - stream-network
     depends_on:
@@ -366,6 +380,19 @@ services:
       - schema-registry1
       - connect-worker1
       - connect-worker2
+
+  localstack:
+    image: localstack/localstack:latest
+    hostname: localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      SERVICES: "s3"
+    volumes:
+      - localstack_volume:/var/lib/localstack
+    networks:
+      - stream-network
 
   kafka-client:
     image: harbor.example.com/library/bitnami/kafka:3.8
@@ -392,4 +419,6 @@ volumes:
   kafka_broker_volume3:
     driver: local
   prometheus_volume:
+    driver: local
+  localstack_volume:
     driver: local
