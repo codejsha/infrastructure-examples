@@ -1,11 +1,11 @@
 FROM bitnami/kafka:3.8
 
 USER root
-RUN mkdir -p /usr/share/jmx-exporter/ && \
-    chown -R 1001:1001 /usr/share/jmx-exporter/
+RUN mkdir -p /usr/share/prometheus && \
+    chown -R 1001:1001 /usr/share/prometheus
 USER 1001
 
-COPY jmx_prometheus_javaagent-0.20.0.jar /usr/share/jmx-exporter/
-COPY jmx-exporter/kafka_broker.yml /usr/share/jmx-exporter/
+COPY jmx_prometheus_javaagent-0.20.0.jar /usr/share/prometheus/jmx_prometheus_javaagent.jar
+COPY jmx-exporter/kafka_broker.yml /usr/share/prometheus/
 
 EXPOSE 9091 9092 9093 9094 1234

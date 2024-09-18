@@ -1,5 +1,7 @@
 FROM grafana/grafana:11.1.4
 
+USER grafana
+
 COPY datasource.yml /etc/grafana/provisioning/datasources/
 COPY dashboards /etc/grafana/provisioning/dashboards
 
