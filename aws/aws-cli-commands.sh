@@ -19,3 +19,9 @@ docker container run --rm -it -v ~/.aws:/root/.aws amazon/aws-cli configure
 ### Default output format [None]:
 
 ######################################################################
+
+### sqs
+
+aws sqs list-queues | jq
+
+aws sqs get-queue-attributes --queue-url ${QUEUE_URL} --attribute-names All | jq

@@ -7,6 +7,8 @@ function fd() { echo "+ fd ${@}">&2; command fd "${@}"; }
 
 ### fd
 
+fd -tf -E "*test.go|tset/" .go | xargs rg "\.Set[A-Za-z]+"
+
 ######################################################################
 
 ### find
