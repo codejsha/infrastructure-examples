@@ -86,12 +86,18 @@ for DASHBOARD in "${DASHBOARD_FILES[@]}"; do
 done
 ```
 
-- download the kafka connect avro converter from [confluent hub](https://www.confluent.io/hub/confluentinc/kafka-connect-avro-converter)
-- download the kafka connect json schema converter from [confluent hub](https://www.confluent.io/hub/confluentinc/kafka-connect-json-schema-converter)
+- download the kafka connect avro converter from <https://www.confluent.io/hub/confluentinc/kafka-connect-avro-converter>
+- download the kafka connect json schema converter from <https://www.confluent.io/hub/confluentinc/kafka-connect-json-schema-converter>
+- download the datagen source connector from <https://www.confluent.io/hub/confluentinc/kafka-connect-datagen>
+- download the amazon s3 sink connector from <https://www.confluent.io/hub/confluentinc/kafka-connect-s3>
+- download the amazon s3 source connector from <https://www.confluent.io/hub/confluentinc/kafka-connect-s3-source>
 
 ```sh
-curl -o ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-avro-converter-7.7.0.zip -LJO https://d2p6pa21dvn84.cloudfront.net/api/plugins/confluentinc/kafka-connect-avro-converter/versions/7.7.0/confluentinc-kafka-connect-avro-converter-7.7.0.zip
-curl -o ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-json-schema-converter-7.7.0.zip -LJO https://d2p6pa21dvn84.cloudfront.net/api/plugins/confluentinc/kafka-connect-json-schema-converter/versions/7.7.0/confluentinc-kafka-connect-json-schema-converter-7.7.0.zip
+# ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-avro-converter-7.7.0.zip
+# ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-json-schema-converter-7.7.0.zip
+# ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-datagen-0.6.5.zip
+# ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-s3-10.5.15.zip
+# ./apache-ha-zk-1/connect-worker/confluentinc-kafka-connect-s3-source-2.6.5.zip
 ```
 
 ## confluent kafka
