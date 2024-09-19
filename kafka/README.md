@@ -20,6 +20,28 @@ Confluent Platform is an enterprise-level event streaming platform that is built
 
 [/infrastructure-examples/confluent](/confluent/)
 
+## Converter Classes
+
+use with Confluent Schema Registry:
+
+- `io.confluent.connect.avro.AvroConverter`
+- `io.confluent.connect.protobuf.ProtobufConverter`
+- `io.confluent.connect.json.JsonSchemaConverter`
+
+without Confluent Schema Registry:
+
+- `org.apache.kafka.connect.storage.StringConverter`
+- `org.apache.kafka.connect.json.JsonConverter`
+- `org.apache.kafka.connect.converters.ByteArrayConverter`
+
+built-in primitive converters in Kafka Connect:
+
+- `org.apache.kafka.connect.converters.DoubleConverter` (FLOAT64)
+- `org.apache.kafka.connect.converters.FloatConverter` (FLOAT32)
+- `org.apache.kafka.connect.converters.IntegerConverter` (INT32)
+- `org.apache.kafka.connect.converters.LongConverter` (INT64)
+- `org.apache.kafka.connect.converters.ShortConverter` (INT16)
+
 ## Tools
 
 - kafka-lag-exporter: [/infrastructure-examples/kafka/kafka-lag-exporter](/kafka/kafka-lag-exporter/)
