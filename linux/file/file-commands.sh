@@ -1,5 +1,15 @@
 ######################################################################
 
+type -a ls
+# ls is an alias for lsd
+# ls is /bin/ls
+
+type -a curl
+# curl is a shell function from /Users/username/.zshrc
+# curl is /usr/bin/curl
+
+######################################################################
+
 ### directory
 
 ### ls (List directory contents)
@@ -10,6 +20,26 @@ ln -s ${SERVER_HOME}/${INST_HOME} ${INST_HOME}
 
 ### unlink (Removal via unlink(2))
 unlink ${INST_HOME}
+
+######################################################################
+
+### unzip
+
+unzip -q -o /etc/cmak.zip -d /etc
+unzip -d . ${SAMPLE_DB_FILE_DIR}/dvdrental.zip
+unzip -p ${JDBC_DRIVER_FILE} META-INF/MANIFEST.MF
+
+######################################################################
+
+### jq
+
+jq . ${FILE}
+
+http :8083/connector-plugins | jq '.[].class'
+http :8083/connectors | jq '.[]'
+
+http :8083/connectors/datagen-pageviews/config | jq -S
+http :8083/connectors/datagen-pageviews/config | jq --sort-keys
 
 ######################################################################
 

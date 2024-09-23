@@ -93,13 +93,6 @@ brew install --cask jetbrains-toolbox
 # brew uninstall --cask jetbrains-toolbox
 ```
 
-### jq
-
-```sh
-brew install jq
-# brew uninstall jq
-```
-
 ### Karabiner-Elements
 
 ```sh

@@ -99,14 +99,6 @@ choco install -y jetbrainstoolbox
 # choco uninstall -y jetbrainstoolbox
 ```
 
-### jq
-
-```ps1
-choco install -y jq
-
-# choco uninstall -y jq
-```
-
 ### Logitech Options+
 
 ```ps1

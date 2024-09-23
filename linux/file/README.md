@@ -29,6 +29,18 @@ command-line fuzzy finder
 brew install fzf
 ```
 
+### jq
+
+command-line JSON processor
+
+```sh
+# Homebrew
+brew install jq
+
+# Chocolatey
+choco install -y jq
+```
+
 ### ripgrep (rg)
 
 ripgrep is a line-oriented search tool
