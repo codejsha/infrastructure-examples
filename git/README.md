@@ -99,6 +99,13 @@ test: test a feature
 
 ## Other Tools
 
+### git-extras
+
+```sh
+# Homebrew
+brew install git-extras
+```
+
 ### Gitify
 
 ```sh
