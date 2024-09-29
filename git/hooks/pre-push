@@ -1,13 +1,32 @@
 #!/bin/sh
+trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
+set -o errexit
+set -o errtrace
 
-source $(pwd)/.git/hooks/.env
+echo "[INFO] pre-push hook"
 
-COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
+source ~/properties/git/hooks/.env
+HOOKS_DIR=$(git rev-parse --git-path hooks)
+REPO_ROOT=$(git rev-parse --show-toplevel)
+echo "[INFO] Environment: ${ENV_NAME}"
+echo "[INFO] Git hooks dir: ${HOOKS_DIR}"
+echo "[INFO] Repository root: ${REPO_ROOT}"
+
+######################################################################
+
+COMMITS_TO_PUSH=""
+if [ -z "$(git ls-remote --heads origin)" ]; then
+    COMMITS_TO_PUSH="$(git log --pretty=format:"%H")"
+else
+    COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
+fi
+echo "[INFO] Commits to push:"
+echo "${COMMITS_TO_PUSH}"
 
 for COMMIT in ${COMMITS_TO_PUSH}; do
     ### Check if the commit is GPG signed
     if ! git verify-commit ${COMMIT} > /dev/null 2>&1; then
-        echo "Error: Commit ${COMMIT} is not GPG signed."
+        echo "[ERROR] Commit ${COMMIT} is not GPG signed."
         exit 1
     fi
 
@@ -17,7 +36,7 @@ for COMMIT in ${COMMITS_TO_PUSH}; do
     ### Check if the commit user name and email match the env config
     if [ "${COMMIT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
         [ "${COMMIT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "Error: Push rejected. Your user name or email is incorrect."
+        echo "[ERROR] Push rejected. Your user name or email is incorrect."
         exit 1
     fi
 
@@ -28,12 +47,12 @@ for COMMIT in ${COMMITS_TO_PUSH}; do
 
     ### Check if the commit GPG signing key matches the env config
     if [ "${COMMIT_GPG_SIGNING_KEY}" != "${ENV_GPG_SIGNING_KEY}" ]; then
-        echo "Error: Commit ${COMMIT} is signed with a different GPG key."
+        echo "[ERROR] Commit ${COMMIT} is signed with a different GPG key."
         exit 1
     fi
     if [ "${COMMIT_GPG_USER_NAME}" != "${ENV_USER_NAME}" ] ||
         [ "${COMMIT_GPG_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "Error: Push rejected. Your GPG user name or email is incorrect."
+        echo "[ERROR] Push rejected. Your GPG user name or email is incorrect."
         exit 1
     fi
 done
