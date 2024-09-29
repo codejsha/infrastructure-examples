@@ -1,4 +1,4 @@
-# OpenAPI
+# OpenAPI Generator
 
 ## Install OpenAPI Generator CLI
 
