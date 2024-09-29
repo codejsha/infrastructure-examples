@@ -4,14 +4,49 @@
 
 web.xml:
 
-- https://cloud.google.com/appengine/docs/standard/java/config/webxml
-- https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html
-- https://docs.oracle.com/middleware/12213/wls/WBAPP/web_xml.htm
-- https://docs.oracle.com/middleware/12213/wls/WBAPP/app_events.htm
+- <https://cloud.google.com/appengine/docs/standard/java/config/webxml>
+- <https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet.html>
+- <https://docs.oracle.com/middleware/12213/wls/WBAPP/web_xml.htm>
+- <https://docs.oracle.com/middleware/12213/wls/WBAPP/app_events.htm>
 
 weblogic.xml:
 
-- https://docs.oracle.com/middleware/12213/wls/WBAPP/weblogic_xml.htm
+- <https://docs.oracle.com/middleware/12213/wls/WBAPP/weblogic_xml.htm>
+
+## Deploy an Application by WebLogic Deployer Utility
+
+- [weblogic.Deployer Command-Line Reference](https://docs.oracle.com/middleware/11119/wls/DEPGD/wldeployer.htm)
+- [Deploying Applications and Modules with weblogic.Deployer](https://docs.oracle.com/middleware/11119/wls/DEPGD/deploy.htm)
+
+## Deployment command
+
+```bash
+java weblogic.Deployer
+     -adminurl ${PROTOCOL}://${LISTEN_ADDRESS}:${PORT}
+     -username ${USERNAME} -password ${PASSWORD}
+     -verbose
+     -deploy -name ${DEPLOYMENT_NAME} -source ${FILE} -targets ${TARGET_LIST} -nostage
+```
+
+### Example
+
+```bash
+. ${MW_HOME}/wlserver_10.3/server/bin/setWLSEnv.sh
+java weblogic.Deployer -adminurl t3://192.168.137.130:7001 -username weblogic -password welcome1 -verbose -deploy -name sampleapp -source /app/sampleapp -targets Cluster-1 -nostage
+
+# weblogic.Deployer invoked with options:  -adminurl t3://192.168.137.130:7001 -username weblogic -verbose -deploy -name sampleapp -source /app/sampleapp -targets Cluster-1 -nostage
+# <Apr 7, 2019 9:53:37 AM KST> <Info> <J2EE Deployment SPI> <BEA-260121> <Initiating deploy operation for application, sampleapp [archive: /app/sampleapp], to Cluster-1 .>
+# Task 5 initiated: [Deployer:149026]deploy application sampleapp on Cluster-1.
+# Task 5 deferred: [Deployer:149026]deploy application sampleapp on Cluster-1.
+# Target state: deploy deferred on Cluster Cluster-1
+# java.rmi.RemoteException: [Deployer:149145]Unable to contact 'Server-12'. Deployment is deferred until 'Server-12' becomes available.
+#
+# java.rmi.RemoteException: [Deployer:149145]Unable to contact 'Server-11'. Deployment is deferred until 'Server-11' becomes available.
+#
+#
+# Target Assignments:
+# + sampleapp  Cluster-1
+```
 
 ## Sample application
 
