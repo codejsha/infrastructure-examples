@@ -1,0 +1,46 @@
+apply plugin: 'org.openapi.generator'
+
+dependencies {
+    implementation "org.openapitools:jackson-databind-nullable:0.2.6"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml"
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$projectDir/src/main/resources/openapi/openapi.json"
+    templateDir = "$projectDir/src/main/resources/openapi/templates"
+    ignoreFileOverride = "$projectDir/src/main/resources/openapi/.openapi-generator-ignore"
+    outputDir = "$projectDir/src/main/generated"
+    apiPackage = "com.example.openapi.demo.api"
+    modelPackage = "com.example.openapi.demo.model"
+    invokerPackage = "com.example.openapi.demo"
+    // globalProperties.set([
+    //         "apis"           : "",
+    //         "models"         : "",
+    //         "supportingFiles": "ApiUtil.java"
+    // ])
+    configOptions.set([
+            "title"                         : "demoService",
+            "sourceFolder"                  : "",
+            "useSpringBoot3"                : "true",
+            "delegatePattern"               : "true",
+            "useTags"                       : "true",
+            "additionalModelTypeAnnotations": "@lombok.Data",
+            "legacyDiscriminatorBehavior"   : "false",
+            "useResponseEntity"             : "false",
+            "documentationProvider"         : "none",
+            "annotationLibrary"             : "none",
+            "useSwaggerUI"                  : "false",
+    ])
+    skipOperationExample = true
+    importMappings.set([
+            "Page"        : "org.springframework.data.domain.Page",
+            "Pageable"    : "org.springframework.data.domain.Pageable",
+            "Sort"        : "org.springframework.data.domain.Sort",
+    ])
+    schemaMappings.set([
+            "Page"                                : "org.springframework.data.domain.Page",
+            "Pageable"                            : "org.springframework.data.domain.Pageable",
+            "Sort"                                : "org.springframework.data.domain.Sort",
+    ])
+}
