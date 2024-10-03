@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-vault-agent-injector
+  namespace: vault
+spec:
+  template:
+    spec:
+      containers:
+        - args:
+          name: sidecar-injector
+          securityContext:
+            allowPrivilegeEscalation: true
+      securityContext:
+        runAsGroup: 0
+        runAsNonRoot: false
+        runAsUser: 0
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-vault
+  namespace: vault
+spec:
+  template:
+    spec:
+      containers:
+        - args:
+          name: vault
+          securityContext:
+            allowPrivilegeEscalation: true
+      securityContext:
+        fsGroup: 0
+        runAsGroup: 0
+        runAsNonRoot: false
+        runAsUser: 0
