@@ -8,6 +8,43 @@ export PATH="${PATH}:${HOME}/.istioctl/bin"
 
 ######################################################################
 
+### version
+
+istioctl version
+### Istio is not present in the cluster: no running Istio pods in namespace "istio-system"
+### client version: 1.23.2
+
+istioctl version
+### client version: 1.23.2
+### control plane version: 1.23.2
+### data plane version: 1.23.2 (1 proxies)
+
+######################################################################
+
+### install
+
+### profile list
+istioctl profile list
+### Istio configuration profiles:
+###     ambient
+###     default
+###     demo
+###     empty
+###     minimal
+###     openshift
+###     openshift-ambient
+###     preview
+###     remote
+###     stable
+
+istioctl install -y --set profile=default
+
+### verify
+istioctl manifest generate --set profile=default | istioctl verify-install -f -
+### ✔ Istio is installed and verified successfully
+
+######################################################################
+
 ### injection
 
 ### automatic sidecar injection
@@ -16,10 +53,10 @@ kubectl get namespace -L istio-injection
 istioctl proxy-status
 
 ### manual sidecar injection
-# kubectl apply --filename <(istioctl kube-inject -f httpbin.yaml)
+kubectl apply --filename <(istioctl kube-inject -f httpbin.yaml)
 
 ### disable sidecar injection
-# kubectl label namespace ${NAMESPACE} istio-injection-
+kubectl label namespace ${NAMESPACE} istio-injection-
 
 ######################################################################
 
