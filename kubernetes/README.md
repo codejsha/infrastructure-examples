@@ -42,7 +42,6 @@ sudo apt-get install -y kubectl
 
 ```sh
 brew install kubernetes-cli
-
 # brew uninstall kubernetes-cli
 ```
 
@@ -50,7 +49,6 @@ brew install kubernetes-cli
 
 ```ps1
 choco install -y kubernetes-cli
-
 # choco uninstall -y kubernetes-cli
 ```
 
@@ -59,6 +57,12 @@ choco install -y kubernetes-cli
 - kubectl: <https://kubernetes.io/docs/tasks/tools/install-kubectl>
 - kubectl-aliases: <https://github.com/ahmetb/kubectl-aliases>
 - krew: [/infrastructure-examples/kubernetes/krew](/kubernetes/krew/)
+- kubectx & kubens: <https://github.com/ahmetb/kubectx>
+
+```zsh
+### kubectx & kubens
+brew install kubectx
+```
 
 ## Install Cluster
 
