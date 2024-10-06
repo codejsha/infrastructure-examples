@@ -81,30 +81,38 @@ kubectl delete gw,vs,dr,se --all
 
 ### debugging envoy and istod
 
+PRODUCTPAGE_POD_NAME="$(kubectl get pods -l app=productpage -n bookinfo -o jsonpath='{.items[*].metadata.name}')"
+
 istioctl proxy-status
-istioctl proxy-status my-gitea-0.gitea --vklog=8
-istioctl proxy-status my-gitea-0.gitea --vklog=9
+istioctl ps
+istioctl proxy-status ${PRODUCTPAGE_POD_NAME}.productpage --vklog=8
+istioctl proxy-status ${PRODUCTPAGE_POD_NAME}.productpage --vklog=9
 
-istioctl proxy-config cluster --namespace istio-system $(kubectl get pods --namespace istio-system --selector app=istio-ingressgateway --output jsonpath='{.items[0].metadata.name}')
-istioctl proxy-config cluster --namespace istio-system $(kubectl get pods --namespace istio-system --selector app=istio-ingressgateway --output jsonpath='{.items[0].metadata.name}') --port 3000
-istioctl proxy-config cluster --namespace istio-system $(kubectl get pods --namespace istio-system --selector app=istio-ingressgateway --output jsonpath='{.items[0].metadata.name}') --fqdn my-gitea-http.gitea.svc.cluster.local
-istioctl proxy-config cluster --namespace istio-system $(kubectl get pods --namespace istio-system --selector app=istio-ingressgateway --output jsonpath='{.items[0].metadata.name}') --fqdn my-gitea-http.gitea.svc.cluster.local --output json | jq
+istioctl proxy-config all ${PRODUCTPAGE_POD_NAME}.bookinfo
+istioctl pc all ${PRODUCTPAGE_POD_NAME}.bookinfo
 
-istioctl proxy-config listener my-gitea-0.gitea
-istioctl proxy-config listener my-gitea-0.gitea --port 15006
-istioctl proxy-config listener my-gitea-0.gitea --port 15006 --output json | jq
-istioctl proxy-config listener my-gitea-0.gitea --port 15001
-istioctl proxy-config listener my-gitea-0.gitea --port 15001 --output json | jq
-istioctl proxy-config listener my-gitea-0.gitea --address 0.0.0.0
+ISTO_INGRESS_POD_NAME="$(kubectl get pods -l app=istio-ingressgateway -n istio-system -o jsonpath='{.items[*].metadata.name}')"
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME}
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME} --port 9080
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME} --port 9080 --subset v1
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME} --fqdn productpage.bookinfo.svc.cluster.local
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME} --fqdn productpage.bookinfo.svc.cluster.local --subset v1
+istioctl proxy-config cluster --namespace istio-system ${ISTO_INGRESS_POD_NAME} --fqdn productpage.bookinfo.svc.cluster.local --subset v1 --output json | jq
 
-istioctl proxy-config route my-gitea-0.gitea
-istioctl proxy-config route my-gitea-0.gitea --name 3000
-istioctl proxy-config route my-gitea-0.gitea --name 3000 --output json | jq
+istioctl proxy-config listener ${PRODUCTPAGE_POD_NAME}.bookinfo
+istioctl proxy-config listener ${PRODUCTPAGE_POD_NAME}.bookinfo --port 9080
+istioctl proxy-config listener ${PRODUCTPAGE_POD_NAME}.bookinfo --port 9080 --output json | jq
+istioctl proxy-config listener ${PRODUCTPAGE_POD_NAME}.bookinfo --port 15001
+istioctl proxy-config listener ${PRODUCTPAGE_POD_NAME}.bookinfo --port 15006
 
-istioctl proxy-config endpoint my-gitea-0.gitea
-istioctl proxy-config endpoint my-gitea-0.gitea --port 3000
-istioctl proxy-config endpoint my-gitea-0.gitea --address $(kubectl get pod my-gitea-0 --output jsonpath='{.status.podIP}')
-istioctl proxy-config endpoint my-gitea-0.gitea --address $(kubectl get pod my-gitea-0 --output jsonpath='{.status.podIP}') --output json | jq
+istioctl proxy-config route ${PRODUCTPAGE_POD_NAME}.bookinfo
+istioctl proxy-config route ${PRODUCTPAGE_POD_NAME}.bookinfo --name 9080
+istioctl proxy-config route ${PRODUCTPAGE_POD_NAME}.bookinfo --name 9080 --output json | jq
+
+istioctl proxy-config endpoint ${PRODUCTPAGE_POD_NAME}.bookinfo
+istioctl proxy-config endpoint ${PRODUCTPAGE_POD_NAME}.bookinfo --port 9080
+istioctl proxy-config endpoint ${PRODUCTPAGE_POD_NAME}.bookinfo --address $(kubectl get pod ${PRODUCTPAGE_POD_NAME} --output jsonpath='{.status.podIP}')
+istioctl proxy-config endpoint ${PRODUCTPAGE_POD_NAME}.bookinfo --address $(kubectl get pod ${PRODUCTPAGE_POD_NAME} --output jsonpath='{.status.podIP}') --output json | jq
 
 ######################################################################
 
@@ -114,5 +122,4 @@ istioctl proxy-config endpoint my-gitea-0.gitea --address $(kubectl get pod my-g
 kubectl logs -l istio=ingressgateway -c istio-proxy -n istio-system
 
 ### istio sidecar log
-kubectl logs -f my-gitea-0 -c istio-proxy
-
+kubectl logs -f ${PRODUCTPAGE_POD_NAME} -c istio-proxy -n bookinfo
