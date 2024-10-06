@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: kiali-gw
@@ -26,7 +26,7 @@ spec:
         credentialName: kiali-cert
         mode: SIMPLE
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: kiali-vs
@@ -43,7 +43,7 @@ spec:
             port:
               number: 20001
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
   name: kiali-dr

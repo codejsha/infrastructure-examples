@@ -24,13 +24,15 @@ kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/sa
 #     -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
 
 ### deploy networking
-kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/destination-rule-all.yaml
-kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml
+# kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/destination-rule-all.yaml
+# kubectl apply --filename https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml
 
 ### check bookinfo gateway
 # kubectl get gateways
 # istioctl analyze
 # kubectl get services istio-ingressgateway --namespace istio-system
+
+######################################################################
 
 ### delete
 # kubectl delete --filename https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/networking/bookinfo-gateway.yaml

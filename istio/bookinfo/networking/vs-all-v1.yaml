@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: productpage
@@ -11,8 +11,9 @@ spec:
             host: productpage.bookinfo.svc.cluster.local
             port:
               number: 9080
+            subset: v1
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: reviews
@@ -25,8 +26,9 @@ spec:
             host: reviews.bookinfo.svc.cluster.local
             port:
               number: 9080
+            subset: v1
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: ratings
@@ -39,8 +41,9 @@ spec:
             host: ratings.bookinfo.svc.cluster.local
             port:
               number: 9080
+            subset: v1
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: details
@@ -53,3 +56,4 @@ spec:
             host: details.bookinfo.svc.cluster.local
             port:
               number: 9080
+            subset: v1

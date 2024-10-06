@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+    - ratings.bookinfo.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: ratings.bookinfo.svc.cluster.local
+            port:
+              number: 9080
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream

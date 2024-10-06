@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: reviews
@@ -11,7 +11,4 @@ spec:
             host: reviews.bookinfo.svc.cluster.local
             port:
               number: 9080
-      retries:
-        attempts: 3
-        perTryTimeout: 2s
-        retryOn: gateway-error,connect-failure,refused-stream
+            subset: v1

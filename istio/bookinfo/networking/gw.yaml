@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: bookinfo-gateway
@@ -8,7 +8,7 @@ spec:
   servers:
     - port:
         name: http
-        number: 80
         protocol: HTTP
+        number: 80
       hosts:
         - bookinfo.example.com

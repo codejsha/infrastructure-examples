@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: reviews
@@ -9,6 +9,5 @@ spec:
     - route:
         - destination:
             host: reviews.bookinfo.svc.cluster.local
-            port:
-              number: 9080
-            subset: v1
+            subset: v2
+      timeout: 20ms
