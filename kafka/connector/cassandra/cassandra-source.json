@@ -1,0 +1,24 @@
+{
+  "name": "cassandra-source",
+  "config": {
+    "connector.class": "io.debezium.connector.cassandra.CassandraConnector",
+    "tasks.max": "1",
+    "cassandra.hosts": "cassandra.example.com",
+    "cassandra.port": "9042",
+    "cassandra.username": "",
+    "cassandra.password": "",
+    "cassandra.ssl.enabled": "false",
+    "commit.log.relocation.dir": "/tmp/cassandra/relocation",
+    "offset.backing.store.dir": "/tmp/cassandra/offsets",
+    "snapshot.mode": "initial",
+    "max.queue.size": "8192",
+    "max.batch.size": "2048",
+    "poll.interval.ms": "1000",
+    "transforms": "Unwrap",
+    "transforms.Unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://localhost:8081"
+  }
+}
