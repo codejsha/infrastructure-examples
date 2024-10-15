@@ -6,12 +6,21 @@ connector plugin list:
 
 ```bash
 curl --header "Accept:application/json" http://localhost:8083/connector-plugins | jq '.[].class'
+http :8083/connector-plugins | jq '.[].class'
 ```
 
 connector list:
 
 ```bash
 curl --header "Accept:application/json" http://localhost:8083/connectors | jq
+http :8083/connectors | jq
+```
+
+connector config:
+
+```bash
+curl --header "Accept:application/json" http://localhost:8083/connectors/datagen-pageviews/config | jq -S
+http :8083/connectors/datagen-pageviews/config | jq -S
 ```
 
 - Kafka Connect REST Interface for Confluent Platform: <https://docs.confluent.io/platform/current/connect/references/restapi.html>
