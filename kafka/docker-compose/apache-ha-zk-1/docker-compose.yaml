@@ -337,11 +337,11 @@ services:
     networks:
       - stream-network
 
-  kafka-lag-exporter:
-    image: harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
-    hostname: kafka-lag-exporter
-    networks:
-      - stream-network
+  # kafka-lag-exporter:
+  #   image: harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
+  #   hostname: kafka-lag-exporter
+  #   networks:
+  #     - stream-network
 
   # burrow:
   #   image: harbor.example.com/library/linkedin/burrow:1.8.0
@@ -381,6 +381,20 @@ services:
       - connect-worker1
       - connect-worker2
 
+  mysql:
+    image: quay.io/debezium/example-mysql:2.7
+    hostname: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpw
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    networks:
+      - stream-network
+
   localstack:
     image: localstack/localstack:latest
     hostname: localstack
@@ -419,6 +433,8 @@ volumes:
   kafka_broker_volume3:
     driver: local
   prometheus_volume:
+    driver: local
+  mysql_volume:
     driver: local
   localstack_volume:
     driver: local

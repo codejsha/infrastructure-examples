@@ -1,0 +1,24 @@
+{
+  "name": "s3-sink-field",
+  "config": {
+    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+    "tasks.max": "3",
+    "topics": "orders",
+
+    "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+
+    "s3.bucket.name": "orders-field",
+    "s3.region": "ap-northeast-2",
+    "store.url": "http://localstack:4566",
+    "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+
+    "partitioner.class": "io.confluent.connect.storage.partitioner.FieldPartitioner",
+    "partition.field.name": "id",
+    "flush.size": "100",
+    "format.class": "io.confluent.connect.s3.format.json.JsonFormat",
+    "keys.format.class": "io.confluent.connect.s3.format.bytearray.ByteArrayFormat",
+    "store.kafka.keys": "true"
+  }
+}

@@ -44,6 +44,8 @@ kafka cluster with high availability
 - kafka lag exporter
 - burrow
 - kafka ui
+- mysql
+- localstack
 - kafka client
 
 requirements:
