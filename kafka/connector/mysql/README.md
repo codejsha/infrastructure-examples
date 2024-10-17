@@ -16,9 +16,15 @@ include/exclude configurations:
 ## Management
 
 ```sh
+### mysql-source
 KAFKA_CONNECT_URL="http://localhost:8083"
 CONNECTOR_NAME="mysql-source"
 CONNECTOR_CONFIG_FILE="mysql-source.json"
+
+### mysql-source-inventory
+KAFKA_CONNECT_URL="http://localhost:8083"
+CONNECTOR_NAME="inventory-connector"
+CONNECTOR_CONFIG_FILE="mysql-source-inventory.json"
 ```
 
 create connector:
