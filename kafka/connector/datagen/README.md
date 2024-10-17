@@ -125,4 +125,6 @@ curl -X DELETE -H "Accept:application/json" ${KAFKA_CONNECT_URL}/connectors/${CO
 
 ## References
 
-- <https://github.com/confluentinc/kafka-connect-datagen>
+- [Kafka Connect: Build and Run Data Pipelines (O'Reilly)](https://www.oreilly.com/library/view/kafka-connect/9781098126520/)
+- [Confluent Datagen Connector GitHub](https://github.com/confluentinc/kafka-connect-datagen)
+- [Apache Kafka and Confluent Platform examples and demos GitHub](https://github.com/confluentinc/examples.git)
