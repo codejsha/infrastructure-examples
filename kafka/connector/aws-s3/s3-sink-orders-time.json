@@ -1,0 +1,29 @@
+{
+  "name": "s3-sink-time",
+  "config": {
+    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+    "tasks.max": "3",
+    "topics": "orders",
+
+    "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+
+    "s3.bucket.name": "orders-time",
+    "s3.region": "ap-northeast-2",
+    "store.url": "http://localstack:4566",
+    "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+
+    "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
+    "partition.duration.ms": "6000000",
+    "timestamp.extractor": "Record",
+    "flush.size": "100",
+    "rotate.interval.ms": "6000000",
+    "timezone": "UTC",
+    "locale": "en-US",
+    "path.format": "'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH",
+    "format.class": "io.confluent.connect.s3.format.avro.AvroFormat",
+    "keys.format.class": "io.confluent.connect.s3.format.bytearray.ByteArrayFormat",
+    "store.kafka.keys": "true"
+  }
+}

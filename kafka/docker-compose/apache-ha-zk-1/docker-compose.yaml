@@ -236,6 +236,7 @@ services:
       stream-network:
         aliases:
           - schema-cluster
+          - schema-registry
     depends_on:
       - kafka-broker1
       - kafka-broker2
@@ -314,6 +315,25 @@ services:
       - kafka-broker3
       - schema-registry1
 
+  ksqldb:
+    image: confluentinc/ksqldb-server:0.29.0
+    hostname: ksqldb
+    ports:
+      - 8088:8088
+    environment:
+      KSQL_LISTENERS: http://0.0.0.0:8088
+      KSQL_BOOTSTRAP_SERVERS: kafka-broker1:9091,kafka-broker2:9091,kafka-broker3:9091
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker1
+      - kafka-broker2
+      - kafka-broker3
+      - schema-registry1
+
   prometheus:
     image: harbor.example.com/library/prom/prometheus:v2.53.2
     hostname: prometheus
@@ -337,11 +357,11 @@ services:
     networks:
       - stream-network
 
-  kafka-lag-exporter:
-    image: harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
-    hostname: kafka-lag-exporter
-    networks:
-      - stream-network
+  # kafka-lag-exporter:
+  #   image: harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
+  #   hostname: kafka-lag-exporter
+  #   networks:
+  #     - stream-network
 
   # burrow:
   #   image: harbor.example.com/library/linkedin/burrow:1.8.0
@@ -371,6 +391,7 @@ services:
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://connect-worker1:8083
       KAFKA_CLUSTERS_0_KAFKACONNECT_1_NAME: connect-cluster2
       KAFKA_CLUSTERS_0_KAFKACONNECT_1_ADDRESS: http://connect-worker2:8083
+      KAFKA_CLUSTERS_0_KSQLDBSERVER: http://ksqldb:8088
     networks:
       - stream-network
     depends_on:
@@ -381,6 +402,20 @@ services:
       - connect-worker1
       - connect-worker2
 
+  mysql:
+    image: quay.io/debezium/example-mysql:2.7
+    hostname: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpw
+    networks:
+      - stream-network
+    volumes:
+      - mysql_volume:/var/lib/mysql
+
   localstack:
     image: localstack/localstack:latest
     hostname: localstack
@@ -389,10 +424,10 @@ services:
       - "4510-4559:4510-4559"
     environment:
       SERVICES: "s3"
-    volumes:
-      - localstack_volume:/var/lib/localstack
     networks:
       - stream-network
+    volumes:
+      - localstack_volume:/var/lib/localstack
 
   kafka-client:
     image: harbor.example.com/library/bitnami/kafka:3.8
@@ -400,6 +435,14 @@ services:
     entrypoint: tail -f /dev/null
     networks:
       - stream-network
+
+  # ksqldb-client:
+  #   image: confluentinc/ksqldb-cli:0.29.0
+  #   hostname: ksqldb-client
+  #   entrypoint: /bin/sh
+  #   tty: true
+  #   networks:
+  #     - stream-network
 
 networks:
   stream-network:
@@ -419,6 +462,8 @@ volumes:
   kafka_broker_volume3:
     driver: local
   prometheus_volume:
+    driver: local
+  mysql_volume:
     driver: local
   localstack_volume:
     driver: local

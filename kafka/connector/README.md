@@ -1,4 +1,4 @@
-# Kafka Connect Connectors
+# Kafka Connect - Connectors
 
 ## Kafka Connect REST API
 

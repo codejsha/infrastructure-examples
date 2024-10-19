@@ -28,6 +28,11 @@ confluent github examples:
 - <https://github.com/confluentinc/kafka-streams-examples.git>
 - <https://github.com/confluentinc/confluent-kubernetes-examples.git>
 
+ksqldb:
+
+- how-to-guides: <https://docs.ksqldb.io/en/latest/how-to-guides/>
+- ksqlDB example snippets: <https://ksqldb.io/examples.html>
+
 monitoring:
 
 - confluent platform monitoring stack: <https://github.com/confluentinc/jmx-monitoring-stacks.git>

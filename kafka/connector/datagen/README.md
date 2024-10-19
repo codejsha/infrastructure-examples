@@ -108,15 +108,23 @@ CONNECTOR_CONFIG_FILE="datagen-users-array-map.json"
 create connector:
 
 ```sh
-curl --request POST --header "Accept:application/json" --header "Content-Type:application/json" --data @${CONNECTOR_CONFIG_FILE} ${KAFKA_CONNECT_URL}/connectors
+curl -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @${CONNECTOR_CONFIG_FILE} ${KAFKA_CONNECT_URL}/connectors
+```
+
+update connector:
+
+```sh
+curl -X PUT -H "Content-Type: application/json" -d $(jq -c .config ${CONNECTOR_CONFIG_FILE}) ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}/config
 ```
 
 delete connector:
 
 ```sh
-curl --request DELETE --header "Accept:application/json" ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}
+curl -X DELETE -H "Accept:application/json" ${KAFKA_CONNECT_URL}/connectors/${CONNECTOR_NAME}
 ```
 
 ## References
 
-- <https://github.com/confluentinc/kafka-connect-datagen>
+- [Kafka Connect: Build and Run Data Pipelines (O'Reilly)](https://www.oreilly.com/library/view/kafka-connect/9781098126520/)
+- [Confluent Datagen Connector GitHub](https://github.com/confluentinc/kafka-connect-datagen)
+- [Apache Kafka and Confluent Platform examples and demos GitHub](https://github.com/confluentinc/examples.git)
