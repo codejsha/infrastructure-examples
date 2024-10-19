@@ -39,6 +39,7 @@ kafka cluster with high availability
 - kafka broker (3 nodes)
 - schema registry
 - kafka connect worker (2 nodes)
+- ksqldb
 - prometheus
 - grafana
 - kafka lag exporter
