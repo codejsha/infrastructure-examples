@@ -37,6 +37,18 @@ aws ecs describe-tasks --cluster <cluster-arn-or-name> --tasks <task-id>
 
 ######################################################################
 
+### msk
+
+aws kafka list-kafka-versions
+
+aws kafka list-clusters | jq
+aws kafka list-clusters | jq '.ClusterInfoList[]' | jq '{ClusterName, ClusterArn}'
+aws kafka describe-cluster --cluster-arn <cluster-arn>
+aws kafka list-configurations | jq
+aws kafka describe-configuration --arn <configuration-arn>
+
+######################################################################
+
 ### sqs
 
 aws sqs list-queues | jq
