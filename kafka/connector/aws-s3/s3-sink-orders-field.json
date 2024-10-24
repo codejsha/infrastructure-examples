@@ -17,6 +17,7 @@
     "partitioner.class": "io.confluent.connect.storage.partitioner.FieldPartitioner",
     "partition.field.name": "id",
     "flush.size": "100",
+    "behavior.on.null.values": "ignore",
     "format.class": "io.confluent.connect.s3.format.json.JsonFormat",
     "keys.format.class": "io.confluent.connect.s3.format.bytearray.ByteArrayFormat",
     "store.kafka.keys": "true"
