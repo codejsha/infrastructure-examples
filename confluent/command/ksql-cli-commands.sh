@@ -19,10 +19,12 @@ http GET :8088/info Accept:application/json
 http GET :8088/healthcheck Accept:application/json
 http GET :8088/status Accept:application/json
 
-http POST :8088/ksql Accept:application/json <<< '{"ksql": "LIST PROPERTIES;"}'
-http POST :8088/ksql Accept:application/json <<< '{"ksql": "LIST TOPICS;"}'
-http POST :8088/ksql Accept:application/json <<< '{"ksql": "LIST STREAMS;"}'
-http POST :8088/ksql Accept:application/json <<< '{"ksql": "LIST TABLES;"}'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW PROPERTIES;"}'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW TOPICS;"}'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW TOPICS;"}' | jq '.[] | .topics[].name'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW TYPES;"}'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW STREAMS;"}'
+http POST :8088/ksql Accept:application/json <<< '{"ksql": "SHOW TABLES;"}'
 
 ######################################################################
 
