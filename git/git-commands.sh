@@ -132,7 +132,17 @@ git show ${COMMIT_HASH}
 ### manage the information of the repository (reference logs)
 git reflog
 
+git reset --hard HEAD@{0}
+
 ### verify the connectivity and validity of the objects in the database
 git fsck --lost-found
 
 git checkout -b <branch-name> <commit-hash>
+
+######################################################################
+
+git ls-files
+
+git filter-branch --force --index-filter \
+'git rm --cached --ignore-unmatch ${FILE_PATH}' \
+--prune-empty --tag-name-filter cat -- --all
