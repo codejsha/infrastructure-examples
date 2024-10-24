@@ -16,12 +16,13 @@
 
     "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
     "partition.duration.ms": "6000000",
+    "rotate.interval.ms": "6000000",
+    "path.format": "'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH",
     "timestamp.extractor": "Record",
     "flush.size": "100",
-    "rotate.interval.ms": "6000000",
+    "behavior.on.null.values": "ignore",
     "timezone": "UTC",
     "locale": "en-US",
-    "path.format": "'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH",
     "format.class": "io.confluent.connect.s3.format.avro.AvroFormat",
     "keys.format.class": "io.confluent.connect.s3.format.bytearray.ByteArrayFormat",
     "store.kafka.keys": "true"
