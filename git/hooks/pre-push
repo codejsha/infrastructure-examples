@@ -16,6 +16,7 @@ echo "[INFO] Repository root: ${REPO_ROOT}"
 
 COMMITS_TO_PUSH=""
 if [ -z "$(git ls-remote --heads origin)" ]; then
+    ### The remote repository is empty
     COMMITS_TO_PUSH="$(git log --pretty=format:"%H")"
 else
     COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
@@ -25,7 +26,7 @@ echo "${COMMITS_TO_PUSH}"
 
 for COMMIT in ${COMMITS_TO_PUSH}; do
     ### Check if the commit is GPG signed
-    if ! git verify-commit ${COMMIT} > /dev/null 2>&1; then
+    if [ ! -z $(git verify-commit ${COMMIT} > /dev/null 2>&1) ]; then
         echo "[ERROR] Commit ${COMMIT} is not GPG signed."
         exit 1
     fi
