@@ -64,6 +64,7 @@ git pull origin main
 ### push
 git push origin main
 git push --force origin main
+git push --no-verify
 
 ######################################################################
 
@@ -85,6 +86,7 @@ git commit --message "update" --allow-empty
 ### merge
 git merge develop
 git merge --no-ff develop
+git merge --squash --ff feature/TASK-1234
 
 ### rebase
 git rebase develop
