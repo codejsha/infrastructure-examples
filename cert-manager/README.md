@@ -1,5 +1,7 @@
 # cert-manager
 
+The cert-manager is a certificate controller for Kubernetes. It will ensure certificates are valid and up to date, and attempt to renew certificates at a configured time before expiry.
+
 ## Install
 
 ```bash

@@ -2,7 +2,7 @@
 
 HashiCorp Vault is a tool for managing secrets and protecting sensitive data. It is designed to provide a secure, reliable, and scalable platform for managing secrets, such as tokens, passwords, certificates, and encryption keys.
 
-## Install
+## Install CLI
 
 ### DNF/YUM
 
@@ -23,16 +23,12 @@ sudo yum -y install vault
 ```sh
 brew tap hashicorp/tap
 brew install hashicorp/tap/vault
-
-# brew uninstall hashicorp/tap/vault
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y vault
-
-# choco uninstall -y vault
 ```
 
 ## References
