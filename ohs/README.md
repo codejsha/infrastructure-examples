@@ -1,4 +1,6 @@
-# OHS (Oracle HTTP Server)
+# Oracle HTTP Server (OHS)
+
+Oracle HTTP Server (OHS) is a web server application developed by Oracle Corporation, based on the Apache HTTP Server. It is part of the Oracle Fusion Middleware suite.
 
 ## Install
 
