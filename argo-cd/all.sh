@@ -28,12 +28,12 @@ cd ..
 # bash ./install-argocd.sh
 
 cd istio
-# kubectl apply --filename argocd-traffic-management-passthrough.yaml
+kubectl apply --filename argocd-traffic-management-passthrough.yaml
 # kubectl apply --filename argocd-traffic-management-simple.yaml
 cd ..
 
-cd ambassador
-kubectl apply --filename argocd-edge-stack.yaml
-cd ..
+# cd ambassador
+# kubectl apply --filename argocd-edge-stack.yaml
+# cd ..
 
 # kubectl apply --filename argocd-server-ingress.yaml
