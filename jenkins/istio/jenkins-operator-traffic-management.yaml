@@ -1,0 +1,47 @@
+---
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: jenkins-gw
+  namespace: jenkins
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - jenkins.example.com
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: jenkins-vs
+  namespace: jenkins
+spec:
+  hosts:
+    - jenkins.example.com
+  gateways:
+    - jenkins-gw
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: jenkins-operator-http-jenkins.jenkins.svc.cluster.local
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: jenkins-dr
+  namespace: jenkins
+spec:
+  host: jenkins-operator-http-jenkins.jenkins.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
