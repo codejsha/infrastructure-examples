@@ -1,21 +1,24 @@
 # Jenkins
 
-## Install Jenkins
+## Install
+
+### Chocolatey
 
 ```ps1
-# powershell
 choco install -y jenkins
-
-# choco uninstall -y jenkins
 ```
 
-## Install Jenkins X
+### On Kubernetes
+
+- Installing Jenkins - Kubernets: <https://www.jenkins.io/doc/book/installing/kubernetes/>
+- Jenkins Helm Charts: <https://github.com/jenkinsci/helm-charts>
+- Jenkins Operator: <https://www.jenkins.io/projects/jenkins-operator/>
+
+## Jenkins X
 
 ```ps1
 # powershell
 choco install -y jenkins-x
-
-# choco uninstall -y jenkins-x
 ```
 
 ## Jenkins CLI
