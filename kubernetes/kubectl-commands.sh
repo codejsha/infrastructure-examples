@@ -8,29 +8,19 @@ source <(kubectl completion bash)
 
 ######################################################################
 
+### version
+kubectl version
 kubectl api-versions
 
 ######################################################################
 
-### kubectx and kubens
-
-kubectx
-kubectx -
-kubectx -h
-kubectx -c
-kubectx --current
-kubectx docker-desktop
-
-kubens
-kubens -
-kubens -h
-kubens -c
-kubens --current
-kubens kube-system
+### check logs and events
+kubectl logs <pod-name> -c <init-container-name>
+kubectl describe pod <pod-name>
 
 ######################################################################
 
-### apply and delete
+### apply and delete resources
 
 cat <<EOF | kubectl apply -f -
 EOF
@@ -63,7 +53,23 @@ kubectl annotate --overwrite storageclass rook-ceph-block storageclass.kubernete
 
 ######################################################################
 
-### dashboard
+### kubectx and kubens
+
+kubectx
+kubectx -
+kubectx -h
+kubectx -c
+kubectx --current
+kubectx docker-desktop
+
+kubens
+kubens -
+kubens -h
+kubens -c
+kubens --current
+kubens kube-system
+
+######################################################################
 
 ### dashboard password
 kubectl describe secrets kubernetes-dashboard-token --namespace kube-system | grep token: | awk '{print $2}'
