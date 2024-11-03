@@ -47,6 +47,7 @@ helm list --all
 helm show chart ingress-nginx/ingress-nginx
 helm show readme ingress-nginx/ingress-nginx
 helm show values ingress-nginx/ingress-nginx
+helm show values --version 5.7.12 jenkins/jenkins
 
 ### push (plugin)
 helm cm-push tomcat-9.0.0.tgz local-harbor
