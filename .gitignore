@@ -1,16 +1,23 @@
+### editor
 .vs/
 .vscode/
 .idea/
 
+### terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+
+### python
 __pycache__/
 .pytest_cache/
 venv/
 
+### temp
 temp/
 *-temp.*
 
-nohup.*
-
+### files
 *.crt
 *.csr
 *.jar
