@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-# helm repo add jenkins https://raw.githubusercontent.com/jenkinsci/kubernetes-operator/master/chart
+# helm repo add jenkinsci https://raw.githubusercontent.com/jenkinsci/kubernetes-operator/master/chart
 # helm repo update
 
 NAMESPACE="jenkins-operator"
@@ -14,4 +14,4 @@ helm upgrade --install jenkins-operator \
     --namespace ${NAMESPACE} \
     --values values.yaml \
     --version 0.8.0 \
-    jenkins/jenkins-operator
+    jenkinsci/jenkins-operator
