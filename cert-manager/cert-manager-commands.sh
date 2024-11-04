@@ -9,6 +9,6 @@ kubectl cert-manager inspect secret minio1-cert
 
 ######################################################################
 
-### debuggging
+### debug
 
 kubectl get endpoints -n cert-manager my-cert-manager-webhook
