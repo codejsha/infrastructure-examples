@@ -10,7 +10,7 @@ choco install -y jenkins
 
 ### On Kubernetes
 
-- Installing Jenkins - Kubernets: <https://www.jenkins.io/doc/book/installing/kubernetes/>
+- Installing Jenkins - Kubernetes: <https://www.jenkins.io/doc/book/installing/kubernetes/>
 - Jenkins Helm Charts: <https://github.com/jenkinsci/helm-charts>
 - Jenkins Operator: <https://www.jenkins.io/projects/jenkins-operator/>
 
