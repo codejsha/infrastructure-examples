@@ -14,16 +14,12 @@ bash ./install-tekton-cli.sh
 
 ```sh
 brew install tektoncd-cli
-
-# brew uninstall tektoncd-cli
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y tektoncd-cli
-
-# choco uninstall -y tektoncd-cli
 ```
 
 ## Install Tekton

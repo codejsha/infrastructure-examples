@@ -15,16 +15,12 @@ sudo chown root:root /usr/local/bin/kustomize
 
 ```sh
 brew install kustomize
-
-# brew uninstall kustomize
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y kustomize
-
-# choco uninstall -y kustomize
 ```
 
 ### Docker Image

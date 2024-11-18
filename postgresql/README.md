@@ -22,10 +22,6 @@ bash ./install-postgresql-server.sh
 choco install -y postgresql13
 choco install -y postgresql12
 choco install -y postgresql11
-
-# choco uninstall -y postgresql13
-# choco uninstall -y postgresql12
-# choco uninstall -y postgresql11
 ```
 
 ## Grafana dashboard

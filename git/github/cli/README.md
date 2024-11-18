@@ -26,16 +26,12 @@ sudo dnf install gh --repo gh-cli
 
 ```sh
 brew install gh
-
-# brew uninstall gh
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y gh
-
-# choco uninstall -y gh
 ```
 
 ## References

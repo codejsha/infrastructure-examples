@@ -14,8 +14,6 @@ bash ./install-hadoop.sh
 
 ```sh
 brew install hadoop
-
-# brew uninstall hadoop
 ```
 
 ### Chocolatey
@@ -23,8 +21,6 @@ brew install hadoop
 ```ps1
 # choco install -y hadoop
 choco install -y hadoop -params "/unzipLocation:$env:USERPROFILE\portable"
-
-# choco uninstall -y hadoop
 ```
 
 ## References

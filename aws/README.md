@@ -6,16 +6,12 @@
 
 ```sh
 brew install awscli
-
-# brew uninstall awscli
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y awscli
-
-# choco uninstall -y awscli
 ```
 
 ## References

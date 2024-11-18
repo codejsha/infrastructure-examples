@@ -20,8 +20,6 @@ sudo apt-get install -y python3-neovim
 
 ```sh
 brew install neovim
-
-# brew uninstall neovim
 ```
 
 ### Chocolatey
@@ -29,8 +27,6 @@ brew install neovim
 ```ps1
 choco install -y neovim
 # choco install -y neovim --package-parameters="/NeovimOnPathForAll"
-
-# choco uninstall -y neovim
 ```
 
 ## Configuration

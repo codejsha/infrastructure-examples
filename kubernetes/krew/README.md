@@ -28,16 +28,12 @@
 
 ```sh
 brew install krew
-
-# brew uninstall krew
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y krew
-
-# choco uninstall -y krew
 ```
 
 ## References
