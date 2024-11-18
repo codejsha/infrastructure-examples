@@ -35,16 +35,12 @@ fnm use --install-if-missing 20
 
 ```sh
 brew install yarn
-
-# brew uninstall yarn
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y yarn
-
-# choco uninstall -y yarn
 ```
 
 ## Install pnpm
@@ -53,6 +49,4 @@ choco install -y yarn
 
 ```sh
 brew install pnpm
-
-# brew uninstall pnpm
 ```

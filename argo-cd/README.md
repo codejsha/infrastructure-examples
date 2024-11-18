@@ -35,8 +35,6 @@ sudo chmod +x /usr/local/bin/argocd
 
 ```ps1
 choco install -y argocd
-
-# choco uninstall -y argocd
 ```
 
 ### Install ArgoCD

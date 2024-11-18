@@ -6,16 +6,12 @@
 
 ```sh
 brew install minikube
-
-# brew uninstall minikube
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y minikube
-
-# choco uninstall -y minikube
 ```
 
 ## References

@@ -41,8 +41,6 @@ brew install helm
 
 ```ps1
 choco install -y kubernetes-helm
-
-# choco uninstall -y kubernetes-helm
 ```
 
 ## Helmfile
@@ -52,8 +50,6 @@ choco install -y kubernetes-helm
 ```ps1
 # powershell
 choco install -y kubernetes-helmfile
-
-# choco uninstall -y kubernetes-helmfile
 ```
 
 ## Helmsman

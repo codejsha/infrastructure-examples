@@ -12,8 +12,6 @@ bash ./install-nginx.sh
 
 ```ps1
 choco install -y nginx
-
-# choco uninstall -y nginx
 ```
 
 ## Nginx Ingress Controller

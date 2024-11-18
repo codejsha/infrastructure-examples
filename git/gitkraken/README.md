@@ -6,16 +6,12 @@
 
 ```sh
 brew install --cask gitkraken
-
-# brew uninstall --cask gitkraken
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y gitkraken
-
-# choco uninstall -y gitkraken
 ```
 
 ## Install CLI
@@ -24,6 +20,4 @@ choco install -y gitkraken
 
 ```sh
 brew install --cask gitkraken-cli
-
-# brew uninstall --cask gitkraken-cli
 ```

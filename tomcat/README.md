@@ -16,8 +16,6 @@ bash ./install-tomcat.sh
 
 ```ps1
 choco install -y tomcat
-
-# choco uninstall -y tomcat
 ```
 
 ## Create instances

@@ -20,16 +20,12 @@ sudo /bin/cp -pf istioctl /usr/local/bin
 
 ```sh
 brew install istioctl
-
-# brew uninstall istioctl
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y istioctl
-
-# choco uninstall -y istioctl
 ```
 
 ## References

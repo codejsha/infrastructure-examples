@@ -12,6 +12,4 @@ sudo apt-get install -y doxygen
 
 ```sh
 choco install -y doxygen.install
-
-# choco uninstall -y doxygen.install
 ```
