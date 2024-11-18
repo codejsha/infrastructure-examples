@@ -38,9 +38,6 @@ choco install -y git.install --package-parameters="/NoShellIntegration"
 ### /Symlinks
 ### /DefaultBranchName:default_branch_name
 ### /Editor:Nano|VIM|Notepad++|VisualStudioCode|VisualStudioCodeInsiders|SublimeText|Atom|VSCodium|Notepad|Wordpad|Custom editor path
-
-### uninstall
-# choco uninstall -y git.install
 ```
 
 ## Git Flow

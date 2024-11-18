@@ -12,15 +12,11 @@ bash ./install-nginx.sh
 
 ```ps1
 choco install -y nginx
-
-# choco uninstall -y nginx
 ```
 
 ## Nginx Ingress Controller
 
-```bash
-bash ./helm-install-nginx-ingress.sh
-```
+- <https://kubernetes.github.io/ingress-nginx/>
 
 ## Prometheus Exporter
 

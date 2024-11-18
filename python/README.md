@@ -12,8 +12,6 @@ bash ./install-python.sh
 
 ```sh
 brew install python@3.11
-
-# brew uninstall python@3.11
 ```
 
 ### Chocolatey
@@ -22,10 +20,6 @@ brew install python@3.11
 # choco install -y python3
 choco install -y python311 --params "'/InstallDir:$env:USERPROFILE\tools\python3'"
 # choco install -y python2 --params "'/InstallDir:$env:USERPROFILE\tools\python2'"
-
-# choco uninstall -y python3
-# choco uninstall -y python311
-# choco uninstall -y python2
 ```
 
 ## Install Poetry
@@ -34,8 +28,6 @@ choco install -y python311 --params "'/InstallDir:$env:USERPROFILE\tools\python3
 
 ```sh
 brew install poetry
-
-# brew uninstall poetry
 ```
 
 ## Install Anaconda
@@ -44,8 +36,6 @@ brew install poetry
 
 ```sh
 brew install --cask anaconda
-
-# brew uninstall --cask anaconda
 ```
 
 ### Chocolatey
@@ -54,6 +44,4 @@ brew install --cask anaconda
 choco install -y anaconda3 --params '"/JustMe"'
 # choco install -y anaconda3 --params '"/JustMe /AddToPath"'
 # choco install -y anaconda3 --params '"/AddToPath /D:C:\Program Files"'
-
-# choco uninstall -y anaconda3
 ```

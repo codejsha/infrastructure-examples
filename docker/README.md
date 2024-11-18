@@ -91,16 +91,12 @@ exit
 
 ```sh
 brew install --cask docker
-
-# brew uninstall --cask docker
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y docker-cli
-
-# choco uninstall -y docker-cli
 ```
 
 ## Build image

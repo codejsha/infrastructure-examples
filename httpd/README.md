@@ -25,16 +25,12 @@ bash ./install-httpd.sh
 
 ```sh
 brew install httpd
-
-# brew uninstall httpd
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y apache-httpd
-
-# choco uninstall -y apache-httpd
 ```
 
 ## Apache Tomcat Connector

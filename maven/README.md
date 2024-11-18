@@ -23,7 +23,6 @@ sudo mv maven /usr/local
 
 ```sh
 brew install maven
-# brew uninstall maven
 
 ### maven home: /opt/homebrew/opt/maven/libexec
 ```
@@ -32,6 +31,4 @@ brew install maven
 
 ```ps1
 choco install -y maven
-
-# choco uninstall -y maven
 ```

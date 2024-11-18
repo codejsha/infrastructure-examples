@@ -17,16 +17,12 @@ sudo mv ./kind /usr/local/bin/kind
 
 ```sh
 brew install kind
-
-# brew uninstall kind
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y kind
-
-# choco uninstall -y kind
 ```
 
 ## References

@@ -7,8 +7,6 @@
 ```sh
 brew install make
 
-# brew uninstall make
-
 # PATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnubin:${PATH}"
 ```
 

@@ -16,16 +16,12 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ```sh
 brew install docker-compose
-
-# brew uninstall docker-compose
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y docker-compose
-
-# choco uninstall -y docker-compose
 ```
 
 ## References

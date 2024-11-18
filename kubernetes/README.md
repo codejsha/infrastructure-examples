@@ -42,14 +42,12 @@ sudo apt-get install -y kubectl
 
 ```sh
 brew install kubernetes-cli
-# brew uninstall kubernetes-cli
 ```
 
 ### Chocolatey
 
 ```ps1
 choco install -y kubernetes-cli
-# choco uninstall -y kubernetes-cli
 ```
 
 ## CLI Tools

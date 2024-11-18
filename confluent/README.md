@@ -19,24 +19,24 @@ And it is possible to run the Kafka servers using `docker-compose` for testing p
 
 docs:
 
-- Confluent Platform: <https://docs.confluent.io/platform/current/overview.html>
-- Confluent for Kubernetes: <https://docs.confluent.io/operator/current/overview.html>
+- [Confluent Platform docs](https://docs.confluent.io/platform/current/overview.html)
+- [Confluent for Kubernetes docs](https://docs.confluent.io/operator/current/overview.html)
 
 confluent github examples:
 
-- <https://github.com/confluentinc/examples.git>
-- <https://github.com/confluentinc/kafka-streams-examples.git>
-- <https://github.com/confluentinc/confluent-kubernetes-examples.git>
+- [confluent examples github](https://github.com/confluentinc/examples.git)
+- [confluent kafka streams examples github](https://github.com/confluentinc/kafka-streams-examples.git)
+- [confluent kubernetes examples github](https://github.com/confluentinc/confluent-kubernetes-examples.git)
+- [confluent ksqldb examples github](https://github.com/confluentinc/demo-scene.git)
 
 ksqldb:
 
-- how-to-guides: <https://docs.ksqldb.io/en/latest/how-to-guides/>
-- ksqlDB example snippets: <https://ksqldb.io/examples.html>
+- [/infrastructure-examples/kafka/ksqldb](/kafka/ksqldb/)
 
 monitoring:
 
-- confluent platform monitoring stack: <https://github.com/confluentinc/jmx-monitoring-stacks.git>
-- confluent kafka monitoring: <https://docs.confluent.io/platform/current/kafka/monitoring.html>
-- confluent schema registry monitoring: <https://docs.confluent.io/platform/current/schema-registry/monitoring.html>
-- confluent kafka connect monitoring: <https://docs.confluent.io/home/connect/monitoring.html>
-- ksqldb monitoring: <https://docs.ksqldb.io/en/latest/reference/metrics/>
+- [confluent platform monitoring stack](https://github.com/confluentinc/jmx-monitoring-stacks.git)
+- [confluent kafka monitoring docs](https://docs.confluent.io/platform/current/kafka/monitoring.html)
+- [confluent schema registry monitoring docs](https://docs.confluent.io/platform/current/schema-registry/monitoring.html)
+- [confluent kafka connect monitoring docs](https://docs.confluent.io/home/connect/monitoring.html)
+- [ksqldb monitoring docs](https://docs.ksqldb.io/en/latest/reference/metrics/)
