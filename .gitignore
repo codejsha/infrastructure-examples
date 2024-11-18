@@ -8,6 +8,8 @@
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.*
+*.tfvars
+*.tfvars.json
 
 ### python
 __pycache__/
