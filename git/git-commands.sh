@@ -1,7 +1,5 @@
 ######################################################################
 
-function git() { echo "+ git ${@}">&2; command git "${@}"; }
-
 ### debug
 GIT_TRACE=1 git push origin main
 

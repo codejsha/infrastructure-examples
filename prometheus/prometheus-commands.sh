@@ -1,8 +1,8 @@
 ######################################################################
 
-alias pxprometheus="pgrep -xa prometheus | grep prometheus"
-
-alias killprometheus="sudo pkill -9 -ecx prometheus"
+### process
+pgrep -xa prometheus | grep prometheus
+sudo pkill -9 -ecx prometheus
 
 ######################################################################
 

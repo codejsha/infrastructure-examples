@@ -1,11 +1,5 @@
 ######################################################################
 
-function curl() { echo "+ curl ${@}">&2; command curl "${@}"; }
-function ss() { echo "+ ss ${@}">&2; command ss "${@}"; }
-function netstat() { echo "+ netstat ${@}">&2; command netstat "${@}"; }
-
-######################################################################
-
 ## ss
 
 sudo ss --all --numeric --tcp --udp --processes
