@@ -1,9 +1,11 @@
 ######################################################################
 
-alias pxjboss="sudo pgrep -xa java | grep jboss"
-alias psefjboss="sudo ps -ef | grep jboss"
+### process
+sudo pgrep -xa java | grep jboss
+sudo ps -ef | grep jboss
+sudo pkill -9 -ecf "org\.jboss\.as\.standalone"
 
-alias killjboss="sudo pkill -9 -ecf \"org\.jboss\.as\.standalone\""
+######################################################################
 
 function cdjboss() { DIRECTORY="/usr/local/jboss"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 function cdwildfly() { DIRECTORY="/usr/local/wildfly"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }

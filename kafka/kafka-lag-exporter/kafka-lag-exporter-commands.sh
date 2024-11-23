@@ -1,8 +1,8 @@
 ######################################################################
 
-alias pxlagexporter="pgrep -xa java | grep kafka-lag-exporter"
-
-alias killlagexporter="pkill -9 -ecx kafka-lag-exporter"
+### process
+pgrep -xa java | grep kafka-lag-exporter
+pkill -9 -ecx kafka-lag-exporter
 
 ######################################################################
 

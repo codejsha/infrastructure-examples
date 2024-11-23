@@ -1,7 +1,7 @@
 ######################################################################
 
-alias pxgrafana="pgrep -xa grafana-server | grep grafana-server"
-
-alias killgrafana="pkill -9 -ecx grafana-server"
+### process
+pgrep -xa grafana-server | grep grafana-server
+pkill -9 -ecx grafana-server
 
 ######################################################################

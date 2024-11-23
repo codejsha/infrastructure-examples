@@ -1,9 +1,5 @@
 ######################################################################
 
-function vault() { echo "+ vault ${@}">&2; command vault "${@}"; }
-
-######################################################################
-
 export VAULT_ADDR="https://vault.example.com"
 export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
 export VAULT_CACERT="${HOME}/.vault/ca.crt"
