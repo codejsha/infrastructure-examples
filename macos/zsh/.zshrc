@@ -6,6 +6,7 @@ DISABLE_LS_COLORS="true"
 ENABLE_CORRECTION="false"
 SHOW_AWS_PROMPT="false"
 plugins=(aliases brew copypath docker docker-compose dotnet forklift fzf gh git git-flow golang gpg-agent gradle helm kubectl kubectx npm perl pip poetry python virtualenv vscode yarn)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source ${ZSH}/oh-my-zsh.sh
 
 ### starship
@@ -23,7 +24,7 @@ esac
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${HOME}/.krew/bin:${PATH}"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home"
@@ -35,17 +36,24 @@ alias ll="lsd -alh"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias bat="bat --style=plain --paging=never"
 alias vcpkg="${HOME}/tools/vcpkg/vcpkg"
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
 
+### logging commands
 preexec() {
-  if [[ "$1" =~ ^(aws|brew|curl|docker|fd|git|go|helm|http|istioctl|jar|java|jcmd|jq|jstack|kubectl|kustomize|make|python3|rg|sudo|tekton|vault|xargs).* ]]; then
-    echo "+ $1"
-  fi
+  local TARGET_COMMANDS="aws|bat|brew|curl|docker|fd|git|go|helm|http|istioctl|jar|java|jcmd|jq|jstack|kubectl|kustomize|make|python3|rg|sudo|tekton|vault|xargs"
+  local command=${1}
+  local command_base=${command%% *}
+  local command_rest=${command#"${command_base}"}
+  local actual_command=$(whence -- "${command_base}" || echo "${command_base}")
+  [[ ${actual_command} =~ ^($TARGET_COMMANDS) ]] && echo "+ ${actual_command}${command_rest}"
 }
 
-source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
+source ${HOMEBREW_PREFIX}/opt/git-extras/share/git-extras/git-extras-completion.zsh
+source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
@@ -60,4 +68,4 @@ function change-java-temurin-11() { JAVA_HOME="/Library/Java/JavaVirtualMachines
 function change-java-temurin-17() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 function change-java-temurin-21() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 
-function gclo() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -z "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
+function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -z "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
