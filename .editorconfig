@@ -1749,6 +1749,38 @@ ij_properties_spaces_around_key_value_delimiter = false
 [{*.qute.htm,*.qute.html,*.qute.json,*.qute.txt,*.qute.yaml,*.qute.yml}]
 ij_qute_keep_indents_on_empty_lines = false
 
+[{*.hcl,*.nomad}]
+ij_hcl_indent_size = 2
+ij_hcl_array_wrapping = normal
+ij_hcl_keep_blank_lines_in_code = 1
+ij_hcl_keep_indents_on_empty_lines = false
+ij_hcl_keep_line_breaks = true
+ij_hcl_object_wrapping = normal
+ij_hcl_property_alignment = on_equals
+ij_hcl_property_line_commenter_character = 1
+ij_hcl_space_after_comma = true
+ij_hcl_space_before_comma = false
+ij_hcl_spaces_around_assignment_operators = true
+ij_hcl_spaces_within_braces = false
+ij_hcl_spaces_within_brackets = false
+ij_hcl_wrap_long_lines = false
+
+[{*.tf,*.tfvars}]
+ij_hcl-terraform_indent_size = 2
+ij_hcl-terraform_array_wrapping = normal
+ij_hcl-terraform_keep_blank_lines_in_code = 1
+ij_hcl-terraform_keep_indents_on_empty_lines = false
+ij_hcl-terraform_keep_line_breaks = true
+ij_hcl-terraform_object_wrapping = normal
+ij_hcl-terraform_property_alignment = on_equals
+ij_hcl-terraform_property_line_commenter_character = 1
+ij_hcl-terraform_space_after_comma = true
+ij_hcl-terraform_space_before_comma = false
+ij_hcl-terraform_spaces_around_assignment_operators = true
+ij_hcl-terraform_spaces_within_braces = false
+ij_hcl-terraform_spaces_within_brackets = false
+ij_hcl-terraform_wrap_long_lines = false
+
 [{*.toml,Cargo.lock,Cargo.toml.orig,Gopkg.lock,Pipfile,poetry.lock}]
 ij_toml_keep_indents_on_empty_lines = false
 
@@ -1760,6 +1792,9 @@ ij_yaml_block_mapping_on_new_line = false
 ij_yaml_indent_sequence_value = true
 ij_yaml_keep_indents_on_empty_lines = false
 ij_yaml_keep_line_breaks = true
+ij_yaml_line_comment_add_space = true
+ij_yaml_line_comment_add_space_on_reformat = true
+ij_yaml_line_comment_at_first_column = false
 ij_yaml_sequence_on_new_line = false
 ij_yaml_space_before_colon = false
 ij_yaml_spaces_within_braces = true
