@@ -1,16 +1,7 @@
 ######################################################################
 
-alias docker-compose="docker compose"
-function docker() { echo "+ docker ${@}">&2; command docker "${@}"; }
-
-function docker-compose() { echo "+ docker-compose ${@}">&2; command docker-compose "${@}"; }
-
-######################################################################
-
 docker compose version
-
 docker compose config
-
 docker compose logs
 docker compose logs --follow
 

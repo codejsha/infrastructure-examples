@@ -1,7 +1,5 @@
 ######################################################################
 
-alias pxnodeexporter="pgrep -xa node_exporter | grep node_exporter"
-
-alias killnodeexporter="pkill -9 -ecx node_exporter"
-
-######################################################################
+### process
+pgrep -xa node_exporter | grep node_exporter
+pkill -9 -ecx node_exporter
