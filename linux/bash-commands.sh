@@ -15,13 +15,15 @@ set -o xtrace
 
 ######################################################################
 
+### command
+
+command -v ll
+function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
+function make() { echo "+ make ${@}">&2; command make "${@}"; }
+
 ### watch
 watch -x bash -ic "my-alias"
 alias watch="watch "
-
-######################################################################
-
-command -v ll
 
 ######################################################################
 
@@ -34,7 +36,13 @@ export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su
 # or: orphan symbolic link
 # so: socket
 
-alias ll="ls -l -h --color=auto"
+ls -l -h --color=auto
+readlink --canonicalize .
 
 function cdp() { DIRECTORY="${1}"; echo "+ cd -P ${*}">&2; command cd -P ${DIRECTORY}; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then printf "\e[38;2;216;160;223mLOCATION: $(pwd)\e[0m\n"; ls --almost-all -l; fi; }
-function readlinkpwd() { echo "+ readlink --canonicalize .">&2; command readlink --canonicalize .; }
+
+######################################################################
+
+### split string
+local IFS=$'\n'
+local arr=($(echo "${input}" | awk -F'[;|&]+' '{for (i=1; i<=NF; i++) print $i}'))

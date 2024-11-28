@@ -44,16 +44,6 @@ alias vcpkg="${HOME}/tools/vcpkg/vcpkg"
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
 
-### logging commands
-preexec() {
-  local TARGET_COMMANDS="aws|bat|brew|curl|docker|fd|git|go|helm|http|jar|java|jcmd|jq|jstack|kubectl|kustomize|make|npm|perl|pip|poetry|python3|rg|sudo|tekton|vault|xargs|yarn|yq"
-  local command=${1}
-  local command_base=${command%% *}
-  local command_rest=${command#"${command_base}"}
-  local actual_command=$(whence -- "${command_base}" || echo "${command_base}")
-  [[ ${actual_command} =~ ^($TARGET_COMMANDS) ]] && echo "+ ${actual_command}${command_rest}"
-}
-
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdcoderepos() { DIRECTORY="${HOME}/source/coderepos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
