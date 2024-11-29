@@ -4,8 +4,7 @@ export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
 DISABLE_AUTO_TITLE="true"
 DISABLE_LS_COLORS="true"
 ENABLE_CORRECTION="false"
-SHOW_AWS_PROMPT="false"
-plugins=(aliases brew copypath docker docker-compose dotnet forklift fzf gh git git-flow golang gpg-agent gradle helm kubectl kubectx npm perl pip poetry python virtualenv vscode yarn)
+plugins=(aliases brew copypath docker docker-compose forklift git golang gpg-agent gradle kubectl kubectx npm pip poetry python virtualenv vscode yarn)
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source ${ZSH}/oh-my-zsh.sh
 
@@ -32,6 +31,7 @@ export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/.krew/bin:${PATH}"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home"
 export GROOVY_HOME="/opt/homebrew/opt/groovysdk/libexec"
+export VCPKG_ROOT="${HOME}/tools/vcpkg"
 
 ### aliases
 alias ls="lsd"
@@ -40,7 +40,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cat="bat --style=plain --paging=never"
-alias vcpkg="${HOME}/tools/vcpkg/vcpkg"
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
 
