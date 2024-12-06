@@ -1,3 +1,2 @@
-syntax on
 set termguicolors
-set background=dark
+highlight Normal guibg=#1E1E1E guifg=#D4D4D4

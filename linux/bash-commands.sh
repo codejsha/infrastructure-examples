@@ -21,6 +21,8 @@ command -v ll
 function sudo() { echo "+ sudo ${@}">&2; command sudo "${@}"; }
 function make() { echo "+ make ${@}">&2; command make "${@}"; }
 
+which -a vim
+
 ### watch
 watch -x bash -ic "my-alias"
 alias watch="watch "
