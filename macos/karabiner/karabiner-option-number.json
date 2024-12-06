@@ -127,7 +127,7 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^co\\.zeit\\.hyper$"],
+          "bundle_identifiers": ["^org\\.alacritty$"],
           "type": "frontmost_application_unless"
         }
       ],
@@ -139,7 +139,7 @@
       },
       "to": [
         {
-          "shell_command": "open -b co.zeit.hyper"
+          "shell_command": "open -b org.alacritty"
         }
       ],
       "type": "basic"
@@ -147,7 +147,7 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^co\\.zeit\\.hyper$"],
+          "bundle_identifiers": ["^org\\.alacritty$"],
           "type": "frontmost_application_if"
         }
       ],
@@ -291,12 +291,53 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"],
+          "bundle_identifiers": ["^com\\.jetbrains\\.rustrover$"],
           "type": "frontmost_application_unless"
         }
       ],
       "from": {
         "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "shell_command": "open -b com.jetbrains.rustrover"
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.rustrover$"],
+          "type": "frontmost_application_if"
+        }
+      ],
+      "from": {
+        "key_code": "8",
+        "modifiers": {
+          "mandatory": ["left_alt"]
+        }
+      },
+      "to": [
+        {
+          "key_code": "h",
+          "modifiers": ["left_command"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "bundle_identifiers": ["^com\\.jetbrains\\.pycharm$"],
+          "type": "frontmost_application_unless"
+        }
+      ],
+      "from": {
+        "key_code": "9",
         "modifiers": {
           "mandatory": ["left_alt"]
         }
@@ -316,7 +357,7 @@
         }
       ],
       "from": {
-        "key_code": "8",
+        "key_code": "9",
         "modifiers": {
           "mandatory": ["left_alt"]
         }
@@ -337,7 +378,7 @@
         }
       ],
       "from": {
-        "key_code": "9",
+        "key_code": "0",
         "modifiers": {
           "mandatory": ["left_alt"]
         }
@@ -353,47 +394,6 @@
       "conditions": [
         {
           "bundle_identifiers": ["^com\\.jetbrains\\.WebStorm$"],
-          "type": "frontmost_application_if"
-        }
-      ],
-      "from": {
-        "key_code": "9",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "key_code": "h",
-          "modifiers": ["left_command"]
-        }
-      ],
-      "type": "basic"
-    },
-    {
-      "conditions": [
-        {
-          "bundle_identifiers": ["^com\\.jetbrains\\.CLion$"],
-          "type": "frontmost_application_unless"
-        }
-      ],
-      "from": {
-        "key_code": "0",
-        "modifiers": {
-          "mandatory": ["left_alt"]
-        }
-      },
-      "to": [
-        {
-          "shell_command": "open -b com.jetbrains.CLion"
-        }
-      ],
-      "type": "basic"
-    },
-    {
-      "conditions": [
-        {
-          "bundle_identifiers": ["^com\\.jetbrains\\.CLion$"],
           "type": "frontmost_application_if"
         }
       ],
