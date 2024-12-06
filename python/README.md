@@ -22,6 +22,14 @@ choco install -y python311 --params "'/InstallDir:$env:USERPROFILE\tools\python3
 # choco install -y python2 --params "'/InstallDir:$env:USERPROFILE\tools\python2'"
 ```
 
+## Install virtualenv
+
+### Homebrew
+
+```sh
+brew install virtualenv
+```
+
 ## Install Poetry
 
 ### Homebrew
