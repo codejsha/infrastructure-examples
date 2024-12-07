@@ -4,6 +4,11 @@ vcpkg version
 vcpkg integrate install
 vcpkg list
 
+vcpkg remove $package
+vcpkg search $package
+vcpkg update
+vcpkg upgrade
+
 ######################################################################
 
 ### install packages (windows)
@@ -41,7 +46,10 @@ vcpkg install avro-cpp
 
 ######################################################################
 
-vcpkg remove $package
-vcpkg search $package
-vcpkg update
-vcpkg upgrade
+### install packages (macos)
+vcpkg install gsl:arm64-osx
+vcpkg install gtest:arm64-osx
+vcpkg install benchmark:arm64-osx
+vcpkg install fmt:arm64-osx
+vcpkg install boost-graph:arm64-osx
+vcpkg install abseil:arm64-osx

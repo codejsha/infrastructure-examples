@@ -1,19 +1,33 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions.columns = 120
+dimensions.lines = 50
+padding.x = 8
+padding.y = 4
+
 [font]
 size = 13.0
 offset.y = 1
+normal.family = "Hack Nerd Font"
+normal.style = "Regular"
+bold.family = "Hack Nerd Font"
+bold.style = "Bold"
+bold_italic.family = "Hack Nerd Font"
+bold_italic.style = "Bold Italic"
+italic.family = "Hack Nerd Font"
+italic.style = "Italic"
 
-[font.normal]
-family = "Hack Nerd Font"
-style = "Regular"
+[colors]
+primary.background = "0x1E1E1E"
+primary.foreground = "0xD4D4D4"
 
-[font.bold]
-family = "Hack Nerd Font"
-style = "Bold"
-
-[font.bold_italic]
-family = "Hack Nerd Font"
-style = "Bold Italic"
-
-[font.italic]
-family = "Hack Nerd Font"
-style = "Italic"
+[keyboard]
+bindings = [
+  { key = "Left",  mods = "Alt",     chars = "\u001bB"   },
+  { key = "Right", mods = "Alt",     chars = "\u001bF"   },
+  { key = "Left",  mods = "Command", chars = "\u001bOH"  },
+  { key = "Right", mods = "Command", chars =  "\u001bOF" },
+  { key = "Back",  mods = "Command", chars = "\u0015"    },
+]
