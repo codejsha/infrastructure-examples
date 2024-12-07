@@ -2,5 +2,5 @@
     path = confluent/confluent-kafka-script-generator
     url = https://github.com/codejsha/confluent-kafka-script-generator.git
 [submodule "macos/zsh/plugins"]
-	path = macos/zsh/plugins
-	url = https://github.com/codejsha/zsh-plugins.git
+    path = macos/zsh/plugins
+    url = https://github.com/codejsha/zsh-plugins.git
