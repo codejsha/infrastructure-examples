@@ -1,14 +1,5 @@
-### ohmyzsh
-export ZSH="${HOME}/.oh-my-zsh"
-export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
-DISABLE_AUTO_TITLE="true"
-DISABLE_LS_COLORS="true"
-ENABLE_CORRECTION="false"
-plugins=(aliases brew copypath docker docker-compose forklift git golang gpg-agent gradle kubectl kubectx npm pip poetry python virtualenv vscode yarn)
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-source ${ZSH}/oh-my-zsh.sh
-
 ### shell integration
+export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -16,16 +7,16 @@ eval "$(atuin init zsh --disable-up-arrow)"
 source ${HOMEBREW_PREFIX}/opt/git-extras/share/git-extras/git-extras-completion.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-### terminal title
-case ${TERM} in
-  xterm*)
-    precmd () {print -Pn "\e]0;%~\a"}
-    ;;
-esac
+source ${HOME}/tools/zsh-plugins/alias.plugin.zsh
+source ${HOME}/tools/zsh-plugins/docker.plugin.zsh
+source ${HOME}/tools/zsh-plugins/docker-compose.plugin.zsh
+FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
+autoload -Uz compinit
+compinit -C
 
 ### variables
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+export PATH="/opt/homebrew/opt/curl/bin:${PATH}"
 export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/.krew/bin:${PATH}"
