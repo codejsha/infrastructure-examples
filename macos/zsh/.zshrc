@@ -7,9 +7,7 @@ eval "$(atuin init zsh --disable-up-arrow)"
 source ${HOMEBREW_PREFIX}/opt/git-extras/share/git-extras/git-extras-completion.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${HOME}/tools/zsh-plugins/alias.plugin.zsh
-source ${HOME}/tools/zsh-plugins/docker.plugin.zsh
-source ${HOME}/tools/zsh-plugins/docker-compose.plugin.zsh
+source ${HOME}/tools/zsh-plugins/load-zsh-plugins.sh
 FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
 autoload -Uz compinit
 compinit -C
@@ -31,6 +29,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cat="bat --style=plain --paging=never"
+alias fl="open -b com.binarynights.forklift-setapp"
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
 

@@ -4,6 +4,10 @@ go run main.go
 
 ######################################################################
 
+### test
+
+go clean -testcache
+
 go test ./...
 go test ./... -v -coverprofile=cover.out
 
