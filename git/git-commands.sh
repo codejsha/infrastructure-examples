@@ -146,8 +146,11 @@ git checkout -b <branch-name> <commit-hash>
 
 ######################################################################
 
+### remove a file history from the git repository
+
 git ls-files
 
+export FILE_PATH="/path/to/file"
 git filter-branch --force --index-filter \
 'git rm --cached --ignore-unmatch ${FILE_PATH}' \
 --prune-empty --tag-name-filter cat -- --all
