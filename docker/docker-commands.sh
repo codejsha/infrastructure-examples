@@ -1,5 +1,10 @@
 ######################################################################
 
+docker container run --rm -it --name busybox busybox:latest
+docker container run --rm -it --name dnstools infoblox/dnstools:latest
+
+######################################################################
+
 ### process
 sudo pgrep -xa dockerd | grep dockerd
 sudo pgrep -xa docker-proxy | grep docker-proxy
