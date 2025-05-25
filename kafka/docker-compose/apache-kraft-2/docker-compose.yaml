@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: APACHE-2.0
+# SPDX-FileCopyrightText: Copyright 2025 Jinseong Ha
+
+services:
+  kafka-broker:
+    image: bitnami/kafka:3.8
+    hostname: kafka-broker
+    ports:
+      - "9092:9092"
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-broker:9094
+      # Listeners
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9091,EXTERNAL://:9092,BROKER://:9093,CONTROLLER://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka-broker:9091,EXTERNAL://localhost:9092,BROKER://kafka-broker:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,BROKER:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKER
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    networks:
+      - stream-network
+    volumes:
+      - kafka_broker_volume:/bitnami/kafka
+
+  ksqldb:
+    image: confluentinc/cp-ksqldb-server:7.7.0
+    hostname: ksqldb
+    ports:
+      - 8088:8088
+    environment:
+      KSQL_LISTENERS: http://0.0.0.0:8088
+      KSQL_BOOTSTRAP_SERVERS: kafka-broker:9091
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+    networks:
+      - stream-network
+    depends_on:
+      - kafka-broker
+
+  mysql:
+    image: quay.io/debezium/example-mysql:2.7
+    hostname: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpw
+    networks:
+      - stream-network
+    volumes:
+      - mysql_volume:/var/lib/mysql
+
+networks:
+  stream-network:
+    driver: bridge
+
+volumes:
+  kafka_broker_volume:
+    driver: local
+  mysql_volume:
+    driver: local
