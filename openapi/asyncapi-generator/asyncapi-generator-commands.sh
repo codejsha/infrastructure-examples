@@ -1,3 +1,6 @@
 ######################################################################
 
-docker container run --rm -it --name dnstools infoblox/dnstools:latest
+### install
+
+### homebrew
+brew install asyncapi

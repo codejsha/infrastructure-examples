@@ -15,6 +15,12 @@ docker compose down --remove-orphans --volumes
 
 - kafka broker in kraft mode
 
+### apache-kraft-2
+
+- kafka broker in kraft mode
+- ksqldb
+- mysql
+
 ### apache-zk-1
 
 single node cluster with basic configuration

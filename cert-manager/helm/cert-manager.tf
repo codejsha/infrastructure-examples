@@ -11,9 +11,6 @@ provider "helm" {
 resource "kubernetes_namespace" "cert_manager" {
   metadata {
     name = "cert-manager"
-    labels = {
-      "istio-injection" = "enabled"
-    }
   }
 }
 
@@ -21,7 +18,7 @@ resource "helm_release" "cert_manager" {
   name       = "cert-manager"
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "v1.16.1"
+  version    = "v1.16.2"
   set {
     name  = "crds.enabled"
     value = true
