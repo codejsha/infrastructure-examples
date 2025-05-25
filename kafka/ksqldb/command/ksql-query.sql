@@ -41,6 +41,17 @@ CAST(COL0 AS BIGINT)
 
 -- ######################################################################
 
+SELECT FORMAT_TIMESTAMP(TS, 'yyyy-MM-dd', 'asia/tokyo') AS event_date, COUNT(*) AS event_count FROM DEV_ADMIN_ACCESS_LOG_FILTERED GROUP BY FORMAT_TIMESTAMP(TS, 'yyyy-MM-dd', 'asia/tokyo') EMIT CHANGES;
+
+SELECT
+    FORMAT_TIMESTAMP(TS, 'yyyy-MM-dd', 'asia/tokyo') AS event_date,
+    COUNT(*) AS event_count
+FROM DEV_ADMIN_ACCESS_LOG_FILTERED
+    WINDOW TUMBLING (SIZE 1 DAY)
+GROUP BY FORMAT_TIMESTAMP(TS, 'yyyy-MM-dd', 'asia/tokyo')
+EMIT CHANGES;
+
+
 -- debezium
 CREATE TYPE dbz_schema_field_struct AS STRUCT<`type` VARCHAR, `optional` BOOLEAN, `field` VARCHAR>;
 CREATE TYPE dbz_schema_source_struct AS STRUCT<`type` VARCHAR, `fields` ARRAY<DBZ_SCHEMA_FIELD_STRUCT>, `optional` BOOLEAN, `name` VARCHAR, `field` VARCHAR>;
