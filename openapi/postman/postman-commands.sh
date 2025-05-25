@@ -1,5 +1,15 @@
 ######################################################################
 
+### install
+
+### homebrew
+brew install --cask postman
+
+### chocolatey
+choco install -y postman
+
+######################################################################
+
 ### Converting Postman collections from v1 to v2
 
 ### Install the Postman Collection Transformer
