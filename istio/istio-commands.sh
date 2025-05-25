@@ -6,6 +6,23 @@ export PATH="${PATH}:${HOME}/.istioctl/bin"
 
 ######################################################################
 
+### install istioctl
+
+### download and install istioctl
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-*/
+cd bin
+chmod +x istioctl
+sudo /bin/cp -pf istioctl /usr/local/bin
+
+### homebrew
+brew install istioctl
+
+### chocolatey
+choco install -y istioctl
+
+######################################################################
+
 ### version
 
 istioctl version
@@ -19,7 +36,7 @@ istioctl version
 
 ######################################################################
 
-### install
+### install istio
 
 ### profile list
 istioctl profile list
