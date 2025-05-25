@@ -5,21 +5,7 @@ set -o errtrace
 
 istioctl version
 ### Istio is not present in the cluster: no running Istio pods in namespace "istio-system"
-### client version: 1.23.2
-
-### profile list
-istioctl profile list
-### Istio configuration profiles:
-###     ambient
-###     default
-###     demo
-###     empty
-###     minimal
-###     openshift
-###     openshift-ambient
-###     preview
-###     remote
-###     stable
+### client version: 1.24.2
 
 ### install
 istioctl install -y --set profile=default

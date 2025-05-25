@@ -4,15 +4,8 @@ Apache Kafka is an open-source distributed streaming platform that is used to bu
 
 ## Install
 
-### Binary/Archive
-
-```bash
-bash ./install-kafka.sh
-```
-
-### Docker Compose
-
-[/infrastructure-examples/kafka/docker-compose](/kafka/docker-compose/)
+- [/infrastructure-examples/kafka/docker-compose](/kafka/docker-compose/)
+- [/infrastructure-examples/kafka/standalone](/kafka/standalone/)
 
 ## Confluent Kafka
 

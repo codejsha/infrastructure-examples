@@ -1,6 +1,3 @@
-[env]
-TERM = "xterm-256color"
-
 [window]
 dimensions.columns = 120
 dimensions.lines = 50
@@ -25,9 +22,14 @@ primary.foreground = "0xD4D4D4"
 
 [keyboard]
 bindings = [
-  { key = "Left",  mods = "Alt",     chars = "\u001bB"   },
-  { key = "Right", mods = "Alt",     chars = "\u001bF"   },
-  { key = "Left",  mods = "Command", chars = "\u001bOH"  },
-  { key = "Right", mods = "Command", chars =  "\u001bOF" },
-  { key = "Back",  mods = "Command", chars = "\u0015"    },
+  ### copy and paste
+  { key = "\u314A", mods = "Command", action = "Copy" },
+  { key = "\u314D", mods = "Command", action = "Paste" },
+  ### move cursor
+  { key = "Left", mods = "Alt", chars = "\u001bB" },
+  { key = "Right", mods = "Alt", chars = "\u001bF" },
+  { key = "Left", mods = "Command", chars = "\u001bOH" },
+  { key = "Right", mods = "Command", chars = "\u001bOF" },
+  ### delete
+  { key = "Back", mods = "Command", chars = "\u0015" },
 ]
