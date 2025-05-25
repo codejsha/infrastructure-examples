@@ -1,1 +1,13 @@
-127.0.0.1 jenkins.example.com
+192.168.0.50 workstation.local
+192.168.0.50 argocd.example.com
+192.168.0.50 git.example.com
+192.168.0.50 grafana.example.com
+192.168.0.50 harbor.example.com
+192.168.0.50 jaeger.example.com
+192.168.0.50 keycloak.example.com
+192.168.0.50 kiali.example.com
+192.168.0.50 minio-api.example.com
+192.168.0.50 minio.example.com
+192.168.0.50 prometheus.example.com
+192.168.0.50 tekton.example.com
+192.168.0.50 vault.example.com
