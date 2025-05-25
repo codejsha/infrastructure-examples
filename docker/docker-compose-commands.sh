@@ -14,7 +14,7 @@ docker compose up --detach
 docker compose up -d
 
 docker compose start
-docker-compose restart
+docker compose restart
 
 ######################################################################
 
