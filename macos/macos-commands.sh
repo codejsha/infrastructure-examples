@@ -20,14 +20,5 @@ cat Info.plist | rg -n CFBundleIdentifier -A 1
 
 ######################################################################
 
-### ohmyzsh
-
-### als
-als
-als -h
-als <keyword>
-als -g <group>
-als --groups
-
-### forklift (fl)
-fl
+### clear history
+history -p

@@ -1,5 +1,15 @@
 ######################################################################
 
+### install awscli
+
+### homebrew
+brew install awscli
+
+### chocolatey
+choco install -y awscli
+
+######################################################################
+
 alias aws="docker container run --rm -it -v ~/.aws:/root/.aws -v \$(pwd):/aws amazon/aws-cli"
 
 ######################################################################

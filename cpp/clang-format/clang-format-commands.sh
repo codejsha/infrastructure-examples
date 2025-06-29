@@ -1,5 +1,12 @@
 ######################################################################
 
+### install
+
+### homwbrew
+brew install clang-format
+
+######################################################################
+
 find . -type f -name "*.h" -o -name "*.cpp" | xargs clang-format -i --style=file:.clang-format
 find . -type f -name "*.h" -o -name "*.cpp" | xargs clang-format -i --style=llvm
 find . -type f -name "*.h" -o -name "*.cpp" | xargs clang-format -i --style=google

@@ -2,20 +2,12 @@
 
 ## Install
 
-### Binary/Archive
-
 ```bash
 ### pre-install
 bash ./helper.sh
 
 ### install
 bash ./install-tomcat.sh
-```
-
-### Chocolatey
-
-```ps1
-choco install -y tomcat
 ```
 
 ## Create instances

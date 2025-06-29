@@ -1,5 +1,13 @@
 ######################################################################
 
+### install gnu make
+### GNU "make" has been installed as "gmake".
+
+brew install make
+PATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnubin:${PATH}"
+
+######################################################################
+
 make --version
 
 ######################################################################

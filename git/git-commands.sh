@@ -1,5 +1,43 @@
 ######################################################################
 
+### install git
+
+### dnf/yum
+sudo dnf install -y git
+sudo yum install -y git
+
+### chocolatey
+choco install -y git.install --package-parameters="/NoShellIntegration"
+### package parameters
+###
+### /GitOnlyOnPath
+### /GitAndUnixToolsOnPath
+### /NoAutoCrlf
+### /WindowsTerminal
+### /NoShellIntegration
+### /NoGuiHereIntegration
+### /NoShellHereIntegration
+### /NoCredentialManager
+### /NoGitLfs
+### /SChannel
+### /NoOpenSSH
+### /WindowsTerminalProfile
+### /Symlinks
+### /DefaultBranchName:default_branch_name
+### /Editor:Nano|VIM|Notepad++|VisualStudioCode|VisualStudioCodeInsiders|SublimeText|Atom|VSCodium|Notepad|Wordpad|Custom editor path
+
+
+### install git flow avh edition (deprecated)
+brew install git-flow-avh
+
+### install git-extras
+brew install git-extras
+
+### install gitify
+brew install --cask gitify
+
+######################################################################
+
 ### debug
 GIT_TRACE=1 git push origin main
 
@@ -14,7 +52,6 @@ function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -n "${DIR_NA
 
 ### create a new repository on the command line
 
-echo "# hello-world" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
@@ -23,7 +60,6 @@ git remote add origin https://github.com/codejsha/hello-world.git
 git push -u origin main
 
 ### push an existing repository from the command line
-
 git remote add origin https://github.com/codejsha/hello-world.git
 git branch -M main
 git push -u origin main

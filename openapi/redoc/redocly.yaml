@@ -1,0 +1,7 @@
+apis:
+  core@v1:
+    root: ./openapi.json
+    output: ./openapi-bundle.json
+    decorators:
+      info-override:
+        version: "0.1.0"

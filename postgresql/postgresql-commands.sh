@@ -1,5 +1,13 @@
 ######################################################################
 
+### install postgresql server
+
+choco install -y postgresql13
+choco install -y postgresql12
+choco install -y postgresql11
+
+######################################################################
+
 # get the default config
 docker container run --rm -i postgres cat /usr/share/postgresql/postgresql.conf.sample > postgres-default.conf
 

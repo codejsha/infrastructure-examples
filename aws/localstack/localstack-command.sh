@@ -1,5 +1,12 @@
 ######################################################################
 
+### install cli
+
+### homebrew
+brew install localstack/tap/localstack-cli
+
+######################################################################
+
 localstack --version
 
 localstack start -d

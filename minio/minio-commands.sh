@@ -1,11 +1,47 @@
 ######################################################################
 
-### minio operator console jwt token
-kubectl -n minio-operator get secret console-sa-secret -o jsonpath="{.data.token}" | base64 --decode; echo
+complete -C /usr/local/bin/mc mc
 
 ######################################################################
 
-complete -C /usr/local/bin/mc mc
+### install minio client (cli)
+
+### binary/archive
+curl -LJO https://dl.min.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+sudo mv mc /usr/local/bin
+sudo chown root:root /usr/local/bin/mc
+
+### homebrew
+brew install minio-mc
+
+######################################################################
+
+### install minio server
+
+### binary/archive
+### default root id/pw: `minioadmin:minioadmin`
+curl -LJO https://dl.min.io/server/minio/release/linux-amd64/minio
+chmod +x minio
+sudo chown root:root minio
+sudo mv minio /usr/local/bin
+
+######################################################################
+
+### install kes
+
+### binary/archive
+curl -LJO https://github.com/minio/kes/releases/latest/download/kes-linux-amd64
+chmod +x kes-linux-amd64
+sudo mv kes-linux-amd64 /usr/local/bin/kes
+
+### homebrew
+brew install minio/stable/kes
+
+######################################################################
+
+### minio operator console jwt token
+kubectl -n minio-operator get secret console-sa-secret -o jsonpath="{.data.token}" | base64 --decode; echo
 
 ######################################################################
 

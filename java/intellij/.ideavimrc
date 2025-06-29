@@ -1,32 +1,46 @@
-set clipboard+=unnamed,unnamedplus
+""" operations
+set scrolloff=5
+set incsearch
 
+""" mappings
+map Q gq
+
+""" plugins
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+""" keybindings
 sethandler <S-CR> a:ide
-sethandler <S-Left> a:ide
-sethandler <S-Up> a:ide
-sethandler <S-Right> a:ide
-sethandler <S-Down> a:ide
+sethandler <S-Left> a:vim
+sethandler <S-Up> a:vim
+sethandler <S-Right> a:vim
+sethandler <S-Down> a:vim
+sethandler <C-Up> a:ide
+sethandler <C-Down> a:ide
 sethandler <C-2> a:ide
 sethandler <C-S-2> a:ide
 sethandler <C-6> a:ide
 sethandler <C-S-6> a:ide
-sethandler <C-A> a:ide
-sethandler <C-B> a:ide
-sethandler <C-C> a:ide
-sethandler <C-D> a:ide
-sethandler <C-E> a:ide
-sethandler <C-F> a:ide
+sethandler <C-A> a:vim
+sethandler <C-B> a:vim
+sethandler <C-C> a:vim
+sethandler <C-D> a:vim
+sethandler <C-E> a:vim
+sethandler <C-F> a:vim
 sethandler <C-G> a:ide
-sethandler <C-H> a:ide
-sethandler <C-I> a:ide
-sethandler <C-J> a:ide
-sethandler <C-K> a:ide
-sethandler <C-L> a:ide
-sethandler <C-M> a:ide
-sethandler <C-N> a:ide
-sethandler <C-O> a:ide
-sethandler <C-P> a:ide
-sethandler <C-R> a:ide
-sethandler <C-S> a:ide
-sethandler <C-T> a:ide
-sethandler <C-V> a:ide
-sethandler <C-W> a:ide
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-M> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-Q> a:vim
+sethandler <C-R> a:vim
+sethandler <C-S> a:vim
+sethandler <C-T> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim

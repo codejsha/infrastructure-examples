@@ -1,7 +1,15 @@
 ######################################################################
 
-### spring initializr commands
-### https://start.spring.io/
+### install spring boot cli
+
+### homebrew
+brew tap spring-io/tap
+brew install spring-boot
+
+### chocolatey
+choco install -y spring-boot-cli
+
+######################################################################
 
 spring help init
 

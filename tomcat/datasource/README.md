@@ -7,4 +7,4 @@
 
 ## HikariCP
 
-- HikariCP wiki: <https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc>.)
+- HikariCP wiki: <https://github.com/brettwooldridge/HikariCP/wiki/JNDI-DataSource-Factory-(Tomcat,-etc.)>
