@@ -1,13 +1,36 @@
+192.168.0.10 machine.local
 192.168.0.50 workstation.local
+
 192.168.0.50 argocd.example.com
+192.168.0.50 cloud-config.example.com
+192.168.0.50 conductor.example.com
+192.168.0.50 git.example.com
 192.168.0.50 git.example.com
 192.168.0.50 grafana.example.com
 192.168.0.50 harbor.example.com
 192.168.0.50 jaeger.example.com
 192.168.0.50 keycloak.example.com
 192.168.0.50 kiali.example.com
+192.168.0.50 loki.example.com
 192.168.0.50 minio-api.example.com
 192.168.0.50 minio.example.com
+192.168.0.50 opensearch.example.com
+192.168.0.50 otelcol-grpc.example.com
+192.168.0.50 otelcol-http.example.com
 192.168.0.50 prometheus.example.com
 192.168.0.50 tekton.example.com
 192.168.0.50 vault.example.com
+192.168.0.50 vault.example.com
+
+192.168.0.50 catalog-command.example.com
+192.168.0.50 catalog-query.example.com
+192.168.0.50 customer-command.example.com
+192.168.0.50 customer-query.example.com
+192.168.0.50 inventory-command.example.com
+192.168.0.50 inventory-query.example.com
+192.168.0.50 identity.example.com
+192.168.0.50 order-command.example.com
+192.168.0.50 order-query.example.com
+192.168.0.50 payment-command.example.com
+192.168.0.50 payment-query.example.com
+

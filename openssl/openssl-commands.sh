@@ -1,5 +1,15 @@
 ######################################################################
 
+### install openssl
+
+### homebrew
+brew install openssl@3
+
+### chocolatey
+choco install -y openssl
+
+######################################################################
+
 openssl s_client -connect test.example.com:443 < /dev/null
 openssl s_client -connect test.example.com:443 -tls1_2 < /dev/null
 

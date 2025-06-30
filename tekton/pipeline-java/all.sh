@@ -3,8 +3,6 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-kubectl create namespace tekton-pipelines
-
 ### task
 kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.4/git-clone.yaml
 kubectl apply --namespace tekton-pipelines --filename https://raw.githubusercontent.com/tektoncd/catalog/main/task/maven/0.2/maven.yaml

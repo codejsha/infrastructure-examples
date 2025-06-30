@@ -1,5 +1,26 @@
 ######################################################################
 
+### install vault cli
+
+### dnf
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+sudo dnf -y install vault
+
+### yum
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum -y install vault
+
+### homebrew
+brew tap hashicorp/tap
+brew install hashicorp/tap/vault
+
+### chocolatey
+choco install -y vault
+
+######################################################################
+
 export VAULT_ADDR="https://vault.example.com"
 export VAULT_TOKEN="$(cat ${HOME}/.vault/root_token.txt)"
 export VAULT_CACERT="${HOME}/.vault/ca.crt"

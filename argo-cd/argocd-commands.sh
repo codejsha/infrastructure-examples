@@ -5,10 +5,30 @@ source <(argocd completion bash)
 
 ######################################################################
 
-### initial
+### install cli
+
+sudo curl -o /usr/local/bin/argocd -LJO https://github.com/argoproj/argo-cd/releases/download/v2.6.2/argocd-linux-amd64
+sudo chmod +x /usr/local/bin/argocd
+
+### chocolatey
+choco install -y argocd
+
+######################################################################
+
+### install argocd
+
+### Non HA
+kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+### HA
+kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
+
+######################################################################
+
+### initialization
 
 ### get init password
 kubectl exec -it $(kubectl get pods --selector app.kubernetes.io/name=argocd-server --output jsonpath='{.items[0].metadata.name}') -c argocd-server -- argocd admin initial-password
+kubectl exec -it $(kubectl get pods --selector app.kubernetes.io/name=argocd-server --output jsonpath='{.items[0].metadata.name}') -c server -- argocd admin initial-password
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 argocd login --username admin --password ${PASSWORD} --insecure localhost:8080

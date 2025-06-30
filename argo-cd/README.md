@@ -20,32 +20,6 @@ It uses a Git repository as a resource repository to store the desired state of 
 - guestbook example: [/infrastructure-examples/argo-cd/guestbook](/argo-cd/guestbook/)
 - ArgoCD Example Apps: <https://github.com/argoproj/argocd-example-apps>
 
-## Install
-
-### Install CLI
-
-#### Binary/Archive
-
-```bash
-sudo curl -o /usr/local/bin/argocd -LJO https://github.com/argoproj/argo-cd/releases/download/v2.6.2/argocd-linux-amd64
-sudo chmod +x /usr/local/bin/argocd
-```
-
-#### Chocolatey
-
-```ps1
-choco install -y argocd
-```
-
-### Install ArgoCD
-
-```bash
-### Non HA
-kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-### HA
-kubectl apply --namespace argocd --filename https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/ha/install.yaml
-```
-
 ## References
 
 - Awesome-GitOps: <https://github.com/weaveworks/awesome-gitops>

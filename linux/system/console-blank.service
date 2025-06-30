@@ -1,0 +1,12 @@
+[Unit]
+Description=Console blank configuration service
+
+[Service]
+Type=oneshot
+Environment=TERM=linux
+StandardOutput=tty
+TTYPath=/dev/console
+ExecStart=/usr/bin/setterm -blank 1
+
+[Install]
+WantedBy=multi-user.target

@@ -8,6 +8,21 @@ docker container run --rm -it --network host edenhill/kcat:1.7.1 -V
 
 ######################################################################
 
+### install kcat
+
+### dnf/yum
+sudo dnf copr enable -y bvn13/kafkacat
+sudo dnf update
+sudo dnf install -y kafkacat
+
+### apt
+sudo apt-get install -y kafkacat
+
+### homebrew
+brew install kcat
+
+######################################################################
+
 ### topic
 
 kcat -b localhost:9092 -t pageviews -L

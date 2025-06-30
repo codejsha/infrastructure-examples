@@ -1,5 +1,10 @@
 ######################################################################
 
+### install hostctl
+brew install guumaster/tap/hostctl
+
+######################################################################
+
 hostctl list
 ### +---------+--------+-----------------+---------------------+
 ### | PROFILE | STATUS |       IP        |       DOMAIN        |
@@ -11,5 +16,5 @@ hostctl list
 
 ######################################################################
 
-hostctl add k8s < k8s.hosts
-hostctl replace k8s < k8s.hosts
+sudo hostctl add k8s < k8s.hosts
+sudo hostctl replace k8s < k8s.hosts

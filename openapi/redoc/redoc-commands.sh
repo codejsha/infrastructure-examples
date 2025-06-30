@@ -17,4 +17,6 @@ redocly build-docs openapi.yaml
 
 ######################################################################
 
+### bundle
+redocly bundle --config ./redocly.yaml core@v1
 redocly bundle openapi.json -o bundle.json

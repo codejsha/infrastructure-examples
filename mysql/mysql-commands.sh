@@ -1,5 +1,43 @@
 ######################################################################
 
+### install mysql client (cli)
+
+### homebrew
+brew install mysql-client
+
+### chocolatey
+choco install -y mysql-cli
+
+######################################################################
+
+### install mysql shell (cli)
+
+### homebrew
+brew install --cask mysql-shell
+
+######################################################################
+
+### install mysql server
+
+### chocolatey
+choco install -y mysql
+
+######################################################################
+
+### install mysql connector
+
+### chocolatey
+choco install -y mysql-connector
+
+######################################################################
+
+### install mysql workbench
+
+### chocolatey
+choco install -y mysql.workbench
+
+######################################################################
+
 ### mysql client
 
 mysql -u root -p

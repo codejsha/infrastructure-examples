@@ -85,3 +85,44 @@ function tidy_nowrap() {
         --quiet true --wrap 0 \
         ${XML_FILE}
 }
+
+######################################################################
+
+### install tools
+
+### bat
+### a `cat` clone with syntax highlighting and Git integration.
+brew install bat
+
+### fd
+### simple, fast and user-friendly alternative to find
+brew install fd
+
+### fzf
+### command-line fuzzy finder
+brew install fzf
+
+### jq
+### command-line JSON processor
+brew install jq
+choco install -y jq
+
+### ripgrep (rg)
+### a line-oriented search tool
+brew install ripgrep
+
+### tidy
+### formatting the content of XML files
+sudo dnf install -y tidy
+sudo apt-get install -y tidy
+
+### tree
+### listing directories and files as trees
+sudo apt-get install -y tree
+brew install tree
+
+### unzip
+### extraction utility for compressed archive files
+sudo yum install -y unzip
+sudo apt-get install -y unzip
+brew install unzip

@@ -1,8 +1,20 @@
 ######################################################################
 
-# $env:MINIKUBE_HOME="E:\.minikube"
+$env:MINIKUBE_HOME="E:\.minikube"
 
 ######################################################################
+
+### install minikube
+
+### homebrew
+brew install minikube
+
+### chocolatey
+choco install -y minikube
+
+######################################################################
+
+### start minikube
 
 ### docker
 minikube start --driver=docker
@@ -24,6 +36,9 @@ minikube start \
    --extra-config=kubelet.authorization-mode=Webhook \
    --extra-config=scheduler.address=0.0.0.0 \
    --extra-config=controller-manager.address=0.0.0.0
+
+### specific kubernetes version
+minikube start --kubernetes-version=v1.32.5
 
 ######################################################################
 

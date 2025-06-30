@@ -1,0 +1,13 @@
+[Unit]
+Description=CoreDNS DNS server
+Documentation=https://coredns.io/
+
+[Service]
+Type=simple
+LimitNOFILE=1048576
+TimeoutStopSec=60
+Restart=no
+ExecStart=/usr/local/bin/coredns -conf /etc/coredns/Corefile
+
+[Install]
+WantedBy=multi-user.target

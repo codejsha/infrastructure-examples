@@ -2,37 +2,6 @@
 
 Apache HTTP Server is a free and open-source cross-platform web server software, maintained by the Apache Software Foundation.
 
-## Install
-
-### DNF/YUM
-
-```bash
-sudo dnf install -y httpd
-
-# sudo systemctl enable httpd.service
-# sudo systemctl start httpd.service
-
-sudo dnf install mod_ssl -y
-```
-
-### Build
-
-```bash
-bash ./install-httpd.sh
-```
-
-### Homebrew
-
-```sh
-brew install httpd
-```
-
-### Chocolatey
-
-```ps1
-choco install -y apache-httpd
-```
-
 ## Apache Tomcat Connector
 
 Apache Tomcat Connector (mod_jk) is an Apache module that enables Apache HTTP Server to communicate with Apache Tomcat.
@@ -47,11 +16,7 @@ include mod_jk.conf file in httpd.conf:
 Include conf/jk/mod_jk.conf
 ```
 
-run to copy config files to httpd home:
-
-```bash
-bash ./httpd-tomcat.sh
-```
+copy config files to `conf/jk` directory
 
 ## References
 

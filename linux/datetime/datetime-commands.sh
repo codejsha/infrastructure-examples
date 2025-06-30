@@ -1,14 +1,12 @@
 ######################################################################
 
-export TZ="Asia/Seoul"
-
-######################################################################
-
 ### timezone
 
 timedatectl status
 timedatectl list-timezones | grep Seoul
 timedatectl set-timezone Asia/Seoul
+
+export TZ="Asia/Seoul"
 
 ######################################################################
 
@@ -25,6 +23,19 @@ hwclock
 
 ######################################################################
 
+### chrony
+sudo dnf install -y chrony
+
+######################################################################
+
 ### ntp
+
+### install (dnf)
+sudo dnf install -y ntp
+sudo systemctl enable ntpd
+sudo systemctl start ntpd
+
+### install (apt)
+sudo apt-get install -y ntp
 
 ntpq -p

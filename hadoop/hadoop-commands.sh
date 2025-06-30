@@ -4,6 +4,17 @@ function cdhadoop() { DIRECTORY="/usr/local/hadoop"; echo "+ cd ${DIRECTORY}">&2
 
 ######################################################################
 
+### install hadoop
+
+### homebrew
+brew install hadoop
+
+### chocolatey
+choco install -y hadoop
+choco install -y hadoop -params "/unzipLocation:$env:USERPROFILE\portable"
+
+######################################################################
+
 hadoop version
 
 ######################################################################

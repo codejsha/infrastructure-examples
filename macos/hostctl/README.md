@@ -1,13 +1,5 @@
 # hostctl
 
-## Install
-
-### Homebrew
-
-```sh
-brew install guumaster/tap/hostctl
-```
-
 ## References
 
 - hostctl website: <https://guumaster.github.io/hostctl/>

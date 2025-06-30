@@ -1,12 +1,18 @@
 ######################################################################
 
-### process
-alias pxnginx="sudo pgrep -xa nginx | grep nginx"
-alias psefnginx="sudo ps -ef | grep nginx"
+function cdnginx() { DIRECTORY="/etc/nginx"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
 
 ######################################################################
 
-function cdnginx() { DIRECTORY="/etc/nginx"; echo "+ cd ${DIRECTORY}">&2; command cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then ls --almost-all -l; fi; }
+### install nginx
+
+choco install -y nginx
+
+######################################################################
+
+### process
+sudo pgrep -xa nginx | grep nginx
+sudo ps -ef | grep nginx
 
 ######################################################################
 
