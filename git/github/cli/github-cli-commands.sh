@@ -45,8 +45,9 @@ gh auth status
 ### repo
 
 gh repo create
-gh repo create --private
-gh repo create --public
+gh repo create hello-world --private --source=. --remote=origin
+gh repo create hello-world --private --source=. --remote=origin --push
+gh repo create hello-world --public --source=. --remote=origin
 gh repo view
 
 gh repo clone codejsha/infrastructure-examples
