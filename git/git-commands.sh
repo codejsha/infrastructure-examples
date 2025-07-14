@@ -33,6 +33,9 @@ brew install git-flow-avh
 ### install git-extras
 brew install git-extras
 
+### install git-filter-repo
+brew install git-filter-repo
+
 ### install gitify
 brew install --cask gitify
 
@@ -117,6 +120,7 @@ git add --update
 ### branch
 git checkout -b develop
 git swtich develop
+git branch -m master main
 
 ### commit
 git commit -m "update" --allow-empty
@@ -190,3 +194,14 @@ export FILE_PATH="/path/to/file"
 git filter-branch --force --index-filter \
 'git rm --cached --ignore-unmatch ${FILE_PATH}' \
 --prune-empty --tag-name-filter cat -- --all
+
+######################################################################
+
+### change the parent commit to a different commit
+
+### rebase
+git rebase --onto <new-parent-commit> <old-parent-commit>
+
+### graft
+git replace --graft <commit> <new-parent-commit>
+git filter-repo --force
