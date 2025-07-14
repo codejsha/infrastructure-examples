@@ -33,6 +33,9 @@ brew install git-flow-avh
 ### install git-extras
 brew install git-extras
 
+### install git-filter-repo
+brew install git-filter-repo
+
 ### install gitify
 brew install --cask gitify
 
