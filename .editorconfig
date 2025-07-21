@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: APACHE-2.0
-# SPDX-FileCopyrightText: Copyright 2023-2024 Jinseong Ha
+# SPDX-FileCopyrightText: Copyright 2023-2025 Jinseong Ha
 
 ### JetBrains IDE
 
@@ -1757,7 +1757,6 @@ ij_hcl_keep_indents_on_empty_lines = false
 ij_hcl_keep_line_breaks = true
 ij_hcl_object_wrapping = normal
 ij_hcl_property_alignment = on_equals
-ij_hcl_property_line_commenter_character = 1
 ij_hcl_space_after_comma = true
 ij_hcl_space_before_comma = false
 ij_hcl_spaces_around_assignment_operators = true
@@ -1773,7 +1772,6 @@ ij_hcl-terraform_keep_indents_on_empty_lines = false
 ij_hcl-terraform_keep_line_breaks = true
 ij_hcl-terraform_object_wrapping = normal
 ij_hcl-terraform_property_alignment = on_equals
-ij_hcl-terraform_property_line_commenter_character = 1
 ij_hcl-terraform_space_after_comma = true
 ij_hcl-terraform_space_before_comma = false
 ij_hcl-terraform_spaces_around_assignment_operators = true
@@ -1782,6 +1780,7 @@ ij_hcl-terraform_spaces_within_brackets = false
 ij_hcl-terraform_wrap_long_lines = false
 
 [{*.toml,Cargo.lock,Cargo.toml.orig,Gopkg.lock,Pipfile,poetry.lock}]
+ij_toml_indent_size = 2
 ij_toml_keep_indents_on_empty_lines = false
 
 [{*.yaml,*.yml,.clang-format,.clang-tidy,_clang-format}]
@@ -1797,5 +1796,5 @@ ij_yaml_line_comment_add_space_on_reformat = true
 ij_yaml_line_comment_at_first_column = false
 ij_yaml_sequence_on_new_line = false
 ij_yaml_space_before_colon = false
-ij_yaml_spaces_within_braces = true
-ij_yaml_spaces_within_brackets = true
+ij_yaml_spaces_within_braces = false
+ij_yaml_spaces_within_brackets = false
