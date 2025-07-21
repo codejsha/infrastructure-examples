@@ -10,6 +10,11 @@ type -a curl
 
 ######################################################################
 
+### lsof
+lsof -i :8080
+
+######################################################################
+
 ### directory
 
 ### ls (List directory contents)
@@ -120,6 +125,9 @@ sudo apt-get install -y tidy
 ### listing directories and files as trees
 sudo apt-get install -y tree
 brew install tree
+
+tree -d .
+
 
 ### unzip
 ### extraction utility for compressed archive files

@@ -118,9 +118,11 @@ helm push --plain-http config-server-*.tgz oci://harbor.example.com/bookstore-he
 helm pull --untar --untardir charts ingress-nginx/ingress-nginx
 
 ### install / upgrade
-helm install my-release
-helm upgrade my-release
-helm upgrade --install my-release
+helm install mesh --namespace default ./istio-mesh-helm --values ./values.yaml
+helm install mesh --create-namespace --namespace default ./istio-mesh-helm --values ./values.yaml
+helm install mesh --create-namespace --namespace default ./istio-mesh-helm --values ./values.yaml --dry-run
+helm upgrade mesh --namespace default ./istio-mesh-helm --values ./values.yaml
+helm upgrade --install my-release --namespace default ./istio-mesh-helm --values ./values.yaml
 
 ### uninstall
 helm uninstall my-release
