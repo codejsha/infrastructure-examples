@@ -1,5 +1,10 @@
 ######################################################################
 
+### install
+brew install atuin
+
+######################################################################
+
 ### delete all history
 atuin search --delete-it-all
 atuin search --delete-it-all --exclude-exit 0
