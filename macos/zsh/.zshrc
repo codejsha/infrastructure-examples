@@ -11,6 +11,7 @@ source ${HOME}/tools/zsh-plugins/load-zsh-plugins.sh
 FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
 autoload -Uz compinit
 compinit -C
+setopt HIST_IGNORE_ALL_DUPS
 
 ### variables
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
