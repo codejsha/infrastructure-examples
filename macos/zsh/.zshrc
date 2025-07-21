@@ -30,8 +30,12 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cat="bat --style=plain --paging=never"
 alias fl="open -b com.binarynights.forklift-setapp"
+
+### database client
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
+alias psql="/opt/homebrew/opt/libpq/bin/psql"
+alias pg_dump="/opt/homebrew/opt/libpq/bin/pg_dump"
 
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
