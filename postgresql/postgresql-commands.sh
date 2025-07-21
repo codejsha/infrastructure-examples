@@ -2,9 +2,18 @@
 
 ### install postgresql server
 
+### chocolatey
 choco install -y postgresql13
 choco install -y postgresql12
 choco install -y postgresql11
+
+### homebrew
+brew install postgresql@17
+
+######################################################################
+
+### install postgresql client
+brew install libpq
 
 ######################################################################
 

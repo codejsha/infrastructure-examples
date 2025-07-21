@@ -11,6 +11,7 @@ source ${HOME}/tools/zsh-plugins/load-zsh-plugins.sh
 FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
 autoload -Uz compinit
 compinit -C
+setopt HIST_IGNORE_ALL_DUPS
 
 ### variables
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
@@ -30,8 +31,12 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cat="bat --style=plain --paging=never"
 alias fl="open -b com.binarynights.forklift-setapp"
+
+### database client
 alias mysql="/opt/homebrew/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="/opt/homebrew/opt/mysql-client@8.4/bin/mysqldump"
+alias psql="/opt/homebrew/opt/libpq/bin/psql"
+alias pg_dump="/opt/homebrew/opt/libpq/bin/pg_dump"
 
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
