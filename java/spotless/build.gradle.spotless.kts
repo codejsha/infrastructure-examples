@@ -1,31 +1,60 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("java")
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency)
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.spotless)
+    // ...
+
+    id("com.diffplug.spotless") version "7.2.1"
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDirs(
+                "src/main/kotlin",
+                "build/generated/ksp/main/kotlin"
+            )
+        }
+        java {
+            srcDirs(
+                "src/main/generated"
+            )
+        }
+        resources {
+            srcDir("src/main/resources")
+        }
+    }
+    test {
+        kotlin {
+            srcDir("src/test/kotlin")
+        }
+        resources {
+            srcDir("src/test/resources")
+        }
+    }
 }
 
 // ...
 
 spotless {
-    format("misc") {
-        target("**/*.yml", "**/*.yaml", "**/*.properties", "**/*.json", "**/*.xml", "**/*.http", "**/*.snippet")
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
     java {
-        // googleJavaFormat()
-        // googleJavaFormat().aosp()
+        importOrder("*", "|", "java.**", "javax.**", "|", "\$*")
         palantirJavaFormat()
-        // palantirJavaFormat().style("GOOGLE")
-        importOrder("", "javax|java", "\\#")
+        removeUnusedImports()
+        formatAnnotations()
     }
     kotlin {
         ktlint()
+            .setEditorConfigPath("$projectDir/.editorconfig")
+        suppressLintsFor {
+            step = "ktlint"
+            shortCode = "standard:no-wildcard-imports"
+        }
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+            .setEditorConfigPath("$projectDir/.editorconfig")
+        suppressLintsFor {
+            step = "ktlint"
+            shortCode = "standard:no-wildcard-imports"
+        }
     }
 }
-
-// ...
