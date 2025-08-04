@@ -5,6 +5,12 @@ function cdorcljava() { DIRECTORY="/usr/java"; echo "+ cd ${DIRECTORY}">&2; comm
 
 ######################################################################
 
+### install prettier and prettier-java plugin
+
+npm install -g prettier prettier-plugin-java
+
+######################################################################
+
 # export JAVA_HOME="/usr/java/current"
 # export JAVA_HOME="/usr/lib/jvm/java-11"
 # export JAVA_HOME="/usr/lib/jvm/java-1.8.0"

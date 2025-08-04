@@ -1,6 +1,5 @@
 {
   "description": "Option + Number: Open app",
-  "enabled": false,
   "manipulators": [
     {
       "conditions": [
@@ -104,7 +103,7 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^org.alacritty$"],
+          "bundle_identifiers": ["^org.tabby$"],
           "type": "frontmost_application_unless"
         }
       ],
@@ -112,13 +111,13 @@
         "key_code": "4",
         "modifiers": { "mandatory": ["left_alt"] }
       },
-      "to": [{ "shell_command": "open -b org.alacritty" }],
+      "to": [{ "shell_command": "open -b org.tabby" }],
       "type": "basic"
     },
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^org.alacritty$"],
+          "bundle_identifiers": ["^org.tabby$"],
           "type": "frontmost_application_if"
         }
       ],
