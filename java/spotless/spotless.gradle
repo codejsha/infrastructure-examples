@@ -1,0 +1,15 @@
+// id 'com.epages.restdocs-api-spec' version '0.18.2' apply false
+//
+// apply from: 'gradle/spotless.gradle'
+
+apply plugin: 'com.diffplug.spotless'
+
+spotless {
+    java {
+        toggleOffOn('@formatter:off', '@formatter:on')
+        palantirJavaFormat()
+        importOrder('com.example', '', 'java|javax', '\\#')
+        removeUnusedImports()
+        // formatAnnotations()
+    }
+}

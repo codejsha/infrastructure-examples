@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 # SPDX-FileCopyrightText: Copyright 2023-2024 Jinseong Ha
 
-### Microsoft Visual Studio
+### EditorConfig Settings for Microsoft Visual Studio C++
 
 root = true
 

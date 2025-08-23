@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
 set -o errexit
 set -o errtrace
@@ -14,8 +14,7 @@ echo "[INFO] Repository root: ${REPO_ROOT}"
 
 ######################################################################
 
-### Block specific keywords
-
+### block specific keywords
 BLOCKED_KEYWORDS="$(cat ${HOOKS_DIR}/blocked_keywords.txt)"
 for KEYWORD in ${BLOCKED_KEYWORDS}; do
     if git diff --cached | grep ${KEYWORD}; then
@@ -26,34 +25,58 @@ done
 
 ######################################################################
 
-### Signing commits
+### signing commits
 
 CURRENT_USER_NAME="$(git config user.name)"
 CURRENT_USER_EMAIL="$(git config user.email)"
 CURRENT_GPG_SIGNING_KEY="$(git config user.signingkey)"
 
-### Check if the current GPG signing key exists
+### check if the current gpg signing key exists
 if [ -z "${CURRENT_GPG_SIGNING_KEY}" ]; then
     echo "[ERROR] No GPG key set for signing commits."
     exit 1
 fi
+echo "[pre-commit] [INFO] Current GPG signing key: ${CURRENT_GPG_SIGNING_KEY}"
 
-### Check if the current user name and email match the env config
+### check if the current user name and email match the env config
 if [ "${CURRENT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
     [ "${CURRENT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
     echo "[ERROR] Commit rejected. Your user name or email is incorrect."
     exit 1
 fi
+echo "[pre-commit] [INFO] Current user name: ${CURRENT_USER_NAME}"
+echo "[pre-commit] [INFO] Current user email: ${CURRENT_USER_EMAIL}"
 
+### check if the current gpg signing key matches the env config
 GPG_USER_INFO="$(gpg --list-keys --with-colons "${ENV_GPG_SIGNING_KEY}" | grep "^uid:" | head -n 1 | cut -d: -f10)"
 GPG_USER_NAME="${GPG_USER_INFO% <*}"
 GPG_USER_EMAIL="${GPG_USER_INFO#*<}" && GPG_USER_EMAIL="${GPG_USER_EMAIL%>}"
-
-### Check if the current GPG signing key matches the env config
 if [ "${CURRENT_USER_NAME}" != "${GPG_USER_NAME}" ] ||
     [ "${CURRENT_USER_EMAIL}" != "${GPG_USER_EMAIL}" ]; then
     echo "[ERROR] Git config user name or email doesn't match the GPG key's user name or email."
     exit 1
 fi
+echo "[pre-commit] [INFO] GPG signing key matches the environment config."
+
+######################################################################
+
+### execute formatting
+
+### format kotlin files
+git diff --cached --name-only --diff-filter=ACM | rg '\.kt$|\.kts$' | while read -r FILE; do
+    echo "[pre-commit] [INFO] Formatting file: ${FILE}"
+    ktlint -F --editorconfig ${HOME}/properties/config/.editorconfig "${REPO_ROOT}/${FILE}"
+    git add "${REPO_ROOT}/${FILE}"
+done
+
+### format golang files
+git diff --cached --name-only --diff-filter=ACM | rg '\.go$' | while read -r FILE; do
+    echo "[pre-commit] [INFO] Formatting file: ${FILE}"
+    gofmt -s -w ${REPO_ROOT}/${FILE}
+    goimports -w ${REPO_ROOT}/${FILE}
+    git add "${REPO_ROOT}/${FILE}"
+done
+
+######################################################################
 
 exit 0

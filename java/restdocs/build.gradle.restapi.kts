@@ -61,7 +61,7 @@ spotless {
     }
     java {
         palantirJavaFormat()
-        importOrder("", "javax|java", "\\#")
+        importOrder("", "java|javax", "\\#")
     }
     kotlin {
         ktlint()
@@ -136,17 +136,17 @@ tasks {
         outputs.dir(snippetsDir)
         testLogging {
             events(
-                    TestLogEvent.FAILED,
-                    TestLogEvent.PASSED,
-                    TestLogEvent.SKIPPED
+                TestLogEvent.FAILED,
+                TestLogEvent.PASSED,
+                TestLogEvent.SKIPPED
             )
             debug {
                 events(
-                        TestLogEvent.FAILED,
-                        TestLogEvent.PASSED,
-                        TestLogEvent.SKIPPED,
-                        TestLogEvent.STANDARD_OUT,
-                        TestLogEvent.STANDARD_ERROR
+                    TestLogEvent.FAILED,
+                    TestLogEvent.PASSED,
+                    TestLogEvent.SKIPPED,
+                    TestLogEvent.STANDARD_OUT,
+                    TestLogEvent.STANDARD_ERROR
                 )
                 showStackTraces = true
                 exceptionFormat = TestExceptionFormat.FULL
@@ -160,8 +160,10 @@ tasks {
         inProcess = JAVA_EXEC
         forkOptions {
             jvmArgs(
-                    "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
-                    "--add-opens", "java.base/java.io=ALL-UNNAMED"
+                "--add-opens",
+                "java.base/sun.nio.ch=ALL-UNNAMED",
+                "--add-opens",
+                "java.base/java.io=ALL-UNNAMED"
             )
         }
     }

@@ -1,61 +1,49 @@
-#!/bin/sh
+#!/usr/bin/env bash
 trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
 set -o errexit
 set -o errtrace
 
-echo "[INFO] prepare-commit-msg hook"
-
 source ~/properties/git/hooks/.env
 HOOKS_DIR=$(git rev-parse --git-path hooks)
 REPO_ROOT=$(git rev-parse --show-toplevel)
-echo "[INFO] Environment: ${ENV_NAME}"
-echo "[INFO] Git hooks dir: ${HOOKS_DIR}"
-echo "[INFO] Repository root: ${REPO_ROOT}"
+echo "[pre-push] [INFO] environment: ${ENV_NAME}"
+echo "[pre-push] [INFO] git hooks dir: ${HOOKS_DIR}"
+echo "[pre-push] [INFO] repository root: ${REPO_ROOT}"
 
 COMMIT_MSG_FILE=${1}
 COMMIT_SOURCE=${2}
 
 ######################################################################
 
-### Print branch name
-if [ -z "$(git rev-parse --abbrev-ref HEAD > /dev/null 2>&1)" ]; then
-  BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-  echo "[INFO] Branch name: ${BRANCH_NAME}"
-fi
-
-### Skip for merge, squash, and rebase
-echo "[INFO] Commit source: ${COMMIT_SOURCE}"
-if [ "${COMMIT_SOURCE}" = "merge" ] || [ "${COMMIT_SOURCE}" = "squash" ] ; then
-  echo "[INFO] Skip for merge or squash commit."
-  exit 0
-fi
-if [ -d ".git/rebase-merge" ] || [ -d ".git/rebase-apply" ]; then
-  echo "[INFO] Skip for rebase."
-  exit 0
+### print branch name
+if git rev-parse --verify HEAD >/dev/null 2>&1; then
+  BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+  echo "[prepare-commit-msg] [INFO] Branch name: ${BRANCH_NAME}"
 fi
 
 ######################################################################
 
-### Validate commit message
-echo "[INFO] Commit message: $(cat ${COMMIT_MSG_FILE})"
+### validate commit message
+
+echo "[prepare-commit-msg] [INFO] Commit message: $(cat ${COMMIT_MSG_FILE})"
 COMMIT_MESSAGE="$(cat "${COMMIT_MSG_FILE}")"
 
-if [ "${COMMIT_MESSAGE}" = "Initial commit" ]; then
-  echo "[INFO] Skip for initial commit."
+if [ "${COMMIT_MESSAGE}" = "Initial commit" ] || [ "${COMMIT_MESSAGE}" = "initial commit" ]; then
+  echo "[prepare-commit-msg] [INFO] Skip for initial commit."
   exit 0
 fi
 
-COMMIT_MESSAGE_PATTERN="^(feat|fix|docs|style|refactor|chore|test|gitflow-feature-stash): .*$"
+COMMIT_MESSAGE_PATTERN="^(feat|fix|docs|style|refactor|chore|test|gitflow-feature-stash): .+|^Merge (branch|pull request).*$"
 if [[ -z "${COMMIT_MESSAGE}" ]]; then
-  echo "[ERROR] Commit message cannot be empty."
+  echo "[prepare-commit-msg] [ERROR] Commit message cannot be empty."
   exit 1
 fi
 if [[ ! "${COMMIT_MESSAGE}" =~ ${COMMIT_MESSAGE_PATTERN} ]]; then
-  echo "[ERROR] Commit message must start with a commit type: feat|fix|docs|style|refactor|chore|test"
+  echo "[prepare-commit-msg] [ERROR] Commit message must start with a commit type (feat|fix|docs|style|refactor|chore|test) or be a merge commit."
   exit 1
 fi
 if echo "${COMMIT_MESSAGE}" | grep -q -E "\s{2,}"; then
-  echo "[ERROR] Commit message must not contain two spaces."
+  echo "[prepare-commit-msg] [ERROR] Commit message must not contain two spaces."
   exit 1
 fi
 
