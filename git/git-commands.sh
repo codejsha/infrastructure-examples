@@ -43,10 +43,14 @@ GIT_TRACE=1 git push origin main
 
 ######################################################################
 
-git clone <REPO_URL>
-git clone --recurse-submodules <REPO_URL>
+### config
 
-function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -n "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
+git config --global --list
+git config --local --list
+git config --list
+
+git config user.name developer
+git config user.email developer@example.com
 
 ######################################################################
 
@@ -67,6 +71,8 @@ git push -u origin main
 ######################################################################
 
 ### repo
+
+### initialize
 git init
 
 ### remote
@@ -77,21 +83,6 @@ git remote set-url origin http://git.example.com/developer/my-app-cd.git
 
 ### submodule
 git submodule add https://github.com/codejsha/infrastructure-examples infrastructure
-
-######################################################################
-
-### config
-
-git config --global --list
-git config --local --list
-git config --list
-
-git config user.name developer
-git config user.email developer@example.com
-
-######################################################################
-
-### collaborate
 
 ### fetch
 git fetch --all
@@ -104,6 +95,11 @@ git pull origin main
 git push origin main
 git push --force origin main
 git push --no-verify
+
+### clone
+git clone <REPO_URL>
+git clone --recurse-submodules <REPO_URL>
+function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -n "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
 
 ######################################################################
 

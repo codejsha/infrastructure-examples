@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
 set -o errexit
 set -o errtrace
@@ -14,9 +14,10 @@ echo "[INFO] Repository root: ${REPO_ROOT}"
 
 ######################################################################
 
+### print commits to push
 COMMITS_TO_PUSH=""
 if [ -z "$(git ls-remote --heads origin)" ]; then
-    ### The remote repository is empty
+    ### the remote repository is empty
     COMMITS_TO_PUSH="$(git log --pretty=format:"%H")"
 else
     COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
@@ -24,29 +25,30 @@ fi
 echo "[INFO] Commits to push:"
 echo "${COMMITS_TO_PUSH}"
 
+######################################################################
+
+### validate commits to push
 for COMMIT in ${COMMITS_TO_PUSH}; do
-    ### Check if the commit is GPG signed
-    if [ ! -z $(git verify-commit ${COMMIT} > /dev/null 2>&1) ]; then
-        echo "[ERROR] Commit ${COMMIT} is not GPG signed."
+    ### check if the commit is gpg signed
+    if ! { git verify-commit ${COMMIT} > /dev/null 2>&1; }; then
+        echo "[pre-push] [ERROR] Commit ${COMMIT} is not GPG signed."
         exit 1
     fi
 
+    ### check if the commit user name and email match the env config
     COMMIT_USER_NAME="$(git show -s --pretty=format:%aN ${COMMIT})"
     COMMIT_USER_EMAIL="$(git show -s --pretty=format:%aE ${COMMIT})"
-
-    ### Check if the commit user name and email match the env config
     if [ "${COMMIT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
         [ "${COMMIT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
         echo "[ERROR] Push rejected. Your user name or email is incorrect."
         exit 1
     fi
 
+    ### check if the commit gpg signing key matches the env config
     COMMIT_GPG_SIGNING_KEY="$(git show -s --pretty=format:%GF ${COMMIT})"
     COMMIT_GPG_USER_INFO="$(git show -s --pretty=format:%GS ${COMMIT})"
     COMMIT_GPG_USER_NAME="${COMMIT_GPG_USER_INFO% <*}"
     COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_INFO#*<}" && COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_EMAIL%>}"
-
-    ### Check if the commit GPG signing key matches the env config
     if [ "${COMMIT_GPG_SIGNING_KEY}" != "${ENV_GPG_SIGNING_KEY}" ]; then
         echo "[ERROR] Commit ${COMMIT} is signed with a different GPG key."
         exit 1

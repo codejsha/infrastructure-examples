@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- ... -->
+
+    <build>
+        <plugins>
+            <!-- ... -->
+
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.46.1</version>
+                <configuration>
+                    <java>
+                        <includes>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
+                        </includes>
+                        <idea>
+                            <codeStyleSettingsPath>intellij-code-style.xml</codeStyleSettingsPath>
+                            <withDefaults>true</withDefaults>
+                            <binaryPath>/Users/user/Applications/IntelliJ IDEA Ultimate.app/Contents/MacOS/idea
+                            </binaryPath>
+                        </idea>
+                        <importOrder>
+                            <order>,java|javax,\#</order>
+                        </importOrder>
+                        <removeUnusedImports />
+                        <formatAnnotations />
+                    </java>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

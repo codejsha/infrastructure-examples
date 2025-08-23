@@ -1,0 +1,73 @@
+// id 'org.jooq.jooq-codegen-gradle' version '3.20.6' apply false
+//
+// apply from: 'gradle/jooq.gradle'
+
+apply plugin: 'org.jooq.jooq-codegen-gradle'
+
+jooq {
+    configuration {
+        jdbc {
+            driver = 'com.mysql.cj.jdbc.Driver'
+            url = 'jdbc:mysql://localhost:3306?useSSL=false&allowPublicKeyRetrieval=true'
+            user = 'root'
+            password = 'test'
+        }
+        generator {
+            name = 'org.jooq.codegen.JavaGenerator'
+            database {
+                name = 'org.jooq.meta.mysql.MySQLDatabase'
+                schemata {
+                    schema {
+                        inputSchema = 'my_database'
+                    }
+                }
+                includes = '.*'
+                excludes = 'my_database.flyway_schema_history'
+            }
+            strategy {
+                name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                matchers {
+                    tables {
+                        table {
+                            tableClass { transform = 'PASCAL'; expression = '$0_table' }
+                            daoClass { transform = 'PASCAL'; expression = '$0_dao_repository' }
+                        }
+                    }
+                }
+            }
+            generate {
+                tables = true
+                records = true
+                pojos = true
+                pojosAsJavaRecordClasses = true
+                interfaces = true
+                daos = true
+                springAnnotations = true
+                springDao = true
+                sequences = true
+                sequences = true
+                routines = true
+            }
+            target {
+                packageName = 'com.example.demo.jooq'
+                directory = 'src/main/gen'
+            }
+        }
+        logging = 'INFO'
+        onError = 'FAIL'
+        onUnused = 'LOG'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.jooq:jooq-bom:3.20.6'
+    }
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+    implementation 'org.jooq:jooq'
+    implementation 'org.jooq:jooq-postgres-extensions'
+    jooqCodegen 'com.mysql:mysql-connector-j'
+    // jooqCodegen 'org.jooq:jooq-meta-extensions-hibernate'
+}
