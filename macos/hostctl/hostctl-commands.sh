@@ -3,6 +3,8 @@
 ### install hostctl
 brew install guumaster/tap/hostctl
 
+hostctl --help
+
 ######################################################################
 
 hostctl list
@@ -14,7 +16,13 @@ hostctl list
 ### | default | on     | ::1             | localhost           |
 ### +---------+--------+-----------------+---------------------+
 
+hostctl status
+
 ######################################################################
 
 sudo hostctl add k8s < k8s.hosts
 sudo hostctl replace k8s < k8s.hosts
+sudo hostctl remove k8s
+
+sudo hostctl enable work
+sudo hostctl disable work

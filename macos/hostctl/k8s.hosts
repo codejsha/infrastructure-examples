@@ -22,15 +22,11 @@
 192.168.0.50 vault.example.com
 192.168.0.50 vault.example.com
 
-192.168.0.50 catalog-command.example.com
-192.168.0.50 catalog-query.example.com
-192.168.0.50 customer-command.example.com
-192.168.0.50 customer-query.example.com
-192.168.0.50 inventory-command.example.com
-192.168.0.50 inventory-query.example.com
+192.168.0.50 catalog.example.com
+192.168.0.50 customer.example.com
+192.168.0.50 delivery.example.com
 192.168.0.50 identity.example.com
-192.168.0.50 order-command.example.com
-192.168.0.50 order-query.example.com
-192.168.0.50 payment-command.example.com
-192.168.0.50 payment-query.example.com
-
+192.168.0.50 inventory.example.com
+192.168.0.50 notification.example.com
+192.168.0.50 order.example.com
+192.168.0.50 payment.example.com
