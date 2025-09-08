@@ -3,14 +3,12 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-echo "[INFO] pre-push hook"
-
 source ~/properties/git/hooks/.env
 HOOKS_DIR=$(git rev-parse --git-path hooks)
 REPO_ROOT=$(git rev-parse --show-toplevel)
-echo "[INFO] Environment: ${ENV_NAME}"
-echo "[INFO] Git hooks dir: ${HOOKS_DIR}"
-echo "[INFO] Repository root: ${REPO_ROOT}"
+echo "[pre-push] [INFO] environment: ${ENV_NAME}"
+echo "[pre-push] [INFO] git hooks dir: ${HOOKS_DIR}"
+echo "[pre-push] [INFO] repository root: ${REPO_ROOT}"
 
 ######################################################################
 
@@ -22,7 +20,7 @@ if [ -z "$(git ls-remote --heads origin)" ]; then
 else
     COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
 fi
-echo "[INFO] Commits to push:"
+echo "[pre-push] [INFO] Commits to push:"
 echo "${COMMITS_TO_PUSH}"
 
 ######################################################################
@@ -40,7 +38,7 @@ for COMMIT in ${COMMITS_TO_PUSH}; do
     COMMIT_USER_EMAIL="$(git show -s --pretty=format:%aE ${COMMIT})"
     if [ "${COMMIT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
         [ "${COMMIT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "[ERROR] Push rejected. Your user name or email is incorrect."
+        echo "[pre-push] [ERROR] Push rejected. Your user name or email is incorrect."
         exit 1
     fi
 
@@ -50,14 +48,16 @@ for COMMIT in ${COMMITS_TO_PUSH}; do
     COMMIT_GPG_USER_NAME="${COMMIT_GPG_USER_INFO% <*}"
     COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_INFO#*<}" && COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_EMAIL%>}"
     if [ "${COMMIT_GPG_SIGNING_KEY}" != "${ENV_GPG_SIGNING_KEY}" ]; then
-        echo "[ERROR] Commit ${COMMIT} is signed with a different GPG key."
+        echo "[pre-push] [ERROR] Commit ${COMMIT} is signed with a different GPG key."
         exit 1
     fi
     if [ "${COMMIT_GPG_USER_NAME}" != "${ENV_USER_NAME}" ] ||
         [ "${COMMIT_GPG_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "[ERROR] Push rejected. Your GPG user name or email is incorrect."
+        echo "[pre-push] [ERROR] Push rejected. Your GPG user name or email is incorrect."
         exit 1
     fi
 done
+
+######################################################################
 
 exit 0

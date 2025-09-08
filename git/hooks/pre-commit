@@ -3,14 +3,12 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-echo "[INFO] pre-commit hook"
-
 source ~/properties/git/hooks/.env
 HOOKS_DIR=$(git rev-parse --git-path hooks)
 REPO_ROOT=$(git rev-parse --show-toplevel)
-echo "[INFO] Environment: ${ENV_NAME}"
-echo "[INFO] Git hooks dir: ${HOOKS_DIR}"
-echo "[INFO] Repository root: ${REPO_ROOT}"
+echo "[pre-commit] [INFO] environment: ${ENV_NAME}"
+echo "[pre-commit] [INFO] git hooks dir: ${HOOKS_DIR}"
+echo "[pre-commit] [INFO] repository root: ${REPO_ROOT}"
 
 ######################################################################
 
@@ -18,7 +16,7 @@ echo "[INFO] Repository root: ${REPO_ROOT}"
 BLOCKED_KEYWORDS="$(cat ${HOOKS_DIR}/blocked_keywords.txt)"
 for KEYWORD in ${BLOCKED_KEYWORDS}; do
     if git diff --cached | grep ${KEYWORD}; then
-        echo "[ERROR] Commit contains a blocked keyword: ${KEYWORD}"
+        echo "[pre-commit] [ERROR] Commit contains a blocked keyword: ${KEYWORD}"
         exit 1
     fi
 done
@@ -27,33 +25,31 @@ done
 
 ### signing commits
 
-CURRENT_USER_NAME="$(git config user.name)"
-CURRENT_USER_EMAIL="$(git config user.email)"
-CURRENT_GPG_SIGNING_KEY="$(git config user.signingkey)"
+GPG_SIGNING_KEY="$(git config user.signingkey)"
 
 ### check if the current gpg signing key exists
-if [ -z "${CURRENT_GPG_SIGNING_KEY}" ]; then
-    echo "[ERROR] No GPG key set for signing commits."
+echo "[pre-commit] [INFO] Current GPG signing key: ${GPG_SIGNING_KEY}"
+if [ -z "${GPG_SIGNING_KEY}" ]; then
+    echo "[pre-commit] [ERROR] No GPG key set for signing commits."
     exit 1
 fi
-echo "[pre-commit] [INFO] Current GPG signing key: ${CURRENT_GPG_SIGNING_KEY}"
 
 ### check if the current user name and email match the env config
-if [ "${CURRENT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
-    [ "${CURRENT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-    echo "[ERROR] Commit rejected. Your user name or email is incorrect."
+echo "[pre-commit] [INFO] Current user name: ${GIT_AUTHOR_NAME}"
+echo "[pre-commit] [INFO] Current user email: ${GIT_AUTHOR_EMAIL}"
+if [ "${GIT_AUTHOR_NAME}" != "${ENV_USER_NAME}" ] ||
+    [ "${GIT_AUTHOR_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
+    echo "[pre-commit] [ERROR] Commit rejected. Your user name or email is incorrect."
     exit 1
 fi
-echo "[pre-commit] [INFO] Current user name: ${CURRENT_USER_NAME}"
-echo "[pre-commit] [INFO] Current user email: ${CURRENT_USER_EMAIL}"
 
 ### check if the current gpg signing key matches the env config
 GPG_USER_INFO="$(gpg --list-keys --with-colons "${ENV_GPG_SIGNING_KEY}" | grep "^uid:" | head -n 1 | cut -d: -f10)"
 GPG_USER_NAME="${GPG_USER_INFO% <*}"
 GPG_USER_EMAIL="${GPG_USER_INFO#*<}" && GPG_USER_EMAIL="${GPG_USER_EMAIL%>}"
-if [ "${CURRENT_USER_NAME}" != "${GPG_USER_NAME}" ] ||
-    [ "${CURRENT_USER_EMAIL}" != "${GPG_USER_EMAIL}" ]; then
-    echo "[ERROR] Git config user name or email doesn't match the GPG key's user name or email."
+if [ "${GIT_AUTHOR_NAME}" != "${GPG_USER_NAME}" ] ||
+    [ "${GIT_AUTHOR_EMAIL}" != "${GPG_USER_EMAIL}" ]; then
+    echo "[pre-commit] [ERROR] Git config user name or email doesn't match the GPG key's user name or email."
     exit 1
 fi
 echo "[pre-commit] [INFO] GPG signing key matches the environment config."
