@@ -186,3 +186,9 @@ export FILE_PATH="/path/to/file"
 git filter-branch --force --index-filter \
 'git rm --cached --ignore-unmatch ${FILE_PATH}' \
 --prune-empty --tag-name-filter cat -- --all
+
+######################################################################
+
+### remove a file or directory history from the git repository (git filter-repo)
+
+git filter-repo --path <file or directory> --invert-paths
