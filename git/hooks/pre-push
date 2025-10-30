@@ -4,6 +4,8 @@ set -o errexit
 set -o errtrace
 
 source ~/properties/git/hooks/.env
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
+
 HOOKS_DIR=$(git rev-parse --git-path hooks)
 REPO_ROOT=$(git rev-parse --show-toplevel)
 echo "[pre-push] [INFO] environment: ${ENV_NAME}"

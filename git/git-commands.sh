@@ -137,6 +137,14 @@ git tag -a v1.0.0 -m "version 1.0.0"
 
 ######################################################################
 
+### rename branch (master to main)
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+
+######################################################################
+
 ### status
 git status
 git status --untracked-files=no
