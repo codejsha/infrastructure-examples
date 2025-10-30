@@ -4,6 +4,8 @@ set -o errexit
 set -o errtrace
 
 source ~/properties/git/hooks/.env
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
+
 HOOKS_DIR=$(git rev-parse --git-path hooks)
 REPO_ROOT=$(git rev-parse --show-toplevel)
 echo "[pre-commit] [INFO] environment: ${ENV_NAME}"
@@ -53,25 +55,6 @@ if [ "${GIT_AUTHOR_NAME}" != "${GPG_USER_NAME}" ] ||
     exit 1
 fi
 echo "[pre-commit] [INFO] GPG signing key matches the environment config."
-
-######################################################################
-
-### execute formatting
-
-### format kotlin files
-git diff --cached --name-only --diff-filter=ACM | rg '\.kt$|\.kts$' | while read -r FILE; do
-    echo "[pre-commit] [INFO] Formatting file: ${FILE}"
-    ktlint -F --editorconfig ${HOME}/properties/config/.editorconfig "${REPO_ROOT}/${FILE}"
-    git add "${REPO_ROOT}/${FILE}"
-done
-
-### format golang files
-git diff --cached --name-only --diff-filter=ACM | rg '\.go$' | while read -r FILE; do
-    echo "[pre-commit] [INFO] Formatting file: ${FILE}"
-    gofmt -s -w ${REPO_ROOT}/${FILE}
-    goimports -w ${REPO_ROOT}/${FILE}
-    git add "${REPO_ROOT}/${FILE}"
-done
 
 ######################################################################
 
