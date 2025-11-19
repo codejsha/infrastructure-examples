@@ -28,6 +28,7 @@ brew install --cask microsoft-openjdk@11
 
 ### temurin-openjdk
 brew install --cask temurin
+brew install --cask temurin@25
 brew install --cask temurin@21
 brew install --cask temurin@17
 brew install --cask temurin@11
@@ -35,6 +36,7 @@ brew install --cask temurin@8
 
 ### corretto-openjdk
 brew install --cask corretto
+brew install --cask corretto@25
 brew install --cask corretto@21
 brew install --cask corretto@17
 brew install --cask corretto@11
@@ -42,6 +44,7 @@ brew install --cask corretto@8
 
 ### openjdk
 brew install openjdk
+brew install openjdk@25
 brew install openjdk@21
 brew install openjdk@17
 brew install openjdk@11

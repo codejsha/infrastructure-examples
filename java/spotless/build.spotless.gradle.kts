@@ -35,13 +35,15 @@ sourceSets {
 
 spotless {
     java {
-        toggleOffOn("@formatter:off", "@formatter:on")
+        target("src/**/*.java")
         palantirJavaFormat()
         importOrder("com.example", "", "java|javax", "\\#")
         removeUnusedImports()
         formatAnnotations()
+        toggleOffOn("@formatter:off", "@formatter:on")
     }
     kotlin {
+        target("src/**/*.kt")
         ktlint()
             .setEditorConfigPath("$projectDir/.editorconfig")
         suppressLintsFor {
