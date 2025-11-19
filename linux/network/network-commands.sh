@@ -67,3 +67,12 @@ tcpdump --interface eth0
 tcpdump -i eth0 src 192.168.137.1 and dst port 8080
 tcpdump -i any src host 192.168.0.6 and \( port 80 or port 443 \)
 tcpdump -i eth0
+
+######################################################################
+
+### ssh
+
+ssh -i cert.pem prouser@testmachine
+
+### local port forwarding
+ssh -i cert.pem -L 8080:localhost:8080 prouser@testmachine
