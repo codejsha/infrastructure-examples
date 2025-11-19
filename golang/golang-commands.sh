@@ -26,14 +26,26 @@ go run main.go
 
 ######################################################################
 
-### style
+go get github.com/codejsha/shared-library-go@latest
+go get github.com/codejsha/shared-library-go@main
+go get github.com/codejsha/shared-library-go@develop
+go get github.com/codejsha/shared-library-go@v0.1.0
 
-goimports -w ./internal/application/port/openapi
-gofmt -w ./internal/application/port/openapi
+go get -u github.com/iancoleman/strcase
+
+######################################################################
+
+### style
+go install golang.org/x/tools/cmd/goimports@latest
+
+goimports -w ./internal/application ./internal/domain ./internal/infrastructure
+gofmt -w ./internal/application ./internal/domain ./internal/infrastructure
 
 ######################################################################
 
 ### wire
+# go install github.com/google/wire/cmd/wire@latest
+go install github.com/wireinject/wire/cmd/wire@latest
 
 wire check ./internal/di
 wire show ./internal/di
