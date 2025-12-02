@@ -162,6 +162,10 @@ git restore --source=stash@{0} -- ./tomcat/helper.sh
 
 ### log
 git log
+### author/committer info
+git log --pretty=full -1
+### signature verification
+git log --show-signature
 ### graph
 git log --graph --oneline
 git log --graph --oneline --decorate --all
