@@ -21,6 +21,7 @@ temp/
 *-temp.*
 
 ### files
+.DS_Store
 *.crt
 *.csr
 *.jar
