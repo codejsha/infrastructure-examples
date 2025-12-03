@@ -137,6 +137,14 @@ git tag -a v1.0.0 -m "version 1.0.0"
 
 ######################################################################
 
+### rename branch (master to main)
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+
+######################################################################
+
 ### status
 git status
 git status --untracked-files=no
@@ -154,6 +162,10 @@ git restore --source=stash@{0} -- ./tomcat/helper.sh
 
 ### log
 git log
+### author/committer info
+git log --pretty=full -1
+### signature verification
+git log --show-signature
 ### graph
 git log --graph --oneline
 git log --graph --oneline --decorate --all
@@ -186,3 +198,9 @@ export FILE_PATH="/path/to/file"
 git filter-branch --force --index-filter \
 'git rm --cached --ignore-unmatch ${FILE_PATH}' \
 --prune-empty --tag-name-filter cat -- --all
+
+######################################################################
+
+### remove a file or directory history from the git repository (git filter-repo)
+
+git filter-repo --path <file or directory> --invert-paths

@@ -28,6 +28,14 @@ choco install -y maven
 
 ######################################################################
 
+mvn archetype:generate \
+    -DgroupId=com.example \
+    -DartifactId=hello-world \
+    -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DinteractiveMode=false
+
+######################################################################
+
 mvn clean
 
 mvn install -DskipTests
