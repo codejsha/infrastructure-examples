@@ -1,5 +1,8 @@
 ######################################################################
 
+defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool true
+
 defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
 
 ######################################################################
