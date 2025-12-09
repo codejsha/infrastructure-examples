@@ -1,11 +1,13 @@
 """ operations
 set scrolloff=5
 set incsearch
+set ideajoin
 
 """ mappings
 map Q gq
 
 """ plugins
+Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -44,3 +46,12 @@ sethandler <C-S> a:vim
 sethandler <C-T> a:vim
 sethandler <C-V> a:vim
 sethandler <C-W> a:vim
+
+sethandler <S-Up> a:ide
+sethandler <S-Down> a:ide
+sethandler <S-Left> a:ide
+sethandler <S-Right> a:ide
+sethandler <A-S-Up> a:ide
+sethandler <A-S-Down> a:ide
+sethandler <A-S-Left> a:ide
+sethandler <A-S-Right> a:ide
