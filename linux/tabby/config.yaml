@@ -85,8 +85,10 @@ hotkeys:
     - ⌘-R
   next-tab:
     - Ctrl-Tab
+    - ⌘-Shift-]
   previous-tab:
     - Ctrl-Shift-Tab
+    - ⌘-Shift-[
   move-tab-left:
     - ⌘-Shift-Left
   move-tab-right:
