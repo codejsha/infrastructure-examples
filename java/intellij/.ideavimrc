@@ -8,6 +8,7 @@ map Q gq
 
 """ plugins
 Plug 'easymotion/vim-easymotion'
+Plug 'machakann/vim-highlightedyank'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
