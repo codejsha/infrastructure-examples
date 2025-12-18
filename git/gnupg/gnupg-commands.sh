@@ -96,3 +96,9 @@ gpg --edit-key "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 ### encrypt file
 
 gpg --symmetric --output filename.encrypted filename
+
+######################################################################
+
+### restart gpg-agent
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
