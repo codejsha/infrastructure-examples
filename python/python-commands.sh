@@ -47,6 +47,20 @@ deactivate
 
 ######################################################################
 
+### uv
+brew install uv
+
+uv init example
+
+uv add ruff
+
+uv run ruff check
+
+uv lock
+uv sync
+
+######################################################################
+
 ### install poetry
 brew install poetry
 
