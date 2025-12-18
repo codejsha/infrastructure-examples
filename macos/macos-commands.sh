@@ -15,13 +15,24 @@ sw_vers -buildVersion
 
 ######################################################################
 
-### bundle-identifier
+### open
 
-defaults read com.apple.dock persistent-apps | rg bundle-identifier
-
-cat Info.plist | rg -n CFBundleIdentifier -A 1
+open -b com.google.Chrome http://localhost:8080
+open -b com.google.Chrome http://localhost:8083
 
 ######################################################################
 
 ### clear history
 history -p
+
+######################################################################
+
+defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder;
+
+######################################################################
+
+### bundle-identifier
+
+defaults read com.apple.dock persistent-apps | rg bundle-identifier
+
+cat Info.plist | rg -n CFBundleIdentifier -A 1
