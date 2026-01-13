@@ -1,0 +1,125 @@
+######################################################################
+
+### get all aliases
+GET /_alias/
+
+### get specific alias
+GET /_alias/example_index
+
+### get indices for alias
+GET /example_index_v1.0.0/_alias
+
+######################################################################
+
+### create alias for index
+
+POST /_aliases
+{
+  "actions": [
+    { "add": { "index": "example_index_v1.0.0", "alias": "example_index" } }
+  ]
+}
+
+######################################################################
+
+### create alias for multiple indices
+
+POST /_aliases
+{
+  "actions": [
+    { "add": { "index": "logs-2026.01.12", "alias": "logs_all" } },
+    { "add": { "index": "logs-2026.01.13", "alias": "logs_all" } }
+  ]
+}
+
+POST /_aliases
+{
+  "actions": [
+    { "add": { "index": "logs-000001", "alias": "logs", "is_write_index": false } },
+    { "add": { "index": "logs-000002", "alias": "logs", "is_write_index": true } }
+  ]
+}
+
+######################################################################
+
+### remove index from alias
+
+POST /_aliases
+{
+  "actions": [
+    {
+      "remove": {
+        "index": "logs-2026.01.12",
+        "alias": "logs_all"
+      }
+    }
+  ]
+}
+
+######################################################################
+
+### set write index for alias
+
+POST /_aliases
+{
+  "actions": [
+    { "add": { "index": "logs-000001", "alias": "logs", "is_write_index": true } }
+  ]
+}
+
+######################################################################
+
+### switch write index for alias
+
+POST /_aliases
+{
+  "actions": [
+    { "remove": { "index": "logs-000001", "alias": "logs" } },
+    { "add":    { "index": "logs-000002", "alias": "logs", "is_write_index": true } }
+  ]
+}
+
+######################################################################
+
+### reindex to new version index
+
+PUT /example_index_v1.0.0/_settings
+{
+  "index.blocks.write": true
+}
+
+PUT /example_index_v1.1.0
+{
+  "settings": { ... },
+  "mappings": { ... }
+}
+
+POST /_reindex?wait_for_completion=false
+{
+  "source": { "index": "example_index_v1.0.0" },
+  "dest":   { "index": "example_index_v1.1.0", "op_type": "create" }
+}
+
+GET /_tasks/<task-id>
+
+GET /example_index_v1.0.0/_count
+GET /example_index_v1.1.0/_count
+
+POST /_aliases
+{
+  "actions": [
+    { "remove": { "index": "example_index_v1.0.0", "alias": "example_index" } },
+    { "add":    { "index": "example_index_v1.1.0", "alias": "example_index" } }
+  ]
+}
+
+GET /_alias/example_index
+
+PUT /example_index_v1.0.0/_settings
+{
+  "index.blocks.write": false
+}
+
+DELETE /example_index_v1.0.0
+
+######################################################################
