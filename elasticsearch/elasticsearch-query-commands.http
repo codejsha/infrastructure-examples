@@ -1,0 +1,232 @@
+######################################################################
+
+### match all query
+
+GET /example_index/_search
+{
+  "query": {
+    "match_all": {}
+  },
+}
+
+GET /example_index/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 10
+}
+
+######################################################################
+
+### match query
+
+GET /example_index/_search
+{
+  "query": {
+    "match": { "field_name": "search text" }
+  }
+}
+
+GET /example_index/_search
+{
+  "query": {
+    "match": { "field_name": "search text" }
+  },
+  "size": 5
+}
+
+######################################################################
+
+### term query
+GET /example_index/_search
+{
+  "query": {
+    "term": { "field_name.keyword": "exact_value" }
+  }
+}
+
+### terms query
+GET /example_index/_search
+{
+  "query": {
+    "terms": { "field_name.keyword": ["value1", "value2", "value3"] }
+  }
+}
+
+######################################################################
+
+### range query
+GET /example_index/_search
+{
+  "query": {
+    "range": { "@timestamp": { "gte": "now-7d", "lt": "now" } }
+  }
+}
+
+######################################################################
+
+### prefix query
+GET /example_index/_search
+{
+  "query": {
+    "prefix": { "field_name.keyword": "pre" }
+  }
+}
+
+### wildcard query
+GET /example_index/_search
+{
+  "query": {
+    "wildcard": { "field_name.keyword": "val*" }
+  }
+}
+
+### regexp query
+GET /example_index/_search
+{
+  "query": {
+    "regexp": { "field_name.keyword": "v[a-z]+e" }
+  }
+}
+
+######################################################################
+
+### bool query
+GET /example_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "field1": "value1" } },
+        { "range": { "numeric_field": { "gte": 10, "lte": 100 } } }
+      ],
+      "filter": [
+        { "term": { "status.keyword": "active" } }
+      ],
+      "must_not": [
+        { "match": { "field2": "unwanted_value" } }
+      ],
+      "should": [
+        { "match": { "optional_field": "optional_value" } }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
+
+######################################################################
+
+### match_phrase
+GET /example_index/_search
+{
+  "query": {
+    "match_phrase": { "field_name": "exact phrase" }
+  }
+}
+
+### query_string
+GET /example_index/_search
+{
+  "query": {
+    "query_string": {
+      "query": "field1:value1 AND field2:(value2 OR value3)"
+    }
+  }
+}
+
+### simple_query_string
+GET /example_index/_search
+{
+  "query": {
+    "simple_query_string": {
+      "fields": ["message", "service"],
+      "query": "+error +timeout",
+    }
+  }
+}
+
+######################################################################
+
+### sort
+
+GET /example_index/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    { "@timestamp": { "order": "desc" } },
+    { "user.keyword": { "order": "asc" } }
+  ],
+  "size": 10
+}
+
+### search after
+GET /example_index/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    { "@timestamp": { "order": "desc" } },
+    { "user.keyword": { "order": "asc" } }
+  ],
+  "size": 10,
+  "search_after": ["2026-01-13T00:00:00.000Z", "abc123"]
+}
+
+######################################################################
+
+### aggregation
+
+### terms aggregation
+GET /example_index/_search
+{
+  "size": 0,
+  "aggs": {
+    "by_status": {
+      "terms": { "field": "status.keyword" }
+    },
+    "average_response_time": {
+      "avg": { "field": "response_time" }
+    }
+  }
+}
+
+### date histogram
+GET /example_index/_search
+{
+  "size": 0,
+  "aggs": {
+    "logs_over_time": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "calendar_interval": "day"
+      }
+    }
+  }
+}
+
+######################################################################
+
+### debug
+
+### explain
+GET /example_index/_explain/<document_id>
+{
+  "query": {
+    "match": { "field_name": "search text" }
+  }
+}
+
+### profile
+GET /example_index/_search
+{
+  "profile": true,
+  "query": {
+    "match": { "field_name": "search text" }
+  }
+}
+
+######################################################################
