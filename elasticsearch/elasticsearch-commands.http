@@ -1,0 +1,122 @@
+######################################################################
+
+### add new index
+
+PUT /example_index_v1.0.0
+{
+  "settings": { ... },
+  "mappings": { ... }
+}
+
+######################################################################
+
+### get index settings, mappings, and aliases
+GET /example_index/_settings
+GET /example_index/_mapping
+GET /example_index/_alias
+
+### get index stat
+GET /example_index/_stats
+
+### count documents in index
+GET /example_index_v1.0.0/_count
+
+######################################################################
+
+### add new field to mapping
+PUT /example_index_v1.0.0/_mapping
+{
+  "properties": {
+    "new_field": { "type": "keyword" }
+  }
+}
+
+######################################################################
+
+### turn on/off index write block
+
+PUT /example_index_v1.0.0/_settings
+{
+  "index.blocks.write": true
+}
+
+PUT /example_index_v1.0.0/_settings
+{
+  "index.blocks.write": false
+}
+
+######################################################################
+
+### refresh index
+POST /example_index_v1.0.0/_refresh
+
+### flush index
+POST /example_index_v1.0.0/_flush
+
+### force merge index segments
+POST /example_index_v1.0.0/_forcemerge?max_num_segments=1
+
+######################################################################
+
+### rollover alias
+POST /idx/_rollover
+{
+  "conditions": {
+    "max_age": "7d",
+    "max_primary_shard_size": "50gb"
+  }
+}
+
+POST /logs/_rollover
+{
+  "conditions": {
+    "max_age": "7d",
+    "max_size": "50gb"
+  }
+}
+
+GET /_cat/indices/example_index_v1.1.0?v
+GET /_cat/shards/example_index_v1.1.0?v
+
+######################################################################
+
+### update by query
+POST /example_index_v1.0.0/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.flag = true",
+    "lang": "painless"
+  },
+  "query": { "match_all": {} }
+}
+
+######################################################################
+
+### delete all documents in index (delete by query)
+
+POST /example_index_v1.0.0/_delete_by_query
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+######################################################################
+
+### tasks
+GET /_tasks
+
+### task status
+GET /_tasks/<task-id>
+
+### pending tasks
+GET /_cluster/pending_tasks
+
+######################################################################
+
+### cluster health
+GET /_cluster/health
+GET /_cluster/health?level=shards
+
+### node health
+GET /_cat/nodes?v
