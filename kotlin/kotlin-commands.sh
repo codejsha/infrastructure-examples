@@ -2,3 +2,8 @@
 
 ### install kotlin
 brew install kotlin
+
+kotlin -version
+kotlinc -version
+
+######################################################################
