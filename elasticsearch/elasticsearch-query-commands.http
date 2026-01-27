@@ -24,14 +24,14 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "match": { "field_name": "search text" }
+    "match": { "my_field": "search text" }
   }
 }
 
 GET /example_index/_search
 {
   "query": {
-    "match": { "field_name": "search text" }
+    "match": { "my_field": "search text" }
   },
   "size": 5
 }
@@ -42,7 +42,7 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "term": { "field_name.keyword": "exact_value" }
+    "term": { "my_field.keyword": "exact_value" }
   }
 }
 
@@ -50,7 +50,28 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "terms": { "field_name.keyword": ["value1", "value2", "value3"] }
+    "terms": { "my_field.keyword": ["value1", "value2", "value3"] }
+  }
+}
+
+######################################################################
+
+### exists query
+GET /example_index/_search
+{
+  "query": {
+    "exists": { "field": "my_field" }
+  }
+}
+
+GET /example_index/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "exists": { "field": "my_field" }
+      }
+    }
   }
 }
 
@@ -70,7 +91,7 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "prefix": { "field_name.keyword": "pre" }
+    "prefix": { "my_field.keyword": "pre" }
   }
 }
 
@@ -78,7 +99,7 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "wildcard": { "field_name.keyword": "val*" }
+    "wildcard": { "my_field.keyword": "val*" }
   }
 }
 
@@ -86,7 +107,7 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "regexp": { "field_name.keyword": "v[a-z]+e" }
+    "regexp": { "my_field.keyword": "v[a-z]+e" }
   }
 }
 
@@ -121,7 +142,7 @@ GET /example_index/_search
 GET /example_index/_search
 {
   "query": {
-    "match_phrase": { "field_name": "exact phrase" }
+    "match_phrase": { "my_field": "exact phrase" }
   }
 }
 
@@ -216,7 +237,7 @@ GET /example_index/_search
 GET /example_index/_explain/<document_id>
 {
   "query": {
-    "match": { "field_name": "search text" }
+    "match": { "my_field": "search text" }
   }
 }
 
@@ -225,7 +246,7 @@ GET /example_index/_search
 {
   "profile": true,
   "query": {
-    "match": { "field_name": "search text" }
+    "match": { "my_field": "search text" }
   }
 }
 
