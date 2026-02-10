@@ -18,7 +18,7 @@ export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
 export PATH="${HOMEBREW_PREFIX}/opt/llvm/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/.krew/bin:${PATH}"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-21.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-25.jdk/Contents/Home"
 export GROOVY_HOME="${HOMEBREW_PREFIX}/opt/groovysdk/libexec"
 export VCPKG_ROOT="${HOME}/tools/vcpkg"
 
