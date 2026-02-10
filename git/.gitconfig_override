@@ -1,6 +1,6 @@
 [user]
-        name = <name>
-        email = <email>
-        signingKey = <signingKey>
+    name = <name>
+    email = <email>
+    signingKey = <signingKey>
 [core]
-        hooksPath = ~/properties/git/hooks/work
+    hooksPath = ~/properties/git/hooks/work
