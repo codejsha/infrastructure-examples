@@ -1,19 +1,32 @@
 [user]
-        name = <name>
-        email = <email>
-        signingKey = <signingKey>
+    name = <name>
+    email = <email>
+    signingKey = <signingKey>
 [gpg]
-        format = openpgp
-        program = gpg
+    format = openpgp
+    program = gpg
 [commit]
-        gpgSign = true
+    gpgSign = true
+[merge]
+    ff = false
+[pull]
+    ff = true
 [tag]
-        forceSignAnnotated = true
+    gpgsign = true
+    forceSignAnnotated = true
 [gpg "ssh"]
-        program = ssh-keygen
-        allowedSignersFile = ""
+    program = ssh-keygen
+    allowedSignersFile = ""
+[credential]
+    helper = cache --timeout=3600
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 [core]
-        excludesfile = ~/properties/git/.gitignore_global
-        hooksPath = ~/properties/git/hooks/personal
+    autocrlf = input
+    excludesfile = ~/properties/git/.gitignore_global
+    hooksPath = ~/properties/git/hooks/personal
 [includeIf "gitdir:~/source/workrepos/"]
-        path = ~/properties/git/config/work/.gitconfig
+    path = ~/properties/git/config/work/.gitconfig
