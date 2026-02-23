@@ -18,6 +18,7 @@ ij_formatter_tags_enabled = true
 ij_smart_tabs = false
 ij_visual_guides = 120
 ij_wrap_on_typing = false
+ktlint_standard_kdoc = disabled
 ktlint_ignore_back_ticked_identifier = false
 ktlint_function_naming_ignore_when_annotated_with = unset
 ktlint_function_signature_body_expression_wrapping = multiline
