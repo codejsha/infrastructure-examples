@@ -15,3 +15,13 @@ docker container run \
     --env KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS="http://${HOSTNAME}:8083" \
     --add-host="${HOSTNAME}:${HOSTIP}" \
     provectuslabs/kafka-ui:latest
+
+######################################################################
+
+docker container run \
+    --rm \
+    --detach \
+    --name kafka-ui \
+    --env DYNAMIC_CONFIG_ENABLED=true \
+    --publish 9080:8080 \
+    provectuslabs/kafka-ui:latest
