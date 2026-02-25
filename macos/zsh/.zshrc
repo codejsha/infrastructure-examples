@@ -1,6 +1,10 @@
 ### shell integration
 export ZSH_COMPDUMP="${HOME}/.cache/zcompdump/zcompdump-${ZSH_VERSION}"
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+setopt HIST_IGNORE_ALL_DUPS
+FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
+autoload -Uz compinit
+compinit -C
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -8,9 +12,6 @@ source ${HOMEBREW_PREFIX}/opt/git-extras/share/git-extras/git-extras-completion.
 source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/tools/zsh-plugins/load-zsh-plugins.sh
-FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:${FPATH}
-autoload -Uz compinit
-compinit -C
 
 ### variables
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
