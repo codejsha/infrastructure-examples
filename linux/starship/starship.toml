@@ -1,0 +1,10 @@
+[shell]
+disabled = false
+format = '[$indicator]($style)'
+style = 'white'
+bash_indicator = ''
+zsh_indicator = ''
+powershell_indicator = 'PS '
+
+[directory]
+truncation_length = 8
