@@ -1,6 +1,12 @@
 ######################################################################
 
+
 ### rg (ripgrep)
+
+rg --type-list
+
+rg "account" -g'*.yaml'
+rg "account" -t java
 
 fd -tf -E "*test.go|test/" .go | xargs rg "\.Set[A-Za-z]+"
 fd -tf -E ".go" | xargs rg "time.ParseInLocation" | rg -v "time.Local"
