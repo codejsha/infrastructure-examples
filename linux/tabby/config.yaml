@@ -1,6 +1,5 @@
-version: 7
+version: 8
 profiles: []
-groups: []
 configSync:
   parts: {}
 hotkeys:
@@ -245,6 +244,7 @@ terminal:
         - '#ddaaff'
         - '#b7fff9'
         - '#ffffff'
+  showTabProfileIcon: true
 ssh: {}
 clickableLinks: {}
 accessibility:
@@ -260,4 +260,14 @@ pluginBlacklist: []
 profileDefaults:
   ssh:
     disableDynamicTitle: true
-profileBlacklist: []
+profileBlacklist:
+  - local:bincsh
+  - local:bindash
+  - local:binksh
+  - local:binsh
+  - local:bintcsh
+  - serial:template
+  - serial:port-devtty-Bluetooth-Incoming-Port
+  - serial:port-devtty-debug-console
+groups: []
+docker: {}
