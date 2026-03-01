@@ -22,3 +22,20 @@ choco install -y powershell-core
 
 Get-ExecutionPolicy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+######################################################################
+
+### full path in window title
+$__CurrentPrompt = (Get-Command prompt -CommandType Function).ScriptBlock
+function prompt {
+  $Host.UI.RawUI.WindowTitle = ($PWD.Path -replace "^${HOME}", "~")
+  & $__CurrentPrompt
+}
+
+### current directory name only
+$__CurrentPrompt = (Get-Command prompt -CommandType Function).ScriptBlock
+function prompt {
+  $p = ($PWD.Path -replace "^${HOME}", "~").TrimEnd('\','/')
+  $Host.UI.RawUI.WindowTitle = ($p -split '[\\/]' | Select-Object -Last 1)
+  & $__CurrentPrompt
+}
