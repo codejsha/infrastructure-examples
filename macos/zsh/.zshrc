@@ -13,6 +13,12 @@ source ${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/tools/zsh-plugins/load-zsh-plugins.sh
 
+case $TERM in
+  xterm*)
+    precmd () { print -Pn "\e]0;%1~\a" }
+    ;;
+esac
+
 ### variables
 export LS_COLORS="di=36:ln=38;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
@@ -30,7 +36,7 @@ alias ll="lsd -alh"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias cat="bat --style=plain --paging=never"
+alias cat="bat --style=header --paging=never"
 alias eza="eza -alg --icons --time-style=long-iso"
 alias fl="open -b com.binarynights.forklift-setapp"
 alias mysql="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysql"
