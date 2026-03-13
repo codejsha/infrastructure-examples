@@ -3,15 +3,17 @@ set scrolloff=5
 set incsearch
 set ideajoin
 
-""" mappings
-map Q gq
-
 """ plugins
 Plug 'easymotion/vim-easymotion'
 Plug 'machakann/vim-highlightedyank'
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+
+""" mappings
+nnoremap Q gq
+nnoremap <BS> X
 
 """ keybindings
 sethandler <S-CR> a:ide

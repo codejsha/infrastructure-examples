@@ -15,6 +15,10 @@ sudo netstat --listening --numeric --tcp --udp --programs
 
 ######################################################################
 
+traceroute
+
+######################################################################
+
 ### dig
 
 dig vault.example.com
@@ -46,6 +50,9 @@ ifconfig
 ### iptables
 
 iptables -L
+
+### enable port 80
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
 ### disable port 80
 iptables -A FOWARD -p tcp --dport 80 -j DROP
