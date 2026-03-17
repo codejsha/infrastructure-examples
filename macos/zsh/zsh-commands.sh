@@ -23,6 +23,12 @@ case ${TERM} in
     ;;
 esac
 
+case $TERM in
+  xterm*)
+    precmd () { print -Pn "\e]0;%1~\a" }
+    ;;
+esac
+
 ######################################################################
 
 ### current directory name using tilde

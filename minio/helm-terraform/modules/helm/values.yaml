@@ -1,0 +1,65 @@
+mode: standalone
+
+auth:
+  useCredentialsFiles: true
+  useSecret: false
+
+automountServiceAccountToken: true
+
+podAnnotations:
+  traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/agent-inject-status: "update"
+  vault.hashicorp.com/agent-init-first: "true"
+  vault.hashicorp.com/log-level: "debug"
+  vault.hashicorp.com/log-format: "json"
+  vault.hashicorp.com/service: "http://vault.vault.svc.cluster.local:8200"
+  vault.hashicorp.com/role: "minio-role"
+  vault.hashicorp.com/agent-inject-secret-admin-username: "kv/data/minio/admin"
+  vault.hashicorp.com/secret-volume-path-admin-username: "/opt/bitnami/minio/secrets"
+  vault.hashicorp.com/agent-inject-file-admin-username: "root-user"
+  vault.hashicorp.com/agent-inject-template-admin-username: |
+    {{`{{- with secret "kv/data/minio/admin" -}}`}}
+    {{`{{ .Data.data.username }}`}}
+    {{`{{- end -}}`}}
+  vault.hashicorp.com/agent-inject-secret-admin-password: "kv/data/minio/admin"
+  vault.hashicorp.com/secret-volume-path-admin-password: "/opt/bitnami/minio/secrets"
+  vault.hashicorp.com/agent-inject-file-admin-password: "root-password"
+  vault.hashicorp.com/agent-inject-template-admin-password: |
+    {{`{{- with secret "kv/data/minio/admin" -}}`}}
+    {{`{{ .Data.data.password }}`}}
+    {{`{{- end -}}`}}
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 1024Mi
+    ephemeral-storage: 50Mi
+  limits:
+    cpu: 750m
+    memory: 1536Mi
+    ephemeral-storage: 2Gi
+
+networkPolicy:
+  enabled: false
+
+persistence:
+  enabled: true
+  size: 1000Gi
+
+serviceAccount:
+  create: false
+  name: minio
+
+console:
+  enabled: true
+  automountServiceAccountToken: true
+  networkPolicy:
+    enabled: false
+  resources:
+    requests:
+      cpu: 10m
+      memory: 512Mi
+    limits:
+      cpu: 3
+      memory: 1024Mi

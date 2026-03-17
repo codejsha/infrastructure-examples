@@ -24,3 +24,5 @@ atuin search --delete --exclude-exit=0 docker
 atuin search --delete --exclude-exit=0 curl
 atuin search --delete hostctl
 
+### delete duplicate history
+atuin history dedup --before now --dupkeep=1

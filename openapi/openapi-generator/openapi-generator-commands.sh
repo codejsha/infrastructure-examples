@@ -13,6 +13,9 @@ brew install swagger-codegen
 openapi-generator generate -i petstore.yaml -o petstore -g go-echo-server
 openapi-generator generate -i openapi.yaml -o sample -g typescript-fetch
 
+java -cp ${HOME}/tools/openapi/openapi-generator-cli.jar \
+        org.openapitools.codegen.OpenAPIGenerator generate \
+        -i openapi.json -o sample -g kotlin-spring
 java -cp ${HOME}/tools/openapi/openapi-generator-cli.jar:${HOME}/tools/openapi/custom-openapi-generator-0.1.0.jar \
         org.openapitools.codegen.OpenAPIGenerator generate \
         -i petstore.yaml -o petstore -g kotlin-spring
