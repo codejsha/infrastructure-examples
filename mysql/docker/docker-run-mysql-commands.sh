@@ -30,7 +30,7 @@ docker_run_mysql8_volume
 ######################################################################
 
 function docker_run_mysql8_bind() {
-    local MYSQL_VOLUME_DIR="/mnt/volume/mysql"
+    MYSQL_VOLUME_DIR="/mnt/volume/mysql"
     mkdir -p ${MYSQL_VOLUME_DIR}/data
 
     docker container run \
@@ -62,7 +62,7 @@ docker_run_mysql5
 ######################################################################
 
 function docker_run_mysql5_bind() {
-    local MYSQL_VOLUME_DIR="/mnt/volume/mysql"
+    MYSQL_VOLUME_DIR="/mnt/volume/mysql"
     mkdir -p ${MYSQL_VOLUME_DIR}/data
 
     docker container run \

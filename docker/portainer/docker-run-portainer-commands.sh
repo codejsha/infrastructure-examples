@@ -1,7 +1,7 @@
 ######################################################################
 
 function docker_run_portainer() {
-    local PORTAINER_VOLUME_DIR="/mnt/volume/portainer"
+    PORTAINER_VOLUME_DIR="/mnt/volume/portainer"
     sudo mkdir -p ${PORTAINER_VOLUME_DIR}/data
 
     docker container run \
