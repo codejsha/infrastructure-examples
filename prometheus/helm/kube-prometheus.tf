@@ -17,13 +17,13 @@ resource "kubernetes_namespace" "monitoring" {
   }
 }
 
-resource "helm_release" "kube-prometheus-stack" {
-  name       = "my-kube-prometheus-stack"
+resource "helm_release" "prometheus" {
+  name       = "my-prometheus"
   repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "kube-prometheus-stack"
-  version    = "82.10.3"
+  chart      = "prometheus"
+  version    = "19.6.0"
   values = [
-    file("${path.module}/values-stack.yaml")
+    file("${path.module}/values.yaml")
   ]
   namespace  = kubernetes_namespace.monitoring.metadata.0.name
   depends_on = [kubernetes_namespace.monitoring]
