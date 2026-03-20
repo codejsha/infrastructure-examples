@@ -128,6 +128,7 @@ git rebase develop
 
 ### reset
 git reset --hard origin/main
+git reset --hard origin/develop
 
 ### switch
 git switch main
@@ -190,6 +191,11 @@ git checkout -b <branch-name> <commit-hash>
 
 ######################################################################
 
+### find commits that modify specific files
+git log --all --oneline -- 'src/main/resources/application*.yaml'
+
+######################################################################
+
 ### remove a file history from the git repository
 
 git ls-files
@@ -204,3 +210,11 @@ git filter-branch --force --index-filter \
 ### remove a file or directory history from the git repository (git filter-repo)
 
 git filter-repo --path <file or directory> --invert-paths
+git filter-repo --path .env.development --invert-paths
+git filter-repo --path .env.development --path .env.production --invert-paths
+git filter-repo --path credentials/ --invert-paths
+
+git filter-repo --path-glob 'src/main/resources/application*.yaml' --invert-paths
+
+git filter-repo --path src/
+git filter-repo --path src/ --path docs/
