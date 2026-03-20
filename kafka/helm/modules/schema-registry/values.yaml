@@ -1,0 +1,39 @@
+automountServiceAccountToken: true
+
+podLabels: {}
+
+configuration: {}
+
+log4j: {}
+
+avroCompatibilityLevel: backward
+
+extraEnvVars: []
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 512Mi
+  limits:
+    cpu: 750m
+    memory: 768Mi
+
+networkPolicy:
+  enabled: false
+
+serviceAccount:
+  create: false
+  name: "schema-registry"
+
+kafka:
+  enabled: false
+
+externalKafka:
+  brokers:
+    - SASL_PLAINTEXT://kafka-controller-0.kafka-controller-headless.kafka.svc.cluster.local:9092
+    - SASL_PLAINTEXT://kafka-controller-1.kafka-controller-headless.kafka.svc.cluster.local:9092
+    - SASL_PLAINTEXT://kafka-controller-2.kafka-controller-headless.kafka.svc.cluster.local:9092
+  listener:
+    protocol: SASL_PLAINTEXT

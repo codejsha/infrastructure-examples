@@ -1,0 +1,185 @@
+clusterId: "clusterlocal"
+
+config: {}
+
+log4j2: ""
+
+heapOpts: -XX:InitialRAMPercentage=75 -XX:MaxRAMPercentage=75
+
+listeners:
+  client:
+    containerPort: 9092
+    protocol: SASL_PLAINTEXT
+    name: CLIENT
+    sslClientAuth: ""
+  controller:
+    containerPort: 9093
+    protocol: SASL_PLAINTEXT
+    name: CONTROLLER
+    sslClientAuth: ""
+  interbroker:
+    containerPort: 9094
+    protocol: SASL_PLAINTEXT
+    name: INTERNAL
+    sslClientAuth: ""
+  external:
+    containerPort: 9095
+    protocol: SASL_PLAINTEXT
+    name: EXTERNAL
+    sslClientAuth: ""
+
+  extraListeners: []
+  overrideListeners: ""
+  advertisedListeners: ""
+  securityProtocolMap: ""
+
+sasl:
+  enabledMechanisms: PLAIN
+  interBrokerMechanism: PLAIN
+  controllerMechanism: PLAIN
+
+controller:
+  replicaCount: 3
+  controllerOnly: false
+  config: {}
+  heapOpts: -Xmx1024m -Xms1024m
+  resources:
+    requests:
+      cpu: 10m
+      memory: 1024Mi
+    limits:
+      cpu: 750m
+      memory: 1536Mi
+  automountServiceAccountToken: true
+  podAnnotations: {}
+  persistence:
+    enabled: true
+    size: 1000Gi
+  logPersistence:
+    enabled: false
+    size: 100Gi
+
+# broker:
+#   replicaCount: 0
+#   config: {}
+#   heapOpts: -Xmx1024m -Xms1024m
+#   resources:
+#     requests:
+#       cpu: 10m
+#       memory: 1024Mi
+#     limits:
+#       cpu: 750m
+#       memory: 1536Mi
+#   automountServiceAccountToken: true
+#   podAnnotations: {}
+#   persistence:
+#     enabled: true
+#     size: 1000Gi
+#   logPersistence:
+#     enabled: false
+#     size: 100Gi
+
+service:
+  type: ClusterIP
+  ports:
+    client: 9092
+    controller: 9093
+    interbroker: 9094
+    external: 9095
+  nodePorts:
+    client: ""
+    external: ""
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+  allocateLoadBalancerNodePorts: true
+
+externalAccess:
+  enabled: true
+  controller:
+    forceExpose: false
+    service:
+      type: NodePort
+      ports:
+        external: 9094
+      loadBalancerIPs: []
+      loadBalancerNames: []
+      loadBalancerAnnotations: []
+      loadBalancerSourceRanges: []
+      allocateLoadBalancerNodePorts: true
+      nodePorts:
+        - 30095
+        - 30096
+        - 30097
+      externalIPs: []
+      useHostIPs: true
+  # broker:
+  #   service:
+  #     type: LoadBalancer
+  #     ports:
+  #       external: 9094
+  #     loadBalancerIPs: []
+  #     loadBalancerNames: []
+  #     loadBalancerAnnotations: []
+  #     loadBalancerSourceRanges: []
+  #     allocateLoadBalancerNodePorts: true
+  #     nodePorts: []
+  #     externalIPs: []
+  #     useHostIPs: false
+
+networkPolicy:
+  enabled: false
+
+serviceAccount:
+  create: false
+  name: "kafka"
+
+rbac:
+  create: false
+
+metrics:
+  jmx:
+    enabled: false
+    kafkaJmxPort: 5555
+    containerPorts:
+      metrics: 5556
+    resources:
+      requests:
+        cpu: 10m
+        memory: 256Mi
+      limits:
+        cpu: 375m
+        memory: 384Mi
+    service:
+      ports:
+        metrics: 5556
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "{{ .Values.metrics.jmx.service.ports.metrics }}"
+        prometheus.io/path: "/metrics"
+    whitelistObjectNames:
+      - kafka.controller:*
+      - kafka.server:*
+      - java.lang:*
+      - kafka.network:*
+      - kafka.log:*
+    config: |-
+      jmxUrl: service:jmx:rmi:///jndi/rmi://127.0.0.1:{{ .Values.metrics.jmx.kafkaJmxPort }}/jmxrmi
+      lowercaseOutputName: true
+      lowercaseOutputLabelNames: true
+      ssl: false
+      {{- if .Values.metrics.jmx.whitelistObjectNames }}
+      whitelistObjectNames: ["{{ join "\",\"" .Values.metrics.jmx.whitelistObjectNames }}"]
+      {{- end }}
+  serviceMonitor:
+    enabled: false
+    namespace: ""
+    path: /metrics
+    interval: ""
+    scrapeTimeout: ""
+    labels: {}
+    selector: {}
+  prometheusRule:
+    enabled: false
+    namespace: ""
+    labels: {}
+    groups: []
