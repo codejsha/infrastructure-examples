@@ -26,41 +26,21 @@ choco install -y istioctl
 ### version
 
 istioctl version
-### Istio is not present in the cluster: no running Istio pods in namespace "istio-system"
-### client version: 1.23.2
-
-istioctl version
-### client version: 1.23.2
-### control plane version: 1.23.2
-### data plane version: 1.23.2 (1 proxies)
+# client version: 1.29.1
+# control plane version: 1.29.1
+# data plane version: 1.29.1 (2 proxies)
 
 ######################################################################
 
-### install istio
-
-### profile list
-istioctl profile list
-### Istio configuration profiles:
-###     ambient
-###     default
-###     demo
-###     empty
-###     minimal
-###     openshift
-###     openshift-ambient
-###     preview
-###     remote
-###     stable
+### install istio with istioctl
 
 istioctl install -y --set profile=default
 
-### verify
-istioctl manifest generate --set profile=default | istioctl verify-install -f -
-### ✔ Istio is installed and verified successfully
+istioctl install --set profile=ambient --skip-confirmation
 
 ######################################################################
 
-### injection
+### sidecar injection
 
 ### automatic sidecar injection
 kubectl label namespace ${NAMESPACE} istio-injection=enabled
@@ -74,8 +54,6 @@ kubectl apply --filename <(istioctl kube-inject -f httpbin.yaml)
 kubectl label namespace ${NAMESPACE} istio-injection-
 
 ######################################################################
-
-kubectl get namespace -L istio-injection
 
 kubectl describe gateways
 kubectl describe virtualservices
@@ -91,6 +69,18 @@ kubectl get serviceentries
 kubectl get workloadentries
 
 kubectl delete gw,vs,dr,se --all
+
+######################################################################
+
+### ambient mesh
+
+kubectl label namespace ${NAMESPACE} istio.io/dataplane-mode=ambient
+kubectl get namespace -L istio.io/dataplane-mode
+
+######################################################################
+
+istioctl ztunnel-config all
+istioctl ztunnel-config workloads
 
 ######################################################################
 
