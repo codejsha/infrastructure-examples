@@ -245,6 +245,7 @@ terminal:
         - '#b7fff9'
         - '#ffffff'
   showTabProfileIcon: true
+  profile: local:binzsh
 ssh: {}
 clickableLinks: {}
 accessibility:
