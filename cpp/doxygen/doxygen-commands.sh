@@ -5,5 +5,5 @@
 ### apt
 sudo apt-get install -y doxygen
 
-### homebrew
+### chocolatey
 choco install -y doxygen.install
