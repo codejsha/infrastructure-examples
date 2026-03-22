@@ -75,6 +75,8 @@ tcpdump -i eth0 src 192.168.137.1 and dst port 8080
 tcpdump -i any src host 192.168.0.6 and \( port 80 or port 443 \)
 tcpdump -i eth0
 
+sudo tcpdump -i any host 192.168.137.100 and port 443 -nn
+
 ######################################################################
 
 ### ssh

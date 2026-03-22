@@ -18,8 +18,9 @@
 192.168.0.50 otelcol-grpc.example.com
 192.168.0.50 otelcol-http.example.com
 192.168.0.50 prometheus.example.com
+192.168.0.50 seaweedfs-api.example.com
+192.168.0.50 seaweedfs.example.com
 192.168.0.50 tekton.example.com
-192.168.0.50 vault.example.com
 192.168.0.50 vault.example.com
 
 192.168.0.50 catalog.example.com

@@ -55,49 +55,30 @@ PGPASSWORD="${PASSWORD}" \
 ######################################################################
 
 ### create database
-
-PGPASSWORD="${PASSWORD}" \
-    psql \
-    --host=postgres-lb.example.com \
-    --port=5432 \
-    --username=postgres \
-    --command="CREATE DTABASE ${DATABASE_NAME};"
-
-######################################################################
+CREATE DTABASE ${DATABASE_NAME};
 
 ### switch database
-
-PGPASSWORD="${PASSWORD}" \
-    psql \
-    --host=postgres-lb.example.com \
-    --port=5432 \
-    --username=postgres \
-    --command="\c postgres"
-### You are now connected to database "postgres" as user "postgres".
+\c postgres
 
 ######################################################################
 
 ### table list
-
-PGPASSWORD="${PASSWORD}" \
-    psql \
-    --host=postgres-lb.example.com \
-    --port=5432 \
-    --username=postgres \
-    --dbname=postgres \
-    --command="\dt"
+\dt
 
 ######################################################################
 
 ### role
-
-PGPASSWORD="${PASSWORD}" \
-    psql \
-    --host=postgres-lb.example.com \
-    --port=5432 \
-    --username=postgres \
-    --command="\du"
+\du
 ###                                    List of roles
 ###  Role name |                         Attributes                         | Member of
 ### -----------+------------------------------------------------------------+-----------
 ###  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+######################################################################
+
+### copy data from file
+\copy ${TABLE_NAME} FROM '${FILE_PATH}' WITH (FORMAT CSV, HEADER true);
+
+### copy data to file
+\copy ${TABLE_NAME} TO '${FILE_PATH}' WITH (FORMAT CSV, HEADER true);
+\copy (SELECT * FROM ${TABLE_NAME}) TO '${FILE_PATH}' WITH (FORMAT CSV, HEADER true);

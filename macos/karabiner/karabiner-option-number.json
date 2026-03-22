@@ -86,7 +86,7 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^com\\.naver\\.Whale$"],
+          "bundle_identifiers": ["^org.tabby$"],
           "type": "frontmost_application_unless"
         }
       ],
@@ -96,17 +96,13 @@
           "mandatory": ["left_alt"]
         }
       },
-      "to": [
-        {
-          "shell_command": "open -b com.naver.Whale"
-        }
-      ],
+      "to": [{ "shell_command": "open -b org.tabby" }],
       "type": "basic"
     },
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^com\\.naver\\.Whale$"],
+          "bundle_identifiers": ["^org.tabby$"],
           "type": "frontmost_application_if"
         }
       ],
@@ -127,7 +123,7 @@
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^org.tabby$"],
+          "bundle_identifiers": ["^com\\.anthropic\\.claudefordesktop$"],
           "type": "frontmost_application_unless"
         }
       ],
@@ -137,13 +133,17 @@
           "mandatory": ["left_alt"]
         }
       },
-      "to": [{ "shell_command": "open -b org.tabby" }],
+      "to": [
+        {
+          "shell_command": "open -b com.anthropic.claudefordesktop"
+        }
+      ],
       "type": "basic"
     },
     {
       "conditions": [
         {
-          "bundle_identifiers": ["^org.tabby$"],
+          "bundle_identifiers": ["^com\\.anthropic\\.claudefordesktop$"],
           "type": "frontmost_application_if"
         }
       ],
