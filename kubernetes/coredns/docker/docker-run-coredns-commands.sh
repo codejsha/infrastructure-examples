@@ -1,7 +1,23 @@
 ######################################################################
 
-function docker_run_coredns() {
-    local COREDNS_VOLUME_DIR="/mnt/volume/coredns"
+function docker_run_coredns_volume() {
+    docker volume create coredns-data
+
+    docker container run \
+        --detach \
+        --name coredns \
+        --restart unless-stopped \
+        --publish 53:53/udp \
+        --mount type="volume",src="coredns-data",dst="/root/coredns" \
+        coredns/coredns:latest \
+        -conf /root/coredns/Corefile
+}
+docker_run_coredns_volume
+
+######################################################################
+
+function docker_run_coredns_bind() {
+    COREDNS_VOLUME_DIR="/mnt/volume/coredns"
     sudo mkdir -p ${COREDNS_VOLUME_DIR}
     sudo /bin/cp -f corefile-server.conf ${COREDNS_VOLUME_DIR}/Corefile
 
@@ -14,10 +30,10 @@ function docker_run_coredns() {
         coredns/coredns:latest \
         -conf /root/coredns/Corefile
 }
-docker_run_coredns
+docker_run_coredns_bind
 
-function podman_run_coredns() {
-    local COREDNS_VOLUME_DIR="/mnt/volume/coredns"
+function podman_run_coredns_bind() {
+    COREDNS_VOLUME_DIR="/mnt/volume/coredns"
     sudo mkdir -p ${COREDNS_VOLUME_DIR}
     sudo /bin/cp -f corefile-server.conf ${COREDNS_VOLUME_DIR}/Corefile
 
@@ -30,4 +46,4 @@ function podman_run_coredns() {
         coredns/coredns:latest \
         -conf /root/coredns/Corefile
 }
-podman_run_coredns
+podman_run_coredns_bind

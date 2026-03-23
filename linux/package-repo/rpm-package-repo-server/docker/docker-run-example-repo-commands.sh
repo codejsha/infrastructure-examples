@@ -1,7 +1,7 @@
 ######################################################################
 
 function docker_run_example_repo() {
-    local REPO_VOLUME_DIR="/mnt/volume/example-repo"
+    REPO_VOLUME_DIR="/mnt/volume/example-repo"
     # sudo mkdir -p ${REPO_VOLUME_DIR}
 
     docker container run \

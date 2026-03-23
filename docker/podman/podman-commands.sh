@@ -38,4 +38,7 @@ podman build \
 
 ### push image
 podman push harbor.example.com/bookstore/catalog:0.1.0
-podman push --tls-verify=false harbor.example.com/bookstore/catalog:0.1.0
+podman push harbor.example.com/bookstore/catalog:0.1.0 \
+    --cert-dir /path/to/certs --log-level debug
+podman push harbor.example.com/bookstore/catalog:0.1.0 \
+    --tls-verify=false --log-level debug

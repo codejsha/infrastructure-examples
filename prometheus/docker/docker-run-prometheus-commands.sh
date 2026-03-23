@@ -1,7 +1,7 @@
 ######################################################################
 
 function docker_run_prometheus() {
-    local PROMETHEUS_VOLUME_DIR="/mnt/volume/prometheus"
+    PROMETHEUS_VOLUME_DIR="/mnt/volume/prometheus"
     sudo mkdir -p ${PROMETHEUS_VOLUME_DIR}
     sudo /bin/cp -f prometheus.yml ${PROMETHEUS_VOLUME_DIR}/prometheus.yml
 
