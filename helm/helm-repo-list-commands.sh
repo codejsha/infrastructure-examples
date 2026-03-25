@@ -1,7 +1,4 @@
-#!/bin/bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
+######################################################################
 
 helm repo add apache-airflow https://airflow.apache.org
 helm repo add apache-solr https://solr.apache.org/charts
@@ -11,6 +8,7 @@ helm repo add atlassian-data-center https://atlassian-labs.github.io/data-center
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add cetic https://cetic.github.io/helm-charts
 helm repo add chartmuseum https://chartmuseum.github.io/charts
+helm repo add cnpg https://cloudnative-pg.github.io/charts
 helm repo add confluentinc https://packages.confluent.io/helm
 helm repo add datadog https://helm.datadoghq.com
 helm repo add datawire https://app.getambassador.io
@@ -20,8 +18,8 @@ helm repo add elastic https://helm.elastic.co
 helm repo add enix https://charts.enix.io
 helm repo add gitea-charts https://dl.gitea.io/charts
 helm repo add gitlab https://charts.gitlab.io
-helm repo add harbor https://helm.goharbor.io
 helm repo add haproxytech https://haproxytech.github.io/helm-charts
+helm repo add harbor https://helm.goharbor.io
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add incubator https://charts.helm.sh/incubator
 helm repo add influxdata https://helm.influxdata.com
@@ -37,9 +35,7 @@ helm repo add oteemocharts https://oteemo.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add renovate https://docs.renovatebot.com/helm-charts
 helm repo add stable https://charts.helm.sh/stable
+helm repo add stackgres-charts https://stackgres.io/downloads/stackgres-k8s/stackgres/helm/
 helm repo add strimzi https://strimzi.io/charts
 helm repo add traefik https://containous.github.io/traefik-helm-chart
 helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
-
-### local
-# helm repo add --username ${USERNAME} --password ${PASSWORD} local-harbor http://harbor.example.com/chartrepo/library
