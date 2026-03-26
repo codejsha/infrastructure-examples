@@ -41,6 +41,7 @@ alias eza="eza -alg --icons --time-style=long-iso"
 alias fl="open -b com.binarynights.forklift-setapp"
 alias mysql="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysqldump"
+alias psql="${HOMEBREW_PREFIX}/opt/postgresql@18/bin/psql"
 
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
