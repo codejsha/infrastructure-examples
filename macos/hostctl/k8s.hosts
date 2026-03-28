@@ -5,7 +5,6 @@
 192.168.0.50 cloud-config.example.com
 192.168.0.50 conductor.example.com
 192.168.0.50 git.example.com
-192.168.0.50 git.example.com
 192.168.0.50 grafana.example.com
 192.168.0.50 harbor.example.com
 192.168.0.50 jaeger.example.com
