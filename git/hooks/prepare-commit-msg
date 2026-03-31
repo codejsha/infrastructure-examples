@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-source ~/properties/git/hooks/.env
+source ~/properties/personal/git/hooks/.env
 export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
 
 HOOKS_DIR=$(git rev-parse --git-path hooks)
