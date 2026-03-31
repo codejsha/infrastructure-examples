@@ -1,9 +1,4 @@
-version: 8
-profiles: []
-configSync:
-  parts: {}
 hotkeys:
-  toggle-window: []
   copy-current-path: []
   ctrl-c:
     - Ctrl-C
@@ -68,6 +63,7 @@ hotkeys:
   restart-serial-session: []
   new-tab:
     - ⌘-T
+  toggle-window: []
   new-window:
     - ⌘-N
   profile: {}
@@ -76,7 +72,7 @@ hotkeys:
   toggle-fullscreen:
     - Ctrl+⌘+F
   close-tab:
-    - ⌘-W
+    - ⌘-Shift-W
   reopen-tab:
     - ⌘-Shift-T
   toggle-last-tab: []
@@ -132,9 +128,9 @@ hotkeys:
   tab-19: []
   tab-20: []
   split-right:
-    - ⌘-Shift-D
-  split-bottom:
     - ⌘-D
+  split-bottom:
+    - ⌘-Shift-D
   split-left: []
   split-top: []
   pane-nav-right:
@@ -161,7 +157,7 @@ hotkeys:
   pane-maximize:
     - ⌘-⌥-Enter
   close-pane:
-    - ⌘-Shift-W
+    - ⌘-W
   pane-increase-vertical: []
   pane-decrease-vertical: []
   pane-increase-horizontal: []
@@ -173,21 +169,43 @@ hotkeys:
   command-selector:
     - ⌘-Shift-P
 terminal:
-  searchOptions: {}
+  frontend: xterm-webgl
+  fontSize: 14
+  fontWeight: 400
+  fontWeightBold: 400
+  fallbackFont: null
+  linePadding: 1.2
+  bell: 'off'
+  bracketedPaste: true
+  background: theme
+  ligatures: false
+  cursor: block
+  cursorBlink: true
+  hideTabIndex: false
+  showTabProfileIcon: false
+  hideCloseButton: false
+  hideTabOptionsButton: false
+  rightClick: menu
+  pasteOnMiddleClick: true
+  copyOnSelect: false
+  copyAsHTML: true
+  scrollOnInput: true
+  altIsMeta: false
+  wordSeparator: ' ()[]{}''"'
   colorScheme:
-    name: Tabby Default
-    foreground: '#cacaca'
-    background: '#171717'
+    name: custom
+    foreground: '#d4d4d4'
+    background: '#1e1e1e'
     cursor: '#bbbbbb'
     colors:
-      - '#000000'
-      - '#ff615a'
-      - '#b1e969'
-      - '#ebd99c'
-      - '#5da9f6'
-      - '#e86aff'
-      - '#82fff7'
-      - '#dedacf'
+      - '#1e1e1e'
+      - '#FF5647'
+      - '#A5C261'
+      - '#DCDCAA'
+      - '#569CD6'
+      - '#C586C0'
+      - '#4EC9B0'
+      - '#d4d4d4'
       - '#313131'
       - '#f58c80'
       - '#ddf88f'
@@ -196,8 +214,6 @@ terminal:
       - '#ddaaff'
       - '#b7fff9'
       - '#ffffff'
-  font: Hack Nerd Font
-  fontSize: 13
   lightColorScheme:
     name: Tabby Default Light
     foreground: '#4d4d4c'
@@ -220,22 +236,20 @@ terminal:
       - '#8959a8'
       - '#3e999f'
       - '#ffffff'
-  fallbackFont: Consolas
-  warnOnMultilinePaste: false
   customColorSchemes:
     - name: custom
       foreground: '#d4d4d4'
-      background: 1e1e1e
+      background: '#1e1e1e'
       cursor: '#bbbbbb'
       colors:
-        - '#000000'
-        - '#ff615a'
-        - '#b1e969'
-        - '#ebd99c'
-        - '#5da9f6'
-        - '#e86aff'
-        - '#82fff7'
-        - '#dedacf'
+        - '#1e1e1e'
+        - '#FF5647'
+        - '#A5C261'
+        - '#DCDCAA'
+        - '#569CD6'
+        - '#C586C0'
+        - '#4EC9B0'
+        - '#d4d4d4'
         - '#313131'
         - '#f58c80'
         - '#ddf88f'
@@ -244,31 +258,96 @@ terminal:
         - '#ddaaff'
         - '#b7fff9'
         - '#ffffff'
-  showTabProfileIcon: true
+  warnOnMultilinePaste: false
+  searchRegexAlwaysEnabled: false
+  searchOptions:
+    regex: false
+    wholeWord: false
+    caseSensitive: false
+  detectProgress: true
+  scrollbackLines: 30000
+  drawBoldTextInBrightColors: true
+  sixel: true
+  minimumContrastRatio: 4
+  trimWhitespaceOnPaste: true
+  font: Consolas, Hack Nerd Font
+  autoOpen: true
+  useConPTY: true
+  environment: {}
+  setComSpec: false
   profile: local:binzsh
-ssh: {}
-clickableLinks: {}
+  showBuiltinProfiles: true
+  showRecentProfiles: 3
+  paneResizeStep: 0.1
+  focusFollowsMouse: false
+  identification: null
+ssh:
+  warnOnClose: false
+  winSCPPath: null
+  agentType: auto
+  agentPath: null
+  x11Display: null
+  knownHosts: []
+  verifyHostKeys: true
+configSync:
+  configID: null
+  auto: false
+  parts:
+    hotkeys: true
+    appearance: true
+    vault: true
+clickableLinks:
+  modifier: null
+docker:
+  host: null
+  port: null
+  socket: null
 accessibility:
-  animations: false
-appearance: {}
-hacks: {}
-providerBlacklist: []
-commandBlacklist: []
-language: en-US
-enableAnalytics: false
-enableWelcomeTab: false
-pluginBlacklist: []
+  animations: true
+appearance:
+  dock: 'off'
+  dockScreen: current
+  dockFill: 0.5
+  dockSpace: 1
+  dockHideOnBlur: false
+  dockAlwaysOnTop: true
+  flexTabs: false
+  tabsLocation: top
+  tabsInFullscreen: false
+  cycleTabs: true
+  theme: Follow the color scheme
+  frame: thin
+  css: '/* * { color: blue !important; } */'
+  opacity: 1
+  vibrancy: false
+  vibrancyType: blur
+  lastTabClosesWindow: false
+  spaciness: 1
+  colorSchemeMode: dark
+profiles: []
+groups: []
 profileDefaults:
   ssh:
     disableDynamicTitle: true
-profileBlacklist:
-  - local:bincsh
-  - local:bindash
-  - local:binksh
-  - local:binsh
-  - local:bintcsh
-  - serial:template
-  - serial:port-devtty-Bluetooth-Incoming-Port
-  - serial:port-devtty-debug-console
-groups: []
-docker: {}
+recoverTabs: true
+enableAnalytics: false
+enableWelcomeTab: false
+electronFlags:
+  - - force_discrete_gpu
+    - '0'
+enableAutomaticUpdates: true
+hideTray: false
+version: 8
+vault: null
+encrypted: false
+enableExperimentalFeatures: false
+commandBlacklist: []
+providerBlacklist: []
+profileBlacklist: []
+hacks:
+  disableGPU: false
+  disableVibrancyWhileDragging: false
+  enableFluentBackground: false
+language: en-US
+defaultQuickConnectProvider: ssh
+pluginBlacklist: []
