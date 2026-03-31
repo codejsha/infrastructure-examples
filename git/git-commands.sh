@@ -26,7 +26,6 @@ choco install -y git.install --package-parameters="/NoShellIntegration"
 ### /DefaultBranchName:default_branch_name
 ### /Editor:Nano|VIM|Notepad++|VisualStudioCode|VisualStudioCodeInsiders|SublimeText|Atom|VSCodium|Notepad|Wordpad|Custom editor path
 
-
 ### install git flow avh edition (deprecated)
 brew install git-flow-avh
 
@@ -54,6 +53,11 @@ git config user.email developer@example.com
 
 ######################################################################
 
+### initialize repo
+git init
+
+######################################################################
+
 ### create a new repository on the command line
 
 git init
@@ -70,19 +74,23 @@ git push -u origin main
 
 ######################################################################
 
-### repo
-
-### initialize
-git init
-
 ### remote
 git remote add origin http://git.example.com/developer/my-app-ci.git
 git remote add origin http://git.example.com/developer/my-app-cd.git
 git remote set-url origin http://git.example.com/developer/my-app-ci.git
 git remote set-url origin http://git.example.com/developer/my-app-cd.git
 
+######################################################################
+
 ### submodule
 git submodule add https://github.com/codejsha/infrastructure-examples infrastructure
+
+######################################################################
+
+### clone
+git clone <REPO_URL>
+git clone --recurse-submodules <REPO_URL>
+function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -n "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
 
 ### fetch
 git fetch --all
@@ -96,23 +104,16 @@ git push origin main
 git push --force origin main
 git push --no-verify
 
-### clone
-git clone <REPO_URL>
-git clone --recurse-submodules <REPO_URL>
-function git-clone-lower() { REPO_URL="${1}"; DIR_NAME="${2}"; if [ -n "${DIR_NAME}" ]; then REPO_NAME="${DIR_NAME}"; else REPO_NAME=$(basename "${REPO_URL}" .git | tr '[:upper:]' '[:lower:]'); fi; echo "+ git clone ${REPO_URL} ${REPO_NAME}">&2; command git clone ${REPO_URL} ${REPO_NAME}; }
-
 ######################################################################
+
+### branch
+git checkout -b develop
+git switch develop
 
 ### add
 git add --all
 git add --no-all
 git add --update
-
-######################################################################
-
-### branch
-git checkout -b develop
-git swtich develop
 
 ### commit
 git commit -m "update" --allow-empty
@@ -135,6 +136,11 @@ git switch main
 
 ### tag
 git tag -a v1.0.0 -m "version 1.0.0"
+
+######################################################################
+
+### delete merged branches
+git branch --merged | grep -vE '(main|develop|\*)' | xargs git branch -d
 
 ######################################################################
 
@@ -193,6 +199,8 @@ git checkout -b <branch-name> <commit-hash>
 
 ### find commits that modify specific files
 git log --all --oneline -- 'src/main/resources/application*.yaml'
+git log --all -- '**/.gitignore'
+git log --all -p -- '**/.gitignore'
 
 ######################################################################
 

@@ -1,8 +1,8 @@
 ######################################################################
 
 function docker_run_debezium_postgresql14() {
-    local PASSWORD="postgres"
-    local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
+    PASSWORD="postgres"
+    POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
     sudo mkdir -p ${POSTGRESQL_VOLUME_DIR}/data
     # docker container run --rm -i debezium/postgres:14 cat /usr/share/postgresql/postgresql.conf.sample > debezium-postgresql.conf
@@ -25,8 +25,8 @@ function docker_run_debezium_postgresql14() {
 docker_run_debezium_postgresql14
 
 function docker_run_debezium_postgresql13() {
-    local PASSWORD="postgres"
-    local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
+    PASSWORD="postgres"
+    POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
     sudo mkdir -p ${POSTGRESQL_VOLUME_DIR}/data
     # docker container run --rm -i debezium/postgres:13 cat /usr/share/postgresql/postgresql.conf.sample > debezium-postgresql.conf
@@ -49,8 +49,8 @@ function docker_run_debezium_postgresql13() {
 docker_run_debezium_postgresql13
 
 function docker_run_debezium_postgresql12() {
-    local PASSWORD="postgres"
-    local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
+    PASSWORD="postgres"
+    POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
     sudo mkdir -p ${POSTGRESQL_VOLUME_DIR}/data
     # docker container run --rm -i debezium/postgres:12 cat /usr/share/postgresql/postgresql.conf.sample > debezium-postgresql.conf
@@ -73,8 +73,8 @@ function docker_run_debezium_postgresql12() {
 docker_run_debezium_postgresql12
 
 function docker_run_debezium_postgresql11() {
-    local PASSWORD="postgres"
-    local POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
+    PASSWORD="postgres"
+    POSTGRESQL_VOLUME_DIR="/mnt/volume/postgresql"
     # sudo rm -rf ${POSTGRESQL_VOLUME_DIR}
     sudo mkdir -p ${POSTGRESQL_VOLUME_DIR}/data
     # docker container run --rm -i debezium/postgres:11 cat /usr/share/postgresql/postgresql.conf.sample > debezium-postgresql.conf

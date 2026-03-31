@@ -1,10 +1,10 @@
 ######################################################################
 
 function docker_run_docker_registry() {
-    local USERNAME="admin"
-    local PASSWORD="${PASSWORD}"
+    USERNAME="admin"
+    PASSWORD="${PASSWORD}"
 
-    local REGISTRY_VOLUME_DIR="/mnt/volume/registry"
+    REGISTRY_VOLUME_DIR="/mnt/volume/registry"
     sudo mkdir -p ${REGISTRY_VOLUME_DIR}
 
     sudo yum install -y httpd-tools

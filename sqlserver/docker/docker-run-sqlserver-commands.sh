@@ -1,7 +1,7 @@
 ######################################################################
 
 function docker_run_sqlserver2022() {
-    local PASSWORD="${PASSWORD}"
+    PASSWORD="${PASSWORD}"
 
     docker container run \
         --detach \
@@ -16,7 +16,7 @@ function docker_run_sqlserver2022() {
 docker_run_sqlserver2022
 
 function docker_run_sqlserver2019() {
-    local PASSWORD="${PASSWORD}"
+    PASSWORD="${PASSWORD}"
 
     docker container run \
         --detach \
@@ -31,7 +31,7 @@ function docker_run_sqlserver2019() {
 docker_run_sqlserver2019
 
 function docker_run_sqlserver2017() {
-    local PASSWORD="${PASSWORD}"
+    PASSWORD="${PASSWORD}"
 
     docker container run \
         --detach \

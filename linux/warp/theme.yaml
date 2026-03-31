@@ -1,0 +1,25 @@
+name: Custom Theme
+accent: "#268bd2"
+cursor: "#bbbbbb"
+background: "#1e1e1e"
+foreground: "#d4d4d4"
+details: darker
+terminal_colors:
+  normal:
+    black: "#616161"
+    red: "#FF5647"
+    green: "#57A64A"
+    yellow: "#DCDCAA"
+    blue: "#569CD6"
+    magenta: "#C586C0"
+    cyan: "#4EC9B0"
+    white: "#f1f1f1"
+  bright:
+    black: "#8e8e8e"
+    red: "#FF5647"
+    green: "#57A64A"
+    yellow: "#DCDCAA"
+    blue: "#569CD6"
+    magenta: "#C586C0"
+    cyan: "#4EC9B0"
+    white: "#feffff"

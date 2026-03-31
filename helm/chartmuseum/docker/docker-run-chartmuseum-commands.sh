@@ -1,25 +1,6 @@
 ######################################################################
 
-function docker_run_chartmuseum_with_local_storage() {
-    local CHARTMUSEUM_VOLUME_DIR="/mnt/volume/chartmuseum"
-    sudo mkdir -p ${CHARTMUSEUM_VOLUME_DIR}
-
-    docker container run \
-        --rm \
-        --detach \
-        --name chartmuseum \
-        --publish 8080:8080 \
-        --env DEBUG="true" \
-        --env STORAGE="local" \
-        --env STORAGE_LOCAL_ROOTDIR="/charts" \
-        --mount type="bind",src="${CHARTMUSEUM_VOLUME_DIR}",dst="/charts" \
-        chartmuseum/chartmuseum:latest
-}
-docker_run_chartmuseum_with_local_storage
-
 function docker_run_chartmuseum_with_s3_storage() {
-    # mc mb my-minio/chart-storage
-
     docker container run \
         --rm \
         --detach \
@@ -34,3 +15,40 @@ function docker_run_chartmuseum_with_s3_storage() {
         chartmuseum/chartmuseum:latest
 }
 docker_run_chartmuseum_with_s3_storage
+
+######################################################################
+
+function docker_run_chartmuseum_with_volume() {
+    docker create volume chartmuseum-data
+
+    docker container run \
+        --rm \
+        --detach \
+        --name chartmuseum \
+        --publish 8080:8080 \
+        --env DEBUG="true" \
+        --env STORAGE="local" \
+        --env STORAGE_LOCAL_ROOTDIR="/charts" \
+        --mount type="volume",src="chartmuseum-data",dst="/charts" \
+        chartmuseum/chartmuseum:latest
+}
+docker_run_chartmuseum_with_volume
+
+######################################################################
+
+function docker_run_chartmuseum_with_local_storage() {
+    CHARTMUSEUM_VOLUME_DIR="/mnt/volume/chartmuseum"
+    sudo mkdir -p ${CHARTMUSEUM_VOLUME_DIR}
+
+    docker container run \
+        --rm \
+        --detach \
+        --name chartmuseum \
+        --publish 8080:8080 \
+        --env DEBUG="true" \
+        --env STORAGE="local" \
+        --env STORAGE_LOCAL_ROOTDIR="/charts" \
+        --mount type="bind",src="${CHARTMUSEUM_VOLUME_DIR}",dst="/charts" \
+        chartmuseum/chartmuseum:latest
+}
+docker_run_chartmuseum_with_local_storage
