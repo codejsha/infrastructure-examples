@@ -19,17 +19,30 @@ fnm use --install-if-missing 20
 ######################################################################
 
 ### install pnpm
-
-### homebrew
 brew install pnpm
 
 ######################################################################
+
+### manage node versions
 
 nvm ls-remote --lts
 
 nvm ls
 
-nvm install 20
-nvm use 20
+nvm install 24
+nvm uninstall 20
+nvm alias default 24
 
+nvm use 24
 nvm current
+nvm deactivate
+
+######################################################################
+
+### reinstall global packages
+
+nvm use 20
+npm ls -g --depth=0
+
+nvm use 24
+nvm reinstall-packages 20
