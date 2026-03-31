@@ -9,6 +9,14 @@ history -p
 
 ######################################################################
 
+### title update
+autoload -Uz add-zsh-hook
+_update_title() { print -Pn "\e]0;%1~\a" }
+add-zsh-hook precmd _update_title
+add-zsh-hook chpwd _update_title
+
+######################################################################
+
 ### full path using tilde
 
 case ${TERM} in
