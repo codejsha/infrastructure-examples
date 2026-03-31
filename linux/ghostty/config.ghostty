@@ -1,0 +1,15 @@
+background = #1e1e1e
+foreground = #d4d4d4
+
+font-size = 13
+font-family = Consolas, Menlo
+font-thicken = true
+adjust-cell-width = -4%
+adjust-cell-height = -12%
+cursor-style = block
+shell-integration-features = no-cursor
+
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = tabs
+window-padding-x = 8
+window-padding-y = 16
