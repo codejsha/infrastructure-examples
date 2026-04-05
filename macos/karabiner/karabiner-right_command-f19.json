@@ -1,0 +1,21 @@
+{
+  "description": "right_command to f19",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "right_command",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "f19"
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
