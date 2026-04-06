@@ -2,14 +2,14 @@ background = #1e1e1e
 foreground = #d4d4d4
 
 font-size = 13
-font-family = Consolas, Menlo
-font-thicken = true
-adjust-cell-width = -4%
-adjust-cell-height = -12%
+font-family = Consolas, D2CodingLigature Nerd Font Mono, Menlo
+font-thicken = false
+adjust-cell-width = -2%
+adjust-cell-height = -10%
 cursor-style = block
 shell-integration-features = no-cursor
 
-macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
 window-padding-x = 8
 window-padding-y = 16
