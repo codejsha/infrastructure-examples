@@ -381,7 +381,7 @@
       },
       "to": [
         {
-          "shell_command": "open -b com.jetbrains.datagrip"
+          "shell_command": "open -b com.jetbrains.rustrover"
         }
       ],
       "type": "basic"

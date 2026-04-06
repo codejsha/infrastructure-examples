@@ -1,0 +1,21 @@
+{
+  "description": "caps_lock to left_command",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "caps_lock",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "left_command"
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}

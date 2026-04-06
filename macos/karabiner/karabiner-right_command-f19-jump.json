@@ -1,0 +1,59 @@
+{
+    "description": "right_command to f19 remote",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.p5sys\\.jump\\.mac\\.viewer$"
+                    ],
+                    "type": "frontmost_application_if"
+                },
+                {
+                    "input_sources": [{ "language": "ko" }],
+                    "type": "input_source_if"
+                }
+            ],
+            "from": {
+                "key_code": "right_command",
+                "modifiers": { "optional": ["any"] }
+            },
+            "to": [
+                { "select_input_source": { "language": "en" } },
+                { "key_code": "f19" }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^com\\.p5sys\\.jump\\.mac\\.viewer$"
+                    ],
+                    "type": "frontmost_application_if"
+                },
+                {
+                    "input_sources": [{ "language": "en" }],
+                    "type": "input_source_if"
+                }
+            ],
+            "from": {
+                "key_code": "right_command",
+                "modifiers": { "optional": ["any"] }
+            },
+            "to": [
+                { "select_input_source": { "language": "ko" } },
+                { "key_code": "f19" }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "right_command",
+                "modifiers": { "optional": ["any"] }
+            },
+            "to": [{ "key_code": "f19" }],
+            "type": "basic"
+        }
+    ]
+}
