@@ -139,6 +139,8 @@ docker image prune --force
 docker image rm $(docker image ls --all --quiet --filter dangling=true)
 ### remove unused images
 docker image prune --all --force
+docker image prune -a -f
+docker image prune -a -f --filter until=24h
 
 ### save
 docker save --output ${IMAGE_FILE} ${IMAGE}:${TAG}
