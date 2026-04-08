@@ -23,6 +23,8 @@ sudo apt-get install msopenjdk-21
 
 ### microsoft-openjdk
 brew install --cask microsoft-openjdk
+brew install --cask microsoft-openjdk@25
+brew install --cask microsoft-openjdk@21
 brew install --cask microsoft-openjdk@17
 brew install --cask microsoft-openjdk@11
 
@@ -59,11 +61,14 @@ brew install openjdk@8
 
 ### microsoft-openjdk
 choco install -y microsoft-openjdk
+choco install -y microsoft-openjdk25
+choco install -y microsoft-openjdk21
 choco install -y microsoft-openjdk17
 choco install -y microsoft-openjdk11
 
 ### temurin-openjdk
 choco install -y temurin
+choco install -y temurin25
 choco install -y temurin21
 choco install -y temurin17
 choco install -y temurin11
@@ -71,6 +76,7 @@ choco install -y temurin8
 
 ### corretto-openjdk
 choco install -y correttojdk
+choco install -y corretto25jdk
 choco install -y corretto21jdk
 choco install -y corretto17jdk
 choco install -y corretto11jdk

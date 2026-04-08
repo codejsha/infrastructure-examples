@@ -1,5 +1,16 @@
 ######################################################################
 
+### install maven
+
+### homebrew
+### maven home: /opt/homebrew/opt/maven/libexec
+brew install maven
+
+### chocolatey
+choco install -y maven
+
+######################################################################
+
 ### install maven (archive)
 
 ### binary/archive
@@ -17,14 +28,15 @@ export PATH
 
 ######################################################################
 
-### install maven
+mvn clean
+mvn install -DskipTests
 
-### homebrew
-### maven home: /opt/homebrew/opt/maven/libexec
-brew install maven
+######################################################################
 
-### chocolatey
-choco install -y maven
+./mvnw clean
+./mvnw install -DskipTests
+
+./mvnw spring-boot:run
 
 ######################################################################
 
@@ -33,9 +45,3 @@ mvn archetype:generate \
     -DartifactId=hello-world \
     -DarchetypeArtifactId=maven-archetype-quickstart \
     -DinteractiveMode=false
-
-######################################################################
-
-mvn clean
-
-mvn install -DskipTests
