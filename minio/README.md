@@ -10,7 +10,6 @@
 - MinIO: <https://github.com/minio/minio>
 - MinIO Client: <https://github.com/minio/mc>
 - MinIO Operator: <https://github.com/minio/operator>
-- MinIO Console: <https://github.com/minio/console>
 - MinIO Grafana Dashboard: <https://grafana.com/grafana/dashboards/13502>
 
 AWS CLI:

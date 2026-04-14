@@ -6,4 +6,4 @@
 
 ## References
 
-- Sample Database: DVD Rental database (<https://www.postgresqltutorial.com/postgresql-sample-database/>)
+- [PostgreSQL Sample Database: DVD Rental database](https://neon.com/postgresql/postgresql-getting-started/postgresql-sample-database)
