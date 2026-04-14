@@ -2,9 +2,9 @@ background = #1e1e1e
 foreground = #d4d4d4
 
 font-size = 13
-font-family = Consolas, D2CodingLigature Nerd Font Mono, Menlo
-font-thicken = false
-adjust-cell-width = -2%
+font-family = Consolas, Menlo
+font-thicken = true
+adjust-cell-width =
 adjust-cell-height = -10%
 cursor-style = block
 shell-integration-features = no-cursor

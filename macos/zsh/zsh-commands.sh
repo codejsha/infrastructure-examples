@@ -7,6 +7,15 @@ history -p
 
 ######################################################################
 
+function cddownloads() { local directory="${HOME}/Downloads"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdrepos() { local directory="${HOME}/source/repos"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdcoderepos() { local directory="${HOME}/source/coderepos"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdsubrepos() { local directory="${HOME}/source/subrepos"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cddataworkspace() { local directory="${HOME}/source/dataworkspace"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdworkrepos() { local directory="${HOME}/source/workrepos"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdprops() { local directory="${HOME}/properties"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+function cdtools() { local directory="${HOME}/tools"; echo "+ cd ${directory}" >&2; cd "${directory}" || return; lsd -alh; }
+
 function cddownloads() { DIRECTORY="${HOME}/Downloads"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdrepos() { DIRECTORY="${HOME}/source/repos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
 function cdcoderepos() { DIRECTORY="${HOME}/source/coderepos"; echo "+ cd ${DIRECTORY}">&2; cd ${DIRECTORY} || exit; STATUS="${?}"; if [ "${STATUS}" -eq "0" ]; then lsd -alh; fi; }
