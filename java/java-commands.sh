@@ -15,6 +15,25 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 25 --match "Eclipse Adoptium")
 
 ######################################################################
 
+function change-java() {
+  local version="${1:?Usage: change-java <version>}"
+
+  if [[ ! "${version}" =~ ^[0-9]+$ ]]; then
+    echo "Invalid version: ${version}" >&2
+    return 1
+  fi
+
+  local jdk_home="/Library/Java/JavaVirtualMachines/temurin-${version}.jdk/Contents/Home"
+
+  if [[ ! -d "${jdk_home}" ]]; then
+    echo "JDK not found: ${jdk_home}" >&2
+    return 1
+  fi
+
+  export JAVA_HOME="${jdk_home}"
+  "${JAVA_HOME}/bin/java" -version
+}
+
 function change-java25() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 function change-java21() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
 function change-java17() { JAVA_HOME="/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home"; export JAVA_HOME; ${JAVA_HOME}/bin/java -version; }
