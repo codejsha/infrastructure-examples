@@ -73,6 +73,6 @@ INSERT INTO customers VALUES (default, "Kenneth", "Anderson", "kander@acme.com")
 ## References
 
 - [Kafka Connect: Build and Run Data Pipelines (O'Reilly)](https://www.oreilly.com/library/view/kafka-connect/9781098126520/)
-- [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.htm)
+- [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html)
 - [Debezium Tutorial](https://debezium.io/documentation/reference/stable/tutorial.html)
 - sample database: Sakila (cf. [MySQL README](/mysql/README.md))
