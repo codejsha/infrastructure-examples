@@ -1,4 +1,4 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 export LANG="en_US.UTF-8"
 export GPG_TTY="$(tty)"
