@@ -3,6 +3,7 @@ foreground = #d4d4d4
 
 font-size = 13
 font-family = Consolas, Menlo
+font-feature = -calt
 font-thicken = true
 adjust-cell-width =
 adjust-cell-height = -10%
@@ -13,3 +14,6 @@ macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 window-padding-x = 8
 window-padding-y = 16
+split-divider-color = #d06953
+unfocused-split-opacity = 0.75
+# unfocused-split-fill = #A9A9A9
