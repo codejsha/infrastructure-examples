@@ -31,6 +31,9 @@ export PATH
 mvn clean
 mvn install -DskipTests
 
+mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.profiles=local
+
 ######################################################################
 
 ./mvnw clean
