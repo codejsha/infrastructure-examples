@@ -1,5 +1,15 @@
 ######################################################################
 
+dnf repolist
+dnf repolist -v
+
+######################################################################
+
+sudo dnf check-update
+sudo dnf update -y
+
+######################################################################
+
 sudo dnf install -y
 sudo dnf list installed
 sudo dnf list updates
