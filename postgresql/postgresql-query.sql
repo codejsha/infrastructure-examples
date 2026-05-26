@@ -14,6 +14,12 @@ ALTER ROLE debezium WITH REPLICATION LOGIN;
 -- grant table permission
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO debezium;
 
+-- find tables without SELECT privilege for user
+SELECT string_agg('--exclude-table=public.' || tablename, ' ' ORDER BY tablename)
+FROM pg_tables
+WHERE schemaname = 'public'
+  AND NOT has_table_privilege('devopsadmin', schemaname || '.' || quote_ident(tablename), 'SELECT');
+
 -- ######################################################################
 
 -- check connection
