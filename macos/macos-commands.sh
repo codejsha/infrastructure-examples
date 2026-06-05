@@ -28,3 +28,12 @@ defaults read com.apple.dock persistent-apps | rg bundle-identifier
 cat Info.plist | rg -n CFBundleIdentifier -A 1
 
 ######################################################################
+
+### read power settings
+pmset -g
+
+### sleep/wake log
+pmset -g log | grep -e " Wake " -e "DarkWake" -e "Sleep"
+
+### power log
+log show --last 3h --predicate 'subsystem == "com.apple.powerd"' --info
