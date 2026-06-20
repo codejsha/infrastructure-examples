@@ -10,6 +10,13 @@ cat ~/.ssh/id_ed25519_github_personal.pub | pbcopy
 
 ######################################################################
 
+### generate ssh key
+ssh-keygen -t ed25519
+### copy public key to remote server
+ssh-copy-id user@host
+
+######################################################################
+
 ### register ssh key to ssh-agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -43,3 +50,12 @@ scp -r $local_directory user@host:/remote/path/
 rsync -avz file.txt user@host:/remote/path/
 rsync -avz -e "ssh -p 2222" file.txt user@host:/remote/path/
 rsync -avz ./dir/ user@host:/remote/path/
+
+######################################################################
+
+### configure authentication method
+sudo tee /etc/ssh/sshd_config.d/200-hardening.conf > /dev/null <<'EOF'
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+EOF
