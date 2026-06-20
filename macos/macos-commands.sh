@@ -29,6 +29,10 @@ cat Info.plist | rg -n CFBundleIdentifier -A 1
 
 ######################################################################
 
+sudo launchctl kickstart -k system/com.openssh.sshd
+
+######################################################################
+
 ### read power settings
 pmset -g
 
