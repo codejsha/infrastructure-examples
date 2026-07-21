@@ -3,9 +3,15 @@
 ### rg (ripgrep)
 
 rg --type-list
+rg --files
 
-rg "account" -g'*.yaml'
-rg "account" -t java
+rg -t java 'account'
+
+rg -t java 'account'
+rg -t java -g '!test/**' 'account'
+
+rg -t yaml 'account'
+rg -t xml -A 10 servers
 
 fd -tf -E "*test.go|test/" .go | xargs rg "\.Set[A-Za-z]+"
 fd -tf -E ".go" | xargs rg "time.ParseInLocation" | rg -v "time.Local"
