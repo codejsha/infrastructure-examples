@@ -121,8 +121,8 @@ git push --no-verify
 git fetch origin --all
 git fetch origin --tags
 
-git branch -a
-git tag -l
+git --no-pager branch -a
+git --no-pager tag -l
 
 gh repo create $(basename "$PWD") --private
 git remote add new-origin https://github.com/codejsha/$(basename "$PWD").git
@@ -150,6 +150,7 @@ git push origin main
 ### list branches
 git branch
 git branch -a
+git --no-pager branch -a
 
 ### create a new branch
 git branch feature/TASK-1234
@@ -174,6 +175,7 @@ git merge --squash --ff feature/TASK-1234
 
 ### rebase
 git rebase develop
+git rebase --exec 'git commit --amend --no-edit -S' HEAD~1
 
 ### cherry-pick
 git cherry-pick ${COMMIT_HASH}
