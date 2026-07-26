@@ -5,10 +5,9 @@ font-size = 13
 font-family = Consolas, Menlo
 font-feature = -calt
 font-thicken = true
-adjust-cell-width =
 adjust-cell-height = -10%
 cursor-style = block
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,ssh-terminfo,ssh-env
 
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
