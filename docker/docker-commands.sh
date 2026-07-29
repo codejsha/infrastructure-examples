@@ -239,3 +239,10 @@ cd /mnt/wsl/docker-desktop-data
 ### unregister
 wsl --unregister docker-desktop
 wsl --unregister docker-desktop-data
+
+######################################################################
+
+### check oom
+docker inspect tempo --format 'exit={{.State.ExitCode}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}'
+dmesg -T | grep -i "oom\|killed process" | tail -5
+
