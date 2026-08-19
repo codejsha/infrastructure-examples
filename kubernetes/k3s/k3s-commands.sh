@@ -7,7 +7,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.32.5+k3s1" K3S_KUBECONFIG
 
 ######################################################################
 
-### copy certficates to local
+### copy certificates to local
 scp root@workstation.local:/var/lib/rancher/k3s/server/tls/* ~/.kube/k3s/
 
 scp root@workstation.local:/var/lib/rancher/k3s/server/tls/server-ca.crt ~/.kube/k3s/server-ca.crt

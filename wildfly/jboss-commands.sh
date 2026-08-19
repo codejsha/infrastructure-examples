@@ -298,7 +298,7 @@ deploy /svc/app/failovertest --name=failovertest.war --runtime-name=failovertest
 ### disable http method
 /subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=disallowed-methods,value=[PUT,DELETE,TRACE,OPTIONS])
 /subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=disallowed-methods,value=[PUT,DELETE,TRACE,PTIONS])
-/subsystem=undertow/server=default-server/ajp-listener=ajp:write-attribute(name=disallowed-methods,value=[PUT,DELETE,TRACE,OPTINS])
+/subsystem=undertow/server=default-server/ajp-listener=ajp:write-attribute(name=disallowed-methods,value=[PUT,DELETE,TRACE,OPTIONS])
 
 ######################################################################
 

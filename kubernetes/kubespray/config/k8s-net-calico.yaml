@@ -23,7 +23,7 @@
 # Global as_num (/calico/bgp/v1/global/as_num)
 # global_as_num: "64512"
 
-# If doing peering with node-assigned asn where the globas does not match your nodes, you want this
+# If doing peering with node-assigned asn where the globals does not match your nodes, you want this
 # to be true.  All other cases, false.
 # calico_no_global_as_num: false
 
@@ -70,7 +70,7 @@ calico_iptables_backend: "Auto"
 # bird enable BGP routing, required for ipip mode.
 # calico_network_backend: bird
 
-# IP in IP and VXLAN is mutualy exclusive modes.
+# IP in IP and VXLAN is mutually exclusive modes.
 # set IP in IP encapsulation mode: "Always", "CrossSubnet", "Never"
 # calico_ipip_mode: 'Always'
 
@@ -89,6 +89,6 @@ calico_iptables_backend: "Auto"
 # Choose the iptables insert mode for Calico: "Insert" or "Append".
 # calico_felix_chaininsertmode: Insert
 
-# If you want use the default route interface when you use multiple interface with dynamique route (iproute2)
+# If you want use the default route interface when you use multiple interface with dynamic route (iproute2)
 # see https://docs.projectcalico.org/reference/node/configuration : FELIX_DEVICEROUTESOURCEADDRESS
 # calico_use_default_route_src_ipaddr: false

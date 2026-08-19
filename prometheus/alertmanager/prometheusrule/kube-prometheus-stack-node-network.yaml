@@ -18,7 +18,7 @@ spec:
               Network interface "{{ $labels.device }}" changing it's up status
               often on node-exporter {{ $labels.namespace }}/{{ $labels.pod }}
             runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodenetworkinterfaceflapping
-            summary: Network interface is often changin it's status
+            summary: Network interface is often changing its status
           expr: changes(node_network_up{job="node-exporter",device!~"veth.+"}[2m]) > 2
           for: 2m
           labels:

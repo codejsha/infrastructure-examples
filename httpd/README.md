@@ -22,5 +22,5 @@ copy config files to `conf/jk` directory
 
 - Apache HTTP Server Documentation: <http://httpd.apache.org/docs/current/>
 - Apache Tomcat Connector: <https://tomcat.apache.org/connectors-doc/>
-- Sisdig apache exporter: <https://github.com/sysdiglabs/promcat-resources/tree/master/resources/apache>
+- Sysdig apache exporter: <https://github.com/sysdiglabs/promcat-resources/tree/master/resources/apache>
 - Lusitaniae apache exporter: <https://github.com/Lusitaniae/apache_exporter>

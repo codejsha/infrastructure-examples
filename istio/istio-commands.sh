@@ -84,7 +84,7 @@ istioctl ztunnel-config workloads
 
 ######################################################################
 
-### debugging envoy and istod
+### debugging envoy and istiod
 
 PRODUCTPAGE_POD_NAME="$(kubectl get pods -l app=productpage -n bookinfo -o jsonpath='{.items[*].metadata.name}')"
 

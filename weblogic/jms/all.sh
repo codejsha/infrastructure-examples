@@ -3,7 +3,7 @@ trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func $
 set -o errexit
 set -o errtrace
 
-### Requiremets:
+### Requirements:
 ### Servers and Clusters (for JMS configurations)
 
 source ../env-base.sh
