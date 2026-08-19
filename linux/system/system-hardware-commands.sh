@@ -27,4 +27,10 @@ lsblk --version
 lsblk -t
 lsblk --topology
 
+lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL
+
 fdisk -l
+
+######################################################################
+
+lspci -nnk

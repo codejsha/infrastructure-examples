@@ -32,5 +32,9 @@ hostnamectl set-hostname ${HOSTNAME}
 
 ######################################################################
 
+findmnt -no SOURCE /
+
+######################################################################
+
 sudo alternatives --config java
 sudo alternatives --config javac

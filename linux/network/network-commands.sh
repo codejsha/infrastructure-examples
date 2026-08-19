@@ -55,10 +55,10 @@ iptables -L
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
 ### disable port 80
-iptables -A FOWARD -p tcp --dport 80 -j DROP
+iptables -A FORWARD -p tcp --dport 80 -j DROP
 
 ### disable port 53 (dns)
-iptables -A FOWARD -p udp -m udp --dport 53 -j DROP
+iptables -A FORWARD -p udp -m udp --dport 53 -j DROP
 
 ### disable loopback traffic
 iptables -A OUTPUT -o lo -j DROP
