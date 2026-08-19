@@ -2,7 +2,7 @@
 
 ### install
 
-### homwbrew
+### homebrew
 brew install clang-format
 
 ######################################################################

@@ -1,5 +1,5 @@
 ---
-### kafka clueter role binding
+### kafka cluster role binding
 apiVersion: platform.confluent.io/v1beta1
 kind: ConfluentRolebinding
 metadata:

@@ -136,7 +136,7 @@ INPUT
 domain_api_version=`echo ${CRD} | python cmds.py`
 echo "domain_api_version: $domain_api_version" >> scalingAction.log
 
-# Reteive Custom Resource Domain
+# Retrieve Custom Resource Domain
 DOMAIN=`curl -v --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" $kubernetes_master/apis/weblogic.oracle/$domain_api_version/namespaces/$wls_domain_namespace/domains/$domain_uid`
 if [ $? -ne 0 ]
   then
@@ -219,7 +219,7 @@ requested_by="X-Requested-By: WLDF"
 authorization="Authorization: Bearer $access_token"
 pem_filename="weblogic_operator.pem"
 
-# Create PEM file for Opertor SSL Certificate
+# Create PEM file for Operator SSL Certificate
 if [ ${INTERNAL_OPERATOR_CERT} ]
 then
   echo ${INTERNAL_OPERATOR_CERT} | base64 --decode >  $pem_filename

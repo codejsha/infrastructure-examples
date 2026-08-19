@@ -53,7 +53,7 @@ replicas: 1
 ##
 ## Confluent Operator Cluster Access
 ## If true, operator only creates roles/rolebinding for the release namespace
-## Otherwise, it has cluster access with clusterrole/clusterrrolebinding
+## Otherwise, it has cluster access with clusterrole/clusterrolebinding
 ##
 namespaced: true
 ##
@@ -136,7 +136,7 @@ serviceAccount:
 ## When set to true, it will create a proper role/rolebinding or cluster/clusterrolebinding based on namespaced field.
 ## If a user doesn't have permission to create role/rolebinding then they can disable rbac field and
 ## create required resources out of band to be used by the Operator. In this case, follow the
-## templates/clusterrole.yaml and templates/clusterrolebiding.yaml to create proper required resources.
+## templates/clusterrole.yaml and templates/clusterrolebinding.yaml to create proper required resources.
 ##
 rbac: true
 

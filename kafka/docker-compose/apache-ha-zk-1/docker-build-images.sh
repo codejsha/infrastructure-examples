@@ -48,12 +48,12 @@ docker build -f kafka-lag-exporter/Dockerfile.lag-exporter -t harbor.example.com
 
 ######################################################################
 
-# docker impage push harbor.example.com/library/bitnami/zookeeper:3.9
-# docker impage push harbor.example.com/library/bitnami/kafka:3.8
-# docker impage push harbor.example.com/library/confluentinc/cp-schema-registry:7.7.0
-# docker impage push harbor.example.com/library/debezium/connect:2.7
-# docker impage push harbor.example.com/library/confluentinc/cp-kafka-connect-custom:7.7.0
-# docker impage push harbor.example.com/library/prom/prometheus:v2.53.2
-# docker impage push harbor.example.com/library/grafana/grafana:11.1.4
-# docker impage push harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
-# docker impage push harbor.example.com/library/linkedin/burrow:1.8.0
+# docker image push harbor.example.com/library/bitnami/zookeeper:3.9
+# docker image push harbor.example.com/library/bitnami/kafka:3.8
+# docker image push harbor.example.com/library/confluentinc/cp-schema-registry:7.7.0
+# docker image push harbor.example.com/library/debezium/connect:2.7
+# docker image push harbor.example.com/library/confluentinc/cp-kafka-connect-custom:7.7.0
+# docker image push harbor.example.com/library/prom/prometheus:v2.53.2
+# docker image push harbor.example.com/library/grafana/grafana:11.1.4
+# docker image push harbor.example.com/library/lightbend/kafka-lag-exporter:0.6.8
+# docker image push harbor.example.com/library/linkedin/burrow:1.8.0

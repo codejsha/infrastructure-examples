@@ -90,6 +90,6 @@ free --total --human
 free -thl
 free --total --human --lohi
 
-### repeatly
+### repeatedly
 free -th -s ${SECONDS} -c ${COUNT}
 free --total --human --seconds ${SECONDS} --count ${COUNT}
