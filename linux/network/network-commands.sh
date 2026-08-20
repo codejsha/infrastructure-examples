@@ -85,3 +85,9 @@ ssh -i cert.pem prouser@testmachine
 
 ### local port forwarding
 ssh -i cert.pem -L 8080:localhost:8080 prouser@testmachine
+
+######################################################################
+
+### dns cache flush
+sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+dscacheutil -q host -a name dl.gitea.com
