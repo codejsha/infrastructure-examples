@@ -4,6 +4,14 @@
 curl -X GET "http://localhost:9200/_cat/indices?v"
 curl -X GET "http://localhost:9200/_cat/indices/sample*?v"
 
+### get index
+curl -X GET "http://localhost:9200/sample_index"
+curl -X GET "http://localhost:9200/sample_index?pretty"
+
+### get mapping
+curl -X GET "http://localhost:9200/sample_index/_mapping?pretty"
+curl -X GET "http://localhost:9200/sample_index/_mapping" | jq
+
 ######################################################################
 
 ### match all query
