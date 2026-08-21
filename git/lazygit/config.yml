@@ -1,4 +1,26 @@
 git:
+  allBranchesLogCmds:
+    - git log --graph --all --oneline --date-order --color=always --decorate
+    - git log --graph --all --date-order --color=always --abbrev-commit --decorate --date=relative --pretty=medium
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium
+
   diffRenderers:
     - command: delta --dark --paging=never
 
+  log:
+    order: date-order
+    showGraph: always
+    showWholeGraph: true
+
+os:
+  editPreset: "nvim"
+
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+  branchColorPatterns:
+    "^feature/": "#11aaff"
+    "^hotfix/": "#ff5733"
+  nerdFontsVersion: "3"
+  showRandomTip: false
