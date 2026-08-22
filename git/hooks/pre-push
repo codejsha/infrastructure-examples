@@ -1,65 +1,87 @@
 #!/usr/bin/env bash
-trap 'echo "${BASH_SOURCE[0]}: line ${LINENO}: status ${?}: user ${USER}: func ${FUNCNAME[0]}"' ERR
-set -o errexit
-set -o errtrace
+set -o errexit -o errtrace -o nounset -o pipefail
+trap 'echo "[pre-push] [FATAL] ${BASH_SOURCE[0]}:${LINENO}: status $?" >&2' ERR
 
-source ~/properties/personal/git/hooks/.env
+readonly REMOTE="${1:-origin}"
+readonly HOOKS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly ENV_FILE="${HOOKS_DIR}/.env"
+readonly US=$'\x1f'
+
+fn_log() { echo "[pre-push] [INFO] $*"; }
+fn_err() { echo "[pre-push] [ERROR] $*" >&2; }
+fn_die() { fn_err "$*"; exit 1; }
+
+((BASH_VERSINFO[0] >= 4)) || fn_die "bash >= 4 required (running ${BASH_VERSION})"
+
+[[ -r ${ENV_FILE} ]] || fn_die "env file not readable: ${ENV_FILE}"
+# shellcheck source=/dev/null
+source "${ENV_FILE}"
+: "${ENV_NAME:?required}"
+: "${ENV_USER_NAME:?required}"
+: "${ENV_USER_EMAIL:?required}"
+: "${ENV_GPG_SIGNING_KEY:?required}"
+
 export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
-
-HOOKS_DIR=$(git rev-parse --git-path hooks)
-REPO_ROOT=$(git rev-parse --show-toplevel)
-echo "[pre-push] [INFO] environment: ${ENV_NAME}"
-echo "[pre-push] [INFO] git hooks dir: ${HOOKS_DIR}"
-echo "[pre-push] [INFO] repository root: ${REPO_ROOT}"
+fn_log "environment: ${ENV_NAME}"
+fn_log "remote: ${REMOTE}"
+fn_log "repository root: $(git rev-parse --show-toplevel)"
 
 ######################################################################
 
-### print commits to push
-COMMITS_TO_PUSH=""
-if [ -z "$(git ls-remote --heads origin)" ]; then
-    ### the remote repository is empty
-    COMMITS_TO_PUSH="$(git log --pretty=format:"%H")"
-else
-    COMMITS_TO_PUSH="$(git log @{u}.. --pretty=format:"%H")"
-fi
-echo "[pre-push] [INFO] Commits to push:"
-echo "${COMMITS_TO_PUSH}"
+### collect commits from stdin
 
-######################################################################
+zero="$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')"
+commits=()
 
-### validate commits to push
-for COMMIT in ${COMMITS_TO_PUSH}; do
-    ### check if the commit is gpg signed
-    if ! { git verify-commit ${COMMIT} > /dev/null 2>&1; }; then
-        echo "[pre-push] [ERROR] Commit ${COMMIT} is not GPG signed."
-        exit 1
-    fi
-
-    ### check if the commit user name and email match the env config
-    COMMIT_USER_NAME="$(git show -s --pretty=format:%aN ${COMMIT})"
-    COMMIT_USER_EMAIL="$(git show -s --pretty=format:%aE ${COMMIT})"
-    if [ "${COMMIT_USER_NAME}" != "${ENV_USER_NAME}" ] ||
-        [ "${COMMIT_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "[pre-push] [ERROR] Push rejected. Your user name or email is incorrect."
-        exit 1
-    fi
-
-    ### check if the commit gpg signing key matches the env config
-    COMMIT_GPG_SIGNING_KEY="$(git show -s --pretty=format:%GF ${COMMIT})"
-    COMMIT_GPG_USER_INFO="$(git show -s --pretty=format:%GS ${COMMIT})"
-    COMMIT_GPG_USER_NAME="${COMMIT_GPG_USER_INFO% <*}"
-    COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_INFO#*<}" && COMMIT_GPG_USER_EMAIL="${COMMIT_GPG_USER_EMAIL%>}"
-    if [ "${COMMIT_GPG_SIGNING_KEY}" != "${ENV_GPG_SIGNING_KEY}" ]; then
-        echo "[pre-push] [ERROR] Commit ${COMMIT} is signed with a different GPG key."
-        exit 1
-    fi
-    if [ "${COMMIT_GPG_USER_NAME}" != "${ENV_USER_NAME}" ] ||
-        [ "${COMMIT_GPG_USER_EMAIL}" != "${ENV_USER_EMAIL}" ]; then
-        echo "[pre-push] [ERROR] Push rejected. Your GPG user name or email is incorrect."
-        exit 1
+while read -r local_ref local_sha _remote_ref remote_sha; do
+    [[ ${local_sha} == "${zero}" ]] && continue   # branch deletion
+    [[ ${local_ref} == refs/tags/* ]] && continue # tags
+    if [[ ${remote_sha} == "${zero}" ]]; then     # new branch
+        mapfile -t -O "${#commits[@]}" commits < <(
+            git rev-list "${local_sha}" --not --remotes="${REMOTE}")
+    else
+        mapfile -t -O "${#commits[@]}" commits < <(
+            git rev-list "${remote_sha}..${local_sha}")
     fi
 done
 
+((${#commits[@]})) || { fn_log "nothing to validate"; exit 0; }
+mapfile -t commits < <(printf '%s\n' "${commits[@]}" | awk '!seen[$0]++')
+fn_log "commits to validate: ${#commits[@]}"
+
 ######################################################################
 
+### validate commits
+
+failed=0
+skipped=0
+while IFS="${US}" read -r sha gstat gsub gpri an ae cn ce; do
+    fn_fail() { fn_err "${sha:0:12}: $*"; failed=$((failed + 1)); }
+
+    if [[ (${an} != "${ENV_USER_NAME}" || ${ae} != "${ENV_USER_EMAIL}") &&
+        (${cn} != "${ENV_USER_NAME}" || ${ce} != "${ENV_USER_EMAIL}") ]]; then
+        skipped=$((skipped + 1))
+        continue
+    fi
+
+    case ${gstat} in
+        G|U) ;;
+        N)   fn_fail "not GPG signed" ;;
+        B)   fn_fail "BAD signature" ;;
+        E)   fn_fail "signature cannot be verified (public key missing?)" ;;
+        *)   fn_fail "signature status '${gstat}' (expired/revoked)" ;;
+    esac
+
+    if [[ ${gsub} != "${ENV_GPG_SIGNING_KEY}" && ${gpri} != "${ENV_GPG_SIGNING_KEY}" ]]; then
+        fn_fail "signed with ${gsub:-<none>} (primary ${gpri:-<none>}), expected ${ENV_GPG_SIGNING_KEY}"
+    fi
+done < <(
+    printf '%s\n' "${commits[@]}" |
+        xargs git log --no-walk=unsorted \
+            --format="%H${US}%G?${US}%GF${US}%GP${US}%an${US}%ae${US}%cn${US}%ce"
+)
+
+((skipped == 0)) || fn_log "skipped ${skipped} commit(s) by other users"
+((failed == 0)) || fn_die "${failed} problem(s) found; push rejected"
+fn_log "all $((${#commits[@]} - skipped)) own commit(s) OK"
 exit 0
