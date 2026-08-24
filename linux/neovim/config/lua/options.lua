@@ -3,7 +3,7 @@ require "nvchad.options"
 -- --- clipboard ---
 vim.opt.clipboard = "unnamedplus"
 
-if vim.env.SSH_TTY then
+if vim.env.SSH_TTY or vim.env.TMUX then
   local osc52 = require "vim.ui.clipboard.osc52"
   vim.g.clipboard = {
     name = "OSC 52",
@@ -12,11 +12,12 @@ if vim.env.SSH_TTY then
       ["*"] = osc52.copy "*",
     },
     paste = {
-      ["+"] = osc52.paste "+",
-      ["*"] = osc52.paste "*",
+      ["+"] = function() return vim.split(vim.fn.getreg '"', "\n") end,
+      ["*"] = function() return vim.split(vim.fn.getreg '"', "\n") end,
     },
   }
 end
 
 -- --- mouse ---
 vim.opt.mousescroll = "ver:2,hor:6"
+
