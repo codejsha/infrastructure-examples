@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o nounset -o pipefail
+trap 'echo "[commit-msg] [FATAL] ${BASH_SOURCE[0]}:${LINENO}: status $?" >&2' ERR
+
+readonly COMMIT_MSG_FILE="${1:?usage: commit-msg <message-file>}"
+readonly COMMIT_MESSAGE_PATTERN="^(feat|fix|docs|style|refactor|chore|test|gitflow-feature-stash)(\([a-z0-9-]+\))?: .+|^Merge (branch|pull request).*$"
+
+fn_log() { echo "[commit-msg] [INFO] $*"; }
+fn_err() { echo "[commit-msg] [ERROR] $*" >&2; }
+fn_die() { fn_err "$*"; exit 1; }
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
+
+commit_message="$(grep -v '^#' "${COMMIT_MSG_FILE}" || true)"
+commit_subject="$(awk 'NF {print; exit}' <<<"${commit_message}")"
+fn_log "Commit subject: ${commit_subject}"
+
+######################################################################
+
+### validate commit message
+
+failed=0
+if [[ -z ${commit_subject} ]]; then
+    fn_err "commit message cannot be empty"
+    failed=$((failed + 1))
+elif [[ ! ${commit_subject} =~ ${COMMIT_MESSAGE_PATTERN} ]]; then
+    fn_err "commit message must start with a commit type (feat|fix|docs|style|refactor|chore|test), optionally with a scope, or be a merge commit"
+    failed=$((failed + 1))
+fi
+if grep -q -E '\s{2,}' <<<"${commit_message}"; then
+    fn_err "commit message must not contain two spaces"
+    failed=$((failed + 1))
+fi
+
+((failed == 0)) || fn_die "${failed} problem(s) found; commit rejected"
+exit 0

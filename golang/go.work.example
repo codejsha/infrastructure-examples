@@ -1,0 +1,8 @@
+go 1.25.4
+
+use (
+	./services/catalog
+	./services/customer
+	./services/identity
+	./services/inventory
+)
