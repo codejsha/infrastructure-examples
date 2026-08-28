@@ -25,6 +25,12 @@ choco install -y neovim --package-parameters="/NeovimOnPathForAll"
 
 ######################################################################
 
+### install treesitter languages
+:TSInstall html css go gomod gosum gowork java kotlin python
+:TSInstall typespec
+
+######################################################################
+
 u       # undo
 Ctrl-r  # redo
 

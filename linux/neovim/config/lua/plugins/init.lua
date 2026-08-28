@@ -3,11 +3,26 @@ return {
     "stevearc/conform.nvim",
     opts = require "configs.conform",
   },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim", "lua", "vimdoc",
+        "html", "css",
+        "c", "cpp",
+        "go", "gomod", "gosum", "gowork",
+        "java", "kotlin",
+        "python",
+      },
+    },
   },
 
   {
@@ -62,5 +77,40 @@ return {
         })
       end,
     },
+  },
+
+  {
+    "github/copilot.vim",
+    lazy = false,
+    init = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require "cmp"
+
+      -- copilot suggestion -> accept
+      -- cmp popup -> next item
+      -- neither -> normal tab
+      opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
+        local copilot_keys = vim.fn["copilot#Accept"]("")
+        if copilot_keys ~= "" then
+          vim.api.nvim_feedkeys(copilot_keys, "i", true)
+        elseif cmp.visible() then
+          cmp.confirm({ select = true })
+        else
+          fallback()
+        end
+      end, { "i", "s" })
+
+      -- disable shift-tab
+      opts.mapping["<S-Tab>"] = nil
+
+      return opts
+    end,
   },
 }
