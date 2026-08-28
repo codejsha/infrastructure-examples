@@ -5,6 +5,31 @@ SELECT version();
 
 -- ######################################################################
 
+-- list all tables in information_schema
+SELECT table_schema, table_name
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE'
+  AND table_schema NOT IN ('pg_catalog', 'information_schema')
+ORDER BY 1, 2;
+
+-- list all tables in public schema
+SELECT schemaname, tablename
+FROM pg_tables
+WHERE schemaname NOT IN ('pg_catalog', 'information_schema');
+
+-- list all tables in public schema with approximate row count and total size
+SELECT
+  c.relname AS table_name,
+  pg_size_pretty(pg_total_relation_size(c.oid)) AS total_size,
+  c.reltuples::bigint AS approx_rows
+FROM pg_class c
+JOIN pg_namespace n ON n.oid = c.relnamespace
+WHERE c.relkind = 'r'
+  AND n.nspname NOT IN ('pg_catalog', 'information_schema')
+ORDER BY pg_total_relation_size(c.oid) DESC;
+
+-- ######################################################################
+
 -- create user
 CREATE USER debezium WITH ENCRYPTED PASSWORD 'dbz';
 ALTER ROLE debezium WITH REPLICATION LOGIN;
