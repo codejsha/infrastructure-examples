@@ -242,7 +242,14 @@ wsl --unregister docker-desktop-data
 
 ######################################################################
 
-### check oom
+### inspect oom killed container
 docker inspect tempo --format 'exit={{.State.ExitCode}} oom={{.State.OOMKilled}} restarts={{.RestartCount}}'
 dmesg -T | grep -i "oom\|killed process" | tail -5
+
+######################################################################
+
+### check container log size
+sudo sh -c 'du -h /var/lib/docker/containers/*/*-json.log' | sort -h
+### truncate container log files
+sudo truncate -s 0 '/var/lib/docker/containers/*/*-json.log'
 
