@@ -90,3 +90,9 @@ brew install --cask github
 
 ### chocolatey
 choco install -y github-desktop
+
+######################################################################
+
+### extension
+gh extension install dlvhdr/gh-dash
+
