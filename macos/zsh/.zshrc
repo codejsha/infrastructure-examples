@@ -28,6 +28,7 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/tools/bin:${PATH}"
 export PATH="${HOME}/go/bin:${PATH}"
 export PATH="${HOME}/Library/pnpm/bin:${PATH}"
+export GPG_TTY="$(tty)"
 export PATH="${HOME}/.krew/bin:${PATH}"
 export LS_COLORS="di=36:ln=35;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-25.jdk/Contents/Home"
@@ -44,7 +45,14 @@ alias cat="bat --style=header --paging=never"
 alias le="eza -alg --icons --time-style=long-iso"
 alias eza="eza -alg --icons --time-style=long-iso"
 alias fl="open -b com.binarynights.forklift-setapp"
-alias fzf="fzf --preview 'bat -n --color=always {}' | tmux load-buffer -w -"
+alias fzf="fzf --preview 'bat -n --color=always {}'"
+alias lazygit="lazygit -ucd ${HOME}/.config/lazygit"
 alias mysql="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysqldump"
 alias psql="${HOMEBREW_PREFIX}/opt/postgresql@18/bin/psql"
+
+### gpg agent
+if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_TTY" ] || [ -n "$TMUX" ]; then
+  export PINENTRY_USER_DATA=USE_TTY
+fi
+
