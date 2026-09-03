@@ -2,7 +2,7 @@ git:
   allBranchesLogCmds:
     - git log --graph --all --oneline --date-order --color=always --decorate
     - git log --graph --all --date-order --color=always --abbrev-commit --decorate --date=relative --pretty=medium
-    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium
+    - git log --graph --all --date-order --color=always --format="%C(auto)%h %C(bold yellow)%G?%C(reset) %d %s %C(blue)%an %C(green)%cr"
   diffRenderers:
     - command: delta --dark --paging=never
   log:
@@ -10,10 +10,8 @@ git:
     showGraph: always
     showWholeGraph: true
   overrideGpg: true
-
 os:
   editPreset: "nvim"
-
 gui:
   theme:
     selectedLineBgColor:
@@ -24,4 +22,10 @@ gui:
   nerdFontsVersion: "3"
   showRandomTip: false
   showBottomLine: false
-
+promptToReturnFromSubprocess: false
+customCommands:
+  - key: '<c-g>'
+    context: 'global'
+    description: 'Open gh dash'
+    output: terminal
+    command: '[ -n "$TMUX" ] && tmux new-window -n gh-dash "gh dash" || gh dash'
