@@ -40,6 +40,8 @@ gh config set git_protocol https
 gh auth logout
 gh auth status
 
+gh auth setup-git
+
 ######################################################################
 
 ### repo
