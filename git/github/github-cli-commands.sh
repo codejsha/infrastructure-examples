@@ -40,6 +40,8 @@ gh config set git_protocol https
 gh auth logout
 gh auth status
 
+gh auth setup-git
+
 ######################################################################
 
 ### repo
@@ -90,3 +92,9 @@ brew install --cask github
 
 ### chocolatey
 choco install -y github-desktop
+
+######################################################################
+
+### extension
+gh extension install dlvhdr/gh-dash
+
