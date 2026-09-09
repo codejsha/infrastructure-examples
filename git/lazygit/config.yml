@@ -4,14 +4,20 @@ git:
     - git log --graph --all --date-order --color=always --abbrev-commit --decorate --date=relative --pretty=medium
     - git log --graph --all --date-order --color=always --format="%C(auto)%h %C(bold yellow)%G?%C(reset) %d %s %C(blue)%an %C(green)%cr"
   diffRenderers:
-    - command: delta --dark --paging=never
+    - command: delta --dark --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - type: rawGit
+      name: color-words
+      args:
+        - --color-words
   log:
     order: date-order
     showGraph: always
     showWholeGraph: true
-  overrideGpg: true
+
 os:
   editPreset: "nvim"
+
 gui:
   theme:
     selectedLineBgColor:
@@ -22,10 +28,396 @@ gui:
   nerdFontsVersion: "3"
   showRandomTip: false
   showBottomLine: false
+
 promptToReturnFromSubprocess: false
+
 customCommands:
+  # ─────────────────────────────────────────────────────────────
+  # commitFiles
+  # ─────────────────────────────────────────────────────────────
+
+  ### Compare a file in a previous revision with the working copy
+  - key: 'f'
+    context: 'commitFiles'
+    description: 'Compare (difftool) with local copy'
+    command: "git difftool -y {{.SelectedLocalCommit.Hash}} -- {{.SelectedCommitFile.Name | quote}}"
+
+  ### tig: blame the file at the selected revision
+  - key: 'b'
+    context: 'commitFiles'
+    description: 'tig blame file at revision'
+    output: terminal
+    command: "tig blame {{.SelectedLocalCommit.Hash}} -- {{.SelectedCommitFile.Name | quote}}"
+
+  ### tig: blame the file at the working tree
+  - key: 'B'
+    context: 'commitFiles'
+    description: 'tig blame file at tree'
+    output: terminal
+    command: "tig blame -- {{.SelectedCommitFile.Name | quote}}"
+
+  ### tig: history of commits affecting the file, from the selected revision
+  - key: 't'
+    context: 'commitFiles'
+    description: 'tig file (history of commits affecting file)'
+    output: terminal
+    command: "tig {{.SelectedLocalCommit.Hash}} -- {{.SelectedCommitFile.Name | quote}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # global
+  # ─────────────────────────────────────────────────────────────
+
+  ### Unified push: pick the remote, the branch, and the force mode
+  - key: '<c-p>'
+    context: 'global'
+    description: 'Push to a specific remote/branch'
+    loadingText: 'Pushing ...'
+    prompts:
+      - type: 'menuFromCommand'
+        key: 'Remote'
+        title: 'Which remote?'
+        command: bash -c "git remote --verbose | grep '/.* (push)'"
+        filter: '(?P<remote>.*)\s+(?P<url>.*) \(push\)'
+        valueFormat: '{{ .remote }}'
+        labelFormat: '{{ .remote | bold | cyan }} {{ .url }}'
+      - type: 'input'
+        key: 'Branch'
+        title: 'Remote branch (leave empty to follow push.default)'
+        suggestions:
+          command: "git branch --format='%(refname:short)'"
+      - type: 'menu'
+        key: 'Mode'
+        title: 'How to push?'
+        options:
+          - value: 'push'
+          - value: 'push --force-with-lease'
+          - value: 'push --force'
+    command: "git {{.Form.Mode}} {{.Form.Remote}}{{if .Form.Branch}} HEAD:{{.Form.Branch}}{{end}}"
+
+  ### Conventional commit
+  - key: '<c-v>'
+    context: 'global'
+    description: 'Create new conventional commit'
+    loadingText: 'Creating conventional commit...'
+    prompts:
+      - type: 'menu'
+        key: 'Type'
+        title: 'Type of change'
+        options:
+          - name: 'build'
+            description: 'Changes that affect the build system or external dependencies'
+            value: 'build'
+          - name: 'feat'
+            description: 'A new feature'
+            value: 'feat'
+          - name: 'fix'
+            description: 'A bug fix'
+            value: 'fix'
+          - name: 'chore'
+            description: "Other changes that don't modify src or test files"
+            value: 'chore'
+          - name: 'ci'
+            description: 'Changes to CI configuration files and scripts'
+            value: 'ci'
+          - name: 'docs'
+            description: 'Documentation only changes'
+            value: 'docs'
+          - name: 'perf'
+            description: 'A code change that improves performance'
+            value: 'perf'
+          - name: 'refactor'
+            description: 'A code change that neither fixes a bug nor adds a feature'
+            value: 'refactor'
+          - name: 'revert'
+            description: 'Reverts a previous commit'
+            value: 'revert'
+          - name: 'style'
+            description: 'Changes that do not affect the meaning of the code'
+            value: 'style'
+          - name: 'test'
+            description: 'Adding missing tests or correcting existing tests'
+            value: 'test'
+      - type: 'input'
+        key: 'Scope'
+        title: 'Scope'
+      - type: 'menu'
+        key: 'Breaking'
+        title: 'Breaking change'
+        options:
+          - name: 'no'
+            value: ''
+          - name: 'yes'
+            value: '!'
+      - type: 'input'
+        key: 'Message'
+        title: 'Message'
+      - type: 'confirm'
+        key: 'Confirm'
+        title: 'Commit'
+        body: 'Are you sure you want to commit?'
+    command: "git commit --message '{{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}{{.Form.Breaking}}: {{.Form.Message}}'"
+
+  ### gh dash
   - key: '<c-g>'
     context: 'global'
     description: 'Open gh dash'
     output: terminal
     command: '[ -n "$TMUX" ] && tmux new-window -n gh-dash "gh dash" || gh dash'
+
+  # ─────────────────────────────────────────────────────────────
+  # files
+  # ─────────────────────────────────────────────────────────────
+
+  ### Pull from a specific remote
+  - key: '<c-u>'
+    context: 'files'
+    description: 'Pull from a specific remote repository'
+    loadingText: 'Pulling ...'
+    prompts:
+      - type: 'input'
+        key: 'Remote'
+        title: 'Remote:'
+        suggestions:
+          preset: 'remotes'
+      - type: 'input'
+        key: 'RemoteBranch'
+        title: 'Remote branch:'
+        suggestions:
+          command: "git branch --remote --list '{{.Form.Remote}}/*' --format='%(refname:short)' | sed 's/{{.Form.Remote}}\\///'"
+    command: "git pull {{.Form.Remote}} {{.Form.RemoteBranch}}"
+
+  ### Commit as a non-default author
+  - key: '<c-n>'
+    context: 'files'
+    description: 'Commit as non-default author'
+    loadingText: 'Committing...'
+    prompts:
+      - type: 'input'
+        key: 'Message'
+        title: 'Commit Message'
+      - type: 'input'
+        key: 'Name'
+        title: 'Author Name'
+      - type: 'input'
+        key: 'Email'
+        title: 'Email Address'
+    command: 'git commit -m "{{.Form.Message}}" --author="{{.Form.Name}} <{{.Form.Email}}>"'
+
+  ### Open git mergetool
+  - key: 'M'
+    context: 'files'
+    description: 'Open git mergetool'
+    loadingText: 'Opening git mergetool'
+    output: terminal
+    command: "git mergetool {{.SelectedFile.Name | quote}}"
+
+  ### tig: blame the file at the working tree
+  - key: 'b'
+    context: 'files'
+    description: 'tig blame file at tree'
+    output: terminal
+    command: "tig blame -- {{.SelectedFile.Name | quote}}"
+
+  ### tig: history of commits affecting the file
+  - key: 't'
+    context: 'files'
+    description: 'tig file (history of commits affecting file)'
+    output: terminal
+    command: "tig -- {{.SelectedFile.Name | quote}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # commits
+  # ─────────────────────────────────────────────────────────────
+
+  ### Search the whole history for an expression in a file
+  - key: '<c-a>'
+    context: 'commits'
+    description: 'Search the whole history (from a ref and down) for an expression in a file'
+    prompts:
+      - type: 'input'
+        key: 'Word'
+        title: 'Search word:'
+      - type: 'input'
+        key: 'Path'
+        title: 'File/Subtree:'
+      - type: 'input'
+        key: 'Ref'
+        title: 'Ref:'
+        initialValue: '{{.CheckedOutBranch.Name}}'
+      - type: 'menuFromCommand'
+        key: 'Commit'
+        title: 'Commits:'
+        command: "git log --oneline {{.Form.Ref}} -S'{{.Form.Word}}' --all -- {{.Form.Path}}"
+        filter: '(?P<commit_id>[0-9a-zA-Z]*) *(?P<commit_msg>.*)'
+        valueFormat: '{{ .commit_id }}'
+        labelFormat: '{{ .commit_id | green | bold }} - {{ .commit_msg | yellow }}'
+    command: "git checkout {{.Form.Commit}}"
+
+  ### Amend the author of the last commit
+  - key: '<c-e>'
+    context: 'commits'
+    description: 'Amend the author of last commit'
+    loadingText: 'Amending author...'
+    prompts:
+      - type: 'input'
+        key: 'Name'
+        title: 'Author Name'
+        initialValue: '{{.SelectedLocalCommit.AuthorName}}'
+      - type: 'input'
+        key: 'Email'
+        title: 'Email Address'
+    command: 'git commit --amend --only --no-edit --author="{{.Form.Name}} <{{.Form.Email}}>"'
+
+  ### Add an empty commit
+  - key: 'E'
+    context: 'commits'
+    description: 'Add empty commit'
+    loadingText: 'Committing empty commit...'
+    command: 'git commit --allow-empty -m "empty commit"'
+
+  ### tig: show the selected commit ('t' again inside tig browses files at that revision)
+  - key: 't'
+    context: 'commits'
+    description: 'tig commit'
+    output: terminal
+    command: "tig show {{.SelectedLocalCommit.Hash}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # subCommits
+  # ─────────────────────────────────────────────────────────────
+
+  ### tig: show the selected commit
+  - key: 't'
+    context: 'subCommits'
+    description: 'tig commit'
+    output: terminal
+    command: "tig show {{.SelectedSubCommit.Hash}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # localBranches
+  # ─────────────────────────────────────────────────────────────
+
+  ### Open the GitHub PR in a browser
+  - key: 'w'
+    context: 'localBranches'
+    description: 'Open GitHub PR in browser'
+    command: "gh pr view -w {{.SelectedLocalBranch.Name}}"
+
+  ### List and select a GitHub PR to check out
+  - key: 'v'
+    context: 'localBranches'
+    description: 'Checkout a GitHub Pull Request'
+    loadingText: 'Checking out GitHub Pull Request...'
+    prompts:
+      - type: 'menuFromCommand'
+        key: 'PullRequestNumber'
+        title: 'Which PR do you want to check out?'
+        command: >-
+          gh pr list --json number,title,headRefName,updatedAt
+          --template '{{`{{range .}}{{printf "#%v: %s - %s (%s)" .number .title .headRefName (timeago .updatedAt)}}{{end}}`}}'
+        filter: '#(?P<number>[0-9]+): (?P<title>.+) - (?P<ref_name>[^ ]+).*'
+        valueFormat: '{{.number}}'
+        labelFormat: '{{"#" | black | bold}}{{.number | white | bold}} {{.title | yellow | bold}}{{" [" | black | bold}}{{.ref_name | green}}{{"]" | black | bold}}'
+    command: "gh pr checkout {{.Form.PullRequestNumber}}"
+
+  ### Prune local branches already merged
+  - key: 'B'
+    context: 'localBranches'
+    description: 'Prune local branches merged into the default branch'
+    loadingText: 'Pruning...'
+    command: |
+      BASE=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
+      BASE=${BASE:-main}
+      git branch --merged "$BASE" | grep -vE "^[* ]*($BASE)$" | xargs -I{} git branch -d {}
+
+  ### Prune local branches whose remote is gone
+  - key: 'G'
+    context: 'localBranches'
+    description: 'Prune local branches no longer on their remote; (G)one'
+    loadingText: 'Pruning gone...'
+    command: |
+      git fetch -p
+      git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads |
+        awk '$2 == "[gone]" { print $1 }' |
+        xargs -I{} git branch -D {}
+
+  ### Extract diff into the index
+  - key: 'D'
+    context: 'localBranches'
+    description: 'Extract diff into index'
+    command: git diff {{.SelectedLocalBranch.Name}} > /tmp/lazygit.patch && git reset --hard {{.SelectedLocalBranch.Name}} && git apply /tmp/lazygit.patch
+
+  ### Disentangle: squash all changes into a single commit and rebase onto the selected branch
+  - key: 'K'
+    context: 'localBranches'
+    description: 'Disentangle: squash all changes into a single commit and rebase'
+    loadingText: 'Disentangling...'
+    prompts:
+      - type: 'confirm'
+        key: 'Confirm'
+        title: 'Disentangle'
+        body: 'Squash all changes and rebase onto {{.SelectedLocalBranch.Name}}. Continue?'
+    command: |
+      BASE_BRANCH="{{.SelectedLocalBranch.Name}}"
+
+      if [[ -n $(git status --porcelain) ]]; then
+          echo "Error: Working tree is dirty. Please commit or stash your changes first."
+          exit 1
+      fi
+
+      merge_base=$(git merge-base "$BASE_BRANCH" HEAD)
+      first_commit_hash=$(git rev-list --reverse "$merge_base"..HEAD | head -n 1)
+      first_commit_message=$(git log -1 --format=%B "$first_commit_hash")
+
+      git reset "$merge_base"
+      git add -A
+
+      GIT_AUTHOR_NAME="$(git log -1 --format='%an' "$first_commit_hash")" \
+      GIT_AUTHOR_EMAIL="$(git log -1 --format='%ae' "$first_commit_hash")" \
+      git commit -m "$first_commit_message"
+
+      git rebase "$BASE_BRANCH"
+
+  ### tig: browse the selected branch
+  - key: 't'
+    context: 'localBranches'
+    description: 'tig branch'
+    output: terminal
+    command: "tig show {{.SelectedLocalBranch.Name}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # remoteBranches
+  # ─────────────────────────────────────────────────────────────
+
+  ### tig: browse the selected remote branch
+  - key: 't'
+    context: 'remoteBranches'
+    description: 'tig branch'
+    output: terminal
+    command: "tig show {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}"
+
+  # ─────────────────────────────────────────────────────────────
+  # remotes
+  # ─────────────────────────────────────────────────────────────
+
+  ### Prune deleted remote branches
+  - key: 'p'
+    context: 'remotes'
+    description: 'Prune deleted remote branches'
+    loadingText: 'Pruning...'
+    command: "git remote prune {{.SelectedRemote.Name}}"
+
+  ### Fetch a remote branch as a new local branch
+  - key: '<c-f>'
+    context: 'remotes'
+    description: 'Fetch a remote branch as a new local branch'
+    loadingText: 'Fetching branch'
+    prompts:
+      - type: 'input'
+        key: 'RemoteBranch'
+        title: 'Remote Branch Name'
+      - type: 'input'
+        key: 'LocalBranch'
+        title: 'New Local Branch Name'
+    command: "git fetch {{.SelectedRemote.Name}} {{.Form.RemoteBranch}}:{{.Form.LocalBranch}}"
+
