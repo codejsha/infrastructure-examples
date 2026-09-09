@@ -113,4 +113,9 @@ return {
       return opts
     end,
   },
+
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+  },
 }
