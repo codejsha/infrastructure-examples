@@ -17,6 +17,7 @@ return {
       ensure_installed = {
         "vim", "lua", "vimdoc",
         "html", "css",
+        "doxygen",
         "c", "cpp",
         "go", "gomod", "gosum", "gowork",
         "java", "kotlin",
