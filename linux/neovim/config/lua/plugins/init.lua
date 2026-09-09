@@ -80,6 +80,18 @@ return {
   },
 
   {
+    "jvgrootveld/telescope-zoxide",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      { "<leader>cd", function() require("telescope").extensions.zoxide.list() end,
+        desc = "zoxide directory" },
+    },
+    config = function()
+      require("telescope").load_extension "zoxide"
+    end,
+  },
+
+  {
     "github/copilot.vim",
     lazy = false,
     init = function()
