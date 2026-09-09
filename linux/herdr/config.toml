@@ -1,0 +1,6 @@
+[ui]
+copy_on_select = false
+
+[ui.toast.clipboard]
+enabled = false
+
