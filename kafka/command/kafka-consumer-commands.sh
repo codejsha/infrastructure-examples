@@ -34,6 +34,27 @@ kafka-console-consumer.sh \
 
 ######################################################################
 
+### consume from specific point
+
+### get offsets by timestamp
+TIMESTAMP=$(date -d '2026-09-01 00:00:00' +%s000)
+kafka-get-offsets.sh \
+    --bootstrap-server localhost:9092 \
+    --topic my.topic \
+    --time ${TIMESTAMP}
+
+### consume from specific offset
+kafka-console-consumer.sh \
+    --bootstrap-server localhost:9092 \
+    --property print.key=true \
+    --property print.timestamp=true \
+    --timeout-ms 10000 \
+    --topic my.topic \
+    --partition 0 \
+    --offset 123
+
+######################################################################
+
 ### consumer group
 
 ### list
