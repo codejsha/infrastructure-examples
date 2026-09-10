@@ -17,6 +17,7 @@ return {
       ensure_installed = {
         "vim", "lua", "vimdoc",
         "html", "css",
+        "doxygen",
         "c", "cpp",
         "go", "gomod", "gosum", "gowork",
         "java", "kotlin",
@@ -80,6 +81,18 @@ return {
   },
 
   {
+    "jvgrootveld/telescope-zoxide",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      { "<leader>cd", function() require("telescope").extensions.zoxide.list() end,
+        desc = "zoxide directory" },
+    },
+    config = function()
+      require("telescope").load_extension "zoxide"
+    end,
+  },
+
+  {
     "github/copilot.vim",
     lazy = false,
     init = function()
@@ -112,5 +125,10 @@ return {
 
       return opts
     end,
+  },
+
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
   },
 }
