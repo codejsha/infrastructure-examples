@@ -10,9 +10,24 @@ herdr status client
 
 ######################################################################
 
+herdr server
+herdr server stop
+
+herdr session list
+herdr workspace list
+herdr worktree list
+herdr tab list
+herdr pane list
+herdr agent list
+
+######################################################################
+
 ### config file
 herdr --default-config
 herdr --default-config > ~/.config/herdr/config.toml
+
+### check config
+herdr config check
 
 ### reload config
 herdr server reload-config
