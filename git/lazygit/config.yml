@@ -1,3 +1,20 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+  branchColorPatterns:
+    "^feature/": "#11aaff"
+    "^hotfix/": "#ff5733"
+  nerdFontsVersion: "3"
+  showRandomTip: false
+  showBottomLine: false
+  skipRewordInEditorWarning: true
+
+promptToReturnFromSubprocess: false
+
+os:
+  editPreset: "nvim"
+
 git:
   allBranchesLogCmds:
     - git log --graph --all --oneline --date-order --color=always --decorate
@@ -15,21 +32,9 @@ git:
     showGraph: always
     showWholeGraph: true
 
-os:
-  editPreset: "nvim"
-
-gui:
-  theme:
-    selectedLineBgColor:
-      - reverse
-  branchColorPatterns:
-    "^feature/": "#11aaff"
-    "^hotfix/": "#ff5733"
-  nerdFontsVersion: "3"
-  showRandomTip: false
-  showBottomLine: false
-
-promptToReturnFromSubprocess: false
+keybinding:
+  commits:
+    resetCherryPick: <disabled>
 
 customCommands:
   # ─────────────────────────────────────────────────────────────
