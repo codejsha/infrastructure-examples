@@ -1,6 +1,34 @@
+onboarding = false
+[keys]
+next_agent = "prefix+ctrl+j"
+previous_agent = "prefix+ctrl+k"
+next_workspace = "prefix+ctrl+n"
+previous_workspace = "prefix+ctrl+p"
+[theme.custom]
+sidebar_bg = "#1c1c1c"
+active_row_bg = "#333333"
+selection_bg = "#404040"
 [ui]
 copy_on_select = false
-
+status_indicators = "symbols"
+show_agent_labels_on_pane_borders = false
+agent_panel_sort = "spaces"
+window_title = "{workspace} · {terminal_title}"
+[ui.toast]
+delivery = "system"
 [ui.toast.clipboard]
 enabled = false
-
+[ui.sound]
+enabled = false
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", { token = "workspace", fg = "#dcdcdc", bold = false, dim = false }],
+  [{ token = "branch", fg = "#cdd6f4", bold = false, dim = true }, "git_status"],
+]
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", { token = "workspace", rules = [
+    { equals = "infrastructure-examples",  fg = "#74c7ec" },
+  ], bold = false, dim = false }, "tab"],
+  [{ token = "terminal_title_stripped", fg = "#cdd6f4", bold = false, dim = true }],
+]
