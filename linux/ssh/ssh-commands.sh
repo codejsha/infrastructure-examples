@@ -40,6 +40,23 @@ ssh github-personal
 
 ######################################################################
 
+### remove old host key from known_hosts
+ssh-keygen -R ${HOSTNAME}
+
+### find host key in known_hosts
+ssh-keygen -F ${HOSTNAME}
+
+######################################################################
+
+### configure authentication method
+sudo tee /etc/ssh/sshd_config.d/200-hardening.conf > /dev/null <<'EOF'
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+EOF
+
+######################################################################
+
 ### scp
 scp file.txt user@host:/remote/path/
 scp -P 2222 file.txt user@host:/remote/path/
@@ -50,12 +67,3 @@ scp -r $local_directory user@host:/remote/path/
 rsync -avz file.txt user@host:/remote/path/
 rsync -avz -e "ssh -p 2222" file.txt user@host:/remote/path/
 rsync -avz ./dir/ user@host:/remote/path/
-
-######################################################################
-
-### configure authentication method
-sudo tee /etc/ssh/sshd_config.d/200-hardening.conf > /dev/null <<'EOF'
-PasswordAuthentication no
-KbdInteractiveAuthentication no
-PubkeyAuthentication yes
-EOF
