@@ -22,18 +22,8 @@ ZSH_HIGHLIGHT_STYLES[path]='bg=#1e1e1e'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='bg=#1e1e1e'
 
 ### variables
-export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:${PATH}"
-export PATH="${HOMEBREW_PREFIX}/opt/llvm/bin:${PATH}"
-export PATH="${HOME}/.local/bin:${PATH}"
-export PATH="${HOME}/tools/bin:${PATH}"
-export PATH="${HOME}/go/bin:${PATH}"
-export PATH="${HOME}/Library/pnpm/bin:${PATH}"
 export GPG_TTY="$(tty)"
-export PATH="${HOME}/.krew/bin:${PATH}"
 export LS_COLORS="di=36:ln=35;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/microsoft-25.jdk/Contents/Home"
-export GROOVY_HOME="${HOMEBREW_PREFIX}/opt/groovysdk/libexec"
-export VCPKG_ROOT="${HOME}/tools/vcpkg"
 
 ### aliases
 alias ls="lsd"
@@ -42,11 +32,9 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias cat="bat --style=header --paging=never"
-alias le="eza -alg --icons --time-style=long-iso"
 alias eza="eza -alg --icons --time-style=long-iso"
 alias fl="open -b com.binarynights.forklift-setapp"
 alias fzf="fzf --preview 'bat -n --color=always {}'"
-alias lazygit="lazygit -ucd ${HOME}/.config/lazygit"
 alias mysql="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysqldump"
 alias psql="${HOMEBREW_PREFIX}/opt/postgresql@18/bin/psql"

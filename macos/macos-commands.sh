@@ -33,7 +33,27 @@ sudo launchctl kickstart -k system/com.openssh.sshd
 
 ######################################################################
 
-### read power settings
+### network adapter - manual ip address
+
+### list network service order
+networksetup -listnetworkserviceorder
+
+### set manual ip address
+sudo networksetup -setmanual "Ethernet" 192.168.0.2 255.255.255.0 192.168.0.1
+
+### check
+ipconfig getifaddr en0
+
+######################################################################
+
+### network adapter - dhcp
+sudo networksetup -setdhcp "Ethernet"
+
+######################################################################
+
+### power settings
+
+### read settings
 pmset -g
 
 ### sleep/wake log
@@ -41,3 +61,16 @@ pmset -g log | grep -e " Wake " -e "DarkWake" -e "Sleep"
 
 ### power log
 log show --last 3h --predicate 'subsystem == "com.apple.powerd"' --info
+
+######################################################################
+
+### format usb disk
+
+diskutil list external
+
+### format disk
+diskutil unmountDisk /dev/disk4
+diskutil eraseDisk ExFAT USB16 GPT /dev/disk4
+
+### check disk
+diskutil list external
