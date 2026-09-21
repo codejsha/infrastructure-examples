@@ -1,10 +1,5 @@
 # MinIO
 
-## MinIO Server
-
-- MinIO Docker Hub: <https://hub.docker.com/r/minio/minio>
-- MinIO Linux Service: <https://github.com/minio/minio-service>
-
 ## References
 
 - MinIO: <https://github.com/minio/minio>
