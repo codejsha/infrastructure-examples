@@ -46,3 +46,13 @@ herdr integration uninstall claude
 herdr integration uninstall codex
 herdr integration uninstall copilot
 
+######################################################################
+
+### install herdr plugin
+herdr plugin install codejsha/herdr-tab-name-plugin --ref develop --yes
+
+### reinstall
+herdr plugin action invoke codejsha.tab-name.watch-stop
+herdr plugin install codejsha/herdr-tab-name-plugin --ref develop --yes
+herdr plugin action invoke codejsha.tab-name.watch-start
+
