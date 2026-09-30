@@ -166,6 +166,9 @@ git remote set-head origin -a
 ### delete merged branches
 git branch --merged | grep -vE '(main|develop|\*)' | xargs git branch -d
 
+### unset upstream
+git branch --unset-upstream develop
+
 ######################################################################
 
 ### merge
