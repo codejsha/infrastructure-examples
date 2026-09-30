@@ -37,6 +37,6 @@ velero restore delete mybackup-restore1
 velero restore delete --all
 
 velero schedule get
-velero schedule create firstschedule --schedule="@every 1day" --include-namespcaes
+velero schedule create firstschedule --schedule="@every 1day" --include-namespaces
 velero schedule delete firstschedule
 velero schedule delete --all
