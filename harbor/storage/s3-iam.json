@@ -8,7 +8,7 @@
         "s3:GetBucketLocation",
         "s3:ListBucketMultipartUploads"
       ],
-      "Resource": "arn:aws:s3:::harbor-stroage"
+      "Resource": "arn:aws:s3:::harbor-storage"
     },
     {
       "Effect": "Allow",
@@ -19,7 +19,7 @@
         "s3:ListMultipartUploadParts",
         "s3:AbortMultipartUpload"
       ],
-      "Resource": "arn:aws:s3:::harbor-stroage/*"
+      "Resource": "arn:aws:s3:::harbor-storage/*"
     }
   ]
 }

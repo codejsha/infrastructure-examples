@@ -25,7 +25,7 @@ open -b com.google.Chrome http://localhost:8083
 
 defaults read com.apple.dock persistent-apps | rg bundle-identifier
 
-cat Info.plist | rg -n CFBundleIdentifier -A 1
+mdls -name kMDItemCFBundleIdentifier -r /Applications/Safari.app
 
 ######################################################################
 

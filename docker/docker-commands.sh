@@ -103,6 +103,11 @@ sudo pgrep -xa docker-proxy | grep docker-proxy
 
 ######################################################################
 
+### prune system
+docker system prune -a --volumes
+
+######################################################################
+
 ### container
 
 ### remove all containers

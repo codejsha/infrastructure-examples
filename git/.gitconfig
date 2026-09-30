@@ -2,6 +2,8 @@
     name = <name>
     email = <email>
     signingKey = <signingKey>
+[init]
+    defaultBranch = main
 [gpg]
     format = openpgp
     program = gpg
@@ -9,24 +11,40 @@
     gpgSign = true
 [merge]
     ff = false
-[pull]
-    ff = true
+    conflictStyle = zdiff3
 [tag]
-    gpgsign = true
+    gpgSign = true
     forceSignAnnotated = true
 [gpg "ssh"]
     program = ssh-keygen
     allowedSignersFile = ""
 [credential]
     helper = cache --timeout=3600
+[core]
+    pager = delta
+    autocrlf = input
+    excludesfile = ~/properties/personal/git/.gitignore_global
+    hooksPath = ~/properties/personal/git/hooks
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    dark = true
+    navigate = true
+    hunk-header-style = line-number
+    hunk-header-decoration-style = omit
+[includeIf "gitdir:~/source/workrepos/"]
+    path = ~/properties/work/git/.gitconfig
+[includeIf "gitdir:~/source/subrepos/"]
+    path = ~/properties/work/git/.gitconfig
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
-[core]
-    autocrlf = input
-    excludesfile = ~/properties/git/.gitignore_global
-    hooksPath = ~/properties/git/hooks/personal
-[includeIf "gitdir:~/source/workrepos/"]
-    path = ~/properties/git/config/work/.gitconfig
+[credential "https://github.com"]
+    helper =
+    helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper =
+    helper = !/opt/homebrew/bin/gh auth git-credential
+

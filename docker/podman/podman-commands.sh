@@ -1,31 +1,26 @@
 ######################################################################
 
-### install podman
+### install
 
-### dnf
+### podman
 sudo dnf install -y podman
-
-### yum
 sudo yum install -y podman
-
-### homebrew
 brew install podman
 
-######################################################################
-
 ### podman compose
-
-### dnf
 sudo dnf install -y podman-compose
-
-### yum
 sudo yum install -y podman-compose
 
 ######################################################################
 
-podmnan machine init
+podman machine init
 podman machine start
 podman machine stop
+
+######################################################################
+
+### prune system
+podman system prune -a --volumes
 
 ######################################################################
 
