@@ -22,8 +22,11 @@ ZSH_HIGHLIGHT_STYLES[path]='bg=#1e1e1e'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='bg=#1e1e1e'
 
 ### variables
-export GPG_TTY="$(tty)"
 export LS_COLORS="di=36:ln=35;5;210:or=31:so=32:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+export GPG_TTY="$(tty)"
+if [[ -z ${SSH_TTY} && -n ${SSH_CONNECTION} ]]; then
+  export SSH_TTY="$(tty)"
+fi
 
 ### aliases
 alias ls="lsd"
