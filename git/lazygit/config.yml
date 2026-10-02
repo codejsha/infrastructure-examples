@@ -22,11 +22,7 @@ git:
     - git log --graph --all --date-order --color=always --format="%C(auto)%h %C(bold yellow)%G?%C(reset) %d %s %C(blue)%an %C(green)%cr"
   diffRenderers:
     - command: delta --dark --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - type: rawGit
-      name: color-words
-      args:
-        - --color-words
+    - command: delta --dark --paging=never --side-by-side --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   log:
     order: date-order
     showGraph: always
