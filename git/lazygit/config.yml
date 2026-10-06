@@ -14,6 +14,7 @@ promptToReturnFromSubprocess: false
 
 os:
   editPreset: "nvim"
+  copyToClipboardCmd: printf "\033]52;c;$(printf '%s' {{text}} | base64)\a" > /dev/tty
 
 git:
   allBranchesLogCmds:
@@ -30,6 +31,7 @@ git:
 
 keybinding:
   commits:
+    createTag: '<c-g>'
     resetCherryPick: <disabled>
 
 customCommands:
@@ -159,7 +161,7 @@ customCommands:
     command: "git commit --message '{{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}{{.Form.Breaking}}: {{.Form.Message}}'"
 
   ### gh dash
-  - key: '<c-g>'
+  - key: '<c-d>'
     context: 'global'
     description: 'Open gh dash'
     output: terminal
@@ -282,6 +284,13 @@ customCommands:
     description: 'tig commit'
     output: terminal
     command: "tig show {{.SelectedLocalCommit.Hash}}"
+
+  ### tig: show all commits
+  - key: 'T'
+    context: 'commits'
+    description: 'tig --all'
+    output: terminal
+    command: "tig --all"
 
   # ─────────────────────────────────────────────────────────────
   # subCommits
