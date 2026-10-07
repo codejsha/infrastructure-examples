@@ -1,2 +1,3 @@
 set commit-order = date
+set wrap-lines = yes
 
