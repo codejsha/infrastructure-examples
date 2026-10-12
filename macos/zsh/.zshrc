@@ -28,6 +28,19 @@ if [[ -z ${SSH_TTY} && -n ${SSH_CONNECTION} ]]; then
   export SSH_TTY="$(tty)"
 fi
 
+### gpg agent
+if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_TTY" ] || [ -n "$TMUX" ]; then
+  export PINENTRY_USER_DATA=USE_TTY
+fi
+
+### terminal title
+_titled() {
+  local rc
+  printf '\033]0;%s\007' "$1"
+  { command "$@"; rc=$? } always { printf '\033]0;Terminal\007' }
+  return $rc
+}
+
 ### aliases
 alias ls="lsd"
 alias ll="lsd -alh"
@@ -42,8 +55,9 @@ alias mysql="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysql"
 alias mysqldump="${HOMEBREW_PREFIX}/opt/mysql-client@8.4/bin/mysqldump"
 alias psql="${HOMEBREW_PREFIX}/opt/postgresql@18/bin/psql"
 
-### gpg agent
-if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_TTY" ] || [ -n "$TMUX" ]; then
-  export PINENTRY_USER_DATA=USE_TTY
-fi
+### functions
+nvim() { _titled nvim "$@" }
+dash() { _titled dash "$@" }
+lazygit() { _titled lazygit "$@" }
+tig() { _titled tig "$@" }
 
