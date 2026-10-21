@@ -25,8 +25,17 @@ brew list --versions protoc-gen-go
 brew list --versions protoc-gen-go-grpc
 brew list --versions protoc-gen-grpc-java
 
+brew list -t
+brew list -tr
+brew list -lt
+brew list -t --cask
+
 brew search <package_name>
 brew info <package_name>
+
+######################################################################
+
+brew cleanup --prune=all
 
 ######################################################################
 
